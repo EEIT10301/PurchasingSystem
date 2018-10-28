@@ -161,7 +161,7 @@ body {
 		<div class='pro'>
 			<form action="<c:url value="/Apply/ApplyListsend.controller" />"
 				method="post">
-				請說明請購原因:
+				請購原因:
 				<p>
 					<textarea rows="5" cols="50" name="suggestion">
 </textarea>
