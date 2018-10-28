@@ -17,5 +17,6 @@ public interface EmployeeIDao {
 
 	public abstract boolean delete(String id);
 	public abstract EmployeeBean ApplyLogin (String emp_email, String emp_pwd);
+	public abstract EmployeeBean AccountLogin (String emp_email, String emp_pwd);
 	
 }
