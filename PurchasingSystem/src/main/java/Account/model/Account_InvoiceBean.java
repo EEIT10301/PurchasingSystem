@@ -29,7 +29,7 @@ public class Account_InvoiceBean {
 	private String emp_id;
 	//private String emp_name;
 	private Integer total_price;
-	private PO_Vendor_InfoBean pO_Vendor_InfoBean;
+	//private PO_Vendor_InfoBean pO_Vendor_InfoBean;
 	private EmployeeBean employeeBean;
 	private Accout_PayableBean accout_PayableBean;
 	private Set<Account_SigningProcessBean> account_SigningProcessBean = new LinkedHashSet<>();
