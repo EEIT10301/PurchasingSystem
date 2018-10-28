@@ -98,12 +98,12 @@ public class ApplySignController {
 			Model model ,HttpSession session) {
 		EmployeeBean ben=(EmployeeBean) session.getAttribute("user");
 		String empid=ben.getEmp_id();
-		if(ben.getEmp_level()==1) {
+		if(ben.getEmp_level()==1) {//如果是非主管的員工
 			List<App_SigningProcessBean> Sproductlistsx1 =new LinkedList<App_SigningProcessBean>();
 			
 			Sproductlistsx1=app_SigningProcessService.selectfromlastemp(empid);
 			
-			if(Sproductlistsx1!=null){
+			if(Sproductlistsx1!=null){//查詢是否有請購單號
 				model.addAttribute("Applylists", Sproductlistsx1);
 				return "apply.sign";
 			}else{
@@ -114,10 +114,10 @@ public class ApplySignController {
 			List<App_SigningProcessBean> Sproductlistsx1 =new LinkedList<App_SigningProcessBean>();
 			Sproductlistsx1=app_SigningProcessService.selectfromlastemp(empid);
 			
-			if(Sproductlistsx1!=null) {
+			if(Sproductlistsx1!=null) {//如果是主管
 				List<App_SigningProcessBean> Sproductlistsx2 =new LinkedList<App_SigningProcessBean>();
 				
-				for(int i=0;i<Sproductlistsx1.size();i++) {
+				for(int i=0;i<Sproductlistsx1.size();i++) {//查詢員工第一位的申請時間
 					App_SigningProcessBean xs = Sproductlistsx1.get(i);
 					App_SigningProcessBean xs1=app_SigningProcessService.selectrank(xs.getApp_id(),1);
 					Sproductlistsx2.add(xs1);
@@ -136,7 +136,7 @@ public class ApplySignController {
 	@RequestMapping("/Apply/applysignss.controller")
 	public String applySigner(App_SigningProcessBean bean,BindingResult bindingResult,
 			Model model ,HttpSession session,String send,String SignSug) {
-		Map<String, String> errors = new HashMap<String, String>();
+		Map<String, String> errors = new HashMap<String, String>();//請輸入簽核意見
 		if(SignSug ==null ||SignSug.length()==0||SignSug.trim().isEmpty()) {
 			errors.put("plz", "請輸入文字");
 		}
@@ -150,7 +150,7 @@ public class ApplySignController {
 		}
 		java.util.Date date = new java.util.Date();
 		java.sql.Date datas =new java.sql.Date(date.getTime());
-		    if (send.equals("請購核准")) {
+		    if (send.equals("請購核准")) {//如果按下請購核准就產生採購單
 		    	
 		  App_SigningProcessBean thissign = app_SigningProcessService.select(bean.getApp_sta(), bean.getApp_id());
 		  thissign.setSig_date( datas);
@@ -171,7 +171,7 @@ public class ApplySignController {
 		 PO_SigningProcessBean pO_SigningProcessBean =new PO_SigningProcessBean("emp005","分派採購者",poid,null,"分派中",null,1);
 		 pO_SigningProcessService.insert(pO_SigningProcessBean);
 		    }
-		    else if(send.equals("送出")) {
+		    else if(send.equals("送出")) {//如果按下送出就update已簽核
 App_SigningProcessBean thissign1 = app_SigningProcessService.select(bean.getApp_sta(), bean.getApp_id());
 	thissign1.setSig_date( datas);
 	thissign1.setSig_sta("已簽核");
@@ -181,7 +181,7 @@ thissign2.setSig_date( null);
 thissign2.setSig_sta("簽核中"); 
 thissign2.setSig_sug(null);
 		    }
-            else if(send.equals("退回")) {
+            else if(send.equals("退回")) {//如果按下退回就退回給上一位
 App_SigningProcessBean thissign1 = app_SigningProcessService.select(bean.getApp_sta(), bean.getApp_id());
             	thissign1.setSig_date( datas);
             	thissign1.setSig_sta("未簽核");
