@@ -1,4 +1,4 @@
-package Inv.model;
+package Inv.dao.impl;
 
 import java.util.List;
 
@@ -11,6 +11,8 @@ import org.springframework.stereotype.Repository;
 
 import Apply.dao.App_SigningProcessIDao;
 import Apply.model.App_SigningProcessBean;
+import Inv.dao.Inv_SigningProcessIDao;
+import Inv.model.Inv_SigningProcessBean;
 import misc.SpringJavaConfiguration;
 @Repository
 public class Inv_SigningProcessDao implements Inv_SigningProcessIDao{

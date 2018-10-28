@@ -1,6 +1,8 @@
-package Account.model;
+package Account.dao;
 
 import java.util.List;
+
+import Account.model.Accout_PayableBean;
 
 public interface Accout_PayableIDao {
 	public abstract Accout_PayableBean select(String id);

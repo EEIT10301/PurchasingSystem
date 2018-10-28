@@ -1,4 +1,4 @@
-package Inv.model;
+package Inv.dao.impl;
 
 import java.util.List;
 
@@ -12,6 +12,9 @@ import org.springframework.stereotype.Repository;
 import Apply.dao.ProductListIDAO;
 import Apply.model.AppDetailBean;
 import Apply.model.ProductListBean;
+import Inv.dao.Inv_MainIDao;
+import Inv.model.Inv_DetailBean;
+import Inv.model.Inv_MainBean;
 import Po.model.PO_DetailBean;
 import misc.SpringJavaConfiguration;
 

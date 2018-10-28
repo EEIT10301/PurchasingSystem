@@ -1,4 +1,4 @@
-package Account.model;
+package Account.dao.impl;
 
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -11,6 +11,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Repository;
 
+import Account.dao.Account_InvoiceIDao;
+import Account.model.Account_InvoiceBean;
+import Account.model.Account_SigningProcessBean;
 import Apply.dao.EmployeeIDao;
 import Apply.model.EmployeeBean;
 import misc.SpringJavaConfiguration;

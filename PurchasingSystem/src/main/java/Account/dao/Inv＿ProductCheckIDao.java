@@ -1,6 +1,8 @@
-package Account.model;
+package Account.dao;
 
 import java.util.List;
+
+import Account.model.Inv＿ProductCheckBean;
 
 public interface Inv＿ProductCheckIDao {
 	public abstract Inv＿ProductCheckBean select(String id);

@@ -1,6 +1,8 @@
-package Account.model;
+package Account.dao;
 
 import java.util.List;
+
+import Account.model.Account_InvoiceBean;
 
 public interface Account_InvoiceIDao {
 	

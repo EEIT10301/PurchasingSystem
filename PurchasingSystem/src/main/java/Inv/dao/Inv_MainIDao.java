@@ -1,6 +1,8 @@
-package Inv.model;
+package Inv.dao;
 
 import java.util.List;
+
+import Inv.model.Inv_MainBean;
 
 
 

@@ -1,4 +1,4 @@
-package Account.model;
+package Account.dao.impl;
 
 import java.util.List;
 
@@ -9,6 +9,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Repository;
 
+import Account.dao.Inv＿ProductCheckIDao;
+import Account.model.Inv_ProductListBean;
+import Account.model.Inv＿ProductCheckBean;
 import Inv.model.Inv_SigningProcessBean;
 import misc.SpringJavaConfiguration;
 @Repository

@@ -1,6 +1,8 @@
-package Account.model;
+package Account.dao;
 
 import java.util.List;
+
+import Account.model.Inv_ProductListBean;
 
 public interface Inv_ProductListIDao {
 	public abstract Inv_ProductListBean select(String chk_Id,String part_No);

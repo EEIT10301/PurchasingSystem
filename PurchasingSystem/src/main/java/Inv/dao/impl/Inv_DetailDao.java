@@ -1,4 +1,4 @@
-package Inv.model;
+package Inv.dao.impl;
 
 import java.util.List;
 
@@ -10,6 +10,8 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.stereotype.Repository;
 
 import Apply.model.AppDetailBean;
+import Inv.dao.Inv_DetailIDao;
+import Inv.model.Inv_DetailBean;
 import misc.SpringJavaConfiguration;
 @Repository
 public class Inv_DetailDao implements Inv_DetailIDao{

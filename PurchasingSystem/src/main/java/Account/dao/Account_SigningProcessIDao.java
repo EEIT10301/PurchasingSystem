@@ -1,6 +1,8 @@
-package Account.model;
+package Account.dao;
 
 import java.util.List;
+
+import Account.model.Account_SigningProcessBean;
 
 public interface Account_SigningProcessIDao {
 	public abstract Account_SigningProcessBean select(String account_Sta,String inv_id);

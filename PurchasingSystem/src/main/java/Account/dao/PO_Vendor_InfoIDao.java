@@ -1,6 +1,8 @@
-package Account.model;
+package Account.dao;
 
 import java.util.List;
+
+import Account.model.PO_Vendor_InfoBean;
 
 public interface PO_Vendor_InfoIDao {
 	

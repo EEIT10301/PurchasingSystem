@@ -1,4 +1,4 @@
-package Account.model;
+package Account.dao.impl;
 
 import java.util.List;
 
@@ -9,6 +9,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Repository;
 
+import Account.dao.Accout_PayableIDao;
+import Account.model.Accout_PayableBean;
 import misc.SpringJavaConfiguration;
 
 @Repository

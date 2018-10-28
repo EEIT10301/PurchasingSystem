@@ -1,4 +1,4 @@
-package Account.model;
+package Account.dao.impl;
 
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -11,6 +11,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Repository;
 
+import Account.dao.PO_Vendor_InfoIDao;
+import Account.model.PO_Vendor_InfoBean;
 import Apply.dao.ProductListIDAO;
 import Apply.model.ProductListBean;
 import Po.model.PO_MainBean;
