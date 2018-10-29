@@ -23,20 +23,17 @@ public class Account_InvoiceBean {
 	private String inv_id;
 	private java.util.Date recript_date;
 	private String recript_pic;
-	//private String vendor_id;
-	//private String vendor_name;
+	// private String vendor_id;
+	// private String vendor_name;
 	private String po_id;
 	private String emp_id;
-	//private String emp_name;
+	// private String emp_name;
 	private Integer total_price;
-	//private PO_Vendor_InfoBean pO_Vendor_InfoBean;
+	// private PO_Vendor_InfoBean pO_Vendor_InfoBean;
 	private EmployeeBean employeeBean;
 	private Accout_PayableBean accout_PayableBean;
 	private Set<Account_SigningProcessBean> account_SigningProcessBean = new LinkedHashSet<>();
 	private PO_MainBean pO_MainBean;
-	
-
-
 
 	public Account_InvoiceBean(String inv_id, Date recript_date, String recript_pic, String po_id, String emp_id,
 			Integer total_price) {
@@ -51,6 +48,12 @@ public class Account_InvoiceBean {
 
 	public Account_InvoiceBean() {
 		super();
+	}
+
+	@Override
+	public String toString() {
+		return "Account_InvoiceBean [inv_id=" + inv_id + ", recript_date=" + recript_date + ", recript_pic="
+				+ recript_pic + ", po_id=" + po_id + ", emp_id=" + emp_id + ", total_price=" + total_price + "]";
 	}
 
 	@Id
@@ -79,8 +82,6 @@ public class Account_InvoiceBean {
 		this.recript_pic = recript_pic;
 	}
 
-
-
 	public String getPo_id() {
 		return po_id;
 	}
@@ -106,17 +107,17 @@ public class Account_InvoiceBean {
 		this.total_price = total_price;
 	}
 
-	
-	@ManyToOne(cascade=CascadeType.MERGE)
-	@JoinColumn(name="emp_id",insertable=false,updatable=false)
+	@ManyToOne(cascade = CascadeType.MERGE)
+	@JoinColumn(name = "emp_id", insertable = false, updatable = false)
 	public EmployeeBean getEmployeeBean() {
 		return employeeBean;
 	}
+
 	public void setEmployeeBean(EmployeeBean employeeBean) {
 		this.employeeBean = employeeBean;
 	}
 
-	@OneToOne(mappedBy="account_InvoiceBean")
+	@OneToOne(mappedBy = "account_InvoiceBean")
 	public Accout_PayableBean getAccout_PayableBean() {
 		return accout_PayableBean;
 	}
@@ -124,7 +125,8 @@ public class Account_InvoiceBean {
 	public void setAccout_PayableBean(Accout_PayableBean accout_PayableBean) {
 		this.accout_PayableBean = accout_PayableBean;
 	}
-	@OneToMany(mappedBy="account_InvoiceBean", cascade={CascadeType.MERGE})
+
+	@OneToMany(mappedBy = "account_InvoiceBean", cascade = { CascadeType.MERGE })
 	public Set<Account_SigningProcessBean> getAccount_SigningProcessBean() {
 		return account_SigningProcessBean;
 	}
@@ -132,8 +134,9 @@ public class Account_InvoiceBean {
 	public void setAccount_SigningProcessBean(Set<Account_SigningProcessBean> account_SigningProcessBean) {
 		this.account_SigningProcessBean = account_SigningProcessBean;
 	}
-	@OneToOne(cascade=CascadeType.MERGE)
-	@JoinColumn(name="po_id",insertable=false,updatable=false)
+
+	@OneToOne(cascade = CascadeType.MERGE)
+	@JoinColumn(name = "po_id", insertable = false, updatable = false)
 	public PO_MainBean getpO_MainBean() {
 		return pO_MainBean;
 	}
@@ -141,7 +144,5 @@ public class Account_InvoiceBean {
 	public void setpO_MainBean(PO_MainBean pO_MainBean) {
 		this.pO_MainBean = pO_MainBean;
 	}
-	
-	
-	
+
 }

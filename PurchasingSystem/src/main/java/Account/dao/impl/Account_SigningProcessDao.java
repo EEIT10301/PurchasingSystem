@@ -1,5 +1,6 @@
 package Account.dao.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -13,122 +14,185 @@ import Account.dao.Account_SigningProcessIDao;
 import Account.model.Account_SigningProcessBean;
 import misc.SpringJavaConfiguration;
 
-
-
 @Repository
 public class Account_SigningProcessDao implements Account_SigningProcessIDao {
 	@Autowired
 	private SessionFactory sessionFactory;
+
 	public Session getSession() {
 		return this.sessionFactory.getCurrentSession();
 	}
+
 	public static void main(String[] args) {
-		ApplicationContext context =
-				new AnnotationConfigApplicationContext(SpringJavaConfiguration.class);
-		
+		ApplicationContext context = new AnnotationConfigApplicationContext(SpringJavaConfiguration.class);
 		SessionFactory sessionFactory = (SessionFactory) context.getBean("sessionFactory");
 		sessionFactory.getCurrentSession().beginTransaction();
+//		---------test:select()----------
+//		Account_SigningProcessIDao productDAO = (Account_SigningProcessIDao) context.getBean("account_SigningProcessDao");
+//		List<Account_SigningProcessBean> selects = productDAO.select();
+//		for(Account_SigningProcessBean xz:selects) {
+//			System.out.println("Account_SigningProcessBean物件:"+xz.getAccount_Manger());
+//        	System.out.println("Account_InvoiceBean物件:"+xz.getAccount_InvoiceBean().getPo_id());
+//        	System.out.println("EmployeeBean物件:"+xz.getEmployeeBean().getEmp_name());
+//         }
 
-		Account_SigningProcessIDao productDAO = (Account_SigningProcessIDao) context.getBean("account_SigningProcessDao");
-		java.util.Date date = new java.util.Date();
-		java.sql.Date datas =new java.sql.Date(date.getTime());
-		Account_SigningProcessBean ss=new Account_SigningProcessBean("emp001","申請中","In20181013001",datas,"已簽核","請核准",1);
-		Account_SigningProcessBean ss1=new Account_SigningProcessBean("emp002","已審核完成","In20181013001",null,"簽核中",null,2);
-		productDAO.insert(ss);
-		productDAO.insert(ss1);
-		sessionFactory.getCurrentSession().getTransaction().commit();
-		sessionFactory.getCurrentSession().beginTransaction();
-		List<Account_SigningProcessBean> selects = productDAO.select();
-		for(Account_SigningProcessBean xz:selects) {
-			System.out.println("Account_SigningProcessBean物件:"+xz.getAccount_Manger());
-        	System.out.println("Account_InvoiceBean物件:"+xz.getAccount_InvoiceBean().getPo_id());
-        	System.out.println("EmployeeBean物件:"+xz.getEmployeeBean().getEmp_name());
-         }
+//		--------test:selectForInvid()------------
+//		Account_SigningProcessIDao aspDao = context.getBean(Account_SigningProcessDao.class);
+//		List<Account_SigningProcessBean> result = aspDao.selectForInvid("In20181013001");
+//		if (!result.isEmpty()||result.size()>0) {
+//			for (Account_SigningProcessBean bean : result) {
+//				System.out.println("account_sta=" + bean.getAccount_Sta());
+//				System.out.println("sig_Rank=" + bean.getSig_Rank());
+//			}
+//		} else {
+//			System.out.println("無此紀錄");
+//		}
+
+//		--------test:selectForStatus()------------
+//		 Account_SigningProcessIDao aspDao = context.getBean(Account_SigningProcessDao.class);
+//		 List<Account_SigningProcessBean> result = aspDao.selectForStatus("申請中");
+//		 if(!result.isEmpty()||result.size()>0) {
+//			 for(Account_SigningProcessBean bean:result) {
+//				System.out.println(bean.toString());
+//			 }
+//		 }else {
+//			 System.out.println("查無紀錄");
+//		 }
+
+//		----------test:insert()-----------
+//		Account_InvoiceIDao aiDao = context.getBean(Account_InvoiceDao.class);
+//		Account_InvoiceBean aiVo = aiDao.select("In20181025001");
+//		Account_SigningProcessIDao aspDao = context.getBean(Account_SigningProcessDao.class);
+//		Set<Account_SigningProcessBean> processList = new HashSet<>();
+//		Date today = new Date();
+//		processList.add(new Account_SigningProcessBean("emp004", "採購請款",aiVo.getInv_id(), null, today.toString(), "已申請", 1));
+//		processList.add(new Account_SigningProcessBean("emp005", "採購主管審核",aiVo.getInv_id(), null, null, "簽核中", 2));
+//		processList.add(new Account_SigningProcessBean("emp009", "財務經理分派",aiVo.getInv_id(), null, null, null, 3));
+//		processList.add(new Account_SigningProcessBean("emp008", "財務審核",aiVo.getInv_id(), null, null, null, 4));
+//		processList.add(new Account_SigningProcessBean("emp009", "請款審核",aiVo.getInv_id(), null, null, null, 5));
+//		
+//		for(Account_SigningProcessBean bean:processList) {
+//			Account_SigningProcessBean result = aspDao.insert(bean);
+//			if(result!=null) {
+//			System.out.println(result.toString());}
+//			System.out.println("新增資料失敗");
+//		}
+
+//		----------test:update()-----------		
+		Account_SigningProcessDao aspDao = context.getBean(Account_SigningProcessDao.class);
+		Account_SigningProcessBean aspVo = aspDao.select("採購主管審核", "In20181025001");
+		System.out.println(aspVo.toString());
+		aspVo.setSig_Sta("已核准");
+		aspVo.setSig_Date(new Date());
+		aspVo.setSig_Sug("approval");
+		Account_SigningProcessBean result = aspDao.update(aspVo);
+		if (result != null) {
+			System.out.println(result.toString());
+		} else {
+			System.out.println("更新資料失敗");
+		}
+
 		sessionFactory.getCurrentSession().getTransaction().commit();
 	}
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public Account_SigningProcessBean select(String account_Sta, String inv_id) {
 		List<Account_SigningProcessBean> list = null;
-		Account_SigningProcessBean getone =new Account_SigningProcessBean();
-		String hgl="FROM Account_SigningProcessBean WHERE account_Sta=:id1 AND inv_id=:id2";
-		list =this.getSession().createQuery(hgl).setParameter("id1", account_Sta)
-				.setParameter("id2", inv_id).setMaxResults(50).list();
-		 if(list.size()>0) {
-			  for(Account_SigningProcessBean getones :list) {
-				  getone=getones;
-			  }
-			  return getone;
-		 }else {
-			 return null;
-		 }
-		//return this.getSession().get(App_SigningProcessBean.class, id);
+		Account_SigningProcessBean getone = new Account_SigningProcessBean();
+		String hgl = "FROM Account_SigningProcessBean WHERE account_Sta=:id1 AND inv_id=:id2";
+		list = this.getSession().createQuery(hgl).setParameter("id1", account_Sta).setParameter("id2", inv_id)
+				.setMaxResults(50).list();
+		if (list.size() > 0) {
+			for (Account_SigningProcessBean getones : list) {
+				getone = getones;
+			}
+			return getone;
+		} else {
+			return null;
+		}
+		// return this.getSession().get(App_SigningProcessBean.class, id);
 	}
 
 	@Override
 	public List<Account_SigningProcessBean> select() {
-		return this.getSession().createQuery(
-				"from Account_SigningProcessBean", Account_SigningProcessBean.class).setMaxResults(50).list();
+		return this.getSession().createQuery("from Account_SigningProcessBean", Account_SigningProcessBean.class)
+				.setMaxResults(50).list();
+	}
+
+	@Override
+	public List<Account_SigningProcessBean> selectForStatus(String account_Sta) {
+		String hgl = "FROM Account_SigningProcessBean WHERE account_Sta=:id1";
+		return this.getSession().createQuery(hgl).setParameter("id1", account_Sta).setMaxResults(50).list();
+
+	}
+
+	@Override
+	public List<Account_SigningProcessBean> selectForInvid(String inv_id) {
+		String hql = "FROM Account_SigningProcessBean WHERE inv_id=:id2";
+		return this.getSession().createQuery(hql).setParameter("id2", inv_id).setMaxResults(50).list();
+
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
+
 	public Account_SigningProcessBean insert(Account_SigningProcessBean bean) {
 		List<Account_SigningProcessBean> list = null;
 		String account_Sta = bean.getAccount_Sta();
 		String inv_id = bean.getInv_id();
-		String hgl="FROM Account_SigningProcessBean WHERE account_Sta=:id1 AND inv_id=:id2";
-		list =this.getSession().createQuery(hgl).setParameter("id1", account_Sta)
-				.setParameter("id2", inv_id).setMaxResults(50).list();
-		 if(list.size()>0) {
-			  return null;
-		 }else {
-			 this.getSession().save(bean);
-			 return bean;
-		 }
+		String hgl = "FROM Account_SigningProcessBean WHERE account_Sta=:id1 AND inv_id=:id2";
+		list = this.getSession().createQuery(hgl).setParameter("id1", account_Sta).setParameter("id2", inv_id)
+				.setMaxResults(50).list();
+		if (list.size() > 0) {
+			return null;
+		} else {
+			this.getSession().save(bean);
+			return bean;
+		}
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public Account_SigningProcessBean update(Account_SigningProcessBean bean) {
-		List<Account_SigningProcessBean> list = null;
 		String account_Sta = bean.getAccount_Sta();
 		String inv_id = bean.getInv_id();
-		String hgl="FROM Account_SigningProcessBean WHERE account_Sta=:id1 AND inv_id=:id2";
-		list =this.getSession().createQuery(hgl).setParameter("id1", account_Sta)
+		String hgl = "FROM Account_SigningProcessBean WHERE account_Sta=:id1 AND inv_id=:id2";
+		List<Account_SigningProcessBean> list = this.getSession().createQuery(hgl).setParameter("id1", account_Sta)
 				.setParameter("id2", inv_id).setMaxResults(50).list();
-		 if(list.size()>0) {
-			 for(Account_SigningProcessBean getones :list) {
-				  getones.setAccount_Manger(getones.getAccount_Manger());
-				  getones.setSig_Date(getones.getSig_Date());
-				  getones.setSig_Rank(getones.getSig_Rank());
-				  getones.setSig_Sta(getones.getSig_Sta());
-				  getones.setSig_Sug(getones.getSig_Sug());
-			  }
+		if (list.size() > 0) {
+			for (Account_SigningProcessBean getones : list) {
+				getones.setAccount_Manger(getones.getAccount_Manger());
+				getones.setSig_Date(getones.getSig_Date());
+				getones.setSig_Rank(getones.getSig_Rank());
+				getones.setSig_Sta(getones.getSig_Sta());
+				getones.setSig_Sug(getones.getSig_Sug());
+			}
 			return bean;
-		 }else {
-			 return null;
-		 }
+		} else {
+			return null;
+		}
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean delete(String account_Sta, String inv_id) {
-		//App_SigningProcessBean temp = this.getSession().get(App_SigningProcessBean.class, id);
-				List<Account_SigningProcessBean> list = null;
-				Account_SigningProcessBean getone =new Account_SigningProcessBean();
-				String hgl="FROM Account_SigningProcessBean WHERE account_Sta=:id1 AND inv_id=:id2";
-				list =this.getSession().createQuery(hgl).setParameter("id1", account_Sta)
-						.setParameter("id2", inv_id).setMaxResults(50).list();
-				 if(list.size()>0) {
-					  for(Account_SigningProcessBean getones :list) {
-						  getone=getones;
-					  }
-					  this.getSession().delete(getone);
-					  return true;
-				 }else {
-					 return false;
-				 }
+		// App_SigningProcessBean temp =
+		// this.getSession().get(App_SigningProcessBean.class, id);
+		List<Account_SigningProcessBean> list = null;
+		Account_SigningProcessBean getone = new Account_SigningProcessBean();
+		String hgl = "FROM Account_SigningProcessBean WHERE account_Sta=:id1 AND inv_id=:id2";
+		list = this.getSession().createQuery(hgl).setParameter("id1", account_Sta).setParameter("id2", inv_id)
+				.setMaxResults(50).list();
+		if (list.size() > 0) {
+			for (Account_SigningProcessBean getones : list) {
+				getone = getones;
+			}
+			this.getSession().delete(getone);
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }
