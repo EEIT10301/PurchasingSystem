@@ -11,7 +11,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insere</title>
+
+<title>Insert title here...</title>
 </head>
 <body>
 <c:if test='${not empty noApplylist}'>
