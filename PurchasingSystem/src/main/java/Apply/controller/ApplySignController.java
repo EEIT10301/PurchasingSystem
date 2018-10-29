@@ -183,7 +183,7 @@ thissign2.setSig_sug(null);
 		    }
             else if(send.equals("退回")) {//如果按下退回就退回給上一位
 App_SigningProcessBean thissign1 = app_SigningProcessService.select(bean.getApp_sta(), bean.getApp_id());
-            	thissign1.setSig_date( datas);
+            	thissign1.setSig_date(datas);
             	thissign1.setSig_sta("未簽核");
             	thissign1.setSig_sug(SignSug);
 App_SigningProcessBean thissign2 = app_SigningProcessService.selectrank(bean.getApp_id(), bean.getSig_rank()-1);
