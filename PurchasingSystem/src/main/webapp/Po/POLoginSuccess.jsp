@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Insert title here....</title>
 </head>
 <body>
 <h3>員工  ${user.emp_id}/${user.emp_name}/${user.emp_level}</h3>
