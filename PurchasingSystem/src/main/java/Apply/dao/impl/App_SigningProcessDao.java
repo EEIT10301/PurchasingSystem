@@ -230,7 +230,7 @@ public class App_SigningProcessDao implements App_SigningProcessIDao {
 	public List<App_SigningProcessBean> selectmangers(String app_Manger, String sig_Sta) {
            List<App_SigningProcessBean> list = null;
 		
-		String hgl="FROM App_SigningProcessBean WHERE app_Manger=:id1 and sig_Sta=:id2";
+		String hgl="FROM App_SigningProcessBean WHERE app_Manger=:id1 and sig_Sta=:id2 order by Sig_Date desc";
 		list =this.getSession().createQuery(hgl).setParameter("id1", app_Manger)
 				.setParameter("id2", sig_Sta).setMaxResults(50).list();
 		 if(list.size()>0) {
