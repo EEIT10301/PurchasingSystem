@@ -13,6 +13,12 @@
 <meta charset="UTF-8">
 
 <title>Insert title here..11111.</title>
+<c:if test="${empty user}">
+	<%
+		request.setAttribute("nouser", "登入過期請重新登入");
+			request.getRequestDispatcher("/Apply/ApplyLogin.jsp").forward(request, response);
+	%>
+</c:if>
 </head>
 <body>
 <c:if test='${not empty noApplylist}'>
