@@ -150,15 +150,15 @@ body {
 					<Input type='submit' name='send' value='修改數量'> <Input
 						type='submit' name='send' value='刪除此項產品'>
 				</form>
-				<p>請購總價格:${Listprice}
-				<p>
-					<Input type='hidden' name='Listprice' value='${Listprice}'>
-				<P />
 			</div>
 		</c:forEach>
 	</div>
 	<div class="prolist">
 		<div class='pro'>
+				<p>請購總價格:${Listprice}
+				<p>
+					<Input type='hidden' name='Listprice' value='${Listprice}'>
+				<P />
 			<form action="<c:url value="/Apply/ApplyListsend.controller" />"
 				method="post">
 				請購原因:
