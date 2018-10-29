@@ -166,6 +166,24 @@ body {
 					<textarea rows="5" cols="50" name="suggestion">
 </textarea>
 				<p>
+				
+				 <p>簽核順序   1.${user.emp_name}<p>
+				 <p> 
+				 簽核順序   2.
+				<select name="Sign2Employee">
+　                                   <option value="${sign2.emp_id}">${sign2.emp_dep}:${sign2.emp_name}經理</option>
+                <option value="emp002">研發部: 丁老闆 經理</option>
+　                                  <option value="emp005">採購部 鮑俊成 經理</option>
+　                                  <option value="emp007">品管部 何瑋倫 經理</option>
+　                                 <option value="emp009">財務部 胡瑜真 經理</option>
+             </select>
+             <p>
+             <c:if test="${not empty sign3}">
+             <p>
+                    簽核順序   3. ${sign3.emp_name} 總經理
+             <p> 
+             </c:if>
+				<p>
 					<Input type='submit' name='send' value='產生請購單'> <Input
 						type='submit' name='send' value='刪除此次請購'>
 			</form>

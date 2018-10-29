@@ -22,6 +22,7 @@ import Apply.model.ProductListBean;
 import Apply.service.AppDetailService;
 import Apply.service.App_MainService;
 import Apply.service.App_SigningProcessService;
+import Apply.service.EmployeeService;
 import Apply.service.ProductListService;
 
 
@@ -35,6 +36,8 @@ public class ApplySendController {
 	private AppDetailService appDetailService;
 	@Autowired
 	private App_SigningProcessService app_SigningProcessService;
+	@Autowired
+	private EmployeeService employeeService;
 	@RequestMapping("/Apply/ApplySend.controller")
 	public String ChoiceCategorly(String Categorly, Model model ,HttpSession session) {//選擇大項
 		Map<String, String> errors = new HashMap<String, String>();
@@ -69,7 +72,13 @@ public class ApplySendController {
 	@RequestMapping("/Apply/ApplyShopping.controller") 
 	public String ShoppingCart(ProductListBean bean,BindingResult bindingResult,Model model 
 			,HttpSession session,String part_no,String send,String productamount) {//購物車
-		  
+		 EmployeeBean user =new EmployeeBean();
+		 if(session.getAttribute("user")!=null) {
+			 user= (EmployeeBean) session.getAttribute("user"); 
+			 
+		 }
+		 EmployeeBean userManger =employeeService.select(user.getEmp_managerid());
+		 EmployeeBean boss =employeeService.select(userManger.getEmp_managerid());
 		Map<String, String> errors = new HashMap<String, String>();
 		List<ProductListBean>  beans =new LinkedList<ProductListBean>();
 		if (send.equals("查詢清單")) {
@@ -81,7 +90,17 @@ public class ApplySendController {
 					xs+=x.getPro_amount()*x.getPro_price();
 					
 				}
+				if(xs>1000000) {
+					session.setAttribute("sign2",userManger);
+					session.setAttribute("sign3",boss);
+				}else {
+					 if(session.getAttribute("sign3")!=null) {
+						 session.removeAttribute("sign3");
+					 }
+					session.setAttribute("sign2",userManger);
+				}
 				session.setAttribute("Listprice",xs);
+				
 			}
 			
 		    	return "Apply.List";
@@ -150,7 +169,15 @@ public class ApplySendController {
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/Apply/ApplyListsend.controller") 
 	public String ApplyList(ProductListBean bean,BindingResult bindingResult,Model model 
-		,HttpSession session,String part_no,String send,String productamount, String suggestion) {//產生清單
+		,HttpSession session,String part_no,String send,String productamount, String suggestion,String Sign2Employee) {//產生清單
+		 EmployeeBean user =new EmployeeBean();
+		 if(session.getAttribute("user")!=null) {
+			 user= (EmployeeBean) session.getAttribute("user"); 
+			 
+		 }
+		 EmployeeBean userManger =employeeService.select(user.getEmp_managerid());
+		 EmployeeBean boss =employeeService.select(userManger.getEmp_managerid());
+		
 		Map<String, String> errors = new HashMap<String, String>();
 		if(send.equals("刪除此次請購")){//按下刪除此次請購
 	    	session.removeAttribute("Categlory");
@@ -200,7 +227,16 @@ public class ApplySendController {
 					return "app.product";
 				}
 				xs+=x.getPro_amount()*x.getPro_price();
-				session.setAttribute("Listprice",xs);
+				if(xs>1000000) {
+					session.setAttribute("sign2",userManger);
+					session.setAttribute("sign3",boss);
+				}else {
+					 if(session.getAttribute("sign3")!=null) {
+						 session.removeAttribute("sign3");
+					 }
+					session.setAttribute("sign2",userManger);
+				}
+				session.setAttribute("Listprice",xs);//////////
 			}
 			session.setAttribute("cartnumber",beans.size());
 			session.setAttribute("cartamount",beans.size());
@@ -269,14 +305,14 @@ public class ApplySendController {
 	    		java.util.Date date = new java.util.Date();
 	    		java.sql.Date datas =new java.sql.Date(date.getTime());
 	    		App_SigningProcessBean ss=new App_SigningProcessBean(emp.getEmp_id(),"申請中",apid,datas,"已簽核",suggestion,1);
-	    		App_SigningProcessBean ss1=new App_SigningProcessBean(emp.getEmp_managerid(),"請購核准",apid,null,"簽核中",null,2);
+	    		App_SigningProcessBean ss1=new App_SigningProcessBean(Sign2Employee,"請購核准",apid,null,"簽核中",null,2);
 	    		app_SigningProcessService.insert(ss);
 	    		app_SigningProcessService.insert(ss1);
 	    	}else {
 	    	java.util.Date date = new java.util.Date();
 	    	java.sql.Date datas =new java.sql.Date(date.getTime());
 	    	App_SigningProcessBean ss=new App_SigningProcessBean(emp.getEmp_id(),"申請中",apid,datas,"已簽核",suggestion,1);
-	    App_SigningProcessBean ss1=new App_SigningProcessBean(emp.getEmp_managerid(),"請購主管審核中",apid,null,"簽核中",null,2);
+	    App_SigningProcessBean ss1=new App_SigningProcessBean(Sign2Employee,"請購主管審核中",apid,null,"簽核中",null,2);
 	    App_SigningProcessBean ss2=new App_SigningProcessBean("emp003","請購核准",apid,null,"未簽核",null,3);
 	    		app_SigningProcessService.insert(ss);
 	    		app_SigningProcessService.insert(ss1);

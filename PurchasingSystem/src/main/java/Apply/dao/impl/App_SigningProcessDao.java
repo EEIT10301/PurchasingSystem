@@ -198,7 +198,7 @@ public class App_SigningProcessDao implements App_SigningProcessIDao {
 	public List<App_SigningProcessBean> selectfromlastemp(String app_Manger) {
 		List<App_SigningProcessBean> list = null;
 		App_SigningProcessBean getone =new App_SigningProcessBean();
-		String hgl="FROM App_SigningProcessBean WHERE app_Manger=:id1 ";
+		String hgl="FROM App_SigningProcessBean WHERE app_Manger=:id1 and  Sig_Sta != '已結案'  and Sig_Sta != '已註銷' order by Sig_Date desc";
 		list =this.getSession().createQuery(hgl).setParameter("id1", app_Manger)
 				.setMaxResults(50).list();
 		 if(list.size()>0) {
