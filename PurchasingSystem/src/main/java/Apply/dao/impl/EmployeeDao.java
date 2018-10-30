@@ -224,5 +224,17 @@ public class EmployeeDao implements EmployeeIDao{
 			 return null;
 		 }
 	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<EmployeeBean> selectPoEmployee(String emp_dep, Integer emp_level) {
+		List<EmployeeBean> list = null;
+		String hgl="FROM EmployeeBean WHERE emp_dep=:id1 AND emp_level=:id2 ";
+		list =this.getSession().createQuery(hgl).setParameter("id1", emp_dep)
+				.setParameter("id2", emp_level).setMaxResults(50).list();
+		 if(list.size()>0) {
+			 return list;
+			  }
+		 return null;
+	}
 
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import Apply.model.App_MainBean;
 import Apply.model.EmployeeBean;
 import Apply.service.App_MainService;
+import Apply.service.EmployeeService;
 import Po.model.PO_MainBean;
 import Po.model.PO_SigningProcessBean;
 import Po.service.PO_MainService;
@@ -27,6 +28,9 @@ public class POSigningController {
 	App_MainService app_MainService;
 	@Autowired
 	PO_MainService pO_MainService;
+	@Autowired
+	EmployeeService employeeService;
+	
 	@RequestMapping("/Po/sendEmployee.controller")
 	public String sendEmployee(Model model, HttpSession session) {
 
@@ -61,9 +65,12 @@ public class POSigningController {
 		String poid = bean.getPo_id();
 		String poid1 = "Ap" + poid.substring(2);
 		App_MainBean appmain = app_MainService.select(poid1);
+		List<EmployeeBean> empbeans=employeeService.selectPoEmployee(beans.getEmp_dep(), 1);
 		model.addAttribute("appmain", appmain);
 		model.addAttribute("pomain", pomain);
+		model.addAttribute("empbeans", empbeans);
 		return "ListMain.show";
 		
 	}
+	
 }
