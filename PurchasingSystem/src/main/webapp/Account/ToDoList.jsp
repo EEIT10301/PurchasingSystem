@@ -19,7 +19,6 @@ a, a:visited {
 .left {
 	width: 10%;
 	float: left;
-	background-color: /* 	border-right:grey solid 1px; */
 }
 
 .right {
@@ -45,7 +44,7 @@ a, a:visited {
 				<tr>
 					<td><a href="ToDoList.jsp">待簽核事項</a></td>
 				</tr>
-				
+
 			</table>
 		</div>
 		<div class="right"></div>

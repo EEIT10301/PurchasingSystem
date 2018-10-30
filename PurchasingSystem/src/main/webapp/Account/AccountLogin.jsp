@@ -5,10 +5,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here test</title>
+<title>財務系統</title>
 </head>
 <body>
 <form action="<c:url value="/Account/AccountLogin.controller" />" method="post">
+<h3>採購系統</h3>
 <table>
 	<tr>
 		<td>ID : </td>
