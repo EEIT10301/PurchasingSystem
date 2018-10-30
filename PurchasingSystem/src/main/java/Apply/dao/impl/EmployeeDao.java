@@ -226,6 +226,7 @@ public class EmployeeDao implements EmployeeIDao{
 	}
 	@SuppressWarnings("unchecked")
 	@Override
+
 	public EmployeeBean InvLogin(String emp_email, String emp_pwd) {
 		List<EmployeeBean> list = null;
 		EmployeeBean getone =new EmployeeBean();
@@ -255,6 +256,17 @@ public class EmployeeDao implements EmployeeIDao{
 		 }else {
 			 return null;
 		 }
+	}
+			@SuppressWarnings("unchecked")
+			public List<EmployeeBean> selectPoEmployee(String emp_dep, Integer emp_level) {
+				List<EmployeeBean> list = null;
+				String hgl="FROM EmployeeBean WHERE emp_dep=:id1 AND emp_level=:id2 ";
+				list =this.getSession().createQuery(hgl).setParameter("id1", emp_dep)
+						.setParameter("id2", emp_level).setMaxResults(50).list();
+				 if(list.size()>0) {
+					 return list;
+					  }
+				 return null;
 	}
 
 }
