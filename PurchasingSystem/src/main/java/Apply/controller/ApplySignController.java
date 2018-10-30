@@ -41,6 +41,7 @@ public class ApplySignController {
 	PO_DetailService pO_DetailService;
 	@Autowired
 	PO_MainService pO_MainService;
+	
 	@RequestMapping("/Apply/ApplySignpro.controller")
 	public String querySignprocess(App_SigningProcessBean bean,BindingResult bindingResult,
 	Model model ,HttpSession session) {
@@ -49,12 +50,15 @@ public class ApplySignController {
 		String poid= "Po"+appid.substring(2);
 		List<PO_SigningProcessBean> beans = pO_SigningProcessService.selectpoid(poid);
 		if(beans ==null) {
-			
+			//beans為空值，加請購單的appid,xs放入addAttribute到前端給apply.querysign
+			// 登入用請購員工介面，按請購單狀態
 			model.addAttribute("appid", appid);
 			model.addAttribute("queryprocess", xs);
 			return "apply.querysign";
 		}else {
-			
+			//beans有值，加請購單的appid,xs放入addAttribute到前端給apply.querysign
+					//	和採購單的poid,beans放入addAttribute到前端給apply.querysign
+					//  登入介面用請購員工，按請購單狀態
 			model.addAttribute("poid", poid);
 			model.addAttribute("queryprocesspo", beans);
 			model.addAttribute("appid", appid);
@@ -66,6 +70,7 @@ public class ApplySignController {
 		
 	}
 	@RequestMapping("/Apply/ApplySignnerdetail.controller")
+	//請參照ApplyMangerSystem.jsp
 	public String signerdetail(App_SigningProcessBean bean,BindingResult bindingResult,
 			Model model ,HttpSession session) {
 				String appid=bean.getApp_id();
@@ -76,6 +81,7 @@ public class ApplySignController {
 				
 			}
 	@RequestMapping("/Apply/toApplySignnerdetail.controller")
+	//
 	public String tosignerdetail(App_SigningProcessBean bean,BindingResult bindingResult,
 			Model model ,HttpSession session) {
 		EmployeeBean ben=(EmployeeBean) session.getAttribute("user");
@@ -94,6 +100,8 @@ public class ApplySignController {
 		}				
 			}
 	@RequestMapping("/Apply/toApplySignpro.controller")
+	//此方法是用在請購員工的頁面，在請購單進度的連結上
+	
 	public String toquerySignprocess(App_SigningProcessBean bean,BindingResult bindingResult,
 			Model model ,HttpSession session) {
 		EmployeeBean ben=(EmployeeBean) session.getAttribute("user");
