@@ -88,18 +88,15 @@
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/Po/ListMain.jsp"></property>
 	</bean>
-	
-		<!--       使用連結 -->
-		<bean id="POlogin.errors"
+
+	<!-- 使用連結 -->
+	<bean id="POlogin.errors"
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/Po/POLogin.jsp"></property>
 	</bean>
-		<!--       使用連結 -->
-	
+	<!-- 使用連結 -->
 
 
 	<!-- 採購使用連結 -->
 
-
->>>>>>> branch 'master' of https://github.com/EEIT10301/PurchasingSystem.git
 </beans>
