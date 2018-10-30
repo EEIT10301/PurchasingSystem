@@ -16,6 +16,7 @@
 	${user.emp_id}/${user.emp_name} ${user.emp_job},你好
 	<button type="button" class="btn">登出</button>
 	<br>
+	<span>${sendok}</span>
 	<hr>
 
 <c:if test="${user.emp_level==1}">
