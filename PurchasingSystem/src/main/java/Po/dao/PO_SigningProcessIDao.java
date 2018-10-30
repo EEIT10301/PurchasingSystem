@@ -15,4 +15,5 @@ public interface PO_SigningProcessIDao {
 
 	public abstract boolean delete(String po_sta,String po_id);
 	public abstract List<PO_SigningProcessBean> selectpoid(String po_id);
+	public abstract List<PO_SigningProcessBean> selectempidsend(String po_manger,String Sig_Sta);
 }

@@ -66,6 +66,7 @@
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/Po/POLogin.jsp"></property>
 	</bean>
+
 	<!-- 採購使用連結 -->
 	<!-- 驗收使用連結 -->
 	<bean id="Invlogin.success"
@@ -78,4 +79,17 @@
 		<property name="url" value="/Inv/InvLogin.jsp"></property>
 	</bean>
 	<!-- 驗收使用連結 -->
+
+	<bean id="SendEmployee.do"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Po/SendEmployee.jsp"></property>
+	</bean>
+	<bean id="ListMain.show"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Po/ListMain.jsp"></property>
+	</bean>
+
+	<!-- 採購使用連結 -->
+
+
 </beans>

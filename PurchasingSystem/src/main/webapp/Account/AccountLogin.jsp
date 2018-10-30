@@ -5,10 +5,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>財務系統</title>
+<style>
+
+</style>
 </head>
 <body>
 <form action="<c:url value="/Account/AccountLogin.controller" />" method="post">
+<h3>財務部門</h3>
 <table>
 	<tr>
 		<td>ID : </td>

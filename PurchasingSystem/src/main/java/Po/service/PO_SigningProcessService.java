@@ -60,5 +60,12 @@ public class PO_SigningProcessService {
 		}
 		return null;
 	}
+	public  List<PO_SigningProcessBean> selectempidsend(String po_manger,String Sig_Sta){
+		List<PO_SigningProcessBean> beans =pO_SigningProcessIDao.selectempidsend( po_manger,Sig_Sta);
+		if(beans!=null) {
+			return beans;
+		}
+		return null;
+	}
 	
 }
