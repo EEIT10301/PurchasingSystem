@@ -21,7 +21,7 @@
 <c:if test="${user.emp_level==1}">
 <a href=''>待詢價採購單 </a>
 <a href=''>待下單採購單 </a>
-<a href='testinsertinvoice.jsp'>待申請請款單 </a>
+<a href='/Po/Polist.controller'>待申請請款單 </a>
 </c:if>
 
 <a href=''>待簽核請購單</a>
