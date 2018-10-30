@@ -121,7 +121,7 @@ public class ApplySignController {
 		}				
 			}
 	@RequestMapping("/Apply/toApplySignpro.controller")
-	//此方法是用在請購員工的頁面，在請購單進度的連結上
+	//此方法是用在請購員工的頁面，在"請購單進度"的連結上
 	
 	public String toquerySignprocess(App_SigningProcessBean bean,BindingResult bindingResult,
 			Model model ,HttpSession session) {
