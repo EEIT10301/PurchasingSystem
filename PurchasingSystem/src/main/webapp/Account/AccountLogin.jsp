@@ -6,10 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <title>財務系統</title>
+<style>
+
+</style>
 </head>
 <body>
 <form action="<c:url value="/Account/AccountLogin.controller" />" method="post">
-<h3>採購系統</h3>
+<h3>財務部門</h3>
 <table>
 	<tr>
 		<td>ID : </td>
