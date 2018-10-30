@@ -54,7 +54,7 @@ public class PO_SigningProcessDao implements PO_SigningProcessIDao{
 		PO_SigningProcessBean getone =new PO_SigningProcessBean();
 		String hgl="FROM PO_SigningProcessBean WHERE po_sta=:id1 AND po_id=:id2";
 		list =this.getSession().createQuery(hgl).setParameter("id1", po_sta)
-				.setParameter("id2", po_id).setMaxResults(50).list();
+				.setParameter("id2", po_id).setMaxResults(100).list();
 		 if(list.size()>0) {
 			  for(PO_SigningProcessBean getones :list) {
 				  getone=getones;
@@ -133,6 +133,20 @@ public class PO_SigningProcessDao implements PO_SigningProcessIDao{
 		String hgl="FROM PO_SigningProcessBean WHERE po_id=:id1 order by sig_rank";
 		list =this.getSession().createQuery(hgl).setParameter("id1", po_id).setMaxResults(50).list();
 		 if(list.size()>0) {
+			  return list;
+		 }else {
+			 return null;
+		 }
+	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<PO_SigningProcessBean> selectempidsend(String po_manger,String sig_sta) {
+		List<PO_SigningProcessBean> list = null;
+		//from PO_SigningProcess where PO_Manger='emp005' and Sig_Sta='分派中'
+		String hgl="FROM PO_SigningProcessBean where PO_Manger=:id1 and sig_sta=:id2";
+		list =this.getSession().createQuery(hgl).setParameter("id1", po_manger).setParameter("id2", sig_sta).setMaxResults(50).list();
+		
+		if(list.size()>0) {
 			  return list;
 		 }else {
 			 return null;

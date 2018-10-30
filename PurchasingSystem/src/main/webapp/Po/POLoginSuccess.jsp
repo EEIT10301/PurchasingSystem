@@ -19,8 +19,8 @@
 <a href=''>待簽核請購單</a>
 <a href=''>待簽核採購單</a>
 <a href=''>待簽核驗收單</a>
-<c:if test="${user.emp_level==2}">
-<a href=''>待分派採購單</a>
+<c:if test="${user.emp_level==2 and user.emp_id =='emp005'}">
+<a href='sendEmployee.controller'>待分派採購單</a>
 </c:if>
 
 </body>
