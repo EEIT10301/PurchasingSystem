@@ -73,4 +73,12 @@
 	
 	<!--       採購使用連結 -->
 	
+		<!--       使用連結 -->
+		<bean id="POlogin.errors"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Po/POLogin.jsp"></property>
+	</bean>
+		<!--       採購使用連結 -->
+	
+	
 </beans>

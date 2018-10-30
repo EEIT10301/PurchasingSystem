@@ -39,12 +39,14 @@ public class AccountSignController {
 	Account_InvoiceService account_InvoiceService;
 	@Autowired
 	Account_SigningProcessService account_SigningProcessService;
-
-	@RequestMapping("/Account/AccountSign.controller")
+   
+	@RequestMapping("/Account/newInvoice.controller")
 	public String accountSigner(Account_InvoiceBean bean,BindingResult bindingResult,
 			Model model ,HttpSession session,String send,String SignSug) {
+			
+			
 		
-		return  "xxxx";
+			return "xxxx";
 		
 		
 //		EmployeeBean ben=(EmployeeBean) session.getAttribute("user");
