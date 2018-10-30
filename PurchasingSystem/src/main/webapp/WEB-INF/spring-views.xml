@@ -3,7 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-<!--       請購使用連結 -->
+	<!-- 請購使用連結 -->
 	<bean id="login.errors"
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/Apply/ApplyLogin.jsp"></property>
@@ -12,16 +12,18 @@
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/Apply/ApplySend.jsp"></property>
 	</bean>
-	<bean id="login.success" class="org.springframework.web.servlet.view.RedirectView">
-	<property name="contextRelative" value="true"></property>
-	<property name="url" value="/Apply/ApplyLoginSuccess.jsp"></property>
-	
+	<bean id="login.success"
+		class="org.springframework.web.servlet.view.RedirectView">
+		<property name="contextRelative" value="true"></property>
+		<property name="url" value="/Apply/ApplyLoginSuccess.jsp"></property>
+
 	</bean>
-	<bean id="Apply.List" class="org.springframework.web.servlet.view.RedirectView">
-	<property name="contextRelative" value="true"></property>
-	<property name="url" value="/Apply/ApplyList.jsp"></property>
+	<bean id="Apply.List"
+		class="org.springframework.web.servlet.view.RedirectView">
+		<property name="contextRelative" value="true"></property>
+		<property name="url" value="/Apply/ApplyList.jsp"></property>
 	</bean>
-    <bean id="apply.ok"
+	<bean id="apply.ok"
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/Apply/ApplyLoginSuccess.jsp"></property>
 	</bean>
@@ -33,7 +35,7 @@
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/Apply/ApplyQuerySign.jsp"></property>
 	</bean>
-	
+
 	<bean id="apply.mangersign"
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/Apply/ApplyMangerSign.jsp"></property>
@@ -42,26 +44,38 @@
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/Apply/ApplyMangerSignDetail.jsp"></property>
 	</bean>
-<!--       請購使用連結 -->
-<!--       財務使用連結 -->	
-	<bean id="Acclogin.success" class="org.springframework.web.servlet.view.RedirectView">
-	<property name="contextRelative" value="true"></property>
-	<property name="url" value="/Account/AccountLoginSuccess.jsp"></property>
+	<!-- 請購使用連結 -->
+	<!-- 財務使用連結 -->
+	<bean id="Acclogin.success"
+		class="org.springframework.web.servlet.view.RedirectView">
+		<property name="contextRelative" value="true"></property>
+		<property name="url" value="/Account/AccountLoginSuccess.jsp"></property>
 	</bean>
 	<bean id="Acclogin.errors"
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/Account/AccountLogin.jsp"></property>
 	</bean>
-<!--       財務使用連結 -->
-	<!--       採購使用連結 -->
-	<bean id="POlogin.success" class="org.springframework.web.servlet.view.RedirectView">
-	<property name="contextRelative" value="true"></property>
-	<property name="url" value="/Po/POLoginSuccess.jsp"></property>
+	<!-- 財務使用連結 -->
+	<!-- 採購使用連結 -->
+	<bean id="POlogin.success"
+		class="org.springframework.web.servlet.view.RedirectView">
+		<property name="contextRelative" value="true"></property>
+		<property name="url" value="/Po/POLoginSuccess.jsp"></property>
 	</bean>
 	<bean id="POlogin.errors"
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/Po/POLogin.jsp"></property>
 	</bean>
-	<!--       採購使用連結 -->
-	
+	<!-- 採購使用連結 -->
+	<!-- 驗收使用連結 -->
+	<bean id="Invlogin.success"
+		class="org.springframework.web.servlet.view.RedirectView">
+		<property name="contextRelative" value="true"></property>
+		<property name="url" value="/Inv/InvLoginSuccess.jsp"></property>
+	</bean>
+	<bean id="Invlogin.errors"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Inv/InvLogin.jsp"></property>
+	</bean>
+	<!-- 驗收使用連結 -->
 </beans>

@@ -19,5 +19,6 @@ public interface EmployeeIDao {
 	public abstract EmployeeBean ApplyLogin (String emp_email, String emp_pwd);
 	public abstract EmployeeBean AccountLogin (String emp_email, String emp_pwd);
 	public abstract EmployeeBean POLogin (String emp_email, String emp_pwd);
+	public abstract EmployeeBean InvLogin (String emp_email, String emp_pwd);
 
 }

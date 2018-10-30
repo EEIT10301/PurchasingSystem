@@ -76,4 +76,11 @@ public EmployeeBean POLogin(String username, String password) {
 	}
 	return null;
 }
+public EmployeeBean InvLogin(String username, String password) {
+	EmployeeBean bean = employeeIDao.InvLogin(username, password);
+	if(bean!=null) {
+		return bean;
+	}
+	return null;
+}
 }
