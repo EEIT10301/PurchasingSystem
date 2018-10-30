@@ -6,6 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<c:if test="${empty user}">
+	<%
+		request.setAttribute("nouser", "登入過期請重新登入");
+			request.getRequestDispatcher("/Apply/ApplyLogin.jsp").forward(request, response);
+	%>
+</c:if>
 <c:if test="${cartnumber<=0}">
 	<%
 		request.setAttribute("cate", "尚無加入請購產品");
@@ -171,11 +177,10 @@ body {
 				 <p> 
 				 簽核順序   2.
 				<select name="Sign2Employee">
-　                                   <option value="${sign2.emp_id}">${sign2.emp_dep}:${sign2.emp_name}經理</option>
+　                                   <option value="${sign2.emp_id}">${sign2.emp_dep}: ${sign2.emp_name}經理</option>
                 <option value="emp002">研發部: 丁老闆 經理</option>
-　                                  <option value="emp005">採購部 鮑俊成 經理</option>
-　                                  <option value="emp007">品管部 何瑋倫 經理</option>
-　                                 <option value="emp009">財務部 胡瑜真 經理</option>
+　                                  <option value="emp011">研發部: 王憲春 經理</option>
+　  
              </select>
              <p>
              <c:if test="${not empty sign3}">

@@ -12,6 +12,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<c:if test="${empty user}">
+	<%
+		request.setAttribute("nouser", "登入過期請重新登入");
+			request.getRequestDispatcher("/Apply/ApplyLogin.jsp").forward(request, response);
+	%>
+</c:if>
 </head>
 <body>
 <h2>請購單編號:${singerlist.app_id}</h2>

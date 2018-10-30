@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+${nouser}
 <form action="<c:url value="/Apply/ApplyLogin.controller" />" method="post">
 <table>
 	<tr>
