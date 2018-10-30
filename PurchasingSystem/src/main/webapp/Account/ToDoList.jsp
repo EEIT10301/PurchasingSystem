@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>採購系統</title>
+<title>財務系統</title>
 <style>
 .btn {
 	background-color: #e7e7e7;
@@ -31,8 +31,9 @@ a, a:visited {
 }
 </style>
 </head>
+
 <body>
-	<h3>採購系統</h3>
+	<h3>財務系統</h3>
 	${user.emp_id}/${user.emp_name} ${user.emp_job},你好
 	<button type="button" class="btn">登出</button>
 	<br>
