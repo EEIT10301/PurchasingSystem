@@ -1,34 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html,charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>採購系統</title>
 <style>
-.btn {
-	background-color: #e7e7e7;
-	color: black;
-}
 
-a, a:visited {
-	text-decoration: none;
-	color: black;
-}
-
-.left {
-	width: 10%;
-	float: left;
-}
-
-.right {
-	width: 85%;
-	float: right;
-}
-
-.allpage {
-	width: 100%;
-}
 </style>
 </head>
 <body>
@@ -37,16 +16,20 @@ a, a:visited {
 	<button type="button" class="btn">登出</button>
 	<br>
 	<hr>
-	<div class="allpage">
-		<div class="left">
-			<table>
-				<tr>
-					<td><a href="ToDoList.jsp">待簽核事項</a></td>
-				</tr>
 
-			</table>
-		</div>
-		<div class="right"></div>
-	</div>
+<c:if test="${user.emp_level==1}">
+<a href=''>待詢價採購單 </a>
+<a href=''>待下單採購單 </a>
+<a href=''>申請請款單 </a>
+</c:if>
+
+<a href=''>待簽核請購單</a>
+<a href=''>待簽核採購單</a>
+<a href=''>待簽核驗收單</a>
+<c:if test="${user.emp_level==2}">
+<a href=''>待分派採購單</a>
+</c:if>
+
+
 </body>
 </html>

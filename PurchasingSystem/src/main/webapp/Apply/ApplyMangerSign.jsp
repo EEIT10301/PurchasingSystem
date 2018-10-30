@@ -13,6 +13,12 @@
 <meta charset="UTF-8">
 
 <title>Insert title here..11111.</title>
+<c:if test="${empty user}">
+	<%
+		request.setAttribute("nouser", "登入過期請重新登入");
+			request.getRequestDispatcher("/Apply/ApplyLogin.jsp").forward(request, response);
+	%>
+</c:if>
 </head>
 <body>
 <c:if test='${not empty noApplylist}'>
@@ -35,6 +41,12 @@
   <Input type='hidden' name='sig_rank' value='${applylist.sig_rank}'><P/>
   <Input type='submit' name='send' value='簽核'>
   </form>
+ <c:forEach var='applylistone' varStatus='vs' items='${Applylistsone}'>
+ <c:if test='${applylist.app_id == applylistone.app_id}'>
+   <p>前一位簽核時間: ${applylistone.sig_date}<P>
+   <br>
+ </c:if>
+ </c:forEach>
 </c:forEach>
 
 </c:if>
@@ -55,8 +67,9 @@
   <Input type='hidden' name='sig_rank' value='${nosends.sig_rank}'><P/>
   <Input type='submit' name='send' value='修改'>
   </form>
+  <p>前一位退回時間: ${nosends.sig_date}<P>
+    <br>
 </c:forEach>
-
 </c:if>
 
 

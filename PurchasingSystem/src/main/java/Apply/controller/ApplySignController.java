@@ -41,6 +41,7 @@ public class ApplySignController {
 	PO_DetailService pO_DetailService;
 	@Autowired
 	PO_MainService pO_MainService;
+	
 	@RequestMapping("/Apply/ApplySignpro.controller")
 	public String querySignprocess(App_SigningProcessBean bean,BindingResult bindingResult,
 	Model model ,HttpSession session) {
@@ -49,12 +50,15 @@ public class ApplySignController {
 		String poid= "Po"+appid.substring(2);
 		List<PO_SigningProcessBean> beans = pO_SigningProcessService.selectpoid(poid);
 		if(beans ==null) {
-			
+			//beans為空值，加請購單的appid,xs放入addAttribute到前端給apply.querysign
+			// 登入用請購員工介面，按請購單狀態
 			model.addAttribute("appid", appid);
 			model.addAttribute("queryprocess", xs);
 			return "apply.querysign";
 		}else {
-			
+			//beans有值，加請購單的appid,xs放入addAttribute到前端給apply.querysign
+					//	和採購單的poid,beans放入addAttribute到前端給apply.querysign
+					//  登入介面用請購員工，按請購單狀態
 			model.addAttribute("poid", poid);
 			model.addAttribute("queryprocesspo", beans);
 			model.addAttribute("appid", appid);
@@ -66,6 +70,7 @@ public class ApplySignController {
 		
 	}
 	@RequestMapping("/Apply/ApplySignnerdetail.controller")
+	//請參照ApplyMangerSystem.jsp
 	public String signerdetail(App_SigningProcessBean bean,BindingResult bindingResult,
 			Model model ,HttpSession session) {
 				String appid=bean.getApp_id();
@@ -76,17 +81,39 @@ public class ApplySignController {
 				
 			}
 	@RequestMapping("/Apply/toApplySignnerdetail.controller")
+	//
 	public String tosignerdetail(App_SigningProcessBean bean,BindingResult bindingResult,
 			Model model ,HttpSession session) {
 		EmployeeBean ben=(EmployeeBean) session.getAttribute("user");
 		String empid=ben.getEmp_id();
 		List<App_SigningProcessBean> Sproductlistsx1 =new LinkedList<App_SigningProcessBean>();
 		List<App_SigningProcessBean> Sproductlistsx2 =new LinkedList<App_SigningProcessBean>();
+		List<App_SigningProcessBean> Sproductlistsx3 =new LinkedList<App_SigningProcessBean>();
+	
 		Sproductlistsx1=app_SigningProcessService.selectmangers(empid, "簽核中");
 		Sproductlistsx2=app_SigningProcessService.selectmangers(empid, "退回中");
+		Integer Applylistsranks =0;
+		Integer nosendranks=0;
+		if (Sproductlistsx1 !=null && Sproductlistsx1.size()>0) {
+			for(int i=0;i<Sproductlistsx1.size();i++) {
+				App_SigningProcessBean xsz=new App_SigningProcessBean();
+				xsz=Sproductlistsx1.get(i);			
+					Applylistsranks=xsz.getSig_rank();
+					String apid = xsz.getApp_id();
+					App_SigningProcessBean xsz1 =app_SigningProcessService.selectrank(apid, Applylistsranks-1);
+					if(xsz1!=null) {
+						Sproductlistsx3.add(xsz1);
+					}
+			}
+		}
+		
 		if(Sproductlistsx1!=null||Sproductlistsx2!=null){
+			model.addAttribute("Applylistsranks", Applylistsranks);
+			model.addAttribute("nosendranks", nosendranks);
 			model.addAttribute("Applylists", Sproductlistsx1);
 			model.addAttribute("nosend", Sproductlistsx2);
+			model.addAttribute("Applylistsone", Sproductlistsx3);
+			
 			return "apply.mangersign";
 		}else{
 			model.addAttribute("noApplylist", "無待簽核表單");
@@ -94,6 +121,8 @@ public class ApplySignController {
 		}				
 			}
 	@RequestMapping("/Apply/toApplySignpro.controller")
+	//此方法是用在請購員工的頁面，在請購單進度的連結上
+	
 	public String toquerySignprocess(App_SigningProcessBean bean,BindingResult bindingResult,
 			Model model ,HttpSession session) {
 		EmployeeBean ben=(EmployeeBean) session.getAttribute("user");
@@ -136,6 +165,8 @@ public class ApplySignController {
 	@RequestMapping("/Apply/applysignss.controller")
 	public String applySigner(App_SigningProcessBean bean,BindingResult bindingResult,
 			Model model ,HttpSession session,String send,String SignSug) {
+		EmployeeBean ben=(EmployeeBean) session.getAttribute("user");
+		String empid=ben.getEmp_id();
 		Map<String, String> errors = new HashMap<String, String>();//請輸入簽核意見
 		if(SignSug ==null ||SignSug.length()==0||SignSug.trim().isEmpty()) {
 			errors.put("plz", "請輸入文字");
@@ -154,7 +185,7 @@ public class ApplySignController {
 		    	
 		  App_SigningProcessBean thissign = app_SigningProcessService.select(bean.getApp_sta(), bean.getApp_id());
 		  thissign.setSig_date( datas);
-		  thissign.setSig_sta("產生採購單");
+		  thissign.setSig_sta("請購單完成");//請購欄位改為完成
 		  thissign.setSig_sug(SignSug);
 		  
 		  App_MainBean app_MainBean= thissign.getApp_MainBean();
@@ -168,8 +199,11 @@ public class ApplySignController {
 			 PO_DetailBean sx =new PO_DetailBean(poid,xs.getPart_no(),xs.getPro_price(),null,null,xs.getApp_amount());
 			 pO_DetailService.insert(sx);
 		 }
-		 PO_SigningProcessBean pO_SigningProcessBean =new PO_SigningProcessBean("emp005","分派採購者",poid,null,"分派中",null,1);
+		 
+		 PO_SigningProcessBean pO_SigningProcessBean =new PO_SigningProcessBean(empid,"產生採購單",poid,datas,"產生採購單",SignSug,1);
+		 PO_SigningProcessBean pO_SigningProcessBean1 =new PO_SigningProcessBean("emp005","分派採購者",poid,null,"分派中",null,2);
 		 pO_SigningProcessService.insert(pO_SigningProcessBean);
+		 pO_SigningProcessService.insert(pO_SigningProcessBean1);
 		    }
 		    else if(send.equals("送出")) {//如果按下送出就update已簽核
 App_SigningProcessBean thissign1 = app_SigningProcessService.select(bean.getApp_sta(), bean.getApp_id());
@@ -183,7 +217,7 @@ thissign2.setSig_sug(null);
 		    }
             else if(send.equals("退回")) {//如果按下退回就退回給上一位
 App_SigningProcessBean thissign1 = app_SigningProcessService.select(bean.getApp_sta(), bean.getApp_id());
-            	thissign1.setSig_date( datas);
+            	thissign1.setSig_date(datas);
             	thissign1.setSig_sta("未簽核");
             	thissign1.setSig_sug(SignSug);
 App_SigningProcessBean thissign2 = app_SigningProcessService.selectrank(bean.getApp_id(), bean.getSig_rank()-1);
