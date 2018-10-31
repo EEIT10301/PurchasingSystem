@@ -46,6 +46,11 @@ public PO_MainBean(String po_id, String emp_id, String vendor_ID, Date shipping_
 public PO_MainBean() {
 	super();
 }
+@Override
+public String toString() {
+	return "PO_MainBean [po_id=" + po_id + ", emp_id=" + emp_id + ", vendor_ID=" + vendor_ID + ", shipping_Date="
+			+ shipping_Date + ", total_price=" + total_price + "]";
+}
 @Id
 @Column
 public String getPo_id() {

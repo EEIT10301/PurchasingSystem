@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>請購主頁</title>
 <c:if test="${empty user}">
 	<%
 		request.setAttribute("nouser", "登入過期請重新登入");
