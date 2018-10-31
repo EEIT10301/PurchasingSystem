@@ -31,7 +31,7 @@ public class POSigningController {
 	@Autowired
 	EmployeeService employeeService;
 	
-	@RequestMapping("/Po/sendEmployee.controller")
+	@RequestMapping("/Po/sendEmployee.controller")//多少採購單分派頁面
 	public String sendEmployee(Model model, HttpSession session) {
 		EmployeeBean beans = (EmployeeBean) session.getAttribute("user");
 		// List<PO_SigningProcessBean>
@@ -66,7 +66,7 @@ public class POSigningController {
 
 	}
 	
-	@RequestMapping("/Po/sendEmployeesss.controller")
+	@RequestMapping("/Po/sendEmployeesss.controller")//主管待分派單頁面
 	public String sendEmployeedetail(PO_SigningProcessBean bean, BindingResult bindingResult, Model model,
 			HttpSession session,String send) {
 		EmployeeBean beans = (EmployeeBean) session.getAttribute("user");
@@ -83,7 +83,7 @@ public class POSigningController {
 		return "ListMain.show";
 		
 	}
-	@RequestMapping("/Po/sendlist.controller")
+	@RequestMapping("/Po/sendlist.controller")//主管點選人分派頁面
 	public String sendlist(PO_SigningProcessBean bean, BindingResult bindingResult, Model model,
 			HttpSession session,String send,String employeesend,String SignSug) {
 		EmployeeBean beans = (EmployeeBean) session.getAttribute("user");
@@ -99,6 +99,29 @@ public class POSigningController {
 		pO_SigningProcessService.insert(secondsigningprocess1);
 		model.addAttribute("sendok","分派完成");
 		return "sendlist.ok";
+		
+	}
+	@RequestMapping("/Po/selectprice.controller")//人員點選待詢價採購單頁面
+	public String sendlistss( Model model,HttpSession session) {
+		EmployeeBean beans = (EmployeeBean) session.getAttribute("user");
+		String empid=beans.getEmp_id();
+		List<PO_SigningProcessBean> selectlist=pO_SigningProcessService.selectempidsend(empid, "詢價中");
+		List<PO_SigningProcessBean> selectlists=null;
+				selectlists=new LinkedList<PO_SigningProcessBean>();
+		if(selectlist.size()>0 && selectlist!=null) {
+			for (int i = 0; i < selectlist.size(); i++) {
+				PO_SigningProcessBean x = selectlist.get(i);
+				PO_SigningProcessBean xs =pO_SigningProcessService.select("分派採購者", x.getPo_id());
+				if(xs!=null) {
+					selectlists.add(x);
+					selectlists.add(xs);
+				}
+				model.addAttribute("selectlists",selectlists);
+		}
+		}else {
+			model.addAttribute("noselectlists","無待詢價採購單");
+		}
+		return "select.list";
 		
 	}
 	
