@@ -46,7 +46,7 @@ public class AccountSignController {
 			
 			
 		
-			return "xxxx";
+			return "";
 		
 		
 //		EmployeeBean ben=(EmployeeBean) session.getAttribute("user");

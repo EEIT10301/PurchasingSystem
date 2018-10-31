@@ -20,9 +20,9 @@
     <form action="<c:url value="/Account/newInvoice.controller" />" enctype="multipart/form-data" method="">
     	<input type="hidden" name="Po_id" id="" value="Po20181013001">
         <label for="Emp_id">申請人</label>
-        <input type="text" name="Emp_id" id="" value="${user.emp_name}">
+        <input type="text" name="Emp_id" id="" readonly="readonly" value="${user.emp_name}">
         <label for="Emp_dep">所屬部門</label>
-        <input type="text" name="Emp_dep" id="" value="${user.emp_dep}">
+        <input type="text" name="Emp_dep" id="" readonly="readonly" value="${user.emp_dep}">
         <label for="Vendor_name">廠商名稱</label>
         <input type="text" name="Vendor_name" id="">
         <label for="Vendor_id">廠商統編</label>
