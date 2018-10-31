@@ -17,7 +17,7 @@
 	<h3>${user.emp_id}</h3>
 	<h3>${user.emp_name}</h3>
 	<h3>${user.emp_level}</h3>
-
+    <a href='ApplyLogout.controller'>登出</a>
 	<h3>${applyok}</h3>
 	<c:if test="${user.emp_level==1}">
 		<a href='ApplySend.jsp'>請購申請 </a>
