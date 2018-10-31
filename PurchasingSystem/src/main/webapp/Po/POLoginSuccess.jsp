@@ -14,8 +14,9 @@
 <body>
 	<h3>採購系統</h3>
 	${user.emp_id}/${user.emp_name} ${user.emp_job},你好
-	<button type="button" class="btn">登出</button>
+	<a href='POLogout.controller'>登出</a>
 	<br>
+	<span>${sendok}</span>
 	<hr>
 
 <c:if test="${user.emp_level==1}">
@@ -23,11 +24,8 @@
 <a href=''>待下單採購單 </a>
 <a href='Polist.controller'>待申請請款單 </a>
 </c:if>
-
-<a href=''>待簽核請購單</a>
 <a href=''>待簽核採購單</a>
-<a href=''>待簽核驗收單</a>
-<c:if test="${user.emp_level==2 and user.emp_id =='emp005'}">
+<c:if test="${user.emp_level==2}">
 <a href='sendEmployee.controller'>待分派採購單</a>
 </c:if>
 

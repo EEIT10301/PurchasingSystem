@@ -33,20 +33,30 @@ public class POSigningController {
 	
 	@RequestMapping("/Po/sendEmployee.controller")
 	public String sendEmployee(Model model, HttpSession session) {
-
+		EmployeeBean beans = (EmployeeBean) session.getAttribute("user");
 		// List<PO_SigningProcessBean>
-		// list=pO_SigningProcessService.selectempidsend(bean.getEmp_id(),"分派中");
-		List<PO_SigningProcessBean> list = pO_SigningProcessService.select();
+		 List<PO_SigningProcessBean> list=pO_SigningProcessService.selectempidsend(beans.getEmp_id(),"分派中");
+//		List<PO_SigningProcessBean> list = pO_SigningProcessService.select();
 		List<PO_SigningProcessBean> lists = new LinkedList<PO_SigningProcessBean>();
 		if (list.size() > 0 && list != null) {
-
 			for (int i = 0; i < list.size(); i++) {
 				PO_SigningProcessBean x = list.get(i);
-
-				if (x.getSig_rank() <= 2) {
+				String poid =x.getPo_id();
+				PO_SigningProcessBean xs=pO_SigningProcessService.select("產生採購單", poid);
+				if(xs!=null) {
 					lists.add(x);
+					lists.add(xs);
 				}
+				
 			}
+			
+//			for (int i = 0; i < list.size(); i++) {
+//				PO_SigningProcessBean x = list.get(i);
+//
+//				if (x.getSig_rank() <= 2) {
+//					lists.add(x);
+//				}}
+			
 			model.addAttribute("sendlist", lists);
 			return "SendEmployee.do";
 		} else {
@@ -69,7 +79,26 @@ public class POSigningController {
 		model.addAttribute("appmain", appmain);
 		model.addAttribute("pomain", pomain);
 		model.addAttribute("empbeans", empbeans);
+		model.addAttribute("SigningProcess", bean);
 		return "ListMain.show";
+		
+	}
+	@RequestMapping("/Po/sendlist.controller")
+	public String sendlist(PO_SigningProcessBean bean, BindingResult bindingResult, Model model,
+			HttpSession session,String send,String employeesend,String SignSug) {
+		EmployeeBean beans = (EmployeeBean) session.getAttribute("user");
+		java.util.Date date = new java.util.Date();
+		java.sql.Date datas =new java.sql.Date(date.getTime());
+		PO_MainBean pomain =pO_MainService.select(bean.getPo_id());
+		pomain.setEmp_id(employeesend);
+		PO_SigningProcessBean secondsigningprocess=pO_SigningProcessService.select(bean.getPo_sta(), bean.getPo_id());
+		secondsigningprocess.setSig_sta("已分派");
+		secondsigningprocess.setSig_date(datas);
+		secondsigningprocess.setSig_sug(SignSug);
+		PO_SigningProcessBean secondsigningprocess1=new PO_SigningProcessBean(employeesend,"詢價中",bean.getPo_id(),null,"詢價中",null,3);
+		pO_SigningProcessService.insert(secondsigningprocess1);
+		model.addAttribute("sendok","分派完成");
+		return "sendlist.ok";
 		
 	}
 	

@@ -57,4 +57,10 @@ public class POLoginController {
 				}
 
 	}
+	@RequestMapping("/Po/POLogout.controller")
+	public String poLogout(String username, String password, Model model, HttpSession session) {
+		session.removeAttribute("user");
+		return "POlog.out";
+	}
+	
 }
