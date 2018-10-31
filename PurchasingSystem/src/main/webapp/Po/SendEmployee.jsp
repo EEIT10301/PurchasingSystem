@@ -6,6 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<c:if test="${empty user}">
+	<%
+		request.setAttribute("nouser", "登入過期請重新登入");
+			request.getRequestDispatcher("/Po/POLogin.jsp").forward(request, response);
+	%>
+</c:if>
 </head>
 <body>
 		
