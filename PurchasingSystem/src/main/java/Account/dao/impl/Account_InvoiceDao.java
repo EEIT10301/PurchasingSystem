@@ -38,20 +38,20 @@ public class Account_InvoiceDao implements Account_InvoiceIDao {
 		SessionFactory sessionFactory = (SessionFactory) context.getBean("sessionFactory");
 		sessionFactory.getCurrentSession().beginTransaction();
 //		-----test:select()--------
-//		Account_InvoiceIDao productDAO = (Account_InvoiceIDao) context.getBean("account_InvoiceDao");
-//		List<Account_InvoiceBean> selects = productDAO.select();
-//		System.out.println("selects="+selects);
-//		for(Account_InvoiceBean x:selects) {
-//		
-//			System.out.println("1.Account_InvoiceBean物件:"+x.getInv_id());
-//			System.out.println("2.EmployeeBean物件:"+x.getEmployeeBean().getEmp_dep());
-//	        System.out.println("3.Accout_PayableBean物件:"+x.getAccout_PayableBean().getAccoutpayable_no());
-//			
-//	        for( Account_SigningProcessBean ssz:x.getAccount_SigningProcessBean()) {
-//				System.out.println("4.Account_SigningProcessBean物件:"+ssz.getSig_Rank());
-//			}
-//			System.out.println("5.採購單:"+x.getpO_MainBean().getVendor_ID());
-//		}
+		Account_InvoiceIDao productDAO = (Account_InvoiceIDao) context.getBean("account_InvoiceDao");
+		List<Account_InvoiceBean> selects = productDAO.select();
+		System.out.println("selects="+selects);
+		for(Account_InvoiceBean x:selects) {
+		
+			System.out.println("1.Account_InvoiceBean物件:"+x.getInv_id());
+			System.out.println("2.EmployeeBean物件:"+x.getEmployeeBean().getEmp_dep());
+	        System.out.println("3.Accout_PayableBean物件:"+x.getAccout_PayableBean().getAccoutpayable_no());
+			
+	        for( Account_SigningProcessBean ssz:x.getAccount_SigningProcessBean()) {
+				System.out.println("4.Account_SigningProcessBean物件:"+ssz.getSig_Rank());
+			}
+			System.out.println("5.採購單:"+x.getpO_MainBean().getVendor_ID());
+		}
 
 //		-----test:select(id)--------
 //		Account_InvoiceIDao aidao = context.getBean(Account_InvoiceDao.class);
@@ -59,21 +59,21 @@ public class Account_InvoiceDao implements Account_InvoiceIDao {
 //		System.out.println(bean.toString());
 
 //		-----test:insert()-----------
-		Account_InvoiceDao ivdao = context.getBean(Account_InvoiceDao.class);
-		Account_InvoiceBean aivo = new Account_InvoiceBean();
-		EmployeeIDao empDao = context.getBean(EmployeeDao.class);
-		EmployeeBean empvo = empDao.select("emp008");
-		PO_MainDao podao = context.getBean(PO_MainDao.class);
-		PO_MainBean povo = podao.select("Po20181025001");
-		Date today = new Date();
-		aivo.setInv_id("In20181025001");
-		aivo.setRecript_date(today);
-		aivo.setRecript_pic("10251invoice");
-		aivo.setPo_id(povo.getPo_id());
-		aivo.setEmp_id(empvo.getEmp_id());
-		aivo.setTotal_price(povo.getTotal_price());
-		Account_InvoiceBean bean = ivdao.insert(aivo);
-		System.out.println(bean.toString());
+//		Account_InvoiceDao ivdao = context.getBean(Account_InvoiceDao.class);
+//		Account_InvoiceBean aivo = new Account_InvoiceBean();
+//		EmployeeIDao empDao = context.getBean(EmployeeDao.class);
+//		EmployeeBean empvo = empDao.select("emp008");
+//		PO_MainDao podao = context.getBean(PO_MainDao.class);
+//		PO_MainBean povo = podao.select("Po20181025001");
+//		Date today = new Date();
+//		aivo.setInv_id("In20181025001");
+//		aivo.setRecript_date(today);
+//		aivo.setRecript_pic("10251invoice");
+//		aivo.setPo_id(povo.getPo_id());
+//		aivo.setEmp_id(empvo.getEmp_id());
+//		aivo.setTotal_price(povo.getTotal_price());
+//		Account_InvoiceBean bean = ivdao.insert(aivo);
+//		System.out.println(bean.toString());
 
 //		-----test:update()-----------
 //		Account_InvoiceIDao aidao = context.getBean(Account_InvoiceDao.class);

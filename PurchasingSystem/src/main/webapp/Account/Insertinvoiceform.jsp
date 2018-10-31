@@ -24,13 +24,13 @@
         <label for="Emp_dep">所屬部門</label>
         <input type="text" name="Emp_dep" id="" readonly="readonly" value="${user.emp_dep}">
         <label for="Vendor_name">廠商名稱</label>
-        <input type="text" name="Vendor_name" id="">
+        <input type="text" name="Vendor_name" readonly="readonly" id="">
         <label for="Vendor_id">廠商統編</label>
-        <input type="text" name="Vendor_id" id="">
+        <input type="text" name="Vendor_id" readonly="readonly" id="">
         <label for="Total_price">請款金額</label>
-        <input type="text" name="Total_price" id="">
+        <input type="text" name="Total_price" readonly="readonly" id="">
         <label for="Payment_method">付款方式</label>
-        <input type="text" name="Payment_method" id="">
+        <input type="text" name="Payment_method" readonly="readonly" id="">
         <label for="Except_Payment_Date">預計付款日</label>
         <input type="text" name="Except_Payment_Date" id="">
         <label for="Recript_date">憑證日期</label>
