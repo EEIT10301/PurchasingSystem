@@ -31,7 +31,7 @@
 <%--     <Input type='text' name='sig_sug' value='${poprocess1.sig_sug}'> --%>
 <%--     <Input type='text' name='sig_rank' value='${poprocess1.sig_rank}'> --%>
 <!--     <Input type='submit' name='send' value='開始詢價'> -->
-<a href='<c:url value="sendthisselectlist.controller?po_manger=${poprocess1.po_manger}&po_sta=${poprocess1.po_sta}&po_id=${poprocess1.po_id}&sig_date=${poprocess1.sig_date}&sig_sta=${poprocess1.sig_sta}&sig_sug=${poprocess1.sig_sug}&sig_rank=${poprocess1.sig_rank}" />'>
+<a href='<c:url value="sendthisselectlist.controller?po_manger=${poprocess1.po_manger}&po_sta=${poprocess1.po_sta}&po_id=${poprocess1.po_id}" />'>
       開始詢價</a> 
        
     </c:if>

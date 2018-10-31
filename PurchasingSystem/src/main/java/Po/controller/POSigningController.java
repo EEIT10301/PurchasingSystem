@@ -101,7 +101,7 @@ public class POSigningController {
 		return "sendlist.ok";
 		
 	}
-	@RequestMapping("/Po/selectprice.controller")//人員點選待詢價採購單頁面
+	@RequestMapping("/Po/selectprice.controller")//採購人員點選待詢價採購單頁面
 	public String sendlistss( Model model,HttpSession session) {
 		EmployeeBean beans = (EmployeeBean) session.getAttribute("user");
 		String empid=beans.getEmp_id();
@@ -129,6 +129,12 @@ public class POSigningController {
 //		if(selectlist.size()>0 && selectlist!=null) {
 //		}
 //		}else {
+	}
+	@RequestMapping("/Po/sendthisselectlist.controller")//採購人員點選待詢價採購單頁面
+	public String sendlistss(String po_manger,String po_sta,String po_id, Model model,HttpSession session) {
+		PO_SigningProcessBean bean =pO_SigningProcessService.select(po_sta, po_id);
+		model.addAttribute("poprocess1",bean);
+		return "select.listDetail";
 	}
 					
 }
