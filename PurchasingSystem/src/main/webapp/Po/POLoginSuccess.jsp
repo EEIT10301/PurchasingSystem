@@ -7,6 +7,12 @@
 <head>
 <meta charset="UTF-8">
 <title>採購系統</title>
+<c:if test="${empty user}">
+	<%
+		request.setAttribute("nouser", "登入過期請重新登入");
+			request.getRequestDispatcher("/Po/POLogin.jsp").forward(request, response);
+	%>
+</c:if>
 <style>
 
 </style>
@@ -20,7 +26,7 @@
 	<hr>
 
 <c:if test="${user.emp_level==1}">
-<a href=''>待詢價採購單 </a>
+<a href='selectprice.controller'>待詢價採購單 </a>
 <a href=''>待下單採購單 </a>
 <a href='Polist.controller'>待申請請款單 </a>
 </c:if>
