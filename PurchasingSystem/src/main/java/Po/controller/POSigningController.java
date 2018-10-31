@@ -38,7 +38,11 @@ public class POSigningController {
 		 List<PO_SigningProcessBean> list=pO_SigningProcessService.selectempidsend(beans.getEmp_id(),"分派中");
 //		List<PO_SigningProcessBean> list = pO_SigningProcessService.select();
 		List<PO_SigningProcessBean> lists = new LinkedList<PO_SigningProcessBean>();
-		if (list.size() > 0 && list != null) {
+		
+		if (list== null) {
+			model.addAttribute("nosendlist", "無待分派採購單");
+			return "SendEmployee.do";
+		}else {			
 			for (int i = 0; i < list.size(); i++) {
 				PO_SigningProcessBean x = list.get(i);
 				String poid =x.getPo_id();
@@ -59,11 +63,7 @@ public class POSigningController {
 			
 			model.addAttribute("sendlist", lists);
 			return "SendEmployee.do";
-		} else {
-			model.addAttribute("nosendlist", "無待分派採購單");
-			return "SendEmployee.do";
 		}
-
 	}
 	
 	@RequestMapping("/Po/sendEmployeesss.controller")//主管待分派單頁面
@@ -108,21 +108,27 @@ public class POSigningController {
 		List<PO_SigningProcessBean> selectlist=pO_SigningProcessService.selectempidsend(empid, "詢價中");
 		List<PO_SigningProcessBean> selectlists=null;
 				selectlists=new LinkedList<PO_SigningProcessBean>();
-		if(selectlist.size()>0 && selectlist!=null) {
-			for (int i = 0; i < selectlist.size(); i++) {
-				PO_SigningProcessBean x = selectlist.get(i);
-				PO_SigningProcessBean xs =pO_SigningProcessService.select("分派採購者", x.getPo_id());
-				if(xs!=null) {
-					selectlists.add(x);
-					selectlists.add(xs);
+				if(selectlist==null) {
+					
+					model.addAttribute("noselectlists","無待詢價採購單");
+					return "select.list";
+				}else {
+					for (int i = 0; i < selectlist.size(); i++) {
+						PO_SigningProcessBean x = selectlist.get(i);
+						PO_SigningProcessBean xs =pO_SigningProcessService.select("分派採購者", x.getPo_id());
+						if(xs!=null) {
+							selectlists.add(x);
+							selectlists.add(xs);
+						}
+						model.addAttribute("selectlists",selectlists);
+					
 				}
-				model.addAttribute("selectlists",selectlists);
-		}
-		}else {
-			model.addAttribute("noselectlists","無待詢價採購單");
-		}
-		return "select.list";
-		
+					return "select.list";
+				}	
+				
+//		if(selectlist.size()>0 && selectlist!=null) {
+//		}
+//		}else {
 	}
-	
+					
 }
