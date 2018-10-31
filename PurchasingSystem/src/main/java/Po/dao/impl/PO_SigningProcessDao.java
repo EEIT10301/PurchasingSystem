@@ -10,6 +10,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.stereotype.Repository;
 
 import Po.dao.PO_SigningProcessIDao;
+import Po.model.PO_MainBean;
 import Po.model.PO_SigningProcessBean;
 import misc.SpringJavaConfiguration;
 
@@ -30,21 +31,21 @@ public class PO_SigningProcessDao implements PO_SigningProcessIDao{
 		sessionFactory.getCurrentSession().beginTransaction();
 
 		PO_SigningProcessIDao productDAO = (PO_SigningProcessIDao) context.getBean("PO_SigningProcessDao");
-		java.util.Date date = new java.util.Date();
-		java.sql.Date datas =new java.sql.Date(date.getTime());
-		PO_SigningProcessBean ss=new PO_SigningProcessBean("emp001","申請中","Po20181013001",datas,"已簽核","請核准",1);
-		PO_SigningProcessBean ss1=new PO_SigningProcessBean("emp002","已審核完成","Po20181013001",null,"簽核中",null,2);
-		productDAO.insert(ss);
-		productDAO.insert(ss1);
+//		java.util.Date date = new java.util.Date();
+//		java.sql.Date datas =new java.sql.Date(date.getTime());
+//		PO_SigningProcessBean ss=new PO_SigningProcessBean("emp001","申請中","Po20181013001",datas,"已簽核","請核准",1);
+//		PO_SigningProcessBean ss1=new PO_SigningProcessBean("emp002","已審核完成","Po20181013001",null,"簽核中",null,2);
+//		productDAO.insert(ss);
+//		productDAO.insert(ss1);
 		sessionFactory.getCurrentSession().getTransaction().commit();
 		sessionFactory.getCurrentSession().beginTransaction();
-		List<PO_SigningProcessBean> selects = productDAO.select();
+		List<PO_SigningProcessBean> selects = productDAO.selectempidsend("emp004", "驗收完成未請款");
 		for(PO_SigningProcessBean xz:selects) {
-        	System.out.println("1.PO_SigningProcessBean物件: "+xz.getPo_id());
-        	System.out.println("2.EmployeeBean物件: "+xz.getEmployeeBean().getEmp_email());
-        	System.out.println("3.PO_MainBean物件: "+xz.getpO_MainBean().getVendor_ID());
- 
+        	System.out.println(xz.getPo_id());
+        	System.out.println(xz.getpO_MainBean().getVendor_ID());
+
          }
+		
 		sessionFactory.getCurrentSession().getTransaction().commit();
 	}
 	@SuppressWarnings("unchecked")
@@ -69,6 +70,7 @@ public class PO_SigningProcessDao implements PO_SigningProcessIDao{
 		return this.getSession().createQuery(
 				"from PO_SigningProcessBean", PO_SigningProcessBean.class).setMaxResults(50).list();
 	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public PO_SigningProcessBean insert(PO_SigningProcessBean bean) {
