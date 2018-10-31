@@ -13,16 +13,46 @@
 				<h2>待分派採購單 單號:${pomain.po_id}</h2>
 			<form action="<c:url value="/Po/sendlist.controller" />" method="post">
 			<c:forEach var="pomaindetail" items="${pomain.pO_DetailBean}">
+				<p>項目:${pomaindetail.productListBean.pro_cate}</p>
 				<p>料號:${pomaindetail.part_No}</p>
+				<p>物料名稱:${pomaindetail.productListBean.pro_name}</p>
 				<p>市價:${pomaindetail.market_Price}</p>
-				<p>總數量:${pomaindetail.total_Qty}</p>
+				<p>請購總數量:${pomaindetail.total_Qty}</p>
+				<p>預估該項產品總金額:${pomaindetail.total_Qty*pomaindetail.market_Price}</p>
+				<p>目前庫存:${pomaindetail.productListBean.pro_amount}</p>
 			</c:forEach>
-		<h2>請購單簽核狀態</h2>
+			<p>預估請購總金額: ${appmain.app_price}<p>
+		<h2>請購單簽核情形 請購單編號 :${appmain.app_id}</h2>
 		<c:forEach var="appsigningprocess" items="${appmain.app_SigningProcessBean}">
-			<p>簽核主管:${appsigningprocess.app_manger} 單據狀態:${appsigningprocess.app_sta} 
-			採購單ID:${appsigningprocess.app_id} 簽核日期:${appsigningprocess.sig_date}
-			簽核狀態:${appsigningprocess.sig_sta} 簽核建議:${appsigningprocess.sig_sug}</p>			
-		</c:forEach>
+			<c:if test="${appsigningprocess.sig_rank==1}">
+			<p>簽核同仁:${appsigningprocess.employeeBean.emp_dep} 
+			${appsigningprocess.employeeBean.emp_name}
+			${appsigningprocess.employeeBean.emp_job}
+			 單據狀態:${appsigningprocess.app_sta} 
+			 簽核日期:${appsigningprocess.sig_date}
+			簽核狀態:${appsigningprocess.sig_sta} 簽核建議:${appsigningprocess.sig_sug}</p>	
+				</c:if>			
+		  </c:forEach>
+			<c:forEach var="appsigningprocess" items="${appmain.app_SigningProcessBean}">
+			<c:if test="${appsigningprocess.sig_rank==2}">
+			<p>簽核主管:${appsigningprocess.employeeBean.emp_dep} 
+			${appsigningprocess.employeeBean.emp_name}
+			${appsigningprocess.employeeBean.emp_job}
+			 單據狀態:${appsigningprocess.app_sta} 
+			 簽核日期:${appsigningprocess.sig_date}
+			簽核狀態:${appsigningprocess.sig_sta} 簽核建議:${appsigningprocess.sig_sug}</p>	
+				</c:if>	
+			</c:forEach>
+			<c:forEach var="appsigningprocess" items="${appmain.app_SigningProcessBean}">
+			<c:if test="${appsigningprocess.sig_rank==3}">
+			<p>總經理:${appsigningprocess.employeeBean.emp_name}
+			${appsigningprocess.employeeBean.emp_job}
+			 單據狀態:${appsigningprocess.app_sta} 
+			 簽核日期:${appsigningprocess.sig_date}
+			簽核狀態:${appsigningprocess.sig_sta} 簽核建議:${appsigningprocess.sig_sug}</p>	
+				</c:if>	
+			</c:forEach>
+				
 		<p>指派人<p>
 		<select name="employeesend">
 		<c:forEach var="empbeansss" items="${empbeans}">
@@ -31,7 +61,7 @@
 		</c:forEach>	 	
 		</select>
 		<br>
-		    簽核意見:<p><textarea rows="5" cols="50"  name="SignSug">
+		    分派意見:<p><textarea rows="5" cols="50"  name="SignSug">
              </textarea><font color="red"></font><p>
 	       	<Input type='hidden' name='po_manger' value='${SigningProcess.po_manger}'>
 			<Input type='hidden' name='po_sta' value='${SigningProcess.po_sta}'>
@@ -43,7 +73,9 @@
 			<Input type='submit' name='send' value='送出'>
 		</form>
 	</c:if>
-	
+	<c:if test="${not empty nosendlist}">
+	<h2>${ nosendlist}</h2>
+	</c:if>
 	<%-- 	<c:if test="${not empty pomain}"> --%>
 	<%-- 		<h2>${appmain.app_id}</h2> --%>
 	<!-- 		<form action="" method="post"> -->
