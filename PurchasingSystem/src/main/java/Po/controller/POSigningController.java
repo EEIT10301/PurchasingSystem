@@ -22,6 +22,7 @@ import Apply.service.App_MainService;
 import Apply.service.EmployeeService;
 import Po.model.PO_DetailBean;
 import Po.model.PO_MainBean;
+import Po.model.PO_QueryBean;
 import Po.model.PO_SigningProcessBean;
 import Po.service.PO_DetailService;
 import Po.service.PO_MainService;
@@ -155,7 +156,33 @@ public class POSigningController {
 		model.addAttribute("poprocess1",bean);
 		model.addAttribute("AllPO_Vendor",AllPO_Vendor);
 		return "Posend.sign";
+	}	
+	
+	@RequestMapping("/Po/sendsc.controller")
+	public String createQueryMemo(String po_manger,String po_sta,String po_id, Model model,HttpSession session) {
+		PO_SigningProcessBean bean1 =pO_SigningProcessService.select(po_sta, po_id);
+		 List<PO_Vendor_InfoBean> AllPO_Vendor1 =pO_Vendor_InfoService.select();
+		model.addAttribute("query",bean1);
+		model.addAttribute("AllPO_Vendor1",AllPO_Vendor1);
+		return "QueryMemo.show";
 	}
+	
+	@RequestMapping("/Po/queryinsert.controller")
+	public String queryMemoInsert(String po_manger,String po_sta,String po_id, PO_QueryBean pO_QueryBean, Model model,HttpSession session) {
+		PO_SigningProcessBean bean2 =pO_SigningProcessService.select(po_sta, po_id);
+		 List<PO_Vendor_InfoBean> AllPO_Vendor2 =pO_Vendor_InfoService.select();
+		model.addAttribute("query1",bean2);
+		model.addAttribute("AllPO_Vendor2",AllPO_Vendor2);
+		return "select.listDetail";
+	}
+
+//	@RequestMapping("/PO/sendsc.controller")
+//	public String createQueryMemo(String po_manger,String po_sta,String po_id, Model model,HttpSession session) {
+//		PO_SigningProcessBean bean =pO_SigningProcessService.select(po_sta, po_id);
+//		model.addAttribute("query",bean);		
+//		return "QueryMemo.show";
+//	}
+	
 	
 	@RequestMapping("/Po/checkvendorandpodetail.controller")//採購人員於待詢價採購單頁面選擇送出審核
 	public String checkvendorandpodetail(String[] po_id,String[] part_No,String[] market_Price,String[] quotation,
