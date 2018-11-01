@@ -25,11 +25,14 @@
 		  <Input type='hidden' name='po_id' value='${thispo_detailBean.po_id}'>
 		  <Input type='hidden' name='part_No' value='${thispo_detailBean.part_No}'>
 		  <Input type='hidden' name='market_Price' value='${thispo_detailBean.market_Price}'>
-		<p> 採購實際數量:<Input type='text' name='quotation' value=''></p>
-		<p> 請購實際金額: <Input type='text' name='total_Price' value=''></p>
+		<p> 採購實際數量:<Input type='text' name='quotation' value='${param.quotation}'></p>${errors.number}
+		<p> 請購實際金額: <Input type='text' name='total_Price' value='${param.total_Price}'></p>${errors.number}
 		  <Input type='hidden' name='total_Qty' value='${thispo_detailBean.total_Qty}'>
-</c:forEach>	 
-		   <Input type='submit' name='send' value='送出詢價單'>
+</c:forEach>
+            <Input type='hidden' name='posta1' value='${poprocess1.po_sta}'>
+             <Input type='hidden' name='poid1' value='${poprocess1.po_id}'>	 
+		   <Input type='submit' name='send' value='產生詢價單'>
+		   
 </form>	
 </body>
 </html>

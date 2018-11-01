@@ -24,10 +24,10 @@ public class PO_InvoiceService {
 		
 	List<PO_SigningProcessBean> list = pO_SigningProcessIDao.selectempidsend(emp_id, sig_sta);
 	List<PO_MainBean> result=null;
+	result=new LinkedList<PO_MainBean>() ;
 		if (list!=null) {
 			for(PO_SigningProcessBean x: list) {
 				PO_MainBean bean = pO_MainIDao.select(x.getPo_id());
-				result=new LinkedList<PO_MainBean>() ;
 				result.add(bean);
 			}
 			return result;
