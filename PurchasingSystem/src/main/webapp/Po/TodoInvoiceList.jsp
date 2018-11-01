@@ -15,7 +15,7 @@
 	</c:if>
 
 	<c:if test="${not empty list}">
-
+<table>
 		<c:forEach var="row" items="${list}">
 			<tr>
 				<td>${row.po_id}</td>
@@ -24,9 +24,10 @@
 				<td>$${row.total_price}</td>
 				<td>${row.employeeBean.emp_name}</td>
 				<td>${row.pO_Vendor_InfoBean.vendor_name}</td>
-				<td><a href="../Account/Insertinvoiceform.jsp">新增請款單</a></td>
+				<td><a href="NewInvoiceForm.controller?poid=${row.po_id}">新增請款單</a></td>
 			</tr>
 		</c:forEach>
+		</table>
 	</c:if>
 </body>
 </html>
