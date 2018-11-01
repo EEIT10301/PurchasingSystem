@@ -136,5 +136,12 @@ public class POSigningController {
 		model.addAttribute("poprocess1",bean);
 		return "select.listDetail";
 	}
-					
+	
+	@RequestMapping("/PO/sendsc.controller")
+	public String createQueryMemo(String po_manger,String po_sta,String po_id, Model model,HttpSession session) {
+		PO_SigningProcessBean bean =pO_SigningProcessService.select(po_sta, po_id);
+		model.addAttribute("query",bean);		
+		return "";
+	}
+		
 }
