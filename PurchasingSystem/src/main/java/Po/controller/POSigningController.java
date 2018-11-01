@@ -157,16 +157,33 @@ public class POSigningController {
 	@RequestMapping("/Po/checkvendorandpodetail.controller")//採購人員於待詢價採購單頁面選擇送出審核
 	public String checkvendorandpodetail(String[] po_id,String[] part_No,String[] market_Price,String[] quotation,
 			String[] total_Price,String[] total_Qty,
-			Model model, HttpSession session) {
+			Model model, HttpSession session,String AllPO_Vendors) {
+		List<PO_DetailBean> Podetailbeans = new LinkedList<PO_DetailBean>();
+		PO_DetailBean Podetailbean=new PO_DetailBean();
+		String poids="";
+		Integer allListprice = 0;
        for(int i=0;i<po_id.length;i++) {
     	   String poid =po_id[i];
+    	   Podetailbean.setPo_id(poid);
     	   String partno= part_No[i];
+    	   Podetailbean.setPart_No(partno);
     	   Integer marketPrice =  Integer.parseInt(market_Price[i]);
+    	   Podetailbean.setMarket_Price(marketPrice);
     	   Integer quot =  Integer.parseInt(quotation[i]);
+    	   Podetailbean.setQuotation(quot);
     	   Integer totalPrice =  Integer.parseInt(total_Price[i]);
+    	   Podetailbean.setTotal_Price(totalPrice);
     	   Integer totalQty =  Integer.parseInt(total_Qty[i]);
+    	   Podetailbean.setTotal_Qty(totalQty);
+    	   Integer thislistprice = quot*totalPrice;
+    	   allListprice +=thislistprice;
+    	   Podetailbeans.add(Podetailbean);
+    	   poids=po_id[i];
        }
-	
-		return "Posend.sign";
+       model.addAttribute("Podetailbeans", Podetailbeans);
+       model.addAttribute("AllPO_Vendors", AllPO_Vendors);
+       model.addAttribute("poids", poids);
+       model.addAttribute("allListprice", allListprice);
+		return "Posendcheck.sign";
 	}
 }
