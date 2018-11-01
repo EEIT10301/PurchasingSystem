@@ -10,13 +10,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import Account.model.PO_Vendor_InfoBean;
+import Account.service.PO_Vendor_InfoService;
 import Apply.model.App_MainBean;
 import Apply.model.EmployeeBean;
 import Apply.service.App_MainService;
 import Apply.service.EmployeeService;
+import Po.model.PO_DetailBean;
 import Po.model.PO_MainBean;
 import Po.model.PO_SigningProcessBean;
+import Po.service.PO_DetailService;
 import Po.service.PO_MainService;
 import Po.service.PO_SigningProcessService;
 
@@ -30,6 +35,10 @@ public class POSigningController {
 	PO_MainService pO_MainService;
 	@Autowired
 	EmployeeService employeeService;
+	@Autowired
+	PO_Vendor_InfoService pO_Vendor_InfoService;
+	@Autowired
+	PO_DetailService pO_DetailService;
 	
 	@RequestMapping("/Po/sendEmployee.controller")//多少採購單分派頁面
 	public String sendEmployee(Model model, HttpSession session) {
@@ -135,13 +144,47 @@ public class POSigningController {
 		PO_SigningProcessBean bean =pO_SigningProcessService.select(po_sta, po_id);
 		model.addAttribute("poprocess1",bean);
 		return "select.listDetail";
+	}		
+
+	@RequestMapping("/Po/posendlistsign.controller")//採購人員於待詢價採購單頁面選擇送出審核
+	public String posendlistsign(String po_manger,String po_sta,String po_id, Model model,HttpSession session) {
+		PO_SigningProcessBean bean =pO_SigningProcessService.select(po_sta, po_id);
+		 List<PO_Vendor_InfoBean> AllPO_Vendor =pO_Vendor_InfoService.select();
+		model.addAttribute("poprocess1",bean);
+		model.addAttribute("AllPO_Vendor",AllPO_Vendor);
+		return "Posend.sign";
 	}
 	
-	@RequestMapping("/PO/sendsc.controller")
-	public String createQueryMemo(String po_manger,String po_sta,String po_id, Model model,HttpSession session) {
-		PO_SigningProcessBean bean =pO_SigningProcessService.select(po_sta, po_id);
-		model.addAttribute("query",bean);		
-		return "";
+	@RequestMapping("/Po/checkvendorandpodetail.controller")//採購人員於待詢價採購單頁面選擇送出審核
+	public String checkvendorandpodetail(String[] po_id,String[] part_No,String[] market_Price,String[] quotation,
+			String[] total_Price,String[] total_Qty,
+			Model model, HttpSession session,String AllPO_Vendors) {
+		List<PO_DetailBean> Podetailbeans = new LinkedList<PO_DetailBean>();
+		PO_DetailBean Podetailbean=new PO_DetailBean();
+		String poids="";
+		Integer allListprice = 0;
+       for(int i=0;i<po_id.length;i++) {
+    	   String poid =po_id[i];
+    	   Podetailbean.setPo_id(poid);
+    	   String partno= part_No[i];
+    	   Podetailbean.setPart_No(partno);
+    	   Integer marketPrice =  Integer.parseInt(market_Price[i]);
+    	   Podetailbean.setMarket_Price(marketPrice);
+    	   Integer quot =  Integer.parseInt(quotation[i]);
+    	   Podetailbean.setQuotation(quot);
+    	   Integer totalPrice =  Integer.parseInt(total_Price[i]);
+    	   Podetailbean.setTotal_Price(totalPrice);
+    	   Integer totalQty =  Integer.parseInt(total_Qty[i]);
+    	   Podetailbean.setTotal_Qty(totalQty);
+    	   Integer thislistprice = quot*totalPrice;
+    	   allListprice +=thislistprice;
+    	   Podetailbeans.add(Podetailbean);
+    	   poids=po_id[i];
+       }
+       model.addAttribute("Podetailbeans", Podetailbeans);
+       model.addAttribute("AllPO_Vendors", AllPO_Vendors);
+       model.addAttribute("poids", poids);
+       model.addAttribute("allListprice", allListprice);
+		return "Posendcheck.sign";
 	}
-		
 }

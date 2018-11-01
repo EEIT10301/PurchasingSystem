@@ -92,6 +92,14 @@
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/Po/SelectPoListDetail.jsp"></property>
 	</bean>
+	<bean id="Posend.sign"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Po/Posendlistsign.jsp"></property>
+	</bean>
+	<bean id="Posendcheck.sign"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Po/Posendlistsigncheck.jsp"></property>
+	</bean>
 	<!-- 採購使用連結 -->
 	<!-- 驗收使用連結 -->
 	<bean id="Invlogin.success"
@@ -105,7 +113,7 @@
 	</bean>
 	<!-- 驗收使用連結 -->
 
-	<!-- 使用連結 -->
+	<!--待請款單使用連結 -->
 	<bean id="TodoInvoiceList"
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/Po/TodoInvoiceList.jsp"></property>
