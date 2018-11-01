@@ -18,7 +18,7 @@
 <body>
     <h1>請款單</h1>
     <form action="<c:url value="/Account/newInvoice.controller" />" enctype="multipart/form-data" method="">
-    	<input type="hidden" name="Po_id" id="" value="Po20181013001">
+    	
         <label for="Emp_id">申請人</label>
         <input type="text" name="Emp_id" id="" readonly="readonly" value="${user.emp_name}">
         <label for="Emp_dep">所屬部門</label>
@@ -32,7 +32,7 @@
         <label for="Payment_method">付款方式</label>
         <input type="text" name="Payment_method" readonly="readonly" id="" value="${bean.pO_Vendor_InfoBean.payment_term}">
         <label for="Except_Payment_Date">預計付款日</label>
-        <input type="text" name="Except_Payment_Date" id="" value="">
+        <input type="text" name="Except_Payment_Date" id="" value="${paymentDate}">
         <label for="Recript_date">憑證日期</label>
         <input type="text" name="Recript_date" id="" value="">
         <label for="Receiptpic">憑證圖檔</label>
