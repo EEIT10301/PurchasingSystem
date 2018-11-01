@@ -6,12 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>待詢價表單頁面</title>
-<c:if test="${empty user}">
-	<%
-		request.setAttribute("nouser", "登入過期請重新登入");
-			request.getRequestDispatcher("/Po/POLogin.jsp").forward(request, response);
-	%>
-</c:if>
 </head>
 <body>
 	<c:if test="${not empty selectlists}">

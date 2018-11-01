@@ -24,6 +24,7 @@ public interface EmployeeIDao {
 	public abstract List<EmployeeBean> selectPoEmployee(String emp_dep, Integer emp_level);
 
 	public abstract EmployeeBean InvLogin (String emp_email, String emp_pwd);
+	public abstract EmployeeBean IndexLogin (String emp_email, String emp_pwd);
 
 
 }
