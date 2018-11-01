@@ -17,7 +17,7 @@
 
 <body>
     <h1>請款單</h1>
-    <form action="<c:url value="/Account/newInvoice.controller" />" enctype="multipart/form-data" method="">
+    <form action="<c:url value="" />" enctype="multipart/form-data" method="">
     	<input type="hidden" name="Po_id" id="" value="Po20181013001">
         <label for="Emp_id">申請人</label>
         <input type="text" name="Emp_id" id="" readonly="readonly" value="${user.emp_name}">
