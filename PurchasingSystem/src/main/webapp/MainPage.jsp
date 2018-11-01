@@ -29,7 +29,7 @@ body {
 			<td><a href="Po/POLogin.jsp">採購部門</a></td>
 		</tr>
 		<tr>
-			<td><a href="">品管部門</a></td>
+			<td><a href="Inv/InvLogin.jsp">品管部門</a></td>
 		</tr>
 		<tr>
 			<td><a href="Account/AccountLogin.jsp">財務部門</a></td>

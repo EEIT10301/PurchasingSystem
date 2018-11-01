@@ -44,7 +44,7 @@ public String invLogin(String username, String password, Model model, HttpSessio
 	//根據model執行結果，導向view
 			if(bean==null) {
 				errors.put("password", "Login failed, please try again.");
-				return "Acclogin.errors";
+				return "Invlogin.errors";
 				
 			} else {
 				
@@ -53,5 +53,10 @@ public String invLogin(String username, String password, Model model, HttpSessio
 				
 			}
 	
+}
+@RequestMapping("/Inv/InvLogout.controller")
+public String poLogout(String username, String password, Model model, HttpSession session) {
+	session.removeAttribute("user");
+	return "Invlogin.errors";
 }
 }
