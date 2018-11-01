@@ -1,7 +1,9 @@
 package misc;
 
-import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+import javax.servlet.annotation.MultipartConfig;
 
+import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+@MultipartConfig
 public class MyDispatcherServletInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
 	@Override
@@ -19,7 +21,9 @@ public class MyDispatcherServletInitializer extends AbstractAnnotationConfigDisp
 		System.out.println("DispatcherServletlistener");
 		return new Class[] {SpringMvcJavaConfiguration.class};
 	}
-
+	//<multipart-config/>
+	
+	
 	@Override
 	protected String[] getServletMappings() {
 		return new String[] {"/","*.css","*.png","*.jpg","*.js"};
