@@ -268,5 +268,23 @@ public class EmployeeDao implements EmployeeIDao{
 			 return null;
 		 }
 	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public EmployeeBean IndexLogin(String emp_email, String emp_pwd) {
+		List<EmployeeBean> list = null;
+		EmployeeBean getone =new EmployeeBean();
+		String hgl="FROM EmployeeBean WHERE emp_email=:id1 AND emp_pwd=:id2 ";
+		list =this.getSession().createQuery(hgl).setParameter("id1", emp_email)
+				.setParameter("id2", emp_pwd).setMaxResults(50).list();
+		 if(list.size()>0) {
+			  for(EmployeeBean getones :list) {
+				  getone=getones;
+			  }
+			  return getone;
+		 }else {
+			 
+			 return null;
+		 }
+	}
 
 }
