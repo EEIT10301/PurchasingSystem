@@ -12,6 +12,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jndi.JndiObjectFactoryBean;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 
@@ -41,14 +42,14 @@ import Po.model.PO_SigningProcessBean;
 public class SpringJavaConfiguration {
 	
 //	@Bean
-//	public DataSource dataSource() {
+//	public DataSource dataSource() {//不是用網頁測試的時候用的
 //	    DriverManagerDataSource dmds =new DriverManagerDataSource();
 //	    dmds.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 //	    dmds.setUrl("jdbc:sqlserver://localhost:1433;database=PurchasingSystem");
 //	    dmds.setUsername("sa");
 //	    dmds.setPassword("passw0rd");
 //		return dmds;
-//	}
+//	}        
 	@Bean
 	public DataSource dataSource() {
 		JndiObjectFactoryBean factory = new JndiObjectFactoryBean();

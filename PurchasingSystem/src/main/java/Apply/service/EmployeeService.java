@@ -95,5 +95,12 @@ public class EmployeeService {
 		}
 		return null;
 	}
+	public EmployeeBean IndexLogin(String username, String password) {
+		EmployeeBean bean = employeeIDao.IndexLogin(username, password);
+		if(bean!=null) {
+			return bean;
+		}
+		return null;
+	}
 
 }

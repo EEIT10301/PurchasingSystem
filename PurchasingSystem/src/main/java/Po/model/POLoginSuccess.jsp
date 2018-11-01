@@ -20,7 +20,7 @@
 	<hr>
 
 <c:if test="${user.emp_level==1}">
-<a href='selectprice.controller'>待詢價採購單 </a>
+<a href=''>待詢價採購單 </a>
 <a href=''>待下單採購單 </a>
 <a href='Polist.controller'>待申請請款單 </a>
 </c:if>
