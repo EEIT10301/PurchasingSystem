@@ -168,7 +168,9 @@ public class POSigningController {
 	}
 	
 	@RequestMapping("/Po/queryinsert.controller")
-	public String queryMemoInsert(String po_manger,String po_sta,String po_id, PO_QueryBean pO_QueryBean, Model model,HttpSession session) {
+	public String queryMemoInsert(String po_manger,String po_sta,String po_id, PO_QueryBean bean, Model model,HttpSession session) {
+		java.util.Date date = new java.util.Date();
+		java.sql.Date datas =new java.sql.Date(date.getTime());
 		PO_SigningProcessBean bean2 =pO_SigningProcessService.select(po_sta, po_id);
 		 List<PO_Vendor_InfoBean> AllPO_Vendor2 =pO_Vendor_InfoService.select();
 		model.addAttribute("query1",bean2);
