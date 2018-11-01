@@ -61,7 +61,7 @@ public class ApplyLoginController {
 	@RequestMapping("/Apply/ApplyLogout.controller")
 	public String poLogout(String username, String password, Model model, HttpSession session) {
 		session.removeAttribute("user");
-		return "login.errors";
+		return "indexlogin.return";
 	}
 	@RequestMapping("AllApplyLogin.controller")
 	public String poLogouts(String username, String password, Model model, HttpSession session) {

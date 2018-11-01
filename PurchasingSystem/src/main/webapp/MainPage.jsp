@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>主畫面</title>
 <style>
-a, a:visited {
+/* a, a:visited {
 	text-decoration: none;
 	color: black;
 }
@@ -16,7 +16,7 @@ table{
 }
 body {
 	text-align: center;
-}
+} */
 </style>
 </head>
 <body>
@@ -41,19 +41,19 @@ body {
 </form>
 
 
-	<table>
-		<tr>
-			<td><a href="Apply/ApplyLogin.jsp">研發部門</a></td>
-		</tr>
-		<tr>
-			<td><a href="Po/POLogin.jsp">採購部門</a></td>
-		</tr>
-		<tr>
-			<td><a href="">品管部門</a></td>
-		</tr>
-		<tr>
-			<td><a href="Account/AccountLogin.jsp">財務部門</a></td>
-		</tr>
-	</table>
+<!-- 	<table> -->
+<!-- 		<tr> -->
+<!-- 			<td><a href="Apply/ApplyLogin.jsp">研發部門</a></td> -->
+<!-- 		</tr> -->
+<!-- 		<tr> -->
+<!-- 			<td><a href="Po/POLogin.jsp">採購部門</a></td> -->
+<!-- 		</tr> -->
+<!-- 		<tr> -->
+<!-- 			<td><a href="">品管部門</a></td> -->
+<!-- 		</tr> -->
+<!-- 		<tr> -->
+<!-- 			<td><a href="Account/AccountLogin.jsp">財務部門</a></td> -->
+<!-- 		</tr> -->
+<!-- 	</table> -->
 </body>
 </html>
