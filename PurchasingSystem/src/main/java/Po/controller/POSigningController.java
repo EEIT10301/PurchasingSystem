@@ -1,7 +1,10 @@
 package Po.controller;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -10,7 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import Account.model.PO_Vendor_InfoBean;
 import Account.service.PO_Vendor_InfoService;
@@ -157,12 +159,28 @@ public class POSigningController {
 	@RequestMapping("/Po/checkvendorandpodetail.controller")//採購人員於待詢價採購單頁面選擇送出審核
 	public String checkvendorandpodetail(String[] po_id,String[] part_No,String[] market_Price,String[] quotation,
 			String[] total_Price,String[] total_Qty,
-			Model model, HttpSession session,String AllPO_Vendors) {
+			Model model, HttpSession session,String AllPO_Vendors,String posta1,String poid1,String send) {
+		
 		List<PO_DetailBean> Podetailbeans = new LinkedList<PO_DetailBean>();
-		PO_DetailBean Podetailbean=new PO_DetailBean();
-		String poids="";
-		Integer allListprice = 0;
+		Map <String,String>errors=new HashMap<String,String>();
+		PO_DetailBean Podetailbean=new PO_DetailBean();	
+		Integer allListprice = 0;	
+		PO_SigningProcessBean bean =pO_SigningProcessService.select(posta1, poid1);
+		 List<PO_Vendor_InfoBean> AllPO_Vendor =pO_Vendor_InfoService.select();
+//		 if(send.equals("重新輸入")) {
+//	    	   model.addAttribute("poprocess1",bean);
+//	    	   model.addAttribute("AllPO_Vendor",AllPO_Vendor);
+//				return "Posend.sign"; 
+//	       }
        for(int i=0;i<po_id.length;i++) {
+    	   if(quotation[i].equals("")||quotation[i].trim().isEmpty()
+    			   ||total_Price[i].equals("")||total_Price[i].trim().isEmpty()) {
+    		   errors.put("number", "請輸入整數");
+    		   model.addAttribute("poprocess1",bean);
+    		   model.addAttribute("errors",errors);
+    			model.addAttribute("AllPO_Vendor",AllPO_Vendor);
+    			return "Posend.sign"; 
+    	   }
     	   String poid =po_id[i];
     	   Podetailbean.setPo_id(poid);
     	   String partno= part_No[i];
@@ -178,12 +196,95 @@ public class POSigningController {
     	   Integer thislistprice = quot*totalPrice;
     	   allListprice +=thislistprice;
     	   Podetailbeans.add(Podetailbean);
-    	   poids=po_id[i];
+    	   
+       }
+       PO_Vendor_InfoBean VendorBean=pO_Vendor_InfoService.select(AllPO_Vendors);
+       List<EmployeeBean> pomangers=employeeService.selectPoEmployee("採購部", 2);
+       String apid ="Ap"+poid1.substring(2);
+       App_MainBean AppMain= app_MainService.select(apid);
+       if(allListprice>(AppMain.getApp_price()*1.2)) {
+    	   EmployeeBean boss= employeeService.select("emp003");
+    	   model.addAttribute("boss", boss);
        }
        model.addAttribute("Podetailbeans", Podetailbeans);
-       model.addAttribute("AllPO_Vendors", AllPO_Vendors);
-       model.addAttribute("poids", poids);
+       model.addAttribute("AllPO_Vendors", VendorBean);
+       model.addAttribute("posta1", posta1);
+       model.addAttribute("poid1", poid1);
+       model.addAttribute("pomangers", pomangers);
        model.addAttribute("allListprice", allListprice);
 		return "Posendcheck.sign";
+	}
+	@RequestMapping("/Po/podetailupdate.controller")//採購人員於待詢價採購單頁面選擇送審核畫面按下重新輸入or送出
+	public String podetailupdate(String[] po_id,String[] part_No,String[] market_Price,String[] quotation,
+			String[] total_Price,String[] total_Qty,Model model, HttpSession session,String allListprice,
+			String AllPO_Vendors,String posta1,String poid1,String send,String pomanger,String boss ,String SignSug) {
+		EmployeeBean thisemp = (EmployeeBean) session.getAttribute("user");
+		java.util.Date date = new java.util.Date();
+		java.sql.Date datas =new java.sql.Date(date.getTime());
+		PO_SigningProcessBean bean =pO_SigningProcessService.select(posta1, poid1);
+		
+		 List<PO_Vendor_InfoBean> AllPO_Vendor =pO_Vendor_InfoService.select();
+		if(send.equals("重新輸入")) {
+ 	   model.addAttribute("poprocess1",bean);
+ 	   model.addAttribute("AllPO_Vendor",AllPO_Vendor);
+			return "Posend.sign"; 
+    }else {//按下送出時
+    	if(boss==null) {//如果部會到總經理的話
+    		PO_MainBean pomain =pO_MainService.select(poid1);
+    		pomain.setVendor_ID(AllPO_Vendors);
+    		pomain.setTotal_price(Integer.valueOf(allListprice));
+    		for(int i=0;i<po_id.length;i++) {
+    			Integer thisquotation =Integer.valueOf(quotation[i]);
+    			Integer thistotal_Price =Integer.valueOf(total_Price[i]);
+    			PO_DetailBean thispodetail = pO_DetailService.select(po_id[i], part_No[i]);
+    			thispodetail.setQuotation(thisquotation);
+    			thispodetail.setTotal_Price(thistotal_Price);
+    		}
+    		Set<PO_SigningProcessBean> posignprocess =pomain.getpO_SigningProcessBean();
+    		for(PO_SigningProcessBean x:posignprocess) {
+    			if(x.getSig_rank()==3) {
+    				x.setSig_date(datas);
+    				x.setSig_sta("已詢價");
+    				x.setSig_sug(SignSug);
+    			}
+    		}
+    		
+    		PO_SigningProcessBean sx1 =new PO_SigningProcessBean(pomanger,"主管審核中",poid1,null,"簽核中",null,4);
+    		PO_SigningProcessBean sx2 =new PO_SigningProcessBean(thisemp.getEmp_id(),"下單中",poid1,null,"未下單",null,5);
+    		PO_SigningProcessBean sx3 =new PO_SigningProcessBean(thisemp.getEmp_id(),"待收貨",poid1,null,"未收貨",null,6);
+    		pO_SigningProcessService.insert(sx1);
+    		pO_SigningProcessService.insert(sx2);
+    		pO_SigningProcessService.insert(sx3);
+    	}else {//如果會到總經理的話
+    		PO_MainBean pomain =pO_MainService.select(poid1);
+    		pomain.setVendor_ID(AllPO_Vendors);
+    		pomain.setTotal_price(Integer.valueOf(allListprice));
+    		for(int i=0;i<po_id.length;i++) {
+    			Integer thisquotation =Integer.valueOf(quotation[i]);
+    			Integer thistotal_Price =Integer.valueOf(total_Price[i]);
+    			PO_DetailBean thispodetail = pO_DetailService.select(po_id[i], part_No[i]);
+    			thispodetail.setQuotation(thisquotation);
+    			thispodetail.setTotal_Price(thistotal_Price);
+    		}
+    		Set<PO_SigningProcessBean> posignprocess =pomain.getpO_SigningProcessBean();
+    		for(PO_SigningProcessBean x:posignprocess) {
+    			if(x.getSig_rank()==3) {
+    				x.setSig_date(datas);
+    				x.setSig_sta("已詢價");
+    				x.setSig_sug(SignSug);
+    			}
+    		}
+    		
+    		PO_SigningProcessBean sx1 =new PO_SigningProcessBean(pomanger,"主管審核中",poid1,null,"簽核中",null,4);
+    		PO_SigningProcessBean sx2 =new PO_SigningProcessBean(boss,"主管審核中",poid1,null,"簽核中",null,5);
+    		PO_SigningProcessBean sx3 =new PO_SigningProcessBean(thisemp.getEmp_id(),"下單中",poid1,null,"未下單",null,6);
+    		PO_SigningProcessBean sx4 =new PO_SigningProcessBean(thisemp.getEmp_id(),"待收貨",poid1,null,"未收貨",null,7);
+    		pO_SigningProcessService.insert(sx1);
+    		pO_SigningProcessService.insert(sx2);
+    		pO_SigningProcessService.insert(sx3);
+    		pO_SigningProcessService.insert(sx4);
+    	}
+    	return "POlogin.successint";
+    }
 	}
 }
