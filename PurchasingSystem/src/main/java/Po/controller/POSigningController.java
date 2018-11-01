@@ -149,7 +149,17 @@ public class POSigningController {
 	public String sendlistss(String po_manger,String po_sta,String po_id, Model model,HttpSession session) {
 		PO_SigningProcessBean bean =pO_SigningProcessService.select(po_sta, po_id);
 		model.addAttribute("poprocess1",bean);
+		
+		
+
+		
+		
+		
+		
 		return "select.listDetail";
+		
+		
+
 	}		
 
 	@RequestMapping("/Po/posendlistsign.controller")//採購人員於待詢價採購單頁面選擇送出審核
@@ -176,9 +186,23 @@ public class POSigningController {
 		java.sql.Date datas =new java.sql.Date(date.getTime());
 		bean.setPo_querydate(datas);
 		PO_QueryBean insert = pO_QueryService.insert(bean);		 
-		model.addAttribute("query1",insert);		
+		model.addAttribute("query1",insert);
+		List<PO_QueryBean> query = pO_QueryService.select();
+		
+
+		model.addAttribute("queryss",query);
 		return "select.listDetail";
 	}
+	//有問題
+//	@RequestMapping("/Po/queryTable.controller")
+//	public String querytable(Model model) {
+//		List<PO_QueryBean> query = pO_QueryService.select();
+//		for(int i=0;i<query.size();i++) {
+//			PO_QueryBean ss = query.get(i);
+//			model.addAttribute("query",ss);
+//		}
+//		return "select.listDetail";
+//	}
 
 //	@RequestMapping("/PO/sendsc.controller")
 //	public String createQueryMemo(String po_manger,String po_sta,String po_id, Model model,HttpSession session) {
