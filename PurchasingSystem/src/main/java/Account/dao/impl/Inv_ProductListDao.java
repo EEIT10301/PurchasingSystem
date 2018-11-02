@@ -42,23 +42,7 @@ public class Inv_ProductListDao implements Inv_ProductListIDao{
 		sessionFactory.getCurrentSession().getTransaction().commit();
 	}
 	
-	@SuppressWarnings("unchecked")
-	@Override
-	public Inv_ProductListBean selectchkid(String chk_Id) {
-		List<Inv_ProductListBean> list = null;
-		Inv_ProductListBean getone =new Inv_ProductListBean();
-		String hgl="FROM Inv_ProductListBean WHERE chk_Id=:id1";
-		list =this.getSession().createQuery(hgl).setParameter("id1", chk_Id)
-				.setMaxResults(50).list();
-		 if(list.size()>0) {
-			  for(Inv_ProductListBean getones :list) {
-				  getone=getones;
-			  }
-			  return getone;
-		 }else {
-			 return null;
-		 }
-	}
+	
 	
 	
 	
@@ -142,6 +126,11 @@ public class Inv_ProductListDao implements Inv_ProductListIDao{
 		 }else {
 			 return false;
 		 }
+	}
+	@Override
+	public Inv_ProductListBean selectchkid(String chk_Id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 

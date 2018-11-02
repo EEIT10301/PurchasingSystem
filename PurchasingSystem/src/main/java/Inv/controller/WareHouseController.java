@@ -59,11 +59,8 @@ public class WareHouseController {
 	@RequestMapping("/Inv/itemin")
 	private String Itemin(Model model,String number) {
 		System.out.println("這是庫存增加controller");
-		List<Inv_ProductListBean> check = inv_ProductListService.select();
-		for(int i=0;i<check.size();i++) {
-			Inv_ProductListBean aa = check.get(i);
-			System.out.println(aa.getPart_No());
-		}
+//		 inv_ProductListService.select(chk_Id, part_No);
+		
 		
 		
 		
