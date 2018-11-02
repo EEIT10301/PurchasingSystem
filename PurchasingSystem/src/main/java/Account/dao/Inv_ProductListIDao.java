@@ -14,4 +14,6 @@ public interface Inv_ProductListIDao {
 	public abstract Inv_ProductListBean update(Inv_ProductListBean bean);
 
 	public abstract boolean delete(String chk_Id,String part_No);
+
+	public abstract Inv_ProductListBean selectchkid(String chk_Id);
 }

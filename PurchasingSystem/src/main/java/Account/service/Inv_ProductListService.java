@@ -7,12 +7,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import Account.dao.Inv_ProductListIDao;
+import Account.dao.impl.Inv_ProductListDao;
 import Account.model.Inv_ProductListBean;
 @Service
 @Transactional
 public class Inv_ProductListService  {
 	@Autowired
 	Inv_ProductListIDao inv_ProductListIDao;
+	@Autowired
+	Inv_ProductListDao dd;
 	
 	public Inv_ProductListBean select(String chk_Id, String part_No) {
 		Inv_ProductListBean beans =inv_ProductListIDao.select(chk_Id, part_No);

@@ -27,16 +27,45 @@ public class Inv_ProductListDao implements Inv_ProductListIDao{
 		SessionFactory sessionFactory = (SessionFactory) context.getBean("sessionFactory");
 		sessionFactory.getCurrentSession().beginTransaction();
 
-		Inv_ProductListIDao productDAO = (Inv_ProductListIDao) context.getBean("inv_ProductListDao");
-		List<Inv_ProductListBean> selects = productDAO.select();
-		System.out.println("selects="+selects);
-         for(Inv_ProductListBean x:selects) {
-        	System.out.println("1.驗收單細項:"+x.getChk_quality());
-        	System.out.println("2.驗收單主表:"+x.getInv＿ProductCheckBean().getVender_ID());
-        	System.out.println("3.產品主表:"+x.getProductListBean().getPro_name());
-         }
+//		Inv_ProductListIDao productDAO = (Inv_ProductListIDao) context.getBean("inv_ProductListDao");
+//		List<Inv_ProductListBean> selects = productDAO.select();
+//		System.out.println("selects="+selects);
+//         for(Inv_ProductListBean x:selects) {
+//        	System.out.println("1.驗收單細項:"+x.getChk_quality());
+//        	System.out.println("2.驗收單主表:"+x.getInv＿ProductCheckBean().getVender_ID());
+//        	System.out.println("3.產品主表:"+x.getProductListBean().getPro_name());
+//         }
+		
+		
+		
+		
 		sessionFactory.getCurrentSession().getTransaction().commit();
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public Inv_ProductListBean selectchkid(String chk_Id) {
+		List<Inv_ProductListBean> list = null;
+		Inv_ProductListBean getone =new Inv_ProductListBean();
+		String hgl="FROM Inv_ProductListBean WHERE chk_Id=:id1";
+		list =this.getSession().createQuery(hgl).setParameter("id1", chk_Id)
+				.setMaxResults(50).list();
+		 if(list.size()>0) {
+			  for(Inv_ProductListBean getones :list) {
+				  getone=getones;
+			  }
+			  return getone;
+		 }else {
+			 return null;
+		 }
+	}
+	
+	
+	
+	
+	
+	
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public Inv_ProductListBean select(String chk_Id, String part_No) {

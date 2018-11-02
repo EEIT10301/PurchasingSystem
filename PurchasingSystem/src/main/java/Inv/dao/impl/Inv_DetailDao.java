@@ -34,6 +34,9 @@ public class Inv_DetailDao implements Inv_DetailIDao{
          }
 		sessionFactory.getCurrentSession().getTransaction().commit();
 	}
+	
+
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public Inv_DetailBean select(String Inv_Part_no, String Inv__Date) {
