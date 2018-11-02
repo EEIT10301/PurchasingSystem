@@ -8,15 +8,16 @@
 <title>待下單採購單</title>
 </head>
 <body>
-<c:if test="${not empty selectlists}">
-<c:forEach var="signedorder" items="${selectlists}">
-<c:if test="${signedorder.sig_rank==4}">
-<p>採購單編號: ${signedorder.po_id}</p>
-<p>簽核主管: ${signedorder.employeeBean.emp_name}</p>
-<p>簽核時間: ${signedorder.sig_date}</p>
-</c:if>
-</c:forEach>
-</c:if>
+<%-- <c:if test="${not empty selectlists}"> --%>
+<%-- <c:forEach var="signedorder" items="${selectlists}"> --%>
+<%-- <c:if test="${signedorder.sig_rank==4}"> --%>
+<%-- <p>採購單編號: ${signedorder.po_id}</p> --%>
+<%-- <p>簽核主管: ${signedorder.employeeBean.emp_name}</p> --%>
+<%-- <p>簽核時間: ${signedorder.sig_date}</p> --%>
+<!-- <input type="button" value="下單"> -->
+<%-- </c:if> --%>
+<%-- </c:forEach> --%>
+<%-- </c:if> --%>
 
 
 </body>
