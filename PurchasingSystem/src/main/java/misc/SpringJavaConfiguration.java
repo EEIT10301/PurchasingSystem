@@ -73,6 +73,7 @@ public class SpringJavaConfiguration {
 		Properties props = new Properties();
 		props.put("hibernate.dialect", "org.hibernate.dialect.SQLServerDialect");
 		props.put("hibernate.current_session_context_class", "thread");
+		//props.put("hibernate.transaction.factory_class", "org.hibernate.transaction.JDBCTransactionFactory");
 		props.put("hibernate.show_sql", "true");	
 		props.put("hibernate.format_sql", "true");
 		builder.addProperties(props);

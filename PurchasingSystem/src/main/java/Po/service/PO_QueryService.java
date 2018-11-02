@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import Po.dao.PO_QueryIDao;
 import Po.model.PO_QueryBean;
 @Service
-@Transactional
+//@Transactional
 public class PO_QueryService {
     @Autowired
     PO_QueryIDao pO_QueryIDao;

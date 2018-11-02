@@ -24,7 +24,7 @@ import Po.model.PO_SigningProcessBean;
 import misc.SpringJavaConfiguration;
 
 @Service
-@Transactional
+//@Transactional
 public class PO_InvoiceService {
 	@Autowired
 	PO_SigningProcessIDao pO_SigningProcessIDao;
@@ -39,7 +39,7 @@ public class PO_InvoiceService {
 		
 		}
 	
-	
+	//@Transactional
 	public List<PO_MainBean> find(String emp_id,String sig_sta) {
 	List<PO_SigningProcessBean> list = pO_SigningProcessIDao.selectempidsend(emp_id, sig_sta);
 	List<PO_MainBean> result=null;

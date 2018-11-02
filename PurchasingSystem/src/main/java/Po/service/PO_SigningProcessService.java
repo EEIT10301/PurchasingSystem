@@ -10,7 +10,7 @@ import Po.dao.PO_SigningProcessIDao;
 import Po.model.PO_SigningProcessBean;
 
 @Service
-@Transactional
+//@Transactional
 public class PO_SigningProcessService {
 	@Autowired
 	PO_SigningProcessIDao pO_SigningProcessIDao;

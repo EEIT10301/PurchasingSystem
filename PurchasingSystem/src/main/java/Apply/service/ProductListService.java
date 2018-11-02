@@ -11,7 +11,7 @@ import Apply.dao.ProductListIDAO;
 import Apply.model.ProductListBean;
 
 @Service
-@Transactional
+//@Transactional
 public class ProductListService {
 	@Autowired	
 	private ProductListIDAO productListIDAO;

@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import Account.dao.Accout_PayableIDao;
 import Account.model.Accout_PayableBean;
 @Service
-@Transactional
+//@Transactional
 public class Accout_PayableService {
 	@Autowired
 	Accout_PayableIDao accout_PayableIDao;

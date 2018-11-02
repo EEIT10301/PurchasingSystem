@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import Account.dao.Inv_ProductListIDao;
 import Account.model.Inv_ProductListBean;
 @Service
-@Transactional
+//@Transactional
 public class Inv_ProductListService  {
 	@Autowired
 	Inv_ProductListIDao inv_ProductListIDao;

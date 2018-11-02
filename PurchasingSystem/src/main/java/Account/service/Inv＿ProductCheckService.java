@@ -11,7 +11,7 @@ import Account.model.Accout_PayableBean;
 import Account.model.Inv＿ProductCheckBean;
 
 @Service
-@Transactional
+//@Transactional
 public class Inv＿ProductCheckService {
 	@Autowired
 	Inv＿ProductCheckIDao inv＿ProductCheckIDao;

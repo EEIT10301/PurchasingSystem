@@ -32,8 +32,10 @@ public class OpenSessionInViewFilter implements Filter {
 			ServletResponse resp, FilterChain chain) throws IOException, ServletException {
 		try {
 			sessionFactory.getCurrentSession().beginTransaction();
+			//sessionFactory.openSession().beginTransaction();
 			chain.doFilter(req, resp);
 			sessionFactory.getCurrentSession().getTransaction().commit();
+			//sessionFactory.openSession().getTransaction().commit();
 		} catch (HibernateException e) {
 			e.printStackTrace();
 			sessionFactory.getCurrentSession().getTransaction().rollback();
