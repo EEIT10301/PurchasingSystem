@@ -31,8 +31,8 @@ public class POManagerSignController {
 	PO_DetailService pO_DetailService;
 	@Autowired
 	PO_QueryService pO_QueryService;
-	@RequestMapping("") // 採購審核頁面
-	public String sendEmployee(Model model, HttpSession session) {
+	@RequestMapping("/Po/POManagerSigner.controller") // 採購審核頁面
+	public String POManagerSigner(Model model, HttpSession session) {
 		return null;
 		
 	}
