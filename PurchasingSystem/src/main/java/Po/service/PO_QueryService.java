@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import Po.dao.PO_QueryIDao;
 import Po.model.PO_QueryBean;
 @Service
-@Transactional
+//@Transactional
 public class PO_QueryService {
     @Autowired
     PO_QueryIDao pO_QueryIDao;
@@ -56,6 +56,13 @@ public class PO_QueryService {
 		
 			return beans;
 		
+	}
+	public List<PO_QueryBean> selectQueryBean(String po_id) {
+		List<PO_QueryBean> beans=pO_QueryIDao.selectQueryBean(po_id);
+		if(beans!=null) {
+			return beans;
+		}
+		return null;
 	}
 
 }

@@ -10,7 +10,7 @@ import Account.dao.PO_Vendor_InfoIDao;
 import Account.model.PO_Vendor_InfoBean;
 
 @Service
-@Transactional
+//@Transactional
 public class PO_Vendor_InfoService {
 
 	@Autowired

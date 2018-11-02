@@ -6,10 +6,12 @@
 <html>
 <head>
 <meta charset="UTF-8"> 
-<title>Insert title here..........</title>
+<title>採購系統</title>
 </head>
 <body>
 <form action="<c:url value="/Po/POLogin.controller" />" method="post">
+<h3>採購部門</h3>
+<h3>${nouser}</h3>
 <table>
 	<tr>
 		<td>ID : </td>

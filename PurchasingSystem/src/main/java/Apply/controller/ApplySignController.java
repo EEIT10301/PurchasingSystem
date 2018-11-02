@@ -121,7 +121,7 @@ public class ApplySignController {
 		}				
 			}
 	@RequestMapping("/Apply/toApplySignpro.controller")
-	//此方法是用在請購員工的頁面，在請購單進度的連結上
+	//此方法是用在請購員工的頁面，在"請購單進度"的連結上
 	
 	public String toquerySignprocess(App_SigningProcessBean bean,BindingResult bindingResult,
 			Model model ,HttpSession session) {
@@ -225,7 +225,10 @@ App_SigningProcessBean thissign2 = app_SigningProcessService.selectrank(bean.get
 		    	
 		    }
             else if(send.equals("註銷請購單")) {
-		    	
+           App_SigningProcessBean thissign1 = app_SigningProcessService.select(bean.getApp_sta(), bean.getApp_id());
+            	thissign1.setSig_date( datas);
+            	thissign1.setSig_sta("已註銷");
+            	thissign1.setSig_sug(SignSug);
 		    }
 			return "login.success";
 			}

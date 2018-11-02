@@ -42,14 +42,14 @@ import Po.model.PO_SigningProcessBean;
 public class SpringJavaConfiguration {
 	
 //	@Bean
-//	public DataSource dataSource() {
+//	public DataSource dataSource() {//不是用網頁測試的時候用的
 //	    DriverManagerDataSource dmds =new DriverManagerDataSource();
 //	    dmds.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 //	    dmds.setUrl("jdbc:sqlserver://localhost:1433;database=PurchasingSystem");
 //	    dmds.setUsername("sa");
 //	    dmds.setPassword("passw0rd");
 //		return dmds;
-//	}
+//	}        
 	@Bean
 	public DataSource dataSource() {
 		JndiObjectFactoryBean factory = new JndiObjectFactoryBean();
@@ -73,7 +73,9 @@ public class SpringJavaConfiguration {
 		Properties props = new Properties();
 		props.put("hibernate.dialect", "org.hibernate.dialect.SQLServerDialect");
 		props.put("hibernate.current_session_context_class", "thread");
+		//props.put("hibernate.transaction.factory_class", "org.hibernate.transaction.JDBCTransactionFactory");
 		props.put("hibernate.show_sql", "true");	
+		props.put("hibernate.format_sql", "true");
 		builder.addProperties(props);
 
 		builder.addAnnotatedClass(EmployeeBean.class);

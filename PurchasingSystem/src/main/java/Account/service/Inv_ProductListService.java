@@ -10,7 +10,7 @@ import Account.dao.Inv_ProductListIDao;
 import Account.dao.impl.Inv_ProductListDao;
 import Account.model.Inv_ProductListBean;
 @Service
-@Transactional
+//@Transactional
 public class Inv_ProductListService  {
 	@Autowired
 	Inv_ProductListIDao inv_ProductListIDao;

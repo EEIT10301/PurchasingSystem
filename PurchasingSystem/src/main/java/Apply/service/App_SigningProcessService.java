@@ -10,7 +10,7 @@ import Apply.dao.App_SigningProcessIDao;
 import Apply.model.App_SigningProcessBean;
 
 @Service
-@Transactional
+//@Transactional
 public class App_SigningProcessService {
 	@Autowired
 	App_SigningProcessIDao app_SigningProcessIDao;

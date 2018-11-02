@@ -62,10 +62,25 @@
 		<property name="contextRelative" value="true"></property>
 		<property name="url" value="/Po/POLoginSuccess.jsp"></property>
 	</bean>
+	<bean id="POlogin.successint"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Po/POLoginSuccess.jsp"></property>
+	</bean>
+	
 	<bean id="POlogin.errors"
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/Po/POLogin.jsp"></property>
 	</bean>
+	<bean id="POlog.out"
+		class="org.springframework.web.servlet.view.RedirectView">
+		<property name="contextRelative" value="true"></property>
+		<property name="url" value="/Po/POLogin.jsp"></property>
+	</bean>
+    <bean id="SendEmployee.do"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Po/SendEmployee.jsp"></property>
+	</bean>
+
 	<!-- 採購使用連結 -->
 	<!-- 驗收連結 -->
 	<bean id="invend.item"
@@ -81,5 +96,76 @@
 
 	</bean>
 	<!-- 驗收連結 -->
+
+
+	<bean id="ListMain.show"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Po/ListMain.jsp"></property>
+	</bean>
+		<bean id="sendlist.ok"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Po/POLoginSuccess.jsp"></property>
+	</bean>
+	<bean id="select.list"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Po/SelectPoList.jsp"></property>
+	</bean>
+	<bean id="select.listDetail"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Po/SelectPoListDetail.jsp"></property>
+	</bean>
+	<bean id="Posend.sign"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Po/Posendlistsign.jsp"></property>
+	</bean>
+	<bean id="Posendcheck.sign"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Po/Posendlistsigncheck.jsp"></property>
+	</bean>
+		<bean id="QueryMemo.show"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Po/Query.jsp"></property>
+	</bean>
+	<bean id="SignedOrder.show"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Po/SignedOrder.jsp"></property>
+	</bean>
+	<!-- 採購使用連結 -->
+	<!-- 驗收使用連結 -->
+	<bean id="Invlogin.success"
+		class="org.springframework.web.servlet.view.RedirectView">
+		<property name="contextRelative" value="true"></property>
+		<property name="url" value="/Inv/InvLoginSuccess.jsp"></property>
+	</bean>
+	<bean id="Invlogin.errors"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Inv/InvLogin.jsp"></property>
+	</bean>
+	<!-- 驗收使用連結 -->
+
+	<!--待請款單使用連結 -->
+	<bean id="TodoInvoiceList"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Po/TodoInvoiceList.jsp"></property>
+	</bean>
+	<bean id="newForm"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Account/Insertinvoiceform.jsp"></property>
+	</bean>
+	<!-- 待請款單使用連結 -->
+
+
+	<!-- 採購使用連結 -->
+<!-- 首頁登入連結 -->
+<bean id="indexlogin.error"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="MainPage.jsp"></property>
+	</bean>
+	<bean id="indexlogin.return"
+			class="org.springframework.web.servlet.view.RedirectView">
+		<property name="contextRelative" value="true"></property>
+		<property name="url" value="MainPage.jsp"></property>
+	</bean>
+<!-- 首頁登入連結 -->
 
 </beans>

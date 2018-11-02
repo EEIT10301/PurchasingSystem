@@ -6,12 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<c:if test="${empty user}">
-	<%
-		request.setAttribute("nouser", "登入過期請重新登入");
-			request.getRequestDispatcher("/Apply/ApplyLogin.jsp").forward(request, response);
-	%>
-</c:if>
 <c:if test="${cartnumber<=0}">
 	<%
 		request.setAttribute("cate", "尚無加入請購產品");

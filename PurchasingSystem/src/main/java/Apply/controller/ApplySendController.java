@@ -79,8 +79,8 @@ public class ApplySendController {
 			 user= (EmployeeBean) session.getAttribute("user"); 
 			 
 		 }
-		 EmployeeBean userManger =employeeService.select(user.getEmp_managerid());
-		 EmployeeBean boss =employeeService.select(userManger.getEmp_managerid());
+		 EmployeeBean userManger =employeeService.select(user.getEmp_managerid());//使用者id的主管
+		 EmployeeBean boss =employeeService.select(userManger.getEmp_managerid());//總經理
 		Map<String, String> errors = new HashMap<String, String>();
 		List<ProductListBean>  beans =new LinkedList<ProductListBean>();
 		if (send.equals("查詢清單")) {
