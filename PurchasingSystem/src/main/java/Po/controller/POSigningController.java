@@ -168,6 +168,7 @@ public class POSigningController {
 		List<PO_QueryBean> POQuery=pO_QueryService.selectQueryBean(po_id); 
 		model.addAttribute("AllPO_Vendor", POQuery);
 		if(POQuery==null) {
+			model.addAttribute("noselist", "審核前請先新增詢價紀錄");
 			return "select.listDetail";
 		}else {
 			
