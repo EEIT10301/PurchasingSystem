@@ -19,7 +19,7 @@ import Apply.model.EmployeeBean;
 public class Account_SigningProcessBean {
 	private String account_Manger; // 簽核流程角色
 	private String account_Sta; // 簽核固定流程
-	private String inv_id; // 關聯的採購單
+	private String inv_id; 		//關聯請款單單號
 	private java.util.Date sig_Date; // 流程完成時間(submit)
 	private String sig_Sta; // 完成流程狀態(submit)
 	private String sig_Sug; // 流程comment
