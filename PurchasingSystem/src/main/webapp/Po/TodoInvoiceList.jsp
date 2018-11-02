@@ -16,8 +16,18 @@
 		<h2>無退回請款單</h2>
 	</c:if>
 
+	<c:if test="${not empty successmeg}">
+		<h2>${successmeg} ${inv_id} </h2>
+	</c:if>
+	<c:if test="${not empty errormeg}">
+		<h2>${errormeg}</h2>
+	</c:if>
+
+
+
 	<c:if test="${not empty list}">
 	<h2>待請款採購單</h2>
+
 <table>
 <tr>
 		<th>採購單單號</th>
