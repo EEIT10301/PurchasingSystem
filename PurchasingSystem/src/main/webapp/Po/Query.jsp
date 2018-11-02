@@ -29,7 +29,7 @@
 					<td><input type="text" name="po_totalprice"></td>
 				</tr>
 			</table>
-			<input type="submit" value="新增">
+			<input type="submit" name="send" value="新增">
 		</c:if>
 	</form>
 </body>

@@ -10,7 +10,7 @@ import Inv.dao.Inv_MainIDao;
 import Inv.model.Inv_MainBean;
 
 @Service
-@Transactional
+//@Transactional
 public class Inv_MainSerivce {
 @Autowired
 private Inv_MainIDao inv_MainIDao;

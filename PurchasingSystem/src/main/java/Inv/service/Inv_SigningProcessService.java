@@ -11,7 +11,7 @@ import Inv.dao.Inv_SigningProcessIDao;
 import Inv.model.Inv_SigningProcessBean;
 
 @Service
-@Transactional
+//@Transactional
 public class Inv_SigningProcessService {
 @Autowired
 Inv_SigningProcessIDao inv_SigningProcessIDao;

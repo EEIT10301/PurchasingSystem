@@ -10,7 +10,7 @@ import Apply.dao.AppDetailIDao;
 import Apply.model.AppDetailBean;
 
 @Service
-@Transactional
+//@Transactional
 public class AppDetailService {
 	@Autowired
 	AppDetailIDao appDetailIDao;

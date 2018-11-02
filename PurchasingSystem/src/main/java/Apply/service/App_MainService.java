@@ -11,7 +11,7 @@ import Apply.model.App_MainBean;
 
 
 @Service
-@Transactional
+//@Transactional
 public class App_MainService {
 	@Autowired
 	App_MainIDao app_MainIDao;

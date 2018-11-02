@@ -10,7 +10,7 @@ import Account.dao.Account_InvoiceIDao;
 import Account.model.Account_InvoiceBean;
 
 @Service
-@Transactional
+//@Transactional
 public class Account_InvoiceService{
 
 	@Autowired

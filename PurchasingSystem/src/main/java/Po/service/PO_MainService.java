@@ -10,7 +10,7 @@ import Po.dao.PO_MainIDao;
 import Po.model.PO_MainBean;
 
 @Service
-@Transactional
+//@Transactional
 public class PO_MainService {
 	@Autowired
 	PO_MainIDao pO_MainIDao;

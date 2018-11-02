@@ -10,7 +10,7 @@ import Apply.dao.EmployeeIDao;
 import Apply.model.EmployeeBean;
 
 @Service
-@Transactional
+//@Transactional
 public class EmployeeService {
 	@Autowired
 	private EmployeeIDao employeeIDao;
