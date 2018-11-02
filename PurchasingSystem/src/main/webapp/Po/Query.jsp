@@ -9,7 +9,7 @@
 <title>新增詢價單</title>
 </head>
 <body>
-	<form action="<c:url value="/Po/queryinsert.controller" />"
+	<form action="<c:url value="/Po/queryinsert.controller"/>"
 		method="post">
 		<c:if test="${not empty query}">
 			<table border="1">
@@ -29,6 +29,9 @@
 					<td><input type="text" name="po_totalprice"></td>
 				</tr>
 			</table>
+			<input type="hidden" name="po_sta" value="${po_sta}">
+			<input type="hidden" name="po_id" value="${po_id}">
+			<input type="hidden" name="po_manger" value="${po_manger}">
 			<input type="submit" name="send" value="新增">
 		</c:if>
 	</form>

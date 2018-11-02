@@ -43,7 +43,7 @@ public class PO_QueryDao implements PO_QueryIDao{
 	public PO_QueryBean select(String po_id, String vendor_ID) {
 		List<PO_QueryBean> list = null;
 		PO_QueryBean getone =new PO_QueryBean();
-		String hgl="FROM PO_QueryBean WHERE po_id=:id1 AND po_id=:id2";
+		String hgl="FROM PO_QueryBean WHERE po_id=:id1 AND vendor_ID=:id2";
 		list =this.getSession().createQuery(hgl).setParameter("id1", po_id)
 				.setParameter("id2", vendor_ID).setMaxResults(50).list();
 		 if(list.size()>0) {
@@ -108,7 +108,7 @@ public class PO_QueryDao implements PO_QueryIDao{
 	public boolean delete(String po_id, String vendor_ID) {
 		List<PO_QueryBean> list = null;
 		PO_QueryBean getone =new PO_QueryBean();
-		String hgl="FROM PO_QueryBean WHERE po_id=:id1 AND po_id=:id2";
+		String hgl="FROM PO_QueryBean WHERE po_id=:id1 AND vendor_ID=:id2";
 		list =this.getSession().createQuery(hgl).setParameter("id1", po_id)
 				.setParameter("id2", vendor_ID).setMaxResults(50).list();	 if(list.size()>0) {
 			  for(PO_QueryBean getones :list) {
@@ -120,6 +120,19 @@ public class PO_QueryDao implements PO_QueryIDao{
 			 return false;
 		 }
 
+	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<PO_QueryBean> selectQueryBean(String po_id) {
+		List<PO_QueryBean> list = null;
+		String hgl="FROM PO_QueryBean WHERE po_id=:id1 order by PO_querydate desc";
+		list =this.getSession().createQuery(hgl).setParameter("id1", po_id)
+				.setMaxResults(50).list();	 
+		     if(list.size()>0) {
+			  return list;
+		 }else {
+			 return null;
+		 }
 	}
 
 }
