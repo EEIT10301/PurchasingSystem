@@ -30,24 +30,26 @@ public class PO_SigningProcessDao implements PO_SigningProcessIDao{
 		SessionFactory sessionFactory = (SessionFactory) context.getBean("sessionFactory");
 		sessionFactory.getCurrentSession().beginTransaction();
 
-		PO_SigningProcessIDao productDAO = (PO_SigningProcessIDao) context.getBean("PO_SigningProcessDao");
-//		java.util.Date date = new java.util.Date();
-//		java.sql.Date datas =new java.sql.Date(date.getTime());
-//		PO_SigningProcessBean ss=new PO_SigningProcessBean("emp001","申請中","Po20181013001",datas,"已簽核","請核准",1);
-//		PO_SigningProcessBean ss1=new PO_SigningProcessBean("emp002","已審核完成","Po20181013001",null,"簽核中",null,2);
+				java.util.Date date = new java.util.Date();
+		java.sql.Date datas =new java.sql.Date(date.getTime());
+		PO_SigningProcessBean ss=new PO_SigningProcessBean("emp001","申請中","Po20181013001",datas,"已簽核","請核准",1);
+		PO_SigningProcessBean ss1=new PO_SigningProcessBean("emp002","已審核完成","Po20181013001",null,"簽核中",null,2);
 //		productDAO.insert(ss);
 //		productDAO.insert(ss1);
-		sessionFactory.getCurrentSession().getTransaction().commit();
-		sessionFactory.getCurrentSession().beginTransaction();
-		List<PO_SigningProcessBean> selects = productDAO.selectempidsend("emp004", "驗收完成未請款");
-		for(PO_SigningProcessBean xz:selects) {
-        	System.out.println(xz.getPo_id());
-        	System.out.println(xz.getpO_MainBean().getVendor_ID());
-
-         }
+//		sessionFactory.getCurrentSession().getTransaction().commit();
+//		sessionFactory.getCurrentSession().beginTransaction();
+//		List<PO_SigningProcessBean> selects = productDAO.selectempidsend("emp004", "驗收完成未請款");
+//		for(PO_SigningProcessBean xz:selects) {
+//        	System.out.println(xz.getPo_id());
+//        	System.out.println(xz.getpO_MainBean().getVendor_ID());
+//
+//         }
 		
-		sessionFactory.getCurrentSession().getTransaction().commit();
+		//sessionFactory.getCurrentSession().getTransaction().commit();
 	}
+	
+	
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public PO_SigningProcessBean select(String po_sta, String po_id) {
@@ -154,6 +156,7 @@ public class PO_SigningProcessDao implements PO_SigningProcessIDao{
 			 return null;
 		 }
 	}
+	
 
 	
 

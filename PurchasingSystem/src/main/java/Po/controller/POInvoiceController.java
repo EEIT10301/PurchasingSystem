@@ -21,7 +21,9 @@ import Account.model.Account_InvoiceBean;
 import Account.service.Account_InvoiceService;
 import Apply.model.EmployeeBean;
 import Apply.service.EmployeeService;
+import Po.dao.PO_SigningProcessIDao;
 import Po.model.PO_MainBean;
+import Po.model.PO_SigningProcessBean;
 import Po.service.PO_InvoiceService;
 import Po.service.PO_MainService;
 
@@ -37,7 +39,11 @@ public class POInvoiceController {
 	EmployeeService employeeService;
 	@Autowired
 	Account_InvoiceService account_InvoiceService;
+	@Autowired
+	PO_SigningProcessIDao pO_SigningProcessIDao;
    
+
+	//查詢待請款採購單及退回請款單
 	@RequestMapping("/Po/Polist.controller")
 	public String queryNoInvoiceList(PO_MainBean bean,Model model ,HttpSession session) {
 		EmployeeBean empbean = (EmployeeBean)session.getAttribute("user");
@@ -52,13 +58,14 @@ public class POInvoiceController {
 			return "TodoInvoiceList";
 	}
 	
+	//新增請款單顯示採購單畫面
 	@RequestMapping("/Po/NewInvoiceForm.controller")
 	public String poNew(Model model ,HttpSession session,String poid ,String invid) {
 		
 		PO_MainBean bean=pO_MainService.select(poid);
-		String date = pO_InvoiceService.calcExpirePaymentDate(bean.getpO_Vendor_InfoBean().getPayment_term());
+		PO_SigningProcessBean poSignBean = pO_SigningProcessIDao.select("驗收中", poid);
+		String date = pO_InvoiceService.calcExpirePaymentDate(bean.getpO_Vendor_InfoBean().getPayment_term(),poSignBean.getSig_date());
 		List<EmployeeBean> employee=employeeService.selectPoEmployee("採購部", 2);
-		
 		model.addAttribute("bean", bean);
 		model.addAttribute("paymentDate", date);
 		model.addAttribute("manager", employee);
@@ -66,6 +73,7 @@ public class POInvoiceController {
 		return"newForm";
 	}
 
+		//新增請款單送出寫入資料庫
 	@RequestMapping(value = "/Po/onloadimage.controller", method = RequestMethod.POST)
 	public String uploadFile(Model model ,HttpSession session,String name,@RequestParam("Receiptpic") MultipartFile file
 		,String Emp_id,String Emp_dep, String Vendor_name, String Vendor_id, String Total_price, 
@@ -73,9 +81,11 @@ public class POInvoiceController {
 	
 	//上傳圖片	
 	String invId="In"+poid.substring(2);
-	String destination ="C:\\Users\\User\\git\\repository2\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
+	//String destination ="C:\\Users\\User\\git\\repository2\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
+	String destination ="D:\\Maven-project\\repository\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
+	if(file !=null || file.getSize()>0) {
 	File files =new File(destination);
-	file.transferTo(files);
+	file.transferTo(files);}
 	
 	//insert 請款單
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -83,12 +93,19 @@ public class POInvoiceController {
     String src="/images/"+invId+".jpg";
     Integer price=Integer.valueOf(Total_price);
 	Account_InvoiceBean account_InvoiceBean=new Account_InvoiceBean(invId,date,src,poid,Emp_id,price);
-			account_InvoiceService.insert(account_InvoiceBean);
-	
+			Account_InvoiceBean result = account_InvoiceService.insert(account_InvoiceBean);
+	if(result!=null) {
+		model.addAttribute("successmeg", "新增成功");
+		model.addAttribute("inv_id", invId);
+	}else {
+		model.addAttribute("errormeg", "新增失敗");
+	}
 	//insert 請款單流程
-			
-			
+			pO_InvoiceService.insertAccountSigningProcess(invId, Emp_id, selectPOManager, SignSug);
+	
+	//update 採款單請款作業簽核流程
+			pO_InvoiceService.updatePoSigningProcess(poid, SignSug);
 
-	return "";
+	return "TodoInvoiceList";
 }
 }
