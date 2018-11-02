@@ -13,7 +13,12 @@
 	<c:if test="${empty list}">
 		<h2>目前無採購單需要請款</h2>
 	</c:if>
-
+	<c:if test="${not empty successmeg}">
+		<h2>${successmeg} ${inv_id} </h2>
+	</c:if>
+	<c:if test="${not empty errormeg}">
+		<h2>${errormeg}</h2>
+	</c:if>
 	<c:if test="${not empty list}">
 <table>
 		<c:forEach var="row" items="${list}">
