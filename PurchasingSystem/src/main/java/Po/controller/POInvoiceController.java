@@ -38,7 +38,7 @@ public class POInvoiceController {
 	@Autowired
 	Account_InvoiceService account_InvoiceService;
    
-	@RequestMapping("/Po/Polist.controller")
+	@RequestMapping("/Po/Polist.controller") //找驗收完成未請款的單+被退回的單
 	public String queryNoInvoiceList(PO_MainBean bean,Model model ,HttpSession session) {
 		EmployeeBean empbean = (EmployeeBean)session.getAttribute("user");
 		String emp_id=empbean.getEmp_id();

@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import Account.model.Account_InvoiceBean;
 import Account.model.PO_Vendor_InfoBean;
 import Account.service.PO_Vendor_InfoService;
 import Apply.model.App_MainBean;
@@ -27,6 +28,7 @@ import Po.model.PO_MainBean;
 import Po.model.PO_QueryBean;
 import Po.model.PO_SigningProcessBean;
 import Po.service.PO_DetailService;
+import Po.service.PO_InvoiceService;
 import Po.service.PO_MainService;
 import Po.service.PO_QueryService;
 import Po.service.PO_SigningProcessService;
@@ -47,7 +49,9 @@ public class POSigningController {
 	PO_DetailService pO_DetailService;
 	@Autowired
 	PO_QueryService pO_QueryService;
-
+	@Autowired
+	PO_InvoiceService pO_InvoiceService;
+	
 	@RequestMapping("/Po/sendEmployee.controller") // 多少採購單分派頁面
 	public String sendEmployee(Model model, HttpSession session) {
 		EmployeeBean beans = (EmployeeBean) session.getAttribute("user");
@@ -405,6 +409,17 @@ public class POSigningController {
 //		if(selectlist.size()>0 && selectlist!=null) {
 //		}
 //		}else {
+	}
+	
+	@RequestMapping("/Po/todoSignInvoice.controller")
+	public String todoSignInvoice(Model model, HttpSession session) {
+		EmployeeBean empbean = (EmployeeBean)session.getAttribute("user");
+		String emp_id=empbean.getEmp_id();
+		
+		List<Account_InvoiceBean> InvoiceSign = pO_InvoiceService.findTodoSignInv(emp_id, "簽核中", 2);
+		model.addAttribute("listtodosign", InvoiceSign);
+		
+		return "todoSignInvoice.show";
 	}
 
 }
