@@ -376,5 +376,34 @@ public class POSigningController {
 			return "POlogin.successint";
 		}
 	}
+	@RequestMapping("/Po/signedorder.controller") 
+	public String signedOrder(Model model, HttpSession session) {
+		EmployeeBean beans = (EmployeeBean) session.getAttribute("user");
+		String empid = beans.getEmp_id();
+		List<PO_SigningProcessBean> selectlist = pO_SigningProcessService.selectempidsend(empid, "下單中");
+		List<PO_SigningProcessBean> selectlists = null;
+		selectlists = new LinkedList<PO_SigningProcessBean>();
+		if (selectlist == null) {
+
+			model.addAttribute("noselectlists", "無待下單資訊");
+			return "SignedOrder.show";
+		} else {
+			for (int i = 0; i < selectlist.size(); i++) {
+				PO_SigningProcessBean x = selectlist.get(i);
+				PO_SigningProcessBean xs = pO_SigningProcessService.select("主管審核中", x.getPo_id());
+				if (xs != null) {
+					selectlists.add(x);
+					selectlists.add(xs);
+				}
+				model.addAttribute("selectlists", selectlists);
+
+			}
+			return "SignedOrder.show";
+		}
+
+//		if(selectlist.size()>0 && selectlist!=null) {
+//		}
+//		}else {
+	}
 
 }
