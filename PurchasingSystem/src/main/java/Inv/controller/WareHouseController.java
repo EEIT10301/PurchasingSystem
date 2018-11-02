@@ -1,39 +1,17 @@
 package Inv.controller;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import Account.model.Inv_ProductListBean;
-import Account.model.Inv＿ProductCheckBean;
 import Account.service.Inv_ProductListService;
-import Apply.model.AppDetailBean;
-import Apply.model.App_MainBean;
-import Apply.model.App_SigningProcessBean;
-import Apply.model.EmployeeBean;
-import Apply.model.ProductListBean;
-import Apply.service.App_MainService;
-import Apply.service.App_SigningProcessService;
 import Inv.model.Inv_DetailBean;
 import Inv.service.AdditemServie;
-import Inv.service.Inv_Detailservice;
-import Po.model.PO_DetailBean;
-import Po.model.PO_MainBean;
-import Po.model.PO_SigningProcessBean;
-import Po.service.PO_DetailService;
-import Po.service.PO_MainService;
-import Po.service.PO_SigningProcessService;
+import Inv.service.Inv_DetailService;
+
 
 
 
@@ -44,11 +22,11 @@ public class WareHouseController {
 	@Autowired
 	AdditemServie additemServie;
 	@Autowired
-	Inv_Detailservice inv_Detailservice;
+	Inv_DetailService inv_Detailservice;
 	@RequestMapping("/Inv/item")
 	public String Allitem(Model model) {
 		System.out.println("這是庫存顯示controller");
-     	List<Inv_DetailBean> bean = inv_Detailservice.find();
+     	List<Inv_DetailBean> bean = inv_Detailservice.select();
 
 
 		model.addAttribute("ss",bean);
