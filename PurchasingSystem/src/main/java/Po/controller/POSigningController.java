@@ -1,5 +1,7 @@
 package Po.controller;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -152,17 +154,25 @@ public class POSigningController {
 	@RequestMapping("/Po/sendthisselectlist.controller") // 採購人員點選待詢價採購單頁面
 	public String sendlistss(String po_manger, String po_sta, String po_id, Model model, HttpSession session) {
 		PO_SigningProcessBean bean = pO_SigningProcessService.select(po_sta, po_id);
+		List<PO_QueryBean> POQuery=pO_QueryService.selectQueryBean(po_id); 
 		model.addAttribute("poprocess1", bean);
+		model.addAttribute("queryss", POQuery);
 		return "select.listDetail";
 	}
 
 	@RequestMapping("/Po/posendlistsign.controller") // 採購人員於待詢價採購單頁面選擇送出審核
 	public String posendlistsign(String po_manger, String po_sta, String po_id, Model model, HttpSession session) {
 		PO_SigningProcessBean bean = pO_SigningProcessService.select(po_sta, po_id);
-		List<PO_Vendor_InfoBean> AllPO_Vendor = pO_Vendor_InfoService.select();
+		//List<PO_Vendor_InfoBean> AllPO_Vendor = pO_Vendor_InfoService.select();
 		model.addAttribute("poprocess1", bean);
-		model.addAttribute("AllPO_Vendor", AllPO_Vendor);
-		return "Posend.sign";
+		List<PO_QueryBean> POQuery=pO_QueryService.selectQueryBean(po_id); 
+		model.addAttribute("AllPO_Vendor", POQuery);
+		if(POQuery==null) {
+			return "select.listDetail";
+		}else {
+			
+			return "Posend.sign";
+		}
 	}
 
 	@RequestMapping("/Po/sendsc.controller")
@@ -183,19 +193,25 @@ public class POSigningController {
 		List<PO_QueryBean> query = pO_QueryService.selectQueryBean(bean.getPo_ID());
 		java.util.Date date = new java.util.Date();
 		java.sql.Date datas = new java.sql.Date(date.getTime());
+		DateFormat dateFormate =new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		bean.setPo_querydate(datas);
-	
+	    String now= dateFormate.format(datas);
 
 		PO_QueryBean searchbean =pO_QueryService.select(bean.getPo_ID(), bean.getVendor_ID());
 		if(searchbean!=null) {
 			searchbean.setPo_querydate(datas);
 			searchbean.setPo_totalprice(bean.getPo_totalprice());
+			model.addAttribute("query1", searchbean);
+			model.addAttribute("now", now);
 		}else {
 			PO_QueryBean insert = pO_QueryService.insert(bean);
-			searchbean=insert;
+			PO_Vendor_InfoBean xs= pO_Vendor_InfoService.select(bean.getVendor_ID());
+			model.addAttribute("now", now);
+			model.addAttribute("queryVendor", xs);
+			model.addAttribute("query1", insert);
+			//searchbean=pO_QueryService.select(bean.getPo_ID(), bean.getVendor_ID());
 		}
 		
-		model.addAttribute("query1", searchbean);
 		PO_SigningProcessBean sendbean = pO_SigningProcessService.select(po_sta, po_id);
 		model.addAttribute("poprocess2", sendbean);
 		model.addAttribute("po_manger", po_manger);

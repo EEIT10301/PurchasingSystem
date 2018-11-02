@@ -25,8 +25,16 @@
 <c:if test="${not empty query1}">
 <p>最新詢價紀錄:<p>
 <p>採購單編號: <font color='red'>${query1.po_ID}</font></p>
+<c:if test="${not empty queryVendor}">
+<p>廠商名稱: ${queryVendor.vendor_name}</p>
+</c:if>
+<c:if test="${empty queryVendor}">
 <p>廠商名稱: ${query1.pO_Vendor_InfoBean.vendor_name}</p>
+</c:if>
 <%-- <p>詢價時間: ${query1.po_querydate}</p> --%>
+<c:if test="${not empty now}">
+<p>詢價時間: ${now}</p>
+</c:if>
 <p>詢價總價: ${query1.po_totalprice}</p>
 </c:if>    
 <c:if test="${not empty queryss}">
@@ -37,6 +45,12 @@
 <p>詢價總價: ${querysss.po_totalprice}</p>
 </c:forEach>
 </c:if>
+
+<c:if test="${empty queryss and empty query1}">
+<h2>尚未詢價紀錄</h2>
+</c:if>
+
+
 
 </body>
 </html>

@@ -12,7 +12,8 @@
 <p>選擇廠商<p>
 		<select name="AllPO_Vendors">
 		<c:forEach var="AllPO_Vendorsr" items="${AllPO_Vendor}">
-		   <option value='${AllPO_Vendorsr.vendor_id}'>廠商名稱: ${AllPO_Vendorsr.vendor_name} 		   
+		   <option value='${AllPO_Vendorsr.pO_Vendor_InfoBean.vendor_id}'>廠商名稱: ${AllPO_Vendorsr.pO_Vendor_InfoBean.vendor_name} 
+		    總報價 : 	${AllPO_Vendorsr.po_totalprice}	元整   
 		    </option>
 		</c:forEach>	 	
 		</select>
