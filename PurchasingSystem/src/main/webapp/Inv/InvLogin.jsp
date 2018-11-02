@@ -9,6 +9,7 @@
 <title>Insert title here..........</title>
 </head>
 <body>
+${nouser}
 <form action="<c:url value="/Inv/Invlogin.controller" />" method="post">
 <table>
 	<tr>

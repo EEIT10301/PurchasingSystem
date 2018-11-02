@@ -29,6 +29,12 @@ private PO_MainBean pO_MainBean;
 private EmployeeBean employeeBean;
 
 
+@Override
+public String toString() {
+	return "PO_SigningProcessBean [po_manger=" + po_manger + ", po_sta=" + po_sta + ", po_id=" + po_id + ", sig_date="
+			+ sig_date + ", sig_sta=" + sig_sta + ", sig_sug=" + sig_sug + ", sig_rank=" + sig_rank + "]";
+}
+
 public PO_SigningProcessBean(String po_manger, String po_sta, String po_id, Date sig_date, String sig_sta,
 		String sig_sug, Integer sig_rank) {
 	super();
