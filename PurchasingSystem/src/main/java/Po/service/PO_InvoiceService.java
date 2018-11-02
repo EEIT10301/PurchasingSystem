@@ -25,6 +25,7 @@ import Po.model.PO_SigningProcessBean;
 import misc.SpringJavaConfiguration;
 
 @Service
+
 public class PO_InvoiceService {
 	@Autowired
 	PO_SigningProcessIDao pO_SigningProcessIDao;

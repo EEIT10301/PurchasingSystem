@@ -8,12 +8,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.context.support.ServletContextResource;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.view.InternalResourceView;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.XmlViewResolver;
 
@@ -27,6 +27,15 @@ public class SpringMvcJavaConfiguration implements WebMvcConfigurer {
 		rbms.setBasename("errors.message");
 		return rbms;
 	}
+    @Bean(name="multipartResolver")
+    public CommonsMultipartResolver createMultipartResolver() {
+        CommonsMultipartResolver resolver=new CommonsMultipartResolver();
+        resolver.setDefaultEncoding("utf-8");
+        resolver.setMaxUploadSize(104857600);
+        resolver.setMaxInMemorySize(40960);
+        resolver.setResolveLazily(true);
+        return resolver;
+    }
 //	<bean id="messageSource"
 //	class="org.springframework.context.support.ResourceBundleMessageSource">
 //	<property name="basename" value="errors.message"></property>
@@ -57,6 +66,7 @@ public class SpringMvcJavaConfiguration implements WebMvcConfigurer {
 		
 
 	}
+
 }
 
 

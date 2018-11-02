@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <html>
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"> 
+    <style type="text/css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
    	<style type="text/css">
@@ -17,8 +18,8 @@
 
 <body>
     <h1>請款單</h1>
-    <form action="<c:url value="/Account/newInvoice.controller" />" enctype="multipart/form-data" method="">
-    	
+ <form method="post" action="<c:url value="/Po/onloadimage.controller"/>" enctype="multipart/form-data">
+ 		<input type="hidden" value="${poid}" name="poid">
         <label for="Emp_id">申請人</label>
         <input type="text" name="Emp_id" id="" readonly="readonly" value="${user.emp_name}">
         <label for="Emp_dep">所屬部門</label>
@@ -37,8 +38,15 @@
         <input type="text" name="Recript_date" id="" value="">
         <label for="Receiptpic">憑證圖檔</label>
         <input type="file" name="Receiptpic" id="" value="">
+        <select name="selectPOManager">
+        <c:forEach var="poman" items="${manager}">
+        <option  value="${manager.emp_id}">${manager.emp_name} ${manager.emp_job}</option>
+        </c:forEach>
+        </select>
+      	  簽核意見:<p><textarea rows="5" cols="50"  name="SignSug">
+		</textarea><p>
         <input type="submit" value="送出">
         <input type="submit" value="修改">
-    </form>
+</form>
 </body>
 </html>

@@ -22,9 +22,11 @@ import Apply.service.App_MainService;
 import Apply.service.EmployeeService;
 import Po.model.PO_DetailBean;
 import Po.model.PO_MainBean;
+import Po.model.PO_QueryBean;
 import Po.model.PO_SigningProcessBean;
 import Po.service.PO_DetailService;
 import Po.service.PO_MainService;
+import Po.service.PO_QueryService;
 import Po.service.PO_SigningProcessService;
 
 @Controller
@@ -41,6 +43,8 @@ public class POSigningController {
 	PO_Vendor_InfoService pO_Vendor_InfoService;
 	@Autowired
 	PO_DetailService pO_DetailService;
+	@Autowired
+	PO_QueryService pO_QueryService;
 	
 	@RequestMapping("/Po/sendEmployee.controller")//多少採購單分派頁面
 	public String sendEmployee(Model model, HttpSession session) {
@@ -145,8 +149,19 @@ public class POSigningController {
 	public String sendlistss(String po_manger,String po_sta,String po_id, Model model,HttpSession session) {
 		PO_SigningProcessBean bean =pO_SigningProcessService.select(po_sta, po_id);
 		model.addAttribute("poprocess1",bean);
+		
+		
+
+		
+		
+		
+		
 		return "select.listDetail";
-	}
+		
+		
+
+	}		
+
 	@RequestMapping("/Po/posendlistsign.controller")//採購人員於待詢價採購單頁面選擇送出審核
 	public String posendlistsign(String po_manger,String po_sta,String po_id, Model model,HttpSession session) {
 		PO_SigningProcessBean bean =pO_SigningProcessService.select(po_sta, po_id);
@@ -154,7 +169,48 @@ public class POSigningController {
 		model.addAttribute("poprocess1",bean);
 		model.addAttribute("AllPO_Vendor",AllPO_Vendor);
 		return "Posend.sign";
+	}	
+	
+	@RequestMapping("/Po/sendsc.controller")
+	public String createQueryMemo(String po_manger,String po_sta,String po_id, Model model,HttpSession session) {
+		PO_SigningProcessBean bean1 =pO_SigningProcessService.select(po_sta, po_id);
+		 List<PO_Vendor_InfoBean> AllPO_Vendor1 =pO_Vendor_InfoService.select();
+		model.addAttribute("query",bean1);
+		model.addAttribute("AllPO_Vendor1",AllPO_Vendor1);
+		return "QueryMemo.show";
 	}
+	
+	@RequestMapping("/Po/queryinsert.controller")
+	public String queryMemoInsert(PO_QueryBean bean, Model model,HttpSession session) {
+		java.util.Date date = new java.util.Date();
+		java.sql.Date datas =new java.sql.Date(date.getTime());
+		bean.setPo_querydate(datas);
+		PO_QueryBean insert = pO_QueryService.insert(bean);		 
+		model.addAttribute("query1",insert);
+		List<PO_QueryBean> query = pO_QueryService.select();
+		
+
+		model.addAttribute("queryss",query);
+		return "select.listDetail";
+	}
+	//有問題
+//	@RequestMapping("/Po/queryTable.controller")
+//	public String querytable(Model model) {
+//		List<PO_QueryBean> query = pO_QueryService.select();
+//		for(int i=0;i<query.size();i++) {
+//			PO_QueryBean ss = query.get(i);
+//			model.addAttribute("query",ss);
+//		}
+//		return "select.listDetail";
+//	}
+
+//	@RequestMapping("/PO/sendsc.controller")
+//	public String createQueryMemo(String po_manger,String po_sta,String po_id, Model model,HttpSession session) {
+//		PO_SigningProcessBean bean =pO_SigningProcessService.select(po_sta, po_id);
+//		model.addAttribute("query",bean);		
+//		return "QueryMemo.show";
+//	}
+	
 	
 	@RequestMapping("/Po/checkvendorandpodetail.controller")//採購人員於待詢價採購單頁面選擇送出審核
 	public String checkvendorandpodetail(String[] po_id,String[] part_No,String[] market_Price,String[] quotation,
@@ -213,6 +269,7 @@ public class POSigningController {
        model.addAttribute("pomangers", pomangers);
        model.addAttribute("allListprice", allListprice);
 		return "Posendcheck.sign";
+
 	}
 	@RequestMapping("/Po/podetailupdate.controller")//採購人員於待詢價採購單頁面選擇送審核畫面按下重新輸入or送出
 	public String podetailupdate(String[] po_id,String[] part_No,String[] market_Price,String[] quotation,
@@ -287,4 +344,5 @@ public class POSigningController {
     	return "POlogin.successint";
     }
 	}
+
 }

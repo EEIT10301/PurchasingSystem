@@ -10,7 +10,7 @@ import Inv.dao.Inv_DetailIDao;
 import Inv.model.Inv_DetailBean;
 
 @Service
-@Transactional
+//@Transactional
 public class Inv_DetailService {
 @Autowired
 private Inv_DetailIDao inv_DetailIDao;

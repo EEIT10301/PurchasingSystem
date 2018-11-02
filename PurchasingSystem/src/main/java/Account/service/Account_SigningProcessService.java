@@ -11,7 +11,7 @@ import Account.model.Account_SigningProcessBean;
 
 
 @Service
-@Transactional
+//@Transactional
 public class Account_SigningProcessService {
 	@Autowired
 	Account_SigningProcessIDao account_SigningProcessIDao;
