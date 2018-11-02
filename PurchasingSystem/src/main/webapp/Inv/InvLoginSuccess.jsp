@@ -13,15 +13,15 @@
 	%>
 </c:if>
 </head>
-<body>
-	<a href='InvLogout.controller'>登出</a>
-	<h3>員工 ${user.emp_id}/${user.emp_name}/${user.emp_level}</h3>
-	<c:if test="${user.emp_level==1 }">
-	<a href="">待驗收清單</a>
-	<a href="">已驗收清單</a>
-	</c:if>
-	<c:if test="${user.emp_level==2 }">
-	<a href="">待分派</a>
-	</c:if>
+<body>	
+		<a href='InvLogout.controller'>登出</a>
+		<h3>員工 ${user.emp_id}/${user.emp_name}/${user.emp_level}</h3>
+		<c:if test="${user.emp_level==1 }">
+			<a href="">待驗收清單</a>
+			<a href="">已驗收清單</a>
+		</c:if>
+		<c:if test="${user.emp_level==2 }">
+			<a href="">待分派</a>
+		</c:if>
 </body>
 </html>
