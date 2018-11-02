@@ -197,12 +197,28 @@ public class Account_SigningProcessDao implements Account_SigningProcessIDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	@Override
+	@Override                                   //採購人找被退回的請款單
 	public List<Account_SigningProcessBean> select3send(String emp_id, String sig_sta, Integer sig_rank) {
 		List<Account_SigningProcessBean> list = null;
 		//from Account_SigningProcess where emp_id='' and Sig_Sta='退回中'  sigrank=1
 		String hgl="FROM Account_SigningProcessBean where account_Manger=:id1 and sig_sta='退回中\r\n" + 
 				"'  and sig_rank=:id3";
+		list =this.getSession().createQuery(hgl).setParameter("id1", emp_id).
+				setParameter("id3", sig_rank).setMaxResults(50).list();
+		
+		if(list.size()>0) {
+			  return list;
+		 }else {
+			 return null;
+		 }
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override                                  //採購主管找待審核的請款單
+	public List<Account_SigningProcessBean> selectTodoSignInvoice(String emp_id, String sig_sta, Integer sig_rank) {
+		List<Account_SigningProcessBean> list = null;
+		//from Account_SigningProcess where emp_id='' and Sig_Sta='簽核中'  sig_rank=2
+		String hgl="FROM Account_SigningProcessBean where account_Manger=:id1 and sig_sta='簽核中'  and sig_rank=:id3";
 		list =this.getSession().createQuery(hgl).setParameter("id1", emp_id).
 				setParameter("id3", sig_rank).setMaxResults(50).list();
 		

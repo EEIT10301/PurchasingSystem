@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,9 +44,19 @@ a, a:visited {
 	<div class="allpage">
 		<div class="left">
 			<table>
+				<c:if test="${user.emp_level==2}">
 				<tr>
-					<td><a href="ToDoList.jsp">待簽核事項</a></td>
+					<td><a href="">待分派事項</a></td>
 				</tr>
+				<tr>
+					<td><a href="ToDoSignList.jsp">待簽核事項</a></td>
+				</tr>
+				</c:if>
+				<c:if test="${user.emp_level==1}">
+				<tr>
+					<td><a href="">被分派事項</a></td>
+				</tr>
+				</c:if>
 				
 			</table>
 		</div>
