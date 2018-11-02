@@ -40,37 +40,5 @@ body {
 </table>
 </form>
 
-<<<<<<< HEAD
-	<table>
-		<tr>
-			<td><a href="Apply/ApplyLogin.jsp">研發部門</a></td>
-		</tr>
-		<tr>
-			<td><a href="Po/POLogin.jsp">採購部門</a></td>
-		</tr>
-		<tr>
-			<td><a href="Inv/InvLogin.jsp">品管部門</a></td>
-		</tr>
-		<tr>
-			<td><a href="Account/AccountLogin.jsp">財務部門</a></td>
-		</tr>
-	</table>
-=======
-
-<!-- 	<table> -->
-<!-- 		<tr> -->
-<!-- 			<td><a href="Apply/ApplyLogin.jsp">研發部門</a></td> -->
-<!-- 		</tr> -->
-<!-- 		<tr> -->
-<!-- 			<td><a href="Po/POLogin.jsp">採購部門</a></td> -->
-<!-- 		</tr> -->
-<!-- 		<tr> -->
-<!-- 			<td><a href="">品管部門</a></td> -->
-<!-- 		</tr> -->
-<!-- 		<tr> -->
-<!-- 			<td><a href="Account/AccountLogin.jsp">財務部門</a></td> -->
-<!-- 		</tr> -->
-<!-- 	</table> -->
->>>>>>> branch 'master' of https://github.com/EEIT10301/PurchasingSystem.git
 </body>
 </html>
