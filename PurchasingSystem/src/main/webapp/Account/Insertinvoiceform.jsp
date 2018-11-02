@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
    	<style type="text/css">
-   	input{
+   	input,select{
    	display:block;
    	}
    	
@@ -38,12 +38,14 @@
         <input type="text" name="Recript_date" id="" value="">
         <label for="Receiptpic">憑證圖檔</label>
         <input type="file" name="Receiptpic" id="" value="">
-        <select name="selectPOManager">
+          主管<select name="selectPOManager">
         <c:forEach var="poman" items="${manager}">
-        <option  value="${manager.emp_id}">${manager.emp_name} ${manager.emp_job}</option>
+        <option  value="${poman.emp_id}">${poman.emp_name} ${poman.emp_job}</option>
         </c:forEach>
         </select>
-      	  簽核意見:<p><textarea rows="5" cols="50"  name="SignSug">
+      	 承辦簽核意見:<p><textarea rows="5" cols="50"  name="SignSug">
+		</textarea><p>
+		主管簽核意見:<p><textarea rows="5" cols="50"  name="SignSug" readonly="readonly">
 		</textarea><p>
         <input type="submit" value="送出">
         <input type="submit" value="修改">
