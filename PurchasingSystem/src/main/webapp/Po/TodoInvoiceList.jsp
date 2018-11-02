@@ -23,10 +23,10 @@
 			<tr>
 				<td>${row.po_id}</td>
 				<td>${row.emp_id}</td>
-				<td>${row.vendor_ID}</td>
-				<td>$${row.total_price}</td>
 				<td>${row.employeeBean.emp_name}</td>
+				<td>${row.vendor_ID}</td>
 				<td>${row.pO_Vendor_InfoBean.vendor_name}</td>
+				<td>$${row.total_price}</td>
 				<td><a href="NewInvoiceForm.controller?poid=${row.po_id}">新增請款單</a></td>
 			</tr>
 		</c:forEach>
@@ -41,7 +41,10 @@
 		<c:forEach var="back" items="${listback}">
 			<tr>
 				<td>${back.inv_id}</td>
-				
+				<td>${back.emp_id}</td>
+				<td>${back.pO_MainBean.pO_Vendor_InfoBean.vendor_id}</td>
+				<td>${back.pO_MainBean.pO_Vendor_InfoBean.vendor_name}</td>
+				<td>${back.total_price}</td>
 				<td><a href="NewInvoiceForm.controller?invid=${back.inv_id}">修改請款單</a></td>
 			</tr>
 		</c:forEach>
