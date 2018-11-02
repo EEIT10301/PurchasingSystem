@@ -1,6 +1,5 @@
 package Po.service;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -12,9 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import Account.dao.Account_InvoiceIDao;
+import Account.dao.Account_SigningProcessIDao;
 import Account.dao.impl.Account_SigningProcessDao;
 import Account.model.Account_InvoiceBean;
 import Account.model.Account_SigningProcessBean;
@@ -35,6 +34,8 @@ public class PO_InvoiceService {
 	Account_InvoiceIDao account_InvoiceIDao;
 	@Autowired
 	Account_SigningProcessDao account_SigningProcessDao;
+	@Autowired
+	Account_SigningProcessIDao account_SigningProcessIDao;
 
 	public static void main(String[] args) {
 		ApplicationContext context = new AnnotationConfigApplicationContext(SpringJavaConfiguration.class);
@@ -59,7 +60,21 @@ public class PO_InvoiceService {
 		}
 		return null;
 	}
-
+	public List<Account_InvoiceBean> find3(String emp_id, String sig_sta, Integer sig_rank) {
+		List<Account_SigningProcessBean> list = account_SigningProcessIDao.select3send(emp_id, sig_sta,sig_rank);
+		List<Account_InvoiceBean> result = null;
+		result = new LinkedList<Account_InvoiceBean>();
+		if (list != null) {
+			for (Account_SigningProcessBean x : list) {
+				Account_InvoiceBean bean =account_InvoiceIDao.select(x.getInv_id());
+				result.add(bean);
+			}
+			return result;
+		}
+		return null;
+	}
+	
+	
 
 	public String calcExpirePaymentDate(String payment_term) {
 		Date applicationDate = new Date();

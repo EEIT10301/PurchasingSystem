@@ -40,7 +40,6 @@ body {
 </table>
 </form>
 
-<<<<<<< HEAD
 	<table>
 		<tr>
 			<td><a href="Apply/ApplyLogin.jsp">研發部門</a></td>
@@ -55,7 +54,7 @@ body {
 			<td><a href="Account/AccountLogin.jsp">財務部門</a></td>
 		</tr>
 	</table>
-=======
+
 
 <!-- 	<table> -->
 <!-- 		<tr> -->
@@ -71,6 +70,6 @@ body {
 <!-- 			<td><a href="Account/AccountLogin.jsp">財務部門</a></td> -->
 <!-- 		</tr> -->
 <!-- 	</table> -->
->>>>>>> branch 'master' of https://github.com/EEIT10301/PurchasingSystem.git
+
 </body>
 </html>
