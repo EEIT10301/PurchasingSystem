@@ -41,9 +41,7 @@ a, a:visited {
 	<div class="allpage">
 		<div class="left">
 			<table>
-				<tr>
-					<td><a href="ToDoList.jsp">待簽核事項</a></td>
-				</tr>
+
 
 			</table>
 		</div>

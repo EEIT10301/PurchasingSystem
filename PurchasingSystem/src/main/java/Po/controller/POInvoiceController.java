@@ -45,9 +45,7 @@ public class POInvoiceController {
 		String sig_sta="驗收完成未請款";
 		List<PO_MainBean> NoInvoiceList = pO_InvoiceService.find(emp_id, sig_sta);
 			model.addAttribute("list", NoInvoiceList);
-		
-		
-		Integer sig_rank=1;
+
 		List<Account_InvoiceBean> InvoiceBack = pO_InvoiceService.find3(emp_id,"退回中" ,1);
 			model.addAttribute("listback", InvoiceBack);
 
@@ -93,6 +91,4 @@ public class POInvoiceController {
 
 	return "";
 }
-
-	
 }
