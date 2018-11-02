@@ -12,7 +12,6 @@
    	input,select{
    	display:block;
    	}
-   	
    	</style>
 </head>
 
