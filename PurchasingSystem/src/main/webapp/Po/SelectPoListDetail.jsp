@@ -23,18 +23,18 @@
 </c:if>
  
 <c:if test="${not empty query1}">
-
-<p><font color='red'>${query1.po_ID}</font></p>
-<p>${query1.vendor_ID}</p>
-<p>${query1.po_querydate}</p>
-<p>${query1.po_totalprice}</p>
+<p>最新詢價紀錄:<p>
+<p>採購單編號: <font color='red'>${query1.po_ID}</font></p>
+<p>廠商名稱: ${query1.pO_Vendor_InfoBean.vendor_name}</p>
+<%-- <p>詢價時間: ${query1.po_querydate}</p> --%>
+<p>詢價總價: ${query1.po_totalprice}</p>
 </c:if>    
 <c:if test="${not empty queryss}">
 <c:forEach var="querysss" items="${queryss}">
-<p>${querysss.po_ID}</p>
-<p>${querysss.vendor_ID}</p>
-<p>${querysss.po_querydate}</p>
-<p>${querysss.po_totalprice}</p>
+<p>採購單編號: ${querysss.po_ID}</p>
+<p>廠商名稱: ${querysss.pO_Vendor_InfoBean.vendor_name}</p>
+<p>詢價時間: ${querysss.po_querydate}</p>
+<p>詢價總價: ${querysss.po_totalprice}</p>
 </c:forEach>
 </c:if>
 

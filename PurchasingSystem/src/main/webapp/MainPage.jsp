@@ -56,6 +56,6 @@ body {
 <!-- 			<td><a href="Account/AccountLogin.jsp">財務部門</a></td> -->
 <!-- 		</tr> -->
 <!-- 	</table> -->
->>>>>>> branch 'master' of https://github.com/EEIT10301/PurchasingSystem.git
+
 </body>
 </html>
