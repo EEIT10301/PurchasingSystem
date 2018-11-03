@@ -54,7 +54,7 @@ a, a:visited {
 				</c:if>
 				<c:if test="${user.emp_level==1}">
 				<tr>
-					<td><a href="">被分派事項</a></td>
+					<td><a href="ToDoSignlevel1.controller">被分派事項</a></td>
 				</tr>
 				</c:if>
 				
