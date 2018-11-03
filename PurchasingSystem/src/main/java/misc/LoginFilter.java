@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 @WebFilter(
-		urlPatterns= {"/Account/*","/Apply/*","/Inv/*","/Po/*"}
+		urlPatterns= {"/Account/*","/Apply/*","/Inv/*","/Po/*","/ceo/*"}
 )//value = "/_03_listBooks/*"
 public class LoginFilter implements Filter{
 	String servletPath;
