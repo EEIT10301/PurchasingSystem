@@ -39,13 +39,15 @@
         <img src="..${invoice.recript_pic}" alt="" height="200" width="200">
         <label for="Receiptpic">憑證圖檔</label>
         <input type="file" name="Receiptpic" id="" value="">
-     	   說明: <p>${sigSug}<p>
-             主管<select name="selectPOManager">
+
+        說明:<p>${sigSug}<p>
+        <c:if test="${not empty manager}">
+         主管<select name="selectPOManager">
         <c:forEach var="poman" items="${manager}">
         <option  value="${poman.emp_id}">${poman.emp_name} ${poman.emp_job}</option>
         </c:forEach>
         </select>
-        
+        </c:if>
       	 簽核意見:<p><textarea rows="5" cols="50"  name="SignSug">
 		</textarea><p>
 

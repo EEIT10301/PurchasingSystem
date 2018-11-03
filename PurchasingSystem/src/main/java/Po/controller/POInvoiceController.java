@@ -201,7 +201,122 @@ public class POInvoiceController {
 			model.addAttribute("invid", invid);
 			return"updateForm";
 		}
+		//財務經理查看要分派的該張請款單  
+		@RequestMapping("/Account/AccSignInvoiceForm.controller")
+		public String signInvoiceAccMan(Model model ,HttpSession session ,String invid) {
+			
+			Account_InvoiceBean bean= account_InvoiceService.select(invid);
+			PO_SigningProcessBean poSignBean = pO_InvoiceService.selectForOneProcessbyPoSign("驗收中", bean.getPo_id());
+			String empid=bean.getEmp_id();
+			String empdep=bean.getEmployeeBean().getEmp_dep();
+			String ven_name=bean.getpO_MainBean().getpO_Vendor_InfoBean().getVendor_name();
+			String ven_id=bean.getpO_MainBean().getVendor_ID();
+			Integer price=bean.getTotal_price();
+			String payMethod=bean.getpO_MainBean().getpO_Vendor_InfoBean().getPayment_method();
+			String paydate=pO_InvoiceService.calcExpirePaymentDate(bean.getpO_MainBean().getpO_Vendor_InfoBean().getPayment_term(),poSignBean.getSig_date());
+			Date keyday=bean.getRecript_date();
+			
+			Set<Account_SigningProcessBean> selects = bean.getAccount_SigningProcessBean();
+			for(Account_SigningProcessBean x:selects) {
+				if(x.getSig_Rank()==2) {
+					String sigSug=x.getSig_Sug();
+					model.addAttribute("sigSug", sigSug);
+				}
+			}		
+			
+			List<EmployeeBean> employee=employeeService.selectPoEmployee("財務部", 1);
+			
+			model.addAttribute("bean", bean);
+			model.addAttribute("empid", empid);
+			model.addAttribute("empdep", empdep);
+			model.addAttribute("ven_name", ven_name);
+			model.addAttribute("ven_id", ven_id);
+			model.addAttribute("price", price);
+			model.addAttribute("payMethod", payMethod);
+			model.addAttribute("paydate", paydate);
+			model.addAttribute("keyday", keyday);
+			model.addAttribute("manager", employee);
+			model.addAttribute("invid", invid);
+			return"updateForm";
+		}
 		
+		//財務經理查看要簽核的該張請款單  
+		@RequestMapping("/Account/AccSignInvForm.controller")
+		public String signInvAccMan(Model model ,HttpSession session ,String invid) {
+			
+			Account_InvoiceBean bean= account_InvoiceService.select(invid);
+			PO_SigningProcessBean poSignBean = pO_InvoiceService.selectForOneProcessbyPoSign("驗收中", bean.getPo_id());
+			String empid=bean.getEmp_id();
+			String empdep=bean.getEmployeeBean().getEmp_dep();
+			String ven_name=bean.getpO_MainBean().getpO_Vendor_InfoBean().getVendor_name();
+			String ven_id=bean.getpO_MainBean().getVendor_ID();
+			Integer price=bean.getTotal_price();
+			String payMethod=bean.getpO_MainBean().getpO_Vendor_InfoBean().getPayment_method();
+			String paydate=pO_InvoiceService.calcExpirePaymentDate(bean.getpO_MainBean().getpO_Vendor_InfoBean().getPayment_term(),poSignBean.getSig_date());
+			Date keyday=bean.getRecript_date();
+			
+			Set<Account_SigningProcessBean> selects = bean.getAccount_SigningProcessBean();
+			for(Account_SigningProcessBean x:selects) {
+				if(x.getSig_Rank()==4) {
+					String sigSug=x.getSig_Sug();
+					model.addAttribute("sigSug", sigSug);
+				}
+			}		
+			
+			List<EmployeeBean> employee=null;
+			
+			model.addAttribute("bean", bean);
+			model.addAttribute("empid", empid);
+			model.addAttribute("empdep", empdep);
+			model.addAttribute("ven_name", ven_name);
+			model.addAttribute("ven_id", ven_id);
+			model.addAttribute("price", price);
+			model.addAttribute("payMethod", payMethod);
+			model.addAttribute("paydate", paydate);
+			model.addAttribute("keyday", keyday);
+			model.addAttribute("manager", employee);
+			model.addAttribute("invid", invid);
+			return"updateForm";
+		}
+		
+		//財務查看被分派的該張請款單  
+		@RequestMapping("/Account/AccSignInvlevel1.controller")
+		public String signInvAcc(Model model ,HttpSession session ,String invid) {
+			
+			Account_InvoiceBean bean= account_InvoiceService.select(invid);
+			PO_SigningProcessBean poSignBean = pO_InvoiceService.selectForOneProcessbyPoSign("驗收中", bean.getPo_id());
+			String empid=bean.getEmp_id();
+			String empdep=bean.getEmployeeBean().getEmp_dep();
+			String ven_name=bean.getpO_MainBean().getpO_Vendor_InfoBean().getVendor_name();
+			String ven_id=bean.getpO_MainBean().getVendor_ID();
+			Integer price=bean.getTotal_price();
+			String payMethod=bean.getpO_MainBean().getpO_Vendor_InfoBean().getPayment_method();
+			String paydate=pO_InvoiceService.calcExpirePaymentDate(bean.getpO_MainBean().getpO_Vendor_InfoBean().getPayment_term(),poSignBean.getSig_date());
+			Date keyday=bean.getRecript_date();
+			
+			Set<Account_SigningProcessBean> selects = bean.getAccount_SigningProcessBean();
+			for(Account_SigningProcessBean x:selects) {
+				if(x.getSig_Rank()==3) {
+					String sigSug=x.getSig_Sug();
+					model.addAttribute("sigSug", sigSug);
+				}
+			}		
+			
+			List<EmployeeBean> employee=null;
+			
+			model.addAttribute("bean", bean);
+			model.addAttribute("empid", empid);
+			model.addAttribute("empdep", empdep);
+			model.addAttribute("ven_name", ven_name);
+			model.addAttribute("ven_id", ven_id);
+			model.addAttribute("price", price);
+			model.addAttribute("payMethod", payMethod);
+			model.addAttribute("paydate", paydate);
+			model.addAttribute("keyday", keyday);
+			model.addAttribute("manager", employee);
+			model.addAttribute("invid", invid);
+			return"updateForm";
+		}
 	//財務主管查詢待分派的請款單
 		@RequestMapping("/Account/ToDoAssignInvoice.controller")
 		public String queryHaveToAssign(Model model ,HttpSession session) {
@@ -213,6 +328,31 @@ public class POInvoiceController {
 				model.addAttribute("list", haveToAssign);
 
 				return "assignInv.show";
+		}
+		
+	//財務主管查詢待簽核的請款單
+		@RequestMapping("/Account/ToDoSignInvoice.controller")
+		public String queryHaveToSign(Model model ,HttpSession session) {
+			EmployeeBean empbean = (EmployeeBean)session.getAttribute("user");
+			String emp_id=empbean.getEmp_id();
+			String sig_sta="簽核中"; //財務經理自己的狀態是簽核中(前一關送出並更新主管為"簽核中")
+
+			List<Account_InvoiceBean> haveToSign = pO_InvoiceService.findProcessCorrect(emp_id,sig_sta ,5);
+				model.addAttribute("list", haveToSign);
+
+				return "signInv.show";
+		}
+		//財務查詢被分派的請款單
+		@RequestMapping("/Account/ToDoSignlevel1.controller")
+		public String queryHaveToSignlevel1(Model model ,HttpSession session) {
+			EmployeeBean empbean = (EmployeeBean)session.getAttribute("user");
+			String emp_id=empbean.getEmp_id();
+			String sig_sta="簽核中"; //財務自己的狀態是簽核中(前一關送出並更新財務為"簽核中")
+			
+			List<Account_InvoiceBean> haveToSign = pO_InvoiceService.findProcessCorrect(emp_id,sig_sta ,4);
+			model.addAttribute("list", haveToSign);
+			
+			return "signInv.show";
 		}
 
 		

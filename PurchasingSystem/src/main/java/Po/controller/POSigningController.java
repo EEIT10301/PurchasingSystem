@@ -1,7 +1,9 @@
 package Po.controller;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -107,15 +109,19 @@ public class POSigningController {
 
 	@RequestMapping("/Po/sendlist.controller") // 主管點選人分派頁面
 	public String sendlist(PO_SigningProcessBean bean, BindingResult bindingResult, Model model, HttpSession session,
-			String send, String employeesend, String SignSug) {
+			String send, String employeesend, String SignSug) throws ParseException {
 		EmployeeBean beans = (EmployeeBean) session.getAttribute("user");
 		java.util.Date date = new java.util.Date();
-		java.sql.Date datas = new java.sql.Date(date.getTime());
+		java.sql.Date data1 = new java.sql.Date(date.getTime());
+		DateFormat dateFormate =new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		String now= dateFormate.format(data1);
+		SimpleDateFormat sdf =new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date dates=sdf.parse(now);
 		PO_MainBean pomain = pO_MainService.select(bean.getPo_id());
 		pomain.setEmp_id(employeesend);
 		PO_SigningProcessBean secondsigningprocess = pO_SigningProcessService.select(bean.getPo_sta(), bean.getPo_id());
 		secondsigningprocess.setSig_sta("已分派");
-		secondsigningprocess.setSig_date(datas);
+		secondsigningprocess.setSig_date(dates);
 		secondsigningprocess.setSig_sug(SignSug);
 		PO_SigningProcessBean secondsigningprocess1 = new PO_SigningProcessBean(employeesend, "詢價中", bean.getPo_id(),
 				null, "詢價中", null, 3);
@@ -323,12 +329,19 @@ public class POSigningController {
 				PO_MainBean pomain = pO_MainService.select(poid1);
 				pomain.setVendor_ID(AllPO_Vendors);
 				pomain.setTotal_price(Integer.valueOf(allListprice));
+				Set<PO_DetailBean> PODetail = pomain.getpO_DetailBean();
 				for (int i = 0; i < po_id.length; i++) {
 					Integer thisquotation = Integer.valueOf(quotation[i]);
 					Integer thistotal_Price = Integer.valueOf(total_Price[i]);
-					PO_DetailBean thispodetail = pO_DetailService.select(po_id[i], part_No[i]);
-					thispodetail.setQuotation(thisquotation);
-					thispodetail.setTotal_Price(thistotal_Price);
+					for (PO_DetailBean x : PODetail) {
+						if(x.getPart_No().equals(part_No[i]));
+						x.setQuotation(thisquotation);
+						x.setTotal_Price(thistotal_Price);
+					}
+//					PO_DetailBean thispodetail = pO_DetailService.select(po_id[i], part_No[i]);
+//					thispodetail.setQuotation(thisquotation);
+//					thispodetail.setTotal_Price(thistotal_Price);
+//					pO_DetailService.update(thispodetail);
 				}
 				Set<PO_SigningProcessBean> posignprocess = pomain.getpO_SigningProcessBean();
 				for (PO_SigningProcessBean x : posignprocess) {
@@ -339,24 +352,39 @@ public class POSigningController {
 					}
 				}
 
-				PO_SigningProcessBean sx1 = new PO_SigningProcessBean(pomanger, "主管審核中", poid1, null, "簽核中", null, 4);
+				PO_SigningProcessBean sx1 = new PO_SigningProcessBean(pomanger, "主管審核完成", poid1, null, "簽核中", null, 4);
 				PO_SigningProcessBean sx2 = new PO_SigningProcessBean(thisemp.getEmp_id(), "下單中", poid1, null, "未下單",
 						null, 5);
 				PO_SigningProcessBean sx3 = new PO_SigningProcessBean(thisemp.getEmp_id(), "待收貨", poid1, null, "未收貨",
 						null, 6);
-				pO_SigningProcessService.insert(sx1);
-				pO_SigningProcessService.insert(sx2);
-				pO_SigningProcessService.insert(sx3);
+				PO_SigningProcessBean insert=pO_SigningProcessService.insert(sx1);
+				if(insert==null) {
+					PO_SigningProcessBean update=pO_SigningProcessService.selectempandrank(poid1, 4);
+					update.setSig_sta("簽核中");
+				}else {
+					
+					pO_SigningProcessService.insert(sx2);
+					pO_SigningProcessService.insert(sx3);
+				}
+				
+				
 			} else {// 如果會到總經理的話
 				PO_MainBean pomain = pO_MainService.select(poid1);
 				pomain.setVendor_ID(AllPO_Vendors);
 				pomain.setTotal_price(Integer.valueOf(allListprice));
+				Set<PO_DetailBean> PODetail = pomain.getpO_DetailBean();
 				for (int i = 0; i < po_id.length; i++) {
 					Integer thisquotation = Integer.valueOf(quotation[i]);
 					Integer thistotal_Price = Integer.valueOf(total_Price[i]);
-					PO_DetailBean thispodetail = pO_DetailService.select(po_id[i], part_No[i]);
-					thispodetail.setQuotation(thisquotation);
-					thispodetail.setTotal_Price(thistotal_Price);
+					for (PO_DetailBean x : PODetail) {
+						if(x.getPart_No().equals(part_No[i]));
+						x.setQuotation(thisquotation);
+						x.setTotal_Price(thistotal_Price);
+					}
+//					PO_DetailBean thispodetail = pO_DetailService.select(po_id[i], part_No[i]);
+//					thispodetail.setQuotation(thisquotation);
+//					thispodetail.setTotal_Price(thistotal_Price);
+//					pO_DetailService.update(thispodetail);
 				}
 				Set<PO_SigningProcessBean> posignprocess = pomain.getpO_SigningProcessBean();
 				for (PO_SigningProcessBean x : posignprocess) {
@@ -368,15 +396,21 @@ public class POSigningController {
 				}
 
 				PO_SigningProcessBean sx1 = new PO_SigningProcessBean(pomanger, "主管審核中", poid1, null, "簽核中", null, 4);
-				PO_SigningProcessBean sx2 = new PO_SigningProcessBean(boss, "主管審核中", poid1, null, "簽核中", null, 5);
+				PO_SigningProcessBean sx2 = new PO_SigningProcessBean(boss, "主管審核完成", poid1, null, "未簽核", null, 5);
 				PO_SigningProcessBean sx3 = new PO_SigningProcessBean(thisemp.getEmp_id(), "下單中", poid1, null, "未下單",
 						null, 6);
 				PO_SigningProcessBean sx4 = new PO_SigningProcessBean(thisemp.getEmp_id(), "待收貨", poid1, null, "未收貨",
 						null, 7);
-				pO_SigningProcessService.insert(sx1);
-				pO_SigningProcessService.insert(sx2);
-				pO_SigningProcessService.insert(sx3);
-				pO_SigningProcessService.insert(sx4);
+				PO_SigningProcessBean insert=pO_SigningProcessService.insert(sx2);
+				if(insert==null) {
+					PO_SigningProcessBean update=pO_SigningProcessService.selectempandrank(poid1, 4);
+					update.setSig_sta("簽核中");
+				}else {					
+					pO_SigningProcessService.insert(sx1);
+					pO_SigningProcessService.insert(sx3);
+					pO_SigningProcessService.insert(sx4);
+				}
+				
 			}
 			return "POlogin.successint";
 		}

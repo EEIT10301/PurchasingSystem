@@ -9,7 +9,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.web.context.support.ServletContextResource;
-import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -18,10 +17,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.XmlViewResolver;
 
-@Configuration
-@ComponentScan(basePackages = { "Account", "Apply", "Inv", "Po" }) // <context:component-scan
-																	// base-package="controller"></context:component-scan>
-@EnableWebMvc // <mvc:annotation-driven></mvc:annotation-driven>
+
+@Configuration 
+@ComponentScan(basePackages={"Account","Apply","Inv","Po","ceo"}) //<context:component-scan base-package="controller"></context:component-scan>
+@EnableWebMvc //<mvc:annotation-driven></mvc:annotation-driven>
+
 public class SpringMvcJavaConfiguration implements WebMvcConfigurer {
 	@Bean
 	public MessageSource messageSource() {
