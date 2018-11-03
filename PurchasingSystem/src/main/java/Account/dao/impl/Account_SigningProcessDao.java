@@ -80,19 +80,22 @@ public class Account_SigningProcessDao implements Account_SigningProcessIDao {
 //		}
 
 //		----------test:update()-----------		
+//		Account_SigningProcessDao aspDao = context.getBean(Account_SigningProcessDao.class);
+//		Account_SigningProcessBean aspVo = aspDao.select("採購主管審核", "In20181025001");
+//		System.out.println(aspVo.toString());
+//		aspVo.setSig_Sta("已核准");
+//		aspVo.setSig_Date(new Date());
+//		aspVo.setSig_Sug("approval");
+//		Account_SigningProcessBean result = aspDao.update(aspVo);
+//		if (result != null) {
+//			System.out.println(result.toString());
+//		} else {
+//			System.out.println("更新資料失敗");
+//		}
+//		----------test:select(String inv_id, Integer sig_Rank)-----------
 		Account_SigningProcessDao aspDao = context.getBean(Account_SigningProcessDao.class);
-		Account_SigningProcessBean aspVo = aspDao.select("採購主管審核", "In20181025001");
-		System.out.println(aspVo.toString());
-		aspVo.setSig_Sta("已核准");
-		aspVo.setSig_Date(new Date());
-		aspVo.setSig_Sug("approval");
-		Account_SigningProcessBean result = aspDao.update(aspVo);
-		if (result != null) {
-			System.out.println(result.toString());
-		} else {
-			System.out.println("更新資料失敗");
-		}
-
+		Account_SigningProcessBean bean = aspDao.selectForRank("In20181013001", 1);
+		System.out.println(bean.toString());
 		sessionFactory.getCurrentSession().getTransaction().commit();
 	}
 
@@ -229,4 +232,11 @@ public class Account_SigningProcessDao implements Account_SigningProcessIDao {
 		 }
 	}
 
-}
+	@Override
+	public Account_SigningProcessBean selectForRank(String inv_id, Integer sig_Rank) {
+		String hql = "FROM Account_SigningProcessBean WHERE inv_id=:id1 AND sig_Rank=:id2";
+			return (Account_SigningProcessBean)this.getSession().createQuery(hql).setParameter("id1", inv_id).setParameter("id2",sig_Rank).getSingleResult();
+		}
+	}
+
+
