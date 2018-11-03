@@ -26,7 +26,7 @@
 				<td>${show.employeeBean.emp_name}</td>
 				<td>${show.pO_MainBean.pO_Vendor_InfoBean.vendor_name}</td>
 				<td>$${show.total_price}</td>
-				<td><a href="">查看</a></td>
+				<td><a href="SignInvoiceForm.controller?poid=${show.po_id}">查看</a></td>
 			</tr>
 		</c:forEach>
 		</table>

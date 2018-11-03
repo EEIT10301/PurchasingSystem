@@ -72,6 +72,21 @@ public class POInvoiceController {
 		model.addAttribute("poid", poid);
 		return"newForm";
 	}
+	
+	//查看要審核的該張請款單
+		@RequestMapping("/Po/SignInvoiceForm.controller")
+		public String signInvoice(Model model ,HttpSession session,String poid ,String invid) {
+			
+			PO_MainBean bean=pO_MainService.select(poid);
+			PO_SigningProcessBean poSignBean = pO_SigningProcessIDao.select("驗收中", poid);
+			String date = pO_InvoiceService.calcExpirePaymentDate(bean.getpO_Vendor_InfoBean().getPayment_term(),poSignBean.getSig_date());
+			List<EmployeeBean> employee=employeeService.selectPoEmployee("財務部", 2);
+			model.addAttribute("bean", bean);
+			model.addAttribute("paymentDate", date);
+			model.addAttribute("manager", employee);
+			model.addAttribute("poid", poid);
+			return"updateForm";
+		}
 
 		//新增請款單送出寫入資料庫
 	@RequestMapping(value = "/Po/onloadimage.controller", method = RequestMethod.POST)
