@@ -411,6 +411,7 @@ public class POSigningController {
 //		}else {
 	}
 	
+	//採購主管的"待簽核請款單列表"
 	@RequestMapping("/Po/todoSignInvoice.controller")
 	public String todoSignInvoice(Model model, HttpSession session) {
 		EmployeeBean empbean = (EmployeeBean)session.getAttribute("user");
@@ -418,7 +419,6 @@ public class POSigningController {
 		
 		List<Account_InvoiceBean> InvoiceSign = pO_InvoiceService.findTodoSignInv(emp_id, "簽核中", 2);
 		model.addAttribute("listtodosign", InvoiceSign);
-		
 		return "todoSignInvoice.show";
 	}
 

@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -17,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import Account.dao.Account_InvoiceIDao;
 import Account.model.Account_InvoiceBean;
+import Account.model.Account_SigningProcessBean;
 import Account.service.Account_InvoiceService;
 import Apply.model.EmployeeBean;
 import Apply.service.EmployeeService;
@@ -73,18 +76,42 @@ public class POInvoiceController {
 		return"newForm";
 	}
 	
-	//查看要審核的該張請款單
+	//採購主管查看要審核的該張請款單  
 		@RequestMapping("/Po/SignInvoiceForm.controller")
-		public String signInvoice(Model model ,HttpSession session,String poid ,String invid) {
+		public String signInvoice(Model model ,HttpSession session ,String invid) {
 			
-			PO_MainBean bean=pO_MainService.select(poid);
-			PO_SigningProcessBean poSignBean = pO_SigningProcessIDao.select("驗收中", poid);
-			String date = pO_InvoiceService.calcExpirePaymentDate(bean.getpO_Vendor_InfoBean().getPayment_term(),poSignBean.getSig_date());
+			Account_InvoiceBean bean= account_InvoiceService.select(invid);
+			PO_SigningProcessBean poSignBean = pO_SigningProcessIDao.select("驗收中", bean.getPo_id());
+			String empid=bean.getEmp_id();
+			String empdep=bean.getEmployeeBean().getEmp_dep();
+			String ven_name=bean.getpO_MainBean().getpO_Vendor_InfoBean().getVendor_name();
+			String ven_id=bean.getpO_MainBean().getVendor_ID();
+			Integer price=bean.getTotal_price();
+			String payMethod=bean.getpO_MainBean().getpO_Vendor_InfoBean().getPayment_method();
+			String paydate=pO_InvoiceService.calcExpirePaymentDate(bean.getpO_MainBean().getpO_Vendor_InfoBean().getPayment_term(),poSignBean.getSig_date());
+			Date keyday=bean.getRecript_date();
+			
+			Set<Account_SigningProcessBean> selects = bean.getAccount_SigningProcessBean();
+			for(Account_SigningProcessBean x:selects) {
+				if(x.getSig_Rank()==1) {
+				String sigSug=x.getSig_Sug();
+				model.addAttribute("sigSug", sigSug);
+				}
+			}		
+
 			List<EmployeeBean> employee=employeeService.selectPoEmployee("財務部", 2);
+			
 			model.addAttribute("bean", bean);
-			model.addAttribute("paymentDate", date);
+			model.addAttribute("empid", empid);
+			model.addAttribute("empdep", empdep);
+			model.addAttribute("ven_name", ven_name);
+			model.addAttribute("ven_id", ven_id);
+			model.addAttribute("price", price);
+			model.addAttribute("payMethod", payMethod);
+			model.addAttribute("paydate", paydate);
+			model.addAttribute("keyday", keyday);
 			model.addAttribute("manager", employee);
-			model.addAttribute("poid", poid);
+			model.addAttribute("invid", invid);
 			return"updateForm";
 		}
 
