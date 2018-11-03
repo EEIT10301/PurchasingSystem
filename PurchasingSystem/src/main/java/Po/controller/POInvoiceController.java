@@ -114,6 +114,19 @@ public class POInvoiceController {
 			model.addAttribute("invid", invid);
 			return"updateForm";
 		}
+		
+	//財務主管查詢待分派的請款單
+		@RequestMapping("/Account/ToDoAssignInvoice.controller")
+		public String queryHaveToAssign(Model model ,HttpSession session) {
+			EmployeeBean empbean = (EmployeeBean)session.getAttribute("user");
+			String emp_id=empbean.getEmp_id();
+			String sig_sta="分派中"; //財務經理自己的狀態是分派中(前一關送出並更新主管為"分派中")
+
+			List<Account_InvoiceBean> haveToAssign = pO_InvoiceService.findProcessCorrect(emp_id,sig_sta ,3);
+				model.addAttribute("list", haveToAssign);
+
+				return "assignInv.show";
+		}
 
 		//新增請款單送出寫入資料庫
 	@RequestMapping(value = "/Po/onloadimage.controller", method = RequestMethod.POST)

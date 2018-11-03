@@ -64,6 +64,22 @@ public class PO_InvoiceService {
 		}
 		return null;
 	}
+	
+	
+	public List<Account_InvoiceBean> findProcessCorrect(String emp_id, String sig_sta, Integer sig_rank) {
+		List<Account_SigningProcessBean> list = account_SigningProcessIDao.selectprocess(emp_id, sig_sta,sig_rank);
+		List<Account_InvoiceBean> result = null;
+		result = new LinkedList<Account_InvoiceBean>();
+		if (list != null) {
+			for (Account_SigningProcessBean x : list) {
+				Account_InvoiceBean bean =account_InvoiceIDao.select(x.getInv_id());
+				result.add(bean);
+			}
+			return result;
+		}
+		return null;
+	}
+	
 	public List<Account_InvoiceBean> find3(String emp_id, String sig_sta, Integer sig_rank) {
 		List<Account_SigningProcessBean> list = account_SigningProcessIDao.select3send(emp_id, sig_sta,sig_rank);
 		List<Account_InvoiceBean> result = null;
