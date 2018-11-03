@@ -153,6 +153,20 @@ public class PO_InvoiceService {
 		Account_SigningProcessBean result2 = account_SigningProcessIDao.update(bean2);
 	}
 	
+	public List<Account_InvoiceBean> findProcessCorrect(String emp_id, String sig_sta, Integer sig_rank) {
+		List<Account_SigningProcessBean> list = account_SigningProcessIDao.selectprocess(emp_id, sig_sta,sig_rank);
+		List<Account_InvoiceBean> result = null;
+		result = new LinkedList<Account_InvoiceBean>();
+		if (list != null) {
+			for (Account_SigningProcessBean x : list) {
+				Account_InvoiceBean bean =account_InvoiceIDao.select(x.getInv_id());
+				result.add(bean);
+			}
+			return result;
+		}
+		return null;
+	}
+	
 	
 	
 	
