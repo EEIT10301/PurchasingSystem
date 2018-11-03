@@ -10,7 +10,6 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.stereotype.Repository;
 
 import Po.dao.PO_SigningProcessIDao;
-import Po.model.PO_MainBean;
 import Po.model.PO_SigningProcessBean;
 import misc.SpringJavaConfiguration;
 

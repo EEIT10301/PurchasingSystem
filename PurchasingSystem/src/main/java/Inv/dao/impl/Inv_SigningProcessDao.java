@@ -9,8 +9,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Repository;
 
-import Apply.dao.App_SigningProcessIDao;
-import Apply.model.App_SigningProcessBean;
 import Inv.dao.Inv_SigningProcessIDao;
 import Inv.model.Inv_SigningProcessBean;
 import misc.SpringJavaConfiguration;
@@ -126,6 +124,19 @@ public class Inv_SigningProcessDao implements Inv_SigningProcessIDao{
 			  return true;
 		 }else {
 			 return false;
+		 }
+	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Inv_SigningProcessBean> selectempidsend(String inv_manger, String sig_sta) {
+		List<Inv_SigningProcessBean> list = null;
+		//from Inv_SigningProcess where Inv_Manger='emp005' and Sig_Sta='分派中'
+		String hgl="FROM Inv_SigningProcessBean where inv_manger=:id1 and sig_sta=:id2";
+		list =this.getSession().createQuery(hgl).setParameter("id1",inv_manger).setParameter("id2", sig_sta).setMaxResults(50).list();	
+		if(list.size()>0) {
+			  return list;
+		 }else {
+			 return null;
 		 }
 	}
 
