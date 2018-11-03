@@ -5,7 +5,6 @@
 <html>
 <head>
     <meta charset="UTF-8"> 
-    <style type="text/css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
    	<style type="text/css">
@@ -17,7 +16,7 @@
 
 <body>
     <h1>請款單</h1>
- <form method="post" action="<c:url value="/Po/onloadimage.controller"/>" enctype="multipart/form-data">
+ <form method="post" action="<c:url value="/Po/resendInvoiceforBuyer.controller"/>" enctype="multipart/form-data">
  		<input type="hidden" value="${poid}" name="poid">
         <label for="Emp_id">申請人</label>
         <input type="text" name="Emp_id" id="" readonly="readonly" value="${user.emp_name}">
