@@ -16,7 +16,7 @@
 
 <body>
     <h1>請款單</h1>
- <form method="post" action="<c:url value="/Po/onloadimage.controller"/>" enctype="multipart/form-data">
+ <form method="post" action="<c:url value=""/>" enctype="multipart/form-data">
  		<input type="hidden" value="${poid}" name="poid">
         <input type="hidden" value="${user.emp_id}" name="Emp_id">
         <label for="Emp_name">申請人</label>
@@ -37,6 +37,7 @@
         <input type="text" name="Recript_date" id="" value="">
         <label for="Receiptpic">憑證圖檔</label>
         <input type="file" name="Receiptpic" id="" value="">
+        <p>${xxx}<p>
           主管<select name="selectPOManager">
         <c:forEach var="poman" items="${manager}">
         <option  value="${poman.emp_id}">${poman.emp_name} ${poman.emp_job}</option>
