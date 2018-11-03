@@ -23,11 +23,14 @@ a, a:visited {
 </head>
 
 <body>
-	<h3>財務系統</h3>
+<h3>待分派清款單</h3>
 	${user.emp_id}/${user.emp_name} ${user.emp_job},你好
 	<button type="button" class="btn">登出</button>
 	<br>
 	<hr>
+	<c:if test="${empty list}">
+	<h3>尚無待分派請款單</h3>
+	</c:if>
 		<c:if test="${not empty list}">
 			<table>
 		<tr>
