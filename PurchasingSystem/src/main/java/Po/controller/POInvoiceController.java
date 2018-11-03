@@ -172,7 +172,7 @@ public class POInvoiceController {
 			
 			Set<Account_SigningProcessBean> selects = bean.getAccount_SigningProcessBean();
 			for(Account_SigningProcessBean x:selects) {
-				if(x.getSig_Rank()==2) {
+				if(x.getSig_Rank()==4) {
 					String sigSug=x.getSig_Sug();
 					model.addAttribute("sigSug", sigSug);
 				}
