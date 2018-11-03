@@ -1,6 +1,10 @@
 package Apply.controller;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -169,7 +173,7 @@ public class ApplySendController {
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/Apply/ApplyListsend.controller") 
 	public String ApplyList(ProductListBean bean,BindingResult bindingResult,Model model 
-		,HttpSession session,String part_no,String send,String productamount, String suggestion,String Sign2Employee) {//產生清單
+		,HttpSession session,String part_no,String send,String productamount, String suggestion,String Sign2Employee) throws ParseException {//產生清單
 		 EmployeeBean user =new EmployeeBean();
 		 if(session.getAttribute("user")!=null) {
 			 user= (EmployeeBean) session.getAttribute("user"); 
@@ -303,14 +307,22 @@ public class ApplySendController {
 	    	if (Listprices<=1000000)
 	    	{
 	    		java.util.Date date = new java.util.Date();
-	    		java.sql.Date datas =new java.sql.Date(date.getTime());
+	    		java.sql.Date data1 = new java.sql.Date(date.getTime());
+	    		DateFormat dateFormate =new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	    		String now= dateFormate.format(data1);
+	    		SimpleDateFormat sdf =new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	    		Date datas=sdf.parse(now);
 	    		App_SigningProcessBean ss=new App_SigningProcessBean(emp.getEmp_id(),"申請中",apid,datas,"已簽核",suggestion,1);
 	    		App_SigningProcessBean ss1=new App_SigningProcessBean(Sign2Employee,"請購核准",apid,null,"簽核中",null,2);
 	    		app_SigningProcessService.insert(ss);
 	    		app_SigningProcessService.insert(ss1);
 	    	}else {
-	    	java.util.Date date = new java.util.Date();
-	    	java.sql.Date datas =new java.sql.Date(date.getTime());
+	    		java.util.Date date = new java.util.Date();
+	    		java.sql.Date data1 = new java.sql.Date(date.getTime());
+	    		DateFormat dateFormate =new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	    		String now= dateFormate.format(data1);
+	    		SimpleDateFormat sdf =new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	    		Date datas=sdf.parse(now);
 	    	App_SigningProcessBean ss=new App_SigningProcessBean(emp.getEmp_id(),"申請中",apid,datas,"已簽核",suggestion,1);
 	    App_SigningProcessBean ss1=new App_SigningProcessBean(Sign2Employee,"請購主管審核中",apid,null,"簽核中",null,2);
 	    App_SigningProcessBean ss2=new App_SigningProcessBean("emp003","請購核准",apid,null,"未簽核",null,3);

@@ -1,7 +1,9 @@
 package Po.controller;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -107,15 +109,19 @@ public class POSigningController {
 
 	@RequestMapping("/Po/sendlist.controller") // 主管點選人分派頁面
 	public String sendlist(PO_SigningProcessBean bean, BindingResult bindingResult, Model model, HttpSession session,
-			String send, String employeesend, String SignSug) {
+			String send, String employeesend, String SignSug) throws ParseException {
 		EmployeeBean beans = (EmployeeBean) session.getAttribute("user");
 		java.util.Date date = new java.util.Date();
-		java.sql.Date datas = new java.sql.Date(date.getTime());
+		java.sql.Date data1 = new java.sql.Date(date.getTime());
+		DateFormat dateFormate =new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		String now= dateFormate.format(data1);
+		SimpleDateFormat sdf =new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date dates=sdf.parse(now);
 		PO_MainBean pomain = pO_MainService.select(bean.getPo_id());
 		pomain.setEmp_id(employeesend);
 		PO_SigningProcessBean secondsigningprocess = pO_SigningProcessService.select(bean.getPo_sta(), bean.getPo_id());
 		secondsigningprocess.setSig_sta("已分派");
-		secondsigningprocess.setSig_date(datas);
+		secondsigningprocess.setSig_date(dates);
 		secondsigningprocess.setSig_sug(SignSug);
 		PO_SigningProcessBean secondsigningprocess1 = new PO_SigningProcessBean(employeesend, "詢價中", bean.getPo_id(),
 				null, "詢價中", null, 3);
@@ -351,9 +357,16 @@ public class POSigningController {
 						null, 5);
 				PO_SigningProcessBean sx3 = new PO_SigningProcessBean(thisemp.getEmp_id(), "待收貨", poid1, null, "未收貨",
 						null, 6);
-				pO_SigningProcessService.insert(sx1);
-				pO_SigningProcessService.insert(sx2);
-				pO_SigningProcessService.insert(sx3);
+				PO_SigningProcessBean insert=pO_SigningProcessService.insert(sx1);
+				if(insert==null) {
+					PO_SigningProcessBean update=pO_SigningProcessService.selectempandrank(poid1, 4);
+					update.setSig_sta("簽核中");
+				}else {
+					
+					pO_SigningProcessService.insert(sx2);
+					pO_SigningProcessService.insert(sx3);
+				}
+				
 				
 			} else {// 如果會到總經理的話
 				PO_MainBean pomain = pO_MainService.select(poid1);
@@ -388,10 +401,15 @@ public class POSigningController {
 						null, 6);
 				PO_SigningProcessBean sx4 = new PO_SigningProcessBean(thisemp.getEmp_id(), "待收貨", poid1, null, "未收貨",
 						null, 7);
-				pO_SigningProcessService.insert(sx1);
-				pO_SigningProcessService.insert(sx2);
-				pO_SigningProcessService.insert(sx3);
-				pO_SigningProcessService.insert(sx4);
+				PO_SigningProcessBean insert=pO_SigningProcessService.insert(sx2);
+				if(insert==null) {
+					PO_SigningProcessBean update=pO_SigningProcessService.selectempandrank(poid1, 4);
+					update.setSig_sta("簽核中");
+				}else {					
+					pO_SigningProcessService.insert(sx1);
+					pO_SigningProcessService.insert(sx3);
+					pO_SigningProcessService.insert(sx4);
+				}
 				
 			}
 			return "POlogin.successint";

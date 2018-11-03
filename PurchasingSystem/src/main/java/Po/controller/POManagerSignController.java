@@ -233,6 +233,13 @@ nextsign.setSig_sta("簽核中");
         	nextsign.setSig_sta("下單中");
         }
         else if(send.equals("修改詢價單")) {
+ PO_SigningProcessBean thissign=pO_SigningProcessService.select(Bean.getPo_sta(),Bean.getPo_id());//這次的流程
+        	//下一個簽核流程
+        	thissign.setSig_sta("詢價中");
+        	thissign.setSig_date(dates);
+        	thissign.setSig_sug(SignSug);
+
+        	
         	
         }
         else if(send.equals("退回")) {
