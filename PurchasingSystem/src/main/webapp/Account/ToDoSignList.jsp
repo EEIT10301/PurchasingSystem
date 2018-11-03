@@ -44,8 +44,12 @@ a, a:visited {
 				<td>${sign.employeeBean.emp_name}</td>
 				<td>${sign.pO_MainBean.pO_Vendor_InfoBean.vendor_name}</td>
 				<td>${sign.total_price}</td>
+				<c:if test="${user.emp_level==2}">   
 				<td><a href="AccSignInvForm.controller?invid=${sign.inv_id}">查看</a></td>
-			</tr>
+				</c:if>
+				<c:if test="${user.emp_level==1}">
+				<td><a href="AccSignInvlevel1.controller?invid=${sign.inv_id}">查看</a></td>
+				</c:if>
 		</c:forEach>
 
 			</table>
