@@ -161,10 +161,16 @@
 	</bean>
 <!-- 採購主管待審核請款單連結 -->
 
-<!-- 財務主管待審核請款單連結 -->
+<!-- 財務主管待分派請款單連結 -->
 <bean id="assignInv.show"
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/Account/ToDoAssignInvoice.jsp"></property>
+	</bean>
+<!-- 財務主管待分派請款單連結 -->
+<!-- 財務主管待審核請款單連結 -->
+<bean id="signInv.show"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Account/ToDoSignList.jsp"></property>
 	</bean>
 <!-- 財務主管待審核請款單連結 -->
 
