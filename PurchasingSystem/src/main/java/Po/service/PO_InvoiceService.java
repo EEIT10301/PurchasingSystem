@@ -133,6 +133,10 @@ public class PO_InvoiceService {
 		}
 	}
 	
+	public void updateAccountSingingProcess() {
+		
+	}
+	
 	
 	
 	
