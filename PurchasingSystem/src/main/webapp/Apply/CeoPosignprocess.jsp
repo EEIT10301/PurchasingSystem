@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +18,7 @@
 <p>採購單號 :${polists.po_id}</p>
 <p>廠商名稱:${polists.pO_MainBean.pO_Vendor_InfoBean.vendor_name}</p>
 <p>採購金額 :${polists.pO_MainBean.total_price}</p>
-<a href='<c:url value="POManagerSignertosign.controller?po_manger=${polists.po_manger}&po_sta=${polists.po_sta}&po_id=${polists.po_id}&send=sendok" />'>
+<a href='<c:url value="ceoPOManagerSignertosign.controller?po_manger=${polists.po_manger}&po_sta=${polists.po_sta}&po_id=${polists.po_id}&send=sendok" />'>
      開始簽核</a>  
  <c:forEach var='polistone' varStatus='vs' items='${PO_SignSendRank}'>
  <c:if test='${polists.po_id == polistone.po_id}'>
@@ -36,7 +36,7 @@
 <p>採購單號 :${polists.po_id}</p>
 <p>廠商名稱:${polists.pO_MainBean.pO_Vendor_InfoBean.vendor_name}</p>
 <p>採購金額 :${polists.pO_MainBean.total_price}</p>
-<a href='<c:url value="POManagerSignertosign.controller?po_manger=${polists.po_manger}&po_sta=${polists.po_sta}&po_id=${polists.po_id}&send=nosend" />'>
+<a href='<c:url value="ceoPOManagerSignertosign.controller?po_manger=${polists.po_manger}&po_sta=${polists.po_sta}&po_id=${polists.po_id}&send=nosend" />'>
      開始簽核</a>
   <c:forEach var='polistone' varStatus='vs' items='${PO_SignBackRank}'>
  <c:if test='${polists.po_id == polistone.po_id}'>

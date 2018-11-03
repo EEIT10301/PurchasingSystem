@@ -112,6 +112,17 @@
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/Po/SignedOrder.jsp"></property>
 	</bean>
+           <!-- 	      採購單簽核連結 -->
+		<bean id="PoSignerProcess.to"  
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Po/PoSignerProcess.jsp"></property>
+	</bean>
+	       <!-- 	      採購單簽核detail -->
+		<bean id="PoSignerProcessdetail.to"  
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Po/PoSignerProcessdetail.jsp"></property>
+	</bean>
+	
 	<!-- 採購使用連結 -->
 	<!-- 驗收使用連結 -->
 	<bean id="Invlogin.success"
@@ -174,5 +185,19 @@
 	</bean>
 <!-- 財務主管待審核請款單連結 -->
 
-
+<!-- 總經理連結 -->
+	<bean id="ceo.login"
+			class="org.springframework.web.servlet.view.RedirectView">
+		<property name="contextRelative" value="true"></property>
+		<property name="url" value="/Apply/CeoPage.jsp"></property>
+	</bean>
+	<bean id="CeoPosignprocess.do"
+				class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Apply/CeoPosignprocess.jsp"></property>
+	</bean>
+	<bean id="CeoPosignprocessdetail.do"
+				class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Apply/CeoPosignprocessdetail.jsp"></property>
+	</bean>
+<!-- 總經理連結-->
 </beans>
