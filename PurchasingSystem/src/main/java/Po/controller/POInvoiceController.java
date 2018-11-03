@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,7 @@ public class POInvoiceController {
 	@Autowired
 	PO_SigningProcessIDao pO_SigningProcessIDao;
    
+	
 
 	//查詢待請款採購單及退回請款單
 	@RequestMapping("/Po/Polist.controller")
@@ -55,7 +57,7 @@ public class POInvoiceController {
 		List<PO_MainBean> NoInvoiceList = pO_InvoiceService.find(emp_id, sig_sta);
 			model.addAttribute("list", NoInvoiceList);
 
-		List<Account_InvoiceBean> InvoiceBack = pO_InvoiceService.find3(emp_id,"退回中" ,1);
+		List<Account_InvoiceBean> InvoiceBack = pO_InvoiceService.find3(emp_id,"退回中",1);
 			model.addAttribute("listback", InvoiceBack);
 
 			return "TodoInvoiceList";
@@ -132,12 +134,14 @@ public class POInvoiceController {
 	@RequestMapping(value = "/Po/onloadimage.controller", method = RequestMethod.POST)
 	public String uploadFile(Model model ,HttpSession session,String name,@RequestParam("Receiptpic") MultipartFile file
 		,String Emp_id,String Emp_dep, String Vendor_name, String Vendor_id, String Total_price, 
-		String Except_Payment_Date, String Recript_date, String selectPOManager, String SignSug,String poid) throws IllegalStateException, IOException, ParseException {
+		String Except_Payment_Date, String Recript_date, String selectPOManager, String SignSug,String poid,HttpServletRequest request) throws IllegalStateException, IOException, ParseException {
 	
 	//上傳圖片	
 	String invId="In"+poid.substring(2);
 	//String destination ="C:\\Users\\User\\git\\repository2\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
 	String destination ="D:\\Maven-project\\repository\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
+	//String destination = "images/"+invId+".jpg";
+    //System.out.println("uploadRootPath=" + destination);
 	if(file !=null || file.getSize()>0) {
 	File files =new File(destination);
 	file.transferTo(files);}
@@ -163,4 +167,34 @@ public class POInvoiceController {
 
 	return "TodoInvoiceList";
 }
+	//採購承辦重送請款單
+	@RequestMapping(value = "/Po/resendInvoiceforBuyer.controller", method = RequestMethod.POST)
+	public String resend(Account_InvoiceBean account_InvoiceBean,Model model ,HttpSession session,String name,@RequestParam("Receiptpic") MultipartFile file
+		,String selectPOManager, String poid,HttpServletRequest request,Integer sig_Rank, String SignSug ) throws IllegalStateException, IOException, ParseException {
+	
+	//上傳圖片	
+	String invId="In"+account_InvoiceBean.getPo_id().substring(2);
+	//String destination ="C:\\Users\\User\\git\\repository2\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
+	String destination ="D:\\Maven-project\\repository\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
+	//String destination = "images/"+invId+".jpg";
+    System.out.println("uploadRootPath=" + destination);
+	if(file !=null || file.getSize()>0) {
+	File files =new File(destination);
+	file.transferTo(files);}
+	
+	//update請款單
+	Account_InvoiceBean result = pO_InvoiceService.updateInvoiceData(account_InvoiceBean);
+	if(result!=null) {
+		model.addAttribute("successmeg", "重新送出成功");
+		model.addAttribute("inv_id", invId);
+	}else {
+		model.addAttribute("errormeg", "重新送出失敗");
+	}
+	//update  請款單簽核流程
+	String sig_Sta1="已申請";
+	String sig_Sta2="簽核中";
+	pO_InvoiceService.updateAccountSigningProcess(invId, sig_Rank, sig_Sta1, sig_Sta2, SignSug);
+	return "TodoInvoiceList";
+}
+	
 }

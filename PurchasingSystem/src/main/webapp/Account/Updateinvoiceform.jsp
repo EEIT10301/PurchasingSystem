@@ -5,7 +5,9 @@
 <html>
 <head>
     <meta charset="UTF-8"> 
-     <style type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   	<style type="text/css">
    	input,select{
    	display:block;
    	}
@@ -14,7 +16,7 @@
 
 <body>
     <h1>請款單</h1>
- <form method="post" action="<c:url value="/Po/onloadimage.controller"/>" enctype="multipart/form-data">
+ <form method="post" action="<c:url value="/Po/resendInvoiceforBuyer.controller"/>" enctype="multipart/form-data">
  		<input type="hidden" value="${poid}" name="poid">
         <label for="Inv_id">請款單單號</label>
         <input type="text" name="Inv_id" id="" readonly="readonly" value="${invid}">
