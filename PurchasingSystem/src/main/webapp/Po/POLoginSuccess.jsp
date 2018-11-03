@@ -24,7 +24,7 @@
 <a href='signedorder.controller'>待下單採購單 </a>
 <a href='Polist.controller'>待申請請款單 </a>
 </c:if>
-<a href='/Po/POManagerSigner.controller'>待審核採購單</a>
+<a href='POManagerSigner.controller'>待審核採購單</a>
 <c:if test="${user.emp_level==2}">
 <a href='sendEmployee.controller'>待分派採購單</a>
 </c:if>

@@ -86,15 +86,16 @@ public class ApplySignController {
 			Model model ,HttpSession session) {
 		EmployeeBean ben=(EmployeeBean) session.getAttribute("user");
 		String empid=ben.getEmp_id();
-		List<App_SigningProcessBean> Sproductlistsx1 =new LinkedList<App_SigningProcessBean>();
-		List<App_SigningProcessBean> Sproductlistsx2 =new LinkedList<App_SigningProcessBean>();
+		List<App_SigningProcessBean> Sproductlistsx1 =app_SigningProcessService.selectmangers(empid, "簽核中");;
+		List<App_SigningProcessBean> Sproductlistsx2 =app_SigningProcessService.selectmangers(empid, "退回中");
 		List<App_SigningProcessBean> Sproductlistsx3 =new LinkedList<App_SigningProcessBean>();
-	
-		Sproductlistsx1=app_SigningProcessService.selectmangers(empid, "簽核中");
-		Sproductlistsx2=app_SigningProcessService.selectmangers(empid, "退回中");
+//		Sproductlistsx1=
+//		Sproductlistsx2=;
 		Integer Applylistsranks =0;
 		Integer nosendranks=0;
-		if (Sproductlistsx1 !=null && Sproductlistsx1.size()>0) {
+		if(Sproductlistsx1==null) {
+			
+		}else {
 			for(int i=0;i<Sproductlistsx1.size();i++) {
 				App_SigningProcessBean xsz=new App_SigningProcessBean();
 				xsz=Sproductlistsx1.get(i);			
@@ -106,6 +107,19 @@ public class ApplySignController {
 					}
 			}
 		}
+			
+//		if (Sproductlistsx1 !=null && Sproductlistsx1.size()>0) {
+//			for(int i=0;i<Sproductlistsx1.size();i++) {
+//				App_SigningProcessBean xsz=new App_SigningProcessBean();
+//				xsz=Sproductlistsx1.get(i);			
+//					Applylistsranks=xsz.getSig_rank();
+//					String apid = xsz.getApp_id();
+//					App_SigningProcessBean xsz1 =app_SigningProcessService.selectrank(apid, Applylistsranks-1);
+//					if(xsz1!=null) {
+//						Sproductlistsx3.add(xsz1);
+//					}
+//			}
+//		}
 		
 		if(Sproductlistsx1!=null||Sproductlistsx2!=null){
 			model.addAttribute("Applylistsranks", Applylistsranks);

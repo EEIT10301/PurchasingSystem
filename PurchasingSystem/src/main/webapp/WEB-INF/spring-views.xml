@@ -112,6 +112,17 @@
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/Po/SignedOrder.jsp"></property>
 	</bean>
+           <!-- 	      採購單簽核連結 -->
+		<bean id="PoSignerProcess.to"  
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Po/PoSignerProcess.jsp"></property>
+	</bean>
+	       <!-- 	      採購單簽核detail -->
+		<bean id="PoSignerProcessdetail.to"  
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Po/PoSignerProcessdetail.jsp"></property>
+	</bean>
+	
 	<!-- 採購使用連結 -->
 	<!-- 驗收使用連結 -->
 	<bean id="Invlogin.success"
