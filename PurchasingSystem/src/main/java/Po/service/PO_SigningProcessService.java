@@ -68,6 +68,13 @@ public class PO_SigningProcessService {
 		}
 		return null;
 	}
+	public  PO_SigningProcessBean selectempandrank(String po_id,Integer Sig_rank){
+		PO_SigningProcessBean beans =pO_SigningProcessIDao.selectempandrank( po_id,Sig_rank);
+		if(beans!=null) {
+			return beans;
+		}
+		return null;
+	}
 	
 	public List<PO_SigningProcessBean> selectmangers(String app_Manger, String sig_Sta) {
 		List<PO_SigningProcessBean> beans =pO_SigningProcessIDao.selectmangers(app_Manger,sig_Sta);

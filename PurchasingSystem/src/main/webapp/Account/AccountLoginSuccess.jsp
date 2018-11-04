@@ -46,15 +46,15 @@ a, a:visited {
 			<table>
 				<c:if test="${user.emp_level==2}">
 				<tr>
-					<td><a href="">待分派事項</a></td>
+					<td><a href="ToDoAssignInvoice.controller">待分派請款單</a></td>
 				</tr>
 				<tr>
-					<td><a href="ToDoSignList.jsp">待簽核事項</a></td>
+					<td><a href="ToDoSignInvoice.controller">待簽核請款單</a></td>
 				</tr>
 				</c:if>
 				<c:if test="${user.emp_level==1}">
 				<tr>
-					<td><a href="">被分派事項</a></td>
+					<td><a href="ToDoSignlevel1.controller">被分派事項</a></td>
 				</tr>
 				</c:if>
 				

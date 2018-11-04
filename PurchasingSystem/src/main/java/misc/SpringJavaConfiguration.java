@@ -41,29 +41,29 @@ import Po.model.PO_SigningProcessBean;
 @ComponentScan(basePackages={"Apply,Account,Po,Inv"})
 public class SpringJavaConfiguration {
 	
-//	@Bean
-//	public DataSource dataSource() {//不是用網頁測試的時候用的
-//	    DriverManagerDataSource dmds =new DriverManagerDataSource();
-//	    dmds.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-//	    dmds.setUrl("jdbc:sqlserver://localhost:1433;database=PurchasingSystem");
-//	    dmds.setUsername("sa");
-//	    dmds.setPassword("password");
-//		return dmds;
-//	}        
 	@Bean
-	public DataSource dataSource() {
-		JndiObjectFactoryBean factory = new JndiObjectFactoryBean();
-		factory.setJndiName("java:comp/env/jdbc/xxx");
-		factory.setProxyInterface(javax.sql.DataSource.class);
-		try {
-			factory.afterPropertiesSet();
-		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
-		} catch (NamingException e) {
-			e.printStackTrace();
-		}
-		return (DataSource) factory.getObject();
-	}
+	public DataSource dataSource() {//不是用網頁測試的時候用的
+	    DriverManagerDataSource dmds =new DriverManagerDataSource();
+	    dmds.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+	    dmds.setUrl("jdbc:sqlserver://localhost:1433;database=PurchasingSystem");
+	    dmds.setUsername("sa");
+	    dmds.setPassword("password");
+		return dmds;
+	}        
+//	@Bean
+//	public DataSource dataSource() {
+//		JndiObjectFactoryBean factory = new JndiObjectFactoryBean();
+//		factory.setJndiName("java:comp/env/jdbc/xxx");
+//		factory.setProxyInterface(javax.sql.DataSource.class);
+//		try {
+//			factory.afterPropertiesSet();
+//		} catch (IllegalArgumentException e) {
+//			e.printStackTrace();
+//		} catch (NamingException e) {
+//			e.printStackTrace();
+//		}
+//		return (DataSource) factory.getObject();
+//	}
 	
 	@Bean
 	public SessionFactory sessionFactory() {

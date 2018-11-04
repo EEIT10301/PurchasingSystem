@@ -65,7 +65,7 @@
 				<td>${back.employeeBean.emp_name}</td>
 				<td>${back.pO_MainBean.pO_Vendor_InfoBean.vendor_name}</td>
 				<td>${back.total_price}</td>
-				<td><a href="NewInvoiceForm.controller?invid=${back.inv_id}">修改請款單</a></td>
+				<td><a href="ShowReturnInvoiceForm.controller?poid=${back.po_id}">修改請款單</a></td>
 			</tr>
 		</c:forEach>
 		</table>
