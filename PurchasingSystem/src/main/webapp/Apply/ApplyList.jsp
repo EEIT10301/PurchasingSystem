@@ -108,6 +108,7 @@ body {
 	<h3>${errors.cate}</h3>
 	<div class="prolist">
 		<c:forEach var="pro" items="${cart}">
+		 <c:if test="${pro.pro_amount>0}">
 			<div class='pro'>
 				<form action="<c:url value="/Apply/ApplyListsend.controller" />"
 					method="post">
@@ -151,6 +152,7 @@ body {
 						type='submit' name='send' value='刪除此項產品'>
 				</form>
 			</div>
+			</c:if>
 		</c:forEach>
 	</div>
 	<div class="prolist">

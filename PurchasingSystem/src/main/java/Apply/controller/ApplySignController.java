@@ -75,17 +75,103 @@ public class ApplySignController {
 	}
 	@RequestMapping("/Apply/ApplySignnerdetail.controller")
 	//請參照ApplyMangerSystem.jsp
-	public String signerdetail(App_SigningProcessBean bean,BindingResult bindingResult,
-			Model model ,HttpSession session) {
-				String appid=bean.getApp_id();
-				App_MainBean xs=app_MainService.select(appid);
-				model.addAttribute("appid", appid);
-				model.addAttribute("singerlist", xs);
+	public String signerdetail(String app_manger,String app_sta,String app_id,
+			Model model ,HttpSession session,String send) {
+		EmployeeBean ben=(EmployeeBean) session.getAttribute("user");
+		String empid=ben.getEmp_id();
+				String appid=app_id;
+				App_MainBean appmain=app_MainService.select(appid);
+				Set<App_SigningProcessBean>  app_Sign=appmain.getApp_SigningProcessBean();
+				Set<AppDetailBean> appDetail=appmain.getAppDetailBean();				
+	if(send.equals("sendok")) {//按下簽核中表單 1.請購核准 退回 2.送出 退回
+		App_SigningProcessBean xs = new App_SigningProcessBean();
+		App_SigningProcessBean xs1 = new App_SigningProcessBean();				
+		for(App_SigningProcessBean x:app_Sign) {
+if(x.getApp_manger().equals(empid)&&x.getSig_sta().equals("簽核中")&&x.getApp_sta().equals("請購核准")) {
+				//總經理或請購主管按下完成
+				xs=x;
+				for(App_SigningProcessBean xz:app_Sign) {
+					if(xz.getSig_rank()==x.getSig_rank()-1)	{
+						xs1=xz;
+					}
+				
+				}
+
+				model.addAttribute("thispro", xs);//本次簽核流程
+				model.addAttribute("beforepro", xs1);//本次簽核流程的前一次
+				model.addAttribute("sendsubmit1", "請購核准");
+				model.addAttribute("sendsubmit2", "退回");
+}else if(x.getApp_manger().equals(empid)&&x.getSig_sta().equals("簽核中")&&x.getApp_sta().equals("請購主管審核中")){
+	//採購主管點給總經理
+	xs=x;
+	for(App_SigningProcessBean xz:app_Sign) {
+		if(xz.getSig_rank()==x.getSig_rank()-1)	{
+			xs1=xz;
+		}
+	
+	}
+	model.addAttribute("thispro", xs);//本次簽核流程
+	model.addAttribute("beforepro", xs1);//本次簽核流程的前一次
+	model.addAttribute("sendsubmit1", "送出");
+	model.addAttribute("sendsubmit2", "退回");
+}
+			
+		}				
+}else {//按下退回中表單 1.送出 註銷請購單 2.送出 退回
+	App_SigningProcessBean xs = new App_SigningProcessBean();
+	App_SigningProcessBean xs1 = new App_SigningProcessBean();				
+for(App_SigningProcessBean x:app_Sign) {
+if(x.getApp_manger().equals(empid)&&x.getSig_sta().equals("退回中")&&x.getApp_sta().equals("請購主管審核中"))  {
+		//總經理退採購主管時
+			xs=x;
+			for(App_SigningProcessBean xz:app_Sign) {
+				if(xz.getSig_rank()==x.getSig_rank()+1)	{
+					xs1=app_SigningProcessService.selectrank(xz.getApp_id(), xz.getSig_rank());
+				}
+			
+			}
+			model.addAttribute("nothispro", xs);//本次退回流程
+			model.addAttribute("nobeforepro", xs1);//本次退回流程上一個
+			model.addAttribute("sendsubmit1", "送出");
+			model.addAttribute("sendsubmit2", "退回");
+
+			}else if(x.getApp_manger().equals(empid)&&x.getSig_sta().equals("退回中")&&x.getApp_sta().equals("申請中")) {
+				//採購主管退給採購時
+				xs=x;
+				for(App_SigningProcessBean xz:app_Sign) {
+					if(xz.getSig_rank()==x.getSig_rank()+1)	{
+						xs1=app_SigningProcessService.selectrank(xz.getApp_id(), xz.getSig_rank());
+					}
+				
+				}
+				model.addAttribute("nothispro", xs);//本次退回流程
+				model.addAttribute("nobeforepro", xs1);//本次退回流程上一個
+				model.addAttribute("sendsubmit1", "送出");
+				model.addAttribute("sendsubmit2", "註銷請購單");
+			}		
+}										
+}
+
+	
+				model.addAttribute("appid", appid);//請購id
+				model.addAttribute("appmain", appmain);//請購主檔
+				model.addAttribute("appDetail", appDetail);//請購細項
+				model.addAttribute("app_Sign", app_Sign);//請購簽核流程app_Sign
 				return "apply.signerdetail";
 				
 			}
+//	@RequestMapping("/Apply/ApplySignnerdetail.controller")
+//	//請參照ApplyMangerSystem.jsp
+//	public String signerdetail(App_SigningProcessBean bean,BindingResult bindingResult,
+//			Model model ,HttpSession session) {
+//				String appid=bean.getApp_id();
+//				App_MainBean xs=app_MainService.select(appid);
+//				model.addAttribute("appid", appid);
+//				model.addAttribute("singerlist", xs);
+//				return "apply.signerdetail";
+//				
+//			}
 	@RequestMapping("/Apply/toApplySignnerdetail.controller")
-	//
 	public String tosignerdetail(App_SigningProcessBean bean,BindingResult bindingResult,
 			Model model ,HttpSession session) {
 		EmployeeBean ben=(EmployeeBean) session.getAttribute("user");
@@ -185,18 +271,18 @@ public class ApplySignController {
 			Model model ,HttpSession session,String send,String SignSug) throws ParseException {
 		EmployeeBean ben=(EmployeeBean) session.getAttribute("user");
 		String empid=ben.getEmp_id();
-		Map<String, String> errors = new HashMap<String, String>();//請輸入簽核意見
-		if(SignSug ==null ||SignSug.length()==0||SignSug.trim().isEmpty()) {
-			errors.put("plz", "請輸入文字");
-		}
-		if(errors.size()>0) {
-			String appid=bean.getApp_id();
-			App_MainBean xs=app_MainService.select(appid);
-			model.addAttribute("appid", appid);
-			model.addAttribute("singerlist", xs);
-			model.addAttribute("error", errors);
-			return "apply.signerdetail";
-		}
+//		Map<String, String> errors = new HashMap<String, String>();//請輸入簽核意見
+//		if(SignSug ==null ||SignSug.length()==0||SignSug.trim().isEmpty()) {
+//			errors.put("plz", "請輸入文字");
+//		}
+//		if(errors.size()>0) {
+//			String appid=bean.getApp_id();
+//			App_MainBean xs=app_MainService.select(appid);
+//			model.addAttribute("appid", appid);
+//			model.addAttribute("singerlist", xs);
+//			model.addAttribute("error", errors);
+//			return "apply.signerdetail";
+//		}
 		java.util.Date date = new java.util.Date();
 		java.sql.Date data1 = new java.sql.Date(date.getTime());
 		DateFormat dateFormate =new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
