@@ -12,8 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.beans.propertyeditors.CustomNumberEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -42,6 +46,14 @@ public class POInvoiceController {
 	EmployeeService employeeService;
 	@Autowired
 	Account_InvoiceService account_InvoiceService;
+	
+	@InitBinder
+	public void registerPropertyEditor(WebDataBinder dataBinder) {
+		dataBinder.registerCustomEditor(java.util.Date.class, 
+				new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"),false));
+		dataBinder.registerCustomEditor(Integer.class, 
+				"Total_price",new CustomNumberEditor(Integer.class, false));
+	}
 	
 	//查詢待請款採購單及退回請款單
 	@RequestMapping("/Po/Polist.controller")
@@ -84,11 +96,13 @@ public class POInvoiceController {
 			EmployeeBean empbean = (EmployeeBean)session.getAttribute("user");
 			String emp_id=empbean.getEmp_id();
 			String date = pO_InvoiceService.calcExpirePaymentDate(poMainBean.getpO_Vendor_InfoBean().getPayment_term(),poSignBean.getSig_date());
+			String oldRecript_date = new SimpleDateFormat("yyyy-MM-dd").format(accountInvoiceBean.getRecript_date());
 			List<EmployeeBean> employee=employeeService.selectPoEmployee("採購部", 2);
 			if(accountInvoiceBean!=null) {
 				model.addAttribute("invoice", accountInvoiceBean);
 				model.addAttribute("pomain", poMainBean);
 				model.addAttribute("paymentDate", date);
+				model.addAttribute("oldRecript_date", oldRecript_date);
 				model.addAttribute("manager", employee);
 				model.addAttribute("poid", poid);
 				model.addAttribute("sigSug",sigSug);
@@ -101,13 +115,11 @@ public class POInvoiceController {
 		public String uploadFile(Model model ,HttpSession session,String name,@RequestParam("Receiptpic") MultipartFile file
 			,String Emp_id,String Emp_dep, String Vendor_name, String Vendor_id, String Total_price, 
 			String Except_Payment_Date, String Recript_date, String selectPOManager, String SignSug,String poid,HttpServletRequest request) throws IllegalStateException, IOException, ParseException {
-		
 		//上傳圖片	
 		String invId="In"+poid.substring(2);
 		//String destination ="C:\\Users\\User\\git\\repository2\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
-		//String destination ="D:\\Maven-project\\repository\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
-		String destination = "../images/"+invId+".jpg";
-	    //System.out.println("uploadRootPath=" + destination);
+		String destination ="D:\\Maven-project\\repository\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
+		//String destination = "\\"+"images"+"\\"+invId+".jpg";
 		if(file !=null || file.getSize()>0) {
 		File files =new File(destination);
 		file.transferTo(files);}
@@ -131,15 +143,16 @@ public class POInvoiceController {
 		//update 採款單請款作業簽核流程
 				pO_InvoiceService.updatePoSigningProcess(poid, SignSug);
 
-		return "TodoInvoiceList";
+		return "newForm";
 	}
+		
 		//採購承辦重送請款單
 		@RequestMapping(value = "/Po/resendInvoice.controller", method = RequestMethod.POST)
 		public String resend(Account_InvoiceBean account_InvoiceBean,Model model ,HttpSession session,String name,@RequestParam("Receiptpic") MultipartFile file
-			,String selectPOManager, String poid,HttpServletRequest request,Integer sig_Rank, String SignSug ) throws IllegalStateException, IOException, ParseException {
+			,String selectPOManager, String poid,HttpServletRequest request,Integer sig_Rank, String SignSug) throws IllegalStateException, IOException, ParseException {
 		
 		//上傳圖片	
-		String invId="In"+account_InvoiceBean.getPo_id().substring(2);
+		String invId="In"+poid.substring(2);
 		//String destination ="C:\\Users\\User\\git\\repository2\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
 		String destination ="D:\\Maven-project\\repository\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
 		//String destination = "images/"+invId+".jpg";
@@ -160,7 +173,7 @@ public class POInvoiceController {
 		String sig_Sta1="已申請";
 		String sig_Sta2="簽核中";
 		pO_InvoiceService.updateAccountSigningProcess(invId, sig_Rank, sig_Sta1, sig_Sta2, SignSug);
-		return "TodoInvoiceList";
+		return "updateForm";
 	}
 	
 	//採購主管查看要審核的該張請款單  
