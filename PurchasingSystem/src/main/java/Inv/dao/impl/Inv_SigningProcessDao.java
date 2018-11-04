@@ -26,21 +26,26 @@ public class Inv_SigningProcessDao implements Inv_SigningProcessIDao{
 		SessionFactory sessionFactory = (SessionFactory) context.getBean("sessionFactory");
 		sessionFactory.getCurrentSession().beginTransaction();
 
-		Inv_SigningProcessIDao productDAO = (Inv_SigningProcessIDao) context.getBean("inv_SigningProcessDao");
-		java.util.Date date = new java.util.Date();
-		java.sql.Date datas =new java.sql.Date(date.getTime());
-		Inv_SigningProcessBean ss=new Inv_SigningProcessBean("emp001","申請中","Ck20181013001",datas,"已簽核","請核准",1);
-		Inv_SigningProcessBean ss1=new Inv_SigningProcessBean("emp002","已審核完成","Ck20181013001",datas,"已簽核","OK",2);
-		productDAO.update(ss);
-		productDAO.update(ss1);
+		Inv_SigningProcessIDao Inv_SigningProcessDAO = (Inv_SigningProcessIDao) context.getBean("inv_SigningProcessDao");
+		 List<Inv_SigningProcessBean> ddd = Inv_SigningProcessDAO.selectempidsend("emp000", "待驗收");
+		 for(int i=0;i<ddd.size();i++) {
+			 Inv_SigningProcessBean aaa = ddd.get(i);
+//			 System.out.println(aaa.getChk_Id());
+		 }		
+		 //		java.util.Date date = new java.util.Date();
+//		java.sql.Date datas =new java.sql.Date(date.getTime());
+//		Inv_SigningProcessBean ss=new Inv_SigningProcessBean("emp001","申請中","Ck20181013001",datas,"已簽核","請核准",1);
+//		Inv_SigningProcessBean ss1=new Inv_SigningProcessBean("emp002","已審核完成","Ck20181013001",datas,"已簽核","OK",2);
+//		productDAO.update(ss);
+//		productDAO.update(ss1);
 //		sessionFactory.getCurrentSession().getTransaction().commit();
 //		sessionFactory.getCurrentSession().beginTransaction();
-		List<Inv_SigningProcessBean> selects = productDAO.select();
-		for(Inv_SigningProcessBean xz:selects) {
-             System.out.println("1.驗收單流程:"+xz.getSig_Date());
-             System.out.println("2.員工表格:"+xz.getEmployeeBean().getEmp_name());
-             System.out.println("3.請款表格:"+xz.getInv＿ProductCheckBean().getEmp_ID());
-         }
+//		List<Inv_SigningProcessBean> selects = productDAO.select();
+//		for(Inv_SigningProcessBean xz:selects) {
+//             System.out.println("1.驗收單流程:"+xz.getSig_Date());
+//             System.out.println("2.員工表格:"+xz.getEmployeeBean().getEmp_name());
+//             System.out.println("3.請款表格:"+xz.getInv＿ProductCheckBean().getEmp_ID());
+//         }
 		sessionFactory.getCurrentSession().getTransaction().commit();
 	}
 	@SuppressWarnings("unchecked")

@@ -58,8 +58,10 @@ public List<Inv_SigningProcessBean> selectempidsend(String inv_manger, String si
 	List<Inv_SigningProcessBean> beans = inv_SigningProcessIDao.selectempidsend( inv_manger,sig_sta);
 	if(beans!=null) {
 		return beans;
+	
 	}
 	return null;
 }
+
 
 }

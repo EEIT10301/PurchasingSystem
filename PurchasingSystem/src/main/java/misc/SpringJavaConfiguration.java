@@ -50,7 +50,7 @@ public class SpringJavaConfiguration {
 //	    dmds.setPassword("passw0rd");
 //		return dmds;
 //	}        
-	@Bean
+@Bean
 	public DataSource dataSource() {
 		JndiObjectFactoryBean factory = new JndiObjectFactoryBean();
 		factory.setJndiName("java:comp/env/jdbc/xxx");

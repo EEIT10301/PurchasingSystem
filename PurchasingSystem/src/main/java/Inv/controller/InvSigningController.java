@@ -22,7 +22,7 @@ public class InvSigningController {
 	@RequestMapping("/Inv/sendEmployee.controller")// 多少驗收單分派頁面
 	public String sendEmployee(Model model, HttpSession session) {
 		EmployeeBean beans = (EmployeeBean) session.getAttribute("user");
-		List<Inv_SigningProcessBean> list = inv_SigningProcessService.selectempidsend(beans.getEmp_id(), "分派中");
+		List<Inv_SigningProcessBean> list = inv_SigningProcessService.selectempidsend(beans.getEmp_id(), "待分派");
 		List<Inv_SigningProcessBean> lists = new LinkedList<Inv_SigningProcessBean>();
 		if (list == null) {
 			model.addAttribute("nosendlist", "無待分派驗收單");
@@ -31,7 +31,7 @@ public class InvSigningController {
 			for (int i = 0; i < list.size(); i++) {
 				Inv_SigningProcessBean x = list.get(i);
 				String invid = x.getChk_Id();
-				Inv_SigningProcessBean xs = inv_SigningProcessService.select("產生驗收單", invid);
+				Inv_SigningProcessBean xs = inv_SigningProcessService.select("貨物狀態", invid);
 				if (xs != null) {
 					lists.add(x);
 					lists.add(xs);

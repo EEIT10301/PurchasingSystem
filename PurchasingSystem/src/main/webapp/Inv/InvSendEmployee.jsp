@@ -10,26 +10,26 @@
 <body>
 	<c:if test="${not empty sendlist }">
 	<c:forEach var="sendl" items="${sendlist}">
-	<c:if test="${sendl.sig_renk==1}">
-	<P>驗收單單號:${sendl.chk_id }
-	<P>產生時間: ${sendl.sig_date}
+	<c:if test="${sendl.sig_Rank==1}">
+	<P>驗收單單號:${sendl.chk_Id }
+	<P>產生時間: ${sendl.sig_Date}
 	<c:forEach var="sendl1" items="${sendlist}">
-						<c:if test="${sendl1.po_id == sendl.po_id and sendl1.sig_rank ==2}">
+						<c:if test="${sendl1.chk_Id == sendl.chk_Id and sendl1.sig_Rank ==2}">
 					<p>
 					
-	             	<Input type='hidden' name='inv_manger' value='${sendl1.po_manger}'>
+	             	<Input type='hidden' name='inv_Manger' value='${sendl1.inv_Manger}'>
 					<P />
-					<Input type='hidden' name='inv_sta' value='${sendl1.po_sta}'>
+					<Input type='hidden' name='inv_Sta' value='${sendl1.inv_Sta}'>
 					<P />
-					<Input type='hidden' name='chk_id' value='${sendl1.chk_id}'>
+					<Input type='hidden' name='chk_Id' value='${sendl1.chk_Id}'>
 					<P />
-					<Input type='hidden' name='sig_date' value='${sendl1.sig_date}'>
+					<Input type='hidden' name='sig_Date' value='${sendl1.sig_Date}'>
 					<P />
-					<Input type='hidden' name='sig_sta' value='${sendl1.sig_sta}'>
+					<Input type='hidden' name='sig_Sta' value='${sendl1.sig_Sta}'>
 					<P />
-					<Input type='hidden' name='sig_sug' value='${sendl1.sig_sug}'>
+					<Input type='hidden' name='sig_Sug' value='${sendl1.sig_Sug}'>
 					<P />
-					<Input type='hidden' name='sig_rank' value='${sendl1.sig_rank}'>
+					<Input type='hidden' name='sig_Rank' value='${sendl1.sig_Rank}'>
 					<P />
 						<Input type='submit' name='send' value='分派'>
 				</c:if>
