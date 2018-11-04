@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import Apply.model.App_SigningProcessBean;
 import Po.dao.PO_SigningProcessIDao;
 import Po.model.PO_SigningProcessBean;
 
@@ -67,9 +68,28 @@ public class PO_SigningProcessService {
 		}
 		return null;
 	}
+	public  PO_SigningProcessBean selectempandrank(String po_id,Integer Sig_rank){
+		PO_SigningProcessBean beans =pO_SigningProcessIDao.selectempandrank( po_id,Sig_rank);
+		if(beans!=null) {
+			return beans;
+		}
+		return null;
 
-	public PO_SigningProcessBean selectorderdetail(String po_id) {
-		return pO_SigningProcessIDao.selectorderdetail(po_id);
 	}
 	
+	public List<PO_SigningProcessBean> selectmangers(String app_Manger, String sig_Sta) {
+		List<PO_SigningProcessBean> beans =pO_SigningProcessIDao.selectmangers(app_Manger,sig_Sta);
+		if(beans!=null) {
+			return beans;
+		}
+		return null;
+	}
+	
+	public  PO_SigningProcessBean selectrank(String po_id,Integer sig_Rank) {
+		PO_SigningProcessBean beans =pO_SigningProcessIDao.selectrank(po_id,sig_Rank);
+		if(beans!=null) {
+			return beans;
+		}
+		return null;
+	}
 }

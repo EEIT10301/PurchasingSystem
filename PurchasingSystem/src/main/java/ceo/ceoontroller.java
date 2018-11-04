@@ -1,4 +1,4 @@
-package Po.controller;
+package ceo;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -28,9 +28,8 @@ import Po.service.PO_DetailService;
 import Po.service.PO_MainService;
 import Po.service.PO_QueryService;
 import Po.service.PO_SigningProcessService;
-
 @Controller
-public class POManagerSignController {
+public class ceoontroller {
 	@Autowired
 	PO_SigningProcessService pO_SigningProcessService;
 	@Autowired
@@ -46,8 +45,8 @@ public class POManagerSignController {
 	@Autowired
 	PO_QueryService pO_QueryService;
 	
-	@RequestMapping("/Po/POManagerSigner.controller") // 採購單審核頁面
-	public String POManagerSigner(Model model, HttpSession session) {
+	@RequestMapping("/Apply/ceoPOManagerSigner.controller") // 總經理採購單審核頁面
+	public String CeoPOManagerSigner(Model model, HttpSession session) {
 		EmployeeBean ben=(EmployeeBean) session.getAttribute("user");
 		String empid=ben.getEmp_id();
 		List<PO_SigningProcessBean> PO_SignSend=pO_SigningProcessService.selectempidsend(empid, "簽核中");
@@ -91,14 +90,14 @@ public class POManagerSignController {
 			model.addAttribute("PO_SignBackRank", PO_SignBackRank);			
 			model.addAttribute("Polistsranks", Polistsranks);
 			model.addAttribute("Polistsbackranks", Polistsbackranks);
-			return "PoSignerProcess.to";
+			return "CeoPosignprocess.do";
 		}else{
 			model.addAttribute("nopolist", "無待簽核表單");
-			return "PoSignerProcess.to";
+			return "CeoPosignprocess.do";
 		}
 		
 	}
-	@RequestMapping("/Po/POManagerSignertosign.controller") // 採購單審核頁面按下開始簽核
+	@RequestMapping("/Apply/ceoPOManagerSignertosign.controller") // 採購單審核頁面按下開始簽核
 	public String POManagerSignertosign(Model model, HttpSession session,String po_manger
 			,String po_sta,String po_id, String send) {
 		EmployeeBean ben=(EmployeeBean) session.getAttribute("user");
@@ -195,11 +194,11 @@ public class POManagerSignController {
 		model.addAttribute("poquery", poquery);//採購詢價
 		model.addAttribute("posignprocess", posignprocess);//採購簽核
 		
-		return "PoSignerProcessdetail.to";
+		return "CeoPosignprocessdetail.do";
 		
 		
 	}
-	@RequestMapping("/Po/POManagerSignertosigndetail.controller") // 採購單審核頁面按下開始簽核
+	@RequestMapping("/Apply/ceoPOManagerSignertosigndetail.controller") // 採購單審核頁面按下開始簽核
 	public String POManagerSignertosigndetail(PO_SigningProcessBean Bean,BindingResult bindingResult,
 			Model model, HttpSession session
 			,String send,String SignSug) throws ParseException {
@@ -233,13 +232,6 @@ nextsign.setSig_sta("簽核中");
         	nextsign.setSig_sta("下單中");
         }
         else if(send.equals("修改詢價單")) {
- PO_SigningProcessBean thissign=pO_SigningProcessService.select(Bean.getPo_sta(),Bean.getPo_id());//這次的流程
-        	//下一個簽核流程
-        	thissign.setSig_sta("詢價中");
-        	thissign.setSig_date(dates);
-        	thissign.setSig_sug(SignSug);
-
-        	
         	
         }
         else if(send.equals("退回")) {
@@ -252,7 +244,7 @@ nextsign.setSig_sta("簽核中");
 
         	beforesign.setSig_sta("退回中");
         }
-		return "POlogin.successint";
+		return "ceo.login";
 		
 		
 	}

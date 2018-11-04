@@ -1,5 +1,9 @@
 package Apply.controller;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -86,15 +90,16 @@ public class ApplySignController {
 			Model model ,HttpSession session) {
 		EmployeeBean ben=(EmployeeBean) session.getAttribute("user");
 		String empid=ben.getEmp_id();
-		List<App_SigningProcessBean> Sproductlistsx1 =new LinkedList<App_SigningProcessBean>();
-		List<App_SigningProcessBean> Sproductlistsx2 =new LinkedList<App_SigningProcessBean>();
+		List<App_SigningProcessBean> Sproductlistsx1 =app_SigningProcessService.selectmangers(empid, "簽核中");;
+		List<App_SigningProcessBean> Sproductlistsx2 =app_SigningProcessService.selectmangers(empid, "退回中");
 		List<App_SigningProcessBean> Sproductlistsx3 =new LinkedList<App_SigningProcessBean>();
-	
-		Sproductlistsx1=app_SigningProcessService.selectmangers(empid, "簽核中");
-		Sproductlistsx2=app_SigningProcessService.selectmangers(empid, "退回中");
+//		Sproductlistsx1=
+//		Sproductlistsx2=;
 		Integer Applylistsranks =0;
 		Integer nosendranks=0;
-		if (Sproductlistsx1 !=null && Sproductlistsx1.size()>0) {
+		if(Sproductlistsx1==null) {
+			
+		}else {
 			for(int i=0;i<Sproductlistsx1.size();i++) {
 				App_SigningProcessBean xsz=new App_SigningProcessBean();
 				xsz=Sproductlistsx1.get(i);			
@@ -106,6 +111,19 @@ public class ApplySignController {
 					}
 			}
 		}
+			
+//		if (Sproductlistsx1 !=null && Sproductlistsx1.size()>0) {
+//			for(int i=0;i<Sproductlistsx1.size();i++) {
+//				App_SigningProcessBean xsz=new App_SigningProcessBean();
+//				xsz=Sproductlistsx1.get(i);			
+//					Applylistsranks=xsz.getSig_rank();
+//					String apid = xsz.getApp_id();
+//					App_SigningProcessBean xsz1 =app_SigningProcessService.selectrank(apid, Applylistsranks-1);
+//					if(xsz1!=null) {
+//						Sproductlistsx3.add(xsz1);
+//					}
+//			}
+//		}
 		
 		if(Sproductlistsx1!=null||Sproductlistsx2!=null){
 			model.addAttribute("Applylistsranks", Applylistsranks);
@@ -164,7 +182,7 @@ public class ApplySignController {
 			}
 	@RequestMapping("/Apply/applysignss.controller")
 	public String applySigner(App_SigningProcessBean bean,BindingResult bindingResult,
-			Model model ,HttpSession session,String send,String SignSug) {
+			Model model ,HttpSession session,String send,String SignSug) throws ParseException {
 		EmployeeBean ben=(EmployeeBean) session.getAttribute("user");
 		String empid=ben.getEmp_id();
 		Map<String, String> errors = new HashMap<String, String>();//請輸入簽核意見
@@ -180,7 +198,11 @@ public class ApplySignController {
 			return "apply.signerdetail";
 		}
 		java.util.Date date = new java.util.Date();
-		java.sql.Date datas =new java.sql.Date(date.getTime());
+		java.sql.Date data1 = new java.sql.Date(date.getTime());
+		DateFormat dateFormate =new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		String now= dateFormate.format(data1);
+		SimpleDateFormat sdf =new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date datas=sdf.parse(now);
 		    if (send.equals("請購核准")) {//如果按下請購核准就產生採購單
 		    	
 		  App_SigningProcessBean thissign = app_SigningProcessService.select(bean.getApp_sta(), bean.getApp_id());

@@ -1,7 +1,9 @@
 package Po.controller;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -108,15 +110,19 @@ public class POSigningController {
 
 	@RequestMapping("/Po/sendlist.controller") // 主管點選人分派頁面
 	public String sendlist(PO_SigningProcessBean bean, BindingResult bindingResult, Model model, HttpSession session,
-			String send, String employeesend, String SignSug) {
+			String send, String employeesend, String SignSug) throws ParseException {
 		EmployeeBean beans = (EmployeeBean) session.getAttribute("user");
 		java.util.Date date = new java.util.Date();
-		java.sql.Date datas = new java.sql.Date(date.getTime());
+		java.sql.Date data1 = new java.sql.Date(date.getTime());
+		DateFormat dateFormate =new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		String now= dateFormate.format(data1);
+		SimpleDateFormat sdf =new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date dates=sdf.parse(now);
 		PO_MainBean pomain = pO_MainService.select(bean.getPo_id());
 		pomain.setEmp_id(employeesend);
 		PO_SigningProcessBean secondsigningprocess = pO_SigningProcessService.select(bean.getPo_sta(), bean.getPo_id());
 		secondsigningprocess.setSig_sta("已分派");
-		secondsigningprocess.setSig_date(datas);
+		secondsigningprocess.setSig_date(dates);
 		secondsigningprocess.setSig_sug(SignSug);
 		PO_SigningProcessBean secondsigningprocess1 = new PO_SigningProcessBean(employeesend, "詢價中", bean.getPo_id(),
 				null, "詢價中", null, 3);
@@ -159,7 +165,7 @@ public class POSigningController {
 	@RequestMapping("/Po/sendthisselectlist.controller") // 採購人員點選待詢價採購單頁面
 	public String sendlistss(String po_manger, String po_sta, String po_id, Model model, HttpSession session) {
 		PO_SigningProcessBean bean = pO_SigningProcessService.select(po_sta, po_id);
-		List<PO_QueryBean> POQuery=pO_QueryService.selectQueryBean(po_id); 
+		List<PO_QueryBean> POQuery = pO_QueryService.selectQueryBean(po_id);
 		model.addAttribute("poprocess1", bean);
 		model.addAttribute("queryss", POQuery);
 		return "select.listDetail";
@@ -168,15 +174,15 @@ public class POSigningController {
 	@RequestMapping("/Po/posendlistsign.controller") // 採購人員於待詢價採購單頁面選擇送出審核
 	public String posendlistsign(String po_manger, String po_sta, String po_id, Model model, HttpSession session) {
 		PO_SigningProcessBean bean = pO_SigningProcessService.select(po_sta, po_id);
-		//List<PO_Vendor_InfoBean> AllPO_Vendor = pO_Vendor_InfoService.select();
+		// List<PO_Vendor_InfoBean> AllPO_Vendor = pO_Vendor_InfoService.select();
 		model.addAttribute("poprocess1", bean);
-		List<PO_QueryBean> POQuery=pO_QueryService.selectQueryBean(po_id); 
+		List<PO_QueryBean> POQuery = pO_QueryService.selectQueryBean(po_id);
 		model.addAttribute("AllPO_Vendor", POQuery);
-		if(POQuery==null) {
+		if (POQuery == null) {
 			model.addAttribute("noselist", "審核前請先新增詢價紀錄");
 			return "select.listDetail";
-		}else {
-			
+		} else {
+
 			return "Posend.sign";
 		}
 	}
@@ -199,25 +205,25 @@ public class POSigningController {
 		List<PO_QueryBean> query = pO_QueryService.selectQueryBean(bean.getPo_ID());
 		java.util.Date date = new java.util.Date();
 		java.sql.Date datas = new java.sql.Date(date.getTime());
-		DateFormat dateFormate =new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		DateFormat dateFormate = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		bean.setPo_querydate(datas);
-	    String now= dateFormate.format(datas);
+		String now = dateFormate.format(datas);
 
-		PO_QueryBean searchbean =pO_QueryService.select(bean.getPo_ID(), bean.getVendor_ID());
-		if(searchbean!=null) {
+		PO_QueryBean searchbean = pO_QueryService.select(bean.getPo_ID(), bean.getVendor_ID());
+		if (searchbean != null) {
 			searchbean.setPo_querydate(datas);
 			searchbean.setPo_totalprice(bean.getPo_totalprice());
 			model.addAttribute("query1", searchbean);
 			model.addAttribute("now", now);
-		}else {
+		} else {
 			PO_QueryBean insert = pO_QueryService.insert(bean);
-			PO_Vendor_InfoBean xs= pO_Vendor_InfoService.select(bean.getVendor_ID());
+			PO_Vendor_InfoBean xs = pO_Vendor_InfoService.select(bean.getVendor_ID());
 			model.addAttribute("now", now);
 			model.addAttribute("queryVendor", xs);
 			model.addAttribute("query1", insert);
-			//searchbean=pO_QueryService.select(bean.getPo_ID(), bean.getVendor_ID());
+			// searchbean=pO_QueryService.select(bean.getPo_ID(), bean.getVendor_ID());
 		}
-		
+
 		PO_SigningProcessBean sendbean = pO_SigningProcessService.select(po_sta, po_id);
 		model.addAttribute("poprocess2", sendbean);
 		model.addAttribute("po_manger", po_manger);
@@ -324,12 +330,19 @@ public class POSigningController {
 				PO_MainBean pomain = pO_MainService.select(poid1);
 				pomain.setVendor_ID(AllPO_Vendors);
 				pomain.setTotal_price(Integer.valueOf(allListprice));
+				Set<PO_DetailBean> PODetail = pomain.getpO_DetailBean();
 				for (int i = 0; i < po_id.length; i++) {
 					Integer thisquotation = Integer.valueOf(quotation[i]);
 					Integer thistotal_Price = Integer.valueOf(total_Price[i]);
-					PO_DetailBean thispodetail = pO_DetailService.select(po_id[i], part_No[i]);
-					thispodetail.setQuotation(thisquotation);
-					thispodetail.setTotal_Price(thistotal_Price);
+					for (PO_DetailBean x : PODetail) {
+						if(x.getPart_No().equals(part_No[i]));
+						x.setQuotation(thisquotation);
+						x.setTotal_Price(thistotal_Price);
+					}
+//					PO_DetailBean thispodetail = pO_DetailService.select(po_id[i], part_No[i]);
+//					thispodetail.setQuotation(thisquotation);
+//					thispodetail.setTotal_Price(thistotal_Price);
+//					pO_DetailService.update(thispodetail);
 				}
 				Set<PO_SigningProcessBean> posignprocess = pomain.getpO_SigningProcessBean();
 				for (PO_SigningProcessBean x : posignprocess) {
@@ -340,24 +353,39 @@ public class POSigningController {
 					}
 				}
 
-				PO_SigningProcessBean sx1 = new PO_SigningProcessBean(pomanger, "主管審核中", poid1, null, "簽核中", null, 4);
+				PO_SigningProcessBean sx1 = new PO_SigningProcessBean(pomanger, "主管審核完成", poid1, null, "簽核中", null, 4);
 				PO_SigningProcessBean sx2 = new PO_SigningProcessBean(thisemp.getEmp_id(), "下單中", poid1, null, "未下單",
 						null, 5);
 				PO_SigningProcessBean sx3 = new PO_SigningProcessBean(thisemp.getEmp_id(), "待收貨", poid1, null, "未收貨",
 						null, 6);
-				pO_SigningProcessService.insert(sx1);
-				pO_SigningProcessService.insert(sx2);
-				pO_SigningProcessService.insert(sx3);
+				PO_SigningProcessBean insert=pO_SigningProcessService.insert(sx1);
+				if(insert==null) {
+					PO_SigningProcessBean update=pO_SigningProcessService.selectempandrank(poid1, 4);
+					update.setSig_sta("簽核中");
+				}else {
+					
+					pO_SigningProcessService.insert(sx2);
+					pO_SigningProcessService.insert(sx3);
+				}
+				
+				
 			} else {// 如果會到總經理的話
 				PO_MainBean pomain = pO_MainService.select(poid1);
 				pomain.setVendor_ID(AllPO_Vendors);
 				pomain.setTotal_price(Integer.valueOf(allListprice));
+				Set<PO_DetailBean> PODetail = pomain.getpO_DetailBean();
 				for (int i = 0; i < po_id.length; i++) {
 					Integer thisquotation = Integer.valueOf(quotation[i]);
 					Integer thistotal_Price = Integer.valueOf(total_Price[i]);
-					PO_DetailBean thispodetail = pO_DetailService.select(po_id[i], part_No[i]);
-					thispodetail.setQuotation(thisquotation);
-					thispodetail.setTotal_Price(thistotal_Price);
+					for (PO_DetailBean x : PODetail) {
+						if(x.getPart_No().equals(part_No[i]));
+						x.setQuotation(thisquotation);
+						x.setTotal_Price(thistotal_Price);
+					}
+//					PO_DetailBean thispodetail = pO_DetailService.select(po_id[i], part_No[i]);
+//					thispodetail.setQuotation(thisquotation);
+//					thispodetail.setTotal_Price(thistotal_Price);
+//					pO_DetailService.update(thispodetail);
 				}
 				Set<PO_SigningProcessBean> posignprocess = pomain.getpO_SigningProcessBean();
 				for (PO_SigningProcessBean x : posignprocess) {
@@ -369,53 +397,58 @@ public class POSigningController {
 				}
 
 				PO_SigningProcessBean sx1 = new PO_SigningProcessBean(pomanger, "主管審核中", poid1, null, "簽核中", null, 4);
-				PO_SigningProcessBean sx2 = new PO_SigningProcessBean(boss, "主管審核中", poid1, null, "簽核中", null, 5);
+				PO_SigningProcessBean sx2 = new PO_SigningProcessBean(boss, "主管審核完成", poid1, null, "未簽核", null, 5);
 				PO_SigningProcessBean sx3 = new PO_SigningProcessBean(thisemp.getEmp_id(), "下單中", poid1, null, "未下單",
 						null, 6);
 				PO_SigningProcessBean sx4 = new PO_SigningProcessBean(thisemp.getEmp_id(), "待收貨", poid1, null, "未收貨",
 						null, 7);
-				pO_SigningProcessService.insert(sx1);
-				pO_SigningProcessService.insert(sx2);
-				pO_SigningProcessService.insert(sx3);
-				pO_SigningProcessService.insert(sx4);
+				PO_SigningProcessBean insert=pO_SigningProcessService.insert(sx2);
+				if(insert==null) {
+					PO_SigningProcessBean update=pO_SigningProcessService.selectempandrank(poid1, 4);
+					update.setSig_sta("簽核中");
+				}else {					
+					pO_SigningProcessService.insert(sx1);
+					pO_SigningProcessService.insert(sx3);
+					pO_SigningProcessService.insert(sx4);
+				}
+				
 			}
 			return "POlogin.successint";
 		}
 	}
-	@RequestMapping("/Po/signedorder.controller") 
-	public String signedOrder(Model model, HttpSession session,PO_SigningProcessBean bean) {
-		EmployeeBean beans = (EmployeeBean) session.getAttribute("user");
-		String empid = beans.getEmp_id();
-		List<PO_SigningProcessBean> selectlist = pO_SigningProcessService.selectempidsend(empid, "下單中");
-		List<PO_SigningProcessBean> selectlists = null;
-		selectlists = new LinkedList<PO_SigningProcessBean>();
-
-		if (selectlist == null) {
-			
-			model.addAttribute("noselectlists", "無待下單資訊");
-			return "SignedOrder.show";
-		} else {
-			for (int i = 0; i < selectlist.size(); i++) {
-				PO_SigningProcessBean x = selectlist.get(i);
-				PO_SigningProcessBean xs = pO_SigningProcessService.select("主管審核中", x.getPo_id());
 
 
-					if (xs != null) {
-		
-						selectlists.add(xs);
-					
-				}
-				
-				model.addAttribute("selectlists", selectlists);
-			}
-			return "SignedOrder.show";
-		}
 
-//		if(selectlist.size()>0 && selectlist!=null) {
+//	@RequestMapping("/Po/signedorder.controller")
+//	public String signedOrder(Model model, HttpSession session) {
+//		EmployeeBean beans = (EmployeeBean) session.getAttribute("user");
+//		String empid = beans.getEmp_id();
+//		List<PO_SigningProcessBean> selectlist = pO_SigningProcessService.selectempidsend(empid, "下單中");
+//		List<PO_SigningProcessBean> selectlists = null;
+//		selectlists = new LinkedList<PO_SigningProcessBean>();
+//		if (selectlist == null) {
+//
+//			model.addAttribute("noselectlists", "無待下單資訊");
+//			return "SignedOrder.show";
+//		} else {
+//			for (int i = 0; i < selectlist.size(); i++) {
+//				PO_SigningProcessBean x = selectlist.get(i);
+//				PO_SigningProcessBean xs = pO_SigningProcessService.select("主管審核中", x.getPo_id());
+//				if (xs != null) {
+//					selectlists.add(x);
+//					selectlists.add(xs);
+//				}
+//				model.addAttribute("selectlists", selectlists);
+//
+//			}
+//			return "SignedOrder.show";
+
 //		}
+
 //		}else {
-	}
+
 	
+	//採購主管的"待簽核請款單列表"
 	@RequestMapping("/Po/todoSignInvoice.controller")
 	public String todoSignInvoice(Model model, HttpSession session) {
 		EmployeeBean empbean = (EmployeeBean)session.getAttribute("user");
@@ -423,24 +456,11 @@ public class POSigningController {
 		
 		List<Account_InvoiceBean> InvoiceSign = pO_InvoiceService.findTodoSignInv(emp_id, "簽核中", 2);
 		model.addAttribute("listtodosign", InvoiceSign);
-		
 		return "todoSignInvoice.show";
 	}
 	
 	
-	@RequestMapping("/Po/signOrderDetail.controller")
-	public String signorderdetail(Model model,HttpSession session
-			,PO_SigningProcessBean bean,String send,String po_id) {
 
-		String signpo_id = bean.getPo_id();
-		
-			 PO_MainBean ss = pO_MainService.select(signpo_id);
-			model.addAttribute("productlistdetail2",ss);
-			model.addAttribute("empid", signpo_id);
-//			System.out.println(po_id);
-//			System.out.println(signpo_id);
 
-		return "signOrderDetail.show";
-	}
 
 }

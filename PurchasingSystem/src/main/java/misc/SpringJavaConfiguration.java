@@ -41,6 +41,7 @@ import Po.model.PO_SigningProcessBean;
 @ComponentScan(basePackages={"Apply,Account,Po,Inv"})
 public class SpringJavaConfiguration {
 	
+
 //	@Bean
 //	public DataSource dataSource() {//不是用網頁測試的時候用的
 //	    DriverManagerDataSource dmds =new DriverManagerDataSource();
@@ -50,6 +51,7 @@ public class SpringJavaConfiguration {
 //	    dmds.setPassword("passw0rd");
 //		return dmds;
 //	}        
+       
 	@Bean
 	public DataSource dataSource() {
 		JndiObjectFactoryBean factory = new JndiObjectFactoryBean();

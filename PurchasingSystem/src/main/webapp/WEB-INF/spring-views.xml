@@ -112,9 +112,21 @@
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/Po/SignedOrder.jsp"></property>
 	</bean>
+<<<<<<< HEAD
 	<bean id="signOrderDetail.show"
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/Po/SignedOrderDetail.jsp"></property>
+=======
+           <!-- 	      採購單簽核連結 -->
+		<bean id="PoSignerProcess.to"  
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Po/PoSignerProcess.jsp"></property>
+	</bean>
+	       <!-- 	      採購單簽核detail -->
+		<bean id="PoSignerProcessdetail.to"  
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Po/PoSignerProcessdetail.jsp"></property>
+>>>>>>> branch 'master' of https://github.com/EEIT10301/PurchasingSystem.git
 	</bean>
 	
 	<!-- 採購使用連結 -->
@@ -139,6 +151,10 @@
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/Account/Insertinvoiceform.jsp"></property>
 	</bean>
+	<bean id="updateForm"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Account/Updateinvoiceform.jsp"></property>
+	</bean>
 	<!-- 待請款單使用連結 -->
 
 
@@ -162,4 +178,32 @@
 	</bean>
 <!-- 採購主管待審核請款單連結 -->
 
+<!-- 財務主管待分派請款單連結 -->
+<bean id="assignInv.show"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Account/ToDoAssignInvoice.jsp"></property>
+	</bean>
+<!-- 財務主管待分派請款單連結 -->
+<!-- 財務主管待審核請款單連結 -->
+<bean id="signInv.show"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Account/ToDoSignList.jsp"></property>
+	</bean>
+<!-- 財務主管待審核請款單連結 -->
+
+<!-- 總經理連結 -->
+	<bean id="ceo.login"
+			class="org.springframework.web.servlet.view.RedirectView">
+		<property name="contextRelative" value="true"></property>
+		<property name="url" value="/Apply/CeoPage.jsp"></property>
+	</bean>
+	<bean id="CeoPosignprocess.do"
+				class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Apply/CeoPosignprocess.jsp"></property>
+	</bean>
+	<bean id="CeoPosignprocessdetail.do"
+				class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Apply/CeoPosignprocessdetail.jsp"></property>
+	</bean>
+<!-- 總經理連結-->
 </beans>
