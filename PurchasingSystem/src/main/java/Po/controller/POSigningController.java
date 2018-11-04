@@ -434,7 +434,7 @@ public class POSigningController {
 
 		String signpo_id = bean.getPo_id();
 		
-			  PO_MainBean ss = pO_MainService.select(signpo_id);
+			 PO_MainBean ss = pO_MainService.select(signpo_id);
 			model.addAttribute("productlistdetail2",ss);
 			model.addAttribute("empid", signpo_id);
 //			System.out.println(po_id);
