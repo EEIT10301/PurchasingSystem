@@ -199,7 +199,7 @@ public class POManagerSignController {
 		
 		
 	}
-	@RequestMapping("/Po/POManagerSignertosigndetail.controller") // 採購單審核頁面按下開始簽核
+	@RequestMapping("/Po/POManagerSignertosigndetail.controller") // 採購單簽核按下送出或退回
 	public String POManagerSignertosigndetail(PO_SigningProcessBean Bean,BindingResult bindingResult,
 			Model model, HttpSession session
 			,String send,String SignSug) throws ParseException {

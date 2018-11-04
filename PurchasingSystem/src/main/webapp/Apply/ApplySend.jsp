@@ -25,13 +25,13 @@
 	.topTen{
 		height:70%;
 		width:180px;
-		border:1px solid black;
-		position:fixed;
+		background-color: white;
+	    font-size: 1.05em;
 		top:210px;
 		left:0;
 		z-index:99;
-		overflow-y:scroll;
-		padding-left:20px;
+	    margin-left:10px;
+		text-align:center;
 	}
 	.prolist{
 		display: flex;
@@ -40,11 +40,13 @@
 		flex-wrap:wrap;
 	}
 	.prolist{
+	
 		display: flex;
 		margin:0 auto;
 		flex-wrap:wrap;
 	}
 	.pro{
+	    float:left;
 		flex: 0 0 33.3;
 		margin:10px;
 	}
@@ -68,6 +70,12 @@
 		background-color: white;
 		font-size: 1.05em;
 	}
+	.pro input{
+	   margin:20
+		width:120px;
+		background-color: white;
+		font-size: 1.05em;
+	}
 	#history{
 		padding-left:250px;
 	}	
@@ -79,16 +87,21 @@
 <c:if test="${empty Categlory}">
 
 <h3>產品大項</h3>
-<form action="<c:url value="/Apply/ApplySend.controller" />" method="post">
-<select name="Categorly">
-　<option value="零組件">零組件</option>
-　<option value="PC">PC</option>
-　<option value="主板組件">主板組件</option>
-　<option value="組合材號">組合材料</option>
-　<option value="說明書">說明書</option>
-</select>
-<input type="submit" value="送出">
-</form>
+<%-- <form action="<c:url value="/Apply/ApplySend.controller" />" method="post"> --%>
+<!-- <select name="Categorly"> -->
+<!-- 　<option value="零組件">零組件</option> -->
+<!-- 　<option value="PC">PC</option> -->
+<!-- 　<option value="主板組件">主板組件</option> -->
+<!-- 　<option value="組合材號">組合材料</option> -->
+<!-- 　<option value="說明書">說明書</option> -->
+<!-- </select> -->
+<!-- <input type="submit" value="送出"> -->
+<!-- </form> -->
+<a href='ApplySend.controller?Categorly=零組件'>零組件</a>
+<a href='ApplySend.controller?Categorly=PC'>PC</a>
+<a href='ApplySend.controller?Categorly=主板組件'>主板組件</a>
+<a href='ApplySend.controller?Categorly=組合材號'>組合材號</a>
+<a href='ApplySend.controller?Categorly=說明書'>說明書</a>
 </c:if>
 <c:if test="${not empty Categlory}">
 <h3>產品大項: ${Categlory}</h3>
@@ -99,13 +112,14 @@
 </c:if>
 <h3>${cate}</h3>
 <h3>${errors.cate}</h3>
-<form action="<c:url value="/Apply/ApplyShopping.controller" />" method="post">
-<Input type='submit' name='send' value='查詢清單'>
-</form>
+<a href='ApplyShopping.controller?send=search'>請購清單</a>
+<%-- <form action="<c:url value="/Apply/ApplyShopping.controller" />" method="post"> --%>
+<!-- <Input type='submit' name='send' value='查詢清單'> -->
+<!-- </form> -->
  <div class="prolist">
+<form action="<c:url value="/Apply/ApplyShoppingaddcart.controller" />" method="post">
 <c:forEach var="pro" items="${product}">
 <div class='pro'>
-<form action="<c:url value="/Apply/ApplyShopping.controller" />" method="post">
 <p>料號:${pro.part_no}<p>
 <p>產品名稱:${pro.pro_name}<p>
 <p>產品大項:${pro.pro_cate}<p>
@@ -122,11 +136,16 @@
   <Input type='hidden' name='pro_price' value='${pro.pro_price}'><P/>
   <Input type='hidden' name='pro_amount' value='${pro.pro_amount}'><P/>
   <Input type='hidden' name='pro_img' value='${pro.pro_img}'><P/>
-  <Input type='hidden' name='pro_date' value='${pro.pro_date}'><P/>
-  <Input type='submit' name='send' value='加入請購清單'>
-</form>
+  <Input type='hidden' name='pro_date' value=''><P/>
 </div>
 </c:forEach>
+ <c:if test="${not empty product}">
+ <div class='topTen'>
+
+  <Input type='submit' name='send' value='加入請購清單'>
+  </div>
+  </c:if>
+</form>
 </div>
 
 </body>
