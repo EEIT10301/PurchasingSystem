@@ -22,19 +22,21 @@
 <c:if test='${not empty Applylists}'>
 <h3>待簽核表單</h3>
 <c:forEach var='applylist' varStatus='vs' items='${Applylists}'>
-<form action="<c:url value="/Apply/ApplySignnerdetail.controller" />" method="post">
+<%-- <form action="<c:url value="/Apply/ApplySignnerdetail.controller" />" method="post"> --%>
  <p>請購單號 :${applylist.app_id}</p>
  <p>請購項目 :${applylist.app_MainBean.pro_cate}</p>
  <p>請購金額 :${applylist.app_MainBean.app_price}</p>
- <Input type='hidden' name=app_manger value='${applylist.app_manger}'><P/>
-  <Input type='hidden' name='app_sta' value='${applylist.app_sta}'><P/>
-  <Input type='hidden' name='app_id' value='${applylist.app_id}'><P/>
-  <Input type='hidden' name='sig_date' value='${applylist.sig_date}'><P/>
-  <Input type='hidden' name='sig_sta' value='${applylist.sig_sta}'><P/>
-  <Input type='hidden' name='sig_sug' value='${applylist.sig_sug}'><P/>
-  <Input type='hidden' name='sig_rank' value='${applylist.sig_rank}'><P/>
-  <Input type='submit' name='send' value='簽核'>
-  </form>
+<%--  <Input type='hidden' name=app_manger value='${applylist.app_manger}'><P/> --%>
+<%--   <Input type='hidden' name='app_sta' value='${applylist.app_sta}'><P/> --%>
+<%--   <Input type='hidden' name='app_id' value='${applylist.app_id}'><P/> --%>
+<%--   <Input type='hidden' name='sig_date' value='${applylist.sig_date}'><P/> --%>
+<%--   <Input type='hidden' name='sig_sta' value='${applylist.sig_sta}'><P/> --%>
+<%--   <Input type='hidden' name='sig_sug' value='${applylist.sig_sug}'><P/> --%>
+<%--   <Input type='hidden' name='sig_rank' value='${applylist.sig_rank}'><P/> --%>
+<!--   <Input type='submit' name='send' value='簽核'> -->
+<!--   </form> -->
+<a href='ApplySignnerdetail.controller?app_manger=${applylist.app_manger}&app_sta=${applylist.app_sta}&app_id=${applylist.app_id}&send=sendok'>
+開始簽核</a>
  <c:forEach var='applylistone' varStatus='vs' items='${Applylistsone}'>
  <c:if test='${applylist.app_id == applylistone.app_id}'>
    <p>前一位簽核時間: ${applylistone.sig_date}<P>
@@ -48,19 +50,22 @@
 <c:if test='${not empty nosend}'>
 <h3>退回表單</h3>
 <c:forEach var='nosends' varStatus='vs' items='${nosend}'>
-<form action="<c:url value="/Apply/ApplySignnerdetail.controller" />" method="post">
+<%-- <form action="<c:url value="/Apply/ApplySignnerdetail.controller" />" method="post"> --%>
  <p>請購單號 :${nosends.app_id}</p>
  <p>請購項目 :${nosends.app_MainBean.pro_cate}</p>
  <p>請購金額 :${nosends.app_MainBean.app_price}</p>
- <Input type='hidden' name=app_manger value='${nosends.app_manger}'><P/>
-  <Input type='hidden' name='app_sta' value='${nosends.app_sta}'><P/>
-  <Input type='hidden' name='app_id' value='${nosends.app_id}'><P/>
-  <Input type='hidden' name='sig_date' value='${nosends.sig_date}'><P/>
-  <Input type='hidden' name='sig_sta' value='${nosends.sig_sta}'><P/>
-  <Input type='hidden' name='sig_sug' value='${nosends.sig_sug}'><P/>
-  <Input type='hidden' name='sig_rank' value='${nosends.sig_rank}'><P/>
-  <Input type='submit' name='send' value='修改'>
-  </form>
+<a href='ApplySignnerdetail.controller?app_manger=${nosends.app_manger}&app_sta=${nosends.app_sta}&app_id=${nosends.app_id}&send=nosend'>
+開始簽核</a> 
+
+<%--  <Input type='hidden' name=app_manger value='${nosends.app_manger}'><P/> --%>
+<%--   <Input type='hidden' name='app_sta' value='${nosends.app_sta}'><P/> --%>
+<%--   <Input type='hidden' name='app_id' value='${nosends.app_id}'><P/> --%>
+<%--   <Input type='hidden' name='sig_date' value='${nosends.sig_date}'><P/> --%>
+<%--   <Input type='hidden' name='sig_sta' value='${nosends.sig_sta}'><P/> --%>
+<%--   <Input type='hidden' name='sig_sug' value='${nosends.sig_sug}'><P/> --%>
+<%--   <Input type='hidden' name='sig_rank' value='${nosends.sig_rank}'><P/> --%>
+<!--   <Input type='submit' name='send' value='修改'> -->
+<!--   </form> -->
   <p>前一位退回時間: ${nosends.sig_date}<P>
     <br>
 </c:forEach>
