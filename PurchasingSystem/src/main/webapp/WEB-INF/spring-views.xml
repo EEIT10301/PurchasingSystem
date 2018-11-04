@@ -112,11 +112,11 @@
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/Po/SignedOrder.jsp"></property>
 	</bean>
-<<<<<<< HEAD
+
 	<bean id="signOrderDetail.show"
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/Po/SignedOrderDetail.jsp"></property>
-=======
+	</bean>
            <!-- 	      採購單簽核連結 -->
 		<bean id="PoSignerProcess.to"  
 		class="org.springframework.web.servlet.view.InternalResourceView">
@@ -126,8 +126,9 @@
 		<bean id="PoSignerProcessdetail.to"  
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/Po/PoSignerProcessdetail.jsp"></property>
->>>>>>> branch 'master' of https://github.com/EEIT10301/PurchasingSystem.git
+
 	</bean>
+
 	
 	<!-- 採購使用連結 -->
 	<!-- 驗收使用連結 -->
