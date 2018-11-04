@@ -20,6 +20,7 @@ import Account.model.Account_InvoiceBean;
 import Account.model.PO_Vendor_InfoBean;
 import Account.service.PO_Vendor_InfoService;
 import Apply.model.App_MainBean;
+import Apply.model.App_SigningProcessBean;
 import Apply.model.EmployeeBean;
 import Apply.service.App_MainService;
 import Apply.service.EmployeeService;
@@ -382,26 +383,30 @@ public class POSigningController {
 		}
 	}
 	@RequestMapping("/Po/signedorder.controller") 
-	public String signedOrder(Model model, HttpSession session) {
+	public String signedOrder(Model model, HttpSession session,PO_SigningProcessBean bean) {
 		EmployeeBean beans = (EmployeeBean) session.getAttribute("user");
 		String empid = beans.getEmp_id();
 		List<PO_SigningProcessBean> selectlist = pO_SigningProcessService.selectempidsend(empid, "下單中");
 		List<PO_SigningProcessBean> selectlists = null;
 		selectlists = new LinkedList<PO_SigningProcessBean>();
-		if (selectlist == null) {
 
+		if (selectlist == null) {
+			
 			model.addAttribute("noselectlists", "無待下單資訊");
 			return "SignedOrder.show";
 		} else {
 			for (int i = 0; i < selectlist.size(); i++) {
 				PO_SigningProcessBean x = selectlist.get(i);
 				PO_SigningProcessBean xs = pO_SigningProcessService.select("主管審核中", x.getPo_id());
-				if (xs != null) {
-					selectlists.add(x);
-					selectlists.add(xs);
-				}
-				model.addAttribute("selectlists", selectlists);
 
+
+					if (xs != null) {
+		
+						selectlists.add(xs);
+					
+				}
+				
+				model.addAttribute("selectlists", selectlists);
 			}
 			return "SignedOrder.show";
 		}
@@ -420,6 +425,22 @@ public class POSigningController {
 		model.addAttribute("listtodosign", InvoiceSign);
 		
 		return "todoSignInvoice.show";
+	}
+	
+	
+	@RequestMapping("/Po/signOrderDetail.controller")
+	public String signorderdetail(Model model,HttpSession session
+			,PO_SigningProcessBean bean,String send,String po_id) {
+
+		String signpo_id = bean.getPo_id();
+		
+			  PO_MainBean ss = pO_MainService.select(signpo_id);
+			model.addAttribute("productlistdetail2",ss);
+			model.addAttribute("empid", signpo_id);
+//			System.out.println(po_id);
+//			System.out.println(signpo_id);
+
+		return "signOrderDetail.show";
 	}
 
 }

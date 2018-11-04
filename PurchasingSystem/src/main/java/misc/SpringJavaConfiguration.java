@@ -47,7 +47,7 @@ public class SpringJavaConfiguration {
 //	    dmds.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 //	    dmds.setUrl("jdbc:sqlserver://localhost:1433;database=PurchasingSystem");
 //	    dmds.setUsername("sa");
-//	    dmds.setPassword("password");
+//	    dmds.setPassword("passw0rd");
 //		return dmds;
 //	}        
 	@Bean

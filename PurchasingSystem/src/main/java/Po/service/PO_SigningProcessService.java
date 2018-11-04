@@ -67,5 +67,9 @@ public class PO_SigningProcessService {
 		}
 		return null;
 	}
+
+	public PO_SigningProcessBean selectorderdetail(String po_id) {
+		return pO_SigningProcessIDao.selectorderdetail(po_id);
+	}
 	
 }

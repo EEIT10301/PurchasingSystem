@@ -156,8 +156,23 @@ public class PO_SigningProcessDao implements PO_SigningProcessIDao{
 			 return null;
 		 }
 	}
-	
-
+	@SuppressWarnings("unchecked")
+	@Override
+	public  PO_SigningProcessBean selectorderdetail(String po_id) {
+		List<PO_SigningProcessBean> list = null;
+		PO_SigningProcessBean getone =new PO_SigningProcessBean();
+		String hgl="FROM PO_SigningProcessBean WHERE po_manger=:id1 ";
+		list =this.getSession().createQuery(hgl).setParameter("id1", po_id)
+				.setMaxResults(100).list();
+		 if(list.size()>0) {
+			  for(PO_SigningProcessBean getones :list) {
+				  getone=getones;
+			  }
+			  return getone;
+		 }else {
+			 return null;
+		 }
+	}
 	
 
 }
