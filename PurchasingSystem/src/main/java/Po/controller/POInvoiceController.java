@@ -104,9 +104,9 @@ public class POInvoiceController {
 		
 		//上傳圖片	
 		String invId="In"+poid.substring(2);
-		//String destination ="C:\\Users\\User\\git\\repository2\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
+		String destination ="C:\\Users\\User\\Downloads\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
 		//String destination ="D:\\Maven-project\\repository\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
-		String destination = "../images/"+invId+".jpg";
+		//String destination = "../images/"+invId+".jpg";
 	    //System.out.println("uploadRootPath=" + destination);
 		if(file !=null || file.getSize()>0) {
 		File files =new File(destination);
@@ -140,8 +140,8 @@ public class POInvoiceController {
 		
 		//上傳圖片	
 		String invId="In"+account_InvoiceBean.getPo_id().substring(2);
-		//String destination ="C:\\Users\\User\\git\\repository2\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
-		String destination ="D:\\Maven-project\\repository\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
+		String destination ="C:\\Users\\User\\Downloads\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
+//		String destination ="D:\\Maven-project\\repository\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
 		//String destination = "images/"+invId+".jpg";
 	    System.out.println("uploadRootPath=" + destination);
 		if(file !=null || file.getSize()>0) {
@@ -201,6 +201,46 @@ public class POInvoiceController {
 			model.addAttribute("invid", invid);
 			return"updateForm";
 		}
+		
+		//採購主管查看要審核的該張被退請款單  
+				@RequestMapping("/Po/SignInvoiceFormBack.controller")
+				public String signInvoiceBack(Model model ,HttpSession session ,String invid) {
+					
+					Account_InvoiceBean bean= account_InvoiceService.select(invid);
+					PO_SigningProcessBean poSignBean = pO_InvoiceService.selectForOneProcessbyPoSign("驗收中", bean.getPo_id());
+					String empid=bean.getEmp_id();
+					String empdep=bean.getEmployeeBean().getEmp_dep();
+					String ven_name=bean.getpO_MainBean().getpO_Vendor_InfoBean().getVendor_name();
+					String ven_id=bean.getpO_MainBean().getVendor_ID();
+					Integer price=bean.getTotal_price();
+					String payMethod=bean.getpO_MainBean().getpO_Vendor_InfoBean().getPayment_method();
+					String paydate=pO_InvoiceService.calcExpirePaymentDate(bean.getpO_MainBean().getpO_Vendor_InfoBean().getPayment_term(),poSignBean.getSig_date());
+					Date keyday=bean.getRecript_date();
+					
+					Set<Account_SigningProcessBean> selects = bean.getAccount_SigningProcessBean();
+					for(Account_SigningProcessBean x:selects) {
+						if(x.getSig_Rank()==4) {  //要看財務承辦的退回原因(第四關)
+						String sigSug=x.getSig_Sug();
+						model.addAttribute("sigSug", sigSug);
+						}
+					}		
+
+					List<EmployeeBean> employee=employeeService.selectPoEmployee("財務部", 2);
+					
+					model.addAttribute("bean", bean);
+					model.addAttribute("empid", empid);
+					model.addAttribute("empdep", empdep);
+					model.addAttribute("ven_name", ven_name);
+					model.addAttribute("ven_id", ven_id);
+					model.addAttribute("price", price);
+					model.addAttribute("payMethod", payMethod);
+					model.addAttribute("paydate", paydate);
+					model.addAttribute("keyday", keyday);
+					model.addAttribute("manager", employee);
+					model.addAttribute("invid", invid);
+					return"updateForm";
+				}
+		
 		//財務經理查看要分派的該張請款單  
 		@RequestMapping("/Account/AccSignInvoiceForm.controller")
 		public String signInvoiceAccMan(Model model ,HttpSession session ,String invid) {
