@@ -398,12 +398,15 @@ public class ApplySendController {
 //	    	AppDetailBean
 	    	for(int i=0;i<beans.size();i++) {
 				ProductListBean x=beans.get(i);
-				String no=x.getPart_no();
-				Integer amo =x.getPro_amount();
-				Integer pri =x.getPro_price();
-		
-				AppDetailBean qwe=new AppDetailBean(apid,no,pri,amo);
-				appDetailService.insert(qwe);
+				if(x.getPro_amount()>0) {
+					
+					String no=x.getPart_no();
+					Integer amo =x.getPro_amount();
+					Integer pri =x.getPro_price();
+					
+					AppDetailBean qwe=new AppDetailBean(apid,no,pri,amo);
+					appDetailService.insert(qwe);
+				}
 	    	}
 	    	if (suggestion==null) {
 	    		suggestion="";
