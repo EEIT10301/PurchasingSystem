@@ -345,25 +345,24 @@ if(x.getApp_manger().equals(empid)&&x.getSig_sta().equals("退回中")&&x.getApp
 			}	
 		}else {
 			List<App_SigningProcessBean> Sproductlistsx1 =new LinkedList<App_SigningProcessBean>();
-			Sproductlistsx1=app_SigningProcessService.selectfromlastemp(empid);
+			List<App_SigningProcessBean> Sproductlistsx2 =new LinkedList<App_SigningProcessBean>();
+			Sproductlistsx1=app_SigningProcessService.selectfromlastemp1(1);
 			if(Sproductlistsx1!=null) {//如果是主管
-				Integer pages=Sproductlistsx1.size()/5;
-	        	   if((Sproductlistsx1.size()%5)>0) {
-	        		   pages++;
-	        	   }
-				List<App_SigningProcessBean> Sproductlistsx2 =new LinkedList<App_SigningProcessBean>();
 				Integer thissize=0;
-	        	   if(Sproductlistsx2.size()<5) {
-	        		   thissize=Sproductlistsx2.size();
-	        	   }else {
-	        		   thissize=5;
-	        	   }
-	        	   for (int i=0;i<thissize;i++ ){//查詢員工第一位的申請時間
-					App_SigningProcessBean xs = Sproductlistsx1.get(i);
-					App_SigningProcessBean xs1=app_SigningProcessService.selectrank(xs.getApp_id(),1);
-					Sproductlistsx2.add(xs1);
-					
+				Integer pages=Sproductlistsx1.size()/5;
+				if((Sproductlistsx1.size()%5)>0) {
+					pages++;
 				}
+				if(Sproductlistsx1.size()<5) {
+					thissize=Sproductlistsx1.size();
+				}else {
+					thissize=5;
+				}
+	        	   for (int i=0;i<thissize;i++  ){
+	        		   App_SigningProcessBean x = Sproductlistsx1.get(i);
+	        		   Sproductlistsx2.add(x);
+	        	   }
+	        	   
 				model.addAttribute("pages",pages);
 				model.addAttribute("Applylists", Sproductlistsx2);
 				return "apply.sign";
@@ -412,22 +411,20 @@ if(x.getApp_manger().equals(empid)&&x.getSig_sta().equals("退回中")&&x.getApp
 			}	
 		}else {
 			List<App_SigningProcessBean> Sproductlistsx1 =new LinkedList<App_SigningProcessBean>();
-			Sproductlistsx1=app_SigningProcessService.selectfromlastemp(empid);
+			List<App_SigningProcessBean> Sproductlistsx2 =new LinkedList<App_SigningProcessBean>();
+			Sproductlistsx1=app_SigningProcessService.selectfromlastemp1(1);
 			if(Sproductlistsx1!=null) {//如果是主管
 				Integer pages=Sproductlistsx1.size()/5;
-	        	   if((Sproductlistsx1.size()%5)>0) {
-	        		   pages++;
-	        	   }
+				if((Sproductlistsx1.size()%5)>0) {
+					pages++;
+				}
 	        	   if(thispage==pages) {
 	        		   endindex=Sproductlistsx1.size();
 	        	   }
-				List<App_SigningProcessBean> Sproductlistsx2 =new LinkedList<App_SigningProcessBean>();
-				for(int i=(beginindex-1);i<endindex;i++) {//查詢員工第一位的申請時間
-					App_SigningProcessBean xs = Sproductlistsx1.get(i);
-					App_SigningProcessBean xs1=app_SigningProcessService.selectrank(xs.getApp_id(),1);
-					Sproductlistsx2.add(xs1);
-					
-				}
+	        	   for (int i=(beginindex-1);i<endindex;i++ ){
+	        		   App_SigningProcessBean x = Sproductlistsx1.get(i);
+	        		   Sproductlistsx2.add(x);
+	        	   }
 				model.addAttribute("pages",pages);
 				model.addAttribute("thispage",thispage);
 				model.addAttribute("Applylists", Sproductlistsx2);
