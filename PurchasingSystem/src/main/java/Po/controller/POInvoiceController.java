@@ -111,26 +111,24 @@ public class POInvoiceController {
 	}
 
 	// 新增請款單送出寫入資料庫
-	@RequestMapping(value = "/Po/onloadimage.controller", method = RequestMethod.POST)
-	public String uploadFile(Model model, HttpSession session, String name,
-			@RequestParam("Receiptpic") MultipartFile file, String Emp_id, String Emp_dep, String Vendor_name,
-			String Vendor_id, String Total_price, String Except_Payment_Date, String Recript_date,
-			String selectPOManager, String SignSug, String poid, HttpServletRequest request)
-			throws IllegalStateException, IOException, ParseException {
-		// 上傳圖片
-		String invId = "In" + poid.substring(2);
-		// String destination
-		// ="C:\\Users\\User\\git\\repository2\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
-		String destination = "D:\\Maven-project\\repository\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"
-				+ "\\" + invId + ".jpg";
-		// String destination = "\\"+"images"+"\\"+invId+".jpg";
-		if (file != null || file.getSize() > 0) {
-			File files = new File(destination);
-			file.transferTo(files);
-		}
 
-		// insert 請款單
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+	
+	//新增請款單送出寫入資料庫
+		@RequestMapping(value = "/Po/onloadimage.controller", method = RequestMethod.POST)
+		public String uploadFile(Model model ,HttpSession session,String name,@RequestParam("Receiptpic") MultipartFile file
+			,String Emp_id,String Emp_dep, String Vendor_name, String Vendor_id, String Total_price, 
+			String Except_Payment_Date, String Recript_date, String selectPOManager, String SignSug,String poid,HttpServletRequest request) throws IllegalStateException, IOException, ParseException {
+		//上傳圖片	
+		String invId="In"+poid.substring(2);
+		//String destination ="C:\\Users\\User\\git\\repository2\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
+		String destination ="D:\\Maven-project\\repository\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
+		//String destination = "\\"+"images"+"\\"+invId+".jpg";
+		if(file !=null || file.getSize()>0) {
+		File files =new File(destination);
+		file.transferTo(files);}
+		
+		//insert 請款單
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = sdf.parse(Recript_date);
 		String src = "/images/" + invId + ".jpg";
 		Integer price = Integer.valueOf(Total_price);
@@ -151,27 +149,22 @@ public class POInvoiceController {
 		return "newForm";
 	}
 
-	// 採購承辦重送請款單
-	@RequestMapping(value = "/Po/resendInvoice.controller", method = RequestMethod.POST)
-	public String resend(Account_InvoiceBean account_InvoiceBean, Model model, HttpSession session, String name,
-			@RequestParam("Receiptpic") MultipartFile file, String selectPOManager, String poid,
-			HttpServletRequest request, Integer sig_Rank, String SignSug)
-			throws IllegalStateException, IOException, ParseException {
-
-		// 上傳圖片
-		String invId = "In" + poid.substring(2);
-		// String destination
-		// ="C:\\Users\\User\\git\\repository2\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
-		String destination = "D:\\Maven-project\\repository\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"
-				+ "\\" + invId + ".jpg";
-		// String destination = "images/"+invId+".jpg";
-		System.out.println("uploadRootPath=" + destination);
-		if (file != null || file.getSize() > 0) {
-			File files = new File(destination);
-			file.transferTo(files);
-		}
-
-		// update請款單
+		//採購承辦重送請款單
+		@RequestMapping(value = "/Po/resendInvoice.controller", method = RequestMethod.POST)
+		public String resend(Account_InvoiceBean account_InvoiceBean,Model model ,HttpSession session,String name,@RequestParam("Receiptpic") MultipartFile file
+			,String selectPOManager, String poid,HttpServletRequest request,Integer sig_Rank, String SignSug) throws IllegalStateException, IOException, ParseException {
+		
+		//上傳圖片	
+		String invId="In"+poid.substring(2);
+		//String destination ="C:\\Users\\User\\git\\repository2\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
+		String destination ="D:\\Maven-project\\repository\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
+		//String destination = "images/"+invId+".jpg";
+	    System.out.println("uploadRootPath=" + destination);
+		if(file !=null || file.getSize()>0) {
+		File files =new File(destination);
+		file.transferTo(files);}
+		
+		//update請款單
 		Account_InvoiceBean result = pO_InvoiceService.updateInvoiceData(account_InvoiceBean);
 		if (result != null) {
 			model.addAttribute("successmeg", "重新送出成功");
@@ -210,7 +203,6 @@ public class POInvoiceController {
 		}
 
 		List<EmployeeBean> employee = employeeService.selectPoEmployee("財務部", 2);
-
 		model.addAttribute("bean", bean);
 		model.addAttribute("empid", empid);
 		model.addAttribute("empdep", empdep);
@@ -413,8 +405,6 @@ public class POInvoiceController {
 				model.addAttribute("errormeg", "送出失敗");
 			}
 			
-			
-
 		} else {
 
 			if (dep.equals("採購部") && level == 2) {
@@ -435,6 +425,51 @@ public class POInvoiceController {
 		
 		return "updateForm";
 	}
+
+		//採購主管查看要審核的該張被退請款單  
+				@RequestMapping("/Po/SignInvoiceFormBack.controller")
+				public String signInvoiceBack(Model model ,HttpSession session ,String invid) {
+					
+					Account_InvoiceBean bean= account_InvoiceService.select(invid);
+					PO_SigningProcessBean poSignBean = pO_InvoiceService.selectForOneProcessbyPoSign("驗收中", bean.getPo_id());
+					String empid=bean.getEmp_id();
+					String empdep=bean.getEmployeeBean().getEmp_dep();
+					String ven_name=bean.getpO_MainBean().getpO_Vendor_InfoBean().getVendor_name();
+					String ven_id=bean.getpO_MainBean().getVendor_ID();
+					Integer price=bean.getTotal_price();
+					String payMethod=bean.getpO_MainBean().getpO_Vendor_InfoBean().getPayment_method();
+					String paydate=pO_InvoiceService.calcExpirePaymentDate(bean.getpO_MainBean().getpO_Vendor_InfoBean().getPayment_term(),poSignBean.getSig_date());
+					Date keyday=bean.getRecript_date();
+					
+					Set<Account_SigningProcessBean> selects = bean.getAccount_SigningProcessBean();
+					for(Account_SigningProcessBean x:selects) {
+						if(x.getSig_Rank()==4) {  //要看財務承辦的退回原因(第四關)
+						String sigSug=x.getSig_Sug();
+						model.addAttribute("sigSug", sigSug);
+						}
+					}		
+
+					List<EmployeeBean> employee=employeeService.selectPoEmployee("財務部", 2);
+					
+					model.addAttribute("bean", bean);
+					model.addAttribute("empid", empid);
+					model.addAttribute("empdep", empdep);
+					model.addAttribute("ven_name", ven_name);
+					model.addAttribute("ven_id", ven_id);
+					model.addAttribute("price", price);
+					model.addAttribute("payMethod", payMethod);
+					model.addAttribute("paydate", paydate);
+					model.addAttribute("keyday", keyday);
+					model.addAttribute("manager", employee);
+					model.addAttribute("invid", invid);
+					return"updateForm";
+				}
+		
+		
+			
+			
+
+		
 	
 	//財務經理分派請款單
 	@RequestMapping("/Account/DispatchInvoice.controller")

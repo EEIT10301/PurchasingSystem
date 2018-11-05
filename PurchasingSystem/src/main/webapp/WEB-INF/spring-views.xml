@@ -66,7 +66,7 @@
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/Po/POLoginSuccess.jsp"></property>
 	</bean>
-	
+
 	<bean id="POlogin.errors"
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/Po/POLogin.jsp"></property>
@@ -76,7 +76,7 @@
 		<property name="contextRelative" value="true"></property>
 		<property name="url" value="/Po/POLogin.jsp"></property>
 	</bean>
-    <bean id="SendEmployee.do"
+	<bean id="SendEmployee.do"
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/Po/SendEmployee.jsp"></property>
 	</bean>
@@ -84,7 +84,7 @@
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/Po/ListMain.jsp"></property>
 	</bean>
-		<bean id="sendlist.ok"
+	<bean id="sendlist.ok"
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/Po/POLoginSuccess.jsp"></property>
 	</bean>
@@ -104,7 +104,7 @@
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/Po/Posendlistsigncheck.jsp"></property>
 	</bean>
-		<bean id="QueryMemo.show"
+	<bean id="QueryMemo.show"
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/Po/Query.jsp"></property>
 	</bean>
@@ -134,6 +134,14 @@
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/Inv/InvLogin.jsp"></property>
 	</bean>
+	<bean id="InvSendEmployee.do"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url"  value="/Inv/InvSendEmployee.jsp"></property>
+	</bean>
+	<bean id="InvList.show"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Inv/InvProductMain.jsp"></property>
+	</bean>
 	<!-- 驗收使用連結 -->
 
 	<!--待請款單使用連結 -->
@@ -153,13 +161,13 @@
 
 
 	<!-- 採購使用連結 -->
-<!-- 首頁登入連結 -->
-<bean id="indexlogin.error"
+	<!-- 首頁登入連結 -->
+	<bean id="indexlogin.error"
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="MainPage.jsp"></property>
 	</bean>
 	<bean id="indexlogin.return"
-			class="org.springframework.web.servlet.view.RedirectView">
+		class="org.springframework.web.servlet.view.RedirectView">
 		<property name="contextRelative" value="true"></property>
 		<property name="url" value="MainPage.jsp"></property>
 	</bean>
