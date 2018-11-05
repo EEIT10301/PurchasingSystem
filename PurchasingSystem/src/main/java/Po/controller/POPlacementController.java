@@ -1,5 +1,9 @@
 package Po.controller;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -12,6 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import Account.service.PO_Vendor_InfoService;
+import Apply.model.App_MainBean;
 import Apply.model.App_SigningProcessBean;
 import Apply.model.EmployeeBean;
 import Apply.service.App_MainService;
@@ -41,16 +46,19 @@ public class POPlacementController {
 	@Autowired
 	PO_QueryService pO_QueryService;
 	
-	@RequestMapping("/Po/signedorder.controller")
+	@RequestMapping("/Po/SignedOrder.show")
 	public String tosignerdetail(PO_SigningProcessBean bean,BindingResult bindingResult,
 			Model model ,HttpSession session) {
 		EmployeeBean ben=(EmployeeBean) session.getAttribute("user");
 		String empid=ben.getEmp_id();
+		String managerid = ben.getEmp_managerid();
+		EmployeeBean aa = employeeService.select(managerid);
+		
 		List<PO_SigningProcessBean> Sproductlistsx1 =new LinkedList<PO_SigningProcessBean>();
 		List<PO_SigningProcessBean> Sproductlistsx2 =new LinkedList<PO_SigningProcessBean>();
 		List<PO_SigningProcessBean> Sproductlistsx3 =new LinkedList<PO_SigningProcessBean>();
-	
-		Sproductlistsx1=pO_SigningProcessService.selectmangers(empid, "簽核中");
+	System.out.println(ben.getEmp_id());
+		Sproductlistsx1=pO_SigningProcessService.selectmangers(empid, "下單中");
 		Sproductlistsx2=pO_SigningProcessService.selectmangers(empid, "退回中");
 		Integer Applylistsranks =0;
 		Integer nosendranks=0;
@@ -66,36 +74,72 @@ public class POPlacementController {
 					}
 			}
 		}
-		
+//		if(send.equals("簽核")) {
+//			model.addAttribute("selectlists", Sproductlistsx1);
+//		}
 		if(Sproductlistsx1!=null||Sproductlistsx2!=null){
 			model.addAttribute("Applylistsranks", Applylistsranks);
 			model.addAttribute("nosendranks", nosendranks);
-			model.addAttribute("Applylists", Sproductlistsx1);
+			model.addAttribute("selectlists", Sproductlistsx1);
 			model.addAttribute("nosend", Sproductlistsx2);
 			model.addAttribute("Applylistsone", Sproductlistsx3);
+			model.addAttribute("boss", aa);
 			
-			return "apply.mangersign";
+			return "SignedOrder.show";
 		}else{
 			model.addAttribute("noApplylist", "無待簽核表單");
-			return "apply.mangersign";
+			return "SignedOrder.show";
 		}				
 			}
 	
 	
 	
 	
-	@RequestMapping("/Po/signOrderDetail.controller")
+
+	@RequestMapping("/Po/signOrderDetail.show")
 	public String signorderdetail(Model model,HttpSession session
-			,PO_SigningProcessBean bean,String send,String po_id) {
-
-		String signpo_id = bean.getPo_id();
+			,PO_SigningProcessBean bean,String send,String SignSug) throws ParseException {
+		EmployeeBean ben=(EmployeeBean) session.getAttribute("user");
+		String empid = ben.getEmp_id();
+		String Poid=bean.getPo_id();
+		PO_MainBean xs = pO_MainService.select(Poid);
 		
-			 PO_MainBean ss = pO_MainService.select(signpo_id);
-			model.addAttribute("productlistdetail2",ss);
-			model.addAttribute("empid", signpo_id);
-//			System.out.println(po_id);
-//			System.out.println(signpo_id);
+		model.addAttribute("Poid", Poid);
+		model.addAttribute("productdetail", xs);
+		
+		
+		java.util.Date date = new java.util.Date();
+		java.sql.Date dates=new java.sql.Date(date.getTime());
+		DateFormat dateFormate =new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		String now= dateFormate.format(dates);
+		SimpleDateFormat sdf =new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date datas=sdf.parse(now);
+		
+		
+			PO_SigningProcessBean selectorder = pO_SigningProcessService.select(bean.getPo_sta(), bean.getPo_id());
 
+			
+				selectorder.setSig_sug(SignSug);
+				selectorder.setSig_date(datas);
+
+			model.addAttribute("selectorder", selectorder);
+		
+		
+		
 		return "signOrderDetail.show";
 	}
+	
+	@RequestMapping("/Po/signOrderDetail.show")
+	public String signorderdetail() {
+		
+		
+		
+		return "signOrderDetail.show";
+	}
+	
+	
+	
+	
+	
+	
 }

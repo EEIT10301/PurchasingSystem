@@ -185,18 +185,18 @@ public class ApplySignController {
 			Model model ,HttpSession session,String send,String SignSug) throws ParseException {
 		EmployeeBean ben=(EmployeeBean) session.getAttribute("user");
 		String empid=ben.getEmp_id();
-		Map<String, String> errors = new HashMap<String, String>();//請輸入簽核意見
-		if(SignSug ==null ||SignSug.length()==0||SignSug.trim().isEmpty()) {
-			errors.put("plz", "請輸入文字");
-		}
-		if(errors.size()>0) {
-			String appid=bean.getApp_id();
-			App_MainBean xs=app_MainService.select(appid);
-			model.addAttribute("appid", appid);
-			model.addAttribute("singerlist", xs);
-			model.addAttribute("error", errors);
-			return "apply.signerdetail";
-		}
+//		Map<String, String> errors = new HashMap<String, String>();//請輸入簽核意見
+//		if(SignSug ==null ||SignSug.length()==0||SignSug.trim().isEmpty()) {
+//			errors.put("plz", "請輸入文字");
+//		}
+//		if(errors.size()>0) {
+//			String appid=bean.getApp_id();
+//			App_MainBean xs=app_MainService.select(appid);
+//			model.addAttribute("appid", appid);
+//			model.addAttribute("singerlist", xs);
+//			model.addAttribute("error", errors);
+//			return "apply.signerdetail";
+//		}
 		java.util.Date date = new java.util.Date();
 		java.sql.Date data1 = new java.sql.Date(date.getTime());
 		DateFormat dateFormate =new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");

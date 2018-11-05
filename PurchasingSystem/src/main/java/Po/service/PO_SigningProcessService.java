@@ -1,5 +1,6 @@
 package Po.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,4 +93,12 @@ public class PO_SigningProcessService {
 		}
 		return null;
 	}
+
+	public PO_SigningProcessBean selectorderdetail(String po_id,String po_manger,String po_sta) {
+		return pO_SigningProcessIDao.selectorderdetail(po_id,po_manger,po_sta);
+	}
+
+	
+	
+	
 }

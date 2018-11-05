@@ -22,7 +22,7 @@ public interface PO_SigningProcessIDao {
 	public abstract List<PO_SigningProcessBean> selectempidsend(String po_manger,String Sig_Sta);
 
 
-	public abstract PO_SigningProcessBean selectorderdetail(String po_id);
+	public abstract PO_SigningProcessBean selectorderdetail(String po_id,String po_manger,String po_sta);
 
 
 
