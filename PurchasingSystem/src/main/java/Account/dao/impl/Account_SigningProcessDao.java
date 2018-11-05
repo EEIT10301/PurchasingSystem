@@ -137,6 +137,14 @@ public class Account_SigningProcessDao implements Account_SigningProcessIDao {
 		return this.getSession().createQuery(hql).setParameter("id2", inv_id).setMaxResults(50).list();
 
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Account_SigningProcessBean> selectInvidAndRank(String inv_id,Integer sig_rank) {
+		String hql = "FROM Account_SigningProcessBean WHERE inv_id=:id1 and sig_rank<:id2";
+		return this.getSession().createQuery(hql).setParameter("id1", inv_id).setParameter("id2", sig_rank).setMaxResults(50).list();
+
+	}
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -254,5 +262,4 @@ public class Account_SigningProcessDao implements Account_SigningProcessIDao {
 			return (Account_SigningProcessBean)this.getSession().createQuery(hql).setParameter("id1", inv_id).setParameter("id2",sig_Rank).getSingleResult();
 		}
 	}
-
 
