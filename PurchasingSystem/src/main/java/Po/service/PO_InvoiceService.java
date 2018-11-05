@@ -17,6 +17,7 @@ import Account.dao.Account_InvoiceIDao;
 import Account.dao.Account_SigningProcessIDao;
 import Account.model.Account_InvoiceBean;
 import Account.model.Account_SigningProcessBean;
+import Apply.model.EmployeeBean;
 import Po.dao.PO_MainIDao;
 import Po.dao.PO_SigningProcessIDao;
 import Po.model.PO_MainBean;
@@ -86,6 +87,14 @@ public class PO_InvoiceService {
 	
 	public Account_SigningProcessBean selectForOneProcessbyAccountSign(String inv_id,Integer sig_Rank) {
 		Account_SigningProcessBean process = account_SigningProcessIDao.selectForRank(inv_id, sig_Rank);
+		if(process !=null) {
+			return process;
+		}
+		return null;
+	}
+	
+	public List<Account_SigningProcessBean> selectInvidAndRankLower(String inv_id,Integer sig_rank) {
+		List<Account_SigningProcessBean> process = account_SigningProcessIDao.selectInvidAndRank(inv_id, sig_rank);
 		if(process !=null) {
 			return process;
 		}
@@ -227,8 +236,19 @@ public class PO_InvoiceService {
 		}
 		return null;
 	}
-	
-	
+	public List<Account_InvoiceBean> findTodoBackInv(String emp_id, String sig_sta, Integer sig_rank) {
+		List<Account_SigningProcessBean> list = account_SigningProcessIDao.select3send(emp_id, sig_sta, sig_rank);
+		List<Account_InvoiceBean> result = null;
+		result = new LinkedList<Account_InvoiceBean>();
+		if (list != null) {
+			for (Account_SigningProcessBean x : list) {
+				Account_InvoiceBean bean =account_InvoiceIDao.select(x.getInv_id());
+				result.add(bean);
+			}
+			return result;
+		}
+		return null;
+	}
 	
 
 }
