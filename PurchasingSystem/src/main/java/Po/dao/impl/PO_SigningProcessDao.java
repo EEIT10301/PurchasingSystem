@@ -195,11 +195,11 @@ public class PO_SigningProcessDao implements PO_SigningProcessIDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public PO_SigningProcessBean selectrank(String po_id, Integer sig_Rank) {
+	public PO_SigningProcessBean selectrank(String po_id, Integer sig_rank) {
 		List<PO_SigningProcessBean> list = null;
 		PO_SigningProcessBean getRank = new PO_SigningProcessBean();
 		String hgl = "FROM PO_SigningProcessBean WHERE po_id=:id1 AND sig_Rank=:id2";
-		list = this.getSession().createNamedQuery(hgl).setParameter("id1", po_id).setParameter("id2", sig_Rank)
+		list = this.getSession().createQuery(hgl).setParameter("id1", po_id).setParameter("id2", sig_rank)
 				.setMaxResults(50).list();
 		if (list.size() > 0) {
 			for (PO_SigningProcessBean getRanks : list) {
