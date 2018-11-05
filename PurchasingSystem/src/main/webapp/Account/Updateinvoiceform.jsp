@@ -118,7 +118,7 @@ input, select {
         說明:        <p>${sigSug}
 		<p>
 
-<<<<<<< HEAD
+
         <input type="submit" value="送出">
 </form>
  </c:if> 
@@ -154,10 +154,9 @@ input, select {
         <tr><td>${sig.sig_Rank}</td> <td>${sig.account_Manger}</td><td>${sig.employeeBean.emp_name}</td><td>${sig.sig_Sug}</td> <td>${sig.sig_Date}</td></tr>
         </c:forEach>
         </table>
-        <c:if test="${not empty manager}">
-=======
+
 			<c:if test="${not empty manager}">
->>>>>>> branch 'master' of https://github.com/EEIT10301/PurchasingSystem.git
+
          主管<select name="selectPOManager">
 					<c:forEach var="poman" items="${manager}">
 						<option value="${poman.emp_id}">${poman.emp_name}
