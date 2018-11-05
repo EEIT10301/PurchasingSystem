@@ -91,4 +91,11 @@ public class PO_SigningProcessService {
 		}
 		return null;
 	}
+	public List<PO_SigningProcessBean> selectempidsendpages(String po_manger, String sig_sta ,Integer beginindex,Integer endindex) {
+		List<PO_SigningProcessBean> beans =pO_SigningProcessIDao.selectempidsendpages(po_manger,sig_sta,beginindex,endindex);
+		if(beans!=null) {
+			return beans;
+		}
+		return null;
+	}	
 }

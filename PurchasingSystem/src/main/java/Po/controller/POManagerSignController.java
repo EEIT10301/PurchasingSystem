@@ -17,6 +17,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import Account.service.PO_Vendor_InfoService;
+import Apply.model.App_SigningProcessBean;
 import Apply.model.EmployeeBean;
 import Apply.service.App_MainService;
 import Apply.service.EmployeeService;
@@ -46,22 +47,83 @@ public class POManagerSignController {
 	@Autowired
 	PO_QueryService pO_QueryService;
 	
+//	@RequestMapping("/Po/POManagerSigner.controller") // 採購單審核頁面
+//	public String POManagerSigner(Model model, HttpSession session) {
+//		EmployeeBean ben=(EmployeeBean) session.getAttribute("user");
+//		String empid=ben.getEmp_id();
+//		List<PO_SigningProcessBean> PO_SignSend=pO_SigningProcessService.selectempidsend(empid, "簽核中");
+//		List<PO_SigningProcessBean> PO_SignBack=pO_SigningProcessService.selectempidsend(empid, "退回中");
+//		List<PO_SigningProcessBean> PO_SignSendRank =new LinkedList<PO_SigningProcessBean>();
+//		List<PO_SigningProcessBean> PO_SignBackRank =new LinkedList<PO_SigningProcessBean>();
+//		Integer Polistsranks=0;
+//		Integer Polistsbackranks=0;
+//		if(PO_SignSend==null) {
+//			
+//		}else {
+//			for(int i=0;i<PO_SignSend.size();i++) {
+//				PO_SigningProcessBean xsz=new PO_SigningProcessBean();
+//				xsz=PO_SignSend.get(i);			
+//				   Polistsranks=xsz.getSig_rank();
+//					String poid = xsz.getPo_id();
+//					PO_SigningProcessBean xsz1 =pO_SigningProcessService.selectempandrank(poid, Polistsranks-1);
+//					if(xsz1!=null) {
+//						PO_SignSendRank.add(xsz1);
+//					}
+//			}
+//		}
+//	if(PO_SignBack==null) {
+//			
+//		}else {
+//			for(int i=0;i<PO_SignBack.size();i++) {
+//				PO_SigningProcessBean xsz=new PO_SigningProcessBean();
+//				xsz=PO_SignBack.get(i);			
+//				Polistsbackranks=xsz.getSig_rank();
+//					String poid = xsz.getPo_id();
+//					PO_SigningProcessBean xsz1 =pO_SigningProcessService.selectempandrank(poid, Polistsbackranks+1);
+//					if(xsz1!=null) {
+//						PO_SignBackRank.add(xsz1);
+//					}
+//			}
+//		}
+//		if(PO_SignSend!=null||PO_SignBack!=null){
+//			model.addAttribute("PO_SignSend", PO_SignSend);
+//			model.addAttribute("PO_SignSendRank", PO_SignSendRank);
+//			model.addAttribute("PO_SignBack", PO_SignBack);
+//			model.addAttribute("PO_SignBackRank", PO_SignBackRank);			
+//			model.addAttribute("Polistsranks", Polistsranks);
+//			model.addAttribute("Polistsbackranks", Polistsbackranks);
+//			return "PoSignerProcess.to";
+//		}else{
+//			model.addAttribute("nopolist", "無待簽核表單");
+//			return "PoSignerProcess.to";
+//		}
+//		
+//	}
 	@RequestMapping("/Po/POManagerSigner.controller") // 採購單審核頁面
 	public String POManagerSigner(Model model, HttpSession session) {
 		EmployeeBean ben=(EmployeeBean) session.getAttribute("user");
 		String empid=ben.getEmp_id();
 		List<PO_SigningProcessBean> PO_SignSend=pO_SigningProcessService.selectempidsend(empid, "簽核中");
+		List<PO_SigningProcessBean> PO_SignSend1=new LinkedList<PO_SigningProcessBean>();
 		List<PO_SigningProcessBean> PO_SignBack=pO_SigningProcessService.selectempidsend(empid, "退回中");
+		List<PO_SigningProcessBean> PO_SignBack1=new LinkedList<PO_SigningProcessBean>();
 		List<PO_SigningProcessBean> PO_SignSendRank =new LinkedList<PO_SigningProcessBean>();
 		List<PO_SigningProcessBean> PO_SignBackRank =new LinkedList<PO_SigningProcessBean>();
 		Integer Polistsranks=0;
 		Integer Polistsbackranks=0;
-		if(PO_SignSend==null) {
-			
+		Integer pages=0;
+		Integer pagesize=5;
+		if(PO_SignSend==null) {		
 		}else {
-			for(int i=0;i<PO_SignSend.size();i++) {
+			pages=PO_SignSend.size()/5;
+			if(PO_SignSend.size()%5>0) {
+				pages++;
+			}
+      	 PO_SignSend1=pO_SigningProcessService.selectempidsendpages(empid, "簽核中",0,pagesize);
+			
+			for(int i=0;i<PO_SignSend1.size();i++) {
 				PO_SigningProcessBean xsz=new PO_SigningProcessBean();
-				xsz=PO_SignSend.get(i);			
+				xsz=PO_SignSend1.get(i);			
 				   Polistsranks=xsz.getSig_rank();
 					String poid = xsz.getPo_id();
 					PO_SigningProcessBean xsz1 =pO_SigningProcessService.selectempandrank(poid, Polistsranks-1);
@@ -70,12 +132,18 @@ public class POManagerSignController {
 					}
 			}
 		}
-	if(PO_SignBack==null) {
-			
+	if(PO_SignBack==null) {	
 		}else {
-			for(int i=0;i<PO_SignBack.size();i++) {
+			if(pages<=0) {				
+				pages=PO_SignBack.size()/5;
+				if(PO_SignBack.size()%5>0) {
+					pages++;
+				}
+			}
+	      	 PO_SignBack1=pO_SigningProcessService.selectempidsendpages(empid, "退回中",0,pagesize);
+			for(int i=0;i<PO_SignBack1.size();i++) {
 				PO_SigningProcessBean xsz=new PO_SigningProcessBean();
-				xsz=PO_SignBack.get(i);			
+				xsz=PO_SignBack1.get(i);			
 				Polistsbackranks=xsz.getSig_rank();
 					String poid = xsz.getPo_id();
 					PO_SigningProcessBean xsz1 =pO_SigningProcessService.selectempandrank(poid, Polistsbackranks+1);
@@ -85,9 +153,10 @@ public class POManagerSignController {
 			}
 		}
 		if(PO_SignSend!=null||PO_SignBack!=null){
-			model.addAttribute("PO_SignSend", PO_SignSend);
+			model.addAttribute("pages", pages);
+			model.addAttribute("PO_SignSend", PO_SignSend1);
 			model.addAttribute("PO_SignSendRank", PO_SignSendRank);
-			model.addAttribute("PO_SignBack", PO_SignBack);
+			model.addAttribute("PO_SignBack", PO_SignBack1);
 			model.addAttribute("PO_SignBackRank", PO_SignBackRank);			
 			model.addAttribute("Polistsranks", Polistsranks);
 			model.addAttribute("Polistsbackranks", Polistsbackranks);
@@ -98,6 +167,82 @@ public class POManagerSignController {
 		}
 		
 	}
+	@RequestMapping("/Po/POManagerSignerpages.controller") // 採購單審核頁面
+	public String POManagerSignerpages(Model model, HttpSession session,String page ) {
+		EmployeeBean ben=(EmployeeBean) session.getAttribute("user");
+		String empid=ben.getEmp_id();
+		List<PO_SigningProcessBean> PO_SignSend=pO_SigningProcessService.selectempidsend(empid, "簽核中");
+		List<PO_SigningProcessBean> PO_SignBack=pO_SigningProcessService.selectempidsend(empid, "退回中");
+		List<PO_SigningProcessBean> PO_SignSendRank =new LinkedList<PO_SigningProcessBean>();
+		List<PO_SigningProcessBean> PO_SignBackRank =new LinkedList<PO_SigningProcessBean>();
+		List<PO_SigningProcessBean> PO_SignSend1 =new LinkedList<PO_SigningProcessBean>();
+		List<PO_SigningProcessBean> PO_SignBack1 =new LinkedList<PO_SigningProcessBean>();
+		Integer Polistsranks=0;
+		Integer Polistsbackranks=0;
+		Integer pages=0;
+        Integer thispage =Integer.valueOf(page);
+		
+		Integer beginindex = (thispage-1)*5;
+		Integer pagesizeindex = 5;
+		if(PO_SignSend==null) {		
+		}else {
+			pages=PO_SignSend.size()/5;
+			if(PO_SignSend.size()%5>0) {
+				pages++;
+			}
+
+			
+			PO_SignSend1=pO_SigningProcessService.selectempidsendpages(empid, "簽核中",beginindex,pagesizeindex);
+			
+			for(int i=0;i<PO_SignSend1.size();i++) {
+				PO_SigningProcessBean xsz=new PO_SigningProcessBean();
+				xsz=PO_SignSend1.get(i);			
+				   Polistsranks=xsz.getSig_rank();
+					String poid = xsz.getPo_id();
+					PO_SigningProcessBean xsz1 =pO_SigningProcessService.selectempandrank(poid, Polistsranks-1);
+					if(xsz1!=null) {
+						PO_SignSendRank.add(xsz1);
+					}
+			}
+		}
+	if(PO_SignBack==null) {	
+		}else {
+			if(pages<=0) {				
+				pages=PO_SignBack.size()/5;
+				if(PO_SignBack.size()%5>0) {
+					pages++;
+				}
+			}
+			if(thispage==pages) {
+				pagesizeindex=PO_SignBack.size()%5;
+	     	   }
+			PO_SignBack1=pO_SigningProcessService.selectempidsendpages(empid, "退回中",beginindex,pagesizeindex);
+			for(int i=0;i<PO_SignBack1.size();i++) {
+				PO_SigningProcessBean xsz=new PO_SigningProcessBean();
+				xsz=PO_SignBack1.get(i);			
+				Polistsbackranks=xsz.getSig_rank();
+					String poid = xsz.getPo_id();
+					PO_SigningProcessBean xsz1 =pO_SigningProcessService.selectempandrank(poid, Polistsbackranks+1);
+					if(xsz1!=null) {
+						PO_SignBackRank.add(xsz1);
+					}
+			}
+		}
+		if(PO_SignSend!=null||PO_SignBack!=null){
+			model.addAttribute("pages", pages);
+			model.addAttribute("PO_SignSend", PO_SignSend1);
+			model.addAttribute("PO_SignSendRank", PO_SignSendRank);
+			model.addAttribute("PO_SignBack", PO_SignBack1);
+			model.addAttribute("PO_SignBackRank", PO_SignBackRank);			
+			model.addAttribute("Polistsranks", Polistsranks);
+			model.addAttribute("Polistsbackranks", Polistsbackranks);
+			return "PoSignerProcess.to";
+		}else{
+			model.addAttribute("nopolist", "無待簽核表單");
+			return "PoSignerProcess.to";
+		}
+		
+	}	
 	@RequestMapping("/Po/POManagerSignertosign.controller") // 採購單審核頁面按下開始簽核
 	public String POManagerSignertosign(Model model, HttpSession session,String po_manger
 			,String po_sta,String po_id, String send) {
