@@ -160,45 +160,18 @@ if(x.getApp_manger().equals(empid)&&x.getSig_sta().equals("退回中")&&x.getApp
 				return "apply.signerdetail";
 				
 			}
-//	@RequestMapping("/Apply/ApplySignnerdetail.controller")
-//	//請參照ApplyMangerSystem.jsp
-//	public String signerdetail(App_SigningProcessBean bean,BindingResult bindingResult,
+//	@RequestMapping("/Apply/toApplySignnerdetail.controller")
+//	public String tosignerdetail(App_SigningProcessBean bean,BindingResult bindingResult,
 //			Model model ,HttpSession session) {
-//				String appid=bean.getApp_id();
-//				App_MainBean xs=app_MainService.select(appid);
-//				model.addAttribute("appid", appid);
-//				model.addAttribute("singerlist", xs);
-//				return "apply.signerdetail";
-//				
-//			}
-	@RequestMapping("/Apply/toApplySignnerdetail.controller")
-	public String tosignerdetail(App_SigningProcessBean bean,BindingResult bindingResult,
-			Model model ,HttpSession session) {
-		EmployeeBean ben=(EmployeeBean) session.getAttribute("user");
-		String empid=ben.getEmp_id();
-		List<App_SigningProcessBean> Sproductlistsx1 =app_SigningProcessService.selectmangers(empid, "簽核中");;
-		List<App_SigningProcessBean> Sproductlistsx2 =app_SigningProcessService.selectmangers(empid, "退回中");
-		List<App_SigningProcessBean> Sproductlistsx3 =new LinkedList<App_SigningProcessBean>();
-//		Sproductlistsx1=
-//		Sproductlistsx2=;
-		Integer Applylistsranks =0;
-		Integer nosendranks=0;
-		if(Sproductlistsx1==null) {
-			
-		}else {
-			for(int i=0;i<Sproductlistsx1.size();i++) {
-				App_SigningProcessBean xsz=new App_SigningProcessBean();
-				xsz=Sproductlistsx1.get(i);			
-					Applylistsranks=xsz.getSig_rank();
-					String apid = xsz.getApp_id();
-					App_SigningProcessBean xsz1 =app_SigningProcessService.selectrank(apid, Applylistsranks-1);
-					if(xsz1!=null) {
-						Sproductlistsx3.add(xsz1);
-					}
-			}
-		}
-			
-//		if (Sproductlistsx1 !=null && Sproductlistsx1.size()>0) {
+//		EmployeeBean ben=(EmployeeBean) session.getAttribute("user");
+//		String empid=ben.getEmp_id();
+//		List<App_SigningProcessBean> Sproductlistsx1 =app_SigningProcessService.selectmangers(empid, "簽核中");;
+//		List<App_SigningProcessBean> Sproductlistsx2 =app_SigningProcessService.selectmangers(empid, "退回中");
+//		List<App_SigningProcessBean> Sproductlistsx3 =new LinkedList<App_SigningProcessBean>();
+//		Integer Applylistsranks =0;
+//		Integer nosendranks=0;
+//		if(Sproductlistsx1==null) {
+//		}else {
 //			for(int i=0;i<Sproductlistsx1.size();i++) {
 //				App_SigningProcessBean xsz=new App_SigningProcessBean();
 //				xsz=Sproductlistsx1.get(i);			
@@ -210,12 +183,125 @@ if(x.getApp_manger().equals(empid)&&x.getSig_sta().equals("退回中")&&x.getApp
 //					}
 //			}
 //		}
-		
+//		if(Sproductlistsx1!=null||Sproductlistsx2!=null){
+//			model.addAttribute("Applylistsranks", Applylistsranks);
+//			model.addAttribute("nosendranks", nosendranks);
+//			model.addAttribute("Applylists", Sproductlistsx1);
+//			model.addAttribute("nosend", Sproductlistsx2);
+//			model.addAttribute("Applylistsone", Sproductlistsx3);
+//			
+//			return "apply.mangersign";
+//		}else{
+//			model.addAttribute("noApplylist", "無待簽核表單");
+//			return "apply.mangersign";
+//		}				
+//			}
+	@RequestMapping("/Apply/toApplySignnerdetail.controller")
+	public String tosignerdetail(App_SigningProcessBean bean,BindingResult bindingResult,
+			Model model ,HttpSession session) {
+		EmployeeBean ben=(EmployeeBean) session.getAttribute("user");
+		String empid=ben.getEmp_id();
+		List<App_SigningProcessBean> Sproductlistsx1 =app_SigningProcessService.selectmangers(empid, "簽核中");
+		List<App_SigningProcessBean> Sproductlistsxs1=new LinkedList<App_SigningProcessBean>();
+		List<App_SigningProcessBean> Sproductlistsx2 =app_SigningProcessService.selectmangers(empid, "退回中");
+		List<App_SigningProcessBean> Sproductlistsxs2=new LinkedList<App_SigningProcessBean>();
+		List<App_SigningProcessBean> Sproductlistsx3 =new LinkedList<App_SigningProcessBean>();
+		Integer Applylistsranks =0;
+		Integer nosendranks=0;
+		Integer pages=0;
+		Integer pagesize=5;
+		if(Sproductlistsx1==null) {
+		}else {
+			pages=Sproductlistsx1.size()/5;
+			if(Sproductlistsx1.size()%5>0) {
+				pages++;
+			}
+			Sproductlistsxs1=app_SigningProcessService.selectemppoidsendpages(empid, "簽核中", 0, pagesize);
+			for(int i=0;i<Sproductlistsxs1.size();i++) {
+				App_SigningProcessBean xsz=new App_SigningProcessBean();
+				xsz=Sproductlistsxs1.get(i);			
+					Applylistsranks=xsz.getSig_rank();
+					String apid = xsz.getApp_id();
+					App_SigningProcessBean xsz1 =app_SigningProcessService.selectrank(apid, Applylistsranks-1);
+					if(xsz1!=null) {
+						Sproductlistsx3.add(xsz1);
+					}
+			}
+		}
+		if(Sproductlistsx2!=null) {
+			if(pages<=0) {				
+				pages=Sproductlistsx2.size()/5;
+				if(Sproductlistsx2.size()%5>0) {
+					pages++;
+				}
+			}
+			Sproductlistsxs2=app_SigningProcessService.selectemppoidsendpages(empid, "退回中", 0, pagesize);
+		}
 		if(Sproductlistsx1!=null||Sproductlistsx2!=null){
+			model.addAttribute("pages", pages);
 			model.addAttribute("Applylistsranks", Applylistsranks);
 			model.addAttribute("nosendranks", nosendranks);
-			model.addAttribute("Applylists", Sproductlistsx1);
-			model.addAttribute("nosend", Sproductlistsx2);
+			model.addAttribute("Applylists", Sproductlistsxs1);
+			model.addAttribute("nosend", Sproductlistsxs2);
+			model.addAttribute("Applylistsone", Sproductlistsx3);
+			
+			return "apply.mangersign";
+		}else{
+			model.addAttribute("noApplylist", "無待簽核表單");
+			return "apply.mangersign";
+		}				
+			}
+	@RequestMapping("/Apply/toApplySignnerdetailpages.controller")
+	public String tosignerdetailpage(App_SigningProcessBean bean,BindingResult bindingResult,
+			Model model ,HttpSession session,String page) {
+		EmployeeBean ben=(EmployeeBean) session.getAttribute("user");
+		String empid=ben.getEmp_id();
+		List<App_SigningProcessBean> Sproductlistsx1 =app_SigningProcessService.selectmangers(empid, "簽核中");
+		List<App_SigningProcessBean> Sproductlistsxs1=new LinkedList<App_SigningProcessBean>();
+		List<App_SigningProcessBean> Sproductlistsx2 =app_SigningProcessService.selectmangers(empid, "退回中");
+		List<App_SigningProcessBean> Sproductlistsxs2=new LinkedList<App_SigningProcessBean>();
+		List<App_SigningProcessBean> Sproductlistsx3 =new LinkedList<App_SigningProcessBean>();
+		Integer Applylistsranks =0;
+		Integer nosendranks=0;
+		Integer pages=0;
+		Integer thispage =Integer.valueOf(page);
+		
+		Integer beginindex = (thispage-1)*5;
+		Integer pagesize = 5;
+		if(Sproductlistsx1==null) {
+		}else {
+			pages=Sproductlistsx1.size()/5;
+			if(Sproductlistsx1.size()%5>0) {
+				pages++;
+			}
+			Sproductlistsxs1=app_SigningProcessService.selectemppoidsendpages(empid, "簽核中", beginindex, pagesize);
+			for(int i=0;i<Sproductlistsx1.size();i++) {
+				App_SigningProcessBean xsz=new App_SigningProcessBean();
+				xsz=Sproductlistsx1.get(i);			
+					Applylistsranks=xsz.getSig_rank();
+					String apid = xsz.getApp_id();
+					App_SigningProcessBean xsz1 =app_SigningProcessService.selectrank(apid, Applylistsranks-1);
+					if(xsz1!=null) {
+						Sproductlistsx3.add(xsz1);
+					}
+			}
+		}
+		if(Sproductlistsx2!=null) {
+			if(pages<=0) {				
+				pages=Sproductlistsx2.size()/5;
+				if(Sproductlistsx2.size()%5>0) {
+					pages++;
+				}
+			}
+			Sproductlistsxs2=app_SigningProcessService.selectemppoidsendpages(empid, "退回中", beginindex, pagesize);
+		}
+		if(Sproductlistsx1!=null||Sproductlistsx2!=null){
+			model.addAttribute("pages", pages);
+			model.addAttribute("thispage", thispage);
+			model.addAttribute("Applylistsranks", Applylistsranks);
+			model.addAttribute("nosendranks", nosendranks);
+			model.addAttribute("Applylists", Sproductlistsxs1);
+			model.addAttribute("nosend", Sproductlistsxs2);
 			model.addAttribute("Applylistsone", Sproductlistsx3);
 			
 			return "apply.mangersign";
@@ -225,18 +311,32 @@ if(x.getApp_manger().equals(empid)&&x.getSig_sta().equals("退回中")&&x.getApp
 		}				
 			}
 	@RequestMapping("/Apply/toApplySignpro.controller")
-	//此方法是用在請購員工的頁面，在"請購單進度"的連結上
-	
+	//此方法是用在請購員工的頁面，在"請購單進度"的連結上	
 	public String toquerySignprocess(App_SigningProcessBean bean,BindingResult bindingResult,
 			Model model ,HttpSession session) {
 		EmployeeBean ben=(EmployeeBean) session.getAttribute("user");
 		String empid=ben.getEmp_id();
 		if(ben.getEmp_level()==1) {//如果是非主管的員工
 			List<App_SigningProcessBean> Sproductlistsx1 =new LinkedList<App_SigningProcessBean>();
-			
-			Sproductlistsx1=app_SigningProcessService.selectfromlastemp(empid);
-			
-			if(Sproductlistsx1!=null){//查詢是否有請購單號
+			List<App_SigningProcessBean> Sproductlistsx2 =new LinkedList<App_SigningProcessBean>();
+			Sproductlistsx2=app_SigningProcessService.selectfromlastemp(empid);
+           if(Sproductlistsx2!=null){//查詢是否有請購單號
+        	   Integer pages=Sproductlistsx2.size()/5;
+        	   if((Sproductlistsx2.size()%5)>0) {
+        		   pages++;
+        	   }
+        	   Integer thissize=0;
+        	   if(Sproductlistsx2.size()<5) {
+        		   thissize=Sproductlistsx2.size();
+        	   }else {
+        		   thissize=5;
+        	   }
+        	   for (int i=0;i<thissize;i++ ){
+        		   App_SigningProcessBean x = Sproductlistsx2.get(i);
+        		   Sproductlistsx1.add(x);
+        	   }
+        	   
+        	   model.addAttribute("pages",pages);
 				model.addAttribute("Applylists", Sproductlistsx1);
 				return "apply.sign";
 			}else{
@@ -246,16 +346,25 @@ if(x.getApp_manger().equals(empid)&&x.getSig_sta().equals("退回中")&&x.getApp
 		}else {
 			List<App_SigningProcessBean> Sproductlistsx1 =new LinkedList<App_SigningProcessBean>();
 			Sproductlistsx1=app_SigningProcessService.selectfromlastemp(empid);
-			
 			if(Sproductlistsx1!=null) {//如果是主管
+				Integer pages=Sproductlistsx1.size()/5;
+	        	   if((Sproductlistsx1.size()%5)>0) {
+	        		   pages++;
+	        	   }
 				List<App_SigningProcessBean> Sproductlistsx2 =new LinkedList<App_SigningProcessBean>();
-				
-				for(int i=0;i<Sproductlistsx1.size();i++) {//查詢員工第一位的申請時間
+				Integer thissize=0;
+	        	   if(Sproductlistsx2.size()<5) {
+	        		   thissize=Sproductlistsx2.size();
+	        	   }else {
+	        		   thissize=5;
+	        	   }
+	        	   for (int i=0;i<thissize;i++ ){//查詢員工第一位的申請時間
 					App_SigningProcessBean xs = Sproductlistsx1.get(i);
 					App_SigningProcessBean xs1=app_SigningProcessService.selectrank(xs.getApp_id(),1);
 					Sproductlistsx2.add(xs1);
 					
 				}
+				model.addAttribute("pages",pages);
 				model.addAttribute("Applylists", Sproductlistsx2);
 				return "apply.sign";
 			}else {
@@ -266,6 +375,71 @@ if(x.getApp_manger().equals(empid)&&x.getSig_sta().equals("退回中")&&x.getApp
 		}
 		
 			}
+	@RequestMapping("/Apply/toApplySignpropage.controller")
+	//此方法是用在請購員工的頁面，在"請購單進度"的連結上	
+	public String toquerySignprocesspages(App_SigningProcessBean bean,BindingResult bindingResult,
+			Model model ,HttpSession session,String page) {
+		EmployeeBean ben=(EmployeeBean) session.getAttribute("user");
+		String empid=ben.getEmp_id();
+		Integer thispage =Integer.valueOf(page);
+		
+		Integer beginindex = (thispage-1)*5+1;
+		Integer endindex = (thispage)*5;
+		if(ben.getEmp_level()==1) {//如果是非主管的員工
+			List<App_SigningProcessBean> Sproductlistsx1 =new LinkedList<App_SigningProcessBean>();
+			List<App_SigningProcessBean> Sproductlistsx2 =new LinkedList<App_SigningProcessBean>();
+			Sproductlistsx2=app_SigningProcessService.selectfromlastemp(empid);
+           if(Sproductlistsx2!=null){//查詢是否有請購單號
+        	   Integer pages=Sproductlistsx2.size()/5;
+        	   if((Sproductlistsx2.size()%5)>0) {
+        		   pages++;
+        	   }
+        	   if(thispage==pages) {
+        		   endindex=Sproductlistsx2.size();
+        	   }
+        	   for (int i=(beginindex-1);i<endindex;i++ ){
+        		   App_SigningProcessBean x = Sproductlistsx2.get(i);
+        		   Sproductlistsx1.add(x);
+        	   }
+        	   
+        	   model.addAttribute("pages",pages);
+        	   model.addAttribute("thispage",thispage);
+				model.addAttribute("Applylists", Sproductlistsx1);
+				return "apply.sign";
+			}else{
+				model.addAttribute("noApplylist", "無請購中單號");
+				return "apply.sign";
+			}	
+		}else {
+			List<App_SigningProcessBean> Sproductlistsx1 =new LinkedList<App_SigningProcessBean>();
+			Sproductlistsx1=app_SigningProcessService.selectfromlastemp(empid);
+			if(Sproductlistsx1!=null) {//如果是主管
+				Integer pages=Sproductlistsx1.size()/5;
+	        	   if((Sproductlistsx1.size()%5)>0) {
+	        		   pages++;
+	        	   }
+	        	   if(thispage==pages) {
+	        		   endindex=Sproductlistsx1.size();
+	        	   }
+				List<App_SigningProcessBean> Sproductlistsx2 =new LinkedList<App_SigningProcessBean>();
+				for(int i=(beginindex-1);i<endindex;i++) {//查詢員工第一位的申請時間
+					App_SigningProcessBean xs = Sproductlistsx1.get(i);
+					App_SigningProcessBean xs1=app_SigningProcessService.selectrank(xs.getApp_id(),1);
+					Sproductlistsx2.add(xs1);
+					
+				}
+				model.addAttribute("pages",pages);
+				model.addAttribute("thispage",thispage);
+				model.addAttribute("Applylists", Sproductlistsx2);
+				return "apply.sign";
+			}else {
+				model.addAttribute("noApplylist", "無請購中單號");
+				return "apply.sign";
+			}
+				
+		}
+		
+			}	
 	@RequestMapping("/Apply/applysignss.controller")
 	public String applySigner(App_SigningProcessBean bean,BindingResult bindingResult,
 			Model model ,HttpSession session,String send,String SignSug) throws ParseException {

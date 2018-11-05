@@ -76,8 +76,8 @@ public class PO_SigningProcessService {
 		return null;
 	}
 	
-	public List<PO_SigningProcessBean> selectmangers(String app_Manger, String sig_Sta) {
-		List<PO_SigningProcessBean> beans =pO_SigningProcessIDao.selectmangers(app_Manger,sig_Sta);
+	public List<PO_SigningProcessBean> selectmangers(String po_manger, String sig_Sta) {
+		List<PO_SigningProcessBean> beans =pO_SigningProcessIDao.selectmangers(po_manger,sig_Sta);
 		if(beans!=null) {
 			return beans;
 		}
@@ -91,4 +91,11 @@ public class PO_SigningProcessService {
 		}
 		return null;
 	}
+	public List<PO_SigningProcessBean> selectempidsendpages(String po_manger, String sig_sta ,Integer beginindex,Integer endindex) {
+		List<PO_SigningProcessBean> beans =pO_SigningProcessIDao.selectempidsendpages(po_manger,sig_sta,beginindex,endindex);
+		if(beans!=null) {
+			return beans;
+		}
+		return null;
+	}	
 }

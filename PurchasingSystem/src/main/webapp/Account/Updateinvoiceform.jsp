@@ -23,59 +23,68 @@ input, select {
 		<h2>${errormeg}</h2>
 	</c:if>
 
-<c:if test="${not empty invoice}">	
-    <h1>請款單</h1> <a href='Polist.controller'>回上一頁</a>
- <form method="post" action="<c:url value="/Po/resendInvoice.controller"/>" enctype="multipart/form-data">
- 		<input type="hidden" value="${poid}" name="poid">
- 		<input type="hidden" value="1" name="sig_Rank">
-        <label for="Inv_id">請款單單號</label>
-        <input type="text" name="Inv_id" id="" readonly="readonly" value="${invoice.inv_id}">
-        <label for="Emp_name">申請人</label>
-        <input type="text" name="Emp_name" id="" readonly="readonly" value="${user.emp_name}">
-        <label for="Emp_dep">所屬部門</label>
-        <input type="text" name="Emp_dep" id="" readonly="readonly" value="${user.emp_dep}">
-        <label for="Vendor_name">廠商名稱</label>
-        <input type="text" name="Vendor_name" readonly="readonly" id="" value="${pomain.pO_Vendor_InfoBean.vendor_name}">
-        <label for="Vendor_id">廠商統編</label>
-        <input type="text" name="Vendor_id" readonly="readonly" id="" value="${pomain.pO_Vendor_InfoBean.vendor_id}">
-        <label for="Total_price">請款金額</label>
-        <input type="text" name="Total_price" readonly="readonly" id="" value="${invoice.total_price}">
-        <label for="Payment_method">付款方式</label>
-        <input type="text" name="Payment_method" readonly="readonly" id="" value="${pomain.pO_Vendor_InfoBean.payment_method}">
-        <label for="Except_Payment_Date">預計付款日</label>
-        <input type="text" name="Except_Payment_Date" id="" value="${paymentDate}" readonly="readonly">
-        <label for="oldRecript_date">原憑證日期</label>
-        <input type="text" name="oldRecript_date" id="" value="${oldRecript_date}" readonly="readonly">
-        <label for="Recript_date">修改憑證日期</label>
-        <input type="date" name="Recript_date" id="" value="">
-        <p>原憑證圖檔</p>
-        <img src="..${invoice.recript_pic}" alt="" height="200" width="200">
-        <input type="file" name="Receiptpic" id="" value="">
-        <label for="Receiptpic">修改憑證圖檔
-        </label>
+	<c:if test="${not empty invoice}">
+		<h1>請款單</h1>
+		<a href='Polist.controller'>回上一頁</a>
+		<form method="post"
+			action="<c:url value="/Po/resendInvoice.controller"/>"
+			enctype="multipart/form-data">
+			<input type="hidden" value="${poid}" name="poid"> <input
+				type="hidden" value="1" name="sig_Rank"> <label for="Inv_id">請款單單號</label>
+			<input type="text" name="Inv_id" id="" readonly="readonly"
+				value="${invoice.inv_id}"> <label for="Emp_name">申請人</label>
+			<input type="text" name="Emp_name" id="" readonly="readonly"
+				value="${user.emp_name}"> <label for="Emp_dep">所屬部門</label>
+			<input type="text" name="Emp_dep" id="" readonly="readonly"
+				value="${user.emp_dep}"> <label for="Vendor_name">廠商名稱</label>
+			<input type="text" name="Vendor_name" readonly="readonly" id=""
+				value="${pomain.pO_Vendor_InfoBean.vendor_name}"> <label
+				for="Vendor_id">廠商統編</label> <input type="text" name="Vendor_id"
+				readonly="readonly" id=""
+				value="${pomain.pO_Vendor_InfoBean.vendor_id}"> <label
+				for="Total_price">請款金額</label> <input type="text" name="Total_price"
+				readonly="readonly" id="" value="${invoice.total_price}"> <label
+				for="Payment_method">付款方式</label> <input type="text"
+				name="Payment_method" readonly="readonly" id=""
+				value="${pomain.pO_Vendor_InfoBean.payment_method}"> <label
+				for="Except_Payment_Date">預計付款日</label> <input type="text"
+				name="Except_Payment_Date" id="" value="${paymentDate}"
+				readonly="readonly"> <label for="oldRecript_date">原憑證日期</label>
+			<input type="text" name="oldRecript_date" id=""
+				value="${oldRecript_date}" readonly="readonly"> <label
+				for="Recript_date">修改憑證日期</label> <input type="date"
+				name="Recript_date" id="" value="">
+			<p>原憑證圖檔</p>
+			<img src="..${invoice.recript_pic}" alt="" height="200" width="200">
+			<input type="file" name="Receiptpic" id="" value=""> <label
+				for="Receiptpic">修改憑證圖檔 </label>
 
-        <p>退回原因:${sigSug}
-        <p>
-        <c:if test="${not empty manager}">
+			<p>退回原因:${sigSug}
+			<p>
+				<c:if test="${not empty manager}">
          主管<select name="selectPOManager">
-        <c:forEach var="poman" items="${manager}">
-        <option  value="${poman.emp_id}">${poman.emp_name} ${poman.emp_job}</option>
-        </c:forEach>
-        </select>
-        </c:if>
-      	 簽核意見:<p><textarea rows="5" cols="50"  name="SignSug">
-		</textarea><p>
+						<c:forEach var="poman" items="${manager}">
+							<option value="${poman.emp_id}">${poman.emp_name}
+								${poman.emp_job}</option>
+						</c:forEach>
+					</select>
+				</c:if>
+				簽核意見:
+			<p>
+				<textarea rows="5" cols="50" name="SignSug">
+		</textarea>
+			<p>
 				<input type="submit" value="送出">
 		</form>
 	</c:if>
 	<c:if test="${not empty invid}">
 		<h1>請款單</h1>
-		<c:set var="dep"  value="${user.emp_dep}" />
+		<c:set var="dep" value="${user.emp_dep}" />
 		<c:set var="dep1" value="採購部" />
 		<c:set var="dep2" value="財務部" />
 		<c:choose>
 			<c:when test="${(dep==dep1) && (user.emp_level==2)}">
-				<a href='todoSignInvoice.controller'>回上一頁</a>			
+				<a href='todoSignInvoice.controller'>回上一頁</a>
 			</c:when>
 			<c:when test="${(dep==dep2) && (user.emp_level==1)}">
 				<a href='ToDoSignlevel1.controller'>回上一頁</a>
@@ -84,6 +93,7 @@ input, select {
 				<a href='ToDoSignInvoice.controller'>回上一頁</a>
 			</c:otherwise>
 		</c:choose>
+
 		<form method="post" action="<c:url value="/Account/ReviewInvoice.controller"/>">
 		<input type="hidden" value="${invid}" name="invid">
 		<label for="Inv_id">請款單單號</label>
@@ -122,6 +132,7 @@ input, select {
         </c:forEach>
         </table>
 
+
 			<c:if test="${not empty manager}">
          主管<select name="selectPOManager">
 					<c:forEach var="poman" items="${manager}">
@@ -131,13 +142,13 @@ input, select {
 				</select>
 			</c:if>
 			簽核意見:
-		<p>
-			<textarea rows="5" cols="50" name="SignSug">
+			<p>
+				<textarea rows="5" cols="50" name="SignSug">
 		</textarea>
-		<p>
+			<p>
 
-			<input type="submit" name="action" value="送出"> 
-			<input type="submit" name="action" value="退回">
+				<input type="submit" name="action" value="送出"> 
+				<input type="submit" name="action" value="退回">
 		</form>
 	</c:if>
 </body>
