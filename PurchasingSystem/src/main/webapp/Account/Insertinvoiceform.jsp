@@ -15,7 +15,15 @@
 </head>
 
 <body>
-    <h1>請款單</h1>
+
+	<c:if test="${not empty successmeg}">
+		<h2>${successmeg} ${inv_id} </h2>
+	</c:if>
+	<c:if test="${not empty errormeg}">
+		<h2>${errormeg}</h2>
+	</c:if>
+
+  <h1>請款單</h1> <a href='Polist.controller'>回上一頁</a>
  <form method="post" action="<c:url value="/Po/onloadimage.controller"/>" enctype="multipart/form-data">
  		<input type="hidden" value="${poid}" name="poid">
         <input type="hidden" value="${user.emp_id}" name="Emp_id">
@@ -32,9 +40,9 @@
         <label for="Payment_method">付款方式</label>
         <input type="text" name="Payment_method" readonly="readonly" id="" value="${bean.pO_Vendor_InfoBean.payment_term}">
         <label for="Except_Payment_Date">預計付款日</label>
-        <input type="text" name="Except_Payment_Date" id="" value="${paymentDate}">
+        <input type="text" name="Except_Payment_Date" id="" value="${paymentDate}" >
         <label for="Recript_date">憑證日期</label>
-        <input type="text" name="Recript_date" id="" value="">
+        <input type="date" name="Recript_date" id="" value="" required >
         <label for="Receiptpic">憑證圖檔</label>
         <input type="file" name="Receiptpic" id="" value="">
           主管<select name="selectPOManager">
@@ -43,10 +51,11 @@
         </c:forEach>
         </select>
 
-      	 簽核意見:<textarea rows="5" cols="50"  name="SignSug">
+      	 簽核意見:<textarea rows="5" cols="50"  name="SignSug" required >
 		</textarea>
 
         <input type="submit" value="送出">
+        
 
 </form>
 </body>
