@@ -456,6 +456,11 @@ public class POSigningController {
 		
 		List<Account_InvoiceBean> InvoiceSign = pO_InvoiceService.findTodoSignInv(emp_id, "簽核中", 2);
 		model.addAttribute("listtodosign", InvoiceSign);
+		List<Account_InvoiceBean> BackInvoiceSign = pO_InvoiceService.findTodoBackInv(emp_id, "退回中", 2);
+		model.addAttribute("BackInvoiceSign", BackInvoiceSign);
+		
+		
+		
 		return "todoSignInvoice.show";
 	}
 	

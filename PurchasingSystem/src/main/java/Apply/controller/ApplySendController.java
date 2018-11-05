@@ -85,7 +85,7 @@ public class ApplySendController {
 		 EmployeeBean boss =employeeService.select(userManger.getEmp_managerid());//總經理
 		Map<String, String> errors = new HashMap<String, String>();
 		List<ProductListBean>  beans =new LinkedList<ProductListBean>();
-		if (send.equals("查詢清單")) {
+		if (send.equals("search")) {
 			beans=(List<ProductListBean>) session.getAttribute("cart");
 			Integer xs=0;
 			if(beans!=null) {
@@ -114,6 +114,7 @@ public class ApplySendController {
 		if(session.getAttribute("cart")==null) {
 			session.setAttribute("cart",beans);
 		}else {
+			
 			beans=(List<ProductListBean>) session.getAttribute("cart");
 		}
 		Integer proamt =0;
@@ -170,6 +171,108 @@ public class ApplySendController {
 	    	return "app.product";
 	    
 	}
+	@SuppressWarnings("unchecked")
+	@RequestMapping("/Apply/ApplyShoppingaddcart.controller") 
+	public String addShoppingCart(String part_no[],String pro_cate[],String pro_name[],String pro_spe[],
+			String pro_intro[],String pro_price[],String pro_amount[],String pro_img[],String pro_date[],
+			Model model ,HttpSession session,String send,String productamount[]) {//購物車
+		 
+		 EmployeeBean user =new EmployeeBean();
+		 if(session.getAttribute("user")!=null) {
+			 user= (EmployeeBean) session.getAttribute("user"); 
+			 
+		 }
+		 EmployeeBean userManger =employeeService.select(user.getEmp_managerid());//使用者id的主管
+		 EmployeeBean boss =employeeService.select(userManger.getEmp_managerid());//總經理
+		Map<String, String> errors = new HashMap<String, String>();
+		List<ProductListBean>  beans =new LinkedList<ProductListBean>();
+				
+		if(session.getAttribute("cart")==null) {
+			//session.setAttribute("cart",beans);
+		}else{
+			beans=(List<ProductListBean>) session.getAttribute("cart");
+		}
+			
+		for(int i=0;i<productamount.length;i++) {
+			if(productamount[i].equals("")||productamount[i].equals(null)) {
+				productamount[i]="0";
+			}
+		}
+			Integer proamt[] =new Integer [part_no.length];
+			try {
+				for(int i=0;i<productamount.length;i++) {
+					proamt[i]=Integer.valueOf(productamount[i]);
+				}
+			}catch(NumberFormatException ex) {
+				ex.getStackTrace();
+				errors.put("cate", "請輸入整數");
+				model.addAttribute("errors", errors);
+				return "app.product";
+			}
+			
+			Integer cartamount=0;
+
+			if (beans.size()>0) {
+				int xz=0;
+				for(int i=0;i<beans.size();i++) {
+					ProductListBean x=beans.get(i);
+					for(int xsz=0;xsz<part_no.length;xsz++) {
+						if(x.getPart_no().equals(part_no[xsz])) {
+							
+							if(x.getPro_amount()>0) {			
+								x.setPro_amount(proamt[xsz]+x.getPro_amount());
+								
+							}else {
+								x.setPro_amount(proamt[xsz]);
+							}
+							xz++;
+						}else if(!(x.getPro_cate().equals(pro_cate[xsz]))){
+							errors.put("cate", "請選擇相同大項");
+							model.addAttribute("errors", errors);
+							return "app.product";
+						}
+						
+					}
+										
+				}
+				for(int i=0;i<beans.size();i++) {
+					ProductListBean x=beans.get(i);
+					if(x.getPro_amount()>0) {
+						cartamount++;
+					}
+				}
+				session.setAttribute("cart",beans);
+				session.setAttribute("cartnumber", cartamount);
+				return "app.product";	
+			
+			}else {
+//	(String part_no[],String pro_cate[],String pro_name[],String pro_spe[],
+//String pro_intro[],String pro_price[],String pro_amount[],String pro_img[],String pro_date[],
+				for(int i=0;i<part_no.length;i++) {
+					ProductListBean x=new ProductListBean();
+					if(proamt[i]>0) {
+						cartamount++;
+					}
+					x.setPart_no(part_no[i]);
+					x.setPro_cate(pro_cate[i]);
+					x.setPro_spe(pro_spe[i]);
+					x.setPro_intro(pro_intro[i]);
+					Integer thisprice=	Integer.valueOf(pro_price[i]);
+					x.setPro_price(thisprice);
+					x.setPro_intro(pro_intro[i]);
+					x.setPro_amount(proamt[i]);
+					x.setPro_img(pro_img[i]);
+					beans.add(x);
+					}
+				
+				session.setAttribute("cart",beans);
+				session.setAttribute("cartnumber", cartamount);
+				return "app.product";
+				
+			}
+	
+	}
+	
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/Apply/ApplyListsend.controller") 
 	public String ApplyList(ProductListBean bean,BindingResult bindingResult,Model model 
@@ -251,7 +354,8 @@ public class ApplySendController {
 	    	for(int i=0;i<beans.size();i++) {
 				ProductListBean x=beans.get(i);
 				if(x.getPart_no().equals(Part_no)) {
-					beans.remove(x);
+					//beans.remove(x);
+					x.setPro_amount(0);
 				}else if(!(x.getPro_cate().equals(Pro_cate))){
 					errors.put("cate", "請選擇相同大項");
 					model.addAttribute("errors", errors);
@@ -294,12 +398,15 @@ public class ApplySendController {
 //	    	AppDetailBean
 	    	for(int i=0;i<beans.size();i++) {
 				ProductListBean x=beans.get(i);
-				String no=x.getPart_no();
-				Integer amo =x.getPro_amount();
-				Integer pri =x.getPro_price();
-		
-				AppDetailBean qwe=new AppDetailBean(apid,no,pri,amo);
-				appDetailService.insert(qwe);
+				if(x.getPro_amount()>0) {
+					
+					String no=x.getPart_no();
+					Integer amo =x.getPro_amount();
+					Integer pri =x.getPro_price();
+					
+					AppDetailBean qwe=new AppDetailBean(apid,no,pri,amo);
+					appDetailService.insert(qwe);
+				}
 	    	}
 	    	if (suggestion==null) {
 	    		suggestion="";

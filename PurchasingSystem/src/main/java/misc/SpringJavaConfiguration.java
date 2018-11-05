@@ -51,8 +51,8 @@ public class SpringJavaConfiguration {
 //	    dmds.setPassword("passw0rd");
 //		return dmds;
 //	}        
-       
-	@Bean
+
+@Bean
 	public DataSource dataSource() {
 		JndiObjectFactoryBean factory = new JndiObjectFactoryBean();
 		factory.setJndiName("java:comp/env/jdbc/xxx");
@@ -66,6 +66,8 @@ public class SpringJavaConfiguration {
 		}
 		return (DataSource) factory.getObject();
 	}
+
+
 	
 	@Bean
 	public SessionFactory sessionFactory() {
@@ -73,7 +75,7 @@ public class SpringJavaConfiguration {
 				new LocalSessionFactoryBuilder(dataSource());
 
 		Properties props = new Properties();
-		props.put("hibernate.dialect", "org.hibernate.dialect.SQLServerDialect");
+		props.put("hibernate.dialect", "org.hibernate.dialect.SQLServer2008Dialect");
 		props.put("hibernate.current_session_context_class", "thread");
 		//props.put("hibernate.transaction.factory_class", "org.hibernate.transaction.JDBCTransactionFactory");
 		props.put("hibernate.show_sql", "true");	

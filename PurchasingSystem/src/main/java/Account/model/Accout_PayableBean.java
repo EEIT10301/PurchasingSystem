@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 //Accout_Payable
 @Entity
 @Table(name = "Account_Payable")
@@ -21,6 +23,7 @@ public class Accout_PayableBean {
 //private String	remittance_account;
 	private String cheque_no;
 //private String	applicant_ID;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private java.util.Date except_Payment_Date;
 	private String payable_Status;
 	private Integer amount_Paid;
