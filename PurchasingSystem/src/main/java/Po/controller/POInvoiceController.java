@@ -142,7 +142,7 @@ public class POInvoiceController {
 				pO_InvoiceService.insertAccountSigningProcess(invId, Emp_id, selectPOManager, SignSug);
 		
 		//update 採款單請款作業簽核流程
-				pO_InvoiceService.updatePoSigningProcess(poid, SignSug);
+				pO_InvoiceService.updatePoSigningProcess(poid, SignSug,"請款中");
 
 		return "newForm";
 	}

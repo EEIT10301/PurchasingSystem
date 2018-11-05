@@ -8,7 +8,7 @@
 <title>主畫面</title>
 <style>
 /* a, a:visited {
-	text-decoration: none;
+	text-decoration: none;1		
 	color: black;
 }
 table{

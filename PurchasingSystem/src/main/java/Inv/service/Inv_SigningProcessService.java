@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import Account.model.Account_SigningProcessBean;
 import Inv.dao.Inv_SigningProcessIDao;
 import Inv.model.Inv_SigningProcessBean;
+import Po.model.PO_SigningProcessBean;
 
 @Service
 //@Transactional
@@ -52,5 +53,15 @@ public boolean delete(String inv_Sta, String chk_Id) {
 	boolean beans = inv_SigningProcessIDao.delete(inv_Sta,chk_Id);
 	return beans;
 }
+
+public List<Inv_SigningProcessBean> selectempidsend(String inv_manger, String sig_sta) {
+	List<Inv_SigningProcessBean> beans = inv_SigningProcessIDao.selectempidsend( inv_manger,sig_sta);
+	if(beans!=null) {
+		return beans;
+	
+	}
+	return null;
+}
+
 
 }
