@@ -27,4 +27,6 @@ public interface PO_SigningProcessIDao {
 
 	public abstract PO_SigningProcessBean selectempandrank(String po_id,Integer Sig_rank);
 
+	public abstract List<PO_SigningProcessBean> selectempidsendpages(String po_manger, String sig_sta ,Integer beginindex,Integer pagesize);
+
 }
