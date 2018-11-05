@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -27,6 +28,7 @@ import org.springframework.web.multipart.MultipartFile;
 import Account.model.Account_InvoiceBean;
 import Account.model.Account_SigningProcessBean;
 import Account.service.Account_InvoiceService;
+import Apply.model.App_SigningProcessBean;
 import Apply.model.EmployeeBean;
 import Apply.service.EmployeeService;
 import Po.model.PO_MainBean;
@@ -390,15 +392,39 @@ public class POInvoiceController {
 		}
 
 		//查詢請款單狀態
-		@RequestMapping("/Account/queryStatus.controller")
+		@RequestMapping("/Po/queryStatus.controller")
 		public String queryStatus(Model model ,HttpSession session) {
 			EmployeeBean empbean = (EmployeeBean)session.getAttribute("user");
 			String emp_id=empbean.getEmp_id();
+			List<Account_SigningProcessBean> lists =pO_InvoiceService.selectAccountManagerInvoiveOrNot(emp_id);
+		
+			if(lists!=null) {
+				for(int i=0;i<lists.size();i++){
+					for(int x=0;x<lists.size();x++){
+						if  (lists.get(x).equals(lists.get(i)))  {  
+							lists.remove(x);
+						}
+					}
+				}
+				model.addAttribute("lists", lists);
+				return "statusList.show";
+			}else {
+				model.addAttribute("nolist", "無請款中單號");
+				return "statusList.show";
+			}
 			
+		}
+		
+		//查詢該張請款單狀態
+		@RequestMapping("/Po/queryStatusIn.controller")
+		public String queryStatusIn(Model model ,HttpSession session, String invid) {
+			List<Account_SigningProcessBean> stat=pO_InvoiceService.selectStatus(invid);
+			model.addAttribute("stat", stat);
 			
+			Account_InvoiceBean bean= account_InvoiceService.select(invid);
+			model.addAttribute("bean", bean);
 
 			
-			
-			return "";
+			return "statusIn.show";
 		}
 }

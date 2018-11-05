@@ -25,7 +25,7 @@
 <a href='Polist.controller'>待申請請款單 </a>
 </c:if>
 <a href='POManagerSigner.controller'>待審核採購單</a>
-<a href=''>查詢請款單狀態</a>
+<a href='queryStatus.controller'>查詢請款單狀態</a>
 <c:if test="${user.emp_level==2}">
 <a href='sendEmployee.controller'>待分派採購單</a>
 <a href='todoSignInvoice.controller'>待審核請款單</a>

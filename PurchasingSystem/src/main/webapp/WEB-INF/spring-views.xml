@@ -208,4 +208,15 @@
 		<property name="url" value="/Apply/CeoPosignprocessdetail.jsp"></property>
 	</bean>
 <!-- 總經理連結-->
+
+<!-- 查詢請款單狀態連結-->
+	<bean id="statusList.show"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Po/StatusOfInv.jsp"></property>
+	</bean>
+	<bean id="statusIn.show"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Po/StatusOfInvIn.jsp"></property>
+	</bean>
+<!-- 查詢請款單狀態連結-->
 </beans>

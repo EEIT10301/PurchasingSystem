@@ -101,6 +101,13 @@ public class PO_InvoiceService {
 		return null;
 	}
 	
+	public List<Account_SigningProcessBean> selectAccountManagerInvoiveOrNot(String emp_id) {
+		List<Account_SigningProcessBean> process = account_SigningProcessIDao.selectStatus(emp_id);
+		if(process !=null) {
+			return process;
+		}
+		return null;
+	}
 	
 	public String calcExpirePaymentDate(String payment_term,Date applicationDate ) {
 		Calendar cal = Calendar.getInstance();
@@ -249,6 +256,12 @@ public class PO_InvoiceService {
 		}
 		return null;
 	}
+	public List<Account_SigningProcessBean> selectStatus(String inv_id){
+		List<Account_SigningProcessBean> process = account_SigningProcessIDao.selectForInvid(inv_id);
+		if(process !=null) {
+			return process;
+		}
+		return null;
+	}
 	
-
 }
