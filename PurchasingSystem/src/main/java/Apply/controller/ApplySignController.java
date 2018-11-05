@@ -297,6 +297,7 @@ if(x.getApp_manger().equals(empid)&&x.getSig_sta().equals("退回中")&&x.getApp
 		}
 		if(Sproductlistsx1!=null||Sproductlistsx2!=null){
 			model.addAttribute("pages", pages);
+			model.addAttribute("thispage", thispage);
 			model.addAttribute("Applylistsranks", Applylistsranks);
 			model.addAttribute("nosendranks", nosendranks);
 			model.addAttribute("Applylists", Sproductlistsxs1);
@@ -402,6 +403,7 @@ if(x.getApp_manger().equals(empid)&&x.getSig_sta().equals("退回中")&&x.getApp
         	   }
         	   
         	   model.addAttribute("pages",pages);
+        	   model.addAttribute("thispage",thispage);
 				model.addAttribute("Applylists", Sproductlistsx1);
 				return "apply.sign";
 			}else{
@@ -427,6 +429,7 @@ if(x.getApp_manger().equals(empid)&&x.getSig_sta().equals("退回中")&&x.getApp
 					
 				}
 				model.addAttribute("pages",pages);
+				model.addAttribute("thispage",thispage);
 				model.addAttribute("Applylists", Sproductlistsx2);
 				return "apply.sign";
 			}else {
