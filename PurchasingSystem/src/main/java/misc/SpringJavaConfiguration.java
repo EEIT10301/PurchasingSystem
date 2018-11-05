@@ -66,6 +66,7 @@ public class SpringJavaConfiguration {
 		return (DataSource) factory.getObject();
 	}
 
+
 	
 	@Bean
 	public SessionFactory sessionFactory() {

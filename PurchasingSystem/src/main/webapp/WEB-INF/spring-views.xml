@@ -142,6 +142,14 @@
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/Inv/InvProductMain.jsp"></property>
 	</bean>
+	<bean id="selectInvchk.list"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Inv/SelectInvList.jsp"></property>
+	</bean>
+	<bean id="Inv.sign"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Inv/Invsign.jsp"></property>
+	</bean>
 	<!-- 驗收使用連結 -->
 
 	<!--待請款單使用連結 -->

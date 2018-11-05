@@ -5,12 +5,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>待派驗收單</title>
 </head>
 <body>
 	<c:if test="${not empty invmain }">
 		<h2>待分派驗收單號:${invmain.chk_Id}</h2>
-		<form action="<c:url value=""/>" method="post">
+		<form action="<c:url value="/Inv/Invsendlist.controller"/>" method="post">
 			<c:forEach var="invmaindetail" items="${invmain.inv_ProductListBean}">
 				<P>項目:${invmaindetail.productListBean.pro_cate}</P>
 				<p>料號:${invmaindetail.productListBean.part_no}</p>
