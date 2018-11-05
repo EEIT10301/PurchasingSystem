@@ -193,13 +193,8 @@ public class POInvoiceController {
 			String paydate=pO_InvoiceService.calcExpirePaymentDate(bean.getpO_MainBean().getpO_Vendor_InfoBean().getPayment_term(),poSignBean.getSig_date());
 			Date keyday=bean.getRecript_date();
 			
-			Set<Account_SigningProcessBean> selects = bean.getAccount_SigningProcessBean();
-			for(Account_SigningProcessBean x:selects) {
-				if(x.getSig_Rank()==1) {
-				String sigSug=x.getSig_Sug();
-				model.addAttribute("sigSug", sigSug);
-				}
-			}		
+			List<Account_SigningProcessBean> sug=pO_InvoiceService.selectInvidAndRankLower(invid, 2);
+			model.addAttribute("sug", sug);		
 
 			List<EmployeeBean> employee=employeeService.selectPoEmployee("財務部", 2);
 			
@@ -270,15 +265,9 @@ public class POInvoiceController {
 			String payMethod=bean.getpO_MainBean().getpO_Vendor_InfoBean().getPayment_method();
 			String paydate=pO_InvoiceService.calcExpirePaymentDate(bean.getpO_MainBean().getpO_Vendor_InfoBean().getPayment_term(),poSignBean.getSig_date());
 			Date keyday=bean.getRecript_date();
-			
-			Set<Account_SigningProcessBean> selects = bean.getAccount_SigningProcessBean();
-			for(Account_SigningProcessBean x:selects) {
-				if(x.getSig_Rank()==2) {
-					String sigSug=x.getSig_Sug();
-					model.addAttribute("sigSug", sigSug);
-				}
-			}		
-			
+			List<Account_SigningProcessBean> sug=pO_InvoiceService.selectInvidAndRankLower(invid, 3);
+			model.addAttribute("sug", sug);
+						
 			List<EmployeeBean> employee=employeeService.selectPoEmployee("財務部", 1);
 			
 			model.addAttribute("bean", bean);
@@ -310,13 +299,8 @@ public class POInvoiceController {
 			String paydate=pO_InvoiceService.calcExpirePaymentDate(bean.getpO_MainBean().getpO_Vendor_InfoBean().getPayment_term(),poSignBean.getSig_date());
 			Date keyday=bean.getRecript_date();
 			
-			Set<Account_SigningProcessBean> selects = bean.getAccount_SigningProcessBean();
-			for(Account_SigningProcessBean x:selects) {
-				if(x.getSig_Rank()==4) {
-					String sigSug=x.getSig_Sug();
-					model.addAttribute("sigSug", sigSug);
-				}
-			}		
+			List<Account_SigningProcessBean> sug=pO_InvoiceService.selectInvidAndRankLower(invid, 5);
+			model.addAttribute("sug", sug);	
 			
 			List<EmployeeBean> employee=null;
 			
@@ -349,13 +333,8 @@ public class POInvoiceController {
 			String paydate=pO_InvoiceService.calcExpirePaymentDate(bean.getpO_MainBean().getpO_Vendor_InfoBean().getPayment_term(),poSignBean.getSig_date());
 			Date keyday=bean.getRecript_date();
 			
-			Set<Account_SigningProcessBean> selects = bean.getAccount_SigningProcessBean();
-			for(Account_SigningProcessBean x:selects) {
-				if(x.getSig_Rank()==3) {
-					String sigSug=x.getSig_Sug();
-					model.addAttribute("sigSug", sigSug);
-				}
-			}		
+			List<Account_SigningProcessBean> sug=pO_InvoiceService.selectInvidAndRankLower(invid, 4);
+			model.addAttribute("sug", sug);		
 			
 			List<EmployeeBean> employee=null;
 			
@@ -410,6 +389,16 @@ public class POInvoiceController {
 			return "signInv.show";
 		}
 
-		
-	
+		//查詢請款單狀態
+		@RequestMapping("/Account/queryStatus.controller")
+		public String queryStatus(Model model ,HttpSession session) {
+			EmployeeBean empbean = (EmployeeBean)session.getAttribute("user");
+			String emp_id=empbean.getEmp_id();
+			
+			
+
+			
+			
+			return "";
+		}
 }

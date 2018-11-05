@@ -93,8 +93,13 @@
         <input type="text" name="Recript_date" id="" value="${keyday}">
         <label for="Receiptpic">憑證圖檔</label>
         <input type="file" name="Receiptpic" id="" value="">
-        說明:        <p>${sigSug}<p>
         
+           簽核 說明:<table>
+           <tr><th>流程順序</th><th>簽核人ID</th><th>簽核人</th><th>簽核意見</th><th>簽核日期</th></tr>
+        <c:forEach var="sig" items="${sug}">
+        <tr><td>${sig.sig_Rank}</td> <td>${sig.account_Manger}</td><td>${sig.employeeBean.emp_name}</td><td>${sig.sig_Sug}</td> <td>${sig.sig_Date}</td></tr>
+        </c:forEach>
+        </table>
         <c:if test="${not empty manager}">
          主管<select name="selectPOManager">
         <c:forEach var="poman" items="${manager}">
