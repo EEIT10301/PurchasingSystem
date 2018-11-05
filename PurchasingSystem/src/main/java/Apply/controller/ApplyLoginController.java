@@ -90,22 +90,25 @@ public class ApplyLoginController {
 					return "indexlogin.error";
 					
 				} else {
-					if(bean.getEmp_dep().equals("採購部")||bean.getEmp_dep().equals("總經理")) {
+					if(bean.getEmp_dep().equals("採購部")) {
 						session.setAttribute("user", bean);
 						return "POlogin.success";
 						
 					}
-					else if(bean.getEmp_dep().equals("財務部")||bean.getEmp_dep().equals("總經理")) {
+					else if(bean.getEmp_dep().equals("財務部")) {
 						session.setAttribute("user", bean);
 						return "Acclogin.success";
 					}
-                    else if(bean.getEmp_dep().equals("品管部")||bean.getEmp_dep().equals("總經理")) {
+                    else if(bean.getEmp_dep().equals("品管部")) {
                     	session.setAttribute("user", bean);
                     	return "Invlogin.success";
-					}else {
+					}else if(bean.getEmp_dep().equals("研發部")){
 						
 						session.setAttribute("user", bean);
 						return "login.success";
+					}else {
+						session.setAttribute("user", bean);
+						return "ceo.login";
 					}
                     	
                     

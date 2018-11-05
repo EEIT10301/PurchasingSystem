@@ -57,5 +57,12 @@ public class PO_QueryService {
 			return beans;
 		
 	}
+	public List<PO_QueryBean> selectQueryBean(String po_id) {
+		List<PO_QueryBean> beans=pO_QueryIDao.selectQueryBean(po_id);
+		if(beans!=null) {
+			return beans;
+		}
+		return null;
+	}
 
 }

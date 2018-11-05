@@ -1,7 +1,7 @@
 package Po.service;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
@@ -12,10 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import Account.dao.Account_InvoiceIDao;
-import Account.dao.impl.Account_SigningProcessDao;
+import Account.dao.Account_SigningProcessIDao;
 import Account.model.Account_InvoiceBean;
 import Account.model.Account_SigningProcessBean;
 import Po.dao.PO_MainIDao;
@@ -25,7 +24,6 @@ import Po.model.PO_SigningProcessBean;
 import misc.SpringJavaConfiguration;
 
 @Service
-
 public class PO_InvoiceService {
 	@Autowired
 	PO_SigningProcessIDao pO_SigningProcessIDao;
@@ -34,47 +32,79 @@ public class PO_InvoiceService {
 	@Autowired
 	Account_InvoiceIDao account_InvoiceIDao;
 	@Autowired
-	Account_SigningProcessDao account_SigningProcessDao;
+	Account_SigningProcessIDao account_SigningProcessIDao;
 
 	public static void main(String[] args) {
 		ApplicationContext context = new AnnotationConfigApplicationContext(SpringJavaConfiguration.class);
 		SessionFactory sessionFactory = (SessionFactory) context.getBean("sessionFactory");
 		sessionFactory.getCurrentSession().beginTransaction();
-		PO_InvoiceService service = context.getBean(PO_InvoiceService.class);
-		service.insertAccountSigningProcess("Po20181013001", "emp005", "agree");
+		PO_SigningProcessIDao poSigningDao = context.getBean(PO_SigningProcessIDao.class);
+		PO_SigningProcessBean bean = poSigningDao.select("驗收中", "Po20181013001");
+		String paymentterm = bean.getpO_MainBean().getpO_Vendor_InfoBean().getPayment_term();
+		System.out.println(paymentterm);
+		Date date = bean.getSig_date();
+		System.out.println(date);
+		 PO_InvoiceService service = context.getBean(PO_InvoiceService.class);
+		 String paydate = service.calcExpirePaymentDate(paymentterm, date);
+		 System.out.println(paydate);
 		sessionFactory.getCurrentSession().getTransaction().commit();
+		
 	}
+	
 
 	
-	public List<PO_MainBean> find(String emp_id, String sig_sta) {
+	
+	
+	public  List<PO_MainBean> findNeedApplicationInvoice(String emp_id,String sig_sta) {
 		List<PO_SigningProcessBean> list = pO_SigningProcessIDao.selectempidsend(emp_id, sig_sta);
-		List<PO_MainBean> result = null;
-		result = new LinkedList<PO_MainBean>();
-		if (list != null) {
-			for (PO_SigningProcessBean x : list) {
-				PO_MainBean bean = pO_MainIDao.select(x.getPo_id());
-				result.add(bean);
+		List<PO_MainBean> result=new ArrayList<>();
+			if (list!=null) {
+				for(PO_SigningProcessBean x: list) {
+					PO_MainBean bean = pO_MainIDao.select(x.getPo_id());
+					result.add(bean);
+				}
+				return result;
 			}
+			return null;
+		}
+
+	public Account_InvoiceBean selectInvoice(String Inv_id) {
+		Account_InvoiceBean result = account_InvoiceIDao.select(Inv_id);
+		if(result !=null) {
 			return result;
 		}
 		return null;
 	}
-
-
-	public String calcExpirePaymentDate(String payment_term) {
-		Date applicationDate = new Date();
+	
+	public PO_SigningProcessBean selectForOneProcessbyPoSign(String po_sta,String po_id) {
+		PO_SigningProcessBean process = pO_SigningProcessIDao.select(po_sta, po_id);
+		if(process !=null) {
+			return process;
+		}
+		return null;
+	}
+	
+	public Account_SigningProcessBean selectForOneProcessbyAccountSign(String inv_id,Integer sig_Rank) {
+		Account_SigningProcessBean process = account_SigningProcessIDao.selectForRank(inv_id, sig_Rank);
+		if(process !=null) {
+			return process;
+		}
+		return null;
+	}
+	
+	
+	public String calcExpirePaymentDate(String payment_term,Date applicationDate ) {
 		Calendar cal = Calendar.getInstance();
 		int payMonth = 0;
 		int payDate = 0;
 		cal.setTime(applicationDate);
-		if (payment_term == "月結") {
-			payMonth = cal.get(Calendar.MONTH) + 1;
+		String term="月結";
+		if (payment_term.equals(term)) {
+			cal.add(Calendar.MONTH,1);
 		} else {
-			payMonth = cal.get(Calendar.MONTH) + 3;
+			cal.add(Calendar.MONTH,3);
 		}
-		cal.set(Calendar.MONTH, payMonth);
-		payDate = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
-		cal.set(Calendar.DAY_OF_MONTH, payDate);
+		cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DAY_OF_MONTH));
 		String paymentDate = new SimpleDateFormat("yyyy/MM/dd").format(cal.getTime());
 		return paymentDate;
 	}
@@ -89,20 +119,77 @@ public class PO_InvoiceService {
 	}
 	
 	
-	public void insertAccountSigningProcess(String inv_id,String emp_managerid,String comment) {
-		Account_InvoiceBean accBean = account_InvoiceIDao.select(inv_id);
-		Account_SigningProcessBean accSignbean = new Account_SigningProcessBean();
+	public void insertAccountSigningProcess(String inv_id,String emp_id,String emp_managerid,String comment) {
 		java.util.Set<Account_SigningProcessBean> processList = new java.util.HashSet<>();
 		Date today = new Date();
-		processList.add(new Account_SigningProcessBean(accBean.getEmp_id(),"採購請款",inv_id,today,"已申請",comment,1));
-		processList.add(new Account_SigningProcessBean(emp_managerid, "採購主管審核",inv_id, null, null, "簽核中", 2));
+		processList.add(new Account_SigningProcessBean(emp_id,"採購請款",inv_id,today,"已申請",comment,1));
+		processList.add(new Account_SigningProcessBean(emp_managerid, "採購主管審核",inv_id, null,"簽核中",null, 2));
 		processList.add(new Account_SigningProcessBean("emp009", "財務經理分派",inv_id, null, null, null, 3));
 		processList.add(new Account_SigningProcessBean("emp000", "財務審核",inv_id, null, null, null, 4));
 		processList.add(new Account_SigningProcessBean("emp009", "財務經理審核",inv_id, null, null, null, 5));
 		
 		for(Account_SigningProcessBean bean:processList) {
-			account_SigningProcessDao.insert(bean);
+			account_SigningProcessIDao.insert(bean);
 		}
+	}
+	
+	public Account_InvoiceBean updateInvoiceData(Account_InvoiceBean newBean){
+		Account_InvoiceBean oldBean = account_InvoiceIDao.select(newBean.getInv_id());
+		oldBean.setRecript_date(newBean.getRecript_date());
+		Account_InvoiceBean result = account_InvoiceIDao.update(oldBean);
+		return result;
+	}
+	
+	public void updateAccountSigningProcess(String inv_id,Integer sig_Rank ,String sig_Sta1, String sig_Sta2,String sig_Sug ) {
+		Account_SigningProcessBean bean1 = account_SigningProcessIDao.selectForRank(inv_id, sig_Rank);
+		bean1.setSig_Date(new Date());
+		bean1.setSig_Sta(sig_Sta1);
+		bean1.setSig_Sug(sig_Sug);
+		Account_SigningProcessBean result1 = account_SigningProcessIDao.update(bean1);
+		Account_SigningProcessBean bean2 = account_SigningProcessIDao.selectForRank(inv_id, sig_Rank+1);
+		bean2.setSig_Sta(sig_Sta2);
+		Account_SigningProcessBean result2 = account_SigningProcessIDao.update(bean2);
+	}
+	
+	public List<Account_InvoiceBean> findProcessCorrect(String emp_id, String sig_sta, Integer sig_rank) {
+		List<Account_SigningProcessBean> list = account_SigningProcessIDao.selectProcess(emp_id, sig_sta,sig_rank);
+		List<Account_InvoiceBean> result = new ArrayList<>();
+		if (list != null) {
+			for (Account_SigningProcessBean x : list) {
+				Account_InvoiceBean bean =account_InvoiceIDao.select(x.getInv_id());
+				result.add(bean);
+			}
+			return result;
+		}
+		return null;
+	}
+	
+//	public List<Account_InvoiceBean> find3(String emp_id, String sig_sta, Integer sig_rank) {
+//		List<Account_SigningProcessBean> list = account_SigningProcessIDao.selectProcess(emp_id, sig_sta,sig_rank);
+//		List<Account_InvoiceBean> result = null;
+//		result = new LinkedList<Account_InvoiceBean>();
+//		if (list != null) {
+//			for (Account_SigningProcessBean x : list) {
+//				Account_InvoiceBean bean =account_InvoiceIDao.select(x.getInv_id());
+//				result.add(bean);
+//			}
+//			return result;
+//		}
+//		return null;
+//	}
+//	
+	public List<Account_InvoiceBean> findTodoSignInv(String emp_id, String sig_sta, Integer sig_rank) {
+		List<Account_SigningProcessBean> list = account_SigningProcessIDao.selectTodoSignInvoice(emp_id, sig_sta, sig_rank);
+		List<Account_InvoiceBean> result = null;
+		result = new LinkedList<Account_InvoiceBean>();
+		if (list != null) {
+			for (Account_SigningProcessBean x : list) {
+				Account_InvoiceBean bean =account_InvoiceIDao.select(x.getInv_id());
+				result.add(bean);
+			}
+			return result;
+		}
+		return null;
 	}
 	
 	
