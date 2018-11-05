@@ -93,52 +93,47 @@ input, select {
 				<a href='ToDoSignInvoice.controller'>回上一頁</a>
 			</c:otherwise>
 		</c:choose>
-		<form method="post"
-			action="<c:url value="/Account/ReviewInvoice.controller"/>">
-			<input type="hidden" value="${invid}" name="invid"> <label
-				for="Inv_id">請款單單號</label> <input type="text" name="Inv_id" id=""
-				readonly="readonly" value="${invid}"> <label for="Emp_id">申請人</label>
-			<input type="text" name="Emp_id" id="" readonly="readonly"
-				value="${empid}"> <label for="Emp_dep">所屬部門</label> <input
-				type="text" name="Emp_dep" id="" readonly="readonly"
-				value="${empdep}"> <label for="Vendor_name">廠商名稱</label> <input
-				type="text" name="Vendor_name" readonly="readonly" id=""
-				value="${ven_name}"> <label for="Vendor_id">廠商統編</label> <input
-				type="text" name="Vendor_id" readonly="readonly" id=""
-				value="${ven_id}"> <label for="Total_price">請款金額</label> <input
-				type="text" name="Total_price" readonly="readonly" id=""
-				value="${price}"> <label for="Payment_method">付款方式</label> <input
-				type="text" name="Payment_method" readonly="readonly" id=""
-				value="${payMethod}"> <label for="Except_Payment_Date">預計付款日</label>
-			<input type="text" name="Except_Payment_Date" readonly="readonly"
-				id="" value="${paydate}"> <label for="Recript_date">憑證日期</label>
-			<input type="text" name="Recript_date" id="" readonly="readonly"
-				value="${keyday}">
-			<p>憑證圖檔</p>
-			<img src="..${recript_pic}" alt="" height="200" width="200">
-			說明:
-			<p>${sigSug}
-			<p>簽核 說明:
-			<table>
-				<tr>
-					<th>流程順序</th>
-					<th>簽核人ID</th>
-					<th>簽核人</th>
-					<th>簽核意見</th>
-					<th>簽核日期</th>
-				</tr>
-				<c:forEach var="sig" items="${sug}">
-					<tr>
-						<td>${sig.sig_Rank}</td>
-						<td>${sig.account_Manger}</td>
-						<td>${sig.employeeBean.emp_name}</td>
-						<td>${sig.sig_Sug}</td>
-						<td>${sig.sig_Date}</td>
-					</tr>
-				</c:forEach>
-			</table>
-			<c:if test="${not empty manager}">
 
+		<form method="post" action="<c:url value="/Account/ReviewInvoice.controller"/>">
+		<input type="hidden" value="${invid}" name="invid">
+		<label for="Inv_id">請款單單號</label>
+		<input type="text" name="Inv_id" id="" readonly="readonly"
+			value="${invid}">
+		<label for="Emp_id">申請人</label>
+		<input type="text" name="Emp_id" id="" readonly="readonly"
+			value="${empid}">
+		<label for="Emp_dep">所屬部門</label>
+		<input type="text" name="Emp_dep" id="" readonly="readonly"
+			value="${empdep}">
+		<label for="Vendor_name">廠商名稱</label>
+		<input type="text" name="Vendor_name" readonly="readonly" id=""
+			value="${ven_name}">
+		<label for="Vendor_id">廠商統編</label>
+		<input type="text" name="Vendor_id" readonly="readonly" id=""
+			value="${ven_id}">
+		<label for="Total_price">請款金額</label>
+		<input type="text" name="Total_price" readonly="readonly" id=""
+			value="${price}">
+		<label for="Payment_method">付款方式</label>
+		<input type="text" name="Payment_method" readonly="readonly" id=""
+			value="${payMethod}">
+		<label for="Except_Payment_Date">預計付款日</label>
+		<input type="text" name="Except_Payment_Date" readonly="readonly"
+			id="" value="${paydate}">
+		<label for="Recript_date">憑證日期</label>
+		<input type="text" name="Recript_date" id="" readonly="readonly"
+			value="${keyday}">
+		<p>憑證圖檔</p>
+		<img src="..${recript_pic}" alt="" height="200" width="200">
+           簽核 說明:<table>
+           <tr><th>流程順序</th><th>簽核人ID</th><th>簽核人</th><th>簽核意見</th><th>簽核日期</th></tr>
+        <c:forEach var="sig" items="${sug}">
+        <tr><td>${sig.sig_Rank}</td> <td>${sig.account_Manger}</td><td>${sig.employeeBean.emp_name}</td><td>${sig.sig_Sug}</td> <td>${sig.sig_Date}</td></tr>
+        </c:forEach>
+        </table>
+
+
+			<c:if test="${not empty manager}">
          主管<select name="selectPOManager">
 					<c:forEach var="poman" items="${manager}">
 						<option value="${poman.emp_id}">${poman.emp_name}
