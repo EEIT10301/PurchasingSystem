@@ -318,11 +318,11 @@ public class POSigningController {
 		java.util.Date date = new java.util.Date();
 		java.sql.Date datas = new java.sql.Date(date.getTime());
 		PO_SigningProcessBean bean = pO_SigningProcessService.select(posta1, poid1);
-
-		List<PO_Vendor_InfoBean> AllPO_Vendor = pO_Vendor_InfoService.select();
+		List<PO_QueryBean> POQuery = pO_QueryService.selectQueryBean(poid1);
+	//	List<PO_Vendor_InfoBean> AllPO_Vendor = pO_Vendor_InfoService.select();
 		if (send.equals("重新輸入")) {
 			model.addAttribute("poprocess1", bean);
-			model.addAttribute("AllPO_Vendor", AllPO_Vendor);
+			model.addAttribute("AllPO_Vendor", POQuery);
 			return "Posend.sign";
 		} else {// 按下送出時
 			if (boss == null) {// 如果部會到總經理的話
