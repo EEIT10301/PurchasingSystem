@@ -96,4 +96,11 @@ public class App_SigningProcessService {
 		}
 		return null;
 	}
+	public List<App_SigningProcessBean> selectfromlastemp1(Integer Sig_Rank) {
+		List<App_SigningProcessBean> beans =app_SigningProcessIDao.selectfromlastemp1(Sig_Rank);
+		if(beans!=null) {
+			return beans;
+		}
+		return null;
+	}
 }

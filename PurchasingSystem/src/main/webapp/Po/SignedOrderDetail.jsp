@@ -10,7 +10,7 @@
 </head>
 <body>
 <%-- <h2>請購單編號:${signedOrderDetail.po_id}</h2> --%>
-<h2>請購單編號:${pm.po_id}</h2>
+<h2>採購單編號:${pm.po_id}</h2>
 	<h2>下單產品明細</h2>	
 	<form action="<c:url value="/Po/signedOrderSubmit.controller" />" method="post">
 <%-- 	<c:forEach var='signedOrderDetails' items='${signedOrderDetail}'> --%>
