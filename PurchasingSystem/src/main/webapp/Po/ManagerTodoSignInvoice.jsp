@@ -25,7 +25,24 @@
 				<th>廠商名稱</th>
 				<th>總金額</th>
 			</tr>
+<<<<<<< HEAD
 			<c:forEach var="show" items="${listtodosign}">
+=======
+		</c:forEach>
+		</table>
+			</c:if>
+		<hr>
+		<c:if test="${not empty BackInvoiceSign}">
+		<h2>被退回請款單</h2>
+<table>
+<tr>
+		<th>請款單單號</th>
+		<th>承辦人姓名</th>
+		<th>廠商名稱</th>
+		<th>總金額</th>
+		</tr>
+		<c:forEach var="show2" items="${BackInvoiceSign}">
+>>>>>>> branch 'master' of https://github.com/EEIT10301/PurchasingSystem.git
 
 				<tr>
 					<td>${show.inv_id}</td>
@@ -49,6 +66,7 @@
 				</tr>
 				<c:forEach var="show2" items="${BackInvoiceSign}">
 
+<<<<<<< HEAD
 					<tr>
 						<td>${show2.inv_id}</td>
 						<td>${show2.employeeBean.emp_name}</td>
@@ -62,6 +80,9 @@
 		</c:if>
 
 	
+=======
+
+>>>>>>> branch 'master' of https://github.com/EEIT10301/PurchasingSystem.git
 
 </body>
 </html>

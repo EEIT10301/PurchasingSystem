@@ -143,7 +143,15 @@ public class Account_SigningProcessDao implements Account_SigningProcessIDao {
 	public List<Account_SigningProcessBean> selectInvidAndRank(String inv_id,Integer sig_rank) {
 		String hql = "FROM Account_SigningProcessBean WHERE inv_id=:id1 and sig_rank<:id2 Order by sig_rank asc" ;
 		return this.getSession().createQuery(hql).setParameter("id1", inv_id).setParameter("id2", sig_rank).setMaxResults(50).list();
-
+//查看前面的簽核意見
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Account_SigningProcessBean> selectStatus(String emp_id) {
+		String hql = "FROM Account_SigningProcessBean WHERE account_manger=:id1";
+		return this.getSession().createQuery(hql).setParameter("id1", emp_id).setMaxResults(50).list();
+//查看請款單狀態********
 	}
 
 	@SuppressWarnings("unchecked")
@@ -266,3 +274,4 @@ public class Account_SigningProcessDao implements Account_SigningProcessIDao {
 		}
 	}
 
+	

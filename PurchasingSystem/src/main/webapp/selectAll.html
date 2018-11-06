@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="BIG5">
+<title>selectAll</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+</head>
+<body>
+<table style="text-align:center">
+<thead>
+<tr>
+<th>料號:</th>
+<th>物料大項</th>
+<th>物料名稱</th>
+<th>規格簡介</th>
+<th>價格</th>
+<th>庫存</th>
+</tr>
+</thead>
+<tbody id="selectAll"></tbody>
+</table>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$.ajax({
+			url:"SearchCusmvc.do",
+			type:"GET",
+			success:function(data){
+					var txt = ""
+					$.each(data.myArrayList,function(index,json){
+						txt += "<tr>";
+						txt += "<td><a href='http://localhost:8080/Demo/updateanddelete.html?id="+json.map.part_no+"&account="+json.map.pro_cate+"&password="+json.map.pro_name+"'>"+json.map.part_no+"</a></td>"
+						txt += "<td>"+json.map.pro_cate+"</td>"
+						txt += "<td>"+json.map.pro_name+"</td>"
+						txt += "<td>"+json.map.pro_spe+"</td>"
+						txt += "<td>"+json.map.pro_price+"</td>"
+						txt += "<td>"+json.map.pro_amount+"</td>"
+						txt += "</tr>"
+					})
+					$("#selectAll").html(txt);	
+			}
+		})
+	})
+
+</script>
+</body>
+</html>

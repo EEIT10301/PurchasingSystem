@@ -16,6 +16,8 @@
 	<h3>${applyok}</h3>
 	<c:if test="${user.emp_level==1}">
 		<a href='ApplySend.jsp'>請購申請 </a>
+		<a href='http://localhost:8080/PurchasingSystem/queryData.html'>物料更新 </a>
+		
 	</c:if>
 	<%-- <c:if test="${user.emp_level!=1}"> --%>
 	<a href='toApplySignnerdetail.controller'>待簽核請購單</a>

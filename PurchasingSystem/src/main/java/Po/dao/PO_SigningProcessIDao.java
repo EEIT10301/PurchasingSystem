@@ -29,4 +29,6 @@ public interface PO_SigningProcessIDao {
 
 	public abstract List<PO_SigningProcessBean> selectempidsendpages(String po_manger, String sig_sta ,Integer beginindex,Integer pagesize);
 
+	List<PO_SigningProcessBean> selectSigSta(String sig_Sta,String po_id);
+
 }

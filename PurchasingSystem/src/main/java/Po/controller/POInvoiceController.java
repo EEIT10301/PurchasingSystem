@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -27,6 +28,7 @@ import org.springframework.web.multipart.MultipartFile;
 import Account.model.Account_InvoiceBean;
 import Account.model.Account_SigningProcessBean;
 import Account.service.Account_InvoiceService;
+import Apply.model.App_SigningProcessBean;
 import Apply.model.EmployeeBean;
 import Apply.service.EmployeeService;
 import Po.model.PO_MainBean;
@@ -85,7 +87,7 @@ public class POInvoiceController {
 		model.addAttribute("bean", bean);
 		model.addAttribute("paymentDate", date);
 		model.addAttribute("manager", employee);
-		model.addAttribute("poid", poid);
+		model.addAttribute("poid", poid);   		
 		return "newForm";
 	}
 
@@ -114,42 +116,43 @@ public class POInvoiceController {
 		}
 		return "updateForm";
 	}
-
+	
 	//採購承辦新增請款單送出寫入資料庫
-		@RequestMapping(value = "/Po/onloadimage.controller", method = RequestMethod.POST)
-		public String uploadFile(Model model ,HttpSession session,String name,@RequestParam("Receiptpic") MultipartFile file
-			,String Emp_id,String Emp_dep, String Vendor_name, String Vendor_id, String Total_price, 
-			String Except_Payment_Date, String Recript_date, String selectPOManager, String SignSug,String poid,HttpServletRequest request) throws IllegalStateException, IOException, ParseException {
-		//上傳圖片	
-		String invId="In"+poid.substring(2);
-		//String destination ="C:\\Users\\User\\git\\repository2\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
-		String destination ="D:\\Maven-project\\repository\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
-		//String destination = request.getServletContext().getRealPath("images")+invId+".jpg";
-		if(file !=null || file.getSize()>0) {
-		File files =new File(destination);
-		file.transferTo(files);}
-		
-		//insert 請款單
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		Date date = sdf.parse(Recript_date);
-		String src = "/images/" + invId + ".jpg";
-		Integer price = Integer.valueOf(Total_price);
-		Account_InvoiceBean account_InvoiceBean = new Account_InvoiceBean(invId, date, src, poid, Emp_id, price);
-		Account_InvoiceBean result = account_InvoiceService.insert(account_InvoiceBean);
-		if (result != null) {
-			model.addAttribute("successmeg", "新增成功");
-			model.addAttribute("inv_id", invId);
-		} else {
-			model.addAttribute("errormeg", "新增失敗");
-		}
-		// insert 請款單流程
-		pO_InvoiceService.insertAccountSigningProcess(invId, Emp_id, selectPOManager, SignSug);
-
-		// update 採款單請款作業簽核流程
-		pO_InvoiceService.updatePoSigningProcess(poid, SignSug,"請款中");
-
-		return "newForm";
+	@RequestMapping(value = "/Po/onloadimage.controller", method = RequestMethod.POST)
+	public String uploadFile(Model model ,HttpSession session,String name,@RequestParam("Receiptpic") MultipartFile file
+		,String Emp_id,String Emp_dep, String Vendor_name, String Vendor_id, String Total_price, 
+		String Except_Payment_Date, String Recript_date, String selectPOManager, String SignSug,String poid,HttpServletRequest request) throws IllegalStateException, IOException, ParseException {
+	//上傳圖片	
+	String invId="In"+poid.substring(2);
+	//String destination ="C:\\Users\\User\\Downloads\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
+	String destination ="D:\\Maven-project\\repository\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
+	//String destination = "\\"+"images"+"\\"+invId+".jpg";
+	if(file !=null || file.getSize()>0) {
+	File files =new File(destination);
+	file.transferTo(files);}
+	
+	//insert 請款單
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	Date date = sdf.parse(Recript_date);
+	String src = "/images/" + invId + ".jpg";
+	Integer price = Integer.valueOf(Total_price);
+	Account_InvoiceBean account_InvoiceBean = new Account_InvoiceBean(invId, date, src, poid, Emp_id, price);
+	Account_InvoiceBean result = account_InvoiceService.insert(account_InvoiceBean);
+	if (result != null) {
+		model.addAttribute("successmeg", "新增成功");
+		model.addAttribute("inv_id", invId);
+	} else {
+		model.addAttribute("errormeg", "新增失敗");
 	}
+	// insert 請款單流程
+	pO_InvoiceService.insertAccountSigningProcess(invId, Emp_id, selectPOManager, SignSug);
+
+	// update 採款單請款作業簽核流程
+	pO_InvoiceService.updatePoSigningProcess(poid, SignSug,"請款中");
+
+	return "newForm";
+}
+	
 
 		//採購承辦重送請款單
 		@RequestMapping(value = "/Po/resendInvoice.controller", method = RequestMethod.POST)
@@ -158,8 +161,8 @@ public class POInvoiceController {
 		
 		//上傳圖片	
 		String invId="In"+poid.substring(2);
-		//String destination ="C:\\Users\\User\\git\\repository2\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
-		String destination ="D:\\Maven-project\\repository\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
+		String destination ="C:\\Users\\User\\git\\repository2\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
+		//String destination ="D:\\Maven-project\\repository\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
 		//String destination = "images/"+invId+".jpg";
 	    System.out.println("uploadRootPath=" + destination);
 		if(file !=null || file.getSize()>0) {
@@ -523,10 +526,112 @@ public class POInvoiceController {
 		return "updateForm";
 	}
 
-		
-		
-	
 
-	
+		//採購/財務查詢所有請款單狀態
+		@RequestMapping("/Po/queryStatus.controller")
+		public String queryStatus(Model model ,HttpSession session) {
+			EmployeeBean empbean = (EmployeeBean)session.getAttribute("user");
+			String emp_id=empbean.getEmp_id();
+			List<Account_SigningProcessBean> lists =pO_InvoiceService.selectAccountManagerInvoiveOrNot(emp_id);
+		
+			if (lists != null) {
+				if(lists.size()>1) {
+					for(int i=0;i<lists.size();i++){
+						for(int x=0;x<lists.size();x++){
+							if  (lists.get(x).equals(lists.get(i)))  {  
+								lists.remove(x);
+							}
+						}
+					}
+					model.addAttribute("lists", lists);
+					return "statusList.show";
+				}else{
+					model.addAttribute("lists", lists);
+					return "statusList.show";
+				}
+			}else {
+					model.addAttribute("nolist", "尚無請款單單號");
+					return "statusList.show";
+			}
+		}
+		
+		//採購/財務查詢已完成請款單狀態  PO流程是"已結案"
+		@RequestMapping("/Po/queryStatusDone.controller")
+		public String queryStatusDone(Model model ,HttpSession session) {
+			EmployeeBean empbean = (EmployeeBean)session.getAttribute("user");
+			String emp_id=empbean.getEmp_id();
+			List<Account_SigningProcessBean> lists =pO_InvoiceService.selectAccountManagerInvoiveOrNot(emp_id);
+			List<PO_SigningProcessBean> posta=new LinkedList<PO_SigningProcessBean>();
+			if (lists != null) {//如果有查到請款單
+				if(lists.size()>1) {//單號重複 要移除其中一個
+					for(int i=0;i<lists.size();i++){
+						for(int x=0;x<lists.size();x++){
+							if  (lists.get(x).equals(lists.get(i)))  {  
+								lists.remove(x);
+							}
+						}
+					}
+					for(int y=0;y<lists.size();y++) {
+						String po="Po"+lists.get(y).getInv_id().substring(2);
+						posta=pO_InvoiceService.selectPOIDSigSta("已結案",po);
+					}
+					model.addAttribute("lists", posta);
+					return "statusListDone.show";
+				}else{//單號未重複
+					model.addAttribute("lists", lists);
+					return "statusListDone.show";
+				}
+			}else {//如果沒有查到請款單
+					model.addAttribute("nolist", "尚無已完成請款單單號");
+					return "statusListDone.show";
+			}
+			
+		}
+		
+		//採購/財務查詢未完成請款單狀態  PO流程是"請款中"
+		@RequestMapping("/Po/queryStatusUndone.controller")
+		public String queryStatusUndone(Model model ,HttpSession session) {
+			EmployeeBean empbean = (EmployeeBean)session.getAttribute("user");
+			String emp_id=empbean.getEmp_id();
+			List<Account_SigningProcessBean> lists =pO_InvoiceService.selectAccountManagerInvoiveOrNot(emp_id);
+			List<PO_SigningProcessBean> posta=new LinkedList<PO_SigningProcessBean>();
+			if (lists != null) {//如果有查到請款單
+				if(lists.size()>1) {//單號重複 要移除其中一個
+					for(int i=0;i<lists.size();i++){
+						for(int x=0;x<lists.size();x++){
+							if  (lists.get(x).equals(lists.get(i)))  {  
+								lists.remove(x);
+							}
+						}
+					}
+					for(int y=0;y<lists.size();y++) {
+						String po="Po"+lists.get(y).getInv_id().substring(2);
+						posta=pO_InvoiceService.selectPOIDSigSta("請款中",po);
+					}
+					model.addAttribute("lists", posta);
+					return "statusListDone.show";
+				}else{//單號未重複
+					model.addAttribute("lists", lists);
+					return "statusListDone.show";
+				}
+			}else {//如果沒有查到請款單
+				model.addAttribute("nolist", "尚無未完成請款單單號");
+				return "statusListDone.show";
+			}
+			
+		}
+		
+		//查詢該張請款單狀態
+		@RequestMapping("/Po/queryStatusIn.controller")
+		public String queryStatusIn(Model model ,HttpSession session, String invid) {
+			List<Account_SigningProcessBean> stat=pO_InvoiceService.selectStatus(invid);
+			model.addAttribute("stat", stat);
+			
+			Account_InvoiceBean bean= account_InvoiceService.select(invid);
+			model.addAttribute("bean", bean);
+
+			
+			return "statusIn.show";
+		}
 
 }
