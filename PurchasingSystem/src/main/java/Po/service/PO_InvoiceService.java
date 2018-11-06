@@ -109,6 +109,14 @@ public class PO_InvoiceService {
 		return null;
 	}
 	
+	public List<PO_SigningProcessBean> selectPOIDSigSta(String sig_Sta,String po_id) {
+		List<PO_SigningProcessBean> poProcess=pO_SigningProcessIDao.selectSigSta(sig_Sta,po_id);
+		if(poProcess !=null) {
+			return poProcess;
+		}
+		return null;
+	}
+	
 	public String calcExpirePaymentDate(String payment_term,Date applicationDate ) {
 		Calendar cal = Calendar.getInstance();
 		int payMonth = 0;
@@ -204,7 +212,7 @@ public class PO_InvoiceService {
 	
 	
 	public List<Account_InvoiceBean> findProcessCorrect(String emp_id, String sig_sta, Integer sig_rank) {
-		List<Account_SigningProcessBean> list = account_SigningProcessIDao.selectProcess(emp_id, sig_sta,sig_rank);
+		List<Account_SigningProcessBean> list = account_SigningProcessIDao.select3send(emp_id, sig_sta,sig_rank);
 		List<Account_InvoiceBean> result = new ArrayList<>();
 		if (list != null) {
 			for (Account_SigningProcessBean x : list) {
@@ -245,6 +253,19 @@ public class PO_InvoiceService {
 	}
 	public List<Account_InvoiceBean> findTodoBackInv(String emp_id, String sig_sta, Integer sig_rank) {
 		List<Account_SigningProcessBean> list = account_SigningProcessIDao.select3send(emp_id, sig_sta, sig_rank);
+		List<Account_InvoiceBean> result = null;
+		result = new LinkedList<Account_InvoiceBean>();
+		if (list != null) {
+			for (Account_SigningProcessBean x : list) {
+				Account_InvoiceBean bean =account_InvoiceIDao.select(x.getInv_id());
+				result.add(bean);
+			}
+			return result;
+		}
+		return null;
+	}
+	public List<Account_InvoiceBean> findTodoBackInvn(String emp_id, String sig_sta, Integer sig_rank) {
+		List<Account_SigningProcessBean> list = account_SigningProcessIDao.selectProcess(emp_id, sig_sta, sig_rank);
 		List<Account_InvoiceBean> result = null;
 		result = new LinkedList<Account_InvoiceBean>();
 		if (list != null) {

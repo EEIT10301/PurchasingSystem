@@ -57,7 +57,7 @@ a, a:visited {
 					<td><a href="ToDoSignlevel1.controller">被分派事項</a></td>
 				</tr>
 				</c:if>
-				<tr><td><a href='../Po/queryStatus.controller'>查詢請款單狀態</a></td></tr>
+				<tr><td><a href='StatusMainAcc.jsp'>查詢請款單狀態</a></td></tr>
 				
 			</table>
 		</div>

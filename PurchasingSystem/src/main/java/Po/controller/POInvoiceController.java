@@ -122,8 +122,8 @@ public class POInvoiceController {
 			String Except_Payment_Date, String Recript_date, String selectPOManager, String SignSug,String poid,HttpServletRequest request) throws IllegalStateException, IOException, ParseException {
 		//上傳圖片	
 		String invId="In"+poid.substring(2);
-		//String destination ="C:\\Users\\User\\git\\repository2\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
-		String destination ="D:\\Maven-project\\repository\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
+		String destination ="C:\\Users\\User\\git\\repository2\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
+		//String destination ="D:\\Maven-project\\repository\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
 		//String destination = "\\"+"images"+"\\"+invId+".jpg";
 		if(file !=null || file.getSize()>0) {
 		File files =new File(destination);
@@ -158,8 +158,8 @@ public class POInvoiceController {
 		
 		//上傳圖片	
 		String invId="In"+poid.substring(2);
-		//String destination ="C:\\Users\\User\\git\\repository2\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
-		String destination ="D:\\Maven-project\\repository\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
+		String destination ="C:\\Users\\User\\git\\repository2\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
+		//String destination ="D:\\Maven-project\\repository\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
 		//String destination = "images/"+invId+".jpg";
 	    System.out.println("uploadRootPath=" + destination);
 		if(file !=null || file.getSize()>0) {
@@ -474,26 +474,96 @@ public class POInvoiceController {
 		return "updateForm";
 	}
 
-		//查詢請款單狀態
+		//採購/財務查詢所有請款單狀態
 		@RequestMapping("/Po/queryStatus.controller")
 		public String queryStatus(Model model ,HttpSession session) {
 			EmployeeBean empbean = (EmployeeBean)session.getAttribute("user");
 			String emp_id=empbean.getEmp_id();
 			List<Account_SigningProcessBean> lists =pO_InvoiceService.selectAccountManagerInvoiveOrNot(emp_id);
 		
-			if(lists!=null) {
-				for(int i=0;i<lists.size();i++){
-					for(int x=0;x<lists.size();x++){
-						if  (lists.get(x).equals(lists.get(i)))  {  
-							lists.remove(x);
+			if (lists != null) {
+				if(lists.size()>1) {
+					for(int i=0;i<lists.size();i++){
+						for(int x=0;x<lists.size();x++){
+							if  (lists.get(x).equals(lists.get(i)))  {  
+								lists.remove(x);
+							}
 						}
 					}
+					model.addAttribute("lists", lists);
+					return "statusList.show";
+				}else{
+					model.addAttribute("lists", lists);
+					return "statusList.show";
 				}
-				model.addAttribute("lists", lists);
-				return "statusList.show";
 			}else {
-				model.addAttribute("nolist", "無請款中單號");
-				return "statusList.show";
+					model.addAttribute("nolist", "尚無請款單單號");
+					return "statusList.show";
+			}
+		}
+		
+		//採購/財務查詢已完成請款單狀態  PO流程是"已結案"
+		@RequestMapping("/Po/queryStatusDone.controller")
+		public String queryStatusDone(Model model ,HttpSession session) {
+			EmployeeBean empbean = (EmployeeBean)session.getAttribute("user");
+			String emp_id=empbean.getEmp_id();
+			List<Account_SigningProcessBean> lists =pO_InvoiceService.selectAccountManagerInvoiveOrNot(emp_id);
+			List<PO_SigningProcessBean> posta=new LinkedList<PO_SigningProcessBean>();
+			if (lists != null) {//如果有查到請款單
+				if(lists.size()>1) {//單號重複 要移除其中一個
+					for(int i=0;i<lists.size();i++){
+						for(int x=0;x<lists.size();x++){
+							if  (lists.get(x).equals(lists.get(i)))  {  
+								lists.remove(x);
+							}
+						}
+					}
+					for(int y=0;y<lists.size();y++) {
+						String po="Po"+lists.get(y).getInv_id().substring(2);
+						posta=pO_InvoiceService.selectPOIDSigSta("已結案",po);
+					}
+					model.addAttribute("lists", posta);
+					return "statusListDone.show";
+				}else{//單號未重複
+					model.addAttribute("lists", lists);
+					return "statusListDone.show";
+				}
+			}else {//如果沒有查到請款單
+					model.addAttribute("nolist", "尚無已完成請款單單號");
+					return "statusListDone.show";
+			}
+			
+		}
+		
+		//採購/財務查詢未完成請款單狀態  PO流程是"請款中"
+		@RequestMapping("/Po/queryStatusUndone.controller")
+		public String queryStatusUndone(Model model ,HttpSession session) {
+			EmployeeBean empbean = (EmployeeBean)session.getAttribute("user");
+			String emp_id=empbean.getEmp_id();
+			List<Account_SigningProcessBean> lists =pO_InvoiceService.selectAccountManagerInvoiveOrNot(emp_id);
+			List<PO_SigningProcessBean> posta=new LinkedList<PO_SigningProcessBean>();
+			if (lists != null) {//如果有查到請款單
+				if(lists.size()>1) {//單號重複 要移除其中一個
+					for(int i=0;i<lists.size();i++){
+						for(int x=0;x<lists.size();x++){
+							if  (lists.get(x).equals(lists.get(i)))  {  
+								lists.remove(x);
+							}
+						}
+					}
+					for(int y=0;y<lists.size();y++) {
+						String po="Po"+lists.get(y).getInv_id().substring(2);
+						posta=pO_InvoiceService.selectPOIDSigSta("請款中",po);
+					}
+					model.addAttribute("lists", posta);
+					return "statusListDone.show";
+				}else{//單號未重複
+					model.addAttribute("lists", lists);
+					return "statusListDone.show";
+				}
+			}else {//如果沒有查到請款單
+				model.addAttribute("nolist", "尚無未完成請款單單號");
+				return "statusListDone.show";
 			}
 			
 		}

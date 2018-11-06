@@ -141,7 +141,7 @@ public class Account_SigningProcessDao implements Account_SigningProcessIDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Account_SigningProcessBean> selectInvidAndRank(String inv_id,Integer sig_rank) {
-		String hql = "FROM Account_SigningProcessBean WHERE inv_id=:id1 and sig_rank<:id2";
+		String hql = "FROM Account_SigningProcessBean WHERE inv_id=:id1 and sig_rank<:id2 order by sig_rank";
 		return this.getSession().createQuery(hql).setParameter("id1", inv_id).setParameter("id2", sig_rank).setMaxResults(50).list();
 //查看前面的簽核意見
 	}

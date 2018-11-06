@@ -193,6 +193,19 @@ public class PO_SigningProcessDao implements PO_SigningProcessIDao {
 		}
 	}
 
+	@SuppressWarnings("unchecked")//select POID 對應的狀態sig_sta
+	@Override
+	public List<PO_SigningProcessBean> selectSigSta(String sig_Sta,String po_id) {
+		List<PO_SigningProcessBean> list = null;
+		String hgl = "FROM PO_SigningProcessBean WHERE sig_sta=:id1 and po_id=:id2";
+		list = this.getSession().createQuery(hgl).setParameter("id1", sig_Sta).setParameter("id2", po_id).setMaxResults(50).list();
+		if (list.size() > 0) {
+			return list;
+		} else {
+			return null;
+		}
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public PO_SigningProcessBean selectrank(String po_id, Integer sig_rank) {

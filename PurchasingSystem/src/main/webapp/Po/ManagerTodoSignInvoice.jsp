@@ -36,6 +36,7 @@
 			</tr>
 		</c:forEach>
 		</table>
+			</c:if>
 		<hr>
 		<c:if test="${not empty BackInvoiceSign}">
 		<h2>被退回請款單</h2>
@@ -59,7 +60,7 @@
 		</table>
 		</c:if>
 
-	</c:if>
+
 
 </body>
 </html>

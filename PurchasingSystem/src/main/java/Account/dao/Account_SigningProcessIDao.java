@@ -21,7 +21,7 @@ public interface Account_SigningProcessIDao {
 
 	public abstract boolean delete(String account_Sta,String inv_id);
 
-	public abstract List<Account_SigningProcessBean> select3send(String emp_id, String sig_sta, Integer sig_rank);
+	public abstract List<Account_SigningProcessBean> select3send(String emp_id, String sig_sta,Integer sig_rank);
 
 	List<Account_SigningProcessBean> selectTodoSignInvoice(String emp_id, String sig_sta, Integer sig_rank);
 
