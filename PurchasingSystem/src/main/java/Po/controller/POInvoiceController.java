@@ -52,7 +52,7 @@ public class POInvoiceController {
 
 	@InitBinder
 	public void registerPropertyEditor(WebDataBinder dataBinder) {
-		dataBinder.registerCustomEditor(java.util.Date.class,"Recript_date",
+		dataBinder.registerCustomEditor(java.util.Date.class,
 				new CustomDateEditor(new SimpleDateFormat("yyyy/MM/dd"), false));
 		dataBinder.registerCustomEditor(Integer.class, "Total_price",
 				new CustomNumberEditor(Integer.class, false));
@@ -161,8 +161,8 @@ public class POInvoiceController {
 		
 		//上傳圖片	
 		String invId="In"+poid.substring(2);
-		String destination ="C:\\Users\\User\\Downloads\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
-		//String destination ="D:\\Maven-project\\repository\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
+		//String destination ="C:\\Users\\User\\Downloads\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
+		String destination ="D:\\Maven-project\\repository\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
 		//String destination = "images/"+invId+".jpg";
 	    System.out.println("uploadRootPath=" + destination);
 		if(file !=null || file.getSize()>0) {
@@ -170,10 +170,11 @@ public class POInvoiceController {
 		file.transferTo(files);}
 		
 		//update請款單
-		//SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		//Date date = sdf.parse(Recript_date);
-		//account_InvoiceBean.setRecript_date(date);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = sdf.parse(Recript_date);
+		account_InvoiceBean.setRecript_date(date);
 		Account_InvoiceBean result = pO_InvoiceService.updateInvoiceData(account_InvoiceBean);
+		System.out.println(account_InvoiceBean.getRecript_date());
 		if (result != null) {
 			model.addAttribute("successmeg", "重新送出成功");
 			model.addAttribute("inv_id", invId);
