@@ -25,9 +25,9 @@
 				<th>廠商名稱</th>
 				<th>總金額</th>
 			</tr>
-<<<<<<< HEAD
+
 			<c:forEach var="show" items="${listtodosign}">
-=======
+
 		</c:forEach>
 		</table>
 			</c:if>
@@ -42,7 +42,7 @@
 		<th>總金額</th>
 		</tr>
 		<c:forEach var="show2" items="${BackInvoiceSign}">
->>>>>>> branch 'master' of https://github.com/EEIT10301/PurchasingSystem.git
+
 
 				<tr>
 					<td>${show.inv_id}</td>

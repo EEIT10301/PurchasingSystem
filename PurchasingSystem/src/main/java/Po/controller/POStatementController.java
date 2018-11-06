@@ -43,7 +43,13 @@ public class POStatementController {
 			return "POSignStatement.do";
 		}
 
-		return "POSignStatement.do";
+		else {
+			List<PO_SigningProcessBean> Statement = pO_SigningProcessService.selectempID(EmpId);
+			model.addAttribute("POList", Statement);
+			return "POSignStatement.do";
+			
+		}
+		
 	}
 
 	@RequestMapping("/Po/POSignStatementDetail.controller")
