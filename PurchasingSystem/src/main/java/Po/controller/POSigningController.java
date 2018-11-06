@@ -188,13 +188,24 @@ public class POSigningController {
 
 	@RequestMapping("/Po/sendsc.controller")
 	public String createQueryMemo(String po_manger, String po_sta, String po_id, Model model, HttpSession session) {
+//		PO_SigningProcessBean bean1 = pO_SigningProcessService.select(po_sta, po_id);
+//		List<PO_Vendor_InfoBean> AllPO_Vendor1 = pO_Vendor_InfoService.select();
+//		model.addAttribute("query", bean1);
+//		model.addAttribute("po_manger", po_manger);
+//		model.addAttribute("po_sta", po_sta);
+//		model.addAttribute("po_id", po_id);
+//		model.addAttribute("AllPO_Vendor1", AllPO_Vendor1);
+//		return "QueryMemo.show";
+		
 		PO_SigningProcessBean bean1 = pO_SigningProcessService.select(po_sta, po_id);
 		List<PO_Vendor_InfoBean> AllPO_Vendor1 = pO_Vendor_InfoService.select();
+		List<PO_DetailBean> allPO_Deatil = pO_DetailService.select();
 		model.addAttribute("query", bean1);
 		model.addAttribute("po_manger", po_manger);
 		model.addAttribute("po_sta", po_sta);
 		model.addAttribute("po_id", po_id);
 		model.addAttribute("AllPO_Vendor1", AllPO_Vendor1);
+		model.addAttribute("allPO_Deatil", allPO_Deatil);
 		return "QueryMemo.show";
 	}
 
