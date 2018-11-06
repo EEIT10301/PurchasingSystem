@@ -136,4 +136,14 @@ public class ProductListDAO implements ProductListIDAO {
 	
 	}
 
+	@Override
+	public List<ProductListBean> selectAll() {
+		List<ProductListBean>ProductList= this.getSession().createQuery(
+				"from ProductListBean", ProductListBean.class).setMaxResults(50).list();
+//		this.getSession().getTransaction().commit();
+//		sessionFactory.getCurrentSession().beginTransaction();
+		return ProductList;
+	}
+	
+
 }
