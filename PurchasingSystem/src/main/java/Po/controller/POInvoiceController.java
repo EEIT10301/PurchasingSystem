@@ -85,7 +85,7 @@ public class POInvoiceController {
 		model.addAttribute("bean", bean);
 		model.addAttribute("paymentDate", date);
 		model.addAttribute("manager", employee);
-		model.addAttribute("poid", poid);
+		model.addAttribute("poid", poid);   		
 		return "newForm";
 	}
 
