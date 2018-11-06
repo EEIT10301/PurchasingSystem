@@ -40,7 +40,7 @@
 	<form action="<c:url value="/Po/queryinsert.controller"/>"
 		method="post">
 		<c:if test="${not empty query}">
-		<c:forEach var="allPO_Deatil" items="${allPO_Deatil}">
+		<c:forEach var="pODetailBean" items="${pODetailBean}">
 			<table border="1">
 				<tr>
 					<th>採購單ID</th>
@@ -51,10 +51,10 @@
 					<th>單價</th>
 				</tr>
 				<tr>
-					<td><input type="hidden" name="po_ID" value="${query.po_id}">${query.po_id}</td>
-					<td><input type="hidden" name="part_No" value="${allPO_Deatil.part_No}"></td>
-					<td><input type="hidden" name="pro_name" value="${allPO_Deatil.productListBean.pro_name}"></td>
-					<td><input type="hidden" name="part_No" value="${allPO_Deatil.part_No}"></td>
+					<td><input type="hidden" name="po_ID" value="${pODetailBean.po_id}">${pODetailBean.po_id}</td>
+					<td><input type="hidden" name="part_No" value="${pODetailBean.part_No}">${pODetailBean.part_No}</td>
+					<td><input type="hidden" name="pro_name" value="${pODetailBean.pro_name}">${pODetailBean.pro_name}</td>
+					<td><input type="hidden" name="total_Qty" value="${pODetailBean.total_Qty}">${pODetailBean.total_Qty}</td>
 					
 					
 					
