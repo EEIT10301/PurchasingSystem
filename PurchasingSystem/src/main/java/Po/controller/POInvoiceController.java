@@ -161,7 +161,7 @@ public class POInvoiceController {
 		
 		//上傳圖片	
 		String invId="In"+poid.substring(2);
-		String destination ="C:\\Users\\User\\git\\repository2\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
+		String destination ="C:\\Users\\User\\Downloads\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
 		//String destination ="D:\\Maven-project\\repository\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
 		//String destination = "images/"+invId+".jpg";
 	    System.out.println("uploadRootPath=" + destination);
@@ -421,7 +421,7 @@ public class POInvoiceController {
 		String emp_id = empbean.getEmp_id();
 		String sig_sta = "分派中"; // 財務經理自己的狀態是分派中(前一關送出並更新主管為"分派中")
 
-		List<Account_InvoiceBean> haveToAssign = pO_InvoiceService.findProcessCorrect(emp_id, sig_sta, 3);
+		List<Account_InvoiceBean> haveToAssign = pO_InvoiceService.findTodoBackInvn(emp_id, sig_sta, 3);
 		model.addAttribute("list", haveToAssign);
 		
 

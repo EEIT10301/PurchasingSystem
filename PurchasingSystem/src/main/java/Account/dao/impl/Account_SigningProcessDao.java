@@ -221,7 +221,6 @@ public class Account_SigningProcessDao implements Account_SigningProcessIDao {
 	@Override                                   //找流程
 	public List<Account_SigningProcessBean> selectProcess(String emp_id, String sig_sta, Integer sig_rank) {
 		List<Account_SigningProcessBean> list = null;
-		//from Account_SigningProcess where emp_id='' and Sig_Sta='退回中'  sigrank=1
 		String hgl="FROM Account_SigningProcessBean where account_Manger=:id1 and sig_sta=:id2 and sig_rank=:id3";
 		list =this.getSession().createQuery(hgl).setParameter("id1", emp_id).setParameter("id2", sig_sta).
 				setParameter("id3", sig_rank).setMaxResults(50).list();
