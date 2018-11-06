@@ -63,5 +63,14 @@ public List<Inv_SigningProcessBean> selectempidsend(String inv_manger, String si
 	return null;
 }
 
+public List<Inv_SigningProcessBean> selectchk_Id(String chk_Id) {
+	List<Inv_SigningProcessBean> beans = inv_SigningProcessIDao.selectchk_Id(chk_Id);
+	if(beans!=null) {
+		return beans;
+	
+	}
+	return null;
+}
+
 
 }

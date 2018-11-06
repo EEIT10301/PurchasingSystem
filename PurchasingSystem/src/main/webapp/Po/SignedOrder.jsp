@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+
+    pageEncoding="UTF-8"%>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -8,6 +10,7 @@
 <title>待下單採購單</title>
 </head>
 <body>
+
 	<%-- <c:if test="${not empty selectlists}"> --%>
 	<%-- <c:forEach var="signedorder" items="${selectlists}"> --%>
 	<%-- <c:if test="${signedorder.sig_rank==4}"> --%>

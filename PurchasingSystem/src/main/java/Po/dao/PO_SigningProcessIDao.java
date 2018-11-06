@@ -21,6 +21,11 @@ public interface PO_SigningProcessIDao {
 
 	public abstract List<PO_SigningProcessBean> selectempidsend(String po_manger,String Sig_Sta);
 
+
+	public abstract PO_SigningProcessBean selectorderdetail(String po_id,String po_manger,String po_sta);
+
+	public abstract List<PO_SigningProcessBean> selectempID(String po_manger);
+
 	public abstract List<PO_SigningProcessBean> selectmangers(String po_manger,String sig_Sta);
 	
 	public abstract PO_SigningProcessBean selectrank(String po_id,Integer sig_Rank);
@@ -30,5 +35,6 @@ public interface PO_SigningProcessIDao {
 	public abstract List<PO_SigningProcessBean> selectempidsendpages(String po_manger, String sig_sta ,Integer beginindex,Integer pagesize);
 
 	List<PO_SigningProcessBean> selectSigSta(String sig_Sta,String po_id);
+
 
 }
