@@ -449,11 +449,12 @@ public class POSigningController {
 	public String todoSignInvoice(Model model, HttpSession session) {
 		EmployeeBean empbean = (EmployeeBean)session.getAttribute("user");
 		String emp_id=empbean.getEmp_id();
-		
-		List<Account_InvoiceBean> InvoiceSign = pO_InvoiceService.findTodoSignInv(emp_id, "簽核中", 2);
-		model.addAttribute("listtodosign", InvoiceSign);
-		List<Account_InvoiceBean> BackInvoiceSign = pO_InvoiceService.findTodoBackInv(emp_id, "退回中", 2);
-		model.addAttribute("BackInvoiceSign", BackInvoiceSign);
+		String sta1="簽核中";
+		String sta2= "退回中";
+		List<Account_InvoiceBean> invoiceSign = pO_InvoiceService.findProcessCorrect(emp_id,sta1,2);
+		model.addAttribute("listtodosign", invoiceSign);
+		List<Account_InvoiceBean> backInvoiceSign = pO_InvoiceService.findProcessCorrect(emp_id,sta2,2);
+		model.addAttribute("backInvoiceSign", backInvoiceSign);
 		
 		
 		
