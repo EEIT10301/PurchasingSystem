@@ -22,6 +22,7 @@ import Account.model.Account_InvoiceBean;
 import Account.model.PO_Vendor_InfoBean;
 import Account.service.PO_Vendor_InfoService;
 import Apply.model.App_MainBean;
+import Apply.model.App_SigningProcessBean;
 import Apply.model.EmployeeBean;
 import Apply.service.App_MainService;
 import Apply.service.EmployeeService;
@@ -428,6 +429,8 @@ public class POSigningController {
 		}
 	}
 
+
+
 //	@RequestMapping("/Po/signedorder.controller")
 //	public String signedOrder(Model model, HttpSession session) {
 //		EmployeeBean beans = (EmployeeBean) session.getAttribute("user");
@@ -451,6 +454,7 @@ public class POSigningController {
 //
 //			}
 //			return "SignedOrder.show";
+
 //		}
 
 //		}else {
@@ -470,5 +474,6 @@ public class POSigningController {
 
 		return "todoSignInvoice.show";
 	}
+
 
 }

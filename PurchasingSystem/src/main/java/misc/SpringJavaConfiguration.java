@@ -51,6 +51,7 @@ public class SpringJavaConfiguration {
 //	    dmds.setPassword("passw0rd");
 //		return dmds;
 //	}        
+
 @Bean
 	public DataSource dataSource() {
 		JndiObjectFactoryBean factory = new JndiObjectFactoryBean();
@@ -65,6 +66,7 @@ public class SpringJavaConfiguration {
 		}
 		return (DataSource) factory.getObject();
 	}
+
 
 	
 	@Bean

@@ -16,4 +16,6 @@ public interface Inv_SigningProcessIDao {
 
 	public abstract boolean delete(String inv_Sta, String chk_Id);
 	public abstract List<Inv_SigningProcessBean> selectempidsend(String inv_manger,String sig_sta);
+
+	public abstract List<Inv_SigningProcessBean> selectchk_Id(String chk_Id);
 }

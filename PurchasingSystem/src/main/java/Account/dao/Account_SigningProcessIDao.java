@@ -29,5 +29,9 @@ public interface Account_SigningProcessIDao {
 
 	List<Account_SigningProcessBean> selectInvidAndRank(String inv_id, Integer sig_rank);
 
+
+	List<Account_SigningProcessBean> selectPOprocess(String inv_id);
+
 	List<Account_SigningProcessBean> selectStatus(String emp_id);
+
 }

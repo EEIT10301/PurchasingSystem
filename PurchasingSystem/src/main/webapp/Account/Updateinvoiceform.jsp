@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+
 
 <html>
 <head>
@@ -21,7 +21,29 @@ input, select {
 	</c:if>
 	<c:if test="${not empty errormeg}">
 		<h2>${errormeg}</h2>
+		</c:if>
+	<c:if test="${not empty sendsuccessmeg && (dep!=dep2) && (user.emp_level!=2)}">
+		<h2>${sendsuccessmeg}${inv_id}</h2>
 	</c:if>
+	<c:if test="${not empty senderrormeg}">
+		<h2>${senderrormeg}</h2>
+	</c:if>
+	<c:if test="${not empty returnsuccessmeg}">
+		<h2>${returnsuccessmeg}${inv_id}</h2>
+	</c:if>
+	<c:if test="${not empty returnerrormeg}">
+		<h2>${returnerrormeg}</h2>
+	</c:if>
+	<c:if test="${not empty finishmsg && (dep==dep2) && (user.emp_level==2)}">
+		<h2>${finishmsg}</h2>
+	</c:if>
+	<c:if test="${not empty dispatchsuccessmeg}">
+		<h2>${dispatchsuccessmeg}${inv_id}</h2>
+	</c:if>
+	<c:if test="${not empty dispatcherrormeg}">
+		<h2>${dispatcherrormeg}</h2>
+	</c:if>
+	
 
 	<c:if test="${not empty invoice}">
 		<h1>請款單</h1>
@@ -82,6 +104,7 @@ input, select {
 		<c:set var="dep" value="${user.emp_dep}" />
 		<c:set var="dep1" value="採購部" />
 		<c:set var="dep2" value="財務部" />
+		<c:set var="status1" value="dispatch"/>
 		<c:choose>
 			<c:when test="${(dep==dep1) && (user.emp_level==2)}">
 				<a href='todoSignInvoice.controller'>回上一頁</a>
@@ -89,12 +112,16 @@ input, select {
 			<c:when test="${(dep==dep2) && (user.emp_level==1)}">
 				<a href='ToDoSignlevel1.controller'>回上一頁</a>
 			</c:when>
+			<c:when test="${(dep==dep2) && (user.emp_level==2) && (status==status1)}">
+				<a href='ToDoAssignInvoice.controller'>回上一頁</a>
+			</c:when>
 			<c:otherwise>
 				<a href='ToDoSignInvoice.controller'>回上一頁</a>
 			</c:otherwise>
 		</c:choose>
 
 		<form method="post" action="<c:url value="/Account/ReviewInvoice.controller"/>">
+		<input type="hidden" name="status" value="${status}"> 
 		<input type="hidden" value="${invid}" name="invid">
 		<label for="Inv_id">請款單單號</label>
 		<input type="text" name="Inv_id" id="" readonly="readonly"
@@ -125,13 +152,17 @@ input, select {
 			value="${keyday}">
 		<p>憑證圖檔</p>
 		<img src="..${recript_pic}" alt="" height="200" width="200">
+		<c:if test="${not empty sug}" >
            簽核 說明:<table>
            <tr><th>流程順序</th><th>簽核人ID</th><th>簽核人</th><th>簽核意見</th><th>簽核日期</th></tr>
         <c:forEach var="sig" items="${sug}">
         <tr><td>${sig.sig_Rank}</td> <td>${sig.account_Manger}</td><td>${sig.employeeBean.emp_name}</td><td>${sig.sig_Sug}</td> <td>${sig.sig_Date}</td></tr>
         </c:forEach>
         </table>
-
+		</c:if>
+		<c:if test="${not empty sigSug}">
+		<p>退回原因: ${sigSug}</p>
+		</c:if>
 
 			<c:if test="${not empty manager}">
          主管<select name="selectPOManager">
@@ -146,7 +177,7 @@ input, select {
 				<textarea rows="5" cols="50" name="SignSug">
 		</textarea>
 			<p>
-
+				
 				<input type="submit" name="action" value="送出"> 
 				<input type="submit" name="action" value="退回">
 		</form>

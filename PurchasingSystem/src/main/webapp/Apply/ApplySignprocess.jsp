@@ -27,7 +27,7 @@
 <%--  <p>申請時間 :${applylistss.sig_date}</p> --%>
 <%--  </c:if> --%>
 <%--  </c:forEach> --%>
- <Input type='hidden' name=app_manger value='${applylist.app_manger}'><P/>
+  <Input type='hidden' name='app_manger' value='${applylist.app_manger}'><P/>
   <Input type='hidden' name='app_sta' value='${applylist.app_sta}'><P/>
   <Input type='hidden' name='app_id' value='${applylist.app_id}'><P/>
   <Input type='hidden' name='sig_date' value='${applylist.sig_date}'><P/>

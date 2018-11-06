@@ -38,7 +38,7 @@
         <label for="Total_price">請款金額</label>
         <input type="text" name="Total_price" readonly="readonly" id="" value="${bean.total_price}">
         <label for="Payment_method">付款方式</label>
-        <input type="text" name="Payment_method" readonly="readonly" id="" value="${bean.pO_Vendor_InfoBean.payment_term}">
+        <input type="text" name="Payment_method" readonly="readonly" id="" value="${bean.pO_Vendor_InfoBean.payment_method}">
         <label for="Except_Payment_Date">預計付款日</label>
         <input type="text" name="Except_Payment_Date" id="" value="${paymentDate}" >
         <label for="Recript_date">憑證日期</label>

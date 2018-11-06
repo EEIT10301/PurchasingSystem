@@ -54,5 +54,32 @@ a, a:visited {
 
 			</table>
 			</c:if>
+			<hr>
+			<c:if test="${empty listback}">
+	<h3>尚無被退回請款單</h3>
+	</c:if>
+		<c:if test="${not empty listback}">
+		<h2>被退回請款單</h2>
+<table>
+<tr>
+		<th>請款單單號</th>
+		<th>承辦人姓名</th>
+		<th>廠商名稱</th>
+		<th>總金額</th>
+		</tr>
+		<c:forEach var="show2" items="${listback}">
+
+			<tr>
+				<td>${show2.inv_id}</td>
+				<td>${show2.employeeBean.emp_name}</td>
+				<td>${show2.pO_MainBean.pO_Vendor_InfoBean.vendor_name}</td>
+				<td>$${show2.total_price}</td>
+				<td><a href="ReturnSignInv.controller?invid=${show2.inv_id}">查看</a></td>
+			</tr>
+		</c:forEach>
+		</table>
+		</c:if>
+
+	
 </body>
 </html>
