@@ -145,6 +145,18 @@ public class Inv_SigningProcessDao implements Inv_SigningProcessIDao{
 		 }
 	}
 
-	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Inv_SigningProcessBean> selectchk_Id(String chk_Id) {
+		List<Inv_SigningProcessBean> list = null;
+		//from Inv_SigningProcess where Inv_Manger='emp005' and Sig_Sta='分派中'
+		String hgl="FROM Inv_SigningProcessBean where chk_Id=:id1 ";
+		list =this.getSession().createQuery(hgl).setParameter("id1",chk_Id).setMaxResults(50).list();	
+		if(list.size()>0) {
+			  return list;
+		 }else {
+			 return null;
+		 }
+	}
 
 }

@@ -53,10 +53,19 @@ public class PO_SigningProcessDao implements PO_SigningProcessIDao {
 		
 		
 		
-		java.util.Date date = new java.util.Date();
-		java.sql.Date datas = new java.sql.Date(date.getTime());
-		PO_SigningProcessBean bean = new PO_SigningProcessBean(datas,"dvsvsds");
-		productdao.update(bean);
+//		java.util.Date date = new java.util.Date();
+//		java.sql.Date datas = new java.sql.Date(date.getTime());
+//		PO_SigningProcessBean bean = new PO_SigningProcessBean(datas,"dvsvsds");
+//		productdao.update(bean);
+		
+		
+//		List<PO_SigningProcessBean> aa = productdao.selectempID("emp004");
+//		for(int i=0;i<aa.size();i++) {
+//			PO_SigningProcessBean ss = aa.get(i);
+//			System.out.println(ss.getPo_sta());
+//			System.out.println(ss.getPo_manger());
+//			System.out.println(ss.getPo_id());
+//		}
 		
 
 		 sessionFactory.getCurrentSession().getTransaction().commit();
@@ -263,6 +272,21 @@ public class PO_SigningProcessDao implements PO_SigningProcessIDao {
 			return null;
 		}
 	}
-
-
+	
+	
+	
+	
+	
+	@SuppressWarnings("unchecked")
+	public List<PO_SigningProcessBean> selectempID(String po_manger){
+		List<PO_SigningProcessBean> list = null;
+		String hgl = "FROM PO_SigningProcessBean WHERE po_manger=:id1 order by Sig_Date desc";
+		list = this.getSession().createQuery(hgl).setParameter("id1", po_manger)
+				.setMaxResults(50).list();
+		if (list.size() > 0) {
+			return list;
+		} else {
+			return null;
+		}
+}
 }

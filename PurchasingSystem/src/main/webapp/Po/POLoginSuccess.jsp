@@ -21,9 +21,10 @@
 
 <c:if test="${user.emp_level==1}">
 <a href='selectprice.controller'>待詢價採購單 </a>
-<a href='SignedOrder.show'>待下單採購單 </a>
+<a href='signedorder.controller'>待下單採購單 </a>
 <a href='Polist.controller'>待申請請款單 </a>
 </c:if>
+<a href='POSignStatement.controller'>採購單狀態</a>
 <a href='POManagerSigner.controller'>待審核採購單</a>
 <a href=''>查詢請款單狀態</a>
 <c:if test="${user.emp_level==2}">
