@@ -15,4 +15,5 @@ public interface ProductListIDAO {
 
 	public abstract boolean delete(String id);
 	public abstract List<ProductListBean> selectCate(String pro_cate);
+	public abstract List<ProductListBean> selectAll();
 }

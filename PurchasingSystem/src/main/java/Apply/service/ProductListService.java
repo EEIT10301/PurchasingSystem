@@ -60,4 +60,12 @@ public class ProductListService {
 		return null;
 	
 	}
+	public  List<ProductListBean> selectAll(){
+		List<ProductListBean> bean = productListIDAO.selectAll();
+		if(bean.size()!=0) {
+			return bean;
+		}
+		return null;
+	
+	}
 }
