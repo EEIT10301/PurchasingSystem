@@ -53,7 +53,7 @@ public class POSigningController {
 	PO_QueryService pO_QueryService;
 	@Autowired
 	PO_InvoiceService pO_InvoiceService;
-	
+
 	@RequestMapping("/Po/sendEmployee.controller") // 多少採購單分派頁面
 	public String sendEmployee(Model model, HttpSession session) {
 		EmployeeBean beans = (EmployeeBean) session.getAttribute("user");
@@ -113,10 +113,10 @@ public class POSigningController {
 		EmployeeBean beans = (EmployeeBean) session.getAttribute("user");
 		java.util.Date date = new java.util.Date();
 		java.sql.Date data1 = new java.sql.Date(date.getTime());
-		DateFormat dateFormate =new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		String now= dateFormate.format(data1);
-		SimpleDateFormat sdf =new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		Date dates=sdf.parse(now);
+		DateFormat dateFormate = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		String now = dateFormate.format(data1);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date dates = sdf.parse(now);
 		PO_MainBean pomain = pO_MainService.select(bean.getPo_id());
 		pomain.setEmp_id(employeesend);
 		PO_SigningProcessBean secondsigningprocess = pO_SigningProcessService.select(bean.getPo_sta(), bean.getPo_id());
@@ -334,7 +334,8 @@ public class POSigningController {
 					Integer thisquotation = Integer.valueOf(quotation[i]);
 					Integer thistotal_Price = Integer.valueOf(total_Price[i]);
 					for (PO_DetailBean x : PODetail) {
-						if(x.getPart_No().equals(part_No[i]));
+						if (x.getPart_No().equals(part_No[i]))
+							;
 						x.setQuotation(thisquotation);
 						x.setTotal_Price(thistotal_Price);
 					}
@@ -357,17 +358,16 @@ public class POSigningController {
 						null, 5);
 				PO_SigningProcessBean sx3 = new PO_SigningProcessBean(thisemp.getEmp_id(), "待收貨", poid1, null, "未收貨",
 						null, 6);
-				PO_SigningProcessBean insert=pO_SigningProcessService.insert(sx1);
-				if(insert==null) {
-					PO_SigningProcessBean update=pO_SigningProcessService.selectempandrank(poid1, 4);
+				PO_SigningProcessBean insert = pO_SigningProcessService.insert(sx1);
+				if (insert == null) {
+					PO_SigningProcessBean update = pO_SigningProcessService.selectempandrank(poid1, 4);
 					update.setSig_sta("簽核中");
-				}else {
-					
+				} else {
+
 					pO_SigningProcessService.insert(sx2);
 					pO_SigningProcessService.insert(sx3);
 				}
-				
-				
+
 			} else {// 如果會到總經理的話
 				PO_MainBean pomain = pO_MainService.select(poid1);
 				pomain.setVendor_ID(AllPO_Vendors);
@@ -377,7 +377,8 @@ public class POSigningController {
 					Integer thisquotation = Integer.valueOf(quotation[i]);
 					Integer thistotal_Price = Integer.valueOf(total_Price[i]);
 					for (PO_DetailBean x : PODetail) {
-						if(x.getPart_No().equals(part_No[i]));
+						if (x.getPart_No().equals(part_No[i]))
+							;
 						x.setQuotation(thisquotation);
 						x.setTotal_Price(thistotal_Price);
 					}
@@ -401,16 +402,16 @@ public class POSigningController {
 						null, 6);
 				PO_SigningProcessBean sx4 = new PO_SigningProcessBean(thisemp.getEmp_id(), "待收貨", poid1, null, "未收貨",
 						null, 7);
-				PO_SigningProcessBean insert=pO_SigningProcessService.insert(sx2);
-				if(insert==null) {
-					PO_SigningProcessBean update=pO_SigningProcessService.selectempandrank(poid1, 4);
+				PO_SigningProcessBean insert = pO_SigningProcessService.insert(sx2);
+				if (insert == null) {
+					PO_SigningProcessBean update = pO_SigningProcessService.selectempandrank(poid1, 4);
 					update.setSig_sta("簽核中");
-				}else {					
+				} else {
 					pO_SigningProcessService.insert(sx1);
 					pO_SigningProcessService.insert(sx3);
 					pO_SigningProcessService.insert(sx4);
 				}
-				
+
 			}
 			return "POlogin.successint";
 		}
@@ -443,22 +444,18 @@ public class POSigningController {
 
 //		}else {
 
-	
-	//採購主管的"待簽核請款單列表"
+	// 採購主管的"待簽核請款單列表"
 	@RequestMapping("/Po/todoSignInvoice.controller")
 	public String todoSignInvoice(Model model, HttpSession session) {
-		EmployeeBean empbean = (EmployeeBean)session.getAttribute("user");
-		String emp_id=empbean.getEmp_id();
-		
+		EmployeeBean empbean = (EmployeeBean) session.getAttribute("user");
+		String emp_id = empbean.getEmp_id();
+
 		List<Account_InvoiceBean> InvoiceSign = pO_InvoiceService.findTodoSignInv(emp_id, "簽核中", 2);
 		model.addAttribute("listtodosign", InvoiceSign);
 		List<Account_InvoiceBean> BackInvoiceSign = pO_InvoiceService.findTodoBackInv(emp_id, "退回中", 2);
 		model.addAttribute("BackInvoiceSign", BackInvoiceSign);
-		
-		
-		
+
 		return "todoSignInvoice.show";
 	}
-
 
 }

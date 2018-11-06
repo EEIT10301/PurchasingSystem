@@ -33,16 +33,18 @@ private Set<Inv_SigningProcessBean> inv_SigningProcessBean = new LinkedHashSet<>
 private PO_Vendor_InfoBean pO_Vendor_InfoBean;
 private PO_MainBean pO_MainBean;
 private Set<Inv_ProductListBean> inv_ProductListBean = new LinkedHashSet<>();
-public Inv＿ProductCheckBean(String chk_Id, String po_ID, String emp_ID, Integer chk_Count, String chk_quality,
-		Integer chk_Money, Date chk_Date, String chk_status, String chk_Comment) {
+
+public Inv＿ProductCheckBean(String chk_Id, String po_ID, String emp_ID, Integer chk_Money, String chk_Comment,
+		Integer total_price, String vender_ID) {
 	super();
 	this.chk_Id = chk_Id;
 	this.po_ID = po_ID;
 	this.emp_ID = emp_ID;
 	this.chk_Money = chk_Money;
 	this.chk_Comment = chk_Comment;
+	this.total_price = total_price;
+	this.vender_ID = vender_ID;
 }
-
 public Inv＿ProductCheckBean() {
 	super();
 }
