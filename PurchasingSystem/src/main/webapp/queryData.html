@@ -7,7 +7,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript" charset="utf-8">
 $(document).ready(function(){
-	var row = 5;//一行有幾個欄位要回填
+	var row = 7;//一行有幾個欄位要回填
 	///PurchasingSystem/src/main/java/Apply/controller/SearchCusServlet.java
 	$.ajax({
 		url : "http://localhost:8080/PurchasingSystem/SearchCus.do",
@@ -19,11 +19,13 @@ $(document).ready(function(){
 			var txt="";
 			for(i=0; i<items.length; i++){
 				txt +='<tr id="item'+i+'"><td id="id">'+items[i].part_no+"</td>";
+				txt +='<td id="cate" value="'+items[i].pro_cate+'">'+items[i].pro_cate+"</td>";
 				txt +='<td id="name" value="'+items[i].pro_name+'">'+items[i].pro_name+"</td>";
-				txt +='<td id="email" value="'+items[i].pro_date+'">'+items[i].pro_date+"</td>";
-				txt +='<td id="pwd" value="'+items[i].pro_cate+'">'+items[i].pro_cate+"</td>";
-				txt +='<td id="tel" value="'+items[i].pro_price+'">'+items[i].pro_price+"</td>";
-				txt +='<td id="adr" value="'+items[i].pro_amount+'">'+items[i].pro_amount+"</td>";
+				txt +='<td id="spe" value="'+items[i].pro_spe+'">'+items[i].pro_spe+"</td>";
+				txt +='<td id="intro" value="'+items[i].pro_intro+'">'+items[i].pro_intro+"</td>";
+				txt +='<td id="price" value="'+items[i].pro_price+'">'+items[i].pro_price+"</td>";
+				txt +='<td id="amount" value="'+items[i].pro_amount+'">'+items[i].pro_amount+"</td>";
+				txt +='<td id="date" value="'+items[i].pro_date+'">'+items[i].pro_date+"</td>";
 				txt +="<td><input type='button' id='edit' class='btn btn-default' value='edit'/>";
 				txt +="&nbsp;&nbsp;&nbsp;";
 				txt +="<input type='hidden' id='delete' class='btn btn-default' value='delete'/></td></tr>";
@@ -33,34 +35,43 @@ $(document).ready(function(){
 	});
 	
 	
-	$("tbody").on("click","#delete",function(){
-		var finId = $(this).parent().siblings("td:eq(0)").text();
+	$("tbody").on("click","#insert",function(){
+		var finId = $(this).parent().siblings("td:eq(0)").children().val();
+		var finName = $(this).parent().siblings("td:eq(1)").children().val();
+		var finEmail = $(this).parent().siblings("td:eq(2)").children().val();
+		var finPwd = $(this).parent().siblings("td:eq(3)").children().val();
+		var finTel = $(this).parent().siblings("td:eq(4)").children().val();
+		var finAdr = $(this).parent().siblings("td:eq(5)").children().val();
+		
 		var dataJSON ="";
-		dataJSON += '\"'+($(this).parent().siblings("td:eq(0)").attr("id"))+'\":\"'
-		+($(this).parent().siblings("td:eq(0)").text())+'\",';
+		dataJSON +="";
+//			'\"'+($(this).parent().siblings("td:eq(0)").attr("id"))+'\":\"'
+//						+($(this).parent().siblings("td:eq(0)").text())+'\",';
+		for(i=0; i<=row; i++){
+			if(i==(row)){
+				dataJSON += '\"'+($(this).parent().siblings("td:eq("+i+")").attr("id"))+'\":\"'
+								+($(this).parent().siblings("td:eq("+i+")").children().val())+'\"';
+			}else{
+				dataJSON += '\"'+($(this).parent().siblings("td:eq("+i+")").attr("id"))+'\":\"'
+								+($(this).parent().siblings("td:eq("+i+")").children().val())+'\",';	
+			}
+		}
+		alert(dataJSON);
 		
 		$.ajax({
-			url : "http://localhost:8080/PurchasingSystem/RemoveCus.do",
+			url : "http://localhost:8080/PurchasingSystem/insertproduct.do",
 			type : 'POST',
 			data : "{"+dataJSON+"}",
 			contentType:"application/json",
 			success : function(response) {
-				alert("更新成功");
-				$("tbody").children("tr:eq("+(finId-1)+")").find("td:gt(0)").remove();
-				$("tbody").children("tr:eq("+(finId-1)+")").append(
-						"<td id='name' value=''></td>" +
-						"<td id='email' value=''></td>" +
-						"<td id='pwd' value=''></td>" +
-						"<td id='tel' value=''></td>" +
-						"<td id='adr' value=''></td>"+
-						"<td><input type='button' id='edit' class='btn btn-default' value='edit'/>&nbsp;&nbsp;&nbsp;"+
-						"<input type='hidden' id='delete' class='btn btn-default' value='delete'/></td></tr>");
+				alert("新增成功");
+				window.location.reload();
 			}
 		});
 	});
 	
 	$("tbody").on("click","#edit",function(){
-		$(this).parent().siblings("td:gt(3)").empty().append("<input type='text'/>");//全部清空變成input
+		$(this).parent().siblings("td:gt(2)").empty().append("<input type='text'/>");//全部清空變成input
 		//$(this)是#edit
 		//用#edit去更改除了自己以外的欄位,#edit的parent是一個td,這個td的siblings是td
 		var index = $(this).parent().siblings("td:first").text();//之後cancel放回原先值會用到
@@ -163,15 +174,38 @@ $(document).ready(function(){
 			<thead>
 				<tr>
 					<th>料號</th>
-					<th>產品名稱</th>
-					<th>最後進貨時間</th>
 					<th>產品大項</th>
+					<th>產品名稱</th>
+					<th>規格簡述</th>
+					<th>詳細規格</th>
 					<th>價格</th>
 					<th>庫存</th>
+					<th>最後進貨日期</th>
 					<th>Edit</th>
 				</tr>
 			</thead>
-			<tbody id='myTable'></tbody>
+			<tbody id='myTable'>
+<!-- txt +='<tr id="item'+i+'"><td id="id">'+items[i].part_no+"</td>"; -->
+<!-- 				txt +='<td id="cate" value="'+items[i].pro_cate+'">'+items[i].pro_cate+"</td>"; -->
+<!-- 				txt +='<td id="name" value="'+items[i].pro_name+'">'+items[i].pro_name+"</td>"; -->
+<!-- 				txt +='<td id="spe" value="'+items[i].pro_spe+'">'+items[i].pro_spe+"</td>"; -->
+<!-- 				txt +='<td id="intro" value="'+items[i].pro_intro+'">'+items[i].pro_intro+"</td>"; -->
+<!-- 				txt +='<td id="price" value="'+items[i].pro_price+'">'+items[i].pro_price+"</td>"; -->
+<!-- 				txt +='<td id="amount" value="'+items[i].pro_amount+'">'+items[i].pro_amount+"</td>"; -->
+<!-- 				txt +='<td id="date" value="'+items[i].pro_date+'">'+items[i].pro_date+"</td>"; -->
+			<tr>
+			<td id="id" ><input type='text'/></td>
+			<td id='cate'><input type='text'/></td>
+			<td id='name'><input type='text'/></td>
+			<td id='spe'><input type='text'/></td>
+			<td id='intro'><input type='text'/></td>
+			<td id='price' ><input type='text'/></td>
+			<td id='amount' ><input type='text'/></td>
+			<td id='date' ><input type='text' value='現在時間'/></td>
+			<td><input type='button' id='insert' class='btn btn-default' value='新增'/>&nbsp;&nbsp;&nbsp;
+			<input type='hidden' id='delete' class='btn btn-default' value='delete'/></td>		
+			</tr>
+			</tbody>
 		</table>
 		<button id='editAll' class='btn btn-default'>Edit All</button>
 	</div>

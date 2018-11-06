@@ -23,6 +23,7 @@
 <a href='selectprice.controller'>待詢價採購單 </a>
 <a href='Polist.controller'>待申請請款單 </a>
 </c:if>
+<a href='POSignStatement.controller'>採購單狀態</a>
 <a href='POManagerSigner.controller'>待審核採購單</a>
 
 <a href='StatusMain.jsp'>查詢請款單</a>

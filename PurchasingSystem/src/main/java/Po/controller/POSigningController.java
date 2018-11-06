@@ -22,6 +22,7 @@ import Account.model.Account_InvoiceBean;
 import Account.model.PO_Vendor_InfoBean;
 import Account.service.PO_Vendor_InfoService;
 import Apply.model.App_MainBean;
+import Apply.model.App_SigningProcessBean;
 import Apply.model.EmployeeBean;
 import Apply.service.App_MainService;
 import Apply.service.EmployeeService;
@@ -318,11 +319,11 @@ public class POSigningController {
 		java.util.Date date = new java.util.Date();
 		java.sql.Date datas = new java.sql.Date(date.getTime());
 		PO_SigningProcessBean bean = pO_SigningProcessService.select(posta1, poid1);
-
-		List<PO_Vendor_InfoBean> AllPO_Vendor = pO_Vendor_InfoService.select();
+		List<PO_QueryBean> POQuery = pO_QueryService.selectQueryBean(poid1);
+	//	List<PO_Vendor_InfoBean> AllPO_Vendor = pO_Vendor_InfoService.select();
 		if (send.equals("重新輸入")) {
 			model.addAttribute("poprocess1", bean);
-			model.addAttribute("AllPO_Vendor", AllPO_Vendor);
+			model.addAttribute("AllPO_Vendor", POQuery);
 			return "Posend.sign";
 		} else {// 按下送出時
 			if (boss == null) {// 如果部會到總經理的話
@@ -417,6 +418,8 @@ public class POSigningController {
 		}
 	}
 
+
+
 //	@RequestMapping("/Po/signedorder.controller")
 //	public String signedOrder(Model model, HttpSession session) {
 //		EmployeeBean beans = (EmployeeBean) session.getAttribute("user");
@@ -440,6 +443,7 @@ public class POSigningController {
 //
 //			}
 //			return "SignedOrder.show";
+
 //		}
 
 //		}else {
@@ -459,5 +463,6 @@ public class POSigningController {
 
 		return "todoSignInvoice.show";
 	}
+
 
 }

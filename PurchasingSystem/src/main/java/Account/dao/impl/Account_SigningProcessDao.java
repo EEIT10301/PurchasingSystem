@@ -156,6 +156,17 @@ public class Account_SigningProcessDao implements Account_SigningProcessIDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
+	public List<Account_SigningProcessBean> selectPOprocess(String inv_id) {
+		String hql = "FROM Account_SigningProcessBean WHERE inv_id=:id1 ";
+		return this.getSession().createQuery(hql).setParameter("id1", inv_id).setMaxResults(50).list();
+
+	}
+	
+	
+	
+	
+	@SuppressWarnings("unchecked")
+	@Override
 
 	public Account_SigningProcessBean insert(Account_SigningProcessBean bean) {
 		List<Account_SigningProcessBean> list = null;

@@ -49,6 +49,15 @@ public class Account_SigningProcessService {
 		boolean beans = account_SigningProcessIDao.delete(account_Sta,inv_id);
 		return beans;
 		
-	}	
+	}
+	public List<Account_SigningProcessBean> selectPOprocess(String inv_id) {
+		List<Account_SigningProcessBean> bean =account_SigningProcessIDao.selectPOprocess(inv_id);
+		if(bean!=null) {
+			return bean;
+		}
+		return null;
+	}
+	
+	
 	
 }
