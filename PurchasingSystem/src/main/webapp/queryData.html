@@ -19,9 +19,9 @@ $(document).ready(function(){
 			var txt="";
 			for(i=0; i<items.length; i++){
 				txt +='<tr id="item'+i+'"><td id="id">'+items[i].part_no+"</td>";
-				txt +='<td id="name" value="'+items[i].pro_cate+'">'+items[i].pro_cate+"</td>";
-				txt +='<td id="email" value="'+items[i].pro_name+'">'+items[i].pro_name+"</td>";
-				txt +='<td id="pwd" value="'+items[i].pro_spe+'">'+items[i].pro_spe+"</td>";
+				txt +='<td id="name" value="'+items[i].pro_name+'">'+items[i].pro_name+"</td>";
+				txt +='<td id="email" value="'+items[i].pro_date+'">'+items[i].pro_date+"</td>";
+				txt +='<td id="pwd" value="'+items[i].pro_cate+'">'+items[i].pro_cate+"</td>";
 				txt +='<td id="tel" value="'+items[i].pro_price+'">'+items[i].pro_price+"</td>";
 				txt +='<td id="adr" value="'+items[i].pro_amount+'">'+items[i].pro_amount+"</td>";
 				txt +="<td><input type='button' id='edit' class='btn btn-default' value='edit'/>";
@@ -163,12 +163,12 @@ $(document).ready(function(){
 			<thead>
 				<tr>
 					<th>料號</th>
-					<th>產品大項</th>
 					<th>產品名稱</th>
-					<th>規格</th>
+					<th>最後進貨時間</th>
+					<th>產品大項</th>
 					<th>價格</th>
 					<th>庫存</th>
-					<th>Edit/Delete</th>
+					<th>Edit</th>
 				</tr>
 			</thead>
 			<tbody id='myTable'></tbody>
