@@ -1,5 +1,9 @@
 package Po.controller;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -12,10 +16,16 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import Account.model.Inv_ProductListBean;
+import Account.model.Inv＿ProductCheckBean;
+import Account.service.Inv_ProductListService;
+import Account.service.Inv＿ProductCheckService;
 import Account.service.PO_Vendor_InfoService;
 import Apply.model.EmployeeBean;
 import Apply.service.App_MainService;
 import Apply.service.EmployeeService;
+import Inv.model.Inv_SigningProcessBean;
+import Inv.service.Inv_SigningProcessService;
 import Po.model.PO_DetailBean;
 import Po.model.PO_MainBean;
 import Po.model.PO_SigningProcessBean;
@@ -40,6 +50,12 @@ public class POReceivingGoodsController {
 	PO_DetailService pO_DetailService;
 	@Autowired
 	PO_QueryService pO_QueryService;
+	@Autowired
+	Inv＿ProductCheckService inv＿ProductCheckService;
+	@Autowired
+	Inv_ProductListService inv_ProductListService;
+	@Autowired
+	Inv_SigningProcessService inv_SigningProcessService;
 
 	@RequestMapping("/Po/placedOrder.controller")
 	public String placedOrder(PO_SigningProcessBean bean, BindingResult bindingResult, Model model,
@@ -86,7 +102,7 @@ public class POReceivingGoodsController {
 			HttpSession session) {
 		String poid = bean.getPo_id();
 		PO_MainBean pm = pO_MainService.select(poid);
-		PO_SigningProcessBean po_Sign = pO_SigningProcessService.select("出貨中", poid);
+		PO_SigningProcessBean po_Sign = pO_SigningProcessService.select("待收貨", poid);
 		Set<PO_DetailBean> poDetail = pm.getpO_DetailBean();
 		model.addAttribute("pm", pm);
 		model.addAttribute("po_Sign", po_Sign);
@@ -94,6 +110,54 @@ public class POReceivingGoodsController {
 
 		return "PlacedOrderDetail.show";
 
+	}
+
+	@RequestMapping("/Po/receivedGoods.controller")
+	public String receivedGoods(PO_SigningProcessBean bean, BindingResult bindingResult, Model model,
+			HttpSession session, String send, String signSug) throws ParseException {
+		EmployeeBean bean1 = (EmployeeBean) session.getAttribute("user");
+		String empid = bean1.getEmp_id();
+		java.util.Date date = new java.util.Date();
+		java.sql.Date date1 = new java.sql.Date(date.getTime());
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		String currentDate = dateFormat.format(date1);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date dateTime = sdf.parse(currentDate);
+		if (send.equals("確認到貨")) {
+			PO_SigningProcessBean receivedGoods = pO_SigningProcessService.select(bean.getPo_sta(), bean.getPo_id());
+			receivedGoods.setSig_date(dateTime);
+			receivedGoods.setSig_sta("已收貨");
+			receivedGoods.setSig_sug(signSug);
+
+			PO_SigningProcessBean insert1 = new PO_SigningProcessBean(empid, "驗收作業", bean.getPo_id(), null, "驗收中", null,
+					bean.getSig_rank() + 1);
+			PO_SigningProcessBean insert2 = new PO_SigningProcessBean(empid, "請款作業", bean.getPo_id(), null, "未請款", null,
+					bean.getSig_rank() + 2);
+			pO_SigningProcessService.insert(insert1);
+			pO_SigningProcessService.insert(insert2);
+
+			PO_MainBean pO_MainBean = receivedGoods.getpO_MainBean();
+
+			Set<PO_DetailBean> pODetailBean = receivedGoods.getpO_MainBean().getpO_DetailBean();
+			String ckid = "CK" + pO_MainBean.getPo_id().substring(2);
+
+			Inv＿ProductCheckBean inv＿ProductCheckBean = new Inv＿ProductCheckBean(ckid, bean.getPo_id(), "emp000",
+					pO_MainBean.getTotal_price(), null, null, pO_MainBean.getVendor_ID());
+			inv＿ProductCheckService.insert(inv＿ProductCheckBean);
+			for (PO_DetailBean pd : pODetailBean) {
+				Inv_ProductListBean ip = new Inv_ProductListBean(ckid, pd.getPart_No(), null, null, null,
+						null);
+				inv_ProductListService.insert(ip);
+			}
+
+			Inv_SigningProcessBean inv_SigningProcessBean = new Inv_SigningProcessBean(empid, "產生驗收單", ckid, dateTime,
+					"產生驗收單", signSug, 1);
+			Inv_SigningProcessBean inv_SigningProcessBean1 = new Inv_SigningProcessBean("emp007", "驗收", ckid, null,
+					"待分派", null, 2);
+			inv_SigningProcessService.insert(inv_SigningProcessBean);
+			inv_SigningProcessService.insert(inv_SigningProcessBean1);
+		}
+		return "POlogin.success";
 	}
 
 }

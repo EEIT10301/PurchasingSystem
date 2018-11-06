@@ -93,10 +93,10 @@ public class POPlacementController {
 	public String signedOrderDetail(PO_SigningProcessBean bean, BindingResult bindingResult, Model model,
 			HttpSession session) {
 		String poid = bean.getPo_id();
-		
+
 		PO_MainBean pm = pO_MainService.select(poid);
 //		Set<PO_SigningProcessBean> po_Sign = pm.getpO_SigningProcessBean();
-		PO_SigningProcessBean po_Sign=pO_SigningProcessService.select("下單中", poid);
+		PO_SigningProcessBean po_Sign = pO_SigningProcessService.select("下單中", poid);
 		Set<PO_DetailBean> poDetail = pm.getpO_DetailBean();
 		model.addAttribute("pm", pm);
 		model.addAttribute("po_Sign", po_Sign);
@@ -121,7 +121,7 @@ public class POPlacementController {
 			placeOrder.setSig_date(dateTime);
 			placeOrder.setSig_sta("已下單");
 			placeOrder.setSig_sug(signSug);
-			PO_SigningProcessBean placeOrder1 = pO_SigningProcessService.select("待收貨",bean.getPo_id());
+			PO_SigningProcessBean placeOrder1 = pO_SigningProcessService.select("待收貨", bean.getPo_id());
 			placeOrder1.setSig_sta("出貨中");
 			PO_MainBean shippingUpdate = pO_MainService.select(bean.getPo_id());
 			shippingUpdate.setShipping_Date(shippingDate);
