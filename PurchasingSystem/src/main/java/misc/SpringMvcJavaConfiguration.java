@@ -19,7 +19,7 @@ import org.springframework.web.servlet.view.XmlViewResolver;
 
 
 @Configuration 
-@ComponentScan(basePackages={"Account","Apply","Inv","Po","ceo"}) //<context:component-scan base-package="controller"></context:component-scan>
+@ComponentScan(basePackages={"Account.controller","Apply.controller","Inv.controller","Po.controller","ceo"}) //<context:component-scan base-package="controller"></context:component-scan>
 @EnableWebMvc //<mvc:annotation-driven></mvc:annotation-driven>
 
 public class SpringMvcJavaConfiguration implements WebMvcConfigurer {

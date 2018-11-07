@@ -133,11 +133,50 @@ public class Account_SigningProcessDao implements Account_SigningProcessIDao {
 
 	@Override
 	public List<Account_SigningProcessBean> selectForInvid(String inv_id) {
-		String hql = "FROM Account_SigningProcessBean WHERE inv_id=:id2";
+		String hql = "FROM Account_SigningProcessBean WHERE inv_id=:id2 order by sig_rank";
 		return this.getSession().createQuery(hql).setParameter("id2", inv_id).setMaxResults(50).list();
 
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Account_SigningProcessBean> selectInvidAndRank(String inv_id,Integer sig_rank) {
+		String hql = "FROM Account_SigningProcessBean WHERE inv_id=:id1 and sig_rank<:id2 Order by sig_rank asc" ;
+		return this.getSession().createQuery(hql).setParameter("id1", inv_id).setParameter("id2", sig_rank).setMaxResults(50).list();
+//查看前面的簽核意見
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Account_SigningProcessBean> selectStatus(String emp_id) {
+		String hql = "FROM Account_SigningProcessBean WHERE account_manger=:id1 order by inv_id";
+		return this.getSession().createQuery(hql).setParameter("id1", emp_id).setMaxResults(50).list();
+//查看請款單狀態********
+	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+
+	public List<Account_SigningProcessBean> selectStatusMan(String emp_id,String account_sta) {
+		String hql = "FROM Account_SigningProcessBean WHERE account_manger=:id1 and account_sta=:id2 order by inv_id";
+		return this.getSession().createQuery(hql).setParameter("id1", emp_id).setParameter("id2", account_sta).setMaxResults(50).list();
+//經理查看請款單狀態********
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Account_SigningProcessBean> selectStatusDone(String inv_id,Integer sig_rank) {
+		String hql = "FROM Account_SigningProcessBean WHERE inv_id=:id1 and sig_rank=:id2";
+		return this.getSession().createQuery(hql).setParameter("id1", inv_id).setParameter("id2", sig_rank).setMaxResults(50).list();
+//查看已完成請款單狀態********
+	}
+
+	public List<Account_SigningProcessBean> selectPOprocess(String inv_id) {
+		String hql = "FROM Account_SigningProcessBean WHERE inv_id=:id1 ";
+		return this.getSession().createQuery(hql).setParameter("id1", inv_id).setMaxResults(50).list();
+
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
 
@@ -159,23 +198,25 @@ public class Account_SigningProcessDao implements Account_SigningProcessIDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public Account_SigningProcessBean update(Account_SigningProcessBean bean) {
-		String account_Sta = bean.getAccount_Sta();
-		String inv_id = bean.getInv_id();
-		String hgl = "FROM Account_SigningProcessBean WHERE account_Sta=:id1 AND inv_id=:id2";
-		List<Account_SigningProcessBean> list = this.getSession().createQuery(hgl).setParameter("id1", account_Sta)
-				.setParameter("id2", inv_id).setMaxResults(50).list();
-		if (list.size() > 0) {
-			for (Account_SigningProcessBean getones : list) {
-				getones.setAccount_Manger(getones.getAccount_Manger());
-				getones.setSig_Date(getones.getSig_Date());
-				getones.setSig_Rank(getones.getSig_Rank());
-				getones.setSig_Sta(getones.getSig_Sta());
-				getones.setSig_Sug(getones.getSig_Sug());
-			}
-			return bean;
-		} else {
-			return null;
-		}
+//		String account_Sta = bean.getAccount_Sta();
+//		String inv_id = bean.getInv_id();
+//		String hgl = "FROM Account_SigningProcessBean WHERE account_Sta=:id1 AND inv_id=:id2";
+//		List<Account_SigningProcessBean> list = this.getSession().createQuery(hgl).setParameter("id1", account_Sta)
+//				.setParameter("id2", inv_id).setMaxResults(50).list();
+//		if (list.size() > 0) {
+//			for (Account_SigningProcessBean getones : list) {
+//				getones.setAccount_Manger(getones.getAccount_Manger());
+//				getones.setSig_Date(getones.getSig_Date());
+//				getones.setSig_Rank(getones.getSig_Rank());
+//				getones.setSig_Sta(getones.getSig_Sta());
+//				getones.setSig_Sug(getones.getSig_Sug());
+//			}
+//			return bean;
+//		} else {
+//			return null;
+//		}
+		this.getSession().merge(bean);
+		return bean;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -202,10 +243,8 @@ public class Account_SigningProcessDao implements Account_SigningProcessIDao {
 	@SuppressWarnings("unchecked")
 	@Override                                   //找流程
 	public List<Account_SigningProcessBean> selectProcess(String emp_id, String sig_sta, Integer sig_rank) {
-		List<Account_SigningProcessBean> list = null;
-		//from Account_SigningProcess where emp_id='' and Sig_Sta='退回中'  sigrank=1
 		String hgl="FROM Account_SigningProcessBean where account_Manger=:id1 and sig_sta=:id2 and sig_rank=:id3";
-		list =this.getSession().createQuery(hgl).setParameter("id1", emp_id).setParameter("id2", sig_sta).
+		List<Account_SigningProcessBean> list =this.getSession().createQuery(hgl).setParameter("id1", emp_id).setParameter("id2", sig_sta).
 				setParameter("id3", sig_rank).setMaxResults(50).list();
 		
 		if(list.size()>0) {
@@ -220,8 +259,9 @@ public class Account_SigningProcessDao implements Account_SigningProcessIDao {
 	public List<Account_SigningProcessBean> select3send(String emp_id, String sig_sta, Integer sig_rank) {
 		List<Account_SigningProcessBean> list = null;
 		//from Account_SigningProcess where emp_id='' and Sig_Sta='退回中'  sigrank=1
-		String hgl="FROM Account_SigningProcessBean where account_Manger=:id1 and sig_sta='退回中\r\n" + 
-				"'  and sig_rank=:id3";
+//		String hgl="FROM Account_SigningProcessBean where account_Manger=:id1 and sig_sta='退回中\r\n" + 
+//				"'  and sig_rank=:id3";
+		String hgl="FROM Account_SigningProcessBean where account_Manger=:id1 and sig_sta='退回中'  and sig_rank=:id3";
 		list =this.getSession().createQuery(hgl).setParameter("id1", emp_id).
 				setParameter("id3", sig_rank).setMaxResults(50).list();
 		
@@ -255,4 +295,4 @@ public class Account_SigningProcessDao implements Account_SigningProcessIDao {
 		}
 	}
 
-
+	

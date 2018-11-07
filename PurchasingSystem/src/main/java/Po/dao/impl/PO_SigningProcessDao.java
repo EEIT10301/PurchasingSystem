@@ -4,12 +4,12 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Repository;
 
-import Apply.model.App_SigningProcessBean;
 import Po.dao.PO_SigningProcessIDao;
 import Po.model.PO_SigningProcessBean;
 import misc.SpringJavaConfiguration;
@@ -28,11 +28,12 @@ public class PO_SigningProcessDao implements PO_SigningProcessIDao {
 
 		SessionFactory sessionFactory = (SessionFactory) context.getBean("sessionFactory");
 		sessionFactory.getCurrentSession().beginTransaction();
+		PO_SigningProcessIDao productdao = (PO_SigningProcessIDao)context.getBean("PO_SigningProcessDao");
 
-		java.util.Date date = new java.util.Date();
-		java.sql.Date datas = new java.sql.Date(date.getTime());
-		PO_SigningProcessBean ss = new PO_SigningProcessBean("emp001", "申請中", "Po20181013001", datas, "已簽核", "請核准", 1);
-		PO_SigningProcessBean ss1 = new PO_SigningProcessBean("emp002", "已審核完成", "Po20181013001", null, "簽核中", null, 2);
+//		java.util.Date date = new java.util.Date();
+//		java.sql.Date datas = new java.sql.Date(date.getTime());
+//		PO_SigningProcessBean ss = new PO_SigningProcessBean("emp001", "申請中", "Po20181013001", datas, "已簽核", "請核准", 1);
+//		PO_SigningProcessBean ss1 = new PO_SigningProcessBean("emp002", "已審核完成", "Po20181013001", null, "簽核中", null, 2);
 //		productDAO.insert(ss);
 //		productDAO.insert(ss1);
 //		sessionFactory.getCurrentSession().getTransaction().commit();
@@ -43,8 +44,31 @@ public class PO_SigningProcessDao implements PO_SigningProcessIDao {
 //        	System.out.println(xz.getpO_MainBean().getVendor_ID());
 //
 //         }
+		
+		
+//		PO_SigningProcessBean a = productdao.selectorderdetail("Po20181013001");
+//		System.out.println(a.getPo_id());
+//		System.out.println(a.getPo_manger());
+//		System.out.println(a.getPo_sta());
+		
+		
+		
+//		java.util.Date date = new java.util.Date();
+//		java.sql.Date datas = new java.sql.Date(date.getTime());
+//		PO_SigningProcessBean bean = new PO_SigningProcessBean(datas,"dvsvsds");
+//		productdao.update(bean);
+		
+		
+//		List<PO_SigningProcessBean> aa = productdao.selectempID("emp004");
+//		for(int i=0;i<aa.size();i++) {
+//			PO_SigningProcessBean ss = aa.get(i);
+//			System.out.println(ss.getPo_sta());
+//			System.out.println(ss.getPo_manger());
+//			System.out.println(ss.getPo_id());
+//		}
+		
 
-		// sessionFactory.getCurrentSession().getTransaction().commit();
+		 sessionFactory.getCurrentSession().getTransaction().commit();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -54,6 +78,23 @@ public class PO_SigningProcessDao implements PO_SigningProcessIDao {
 		PO_SigningProcessBean getone = new PO_SigningProcessBean();
 		String hgl = "FROM PO_SigningProcessBean WHERE po_sta=:id1 AND po_id=:id2";
 		list = this.getSession().createQuery(hgl).setParameter("id1", po_sta).setParameter("id2", po_id)
+				.setMaxResults(100).list();
+		if (list.size() > 0) {
+			for (PO_SigningProcessBean getones : list) {
+				getone = getones;
+			}
+			return getone;
+		} else {
+			return null;
+		}
+	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public PO_SigningProcessBean selectsigsta(String sig_sta, String po_id) {
+		List<PO_SigningProcessBean> list = null;
+		PO_SigningProcessBean getone = new PO_SigningProcessBean();
+		String hgl = "FROM PO_SigningProcessBean WHERE sig_sta=:id1 AND po_id=:id2";
+		list = this.getSession().createQuery(hgl).setParameter("id1", sig_sta).setParameter("id2", po_id)
 				.setMaxResults(100).list();
 		if (list.size() > 0) {
 			for (PO_SigningProcessBean getones : list) {
@@ -149,7 +190,7 @@ public class PO_SigningProcessDao implements PO_SigningProcessIDao {
 	public List<PO_SigningProcessBean> selectempidsend(String po_manger, String sig_sta) {
 		List<PO_SigningProcessBean> list = null;
 		// from PO_SigningProcess where PO_Manger='emp005' and Sig_Sta='分派中'
-		String hgl = "FROM PO_SigningProcessBean where PO_Manger=:id1 and sig_sta=:id2 order by Sig_Date desc";
+		String hgl = "FROM PO_SigningProcessBean where PO_Manger=:id1 and sig_sta=:id2 order by po_id desc";
 		list = this.getSession().createQuery(hgl).setParameter("id1", po_manger).setParameter("id2", sig_sta)
 				.setMaxResults(50).list();
 
@@ -193,13 +234,28 @@ public class PO_SigningProcessDao implements PO_SigningProcessIDao {
 		}
 	}
 
+	@SuppressWarnings("unchecked")//select POID 對應的狀態sig_sta
+	@Override
+	public List<PO_SigningProcessBean> selectSigSta(String sig_Sta,String po_id) {
+		List<PO_SigningProcessBean> list = null;
+		String hgl = "FROM PO_SigningProcessBean WHERE sig_sta=:id1 and po_id=:id2";
+		list = this.getSession().createQuery(hgl).setParameter("id1", sig_Sta).setParameter("id2", po_id).setMaxResults(50).list();
+		if (list.size() > 0) {
+			return list;
+		} else {
+			return null;
+		}
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
-	public PO_SigningProcessBean selectrank(String po_id, Integer sig_Rank) {
+	public PO_SigningProcessBean selectrank(String po_id, Integer sig_rank) {
 		List<PO_SigningProcessBean> list = null;
 		PO_SigningProcessBean getRank = new PO_SigningProcessBean();
 		String hgl = "FROM PO_SigningProcessBean WHERE po_id=:id1 AND sig_Rank=:id2";
-		list = this.getSession().createNamedQuery(hgl).setParameter("id1", po_id).setParameter("id2", sig_Rank)
+
+		list = this.getSession().createQuery(hgl).setParameter("id1", po_id).setParameter("id2", sig_rank)
+
 				.setMaxResults(50).list();
 		if (list.size() > 0) {
 			for (PO_SigningProcessBean getRanks : list) {
@@ -211,5 +267,56 @@ public class PO_SigningProcessDao implements PO_SigningProcessIDao {
 		}
 
 	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<PO_SigningProcessBean> selectempidsendpages(String po_manger, String sig_sta ,Integer beginindex,Integer pagesize) {
+		List<PO_SigningProcessBean> list1 = null;
+		// from PO_SigningProcess where PO_Manger='emp005' and Sig_Sta='分派中'
+		String hgl = "FROM PO_SigningProcessBean where PO_Manger=:id1 and sig_sta=:id2 order by po_id desc";
+		@SuppressWarnings("rawtypes")
+		Query query = this.getSession().createQuery(hgl).setParameter("id1", po_manger).setParameter("id2", sig_sta);
+		query.setFirstResult(beginindex);
+		query.setMaxResults(pagesize);
+		list1=query.list();
+		if (list1.size() > 0) {
+			return list1;
+		} else {
+			return null;
+		}
+	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public PO_SigningProcessBean selectorderdetail(String po_id,String po_manger,String po_sta) {
+		List<PO_SigningProcessBean> list = null;
+		PO_SigningProcessBean getone = new PO_SigningProcessBean();
+		String hgl = "FROM PO_SigningProcessBean WHERE po_id=:id1 and po_manger=:id2 and po_sta=:id3";
+		list = this.getSession().createQuery(hgl).setParameter("id1", po_id).setParameter("id2", po_manger)
+				.setParameter("id3", po_sta).setMaxResults(100).list();
+		if (list.size() > 0) {
+			for (PO_SigningProcessBean getones : list) {
+				getone = getones;
+			}
+			return getone;
+		} else {
+			return null;
+		}
+	}
+	
+	
+	
+	
+	
+	@SuppressWarnings("unchecked")
+	public List<PO_SigningProcessBean> selectempID(String po_manger){
+		List<PO_SigningProcessBean> list = null;
+		String hgl = "FROM PO_SigningProcessBean WHERE po_manger=:id1 order by Sig_Date desc";
+		list = this.getSession().createQuery(hgl).setParameter("id1", po_manger)
+				.setMaxResults(50).list();
+		if (list.size() > 0) {
+			return list;
+		} else {
+			return null;
+		}
+}
 }

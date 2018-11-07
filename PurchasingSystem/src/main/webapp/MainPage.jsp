@@ -8,7 +8,7 @@
 <title>主畫面</title>
 <style>
 /* a, a:visited {
-	text-decoration: none;
+	text-decoration: none;1		
 	color: black;
 }
 table{
@@ -30,7 +30,7 @@ body {
 	</tr>
 	<tr>
 		<td>PWD : </td>
-		<td><input type="text" name="password" value="${param.password}"></td>
+		<td><input type="password" name="password" value="${param.password}"></td>
 		<td>${errors.password}</td>
 	</tr>
 	<tr>
@@ -39,7 +39,9 @@ body {
 	</tr>
 </table>
 
+
 </form>
+
 
 </body>
 </html>

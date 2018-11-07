@@ -8,33 +8,43 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.google.gson.annotations.Expose;
+
 import Account.model.Inv_ProductListBean;
-import Account.model.PO_Vendor_InfoBean;
 import Inv.model.Inv_MainBean;
 import Po.model.PO_DetailBean;
 
 @Entity
 @Table(name = "ProductList")
 public class ProductListBean {
+	@Expose
 	private String part_no;
+	@Expose
 	private String pro_cate;
+	@Expose
 	private String pro_name;
+	@Expose
 	private String pro_spe;
+	@Expose
 	private String pro_intro;
+	@Expose
 	private Integer pro_price;
+	@Expose
 	private Integer pro_amount;
+	@Expose
 	private String pro_img;
+	@Expose
 	private java.util.Date pro_date;
-	
 	private Set<AppDetailBean> appDetailBean = new LinkedHashSet<>();
+	
 	private Set<PO_DetailBean> pO_DetailBean = new LinkedHashSet<>();
+	
 	private Inv_MainBean inv_MainBean;
+	
 	private Set<Inv_ProductListBean> inv_ProductListBean = new LinkedHashSet<>();
 	
 	public ProductListBean(String part_no, String pro_cate, String pro_name, String pro_spe, String pro_intro,

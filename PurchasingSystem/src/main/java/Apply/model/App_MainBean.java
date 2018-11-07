@@ -12,15 +12,22 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.google.gson.annotations.Expose;
+
 
 
 @Entity
 @Table(name = "App_Main")
 public class App_MainBean {
+	@Expose
 	private String app_id;
+	@Expose
 	private String emp_id;
+	@Expose
 	private String pro_cate;
+	@Expose
 	private Integer app_price;
+	@Expose
 	private EmployeeBean employeeBean;//請購主檔和員工作關聯 emp_id 1對多
 	private Set<App_SigningProcessBean> app_SigningProcessBean = new LinkedHashSet<>();//請購簽核流程 1對多
 	private Set<AppDetailBean> appDetailBean = new LinkedHashSet<>();//請購細項 多對一

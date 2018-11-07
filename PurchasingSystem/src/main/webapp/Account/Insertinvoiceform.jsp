@@ -38,14 +38,14 @@
         <label for="Total_price">請款金額</label>
         <input type="text" name="Total_price" readonly="readonly" id="" value="${bean.total_price}">
         <label for="Payment_method">付款方式</label>
-        <input type="text" name="Payment_method" readonly="readonly" id="" value="${bean.pO_Vendor_InfoBean.payment_term}">
+        <input type="text" name="Payment_method" readonly="readonly" id="" value="${bean.pO_Vendor_InfoBean.payment_method}">
         <label for="Except_Payment_Date">預計付款日</label>
         <input type="text" name="Except_Payment_Date" id="" value="${paymentDate}" >
         <label for="Recript_date">憑證日期</label>
         <input type="date" name="Recript_date" id="" value="" required >
         <label for="Receiptpic">憑證圖檔</label>
         <input type="file" name="Receiptpic" id="" value="">
-          主管<select name="selectPOManager">
+          審核人員<select name="selectPOManager">
         <c:forEach var="poman" items="${manager}">
         <option  value="${poman.emp_id}">${poman.emp_name} ${poman.emp_job}</option>
         </c:forEach>

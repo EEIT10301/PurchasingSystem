@@ -38,7 +38,7 @@ import Po.model.PO_SigningProcessBean;
 
 
 @Configuration
-@ComponentScan(basePackages={"Apply,Account,Po,Inv"})
+@ComponentScan(basePackages={"Account.dao.impl","Apply.dao.impl","Inv.dao.impl","Po.dao.impl","Po.service","Inv.service","Account.service","Apply.service"})
 public class SpringJavaConfiguration {
 	
 
@@ -51,6 +51,7 @@ public class SpringJavaConfiguration {
 //	    dmds.setPassword("passw0rd");
 //		return dmds;
 //	}        
+
 @Bean
 	public DataSource dataSource() {
 		JndiObjectFactoryBean factory = new JndiObjectFactoryBean();
@@ -74,7 +75,7 @@ public class SpringJavaConfiguration {
 				new LocalSessionFactoryBuilder(dataSource());
 
 		Properties props = new Properties();
-		props.put("hibernate.dialect", "org.hibernate.dialect.SQLServerDialect");
+		props.put("hibernate.dialect", "org.hibernate.dialect.SQLServer2012Dialect");
 		props.put("hibernate.current_session_context_class", "thread");
 		//props.put("hibernate.transaction.factory_class", "org.hibernate.transaction.JDBCTransactionFactory");
 		props.put("hibernate.show_sql", "true");	

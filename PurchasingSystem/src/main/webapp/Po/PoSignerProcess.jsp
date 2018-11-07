@@ -47,5 +47,17 @@
 </c:forEach>
 </c:if>
 
+<p>
+<c:if test='${not empty thispage}'>
+第 ${thispage} 頁
+</c:if>
+<c:if test='${empty thispage}'>
+第 1 頁
+</c:if>
+  頁數: 
+<c:forEach var='i' begin='1' end='${pages}'>
+<a href='POManagerSignerpages.controller?page=<c:out value="${i}"/>'><c:out value="${i}"/></a>
+</c:forEach>
+<p>
 </body>
 </html>
