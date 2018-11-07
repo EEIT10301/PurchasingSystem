@@ -37,10 +37,13 @@
 	<%-- 		</c:if> --%>
 	<!-- 	</form> -->
 
+	<c:forEach var="pODetailBean" items="${pODetailBean}">
 	<form action="<c:url value="/Po/queryinsert.controller"/>"
 		method="post">
-		<c:if test="${not empty query}">
-		<c:forEach var="pODetailBean" items="${pODetailBean}">
+	<c:if test="${not empty query}">
+
+		
+		
 			<table border="1">
 				<tr>
 					<th>採購單ID</th>
@@ -66,12 +69,16 @@
 					<td><input type="text" name="po_totalprice"></td>
 				</tr>				
 			</table>
+			</c:if>			
+			</form>
 			</c:forEach>
+			
 			<input type="hidden" name="po_sta" value="${po_sta}">
 			<input type="hidden" name="po_id" value="${po_id}">
 			<input type="hidden" name="po_manger" value="${po_manger}">
 			<input type="submit" name="send" value="新增">
-		</c:if>
-	</form>
+		
+		
+	
 </body>
 </html>
