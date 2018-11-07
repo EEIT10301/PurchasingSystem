@@ -166,7 +166,7 @@ input, select {
 		</c:if>
 
 			<c:if test="${not empty manager}">
-         主管<select name="selectPOManager">
+        審核人員<select name="selectPOManager">
 					<c:forEach var="poman" items="${manager}">
 						<option value="${poman.emp_id}">${poman.emp_name}
 							${poman.emp_job}</option>

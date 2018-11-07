@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.google.gson.annotations.Expose;
+
 import Account.model.Account_InvoiceBean;
 import Account.model.Account_SigningProcessBean;
 import Account.model.Inv＿ProductCheckBean;
@@ -19,16 +21,27 @@ import Po.model.PO_MainBean;
 @Entity
 @Table(name = "Employee")
 public class EmployeeBean {
+@Expose
 private String emp_id;
+@Expose
 private String emp_name;
+@Expose
 private Integer emp_level;
+@Expose
 private String emp_dep;
+@Expose
 private String emp_job;
+@Expose
 private java.util.Date emp_hiredate;
+@Expose
 private String emp_gender;
+@Expose
 private String emp_email;
+@Expose
 private String emp_pwd;
+@Expose
 private String emp_managerid;
+@Expose
 private Integer emp_appauth;
 private Set<App_MainBean> app_MainBean = new LinkedHashSet<>();
 private Set<App_SigningProcessBean> app_SigningProcessBean = new LinkedHashSet<>();
