@@ -28,6 +28,7 @@ import org.springframework.web.multipart.MultipartFile;
 import Account.model.Account_InvoiceBean;
 import Account.model.Account_SigningProcessBean;
 import Account.service.Account_InvoiceService;
+import Account.service.Accout_PayableService;
 import Apply.model.App_SigningProcessBean;
 import Apply.model.EmployeeBean;
 import Apply.service.EmployeeService;
@@ -49,6 +50,8 @@ public class POInvoiceController {
 	EmployeeService employeeService;
 	@Autowired
 	Account_InvoiceService account_InvoiceService;
+	@Autowired
+	Accout_PayableService accout_PayableService;
 
 	@InitBinder
 	public void registerPropertyEditor(WebDataBinder dataBinder) {
@@ -465,7 +468,7 @@ public class POInvoiceController {
 
 	// 採購主管/財務/財務主管 分派/審核/退回請款單
 	@RequestMapping("/Account/ReviewInvoice.controller")
-	public String sendReviewInvoice(Model model, HttpSession session, String action,String invid,String SignSug,String status,String selectPOManager) {
+	public String sendReviewInvoice(Model model, HttpSession session, String action,String invid,String SignSug,String status,String selectPOManager) throws ParseException {
 		String poId = "po" + invid.substring(2);
 		EmployeeBean empbean = (EmployeeBean) session.getAttribute("user");
 		String dep = empbean.getEmp_dep();
@@ -494,6 +497,7 @@ public class POInvoiceController {
 			} else {
 				result1=pO_InvoiceService.updateAccountSigningProcess(invid, 5, "已簽核", null, SignSug,null);
 				pO_InvoiceService.updatePoSigningProcess(poId,SignSug,"已結案");
+				accout_PayableService.updateAccountPayable(invid);
 			}
 			if(result1) {
 				model.addAttribute("sendsuccessmeg", "已送至主管簽核");
