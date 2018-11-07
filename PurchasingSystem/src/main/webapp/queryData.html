@@ -26,9 +26,9 @@ $(document).ready(function(){
 				txt +='<td id="price" value="'+items[i].pro_price+'">'+items[i].pro_price+"</td>";
 				txt +='<td id="amount" value="'+items[i].pro_amount+'">'+items[i].pro_amount+"</td>";
 				txt +='<td id="date" value="'+items[i].pro_date+'">'+items[i].pro_date+"</td>";
-				txt +="<td><input type='button' id='edit' class='btn btn-default' value='edit'/>";
+				txt +="<td><input type='button' id='edit' class='btn btn-default' value='修改'/>";
 				txt +="&nbsp;&nbsp;&nbsp;";
-				txt +="<input type='hidden' id='delete' class='btn btn-default' value='delete'/></td></tr>";
+				txt +="<input type='hidden' id='search' class='btn btn-default' value='查詢'/></td></tr>";
 			}
 			$("#myTable").append(txt);
 		}
@@ -45,8 +45,6 @@ $(document).ready(function(){
 		
 		var dataJSON ="";
 		dataJSON +="";
-//			'\"'+($(this).parent().siblings("td:eq(0)").attr("id"))+'\":\"'
-//						+($(this).parent().siblings("td:eq(0)").text())+'\",';
 		for(i=0; i<=row; i++){
 			if(i==(row)){
 				dataJSON += '\"'+($(this).parent().siblings("td:eq("+i+")").attr("id"))+'\":\"'
@@ -70,6 +68,30 @@ $(document).ready(function(){
 		});
 	});
 	
+	$("tbody").on("click","#search",function(){
+		var dataJSON ="";
+		dataJSON +="";
+		for(i=0; i<=row; i++){
+			if(i==(row)){
+				dataJSON += '\"'+($(this).parent().siblings("td:eq("+i+")").attr("id"))+'\":\"'
+								+($(this).parent().siblings("td:eq("+i+")").children().val())+'\"';
+			}else{
+				dataJSON += '\"'+($(this).parent().siblings("td:eq("+i+")").attr("id"))+'\":\"'
+								+($(this).parent().siblings("td:eq("+i+")").children().val())+'\",';	
+			}
+		}
+		alert(dataJSON);
+		$.ajax({
+			url : "http://localhost:8080/PurchasingSystem/searchproduct.do",
+			type : 'POST',
+			data : "{"+dataJSON+"}",
+			contentType:"application/json",
+			success : function(response) {
+				//alert("新增成功");
+				window.location.href='http://localhost:8080/PurchasingSystem/Apply/ApplyLoginSuccess.jsp';
+			}
+		});
+	});	
 	$("tbody").on("click","#edit",function(){
 		$(this).parent().siblings("td:gt(2)").empty().append("<input type='text'/>");//全部清空變成input
 		//$(this)是#edit
@@ -144,7 +166,7 @@ $(document).ready(function(){
 	$("#editAll").click(function(){
 		var rowNum = $("tr #id:last").text(); //幾橫
 //		alert(rowNum);
-		$("tbody").children("tr").find("td:gt(3):lt(-1)").empty().append("<input type='text'/>");
+		$("tbody").children("tr").find("td:gt(2):lt(-1)").empty().append("<input type='text'/>");
 		//:gt(0)大於順數的第一個，:lt(-1)小於倒數的第二個
 		//如果只寫 $("tbody").find("td:gt(0)").empty();會只剩下第一筆的id因為是由tbody去算index的
 		
@@ -167,6 +189,7 @@ $(document).ready(function(){
 <title>Query Customer Data</title>
 </head>
 <body>
+<a href='http://localhost:8080/PurchasingSystem/Apply/ApplyLoginSuccess.jsp'>回請購首頁</a>
 	<div class='container'>
 		<h2 align="center">物料表更新</h2><br/>
 		<input class="form-control" id="myInput" type="text" placeholder="Search"><br/>
@@ -175,9 +198,9 @@ $(document).ready(function(){
 				<tr>
 					<th>料號</th>
 					<th>產品大項</th>
-					<th>產品名稱</th>
+					<th style="width:50px">產品名稱</th>
 					<th>規格簡述</th>
-					<th>詳細規格</th>
+					<th style="width:90px">詳細規格</th>
 					<th>價格</th>
 					<th>庫存</th>
 					<th>最後進貨日期</th>
@@ -194,16 +217,16 @@ $(document).ready(function(){
 <!-- 				txt +='<td id="amount" value="'+items[i].pro_amount+'">'+items[i].pro_amount+"</td>"; -->
 <!-- 				txt +='<td id="date" value="'+items[i].pro_date+'">'+items[i].pro_date+"</td>"; -->
 			<tr>
-			<td id="id" ><input type='text'/></td>
-			<td id='cate'><input type='text'/></td>
-			<td id='name'><input type='text'/></td>
-			<td id='spe'><input type='text'/></td>
-			<td id='intro'><input type='text'/></td>
-			<td id='price' ><input type='text'/></td>
-			<td id='amount' ><input type='text'/></td>
-			<td id='date' ><input type='text' value='現在時間'/></td>
+			<td id="id" ><input style="width:50px" type='text' /></td>
+			<td  id='cate'><input style="width:50px" type='text'/></td>
+			<td  id='name'><input style="width:50px" type='text'/></td>
+			<td  id='spe'><input style="width:80px" type='text'/></td>
+			<td  id='intro'><input style="width:100px" type='text'/></td>
+			<td  id='price' ><input style="width:50px" type='text'/></td>
+			<td  id='amount' ><input style="width:50px" type='text'/></td>
+			<td  id='date' ><input style="width:100px"   type='text'  value=''/></td>
 			<td><input type='button' id='insert' class='btn btn-default' value='新增'/>&nbsp;&nbsp;&nbsp;
-			<input type='hidden' id='delete' class='btn btn-default' value='delete'/></td>		
+			<input type='hidden' id='search' class='btn btn-default' value='查詢'/></td>		
 			</tr>
 			</tbody>
 		</table>
