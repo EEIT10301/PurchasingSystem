@@ -55,9 +55,11 @@ a, a:visited {
 			</table>
 			</c:if>
 			<hr>
-			<c:if test="${empty listback}">
+			<c:if test="${user.emp_level==1 and empty listback}">
+
 	<h3>尚無被退回請款單</h3>
 	</c:if>
+	
 		<c:if test="${not empty listback}">
 		<h2>被退回請款單</h2>
 <table>

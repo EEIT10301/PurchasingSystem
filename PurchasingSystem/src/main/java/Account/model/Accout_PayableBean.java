@@ -19,6 +19,7 @@ public class Accout_PayableBean {
 	private String accoutpayable_no;
 	private Integer amount_Payable;
 	private java.util.Date booking_Date;
+	private String vendor_ID;
 //private String	payment_Method;
 //private String	remittance_account;
 	private String cheque_no;
@@ -32,20 +33,23 @@ public class Accout_PayableBean {
 	private Account_InvoiceBean account_InvoiceBean;
 	private Inv＿ProductCheckBean inv＿ProductCheckBean;
 
+	
 	@Override
 	public String toString() {
 		return "Accout_PayableBean [accoutpayable_no=" + accoutpayable_no + ", amount_Payable=" + amount_Payable
-				+ ", booking_Date=" + booking_Date + ", cheque_no=" + cheque_no + ", except_Payment_Date="
-				+ except_Payment_Date + ", payable_Status=" + payable_Status + ", amount_Paid=" + amount_Paid
-				+ ", inv_id=" + inv_id + ", chk_Id=" + chk_Id + "]";
+				+ ", booking_Date=" + booking_Date + ", vendor_ID=" + vendor_ID + ", cheque_no=" + cheque_no
+				+ ", except_Payment_Date=" + except_Payment_Date + ", payable_Status=" + payable_Status
+				+ ", amount_Paid=" + amount_Paid + ", inv_id=" + inv_id + ", chk_Id=" + chk_Id + "]";
 	}
 
-	public Accout_PayableBean(String accoutpayable_no, Integer amount_Payable, Date booking_Date, String cheque_no,
-			Date except_Payment_Date, String payable_Status, Integer amount_Paid, String inv_id, String chk_Id) {
+	public Accout_PayableBean(String accoutpayable_no, Integer amount_Payable, Date booking_Date, String vendor_ID,
+			String cheque_no, Date except_Payment_Date, String payable_Status, Integer amount_Paid, String inv_id,
+			String chk_Id) {
 		super();
 		this.accoutpayable_no = accoutpayable_no;
 		this.amount_Payable = amount_Payable;
 		this.booking_Date = booking_Date;
+		this.vendor_ID = vendor_ID;
 		this.cheque_no = cheque_no;
 		this.except_Payment_Date = except_Payment_Date;
 		this.payable_Status = payable_Status;
@@ -65,6 +69,14 @@ public class Accout_PayableBean {
 
 	public void setAccoutpayable_no(String accoutpayable_no) {
 		this.accoutpayable_no = accoutpayable_no;
+	}
+
+	public String getVendor_ID() {
+		return vendor_ID;
+	}
+
+	public void setVendor_ID(String vendor_ID) {
+		this.vendor_ID = vendor_ID;
 	}
 
 	public Integer getAmount_Payable() {
