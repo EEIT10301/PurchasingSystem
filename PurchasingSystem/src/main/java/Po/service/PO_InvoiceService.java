@@ -157,11 +157,12 @@ public class PO_InvoiceService {
 		}
 	}
 	
-	public Account_InvoiceBean updateInvoiceData(Account_InvoiceBean newBean){
-		Account_InvoiceBean oldBean = account_InvoiceIDao.select(newBean.getInv_id());
-		oldBean.setRecript_date(newBean.getRecript_date());
-		Account_InvoiceBean result = account_InvoiceIDao.update(oldBean);
+	public Account_InvoiceBean updateInvoiceData(Account_InvoiceBean bean){
+		Account_InvoiceBean result = account_InvoiceIDao.update(bean);
+		if(result!=null) {
 		return result;
+		}
+		return null;
 	}
 	
 	public Boolean updateAccountSigningProcess(String inv_id,Integer sig_Rank ,String sig_Sta1, String sig_Sta2,String sig_Sug ,String emp_id) {
