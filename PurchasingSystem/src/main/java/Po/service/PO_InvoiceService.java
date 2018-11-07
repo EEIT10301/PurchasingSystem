@@ -163,9 +163,9 @@ public class PO_InvoiceService {
 		Date today = new Date();
 		processList.add(new Account_SigningProcessBean(emp_id,"採購請款",inv_id,today,"已申請",comment,1));
 		processList.add(new Account_SigningProcessBean(emp_managerid, "採購主管審核",inv_id, null,"簽核中",null, 2));
-		processList.add(new Account_SigningProcessBean("emp009", "財務經理分派",inv_id, null, null, null, 3));
+		processList.add(new Account_SigningProcessBean("emp000", "財務經理分派",inv_id, null, null, null, 3));
 		processList.add(new Account_SigningProcessBean("emp000", "財務審核",inv_id, null, null, null, 4));
-		processList.add(new Account_SigningProcessBean("emp009", "財務經理審核",inv_id, null, null, null, 5));
+		processList.add(new Account_SigningProcessBean("emp000", "財務經理審核",inv_id, null, null, null, 5));
 		
 		for(Account_SigningProcessBean bean:processList) {
 			account_SigningProcessIDao.insert(bean);
