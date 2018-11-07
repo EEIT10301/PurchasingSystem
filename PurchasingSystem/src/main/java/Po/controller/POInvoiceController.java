@@ -64,15 +64,15 @@ public class POInvoiceController {
 	
 	// 採購承辦查詢待請款採購單及退回請款單
 	@RequestMapping("/Po/Polist.controller")
-	public String queryNoInvoiceList(PO_MainBean bean, Model model, HttpSession session) {
+	public String queryNoInvoiceList(Model model, HttpSession session) {
 		EmployeeBean empbean = (EmployeeBean) session.getAttribute("user");
 		String emp_id = empbean.getEmp_id();
 		String poSignProcess_sig_sta = "驗收完成未請款";
+		String accountSignProcess_sig_sta = "退回中";
+		Integer rank = 1;
 		List<PO_MainBean> NoInvoiceList = pO_InvoiceService.findNeedApplicationInvoice(emp_id, poSignProcess_sig_sta);
 		model.addAttribute("list", NoInvoiceList);
 
-		String accountSignProcess_sig_sta = "退回中";
-		Integer rank = 1;
 		List<Account_InvoiceBean> InvoiceBack = pO_InvoiceService.findProcessCorrect(emp_id, accountSignProcess_sig_sta,
 				rank);
 		model.addAttribute("listback", InvoiceBack);
@@ -97,13 +97,11 @@ public class POInvoiceController {
 	// 採購承辦顯示退回請款單資料畫面
 	@RequestMapping("/Po/ShowReturnInvoiceForm.controller")
 	public String showReturnInvoice(Model model, HttpSession session, String poid) {
-		PO_MainBean poMainBean = pO_MainService.select(poid);
 		String invId = "In" + poid.substring(2);
 		Account_InvoiceBean accountInvoiceBean = pO_InvoiceService.selectInvoice(invId);
+		PO_MainBean poMainBean = pO_MainService.select(poid);
 		PO_SigningProcessBean poSignBean = pO_InvoiceService.selectForOneProcessbyPoSign("驗收中", poid);
 		String sigSug = pO_InvoiceService.selectForOneProcessbyAccountSign(invId, 2).getSig_Sug();
-		EmployeeBean empbean = (EmployeeBean) session.getAttribute("user");
-		String emp_id = empbean.getEmp_id();
 		String date = pO_InvoiceService.calcExpirePaymentDate(poMainBean.getpO_Vendor_InfoBean().getPayment_term(),
 				poSignBean.getSig_date());
 		String oldRecript_date = new SimpleDateFormat("yyyy-MM-dd").format(accountInvoiceBean.getRecript_date());
@@ -159,7 +157,7 @@ public class POInvoiceController {
 
 		//採購承辦重送請款單
 		@RequestMapping(value = "/Po/resendInvoice.controller", method = RequestMethod.POST)
-		public String resend(Account_InvoiceBean account_InvoiceBean,BindingResult bingResult,Model model ,HttpSession session,String name,@RequestParam("Receiptpic") MultipartFile file
+		public String resend(Account_InvoiceBean account_InvoiceBean,Model model ,HttpSession session,String name,@RequestParam("Receiptpic") MultipartFile file
 			,String selectPOManager, String poid,HttpServletRequest request,Integer sig_Rank, String SignSug,String Recript_date) throws IllegalStateException, IOException, ParseException {
 		
 		//上傳圖片	
@@ -177,7 +175,6 @@ public class POInvoiceController {
 		Date date = sdf.parse(Recript_date);
 		account_InvoiceBean.setRecript_date(date);
 		Account_InvoiceBean result = pO_InvoiceService.updateInvoiceData(account_InvoiceBean);
-		System.out.println(account_InvoiceBean.getRecript_date());
 		if (result != null) {
 			model.addAttribute("successmeg", "重新送出成功");
 			model.addAttribute("inv_id", invId);
