@@ -188,21 +188,11 @@ public class POSigningController {
 	}
 
 	@RequestMapping("/Po/sendsc.controller")
-	public String createQueryMemo(PO_SigningProcessBean bean, String po_manger, String po_sta, String po_id, Model model, HttpSession session) {
-//		PO_SigningProcessBean bean1 = pO_SigningProcessService.select(po_sta, po_id);
-//		List<PO_Vendor_InfoBean> AllPO_Vendor1 = pO_Vendor_InfoService.select();
-//		model.addAttribute("query", bean1);
-//		model.addAttribute("po_manger", po_manger);
-//		model.addAttribute("po_sta", po_sta);
-//		model.addAttribute("po_id", po_id);
-//		model.addAttribute("AllPO_Vendor1", AllPO_Vendor1);
-//		return "QueryMemo.show";
-		
+	public String createQueryMemo(String po_manger, String po_sta, String po_id, Model model, HttpSession session) {
 		PO_SigningProcessBean bean1 = pO_SigningProcessService.select(po_sta, po_id);
 		List<PO_Vendor_InfoBean> AllPO_Vendor1 = pO_Vendor_InfoService.select();
+		Set<PO_DetailBean> pODetailBean = bean1.getpO_MainBean().getpO_DetailBean();
 		
-		Set<PO_DetailBean> pODetailBean = bean1.getpO_MainBean().getpO_DetailBean(); 
-
 		model.addAttribute("query", bean1);
 		model.addAttribute("po_manger", po_manger);
 		model.addAttribute("po_sta", po_sta);
@@ -213,7 +203,7 @@ public class POSigningController {
 	}
 
 	@RequestMapping("/Po/queryinsert.controller")
-	public String queryMemoInsert(String po_manger, String po_sta, String po_id, PO_QueryBean bean, Model model,
+	public String queryMemoInsert(Integer po_totalprice, Integer total_Qty, String po_manger, String po_sta, String po_id, PO_QueryBean bean, Model model,
 			HttpSession session) {
 		List<PO_QueryBean> query = pO_QueryService.selectQueryBean(bean.getPo_ID());
 		java.util.Date date = new java.util.Date();
@@ -225,7 +215,7 @@ public class POSigningController {
 		PO_QueryBean searchbean = pO_QueryService.select(bean.getPo_ID(), bean.getVendor_ID());
 		if (searchbean != null) {
 			searchbean.setPo_querydate(datas);
-			searchbean.setPo_totalprice(bean.getPo_totalprice());
+			searchbean.setPo_totalprice(po_totalprice*total_Qty);
 			model.addAttribute("query1", searchbean);
 			model.addAttribute("now", now);
 		} else {

@@ -37,29 +37,24 @@
 	<%-- 		</c:if> --%>
 	<!-- 	</form> -->
 
-	<c:forEach var="pODetailBean" items="${pODetailBean}">
-	<form action="<c:url value="/Po/queryinsert.controller"/>"
-		method="post">
-	<c:if test="${not empty query}">
-
-		
-		
-			<table border="1">
+			
+	<form action="<c:url value="/Po/queryinsert.controller"/>" method="post">
+	<c:if test="${not empty query}">		
+	<table border="1">					
 				<tr>
 					<th>採購單ID</th>
 					<th>料號</th>
 					<th>品名</th>
-					<th>數量</th>
+					<th>採購數量</th>
 					<th>廠商</th>
 					<th>單價</th>
 				</tr>
+				<c:forEach var="pODetailBean" items="${allPO_Deatil}">
 				<tr>
-					<td><input type="hidden" name="po_ID" value="${pODetailBean.po_id}">${pODetailBean.po_id}</td>
-					<td><input type="hidden" name="part_No" value="${pODetailBean.part_No}">${pODetailBean.part_No}</td>
-					<td><input type="hidden" name="pro_name" value="${pODetailBean.pro_name}">${pODetailBean.pro_name}</td>
-					<td><input type="hidden" name="total_Qty" value="${pODetailBean.total_Qty}">${pODetailBean.total_Qty}</td>
-					
-					
+					<td><input type="hidden" name="po_ID" value="${query.po_id}">${query.po_id}</td>
+					<td><input type="hidden" name="part_No" value="${pODetailBean.part_No}">${pODetailBean.part_No}</td>					
+					<td><input type="hidden" name="pro_name" value="${pODetailBean.productListBean.pro_name}">${pODetailBean.productListBean.pro_name}</td>
+					<td><input type="hidden" name="total_Qty" value="${pODetailBean.total_Qty}">${pODetailBean.total_Qty}</td>					
 					
 					<td><select name="vendor_ID">
 							<c:forEach var="queryVendor" items="${AllPO_Vendor1}">
@@ -68,17 +63,15 @@
 					</select></td>
 					<td><input type="text" name="po_totalprice"></td>
 				</tr>				
-			</table>
-			</c:if>			
-			</form>
 			</c:forEach>
+			</table>			
 			
 			<input type="hidden" name="po_sta" value="${po_sta}">
 			<input type="hidden" name="po_id" value="${po_id}">
 			<input type="hidden" name="po_manger" value="${po_manger}">
 			<input type="submit" name="send" value="新增">
-		
-		
-	
+						
+			</c:if>
+			</form>	
 </body>
 </html>
