@@ -28,6 +28,7 @@ import org.springframework.web.multipart.MultipartFile;
 import Account.model.Account_InvoiceBean;
 import Account.model.Account_SigningProcessBean;
 import Account.service.Account_InvoiceService;
+import Account.service.Accout_PayableService;
 import Apply.model.App_SigningProcessBean;
 import Apply.model.EmployeeBean;
 import Apply.service.EmployeeService;
@@ -47,10 +48,13 @@ public class POInvoiceController {
 	EmployeeService employeeService;
 	@Autowired
 	Account_InvoiceService account_InvoiceService;
+	@Autowired
+	Accout_PayableService accout_PayableService;
 
 	@InitBinder
 	public void registerPropertyEditor(WebDataBinder dataBinder) {
-		dataBinder.registerCustomEditor(java.util.Date.class, "Recript_date",
+
+		dataBinder.registerCustomEditor(java.util.Date.class,
 				new CustomDateEditor(new SimpleDateFormat("yyyy/MM/dd"), false));
 		dataBinder.registerCustomEditor(Integer.class, "Total_price", new CustomNumberEditor(Integer.class, false));
 	}
@@ -154,31 +158,31 @@ public class POInvoiceController {
 		return "newForm";
 	}
 
-	// 採購承辦重送請款單
-	@RequestMapping(value = "/Po/resendInvoice.controller", method = RequestMethod.POST)
-	public String resend(Account_InvoiceBean account_InvoiceBean, BindingResult bingResult, Model model,
+		//採購承辦重送請款單
+		@RequestMapping(value = "/Po/resendInvoice.controller", method = RequestMethod.POST)
+		public String resend(Account_InvoiceBean account_InvoiceBean, BindingResult bingResult, Model model,
 			HttpSession session, String name, @RequestParam("Receiptpic") MultipartFile file, String selectPOManager,
 			String poid, HttpServletRequest request, Integer sig_Rank, String SignSug, String Recript_date)
 			throws IllegalStateException, IOException, ParseException {
 
-		// 上傳圖片
+		//上傳圖片	
 		String invId = "In" + poid.substring(2);
-		String destination = "C:\\Users\\User\\Downloads\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"
+		//String destination ="C:\\Users\\User\\Downloads\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
+		String destination = "D:\\Maven-project\\repository\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"
 				+ "\\" + invId + ".jpg";
-		// String destination
-		// ="D:\\Maven-project\\repository\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
-		// String destination = "images/"+invId+".jpg";
+		//String destination = "images/"+invId+".jpg";
 		System.out.println("uploadRootPath=" + destination);
 		if (file != null || file.getSize() > 0) {
 			File files = new File(destination);
 			file.transferTo(files);
 		}
 
-		// update請款單
-		// SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		// Date date = sdf.parse(Recript_date);
-		// account_InvoiceBean.setRecript_date(date);
+		//update請款單
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = sdf.parse(Recript_date);
+		account_InvoiceBean.setRecript_date(date);
 		Account_InvoiceBean result = pO_InvoiceService.updateInvoiceData(account_InvoiceBean);
+		System.out.println(account_InvoiceBean.getRecript_date());
 		if (result != null) {
 			model.addAttribute("successmeg", "重新送出成功");
 			model.addAttribute("inv_id", invId);
@@ -465,8 +469,9 @@ public class POInvoiceController {
 
 	// 採購主管/財務/財務主管 分派/審核/退回請款單
 	@RequestMapping("/Account/ReviewInvoice.controller")
+
 	public String sendReviewInvoice(Model model, HttpSession session, String action, String invid, String SignSug,
-			String status, String selectPOManager) {
+			String status, String selectPOManager) throws ParseException {
 		String poId = "po" + invid.substring(2);
 		EmployeeBean empbean = (EmployeeBean) session.getAttribute("user");
 		String dep = empbean.getEmp_dep();
@@ -495,8 +500,10 @@ public class POInvoiceController {
 				result1 = pO_InvoiceService.updateAccountSigningProcess(invid, 4, "已簽核", "簽核中", SignSug,
 						selectPOManager);
 			} else {
+
 				result1 = pO_InvoiceService.updateAccountSigningProcess(invid, 5, "已簽核", null, SignSug, null);
 				pO_InvoiceService.updatePoSigningProcess(poId, SignSug, "已結案");
+				accout_PayableService.updateAccountPayable(invid);
 			}
 			if (result1) {
 				model.addAttribute("sendsuccessmeg", "已送至主管簽核");
@@ -529,7 +536,6 @@ public class POInvoiceController {
 		return "updateForm";
 	}
 
-	
 	// 採購/財務查詢所有請款單狀態
 	@RequestMapping("/Po/queryStatus.controller")
 	public String queryStatus(Model model, HttpSession session) {

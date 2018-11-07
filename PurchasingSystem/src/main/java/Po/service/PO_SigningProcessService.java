@@ -1,5 +1,6 @@
 package Po.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,6 +75,7 @@ public class PO_SigningProcessService {
 			return beans;
 		}
 		return null;
+
 	}
 	
 	public List<PO_SigningProcessBean> selectmangers(String po_manger, String sig_Sta) {
@@ -91,11 +93,29 @@ public class PO_SigningProcessService {
 		}
 		return null;
 	}
+
 	public List<PO_SigningProcessBean> selectempidsendpages(String po_manger, String sig_sta ,Integer beginindex,Integer endindex) {
 		List<PO_SigningProcessBean> beans =pO_SigningProcessIDao.selectempidsendpages(po_manger,sig_sta,beginindex,endindex);
 		if(beans!=null) {
 			return beans;
 		}
 		return null;
+	}
+
+	public PO_SigningProcessBean selectorderdetail(String po_id, String po_manger, String po_sta) {
+		PO_SigningProcessBean beans =pO_SigningProcessIDao.selectorderdetail(po_id,po_manger,po_sta);
+		if(beans!=null) {
+			return beans;
+		}
+		return null;
+	}
+
+	public List<PO_SigningProcessBean> selectempID(String po_manger) {
+		List<PO_SigningProcessBean> beans =pO_SigningProcessIDao.selectempID(po_manger);
+		if(beans!=null) {
+			return beans;
+		}
+		return null;
 	}	
+
 }

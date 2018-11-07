@@ -228,7 +228,7 @@ public class PO_InvoiceService {
 	
 	
 	public List<Account_InvoiceBean> findProcessCorrect(String emp_id, String sig_sta, Integer sig_rank) {
-		List<Account_SigningProcessBean> list = account_SigningProcessIDao.select3send(emp_id, sig_sta,sig_rank);
+		List<Account_SigningProcessBean> list = account_SigningProcessIDao.selectProcess(emp_id, sig_sta,sig_rank);
 		List<Account_InvoiceBean> result = new ArrayList<>();
 		if (list != null) {
 			for (Account_SigningProcessBean x : list) {

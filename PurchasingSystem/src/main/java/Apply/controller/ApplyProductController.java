@@ -41,19 +41,10 @@ public class ApplyProductController {
 	}
 	@RequestMapping(value="/SearchCus.do", produces ="text/html; charset=utf-8" )
 	public 	@ResponseBody String SelectAllAJAX() throws IOException, ParseException {
-		//response.setContentType("text/html;charset=UTF-8");
 		 List<ProductListBean>  list = null;
 		list = productListService.selectAll();
 		List<ProductListBean>  lists = new LinkedList<ProductListBean>();
-//		for(int i=0;i<list.size();i++) {
-//			ProductListBean xs= list.get(i);
-//			DateFormat dateFormate =new SimpleDateFormat("yyyy/MM/dd");
-//			String now= dateFormate.format(xs.getPro_date());
-//			SimpleDateFormat sdf =new SimpleDateFormat("yyyy/MM/dd");
-//			Date datas=sdf.parse(now);
-//			xs.setPro_date(datas);
-//			lists.add(xs);
-//		}	
+
 		lists=list;
 		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create() ; 
 		String json = gson.toJson(lists) ;
@@ -64,12 +55,12 @@ public class ApplyProductController {
 		String jsonStr = readJSON(request);
 		JSONObject jsonObj = new JSONObject(jsonStr);
 		 ProductListBean em = null;
+ 
 		String partno = jsonObj.getString("id");
-//		String pro_cate = jsonObj.getString("name");
-//		String pro_name = jsonObj.getString("email");
-//		String pro_spe = jsonObj.getString("pwd");
-		Integer pro_price = Integer.valueOf(jsonObj.getString("tel"));
-		Integer pro_amount = Integer.valueOf(jsonObj.getString("adr"));
+		String pro_spe = jsonObj.getString("spe");
+		String pro_intro = jsonObj.getString("intro");
+		Integer pro_price = Integer.valueOf(jsonObj.getString("price"));
+		Integer pro_amount = Integer.valueOf(jsonObj.getString("amount"));
 		em=productListService.select(partno);
 		java.util.Date date = new java.util.Date();
 		java.sql.Date data1 = new java.sql.Date(date.getTime());
@@ -77,9 +68,8 @@ public class ApplyProductController {
 		String now= dateFormate.format(data1);
 		SimpleDateFormat sdf =new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Date datas=sdf.parse(now);
-//		em.setPro_cate(pro_cate);
-//		em.setPro_name(pro_name);
-//		em.setPro_spe(pro_spe);
+		em.setPro_spe(pro_spe);
+		em.setPro_intro(pro_intro);
 		em.setPro_price(pro_price);
 		em.setPro_amount(pro_amount);
 		em.setPro_date(datas);
@@ -93,4 +83,26 @@ public class ApplyProductController {
 		while ((line = reader.readLine())!= null) {json.append(line);}
 		return json.toString();
 	};
+	@RequestMapping(value="/insertproduct.do", produces ="text/html; charset=utf-8" )
+	public 	@ResponseBody String InsertAJAX(HttpServletRequest request) throws IOException, ParseException {
+		String jsonStr = readJSON(request);
+		JSONObject jsonObj = new JSONObject(jsonStr);
+		String partno = jsonObj.getString("id");
+		String pro_cate = jsonObj.getString("cate");
+		String pro_name = jsonObj.getString("name");
+		String pro_spe = jsonObj.getString("spe");
+		String pro_intro = jsonObj.getString("intro");
+		Integer pro_price = Integer.valueOf(jsonObj.getString("price"));
+		Integer pro_amount = Integer.valueOf(jsonObj.getString("amount"));
+		java.util.Date date = new java.util.Date();
+		java.sql.Date data1 = new java.sql.Date(date.getTime());
+		DateFormat dateFormate =new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		String now= dateFormate.format(data1);
+		SimpleDateFormat sdf =new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date datas=sdf.parse(now);
+		ProductListBean em = new ProductListBean(partno,pro_cate,pro_name,pro_spe,pro_intro,pro_price,pro_amount,null,datas);
+		productListService.insert(em);
+		
+		return "1";
+	}	
 }

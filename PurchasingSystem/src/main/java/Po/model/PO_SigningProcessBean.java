@@ -52,6 +52,24 @@ public PO_SigningProcessBean() {
 }
 
 
+public PO_SigningProcessBean(Date sig_date, String sig_sug) {
+	super();
+	this.sig_date = sig_date;
+	this.sig_sug = sig_sug;
+}
+
+public PO_SigningProcessBean(String po_manger, String po_sta, String po_id, Date sig_date,
+		String sig_sta,String sig_sug) {
+	super();
+	this.po_manger = po_manger;
+	this.po_sta = po_sta;
+	this.po_id = po_id;
+	this.sig_date = sig_date;
+	this.sig_sta = sig_sta;
+	this.sig_sug = sig_sug;
+
+}
+
 @Column
 public String getPo_manger() {
 	return po_manger;
