@@ -15,7 +15,9 @@
 			<table border="1">
 				<tr>
 					<th>採購單ID</th>
-					<th>廠商</th>
+					<th>廠商</th>		
+					<th>單價</th>
+					<th>數量</th>
 					<th>總價</th>
 				</tr>
 				<tr>
@@ -26,6 +28,8 @@
 								<option value="${queryVendor.vendor_id}">${queryVendor.vendor_name}</option>
 							</c:forEach>
 					</select></td>
+					<td><input type="text" name="quotation"></td>
+					<td><p>${podetailbean.total_Qty}</p></td>					
 					<td><input type="text" name="po_totalprice"></td>
 				</tr>
 			</table>
