@@ -38,7 +38,7 @@ a, a:visited {
 <body>
 	<h3>財務系統</h3>
 	${user.emp_id}/${user.emp_name} ${user.emp_job},你好
-	<button type="button" class="btn"><a href='AccountLogout.controller'>登出</a></button>
+	<a href='AccountLogout.controller'><button type="button" class="btn">登出</button></a>
 	<br>
 	<hr>
 	<div class="allpage">
@@ -60,7 +60,7 @@ a, a:visited {
 				</c:if>
 				<tr><td><a href='StatusMainAcc.jsp'>查詢請款單狀態</a></td></tr>
 				<tr>
-					<td><a href="ShowAccountPayableList.controller">查詢廠商帳款明細</a></td>
+					<td><a href='InqueryAccountPayable.jsp'>查詢廠商帳款明細</a></td>
 				</tr>
 			</table>
 		</div>

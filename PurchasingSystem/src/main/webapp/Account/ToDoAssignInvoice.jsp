@@ -44,7 +44,7 @@ a, a:visited {
 				<td>${assign.inv_id}</td>
 				<td>${assign.employeeBean.emp_name}</td>
 				<td>${assign.pO_MainBean.pO_Vendor_InfoBean.vendor_name}</td>
-				<td>${assign.total_price}</td>
+				<td>$${assign.total_price}</td>
 				<td><a href="AccSignInvoiceForm.controller?invid=${assign.inv_id}">查看</a></td>
 			</tr>
 		</c:forEach>

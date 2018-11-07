@@ -43,7 +43,7 @@ a, a:visited {
 				<td>${sign.inv_id}</td>
 				<td>${sign.employeeBean.emp_name}</td>
 				<td>${sign.pO_MainBean.pO_Vendor_InfoBean.vendor_name}</td>
-				<td>${sign.total_price}</td>
+				<td>$${sign.total_price}</td>
 				<c:if test="${user.emp_level==2}">   
 				<td><a href="AccSignInvForm.controller?invid=${sign.inv_id}">查看</a></td>
 				</c:if>
