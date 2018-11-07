@@ -84,6 +84,13 @@ public class PO_InvoiceService {
 		}
 		return null;
 	}
+	public PO_SigningProcessBean selectForOneProcessbyPoSigSta(String sig_sta,String po_id) {
+		PO_SigningProcessBean process = pO_SigningProcessIDao.selectsigsta(sig_sta, po_id);
+		if(process !=null) {
+			return process;
+		}
+		return null;
+	}
 	
 	public Account_SigningProcessBean selectForOneProcessbyAccountSign(String inv_id,Integer sig_Rank) {
 		Account_SigningProcessBean process = account_SigningProcessIDao.selectForRank(inv_id, sig_Rank);

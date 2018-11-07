@@ -88,6 +88,23 @@ public class PO_SigningProcessDao implements PO_SigningProcessIDao {
 			return null;
 		}
 	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public PO_SigningProcessBean selectsigsta(String sig_sta, String po_id) {
+		List<PO_SigningProcessBean> list = null;
+		PO_SigningProcessBean getone = new PO_SigningProcessBean();
+		String hgl = "FROM PO_SigningProcessBean WHERE sig_sta=:id1 AND po_id=:id2";
+		list = this.getSession().createQuery(hgl).setParameter("id1", sig_sta).setParameter("id2", po_id)
+				.setMaxResults(100).list();
+		if (list.size() > 0) {
+			for (PO_SigningProcessBean getones : list) {
+				getone = getones;
+			}
+			return getone;
+		} else {
+			return null;
+		}
+	}
 
 	@Override
 	public List<PO_SigningProcessBean> select() {
