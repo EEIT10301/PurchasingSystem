@@ -132,7 +132,7 @@ public class POSigningController {
 
 	}
 
-	@RequestMapping("/Po/selectprice.controller") // 採購人員點選待詢價採購單頁面
+	@RequestMapping("/Po/selectprice.controller") // 採購人員點選待詢價採購單頁面,SelectPoList.jsp
 	public String sendlistss(Model model, HttpSession session) {
 		EmployeeBean beans = (EmployeeBean) session.getAttribute("user");
 		String empid = beans.getEmp_id();

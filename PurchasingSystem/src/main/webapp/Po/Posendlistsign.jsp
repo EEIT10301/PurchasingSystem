@@ -30,8 +30,8 @@
 		<p> 請購實際金額: <Input type='text' name='total_Price' value='${param.total_Price}'></p>${errors.number}
 		  <Input type='hidden' name='total_Qty' value='${thispo_detailBean.total_Qty}'>
 </c:forEach>
-            <Input type='hidden' name='posta1' value='${poprocess1.po_sta}'>
-             <Input type='hidden' name='poid1' value='${poprocess1.po_id}'>	 
+           <Input type='hidden' name='posta1' value='${poprocess1.po_sta}'>
+           <Input type='hidden' name='poid1' value='${poprocess1.po_id}'>	 
 		   <Input type='submit' name='send' value='產生詢價單'>
 		   
 </form>	

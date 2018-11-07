@@ -43,13 +43,8 @@ public class POStatementController {
 			return "POSignStatement.do";
 		}
 
-		else {
-			List<PO_SigningProcessBean> Statement = pO_SigningProcessService.selectempID(EmpId);
-			model.addAttribute("POList", Statement);
-			return "POSignStatement.do";
-			
-		}
 		
+		return "POSignStatement.do";
 	}
 
 	@RequestMapping("/Po/POSignStatementDetail.controller")
@@ -59,7 +54,7 @@ public class POStatementController {
 		List<PO_SigningProcessBean> POprocess = pO_SigningProcessService.selectpoid(po_id);
 		String ck_id = "CK"+po_id.substring(2);
 		List<Inv_SigningProcessBean> Invprocess = inv_SigningProcessService.selectchk_Id(ck_id);
-		String acc_id = "AC"+ck_id.substring(2);
+		String acc_id = "In"+ck_id.substring(2);
 		List<Account_SigningProcessBean> ACCprocess = account_SigningProcessService.selectPOprocess(acc_id);
 		
 		
