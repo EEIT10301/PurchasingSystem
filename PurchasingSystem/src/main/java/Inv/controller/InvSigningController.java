@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import Account.model.Inv_ProductListBean;
 import Account.model.Inv＿ProductCheckBean;
 import Account.service.Inv_ProductListService;
 import Account.service.Inv＿ProductCheckService;
@@ -125,8 +126,16 @@ public String selectInvchk(Model model,HttpSession session) {//待驗收驗收�
 	}
 	@RequestMapping("/Inv/sendthisselectinvprolist.controller")
 public String invsendlistign(String inv_manger, String inv_sta, String chk_id, Model model, HttpSession session) {
+		EmployeeBean beans = (EmployeeBean) session.getAttribute("user");
 		Inv＿ProductCheckBean invmain = inv＿ProductCheckService.select(chk_id);
+		Inv_SigningProcessBean bean2 = inv_SigningProcessService.select("驗收", chk_id);
+		String invid = chk_id;
+		String invidonlynumber = "Po" + invid.substring(2);
+		PO_MainBean pomain = po_MainService.select(invidonlynumber);
 		model.addAttribute("invmain", invmain);
+		model.addAttribute("pomain", pomain);
+		model.addAttribute("Inv_SigningProcessBean", bean2);
 	return "Inv.sign";
 	}
+
 }
