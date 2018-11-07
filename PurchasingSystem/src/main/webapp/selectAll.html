@@ -8,7 +8,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-<a href='http://localhost:8080/PurchasingSystem/Apply/ApplyLoginSuccess.jsp'>請購首頁</a>
 <input class="form-control" id="myInput" type="text" placeholder="Search"><br/>
 <table class="table table-striped table-hover">
 <thead>
@@ -79,7 +78,7 @@ $("tbody").on("click","#insert",function(){
 									+($(this).parent().siblings("td:eq("+i+")").children().val())+'\",';	
 				}
 			}
-			alert(dataJSON);
+			//alert(dataJSON);
 			
 			$.ajax({
 				url : "http://localhost:8080/PurchasingSystem/insertproduct.do",
@@ -160,5 +159,6 @@ $("#myInput").on("keyup", function() {
 	});
 
 </script>
+<a href='http://localhost:8080/PurchasingSystem/Apply/ApplyLoginSuccess.jsp'>請購首頁</a>
 </body>
 </html>

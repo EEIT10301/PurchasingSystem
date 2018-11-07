@@ -38,7 +38,7 @@ import Po.model.PO_SigningProcessBean;
 
 
 @Configuration
-@ComponentScan(basePackages={"Apply,Account,Po,Inv"})
+@ComponentScan(basePackages={"Account.dao.impl","Apply.dao.impl","Inv.dao.impl","Po.dao.impl","Po.service","Inv.service","Account.service","Apply.service"})
 public class SpringJavaConfiguration {
 	
 
