@@ -10,11 +10,11 @@
 </head>
 <body>
 
-<%-- 	<c:if test="${empty listtodosign and backInvoiceSign}"> --%>
-<!-- 		<h2>目前無請款單需要簽核</h2> -->
-<!-- 		<hr> -->
-<!-- 		<h2>無退回請款單</h2> -->
-<%-- 	</c:if> --%>
+	<c:if test="${empty listtodosign and empty backInvoiceSign}">
+		<h2>目前無請款單需要簽核</h2>
+		<hr>
+		<h2>無退回請款單</h2>
+	</c:if>
 
 	<c:if test="${not empty listtodosign}">
 		<h2>待簽核請款單</h2>
@@ -25,9 +25,9 @@
 				<th>廠商名稱</th>
 				<th>總金額</th>
 			</tr>
-<<<<<<< HEAD
+
 			<c:forEach var="show" items="${listtodosign}">
-=======
+
 		</c:forEach>
 		</table>
 			</c:if>
@@ -42,7 +42,6 @@
 		<th>總金額</th>
 		</tr>
 		<c:forEach var="show2" items="${BackInvoiceSign}">
->>>>>>> branch 'master' of https://github.com/EEIT10301/PurchasingSystem.git
 
 				<tr>
 					<td>${show.inv_id}</td>
@@ -66,7 +65,7 @@
 				</tr>
 				<c:forEach var="show2" items="${BackInvoiceSign}">
 
-<<<<<<< HEAD
+
 					<tr>
 						<td>${show2.inv_id}</td>
 						<td>${show2.employeeBean.emp_name}</td>
@@ -78,11 +77,6 @@
 				</c:forEach>
 			</table>
 		</c:if>
-
-	
-=======
-
->>>>>>> branch 'master' of https://github.com/EEIT10301/PurchasingSystem.git
 
 </body>
 </html>

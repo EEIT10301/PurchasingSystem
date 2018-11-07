@@ -109,6 +109,21 @@ public class PO_InvoiceService {
 		return null;
 	}
 	
+	public List<Account_SigningProcessBean> selectAccountManagerInvoiveOrNotM(String emp_id,String account_sta) {
+		List<Account_SigningProcessBean> process = account_SigningProcessIDao.selectStatusMan(emp_id,account_sta);
+		if(process !=null) {
+			return process;
+		}
+		return null;
+	}
+	public List<Account_SigningProcessBean> selectDone(String inv_id,Integer sig_rank) {
+		List<Account_SigningProcessBean> process = account_SigningProcessIDao.selectStatusDone(inv_id,sig_rank);
+		if(process !=null) {
+			return process;
+		}
+		return null;
+	}
+	
 	public List<PO_SigningProcessBean> selectPOIDSigSta(String sig_Sta,String po_id) {
 		List<PO_SigningProcessBean> poProcess=pO_SigningProcessIDao.selectSigSta(sig_Sta,po_id);
 		if(poProcess !=null) {
