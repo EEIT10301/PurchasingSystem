@@ -40,8 +40,11 @@ public class ProductListBean {
 	@Expose
 	private java.util.Date pro_date;
 	private Set<AppDetailBean> appDetailBean = new LinkedHashSet<>();
+	
 	private Set<PO_DetailBean> pO_DetailBean = new LinkedHashSet<>();
+	
 	private Inv_MainBean inv_MainBean;
+	
 	private Set<Inv_ProductListBean> inv_ProductListBean = new LinkedHashSet<>();
 	
 	public ProductListBean(String part_no, String pro_cate, String pro_name, String pro_spe, String pro_intro,

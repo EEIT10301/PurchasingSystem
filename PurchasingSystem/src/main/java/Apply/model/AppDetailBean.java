@@ -9,17 +9,25 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.google.gson.annotations.Expose;
+
 
 
 @Entity
 @Table(name = "App_Detail")
 @IdClass(value=AppDetailBeanUionPKID.class)
 public class AppDetailBean {
+	@Expose
 	private String app_id;
+	@Expose
 	private String part_no;
+	@Expose
 	private Integer pro_price;
+	@Expose
 	private Integer app_amount;
+	@Expose
 	private App_MainBean app_MainBean;
+	@Expose
 	private ProductListBean productListBean;
 	public AppDetailBean() {
 		super();

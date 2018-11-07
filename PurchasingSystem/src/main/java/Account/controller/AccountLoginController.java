@@ -57,4 +57,9 @@ public class AccountLoginController {
 				}
 
 	}
+	@RequestMapping("/Account/AccountLogout.controller")
+	public String AccountLogout(String username, String password, Model model, HttpSession session) {
+		session.removeAttribute("user");
+		return "indexlogin.return";
+	}
 }

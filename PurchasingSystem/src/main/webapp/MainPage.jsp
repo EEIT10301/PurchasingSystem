@@ -30,7 +30,7 @@ body {
 	</tr>
 	<tr>
 		<td>PWD : </td>
-		<td><input type="text" name="password" value="${param.password}"></td>
+		<td><input type="password" name="password" value="${param.password}"></td>
 		<td>${errors.password}</td>
 	</tr>
 	<tr>

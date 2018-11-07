@@ -61,15 +61,15 @@ public class POInvoiceController {
 
 	// 採購承辦查詢待請款採購單及退回請款單
 	@RequestMapping("/Po/Polist.controller")
-	public String queryNoInvoiceList(PO_MainBean bean, Model model, HttpSession session) {
+	public String queryNoInvoiceList(Model model, HttpSession session) {
 		EmployeeBean empbean = (EmployeeBean) session.getAttribute("user");
 		String emp_id = empbean.getEmp_id();
 		String poSignProcess_sig_sta = "驗收完成未請款";
+		String accountSignProcess_sig_sta = "退回中";
+		Integer rank = 1;
 		List<PO_MainBean> NoInvoiceList = pO_InvoiceService.findNeedApplicationInvoice(emp_id, poSignProcess_sig_sta);
 		model.addAttribute("list", NoInvoiceList);
 
-		String accountSignProcess_sig_sta = "退回中";
-		Integer rank = 1;
 		List<Account_InvoiceBean> InvoiceBack = pO_InvoiceService.findProcessCorrect(emp_id, accountSignProcess_sig_sta,
 				rank);
 		model.addAttribute("listback", InvoiceBack);
@@ -94,13 +94,11 @@ public class POInvoiceController {
 	// 採購承辦顯示退回請款單資料畫面
 	@RequestMapping("/Po/ShowReturnInvoiceForm.controller")
 	public String showReturnInvoice(Model model, HttpSession session, String poid) {
-		PO_MainBean poMainBean = pO_MainService.select(poid);
 		String invId = "In" + poid.substring(2);
 		Account_InvoiceBean accountInvoiceBean = pO_InvoiceService.selectInvoice(invId);
+		PO_MainBean poMainBean = pO_MainService.select(poid);
 		PO_SigningProcessBean poSignBean = pO_InvoiceService.selectForOneProcessbyPoSign("驗收中", poid);
 		String sigSug = pO_InvoiceService.selectForOneProcessbyAccountSign(invId, 2).getSig_Sug();
-		EmployeeBean empbean = (EmployeeBean) session.getAttribute("user");
-		String emp_id = empbean.getEmp_id();
 		String date = pO_InvoiceService.calcExpirePaymentDate(poMainBean.getpO_Vendor_InfoBean().getPayment_term(),
 				poSignBean.getSig_date());
 		String oldRecript_date = new SimpleDateFormat("yyyy-MM-dd").format(accountInvoiceBean.getRecript_date());
@@ -126,10 +124,10 @@ public class POInvoiceController {
 			throws IllegalStateException, IOException, ParseException {
 		// 上傳圖片
 		String invId = "In" + poid.substring(2);
-		// String destination
-		// ="C:\\Users\\User\\Downloads\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
-		String destination = "D:\\Maven-project\\repository\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"
-				+ "\\" + invId + ".jpg";
+		 String destination
+		 ="C:\\Users\\User\\Downloads\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
+//		String destination = "D:\\Maven-project\\repository\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"
+//				+ "\\" + invId + ".jpg";
 		// String destination = "\\"+"images"+"\\"+invId+".jpg";
 		if (file != null || file.getSize() > 0) {
 			File files = new File(destination);
@@ -159,6 +157,7 @@ public class POInvoiceController {
 	}
 
 		//採購承辦重送請款單
+
 		@RequestMapping(value = "/Po/resendInvoice.controller", method = RequestMethod.POST)
 		public String resend(Account_InvoiceBean account_InvoiceBean, BindingResult bingResult, Model model,
 			HttpSession session, String name, @RequestParam("Receiptpic") MultipartFile file, String selectPOManager,
@@ -167,9 +166,10 @@ public class POInvoiceController {
 
 		//上傳圖片	
 		String invId = "In" + poid.substring(2);
-		//String destination ="C:\\Users\\User\\Downloads\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
-		String destination = "D:\\Maven-project\\repository\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"
-				+ "\\" + invId + ".jpg";
+		String destination ="C:\\Users\\User\\Downloads\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
+//		String destination = "D:\\Maven-project\\repository\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"
+//				+ "\\" + invId + ".jpg";
+	
 		//String destination = "images/"+invId+".jpg";
 		System.out.println("uploadRootPath=" + destination);
 		if (file != null || file.getSize() > 0) {
@@ -182,7 +182,6 @@ public class POInvoiceController {
 		Date date = sdf.parse(Recript_date);
 		account_InvoiceBean.setRecript_date(date);
 		Account_InvoiceBean result = pO_InvoiceService.updateInvoiceData(account_InvoiceBean);
-		System.out.println(account_InvoiceBean.getRecript_date());
 		if (result != null) {
 			model.addAttribute("successmeg", "重新送出成功");
 			model.addAttribute("inv_id", invId);
@@ -592,7 +591,7 @@ public class POInvoiceController {
 				model.addAttribute("lists", listsd);
 				return "statusList.show";
 			} else {
-				model.addAttribute("nolist", "尚無已完成請款單單號");
+				model.addAttribute("nolist", "尚無已結案請款單單號");
 				return "statusList.show";
 			}
 
@@ -617,43 +616,73 @@ public class POInvoiceController {
 				model.addAttribute("lists", listsd);
 				return "statusList.show";
 			} else {
-				model.addAttribute("nolist", "尚無已完成請款單單號");
+				model.addAttribute("nolist", "尚無已結案請款單單號");
 				return "statusList.show";
 			}
 		}
 	}
-
+	
 	// 採購/財務查詢未完成請款單狀態 PO流程是"請款中"
 	@RequestMapping("/Po/queryStatusUndone.controller")
 	public String queryStatusUndone(Model model, HttpSession session) {
 		EmployeeBean empbean = (EmployeeBean) session.getAttribute("user");
 		String emp_id = empbean.getEmp_id();
-		List<Account_SigningProcessBean> lists = pO_InvoiceService.selectAccountManagerInvoiveOrNot(emp_id);
-		List<PO_SigningProcessBean> posta = new LinkedList<PO_SigningProcessBean>();
-		if (lists != null) {// 如果有查到請款單
-			if (lists.size() > 1) {// 單號重複 要移除其中一個
-				for (int i = 0; i < lists.size(); i++) {
-					for (int x = 0; x < lists.size(); x++) {
-						if (lists.get(x).equals(lists.get(i))) {
-							lists.remove(x);
-						}
-					}
+		if (emp_id.equals("emp009")) { // 找自己有參與的請款單
+			List<Account_SigningProcessBean> lists = pO_InvoiceService.selectAccountManagerInvoiveOrNotM(emp_id,
+					"財務經理分派");
+			PO_SigningProcessBean liststa=new PO_SigningProcessBean();
+			List<PO_SigningProcessBean> liststa2=new LinkedList<PO_SigningProcessBean>();
+			Account_InvoiceBean liststaUn=new Account_InvoiceBean();
+			List<Account_InvoiceBean> liststaUn2=new LinkedList<Account_InvoiceBean>();
+			for (int i = 0; i < lists.size(); i++) {
+				String id ="Po"+lists.get(i).getInv_id().substring(2);
+				liststa=pO_InvoiceService.selectForOneProcessbyPoSigSta("請款中", id);
+				if(liststa!=null) {
+					liststa2.add(liststa);
+				}else {
+					continue;
 				}
-				for (int y = 0; y < lists.size(); y++) {
-					String po = "Po" + lists.get(y).getInv_id().substring(2);
-					posta = pO_InvoiceService.selectPOIDSigSta("請款中", po);
-				}
-				model.addAttribute("lists", posta);
-				return "statusListDone.show";
-			} else {// 單號未重複
-				model.addAttribute("lists", lists);
-				return "statusListDone.show";
 			}
-		} else {// 如果沒有查到請款單
-			model.addAttribute("nolist", "尚無未完成請款單單號");
-			return "statusListDone.show";
+			if(liststa2.size()>0) {
+				for (int j = 0; j < liststa2.size(); j++){
+					String inv="In"+liststa2.get(j).getPo_id().substring(2);
+					liststaUn=pO_InvoiceService.selectInvoice(inv);
+					liststaUn2.add(liststaUn);
+				}model.addAttribute("lists", liststaUn2);
+				return "statusList.show";
+			}
+			else {
+				model.addAttribute("nolist", "尚無未結案請款單單號");
+				return "statusList.show";
+			}
+		}else {
+			List<Account_SigningProcessBean> lists = pO_InvoiceService.selectAccountManagerInvoiveOrNot(emp_id);
+			PO_SigningProcessBean liststa=new PO_SigningProcessBean();
+			List<PO_SigningProcessBean> liststa2=new LinkedList<PO_SigningProcessBean>();
+			Account_InvoiceBean liststaUn=new Account_InvoiceBean();
+			List<Account_InvoiceBean> liststaUn2=new LinkedList<Account_InvoiceBean>();
+			for (int i = 0; i < lists.size(); i++) {
+				String id ="Po"+lists.get(i).getInv_id().substring(2);
+				liststa=pO_InvoiceService.selectForOneProcessbyPoSigSta("請款中", id);
+				if(liststa!=null) {
+					liststa2.add(liststa);
+				}else {
+					continue;
+				}
+			}
+			if(liststa2.size()>0) {
+				for (int j = 0; j < liststa2.size(); j++){
+					String inv="In"+liststa2.get(j).getPo_id().substring(2);
+					liststaUn=pO_InvoiceService.selectInvoice(inv);
+					liststaUn2.add(liststaUn);
+				}model.addAttribute("lists", liststaUn2);
+				return "statusList.show";
+			}
+			else {
+				model.addAttribute("nolist", "尚無未結案請款單單號");
+				return "statusList.show";
+			}
 		}
-
 	}
 
 	// 查詢該張請款單狀態
