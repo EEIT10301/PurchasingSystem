@@ -16,37 +16,15 @@ input, select {
 </head>
 
 <body>
-	<c:if test="${not empty successmeg}">
+	
+	<c:if test="${not empty invoice}">
+		<h1>請款單</h1>
+		<c:if test="${not empty successmeg}">
 		<h2>${successmeg}${inv_id}</h2>
 	</c:if>
 	<c:if test="${not empty errormeg}">
 		<h2>${errormeg}</h2>
 		</c:if>
-	<c:if test="${not empty sendsuccessmeg && (dep!=dep2) && (user.emp_level!=2)}">
-		<h2>${sendsuccessmeg}${inv_id}</h2>
-	</c:if>
-	<c:if test="${not empty senderrormeg}">
-		<h2>${senderrormeg}</h2>
-	</c:if>
-	<c:if test="${not empty returnsuccessmeg}">
-		<h2>${returnsuccessmeg}${inv_id}</h2>
-	</c:if>
-	<c:if test="${not empty returnerrormeg}">
-		<h2>${returnerrormeg}</h2>
-	</c:if>
-	<c:if test="${not empty finishmsg && (dep==dep2) && (user.emp_level==2)}">
-		<h2>${finishmsg}</h2>
-	</c:if>
-	<c:if test="${not empty dispatchsuccessmeg}">
-		<h2>${dispatchsuccessmeg}${inv_id}</h2>
-	</c:if>
-	<c:if test="${not empty dispatcherrormeg}">
-		<h2>${dispatcherrormeg}</h2>
-	</c:if>
-	
-
-	<c:if test="${not empty invoice}">
-		<h1>請款單</h1>
 		<a href='Polist.controller'>回上一頁</a>
 		<form method="post"
 			action="<c:url value="/Po/resendInvoice.controller"/>"
@@ -100,6 +78,27 @@ input, select {
 		</form>
 	</c:if>
 	<c:if test="${not empty invid}">
+	<c:if test="${not empty sendsuccessmeg && (dep!=dep2) && (user.emp_level!=2)}">
+		<h2>${sendsuccessmeg}${inv_id}</h2>
+	</c:if>
+	<c:if test="${not empty senderrormeg}">
+		<h2>${senderrormeg}</h2>
+	</c:if>
+	<c:if test="${not empty returnsuccessmeg}">
+		<h2>${returnsuccessmeg}${inv_id}</h2>
+	</c:if>
+	<c:if test="${not empty returnerrormeg}">
+		<h2>${returnerrormeg}</h2>
+	</c:if>
+	<c:if test="${not empty finishmsg && (dep==dep2) && (user.emp_level==2)}">
+		<h2>${finishmsg}</h2>
+	</c:if>
+	<c:if test="${not empty dispatchsuccessmeg}">
+		<h2>${dispatchsuccessmeg}${inv_id}</h2>
+	</c:if>
+	<c:if test="${not empty dispatcherrormeg}">
+		<h2>${dispatcherrormeg}</h2>
+	</c:if>
 		<h1>請款單</h1>
 		<c:set var="dep" value="${user.emp_dep}" />
 		<c:set var="dep1" value="採購部" />
@@ -121,6 +120,7 @@ input, select {
 		</c:choose>
 
 		<form method="post" action="<c:url value="/Account/ReviewInvoice.controller"/>">
+		
 		<input type="hidden" name="status" value="${status}"> 
 		<input type="hidden" value="${invid}" name="invid">
 		<label for="Inv_id">請款單單號</label>
@@ -165,7 +165,7 @@ input, select {
 		</c:if>
 
 			<c:if test="${not empty manager}">
-         主管<select name="selectPOManager">
+        審核人員<select name="selectPOManager">
 					<c:forEach var="poman" items="${manager}">
 						<option value="${poman.emp_id}">${poman.emp_name}
 							${poman.emp_job}</option>

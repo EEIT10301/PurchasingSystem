@@ -84,6 +84,13 @@ public class PO_InvoiceService {
 		}
 		return null;
 	}
+	public PO_SigningProcessBean selectForOneProcessbyPoSigSta(String sig_sta,String po_id) {
+		PO_SigningProcessBean process = pO_SigningProcessIDao.selectsigsta(sig_sta, po_id);
+		if(process !=null) {
+			return process;
+		}
+		return null;
+	}
 	
 	public Account_SigningProcessBean selectForOneProcessbyAccountSign(String inv_id,Integer sig_Rank) {
 		Account_SigningProcessBean process = account_SigningProcessIDao.selectForRank(inv_id, sig_Rank);
@@ -103,6 +110,21 @@ public class PO_InvoiceService {
 	
 	public List<Account_SigningProcessBean> selectAccountManagerInvoiveOrNot(String emp_id) {
 		List<Account_SigningProcessBean> process = account_SigningProcessIDao.selectStatus(emp_id);
+		if(process !=null) {
+			return process;
+		}
+		return null;
+	}
+	
+	public List<Account_SigningProcessBean> selectAccountManagerInvoiveOrNotM(String emp_id,String account_sta) {
+		List<Account_SigningProcessBean> process = account_SigningProcessIDao.selectStatusMan(emp_id,account_sta);
+		if(process !=null) {
+			return process;
+		}
+		return null;
+	}
+	public List<Account_SigningProcessBean> selectDone(String inv_id,Integer sig_rank) {
+		List<Account_SigningProcessBean> process = account_SigningProcessIDao.selectStatusDone(inv_id,sig_rank);
 		if(process !=null) {
 			return process;
 		}
@@ -157,11 +179,12 @@ public class PO_InvoiceService {
 		}
 	}
 	
-	public Account_InvoiceBean updateInvoiceData(Account_InvoiceBean newBean){
-		Account_InvoiceBean oldBean = account_InvoiceIDao.select(newBean.getInv_id());
-		oldBean.setRecript_date(newBean.getRecript_date());
-		Account_InvoiceBean result = account_InvoiceIDao.update(oldBean);
+	public Account_InvoiceBean updateInvoiceData(Account_InvoiceBean bean){
+		Account_InvoiceBean result = account_InvoiceIDao.update(bean);
+		if(result!=null) {
 		return result;
+		}
+		return null;
 	}
 	
 	public Boolean updateAccountSigningProcess(String inv_id,Integer sig_Rank ,String sig_Sta1, String sig_Sta2,String sig_Sug ,String emp_id) {
@@ -213,7 +236,7 @@ public class PO_InvoiceService {
 	
 	
 	public List<Account_InvoiceBean> findProcessCorrect(String emp_id, String sig_sta, Integer sig_rank) {
-		List<Account_SigningProcessBean> list = account_SigningProcessIDao.select3send(emp_id, sig_sta,sig_rank);
+		List<Account_SigningProcessBean> list = account_SigningProcessIDao.selectProcess(emp_id, sig_sta,sig_rank);
 		List<Account_InvoiceBean> result = new ArrayList<>();
 		if (list != null) {
 			for (Account_SigningProcessBean x : list) {

@@ -34,4 +34,9 @@ public interface Account_SigningProcessIDao {
 
 	List<Account_SigningProcessBean> selectStatus(String emp_id);
 
+
+	List<Account_SigningProcessBean> selectStatusMan(String emp_id,String account_sta);
+
+	List<Account_SigningProcessBean> selectStatusDone(String inv_id, Integer sig_rank);
+
 }
