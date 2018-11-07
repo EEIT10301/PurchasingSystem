@@ -14,4 +14,5 @@ public interface AppDetailIDao {
 	public abstract AppDetailBean update(AppDetailBean bean);
 
 	public abstract boolean delete(String app_id,String part_no);
+	public abstract List<AppDetailBean> selectpart_no(String part_no);
 }

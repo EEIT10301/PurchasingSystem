@@ -45,7 +45,7 @@
         <input type="date" name="Recript_date" id="" value="" required >
         <label for="Receiptpic">憑證圖檔</label>
         <input type="file" name="Receiptpic" id="" value="">
-          主管<select name="selectPOManager">
+          審核人員<select name="selectPOManager">
         <c:forEach var="poman" items="${manager}">
         <option  value="${poman.emp_id}">${poman.emp_name} ${poman.emp_job}</option>
         </c:forEach>
