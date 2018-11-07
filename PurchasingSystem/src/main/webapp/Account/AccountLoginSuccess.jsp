@@ -38,7 +38,7 @@ a, a:visited {
 <body>
 	<h3>財務系統</h3>
 	${user.emp_id}/${user.emp_name} ${user.emp_job},你好
-	<button type="button" class="btn"><a href='AccountLogout.controller'>登出</a></button>
+	<a href='AccountLogout.controller'><button type="button" class="btn">登出</button></a>
 	<br>
 	<hr>
 	<div class="allpage">

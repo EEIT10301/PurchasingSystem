@@ -648,11 +648,11 @@ public class POInvoiceController {
 					String inv="In"+liststa2.get(j).getPo_id().substring(2);
 					liststaUn=pO_InvoiceService.selectInvoice(inv);
 					liststaUn2.add(liststaUn);
-				}model.addAttribute("lists", liststaUn2);
+				}model.addAttribute("listsUn", liststaUn2);
 				return "statusList.show";
 			}
 			else {
-				model.addAttribute("nolist", "尚無未結案請款單單號");
+				model.addAttribute("nolistUn", "尚無未結案請款單單號");
 				return "statusList.show";
 			}
 		}else {
@@ -675,11 +675,11 @@ public class POInvoiceController {
 					String inv="In"+liststa2.get(j).getPo_id().substring(2);
 					liststaUn=pO_InvoiceService.selectInvoice(inv);
 					liststaUn2.add(liststaUn);
-				}model.addAttribute("lists", liststaUn2);
+				}model.addAttribute("listsUn", liststaUn2);
 				return "statusList.show";
 			}
 			else {
-				model.addAttribute("nolist", "尚無未結案請款單單號");
+				model.addAttribute("nolistUn", "尚無未結案請款單單號");
 				return "statusList.show";
 			}
 		}

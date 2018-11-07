@@ -248,10 +248,6 @@
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/Po/StatusOfInvIn.jsp"></property>
 	</bean>
-	<bean id="statusListDone.show"
-		class="org.springframework.web.servlet.view.InternalResourceView">
-		<property name="url" value="/Po/StatusOfInvDone.jsp"></property>
-	</bean>
 <!-- 查詢請款單狀態連結-->
 
 </beans>
