@@ -67,7 +67,6 @@ public class Accout_PayableService {
 	public Accout_PayableBean updateAccountPayable(String inv_id) throws ParseException {
 		Account_InvoiceBean invBean = account_InvoiceIDao.select(inv_id);
 		Accout_PayableBean accBean = invBean.getAccout_PayableBean();
-		System.out.println(accBean.toString());
 		String payment_term=invBean.getpO_MainBean().getpO_Vendor_InfoBean().getPayment_term();
 		Date applicationDate = pO_SigningProcessIDao.select("驗收中",invBean.getpO_MainBean().getPo_id()).getSig_date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
