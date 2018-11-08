@@ -88,6 +88,30 @@
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/Po/SendEmployee.jsp"></property>
 	</bean>
+
+	<!-- 採購使用連結 -->
+	<!-- 驗收連結 -->
+	<bean id="invend.item"
+
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Inv/InvShowItem.jsp"></property>
+
+	</bean>
+	<bean id="invend.itemin"
+
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Inv/InvAddProduct.jsp"></property>
+
+	</bean>
+	<bean id="DetailView.Show"
+
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Inv/InvDetailView.jsp"></property>
+
+	</bean>
+	<!-- 驗收連結 -->
+
+
 	<bean id="ListMain.show"
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/Po/ListMain.jsp"></property>
@@ -178,6 +202,18 @@
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/Inv/InvProductMain.jsp"></property>
 	</bean>
+	<bean id="selectInvchk.list"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Inv/SelectInvList.jsp"></property>
+	</bean>
+	<bean id="chkpro.fail"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Inv/chkfail.jsp"></property>
+	</bean>
+	<bean id="Inv.sign"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Inv/Invsign.jsp"></property>
+	</bean>
 	<!-- 驗收使用連結 -->
 
 	<!--待請款單使用連結 -->
@@ -207,6 +243,7 @@
 		<property name="contextRelative" value="true"></property>
 		<property name="url" value="MainPage.jsp"></property>
 	</bean>
+
 <!-- 首頁登入連結 -->
 
 	<!-- 採購主管待審核請款單連結 -->
@@ -257,5 +294,6 @@
 		<property name="url" value="/Po/StatusOfInvIn.jsp"></property>
 	</bean>
 <!-- 查詢請款單狀態連結-->
+
 
 </beans>

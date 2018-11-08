@@ -151,7 +151,7 @@ public class PO_InvoiceService {
 			cal.add(Calendar.MONTH,3);
 		}
 		cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DAY_OF_MONTH));
-		String paymentDate = new SimpleDateFormat("yyyy/MM/dd").format(cal.getTime());
+		String paymentDate = new SimpleDateFormat("yyyy-MM-dd").format(cal.getTime());
 		return paymentDate;
 	}
 	

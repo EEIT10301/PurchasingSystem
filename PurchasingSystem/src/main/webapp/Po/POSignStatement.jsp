@@ -8,13 +8,13 @@
 <title>採購單狀態</title>
 </head>
 <body>
-<c:if test="${not empty POList}">
-<c:forEach  var="POLists" items="${POList}">
+<c:if test="${not empty POLists}">
+<c:forEach  var="POLists" items="${POLists}">
 <form action="<c:url value="/Po/POSignStatementDetail.controller"/>" method="post">
 
 <p>採購單號 :${POLists.po_id}</p>
 <p>起單時間 :${POLists.sig_date}</p>
-  <Input type='hidden' name=po_manger value='${POLists.po_manger}'><P/>
+  <Input type='hidden' name='po_manger' value='${POLists.po_manger}'><P/>
   <Input type='hidden' name='po_sta' value='${POLists.po_sta}'><P/>
   <Input type='hidden' name='po_id' value='${POLists.po_id}'><P/>
   <Input type='hidden' name='sig_date' value='${POLists.sig_date}'><P/>

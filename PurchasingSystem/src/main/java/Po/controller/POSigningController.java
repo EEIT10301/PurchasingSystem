@@ -132,7 +132,7 @@ public class POSigningController {
 
 	}
 
-	@RequestMapping("/Po/selectprice.controller") // 採購人員點選待詢價採購單頁面
+	@RequestMapping("/Po/selectprice.controller") // 採購人員點選待詢價採購單頁面,SelectPoList.jsp
 	public String sendlistss(Model model, HttpSession session) {
 		EmployeeBean beans = (EmployeeBean) session.getAttribute("user");
 		String empid = beans.getEmp_id();
@@ -174,9 +174,11 @@ public class POSigningController {
 	@RequestMapping("/Po/posendlistsign.controller") // 採購人員於待詢價採購單頁面選擇送出審核
 	public String posendlistsign(String po_manger, String po_sta, String po_id, Model model, HttpSession session) {
 		PO_SigningProcessBean bean = pO_SigningProcessService.select(po_sta, po_id);
+		
 		// List<PO_Vendor_InfoBean> AllPO_Vendor = pO_Vendor_InfoService.select();
 		model.addAttribute("poprocess1", bean);
 		List<PO_QueryBean> POQuery = pO_QueryService.selectQueryBean(po_id);
+		
 		model.addAttribute("AllPO_Vendor", POQuery);
 		if (POQuery == null) {
 			model.addAttribute("noselist", "審核前請先新增詢價紀錄");
@@ -188,10 +190,14 @@ public class POSigningController {
 	}
 
 	@RequestMapping("/Po/sendsc.controller")
-	public String createQueryMemo(String po_manger, String po_sta, String po_id, Model model, HttpSession session) {
+	public String createQueryMemo(String po_manger, String po_sta, String po_id, Model model, HttpSession session
+			,PO_DetailBean podetailbean) {
 		PO_SigningProcessBean bean1 = pO_SigningProcessService.select(po_sta, po_id);
+		
 		List<PO_Vendor_InfoBean> AllPO_Vendor1 = pO_Vendor_InfoService.select();
+
 		Set<PO_DetailBean> pODetailBean = bean1.getpO_MainBean().getpO_DetailBean();
+
 
 		model.addAttribute("query", bean1);
 		model.addAttribute("po_manger", po_manger);
@@ -199,13 +205,16 @@ public class POSigningController {
 		model.addAttribute("po_id", po_id);
 		model.addAttribute("AllPO_Vendor1", AllPO_Vendor1);
 		model.addAttribute("allPO_Deatil", pODetailBean);
+
 		return "QueryMemo.show";
 	}
 
 	@RequestMapping("/Po/queryinsert.controller")
+
 	public String queryMemoInsert(String[] po_ID, String[] vendor_ID, String[] po_totalprice, String[] total_Qty,
 			String po_manger, String po_sta, String po_id, PO_QueryBean bean, Model model, HttpSession session) {
 		
+
 		java.util.Date date = new java.util.Date();
 		java.sql.Date datas = new java.sql.Date(date.getTime());
 		DateFormat dateFormate = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");

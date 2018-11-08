@@ -128,7 +128,7 @@
 <p>平均購買價格:${pro.pro_price}<p>
 <p>目前庫存:${pro.pro_amount}<p>
 <p>請購數量:<input type="text" name="productamount" value=""><p>
-  <Input type='hidden' name=part_no value='${pro.part_no}'><P/>
+  <Inputchk_Id name=part_no value='${pro.part_no}'><P/>
   <Input type='hidden' name='pro_cate' value='${pro.pro_cate}'><P/>
   <Input type='hidden' name='pro_name' value='${pro.pro_name}'><P/>
   <Input type='hidden' name='pro_spe' value='${pro.pro_spe}'><P/>

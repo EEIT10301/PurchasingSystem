@@ -29,21 +29,25 @@ public class Inv＿ProductCheckDao implements Inv＿ProductCheckIDao{
 		sessionFactory.getCurrentSession().beginTransaction();
 
 		Inv＿ProductCheckIDao productDAO = (Inv＿ProductCheckIDao) context.getBean("inv＿ProductCheckDao");
-		List<Inv＿ProductCheckBean> selects = productDAO.select();
-		System.out.println("selects="+selects);
-		for(Inv＿ProductCheckBean x:selects) {
-		    System.out.println("1.Inv＿ProductCheckBean物件:"+x.getChk_Id());
-		    System.out.println("2.EmployeeBean物件:"+x.getEmployeeBean().getEmp_email());
-		    System.out.println("3.Accout_PayableBean物件:"+x.getAccout_PayableBean().getAccoutpayable_no());
-		 System.out.println("4.採購單主檔:"+x.getpO_MainBean().getVendor_ID());
-		 System.out.println("5.廠商主檔:"+x.getpO_Vendor_InfoBean().getVendor_name());
-		   for(Inv_SigningProcessBean xs:x.getInv_SigningProcessBean()) {
-			   System.out.println("6.驗收單簽核檔:"+xs.getInv_Manger());
-		   }
-		   for(Inv_ProductListBean xs:x.getInv_ProductListBean()) {
-			   System.out.println("7.驗收單細項"+xs.getChk_Date());
-		   }
-		}
+		
+		Inv＿ProductCheckBean aa = productDAO.select("01");
+		System.out.println(aa.getChk_Id());
+		
+//		List<Inv＿ProductCheckBean> selects = productDAO.select();
+//		System.out.println("selects="+selects);
+//		for(Inv＿ProductCheckBean x:selects) {
+//		    System.out.println("1.Inv＿ProductCheckBean物件:"+x.getChk_Id());
+//		    System.out.println("2.EmployeeBean物件:"+x.getEmployeeBean().getEmp_email());
+//		    System.out.println("3.Accout_PayableBean物件:"+x.getAccout_PayableBean().getAccoutpayable_no());
+//		 System.out.println("4.採購單主檔:"+x.getpO_MainBean().getVendor_ID());
+//		 System.out.println("5.廠商主檔:"+x.getpO_Vendor_InfoBean().getVendor_name());
+//		   for(Inv_SigningProcessBean xs:x.getInv_SigningProcessBean()) {
+//			   System.out.println("6.驗收單簽核檔:"+xs.getInv_Manger());
+//		   }
+//		   for(Inv_ProductListBean xs:x.getInv_ProductListBean()) {
+//			   System.out.println("7.驗收單細項"+xs.getChk_Date());
+//		   }
+//		}
 		sessionFactory.getCurrentSession().getTransaction().commit();
 	}
 	@Override

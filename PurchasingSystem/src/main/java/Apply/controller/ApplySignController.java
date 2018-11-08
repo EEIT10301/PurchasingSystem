@@ -403,7 +403,7 @@ if(x.getApp_manger().equals(empid)&&x.getSig_sta().equals("退回中")&&x.getApp
         	   
         	   model.addAttribute("pages",pages);
         	   model.addAttribute("thispage",thispage);
-				model.addAttribute("Applylists", Sproductlistsx1);
+				model.addAttribute("Applylists", Sproductlistsx2);
 				return "apply.sign";
 			}else{
 				model.addAttribute("noApplylist", "無請購中單號");

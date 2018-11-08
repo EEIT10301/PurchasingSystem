@@ -32,30 +32,33 @@ public class PO_MainDao implements PO_MainIDao{
 		sessionFactory.getCurrentSession().beginTransaction();
 
 		PO_MainIDao productDAO = (PO_MainIDao) context.getBean("PO_MainDao");
-		List<PO_MainBean> selects = productDAO.select();
+		
+//		PO_MainBean aa = productDAO.select("Po20181013001");
+//		System.out.println(aa.getEmp_id());
+//		List<PO_MainBean> selects = productDAO.select();
 //		java.util.Date date = new java.util.Date();
 // 		java.sql.Date datas =new java.sql.Date(date.getTime());
 //		PO_MainBean xs =new PO_MainBean("Po20181013002","emp001","ven002",datas,6000);
 //		productDAO.update(xs);
-		System.out.println("selects="+selects);
-         for(PO_MainBean x:selects) {
-        	System.out.println("1.PO_MainBean物件:"+x.getVendor_ID());
-        	System.out.println("2.EmployeeBean物件:"+x.getEmployeeBean().getEmp_name());
-        	for(PO_DetailBean ss:x.getpO_DetailBean()) {
-        		
-        		System.out.println("3.PO_DetailBean物件:"+ss.getMarket_Price());
-        	}
-        	for(PO_SigningProcessBean ss:x.getpO_SigningProcessBean()) {
-        		System.out.println("4.PO_SigningProcessBean物件:"+ss.getSig_rank());
-        	}
-        	System.out.println("5.請款單:"+x.getAccount_InvoiceBean().getInv_id());
-        	System.out.println("6.驗收單:"+x.getInv＿ProductCheckBean().getVender_ID());
-        	System.out.println("7.廠商主檔:"+x.getpO_Vendor_InfoBean().getVendor_email());
-       	for(PO_QueryBean ss:x.getpO_QueryBean()) {
-        		System.out.println("8.詢價紀錄物件:"+ss.getVendor_ID());
-       	}
-        	
-         }
+//		System.out.println("selects="+selects);
+//         for(PO_MainBean x:selects) {
+//        	System.out.println("1.PO_MainBean物件:"+x.getVendor_ID());
+//        	System.out.println("2.EmployeeBean物件:"+x.getEmployeeBean().getEmp_name());
+//        	for(PO_DetailBean ss:x.getpO_DetailBean()) {
+//        		
+//        		System.out.println("3.PO_DetailBean物件:"+ss.getMarket_Price());
+//        	}
+//        	for(PO_SigningProcessBean ss:x.getpO_SigningProcessBean()) {
+//        		System.out.println("4.PO_SigningProcessBean物件:"+ss.getSig_rank());
+//        	}
+//        	System.out.println("5.請款單:"+x.getAccount_InvoiceBean().getInv_id());
+//        	System.out.println("6.驗收單:"+x.getInv＿ProductCheckBean().getVender_ID());
+//        	System.out.println("7.廠商主檔:"+x.getpO_Vendor_InfoBean().getVendor_email());
+//       	for(PO_QueryBean ss:x.getpO_QueryBean()) {
+//        		System.out.println("8.詢價紀錄物件:"+ss.getVendor_ID());
+//       	}
+//        	
+//         }
 		sessionFactory.getCurrentSession().getTransaction().commit();
 	}
 	@Override
