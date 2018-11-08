@@ -36,7 +36,7 @@
 
 	
 	</c:if>
-	<c:if test="${not empty noselectlists}">
+	<c:if test="${empty noselectlists}">
 	<h2>${noselectlists}</h2>
 	</c:if>
 </body>

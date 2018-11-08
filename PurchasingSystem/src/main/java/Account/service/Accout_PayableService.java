@@ -53,7 +53,7 @@ public class Accout_PayableService {
 		Accout_PayableBean bean=new Accout_PayableBean();
 		bean.setAccoutpayable_no(ap_id);
 		bean.setVendor_ID(chkbean.getVender_ID());
-		bean.setAmount_Payable(chkbean.getTotal_price());
+		bean.setAmount_Payable(chkbean.getChk_Money());
 		bean.setBooking_Date(new Date());
 		bean.setChk_Id(chk_id);
 		Accout_PayableBean result = accout_PayableIDao.insert(bean);
@@ -64,11 +64,12 @@ public class Accout_PayableService {
 	}
 	
 	public Accout_PayableBean updateAccountPayable(String inv_id) throws ParseException {
+		String ap_id="Ap"+inv_id.substring(2);
+		Accout_PayableBean accBean = accout_PayableIDao.select(ap_id);
 		Account_InvoiceBean invBean = account_InvoiceIDao.select(inv_id);
-		Accout_PayableBean accBean = invBean.getAccout_PayableBean();
 		String payment_term=accBean.getpO_Vendor_InfoBean().getPayment_term();
 		Date applicationDate = pO_SigningProcessIDao.select("驗收中",invBean.getpO_MainBean().getPo_id()).getSig_date();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = sdf.parse(calcExpirePaymentDate(payment_term,applicationDate));
 		accBean.setInv_id(inv_id);
 		accBean.setCheque_no("尚未開票");
@@ -95,7 +96,7 @@ public class Accout_PayableService {
 			cal.add(Calendar.MONTH,3);
 		}
 		cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DAY_OF_MONTH));
-		String paymentDate = new SimpleDateFormat("yyyy/MM/dd").format(cal.getTime());
+		String paymentDate = new SimpleDateFormat("yyyy-MM-dd").format(cal.getTime());
 		return paymentDate;
 	}
 	
