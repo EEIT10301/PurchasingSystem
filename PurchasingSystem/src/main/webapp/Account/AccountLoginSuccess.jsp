@@ -70,7 +70,7 @@
 			</div>
 		</div>
 		<div class="card bg-light f">
-			<a href="InqueryAccountPayable.jsp" class="btn"><img class="card-img-top" src="../sysimg/s3.png"
+			<a href="ShowAccountPayableList.controller" class="btn"><img class="card-img-top" src="../sysimg/s3.png"
 				style="padding: 10px;"></a>
 			<div class="card-body">
 				<h5 class="card-title">查詢廠商帳款明細</h5>
