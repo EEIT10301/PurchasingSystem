@@ -403,7 +403,7 @@ if(x.getApp_manger().equals(empid)&&x.getSig_sta().equals("退回中")&&x.getApp
         	   
         	   model.addAttribute("pages",pages);
         	   model.addAttribute("thispage",thispage);
-				model.addAttribute("Applylists", Sproductlistsx1);
+				model.addAttribute("Applylists", Sproductlistsx2);
 				return "apply.sign";
 			}else{
 				model.addAttribute("noApplylist", "無請購中單號");
@@ -508,6 +508,9 @@ App_SigningProcessBean thissign2 = app_SigningProcessService.selectrank(bean.get
             	thissign1.setSig_date( datas);
             	thissign1.setSig_sta("已註銷");
             	thissign1.setSig_sug(SignSug);
+		    }
+		    if(ben.getEmp_job().equals("總經理")) {
+		    	return "ceo.login";
 		    }
 			return "login.success";
 			}

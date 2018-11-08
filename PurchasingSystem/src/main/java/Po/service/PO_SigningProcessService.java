@@ -110,12 +110,22 @@ public class PO_SigningProcessService {
 		return null;
 	}
 
-	public List<PO_SigningProcessBean> selectempID(String po_manger) {
-		List<PO_SigningProcessBean> beans =pO_SigningProcessIDao.selectempID(po_manger);
+	public List<PO_SigningProcessBean> selectStatement(String po_sta) {
+		List<PO_SigningProcessBean> beans =pO_SigningProcessIDao.selectStatement(po_sta);
+		if(beans!=null) {
+			return beans;
+		}
+		return null;
+	}
+
+	public List<PO_SigningProcessBean> selectoneempidpages(String po_manger, Integer beginindex, Integer pagesize) {
+		List<PO_SigningProcessBean> beans =pO_SigningProcessIDao.selectoneempidpages(po_manger,beginindex,pagesize);
 		if(beans!=null) {
 			return beans;
 		}
 		return null;
 	}	
 
+	
+	
 }

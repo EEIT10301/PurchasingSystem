@@ -24,7 +24,7 @@ public interface PO_SigningProcessIDao {
 
 	public abstract PO_SigningProcessBean selectorderdetail(String po_id,String po_manger,String po_sta);
 
-	public abstract List<PO_SigningProcessBean> selectempID(String po_manger);
+	public abstract List<PO_SigningProcessBean> selectStatement(String po_sta);
 
 	public abstract List<PO_SigningProcessBean> selectmangers(String po_manger,String sig_Sta);
 	
@@ -37,6 +37,8 @@ public interface PO_SigningProcessIDao {
 	List<PO_SigningProcessBean> selectSigSta(String sig_Sta,String po_id);
 
 	PO_SigningProcessBean selectsigsta(String sig_sta, String po_id);
+
+	List<PO_SigningProcessBean> selectoneempidpages(String po_manger, Integer beginindex, Integer pagesize);
 
 
 }

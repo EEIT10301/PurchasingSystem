@@ -48,6 +48,7 @@
 					<th>採購數量</th>
 					<th>廠商</th>
 					<th>單價</th>
+
 				</tr>
 				<c:forEach var="pODetailBean" items="${allPO_Deatil}">
 				<tr>
@@ -61,7 +62,7 @@
 								<option value="${queryVendor.vendor_id}">${queryVendor.vendor_name}</option>
 							</c:forEach>
 					</select></td>
-					<td><input type="text" name="po_totalprice"></td>
+					<td><input type="text" name="quotation"></td>				
 				</tr>				
 			</c:forEach>
 			</table>			
