@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here....</title>
+<title>驗收系統</title>
 <c:if test="${empty user}">
 	<%
 		request.setAttribute("nouser", "登入過期請重新登入");
@@ -16,10 +16,11 @@
 <body>	
 		<a href='InvLogout.controller'>登出</a>
 		<h3>員工 ${user.emp_id}/${user.emp_name}/${user.emp_level}</h3>
+		<h3>${sendok}</h3>
 		<c:if test="${user.emp_level==1 }">
-			<a href="InvMain.jsp">待驗收清單</a>
-			<a href="InvSuccessList.jsp">驗收成功清單</a>
-			<a href="InvFailList.jsp">驗收失敗清單</a>
+			<a href="selectInvchk.controller">待驗收清單</a>
+			<a href="">驗收成功清單</a>
+			<a href="">驗收失敗清單</a>
 		</c:if>
 		<c:if test="${user.emp_level==2 }">
 			<a href="sendEmployee.controller">待分派清單</a>

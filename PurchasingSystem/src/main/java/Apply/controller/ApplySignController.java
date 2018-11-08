@@ -509,6 +509,9 @@ App_SigningProcessBean thissign2 = app_SigningProcessService.selectrank(bean.get
             	thissign1.setSig_sta("已註銷");
             	thissign1.setSig_sug(SignSug);
 		    }
+		    if(ben.getEmp_job().equals("總經理")) {
+		    	return "ceo.login";
+		    }
 			return "login.success";
 			}
 }

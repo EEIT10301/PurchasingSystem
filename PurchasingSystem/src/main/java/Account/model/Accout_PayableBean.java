@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -32,6 +33,7 @@ public class Accout_PayableBean {
 	private String chk_Id;
 	private Account_InvoiceBean account_InvoiceBean;
 	private Inv＿ProductCheckBean inv＿ProductCheckBean;
+	private PO_Vendor_InfoBean pO_Vendor_InfoBean;
 
 	
 	@Override
@@ -162,6 +164,16 @@ public class Accout_PayableBean {
 
 	public void setInv＿ProductCheckBean(Inv＿ProductCheckBean inv＿ProductCheckBean) {
 		this.inv＿ProductCheckBean = inv＿ProductCheckBean;
+	}
+	
+	@ManyToOne(cascade=CascadeType.MERGE)
+	@JoinColumn(name="vendor_ID",insertable=false,updatable=false)
+	public PO_Vendor_InfoBean getpO_Vendor_InfoBean() {
+		return pO_Vendor_InfoBean;
+	}
+
+	public void setpO_Vendor_InfoBean(PO_Vendor_InfoBean pO_Vendor_InfoBean) {
+		this.pO_Vendor_InfoBean = pO_Vendor_InfoBean;
 	}
 
 }

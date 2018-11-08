@@ -55,6 +55,14 @@
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/Account/AccountLogin.jsp"></property>
 	</bean>
+	<bean id="queryAccountPayable"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Account/InqueryAccountPayable.jsp"></property>
+	</bean>
+		<bean id="queryInvoice"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Account/InqueryInvoice.jsp"></property>
+	</bean>
 	<!-- 財務使用連結 -->
 	<!-- 採購使用連結 -->
 	<bean id="POlogin.success"
@@ -170,6 +178,14 @@
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/Inv/InvProductMain.jsp"></property>
 	</bean>
+	<bean id="selectInvchk.list"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Inv/SelectInvList.jsp"></property>
+	</bean>
+	<bean id="Inv.sign"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Inv/Invsign.jsp"></property>
+	</bean>
 	<!-- 驗收使用連結 -->
 
 	<!--待請款單使用連結 -->
@@ -247,10 +263,6 @@
 	<bean id="statusIn.show"
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/Po/StatusOfInvIn.jsp"></property>
-	</bean>
-	<bean id="statusListDone.show"
-		class="org.springframework.web.servlet.view.InternalResourceView">
-		<property name="url" value="/Po/StatusOfInvDone.jsp"></property>
 	</bean>
 <!-- 查詢請款單狀態連結-->
 
