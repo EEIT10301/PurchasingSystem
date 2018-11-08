@@ -38,7 +38,7 @@
 					<td><a href='StatusMainAcc.jsp'>查詢請款單狀態</a></td>
 				</tr>
 				<tr>
-					<td><a href='InqueryAccountPayable.jsp'>查詢廠商帳款明細</a></td>
+					<td><a href='ShowAccountPayableList.controller'>查詢廠商帳款明細</a></td>
 				</tr>
 			</table>
 		</div>
