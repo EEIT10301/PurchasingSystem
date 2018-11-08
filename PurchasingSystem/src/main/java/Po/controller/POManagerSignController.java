@@ -271,7 +271,7 @@ public class POManagerSignController {
 			PO_SigningProcessBean xs = new PO_SigningProcessBean();
 			PO_SigningProcessBean xs1 = new PO_SigningProcessBean();
 			for(PO_SigningProcessBean x:posignprocess) {
-				if(x.getPo_manger().equals(empid)&&x.getSig_sta().equals("簽核中")&&x.getPo_sta().equals("總經理審核")) {
+				if(x.getPo_manger().equals(empid)&&x.getSig_sta().equals("簽核中")&&x.getPo_sta().equals("主管審核完成")) {
 					//總經理或採購主管按下完成
 					xs=x;
 					for(PO_SigningProcessBean xz:posignprocess) {
@@ -285,7 +285,7 @@ public class POManagerSignController {
 					model.addAttribute("beforepro", xs1);//本次簽核流程的前一次
 					model.addAttribute("sendsubmit1", "採購單審核完成");
 					model.addAttribute("sendsubmit2", "退回");
-				}else if(x.getPo_manger().equals(empid)&&x.getSig_sta().equals("簽核中")&&x.getPo_sta().equals("採購主管審核")) {
+				}else if(x.getPo_manger().equals(empid)&&x.getSig_sta().equals("簽核中")&&x.getPo_sta().equals("主管審核完成")) {
 					//採購主管點給總經理
 					xs=x;
 					for(PO_SigningProcessBean xz:posignprocess) {
@@ -305,7 +305,7 @@ public class POManagerSignController {
 			//PO_SigningProcessBean xs1 = new PO_SigningProcessBean();
 			PO_SigningProcessBean xs1 = new PO_SigningProcessBean();
 			for(PO_SigningProcessBean x:posignprocess) {
-			if(x.getPo_manger().equals(empid)&&x.getSig_sta().equals("退回中")&&x.getPo_sta().equals("採購主管審核")) {
+			if(x.getPo_manger().equals(empid)&&x.getSig_sta().equals("退回中")&&x.getPo_sta().equals("主管審核中")) {
 			//總經理退採購主管時
 				xs=x;
 				for(PO_SigningProcessBean xz:posignprocess) {
@@ -319,7 +319,7 @@ public class POManagerSignController {
 				model.addAttribute("sendsubmit1", "送出");
 				model.addAttribute("sendsubmit2", "退回");
 	
-				}else if(x.getPo_manger().equals(empid)&&x.getSig_sta().equals("退回中")&&x.getPo_sta().equals("詢價作業")) {
+				}else if(x.getPo_manger().equals(empid)&&x.getSig_sta().equals("退回中")&&x.getPo_sta().equals("詢價中")) {
 					//採購主管退給採購時
 					xs=x;
 					for(PO_SigningProcessBean xz:posignprocess) {

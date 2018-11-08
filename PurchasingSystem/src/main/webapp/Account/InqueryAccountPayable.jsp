@@ -5,19 +5,23 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <title>查詢廠商款項</title>
 </head>
 <body>
 
-<a href="ShowAccountPayableList.controller">查詢廠商帳款明細</a>
-
 	<c:if test="${not empty allPayableList}">
 		<h2>廠商帳款清單</h2>
-		<table>
+<input class="form-control" id="myInput" type="text" placeholder="Search"><br/>
+		<table class="table table-striped table-hover">
+		<thead>
 			<tr>
 				<th>帳款對帳單號</th>
 				<th>請款單單號</th>
-				<th>廠商名稱</th>
+				<th width="250px">廠商名稱</th>
 				<th>廠商結帳週期</th>
 				<th>應付款項金額</th>
 				<th>產生日期</th>
@@ -27,6 +31,8 @@
 				<th>付款狀況</th>
 				<th>實付金額</th>
 			</tr>
+			</thead>
+			<tbody id='myTable'>
 			<c:forEach var="row" items="${allPayableList}">
 				<tr>
 					<td>${row.accoutpayable_no}</td>
@@ -47,7 +53,9 @@
 					<td>$${row.amount_Paid}</td>
 				</tr>
 			</c:forEach>
+			</tbody>
 		</table>
 	</c:if>
+	<script src="../js/app.js"></script>
 </body>
 </html>
