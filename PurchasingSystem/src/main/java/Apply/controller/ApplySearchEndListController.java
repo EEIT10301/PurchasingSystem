@@ -57,9 +57,10 @@ public class ApplySearchEndListController {
 		String json =null;
         if(list!=null) {
         	 json = gson.toJson(list) ;
-        }else if(prolist!=null){
-        	json += gson.toJson(prolist) ;
         }
+//        else if(prolist!=null){
+//        	json += gson.toJson(prolist) ;
+//        }
         if(json!=null) {
         	
         	return new JSONArray(json);
