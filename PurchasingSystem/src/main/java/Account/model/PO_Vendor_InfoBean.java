@@ -4,28 +4,32 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import Apply.model.App_SigningProcessBean;
-import Apply.model.ProductListBean;
+import com.google.gson.annotations.Expose;
+
 import Po.model.PO_MainBean;
 import Po.model.PO_QueryBean;
 
 @Entity
 @Table(name = "PO_Vendor_Info")
 public class PO_Vendor_InfoBean {
+	@Expose
 	private String vendor_id;
+	@Expose
 	private String vendor_name;
+	@Expose
 	private String vendor_contact_person;
+	@Expose
 	private String vendor_acc;
+	@Expose
 	private String payment_term;
+	@Expose
 	private String payment_method;
+	@Expose
 	private String vendor_email;
 
 

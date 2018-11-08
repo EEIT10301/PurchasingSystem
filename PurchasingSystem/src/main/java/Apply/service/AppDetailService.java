@@ -47,5 +47,12 @@ public class AppDetailService {
 		return beans;
 		
 	}
+	public  List<AppDetailBean> selectpart_no(String part_no){
+		List<AppDetailBean> bean =appDetailIDao.selectpart_no(part_no);
+		if(bean!=null) {
+			return bean;
+		}
+		return null;
+	}
 	
 }

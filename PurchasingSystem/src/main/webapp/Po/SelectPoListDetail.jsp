@@ -46,9 +46,11 @@
 <p>詢價總價: ${querysss.po_totalprice}</p>
 </c:forEach>
 </c:if>
+
 <c:if test="${empty queryss and empty query1}">
 <h2>尚未詢價紀錄</h2>
 </c:if>
+
 
 
 </body>

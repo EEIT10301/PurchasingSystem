@@ -27,7 +27,7 @@
 <%--  <p>申請時間 :${applylistss.sig_date}</p> --%>
 <%--  </c:if> --%>
 <%--  </c:forEach> --%>
- <Input type='hidden' name=app_manger value='${applylist.app_manger}'><P/>
+  <Input type='hidden' name='app_manger' value='${applylist.app_manger}'><P/>
   <Input type='hidden' name='app_sta' value='${applylist.app_sta}'><P/>
   <Input type='hidden' name='app_id' value='${applylist.app_id}'><P/>
   <Input type='hidden' name='sig_date' value='${applylist.sig_date}'><P/>
@@ -37,7 +37,18 @@
   <Input type='submit' name='send' value='查詢請購進度'>
   </form>
 </c:forEach>
-
+<p>
+<c:if test='${not empty thispage}'>
+第 ${thispage} 頁
+</c:if>
+<c:if test='${empty thispage}'>
+第 1 頁
+</c:if>
+頁數:
+<c:forEach var='i' begin='1' end='${pages}'>
+<a href='toApplySignpropage.controller?page=<c:out value="${i}"/>'><c:out value="${i}"/></a>
+</c:forEach>
+<p>
 </c:if>
 
 

@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -160,7 +161,7 @@ public class App_SigningProcessDao implements App_SigningProcessIDao {
 	public App_SigningProcessBean selectrank(String app_id,Integer sig_Rank) {
 		List<App_SigningProcessBean> list = null;
 		App_SigningProcessBean getone =new App_SigningProcessBean();
-		String hgl="FROM App_SigningProcessBean WHERE app_id=:id1 AND sig_Rank=:id2";
+		String hgl="FROM App_SigningProcessBean WHERE app_id=:id1 AND sig_Rank=:id2 and not Sig_sta ='已註銷' and app_id=:id1 AND sig_Rank=:id2 and not Sig_sta ='已結案' order by App_ID  desc ";
 		list =this.getSession().createQuery(hgl).setParameter("id1", app_id)
 				.setParameter("id2", sig_Rank).setMaxResults(50).list();
 		 if(list.size()>0) {
@@ -198,7 +199,7 @@ public class App_SigningProcessDao implements App_SigningProcessIDao {
 	public List<App_SigningProcessBean> selectfromlastemp(String app_Manger) {
 		List<App_SigningProcessBean> list = null;
 		App_SigningProcessBean getone =new App_SigningProcessBean();
-		String hgl="FROM App_SigningProcessBean WHERE app_Manger=:id1 and  Sig_Sta != '已結案'  and Sig_Sta != '已註銷' order by Sig_Date desc";
+		String hgl="FROM App_SigningProcessBean  WHERE app_Manger=:id1 and not Sig_sta ='已註銷' and app_Manger=:id1 and not Sig_sta ='已結案' order by App_ID  desc";
 		list =this.getSession().createQuery(hgl).setParameter("id1", app_Manger)
 				.setMaxResults(50).list();
 		 if(list.size()>0) {
@@ -230,7 +231,7 @@ public class App_SigningProcessDao implements App_SigningProcessIDao {
 	public List<App_SigningProcessBean> selectmangers(String app_Manger, String sig_Sta) {
            List<App_SigningProcessBean> list = null;
 		
-		String hgl="FROM App_SigningProcessBean WHERE app_Manger=:id1 and sig_Sta=:id2 order by Sig_Date desc";
+		String hgl="FROM App_SigningProcessBean WHERE app_Manger=:id1 and sig_Sta=:id2 order by App_ID desc";
 		list =this.getSession().createQuery(hgl).setParameter("id1", app_Manger)
 				.setParameter("id2", sig_Sta).setMaxResults(50).list();
 		 if(list.size()>0) {
@@ -242,5 +243,37 @@ public class App_SigningProcessDao implements App_SigningProcessIDao {
 		 }
 	}
 //xxx
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<App_SigningProcessBean> selectemppoidsendpages(String app_Manger, String sig_sta, Integer beginindex,
+			Integer pagesize) {
 	
+		List<App_SigningProcessBean> list1 = null;
+		// from PO_SigningProcess where PO_Manger='emp005' and Sig_Sta='分派中'
+		String hgl = "FROM App_SigningProcessBean where app_Manger=:id1 and sig_sta=:id2 order by App_ID desc";
+		@SuppressWarnings("rawtypes")
+		Query query = this.getSession().createQuery(hgl).setParameter("id1", app_Manger).setParameter("id2", sig_sta);
+		query.setFirstResult(beginindex);
+		query.setMaxResults(pagesize);
+		list1=query.list();
+		if (list1.size() > 0) {
+			return list1;
+		} else {
+			return null;
+		}
+	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<App_SigningProcessBean> selectfromlastemp1(Integer Sig_Rank) {
+		List<App_SigningProcessBean> list = null;
+		// from PO_SigningProcess where PO_Manger='emp005' and Sig_Sta='分派中'
+		String hgl = "FROM App_SigningProcessBean where Sig_Rank=:id1 and not Sig_sta ='已註銷' and Sig_Rank=:id1 and not Sig_sta ='已結案' order by App_ID desc";
+		list =this.getSession().createQuery(hgl).setParameter("id1", Sig_Rank).setMaxResults(50).list();
+		 if(list.size()>0) {
+			 return list;
+			 }
+		 else {
+			 return null;
+		 }
+	}
 }

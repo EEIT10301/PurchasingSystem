@@ -89,5 +89,18 @@ public class App_SigningProcessService {
 		}
 		return null;
 	}
-	
+	public List<App_SigningProcessBean> selectemppoidsendpages(String app_Manger, String sig_sta ,Integer beginindex,Integer pagesize) {
+		List<App_SigningProcessBean> beans =app_SigningProcessIDao.selectemppoidsendpages(app_Manger,sig_sta,beginindex,pagesize);
+		if(beans!=null) {
+			return beans;
+		}
+		return null;
+	}
+	public List<App_SigningProcessBean> selectfromlastemp1(Integer Sig_Rank) {
+		List<App_SigningProcessBean> beans =app_SigningProcessIDao.selectfromlastemp1(Sig_Rank);
+		if(beans!=null) {
+			return beans;
+		}
+		return null;
+	}
 }

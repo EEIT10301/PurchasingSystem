@@ -14,6 +14,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import Apply.model.EmployeeBean;
 import Po.model.PO_MainBean;
 
@@ -21,15 +23,16 @@ import Po.model.PO_MainBean;
 @Table(name = "Account_Invoice")
 public class Account_InvoiceBean {
 	private String inv_id;
+	//@DateTimeFormat(pattern="yyyy-MM-dd")
 	private java.util.Date recript_date;
 	private String recript_pic;
 	// private String vendor_id;
 	// private String vendor_name;
 	private String po_id;
 	private String emp_id;
-	// private String emp_name;
+	//private String emp_name;
 	private Integer total_price;
-	// private PO_Vendor_InfoBean pO_Vendor_InfoBean;
+	//private PO_Vendor_InfoBean pO_Vendor_InfoBean;
 	private EmployeeBean employeeBean;
 	private Accout_PayableBean accout_PayableBean;
 	private Set<Account_SigningProcessBean> account_SigningProcessBean = new LinkedHashSet<>();
