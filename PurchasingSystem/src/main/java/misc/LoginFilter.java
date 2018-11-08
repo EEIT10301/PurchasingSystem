@@ -38,9 +38,9 @@ public class LoginFilter implements Filter{
 		requestURI  = req.getRequestURI();
 		HttpSession session=req.getSession();
 		if(session.getAttribute("user")==null) {
-			RequestDispatcher rd = request.getRequestDispatcher("http://localhost:8080/PurchasingSystem/RENAME.jsp");
-			rd.forward(request, response);
-			resp.sendRedirect(contextPath + "/RENAME.jsp");
+			//RequestDispatcher rd = request.getRequestDispatcher("http://localhost:8080/PurchasingSystem/RENAME.jsp");
+			//rd.forward(request, response);
+			resp.sendRedirect(contextPath + "/MainPage.jsp");
 			return;
 		}else {
 			chain.doFilter(request, response);

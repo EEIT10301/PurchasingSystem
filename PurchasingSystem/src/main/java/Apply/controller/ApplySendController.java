@@ -76,9 +76,7 @@ public class ApplySendController {
 	@RequestMapping("/Apply/ApplyShopping.controller") 
 	public String ShoppingCart(ProductListBean bean,BindingResult bindingResult,Model model 
 			,HttpSession session,String part_no,String send,String productamount) {//購物車
-		System.out.println("12313212313213213");
-		System.out.println(send);
-		EmployeeBean user =new EmployeeBean();
+		 EmployeeBean user =new EmployeeBean();
 		 if(session.getAttribute("user")!=null) {
 			 user= (EmployeeBean) session.getAttribute("user"); 
 			 
@@ -89,8 +87,6 @@ public class ApplySendController {
 		List<ProductListBean>  beans =new LinkedList<ProductListBean>();
 		if (send.equals("search")) {
 			beans=(List<ProductListBean>) session.getAttribute("cart");
-			System.out.println(session.getAttribute("cart"));
-			System.out.println(beans);
 			Integer xs=0;
 			if(beans!=null) {
 				for(int i=0;i<beans.size();i++) {
