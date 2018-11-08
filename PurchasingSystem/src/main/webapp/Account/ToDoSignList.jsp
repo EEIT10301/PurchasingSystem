@@ -24,7 +24,7 @@ a, a:visited {
 <body>
 	<h3>待簽核請款單</h3>
 	${user.emp_id}/${user.emp_name} ${user.emp_job},你好
-	<button type="button" class="btn">登出</button>
+	<a href='AccountLogout.controller'><button type="button" class="btn">登出</button></a>
 	<br>
 	<hr>
 	<c:if test="${empty list}">
