@@ -10,11 +10,20 @@ import Inv.dao.Inv_DetailIDao;
 import Inv.model.Inv_DetailBean;
 
 @Service
-//@Transactional
+@Transactional
 public class Inv_DetailService {
 @Autowired
 private Inv_DetailIDao inv_DetailIDao;
 
+
+//new
+public List<Inv_DetailBean> select(String Inv_Part_no) {
+	List<Inv_DetailBean> bean=inv_DetailIDao.select(Inv_Part_no);
+	if(bean.size()!=0) {
+		return bean;
+	}
+	return null;
+}
 public Inv_DetailBean select(String Inv_Part_no, String Inv__Date) {
 	Inv_DetailBean bean= inv_DetailIDao.select(Inv_Part_no, Inv__Date);
 	if(bean!=null) {

@@ -191,6 +191,7 @@ public class POSigningController {
 	@RequestMapping("/Po/queryinsert.controller")
 	public String queryMemoInsert(String po_manger, String po_sta, String po_id, PO_QueryBean bean, Model model,
 			HttpSession session) {
+		
 		List<PO_QueryBean> query = pO_QueryService.selectQueryBean(bean.getPo_ID());
 		java.util.Date date = new java.util.Date();
 		java.sql.Date datas = new java.sql.Date(date.getTime());

@@ -16,4 +16,10 @@ public interface Inv_MainIDao {
 	public abstract Inv_MainBean update(Inv_MainBean bean);
 
 	public abstract boolean delete(String id);
+
+	List<Inv_MainBean> selectPage(Integer pageSize, Integer pageNo);
+
+
+
+
 }

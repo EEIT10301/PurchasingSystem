@@ -42,12 +42,39 @@ public class Inv_ProductListDao implements Inv_ProductListIDao{
 		sessionFactory.getCurrentSession().getTransaction().commit();
 	}
 	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Inv_ProductListBean> ViewAddCheckDetail(String chk_Id) {
+		List<Inv_ProductListBean> list = null;
+		Inv_ProductListBean getone =new Inv_ProductListBean();
+		String hgl="FROM Inv_ProductListBean WHERE chk_Id=:id1 AND chk_status=:status";
+		list =this.getSession().createQuery(hgl).setParameter("id1", chk_Id)
+				.setParameter("status", "驗收完畢產品已入庫").list();
+		 if(list.size()>0) {
+			  return list;
+		 }else {
+			 return null;
+		 }
+	}
 	
-	
-	
-	
-	
-	
+	//新增new 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Inv_ProductListBean> select(String chk_Id) {
+		List<Inv_ProductListBean> list = null;
+		Inv_ProductListBean getone =new Inv_ProductListBean();
+		String hgl="FROM Inv_ProductListBean WHERE chk_Id=:id1 ";
+		list =this.getSession().createQuery(hgl).setParameter("id1", chk_Id).list();
+		 if(list.size()>0) {
+//			  for(Inv_ProductListBean getones :list) {
+//				  getone=getones;
+//			  }
+			  return list;
+		 }else {
+			 return null;
+		 }
+	}
+
 	
 	
 	@SuppressWarnings("unchecked")
@@ -127,11 +154,9 @@ public class Inv_ProductListDao implements Inv_ProductListIDao{
 			 return false;
 		 }
 	}
-	@Override
-	public Inv_ProductListBean selectchkid(String chk_Id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
+
+
 	
 
 }

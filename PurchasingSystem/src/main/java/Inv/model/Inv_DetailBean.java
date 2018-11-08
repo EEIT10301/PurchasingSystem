@@ -24,8 +24,7 @@ private String inv_Part;
 private String inv_Spe;
 private String inv_Amounts;
 private Inv_MainBean inv_MainBean;
-public Inv_DetailBean(String inv_Part_no, String inv_Name, Integer inv_Amount, Date inv__Date, String inv_Intr,
-		String inv_Part, String inv_Spe, String inv_Amounts) {
+public Inv_DetailBean(String inv_Part_no, String inv_Name, Integer inv_Amount, Date inv__Date, String inv_Intr,	String inv_Part, String inv_Spe, String inv_Amounts) {
 	super();
 	this.inv_Part_no = inv_Part_no;
 	this.inv_Name = inv_Name;

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -31,7 +32,9 @@ public class Inv_MainDao implements Inv_MainIDao{
 		SessionFactory sessionFactory = (SessionFactory) context.getBean("sessionFactory");
 		sessionFactory.getCurrentSession().beginTransaction();
 		Inv_MainIDao productDAO = (Inv_MainIDao) context.getBean("inv_MainDao");
-		List<Inv_MainBean> selects = productDAO.select();
+//		List<Inv_MainBean> selects = productDAO.select();
+		List<Inv_MainBean> selects = productDAO.selectPage(0,0);
+	
 //		Inv_MainBean xs =new  Inv_MainBean("part031","PC","研發部",500);
 //		Inv_MainBean xs1 =new  Inv_MainBean("part032","PC","研發部",500);
 //		Inv_MainBean xs2 =new  Inv_MainBean("part033","PC","研發部",500);
@@ -42,7 +45,6 @@ public class Inv_MainDao implements Inv_MainIDao{
 //		Inv_MainBean xs7 =new  Inv_MainBean("part038","零組件","研發部",500);
 //		Inv_MainBean xs8 =new  Inv_MainBean("part039","零組件","研發部",500);
 //		Inv_MainBean xs9 =new  Inv_MainBean("part040","零組件","研發部",500);
-//
 //		productDAO.insert(xs);
 // 		productDAO.insert(xs1);
 // 		productDAO.insert(xs2);
@@ -52,18 +54,31 @@ public class Inv_MainDao implements Inv_MainIDao{
 // 		productDAO.insert(xs6);
 // 		productDAO.insert(xs7);
 // 		productDAO.insert(xs8);
-// 		productDAO.insert(xs9);
-		
+// 		productDAO.insert(xs9);		
 		System.out.println("selects="+selects);
+//		int i = 0;
          for(Inv_MainBean x:selects) {
-        	System.out.println("1.驗收單主檔:"+x.getInv_Cate());
-        	System.out.println("2.產品主檔:"+x.getProductListBean().getPro_name());
-            for(Inv_DetailBean ss:x.getInv_DetailBean()) {
-            	System.out.println("3.驗收細項:"+ss.getInv_Name());
+//        	System.out.println("1.驗收單主檔:"+x.getInv_Cate());
+        	System.out.println("1.驗收單主檔:"+x.getInv_Part_no());
+//        	System.out.println("2.產品主檔:"+x.getProductListBean().getPro_name());
+//        	i++;
+//            for(Inv_DetailBean ss:x.getInv_DetailBean()) {
+//            	System.out.println("3.驗收細項:"+ss.getInv_Name());
             }
-         }
+            System.out.println(selects);
+//         }
+		
 		sessionFactory.getCurrentSession().getTransaction().commit();
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Inv_MainBean> selectPage(Integer pageSize, Integer pageNo) {
+		return this.getSession().createQuery(
+	"from Inv_MainBean ").setFirstResult((pageNo - 1)* pageSize).setMaxResults(pageSize).list();
+	}
+
+	
 	@Override
 	public Inv_MainBean select(String id) {
 		return this.getSession().get(Inv_MainBean.class, id);

@@ -17,6 +17,9 @@ public class Inv_ProductListService  {
 	@Autowired
 	Inv_ProductListDao dd;
 	
+	
+
+	
 	public Inv_ProductListBean select(String chk_Id, String part_No) {
 		Inv_ProductListBean beans =inv_ProductListIDao.select(chk_Id, part_No);
 		if(beans!=null) {
