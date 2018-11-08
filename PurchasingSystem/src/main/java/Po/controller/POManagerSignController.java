@@ -285,7 +285,7 @@ public class POManagerSignController {
 					model.addAttribute("beforepro", xs1);//本次簽核流程的前一次
 					model.addAttribute("sendsubmit1", "採購單審核完成");
 					model.addAttribute("sendsubmit2", "退回");
-				}else if(x.getPo_manger().equals(empid)&&x.getSig_sta().equals("簽核中")&&x.getPo_sta().equals("主管審核完成")) {
+				}else if(x.getPo_manger().equals(empid)&&x.getSig_sta().equals("簽核中")&&x.getPo_sta().equals("主管審核中")) {
 					//採購主管點給總經理
 					xs=x;
 					for(PO_SigningProcessBean xz:posignprocess) {
