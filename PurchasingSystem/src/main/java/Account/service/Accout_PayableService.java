@@ -53,7 +53,7 @@ public class Accout_PayableService {
 		Accout_PayableBean bean=new Accout_PayableBean();
 		bean.setAccoutpayable_no(ap_id);
 		bean.setVendor_ID(chkbean.getVender_ID());
-		bean.setAmount_Payable(chkbean.getTotal_price());
+		bean.setAmount_Payable(chkbean.getChk_Money());
 		bean.setBooking_Date(new Date());
 		bean.setChk_Id(chk_id);
 		Accout_PayableBean result = accout_PayableIDao.insert(bean);
