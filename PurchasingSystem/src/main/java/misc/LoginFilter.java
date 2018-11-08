@@ -13,11 +13,9 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 @WebFilter(
 		urlPatterns= {"/Account/*","/Apply/*","/Inv/*","/Po/*","/ceo/*"}
 )//value = "/_03_listBooks/*"
-
 public class LoginFilter implements Filter{
 	String servletPath;
 	String contextPath;
@@ -38,8 +36,6 @@ public class LoginFilter implements Filter{
 		requestURI  = req.getRequestURI();
 		HttpSession session=req.getSession();
 		if(session.getAttribute("user")==null) {
-			//RequestDispatcher rd = request.getRequestDispatcher("http://localhost:8080/PurchasingSystem/RENAME.jsp");
-			//rd.forward(request, response);
 			resp.sendRedirect(contextPath + "/MainPage.jsp");
 			return;
 		}else {
