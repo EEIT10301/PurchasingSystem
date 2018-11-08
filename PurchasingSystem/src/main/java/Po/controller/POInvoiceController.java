@@ -51,17 +51,16 @@ public class POInvoiceController {
 	@Autowired
 	Accout_PayableService accout_PayableService;
 
-	@InitBinder
-	public void registerPropertyEditor(WebDataBinder dataBinder) {
-
-		dataBinder.registerCustomEditor(java.util.Date.class,
-				new CustomDateEditor(new SimpleDateFormat("yyyy/MM/dd"), false));
-		dataBinder.registerCustomEditor(Integer.class, "Total_price", new CustomNumberEditor(Integer.class, false));
-	}
+//	@InitBinder
+//	public void registerPropertyEditor(WebDataBinder dataBinder) {
+//		dataBinder.registerCustomEditor(java.util.Date.class,
+//				new CustomDateEditor(new SimpleDateFormat("yyyy/MM/dd"), false));
+//		dataBinder.registerCustomEditor(Integer.class, "Total_price", new CustomNumberEditor(Integer.class, false));
+//	}
 
 	// 採購承辦查詢待請款採購單及退回請款單
 	@RequestMapping("/Po/Polist.controller")
-	public String queryNoInvoiceList(Model model, HttpSession session) {
+	public String queryNoInvoiceList(PO_MainBean bean,Model model, HttpSession session) {
 		EmployeeBean empbean = (EmployeeBean) session.getAttribute("user");
 		String emp_id = empbean.getEmp_id();
 		String poSignProcess_sig_sta = "驗收完成未請款";
@@ -159,17 +158,15 @@ public class POInvoiceController {
 		//採購承辦重送請款單
 
 		@RequestMapping(value = "/Po/resendInvoice.controller", method = RequestMethod.POST)
-		public String resend(Account_InvoiceBean account_InvoiceBean, BindingResult bingResult, Model model,
-			HttpSession session, String name, @RequestParam("Receiptpic") MultipartFile file, String selectPOManager,
-			String poid, HttpServletRequest request, Integer sig_Rank, String SignSug, String Recript_date)
-			throws IllegalStateException, IOException, ParseException {
-
+		public String resend(Model model ,HttpSession session,String name,@RequestParam("Receiptpic") MultipartFile file
+			,String selectPOManager, String poid,HttpServletRequest request,Integer sig_Rank, String SignSug,String Recript_date) throws IllegalStateException, IOException, ParseException {
+		
 		//上傳圖片	
-		String invId = "In" + poid.substring(2);
-		String destination ="C:\\Users\\User\\Downloads\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
-//		String destination = "D:\\Maven-project\\repository\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"
-//				+ "\\" + invId + ".jpg";
-	
+		String invId="In"+poid.substring(2);
+		//String destination ="C:\\Users\\User\\Downloads\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
+		String destination = "D:\\Maven-project\\repository\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"
+				+ "\\" + invId + ".jpg";
+
 		//String destination = "images/"+invId+".jpg";
 		System.out.println("uploadRootPath=" + destination);
 		if (file != null || file.getSize() > 0) {
@@ -180,8 +177,9 @@ public class POInvoiceController {
 		//update請款單
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = sdf.parse(Recript_date);
-		account_InvoiceBean.setRecript_date(date);
-		Account_InvoiceBean result = pO_InvoiceService.updateInvoiceData(account_InvoiceBean);
+		Account_InvoiceBean accbean = account_InvoiceService.select(invId);
+;		accbean.setRecript_date(date);
+		Account_InvoiceBean result = pO_InvoiceService.updateInvoiceData(accbean);
 		if (result != null) {
 			model.addAttribute("successmeg", "重新送出成功");
 			model.addAttribute("inv_id", invId);
@@ -648,11 +646,11 @@ public class POInvoiceController {
 					String inv="In"+liststa2.get(j).getPo_id().substring(2);
 					liststaUn=pO_InvoiceService.selectInvoice(inv);
 					liststaUn2.add(liststaUn);
-				}model.addAttribute("lists", liststaUn2);
+				}model.addAttribute("listsUn", liststaUn2);
 				return "statusList.show";
 			}
 			else {
-				model.addAttribute("nolist", "尚無未結案請款單單號");
+				model.addAttribute("nolistUn", "尚無未結案請款單單號");
 				return "statusList.show";
 			}
 		}else {
@@ -675,11 +673,11 @@ public class POInvoiceController {
 					String inv="In"+liststa2.get(j).getPo_id().substring(2);
 					liststaUn=pO_InvoiceService.selectInvoice(inv);
 					liststaUn2.add(liststaUn);
-				}model.addAttribute("lists", liststaUn2);
+				}model.addAttribute("listsUn", liststaUn2);
 				return "statusList.show";
 			}
 			else {
-				model.addAttribute("nolist", "尚無未結案請款單單號");
+				model.addAttribute("nolistUn", "尚無未結案請款單單號");
 				return "statusList.show";
 			}
 		}

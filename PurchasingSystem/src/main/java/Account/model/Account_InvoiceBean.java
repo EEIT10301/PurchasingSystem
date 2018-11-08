@@ -23,7 +23,7 @@ import Po.model.PO_MainBean;
 @Table(name = "Account_Invoice")
 public class Account_InvoiceBean {
 	private String inv_id;
-	@DateTimeFormat(pattern = "yyyy/MM/dd")
+	//@DateTimeFormat(pattern="yyyy/MM/dd")
 	private java.util.Date recript_date;
 	private String recript_pic;
 	// private String vendor_id;
