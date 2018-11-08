@@ -480,7 +480,7 @@ if(x.getApp_manger().equals(empid)&&x.getSig_sta().equals("退回中")&&x.getApp
 		 }
 		 
 		 PO_SigningProcessBean pO_SigningProcessBean =new PO_SigningProcessBean(empid,"產生採購單",poid,datas,"產生採購單",SignSug,1);
-		 PO_SigningProcessBean pO_SigningProcessBean1 =new PO_SigningProcessBean("emp005","分派採購者",poid,null,"分派中",null,2);
+		 PO_SigningProcessBean pO_SigningProcessBean1 =new PO_SigningProcessBean("emp005","採購主管分派",poid,null,"分派中",null,2);
 		 pO_SigningProcessService.insert(pO_SigningProcessBean);
 		 pO_SigningProcessService.insert(pO_SigningProcessBean1);
 		    }

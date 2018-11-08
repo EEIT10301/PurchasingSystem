@@ -28,17 +28,19 @@ import Apply.model.ProductListBean;
 public class POAddVendorController {
 	@Autowired
 	PO_Vendor_InfoService pO_Vendor_InfoService;
-	@RequestMapping(path="/POAddVendorSelectAll.do")
+
+	@RequestMapping(path = "/POAddVendorSelectAll.do")
 	@ResponseBody
 	public JSONArray SelectAllPoVendor() {
-		 List<PO_Vendor_InfoBean>  list = null;
+		List<PO_Vendor_InfoBean> list = null;
 		list = pO_Vendor_InfoService.select();
-		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create() ; 
-		String json = gson.toJson(list) ;
+		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+		String json = gson.toJson(list);
 		return new JSONArray(json);
 	}
-	@RequestMapping(value="/POAddVendorinsertproduct.do", produces ="text/html; charset=utf-8" )
-	public 	@ResponseBody String InsertAJAX(HttpServletRequest request) throws IOException, ParseException {
+
+	@RequestMapping(value = "/POAddVendorinsertproduct.do", produces = "text/html; charset=utf-8")
+	public @ResponseBody String InsertAJAX(HttpServletRequest request) throws IOException, ParseException {
 		String jsonStr = readJSON(request);
 		JSONObject jsonObj = new JSONObject(jsonStr);
 		String id = jsonObj.getString("id");
@@ -49,31 +51,35 @@ public class POAddVendorController {
 		String method = jsonObj.getString("method");
 		String email = jsonObj.getString("email");
 
-		PO_Vendor_InfoBean em = new PO_Vendor_InfoBean(id,name,person,acc,term,method,email);
+		PO_Vendor_InfoBean em = new PO_Vendor_InfoBean(id, name, person, acc, term, method, email);
 		pO_Vendor_InfoService.insert(em);
-		
+
 		return "1";
 	}
-	private String readJSON(HttpServletRequest request)throws IOException{
+
+	private String readJSON(HttpServletRequest request) throws IOException {
 		StringBuilder json = new StringBuilder();
 		String line = null;
 		BufferedReader reader = request.getReader();
-		while ((line = reader.readLine())!= null) {json.append(line);}
+		while ((line = reader.readLine()) != null) {
+			json.append(line);
+		}
 		return json.toString();
 	};
-	@RequestMapping(value="/POAddVendorupdate.do", produces ="text/html; charset=utf-8" )
-	public 	@ResponseBody String UpdateAJAX(HttpServletRequest request) throws IOException, ParseException {
+
+	@RequestMapping(value = "/POAddVendorupdate.do", produces = "text/html; charset=utf-8")
+	public @ResponseBody String UpdateAJAX(HttpServletRequest request) throws IOException, ParseException {
 		String jsonStr = readJSON(request);
 		JSONObject jsonObj = new JSONObject(jsonStr);
-			String id = jsonObj.getString("id");
-			String name = jsonObj.getString("name");
-			String person = jsonObj.getString("person");
-			String acc = jsonObj.getString("acc");
-			String term = jsonObj.getString("term");
-			String method = jsonObj.getString("method");
-			String email = jsonObj.getString("email");
-	PO_Vendor_InfoBean em = pO_Vendor_InfoService.select(id);
-		//em.setVendor_name(name);
+		String id = jsonObj.getString("id");
+		String name = jsonObj.getString("name");
+		String person = jsonObj.getString("person");
+		String acc = jsonObj.getString("acc");
+		String term = jsonObj.getString("term");
+		String method = jsonObj.getString("method");
+		String email = jsonObj.getString("email");
+		PO_Vendor_InfoBean em = pO_Vendor_InfoService.select(id);
+		// em.setVendor_name(name);
 		em.setVendor_contact_person(person);
 		em.setVendor_acc(acc);
 		em.setPayment_term(term);
