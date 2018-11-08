@@ -204,7 +204,6 @@ public class POSigningController {
 		model.addAttribute("po_sta", po_sta);
 		model.addAttribute("po_id", po_id);
 		model.addAttribute("AllPO_Vendor1", AllPO_Vendor1);
-
 		model.addAttribute("allPO_Deatil", pODetailBean);
 
 		return "QueryMemo.show";

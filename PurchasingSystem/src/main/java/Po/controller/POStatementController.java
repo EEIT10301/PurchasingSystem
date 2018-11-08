@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -34,17 +35,53 @@ public class POStatementController {
 	
 	
 	@RequestMapping("/Po/POSignStatement.controller")
-	public String POSignStatement(App_SigningProcessBean bean, Model model, HttpSession session) throws ParseException {
+	public String POSignStatement(App_SigningProcessBean bean, Model model, HttpSession session
+			,BindingResult bindingResult) throws ParseException {
 		EmployeeBean empbean = (EmployeeBean) session.getAttribute("user");
 		String EmpId = empbean.getEmp_id();
-		if (empbean.getEmp_level() == 1) {// 如果是非主管的員工
-			List<PO_SigningProcessBean> Statement = pO_SigningProcessService.selectempID(EmpId);
-			model.addAttribute("POList", Statement);
+		
+		
+		
+		Integer Polistsranks =0;
+		Integer pages=0;
+		Integer pagesize=5;
+		// 如果是非主管的員工
+			List<PO_SigningProcessBean> Statement = pO_SigningProcessService.selectStatement("產生採購單");
+			
+			List<PO_SigningProcessBean> Statement2 =new LinkedList<PO_SigningProcessBean>();
+			
+			
+//			if(Statement==null) {			
+//			}else {
+//				pages=Statement.size()/5;
+//				if(Statement.size()%5>0) {
+//					pages++;
+//				}
+//				pO_SigningProcessService.selectoneempidpages(EmpId, 0, pagesize);
+//				
+//				for(int i=0;i<Statement.size();i++) {
+//					PO_SigningProcessBean xsz=Statement.get(i);
+//								
+//						Polistsranks=xsz.getSig_rank();
+//						String poid = xsz.getPo_id();									
+//						PO_SigningProcessBean xsz1 =pO_SigningProcessService.selectempandrank(poid, Polistsranks-1);   
+//						if(xsz1!=null) {
+//							Statement2.add(xsz1);
+//						}
+//				}		
+//			}
+			
+			
+			
+		
+
+			model.addAttribute("POLists",Statement);
+			model.addAttribute("pages",pages);
 			return "POSignStatement.do";
-		}
+		
 
 		
-		return "POSignStatement.do";
+	
 	}
 
 	@RequestMapping("/Po/POSignStatementDetail.controller")

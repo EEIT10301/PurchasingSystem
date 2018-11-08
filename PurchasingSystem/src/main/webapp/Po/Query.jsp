@@ -43,7 +43,6 @@
 	<table border="1">					
 				<tr>
 					<th>採購單ID</th>
-
 					<th>料號</th>
 					<th>品名</th>
 					<th>採購數量</th>
@@ -63,9 +62,7 @@
 								<option value="${queryVendor.vendor_id}">${queryVendor.vendor_name}</option>
 							</c:forEach>
 					</select></td>
-					<td><input type="text" name="quotation"></td>
-					<td><p>${podetailbean.total_Qty}</p></td>					
-					<td><input type="text" name="po_totalprice"></td>
+					<td><input type="text" name="quotation"></td>				
 				</tr>				
 			</c:forEach>
 			</table>			
