@@ -103,7 +103,7 @@ public class InvSeadController {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Date dates = sdf.parse(now);
 		Inv_SigningProcessBean secondsigningrocess1 = inv_SigningProcessService.select("驗收", chkId);
- String po_id = "Po" + chkId.substring(2);
+        String po_id = "Po" + chkId.substring(2);
 		PO_SigningProcessBean posecondsigningrocess = po_SigningProcessService.select("驗收中", po_id);
 		System.out.println("驗收單:"+chkId);
 		System.out.println("驗收狀態:"+sigSta);
