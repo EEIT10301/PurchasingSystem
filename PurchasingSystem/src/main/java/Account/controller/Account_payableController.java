@@ -35,12 +35,15 @@ public class Account_payableController {
 	@RequestMapping("/Account/ShowInvoice.controller")
 	public String showInvoiceData(Model model, HttpSession session, String invid) {
 		Account_InvoiceBean result = account_InvoiceService.select(invid);
-		System.out.println(result.toString());
+		String picName=result.getRecript_pic().substring(8);
 		model.addAttribute("invoiceData",result);
+		model.addAttribute("picName",picName);
 		return "queryInvoice";
 	}
 	
 	//產生excel檔
+	
+	
 	
 	//產生pdf檔
 	}

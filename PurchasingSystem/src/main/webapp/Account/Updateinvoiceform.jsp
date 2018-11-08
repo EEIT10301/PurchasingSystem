@@ -50,7 +50,8 @@ input, select {
 				name="Except_Payment_Date" id="" value="${paymentDate}"
 				readonly="readonly"> <label for="oldRecript_date">原憑證日期</label>
 			<input type="text" name="oldRecript_date" id=""
-				value="${oldRecript_date}" readonly="readonly"> <label
+				value="${oldRecript_date}" readonly="readonly"> 
+				<label
 				for="Recript_date">修改憑證日期</label> <input type="date"
 				name="Recript_date" id="" value="">
 			<p>原憑證圖檔</p>
@@ -76,8 +77,8 @@ input, select {
 				<input type="submit" value="送出">
 		</form>
 	</c:if>
-	
-	<c:if test="${not empty sendsuccessmeg && (dep!=dep2) && (user.emp_level!=2)}">
+
+	<c:if test="${not empty sendsuccessmeg}">
 		<h2>${sendsuccessmeg}${inv_id}</h2>
 	</c:if>
 	<c:if test="${not empty senderrormeg}">
@@ -89,9 +90,6 @@ input, select {
 	<c:if test="${not empty returnerrormeg}">
 		<h2>${returnerrormeg}</h2>
 	</c:if>
-	<c:if test="${not empty finishmsg && (dep==dep2) && (user.emp_level==2)}">
-		<h2>${finishmsg}</h2>
-	</c:if>
 	<c:if test="${not empty dispatchsuccessmeg}">
 		<h2>${dispatchsuccessmeg}${inv_id}</h2>
 	</c:if>
@@ -100,7 +98,6 @@ input, select {
 	</c:if>
 	
 	<c:if test="${not empty invid}">
-		<h1>請款單</h1>
 		<c:set var="dep" value="${user.emp_dep}" />
 		<c:set var="dep1" value="採購部" />
 		<c:set var="dep2" value="財務部" />
@@ -183,5 +180,6 @@ input, select {
 				<input type="submit" name="action" value="退回">
 		</form>
 	</c:if>
+	
 </body>
 </html>
