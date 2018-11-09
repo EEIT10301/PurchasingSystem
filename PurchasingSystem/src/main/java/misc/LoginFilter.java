@@ -35,8 +35,6 @@ public class LoginFilter implements Filter{
 		requestURI  = req.getRequestURI();
 		HttpSession session=req.getSession();
 		if(session.getAttribute("user")==null) {
-			//RequestDispatcher rd = request.getRequestDispatcher("http://localhost:8080/PurchasingSystem/MainPage.jsp");
-			//rd.forward(request, response);
 			resp.sendRedirect(contextPath + "/MainPage.jsp");
 			return;
 		}else {

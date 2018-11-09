@@ -18,8 +18,8 @@ public class TestApply {
 		sessionFactory.getCurrentSession().beginTransaction();
 		//step 1 使用者填寫表單產生請購單主檔
 		App_MainIDao productDAO = (App_MainIDao) context.getBean("app_MainDao");
-		App_MainBean xs=new App_MainBean("ap20181022001","emp001","零組件",7000);
-		productDAO.insert(xs);
+		//App_MainBean xs=new App_MainBean("ap20181022001","emp001","零組件",7000);
+		//productDAO.insert(xs);
 		sessionFactory.getCurrentSession().getTransaction().commit();
 		sessionFactory.getCurrentSession().beginTransaction();
 		//step 2產生請購細項

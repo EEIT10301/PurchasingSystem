@@ -151,17 +151,20 @@ public class PO_InvoiceService {
 			cal.add(Calendar.MONTH,3);
 		}
 		cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DAY_OF_MONTH));
-		String paymentDate = new SimpleDateFormat("yyyy-MM-dd").format(cal.getTime());
+		String paymentDate = new SimpleDateFormat("yyyy/MM/dd").format(cal.getTime());
 		return paymentDate;
 	}
 	
 	
 	public void updatePoSigningProcess(String po_id,String comment,String sig_sta ) {
 		Date applicationDate = new Date();
-		PO_SigningProcessBean bean = pO_SigningProcessIDao.select("請款中", po_id);
-		bean.setSig_sta(sig_sta);
-		bean.setSig_date(applicationDate);
-		bean.setSig_sug(comment);
+		PO_SigningProcessBean bean1 = pO_SigningProcessIDao.select("請款作業", po_id);
+		bean1.setSig_sta(sig_sta);
+		bean1.setSig_date(applicationDate);
+		bean1.setSig_sug(comment);
+		PO_SigningProcessBean bean2 = pO_SigningProcessIDao.select("驗收作業", po_id);
+		bean2.setSig_sta("驗收完成");
+
 	}
 	
 	

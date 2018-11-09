@@ -28,18 +28,43 @@
 			<option value="驗收成功">驗收成功</option>
 			<option value="驗收失敗">驗收失敗</option>
 		</select> 
-			<Input type='hidden' name='chk_Id' value='${invpromain.chk_Id}'>
-			<Input type='hidden' name='part_No' value='${invpromain.part_No}'>
+			<Input type='hidden' name="chk_Id" value='${invpromain.chk_Id}'>
+			<Input type='hidden' name="part_No" value='${invpromain.part_No}'>
+		    
+		    <Input type='submit' name='send' value='送出'>
+	</c:if>
+    <c:set var='chkstafail' value="驗收失敗"/>
+	<c:if test="${chkstafail==invpromain.chk_status }">
+			<P>驗收項目:${invpromain.productListBean.pro_cate}</P>
+
+			<p>驗收名稱:${invpromain.productListBean.pro_name}</p>
+
+			<p>驗收規格:${invpromain.productListBean.pro_spe}</p>
+			<p>請購數量:${invpromain.chk_Count}</p>
+		      驗收品質:<input type="text" name='chk_quality' ><br>
+		      實際數量:<input type="text" name='chk_Count' ><br>
+		
+		<select name="chkstatus">
+		     <option value="" selected="selected">前次驗收狀態:${invpromain.chk_status}</option>   
+			<option value="驗收成功">驗收成功</option>
+			<option value="驗收失敗">驗收失敗</option>
+		</select> 
+			<Input type='hidden' name="chk_Id" value='${invpromain.chk_Id}'>
+			<Input type='hidden' name="part_No" value='${invpromain.part_No}'>
 		    
 		    <Input type='submit' name='send' value='送出'>
 	</c:if>
 	</form>
-		</c:forEach>
-		<c:if test="${not empty Inv_SigningProcessBean.sig_Date}">
+	</c:forEach>
+	
+	
+
+		<form action="invfinish.conll" method="post">
 		驗收單號:${Inv_SigningProcessBean.chk_Id }
-		<a href="/Inv/finish">驗收完成</a>
-		<Input type='hidden' name='sig_Sta' value='${Inv_SigningProcessBean.sig_Sta}'>
-		<Input type='hidden' name='chk_Id' value='${Inv_SigningProcessBean.chk_Id}'>
-        </c:if>
+		驗收單號:${Inv_SigningProcessBean.sig_Sta }
+		<Input type='hidden' name="sigSta" value='${Inv_SigningProcessBean.sig_Sta}'>
+		<Input type='hidden' name="chkId" value='${Inv_SigningProcessBean.chk_Id}'>
+        <Input type='submit' name='send' value='驗收完成'>
+        </form>
 </body>
 </html>

@@ -150,9 +150,9 @@ public class POReceivingGoodsController {
 				inv_ProductListService.insert(ip);
 			}
 
-			Inv_SigningProcessBean inv_SigningProcessBean = new Inv_SigningProcessBean(empid, "產生驗收單", ckid, dateTime,
+			Inv_SigningProcessBean inv_SigningProcessBean = new Inv_SigningProcessBean(empid, "貨物狀態", ckid, dateTime,
 					"產生驗收單", signSug, 1);
-			Inv_SigningProcessBean inv_SigningProcessBean1 = new Inv_SigningProcessBean("emp007", "驗收", ckid, null,
+			Inv_SigningProcessBean inv_SigningProcessBean1 = new Inv_SigningProcessBean("emp007", "驗收分派", ckid, null,
 					"待分派", null, 2);
 			inv_SigningProcessService.insert(inv_SigningProcessBean);
 			inv_SigningProcessService.insert(inv_SigningProcessBean1);
