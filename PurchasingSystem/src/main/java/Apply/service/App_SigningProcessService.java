@@ -103,4 +103,11 @@ public class App_SigningProcessService {
 		}
 		return null;
 	}
+	public  List<App_SigningProcessBean> selectApp_staandSig_sta(String app_sta,String sig_sta){
+		List<App_SigningProcessBean> beans =app_SigningProcessIDao.selectApp_staandSig_sta(app_sta,sig_sta);
+		if(beans!=null) {
+			return beans;
+		}
+		return null;
+	}
 }

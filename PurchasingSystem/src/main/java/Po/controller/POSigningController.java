@@ -124,7 +124,7 @@ public class POSigningController {
 		secondsigningprocess.setSig_sta("已分派");
 		secondsigningprocess.setSig_date(dates);
 		secondsigningprocess.setSig_sug(SignSug);
-		PO_SigningProcessBean secondsigningprocess1 = new PO_SigningProcessBean(employeesend, "詢價作業", bean.getPo_id(),
+		PO_SigningProcessBean secondsigningprocess1 = new PO_SigningProcessBean(employeesend, "詢價中", bean.getPo_id(),
 				null, "詢價中", null, 3);
 		pO_SigningProcessService.insert(secondsigningprocess1);
 		model.addAttribute("sendok", "分派完成");
@@ -146,7 +146,7 @@ public class POSigningController {
 		} else {
 			for (int i = 0; i < selectlist.size(); i++) {
 				PO_SigningProcessBean x = selectlist.get(i);
-				PO_SigningProcessBean xs = pO_SigningProcessService.select("採購主管分派", x.getPo_id());
+				PO_SigningProcessBean xs = pO_SigningProcessService.select("分派採購者", x.getPo_id());
 				if (xs != null) {
 					selectlists.add(x);
 					selectlists.add(xs);
@@ -369,10 +369,10 @@ public class POSigningController {
 					}
 				}
 
-				PO_SigningProcessBean sx1 = new PO_SigningProcessBean(pomanger, "採購主管審核", poid1, null, "簽核中", null, 4);
-				PO_SigningProcessBean sx2 = new PO_SigningProcessBean(thisemp.getEmp_id(), "下單作業", poid1, null, "未下單",
+				PO_SigningProcessBean sx1 = new PO_SigningProcessBean(pomanger, "主管審核完成", poid1, null, "簽核中", null, 4);
+				PO_SigningProcessBean sx2 = new PO_SigningProcessBean(thisemp.getEmp_id(), "下單中", poid1, null, "未下單",
 						null, 5);
-				PO_SigningProcessBean sx3 = new PO_SigningProcessBean(thisemp.getEmp_id(), "收貨作業", poid1, null, "未收貨",
+				PO_SigningProcessBean sx3 = new PO_SigningProcessBean(thisemp.getEmp_id(), "待收貨", poid1, null, "未收貨",
 						null, 6);
 				PO_SigningProcessBean insert = pO_SigningProcessService.insert(sx1);
 				if (insert == null) {
@@ -412,11 +412,11 @@ public class POSigningController {
 					}
 				}
 
-				PO_SigningProcessBean sx1 = new PO_SigningProcessBean(pomanger, "採購主管審核", poid1, null, "簽核中", null, 4);
-				PO_SigningProcessBean sx2 = new PO_SigningProcessBean(boss, "總經理審核", poid1, null, "未簽核", null, 5);
-				PO_SigningProcessBean sx3 = new PO_SigningProcessBean(thisemp.getEmp_id(), "下單作業", poid1, null, "未下單",
+				PO_SigningProcessBean sx1 = new PO_SigningProcessBean(pomanger, "主管審核中", poid1, null, "簽核中", null, 4);
+				PO_SigningProcessBean sx2 = new PO_SigningProcessBean(boss, "主管審核完成", poid1, null, "未簽核", null, 5);
+				PO_SigningProcessBean sx3 = new PO_SigningProcessBean(thisemp.getEmp_id(), "下單中", poid1, null, "未下單",
 						null, 6);
-				PO_SigningProcessBean sx4 = new PO_SigningProcessBean(thisemp.getEmp_id(), "收貨作業", poid1, null, "未收貨",
+				PO_SigningProcessBean sx4 = new PO_SigningProcessBean(thisemp.getEmp_id(), "待收貨", poid1, null, "未收貨",
 						null, 7);
 				PO_SigningProcessBean insert = pO_SigningProcessService.insert(sx2);
 				if (insert == null) {

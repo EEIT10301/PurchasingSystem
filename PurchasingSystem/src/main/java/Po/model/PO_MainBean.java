@@ -14,6 +14,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.google.gson.annotations.Expose;
+
 import Account.model.Account_InvoiceBean;
 import Account.model.Inv＿ProductCheckBean;
 import Account.model.PO_Vendor_InfoBean;
@@ -21,13 +23,20 @@ import Apply.model.EmployeeBean;
 @Entity
 @Table(name = "PO_Main")
 public class PO_MainBean {
+@Expose	
 private String po_id;
+@Expose
 private String emp_id;
+@Expose
 private String vendor_ID;
+@Expose
 private java.util.Date shipping_Date;
+@Expose
 private Integer total_price;
+@Expose
 private EmployeeBean employeeBean;
 private Set<PO_DetailBean> pO_DetailBean = new LinkedHashSet<>();
+@Expose
 private PO_Vendor_InfoBean pO_Vendor_InfoBean;
 private Set<PO_SigningProcessBean> pO_SigningProcessBean = new LinkedHashSet<>();
 //private Set<Inv＿ProductCheckBean> inv＿ProductCheckBean = new LinkedHashSet<>();

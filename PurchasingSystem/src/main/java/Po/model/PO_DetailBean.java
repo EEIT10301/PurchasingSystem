@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.google.gson.annotations.Expose;
+
 import Apply.model.ProductListBean;
 
 //PO_Detail
@@ -16,13 +18,21 @@ import Apply.model.ProductListBean;
 @Table(name = "PO_Detail")
 @IdClass(value=PO_DetailUionPKID.class)
 public class PO_DetailBean {
+@Expose	
 private String po_id;
+@Expose
 private String part_No;
+@Expose
 private Integer market_Price;
+@Expose
 private Integer quotation;
+@Expose
 private Integer total_Price;
+@Expose
 private Integer total_Qty;
+@Expose
 private PO_MainBean pO_MainBean;
+@Expose
 private ProductListBean productListBean;
 
 public PO_DetailBean(String po_id, String part_No, Integer market_Price, Integer quotation, Integer total_Price,

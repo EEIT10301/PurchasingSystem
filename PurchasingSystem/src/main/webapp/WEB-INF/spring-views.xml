@@ -182,10 +182,15 @@
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/Inv/SelectInvList.jsp"></property>
 	</bean>
+	<bean id="chkpro.fail"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Inv/chkfail.jsp"></property>
+	</bean>
 	<bean id="Inv.sign"
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/Inv/Invsign.jsp"></property>
 	</bean>
+
 	<!-- 驗收連結 -->
     <bean id="invend.item"
 		class="org.springframework.web.servlet.view.InternalResourceView">
@@ -201,6 +206,10 @@
 		<property name="url" value="/Inv/InvDetailView.jsp"></property>
 	</bean>
 	<!-- 驗收使用連結 -->
+
+
+	<!-- 驗收使用連結 -->
+
 
 	<!--待請款單使用連結 -->
 	<bean id="TodoInvoiceList"
