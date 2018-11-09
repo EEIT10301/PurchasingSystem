@@ -98,7 +98,7 @@ public class InvSeadController {
 	public String invfinisg(String chkId, String sigSta, Model model, HttpSession session) throws ParseException {
 		Date date = new Date();
 		java.sql.Date date1 = new java.sql.Date(date.getTime());
-		SimpleDateFormat dateFormate = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		SimpleDateFormat dateFormate = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");		
 		String now = dateFormate.format(date1);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Date dates = sdf.parse(now);
@@ -111,6 +111,7 @@ public class InvSeadController {
 			secondsigningrocess1.setSig_Date(dates);
 			secondsigningrocess1.setSig_Sta("驗收成功");
 			posecondsigningrocess.setSig_sta("驗收完成未請款");
+			posecondsigningrocess.setSig_date(date);
 			accout_PayableService.createAccountPayable(chkId);
 			return "Invlogin.success";
 		} else if("驗收失敗".equals(sigSta)){

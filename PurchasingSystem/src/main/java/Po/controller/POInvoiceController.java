@@ -80,9 +80,8 @@ public class POInvoiceController {
 	public String poNew(Model model, HttpSession session, String poid, String invid) {
 		PO_MainBean bean = pO_MainService.select(poid);
 		PO_SigningProcessBean poSignBean = pO_InvoiceService.selectForOneProcessbyPoSign("驗收作業", poid);
-		
-		String date = new SimpleDateFormat("yyyy-MM-dd").format(pO_InvoiceService.calcExpirePaymentDate(bean.getpO_Vendor_InfoBean().getPayment_term(),
-				poSignBean.getSig_date()));
+		String date = pO_InvoiceService.calcExpirePaymentDate(bean.getpO_Vendor_InfoBean().getPayment_term(),
+				poSignBean.getSig_date());
 		List<EmployeeBean> employee = employeeService.selectPoEmployee("採購部", 2);
 		model.addAttribute("bean", bean);
 		model.addAttribute("paymentDate", date);
@@ -101,7 +100,7 @@ public class POInvoiceController {
 		String sigSug = pO_InvoiceService.selectForOneProcessbyAccountSign(invId, 2).getSig_Sug();
 		String date = pO_InvoiceService.calcExpirePaymentDate(poMainBean.getpO_Vendor_InfoBean().getPayment_term(),
 				poSignBean.getSig_date());
-		String oldRecript_date = new SimpleDateFormat("yyyy-MM-dd").format(accountInvoiceBean.getRecript_date());
+		String oldRecript_date = new SimpleDateFormat("yyyy/MM/dd").format(accountInvoiceBean.getRecript_date());
 		List<EmployeeBean> employee = employeeService.selectPoEmployee("採購部", 2);
 		if (accountInvoiceBean != null) {
 			model.addAttribute("invoice", accountInvoiceBean);
@@ -125,9 +124,10 @@ public class POInvoiceController {
 		// 上傳圖片
 		String invId = "In" + poid.substring(2);
 //		String destination="C:\\Users\\User\\Downloads\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
-		String destination = "D:\\Maven-project\\repository\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"
-				+ "\\" + invId + ".jpg";
+//		String destination = "D:\\Maven-project\\repository\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"
+//				+ "\\" + invId + ".jpg";
 		// String destination = "\\"+"images"+"\\"+invId+".jpg";
+		String destination ="C:\\Users\\jonat\\Downloads\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"+ "\\" + invId + ".jpg";
 		if (file != null || file.getSize() > 0) {
 			File files = new File(destination);
 			file.transferTo(files);
@@ -149,7 +149,7 @@ public class POInvoiceController {
 		// insert 請款單流程
 		pO_InvoiceService.insertAccountSigningProcess(invId, Emp_id, selectPOManager, SignSug);
 
-		// update 採款單請款作業簽核流程
+		// update 採購單請款作業簽核流程
 		pO_InvoiceService.updatePoSigningProcess(poid, SignSug, "請款中");
 		
 
@@ -167,8 +167,9 @@ public class POInvoiceController {
 		String invId = "In" + poid.substring(2);
 		// String destination
 		// ="C:\\Users\\User\\Downloads\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
-		String destination = "D:\\Maven-project\\repository\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"
-				+ "\\" + invId + ".jpg";
+//		String destination = "D:\\Maven-project\\repository\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"
+//				+ "\\" + invId + ".jpg";
+		String destination ="C:\\Users\\jonat\\Downloads\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"+ "\\" + invId + ".jpg";
 
 		// String destination = "images/"+invId+".jpg";
 		System.out.println("uploadRootPath=" + destination);

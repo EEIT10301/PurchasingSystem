@@ -54,6 +54,7 @@ public class Accout_PayableService {
 		bean.setAmount_Payable(chkbean.getChk_Money());
 		bean.setBooking_Date(new Date());
 		bean.setChk_Id(chk_id);
+		bean.setAmount_Paid(0);
 		Accout_PayableBean result = accout_PayableIDao.insert(bean);
 		 if(bean !=null) {
 	       	 return bean;
@@ -66,7 +67,7 @@ public class Accout_PayableService {
 		Accout_PayableBean accBean = accout_PayableIDao.select(ap_id);
 		Account_InvoiceBean invBean = account_InvoiceIDao.select(inv_id);
 		String payment_term=accBean.getpO_Vendor_InfoBean().getPayment_term();
-		Date applicationDate = pO_SigningProcessIDao.select("驗收中",invBean.getpO_MainBean().getPo_id()).getSig_date();
+		Date applicationDate = pO_SigningProcessIDao.select("驗收作業",invBean.getpO_MainBean().getPo_id()).getSig_date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = sdf.parse(calcExpirePaymentDate(payment_term,applicationDate));
 		accBean.setInv_id(inv_id);
