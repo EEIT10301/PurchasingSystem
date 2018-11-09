@@ -28,16 +28,21 @@ public class App_MainBean {
 	@Expose
 	private Integer app_price;
 	@Expose
+	private String app_GetDate;
+	
+	@Expose
 	private EmployeeBean employeeBean;//請購主檔和員工作關聯 emp_id 1對多
 	private Set<App_SigningProcessBean> app_SigningProcessBean = new LinkedHashSet<>();//請購簽核流程 1對多
 	private Set<AppDetailBean> appDetailBean = new LinkedHashSet<>();//請購細項 多對一
 	
-	public App_MainBean(String app_id, String emp_id, String pro_cate, Integer app_price) {
+
+	public App_MainBean(String app_id, String emp_id, String pro_cate, Integer app_price, String app_GetDate) {
 		super();
 		this.app_id = app_id;
 		this.emp_id = emp_id;
 		this.pro_cate = pro_cate;
 		this.app_price = app_price;
+		this.app_GetDate = app_GetDate;
 	}
 	public App_MainBean() {
 		super();
@@ -67,6 +72,13 @@ public class App_MainBean {
 	}
 	public void setApp_price(Integer app_price) {
 		this.app_price = app_price;
+	}
+	
+	public String getApp_GetDate() {
+		return app_GetDate;
+	}
+	public void setApp_GetDate(String app_GetDate) {
+		this.app_GetDate = app_GetDate;
 	}
 	// 只有@OneToOne, @OneToMany 可以使用 orphanRemoval = true
 	@ManyToOne(cascade=CascadeType.MERGE)

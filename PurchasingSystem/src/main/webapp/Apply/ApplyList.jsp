@@ -158,11 +158,12 @@ body {
 	<div class="prolist">
 		<div class='pro'>
 				<p>請購總價格:${Listprice}
+			<form action="<c:url value="/Apply/ApplyListsend.controller" />"
+				method="post">
 				<p>
 					<Input type='hidden' name='Listprice' value='${Listprice}'>
 				<P />
-			<form action="<c:url value="/Apply/ApplyListsend.controller" />"
-				method="post">
+				<p>    追交日期:<Input type='text' name='getdate' value=''> <P />
 				請購原因:
 				<p>
 					<textarea rows="5" cols="50" name="suggestion">

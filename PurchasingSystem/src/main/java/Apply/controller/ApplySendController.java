@@ -276,7 +276,7 @@ public class ApplySendController {
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/Apply/ApplyListsend.controller") 
 	public String ApplyList(ProductListBean bean,BindingResult bindingResult,Model model 
-		,HttpSession session,String part_no,String send,String productamount, String suggestion,String Sign2Employee) throws ParseException {//產生清單
+		,HttpSession session,String part_no,String send,String productamount, String suggestion,String Sign2Employee,String getdate) throws ParseException {//產生清單
 		 EmployeeBean user =new EmployeeBean();
 		 if(session.getAttribute("user")!=null) {
 			 user= (EmployeeBean) session.getAttribute("user"); 
@@ -383,11 +383,13 @@ public class ApplySendController {
 	    
 	    else {
 	    	
+	   // 	SimpleDateFormat sdf2 =new SimpleDateFormat("yyyy/MM/dd");
+		//	String thisdate= sdf2.format(getdate);
 	    	EmployeeBean emp=(EmployeeBean) session.getAttribute("user");
 	    	String apid ="Ap"+getorderid();
 	    	String Categlory=(String) session.getAttribute("Categlory");
 	    	Integer Listprices =(Integer) session.getAttribute("Listprice");
-	    	App_MainBean apmainbean=new App_MainBean(apid,emp.getEmp_id(),Categlory,Listprices);
+	    	App_MainBean apmainbean=new App_MainBean(apid,emp.getEmp_id(),Categlory,Listprices,getdate);
 	    	app_MainService.insert(apmainbean);
 	    	
 //	    	App_MainBean
