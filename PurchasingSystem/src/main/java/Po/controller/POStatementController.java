@@ -84,7 +84,7 @@ public class POStatementController {
 		
 		
 		
-		return "POSignStatementDetail.controller";
+		return "POSignStatementDetail.do";
 	}
 	
 	@RequestMapping("/Po/POFinalStatement.controller")
