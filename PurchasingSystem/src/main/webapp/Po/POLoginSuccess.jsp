@@ -27,6 +27,7 @@
 <a href='POSignStatement.controller'>採購單狀態</a>
 <a href='Polist.controller'>待辦請款單 </a>
 <a href='StatusMain.jsp'>查詢請款單</a>
+<a href='POFinalStatement.controller'>查詢已結案請款單</a>
 </c:if>
 <c:if test="${user.emp_level==2}">
 <a href='sendEmployee.controller'>待分派採購單</a>
