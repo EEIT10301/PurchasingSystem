@@ -110,7 +110,7 @@ public class InvSeadController {
 		if ("驗收作業進行中".equals(sigSta)) {
 			secondsigningrocess1.setSig_Date(dates);
 			secondsigningrocess1.setSig_Sta("驗收成功");
-			posecondsigningrocess.setSig_sug("驗收完成未請款");
+			posecondsigningrocess.setSig_sta("驗收完成未請款");
 			accout_PayableService.createAccountPayable(chkId);
 			return "Invlogin.success";
 		} else if("驗收失敗".equals(sigSta)){

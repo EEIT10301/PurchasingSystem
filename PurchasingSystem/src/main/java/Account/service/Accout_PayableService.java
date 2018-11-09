@@ -16,8 +16,6 @@ import org.springframework.stereotype.Service;
 import Account.dao.Account_InvoiceIDao;
 import Account.dao.Accout_PayableIDao;
 import Account.dao.Inv＿ProductCheckIDao;
-import Account.dao.impl.Accout_PayableDao;
-import Account.dao.impl.Inv＿ProductCheckDao;
 import Account.model.Account_InvoiceBean;
 import Account.model.Accout_PayableBean;
 import Account.model.Inv＿ProductCheckBean;

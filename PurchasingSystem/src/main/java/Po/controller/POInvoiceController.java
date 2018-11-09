@@ -79,7 +79,7 @@ public class POInvoiceController {
 	@RequestMapping("/Po/NewInvoiceForm.controller")
 	public String poNew(Model model, HttpSession session, String poid, String invid) {
 		PO_MainBean bean = pO_MainService.select(poid);
-		PO_SigningProcessBean poSignBean = pO_InvoiceService.selectForOneProcessbyPoSign("驗收中", poid);
+		PO_SigningProcessBean poSignBean = pO_InvoiceService.selectForOneProcessbyPoSign("驗收作業", poid);
 		
 		String date = new SimpleDateFormat("yyyy-MM-dd").format(pO_InvoiceService.calcExpirePaymentDate(bean.getpO_Vendor_InfoBean().getPayment_term(),
 				poSignBean.getSig_date()));
@@ -97,7 +97,7 @@ public class POInvoiceController {
 		String invId = "In" + poid.substring(2);
 		Account_InvoiceBean accountInvoiceBean = pO_InvoiceService.selectInvoice(invId);
 		PO_MainBean poMainBean = pO_MainService.select(poid);
-		PO_SigningProcessBean poSignBean = pO_InvoiceService.selectForOneProcessbyPoSign("驗收中", poid);
+		PO_SigningProcessBean poSignBean = pO_InvoiceService.selectForOneProcessbyPoSign("驗收作業", poid);
 		String sigSug = pO_InvoiceService.selectForOneProcessbyAccountSign(invId, 2).getSig_Sug();
 		String date = pO_InvoiceService.calcExpirePaymentDate(poMainBean.getpO_Vendor_InfoBean().getPayment_term(),
 				poSignBean.getSig_date());
@@ -200,7 +200,7 @@ public class POInvoiceController {
 	@RequestMapping("/Po/SignInvoiceForm.controller")
 	public String signInvoice(Model model, HttpSession session, String invid) {
 		Account_InvoiceBean bean = account_InvoiceService.select(invid);
-		PO_SigningProcessBean poSignBean = pO_InvoiceService.selectForOneProcessbyPoSign("驗收中", bean.getPo_id());
+		PO_SigningProcessBean poSignBean = pO_InvoiceService.selectForOneProcessbyPoSign("驗收作業", bean.getPo_id());
 		String empid = bean.getEmployeeBean().getEmp_name();
 		String empdep = bean.getEmployeeBean().getEmp_dep();
 		String ven_name = bean.getpO_MainBean().getpO_Vendor_InfoBean().getVendor_name();
@@ -236,7 +236,7 @@ public class POInvoiceController {
 	public String signInvoiceBack(Model model, HttpSession session, String invid) {
 
 		Account_InvoiceBean bean = account_InvoiceService.select(invid);
-		PO_SigningProcessBean poSignBean = pO_InvoiceService.selectForOneProcessbyPoSign("驗收中", bean.getPo_id());
+		PO_SigningProcessBean poSignBean = pO_InvoiceService.selectForOneProcessbyPoSign("驗收作業", bean.getPo_id());
 		String empid = bean.getEmp_id();
 		String empdep = bean.getEmployeeBean().getEmp_dep();
 		String ven_name = bean.getpO_MainBean().getpO_Vendor_InfoBean().getVendor_name();
@@ -279,7 +279,7 @@ public class POInvoiceController {
 	public String signInvoiceAccMan(Model model, HttpSession session, String invid) {
 
 		Account_InvoiceBean bean = account_InvoiceService.select(invid);
-		PO_SigningProcessBean poSignBean = pO_InvoiceService.selectForOneProcessbyPoSign("驗收中", bean.getPo_id());
+		PO_SigningProcessBean poSignBean = pO_InvoiceService.selectForOneProcessbyPoSign("驗收作業", bean.getPo_id());
 		String empid = bean.getEmployeeBean().getEmp_name();
 		String empdep = bean.getEmployeeBean().getEmp_dep();
 		String ven_name = bean.getpO_MainBean().getpO_Vendor_InfoBean().getVendor_name();
@@ -317,7 +317,7 @@ public class POInvoiceController {
 	public String signInvAccMan(Model model, HttpSession session, String invid) {
 
 		Account_InvoiceBean bean = account_InvoiceService.select(invid);
-		PO_SigningProcessBean poSignBean = pO_InvoiceService.selectForOneProcessbyPoSign("驗收中", bean.getPo_id());
+		PO_SigningProcessBean poSignBean = pO_InvoiceService.selectForOneProcessbyPoSign("驗收作業", bean.getPo_id());
 		String empid = bean.getEmployeeBean().getEmp_name();
 		String empdep = bean.getEmployeeBean().getEmp_dep();
 		String ven_name = bean.getpO_MainBean().getpO_Vendor_InfoBean().getVendor_name();
@@ -355,7 +355,7 @@ public class POInvoiceController {
 	public String signInvAcc(Model model, HttpSession session, String invid) {
 
 		Account_InvoiceBean bean = account_InvoiceService.select(invid);
-		PO_SigningProcessBean poSignBean = pO_InvoiceService.selectForOneProcessbyPoSign("驗收中", bean.getPo_id());
+		PO_SigningProcessBean poSignBean = pO_InvoiceService.selectForOneProcessbyPoSign("驗收作業", bean.getPo_id());
 		String empid = bean.getEmployeeBean().getEmp_name();
 		String empdep = bean.getEmployeeBean().getEmp_dep();
 		String ven_name = bean.getpO_MainBean().getpO_Vendor_InfoBean().getVendor_name();
@@ -393,7 +393,7 @@ public class POInvoiceController {
 	public String resignInvAcc(Model model, HttpSession session, String invid) {
 
 		Account_InvoiceBean bean = account_InvoiceService.select(invid);
-		PO_SigningProcessBean poSignBean = pO_InvoiceService.selectForOneProcessbyPoSign("驗收中", bean.getPo_id());
+		PO_SigningProcessBean poSignBean = pO_InvoiceService.selectForOneProcessbyPoSign("驗收作業", bean.getPo_id());
 		String empid = bean.getEmployeeBean().getEmp_name();
 		String empdep = bean.getEmployeeBean().getEmp_dep();
 		String ven_name = bean.getpO_MainBean().getpO_Vendor_InfoBean().getVendor_name();

@@ -58,11 +58,26 @@ public class ApplySearchEndListController {
         if(list!=null) {
         	 json = gson.toJson(list) ;
         }
-//        else if(prolist!=null){
-//        	json += gson.toJson(prolist) ;
-//        }
+ 
         if(json!=null) {
-        	
+        	return new JSONArray(json);
+        }
+        return null;
+	}
+	@RequestMapping(path="/Apply/SelectAllPOEndListdetail.do")
+	@ResponseBody
+	public JSONArray SelectAllPOEndListdetail(String appid,String appsta) {
+		List<PO_SigningProcessBean>  prolist = null;
+		String poid="Po"+appid.substring(2);
+		prolist =pO_SigningProcessService.selectpoid(poid);
+		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create() ; 
+		String json =null;
+
+         if(prolist!=null){
+        	 json = gson.toJson(prolist) ;
+        }
+
+        if(json!=null) {
         	return new JSONArray(json);
         }
         return null;
