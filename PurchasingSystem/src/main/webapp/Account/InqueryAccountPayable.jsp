@@ -55,7 +55,14 @@
 			</c:forEach>
 			</tbody>
 		</table>
+		<form action="ShowInvoice.xls" enctype="multipart/form-data" method="post">  
+    <input type="submit" value="下載Excel檔"></input>     
+</form>  
+		<form action="ShowInvoice.pdf" enctype="multipart/form-data" method="post">  
+    <input type="submit" value="下載Pdf檔"></input>     
+</form>  
 	</c:if>
+	
 	<script src="../js/app.js"></script>
 </body>
 </html>
