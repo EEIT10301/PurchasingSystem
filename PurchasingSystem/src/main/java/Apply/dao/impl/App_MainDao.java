@@ -33,9 +33,9 @@ public class App_MainDao implements App_MainIDao{
 		sessionFactory.getCurrentSession().beginTransaction();
 
 		App_MainIDao productDAO = (App_MainIDao) context.getBean("app_MainDao");
-		App_MainBean xs=new App_MainBean("ap20181013001","emp001","零組件",6000);
+		//App_MainBean xs=new App_MainBean("ap20181013001","emp001","零組件",6000);
 		
-		productDAO.update(xs);
+		//productDAO.update(xs);
 		sessionFactory.getCurrentSession().getTransaction().commit();
 		sessionFactory.getCurrentSession().beginTransaction();
 		App_MainBean select =productDAO.select("ap20181013001");

@@ -7,40 +7,18 @@
 <head>
 <meta charset="UTF-8">
 <title>新增詢價單</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<%-- 	<form action="<c:url value="/Po/queryinsert.controller"/>" --%>
-	<!-- 		method="post"> -->
-	<%-- 		<c:if test="${not empty query}"> --%>
-	<!-- 			<table border="1"> -->
-	<!-- 				<tr> -->
-	<!-- 					<th>採購單ID</th> -->
-	<!-- 					<th>廠商</th> -->
-	<!-- 					<th>總價</th> -->
-	<!-- 					<th></th> -->
-	<!-- 				</tr> -->
-	<!-- 				<tr> -->
-	<%-- 					<td><input type="hidden" name="po_ID" value="${query.po_id}">${query.po_id}</td> --%>
+	
 
-	<!-- 					<td><select name="vendor_ID"> -->
-	<%-- 							<c:forEach var="queryVendor" items="${AllPO_Vendor1}"> --%>
-	<%-- 								<option value="${queryVendor.vendor_id}">${queryVendor.vendor_name}</option> --%>
-	<%-- 							</c:forEach> --%>
-	<!-- 					</select></td> -->
-	<!-- 					<td><input type="text" name="po_totalprice"></td> -->
-	<!-- 				</tr> -->
-	<!-- 			</table> -->
-	<%-- 			<input type="hidden" name="po_sta" value="${po_sta}"> --%>
-	<%-- 			<input type="hidden" name="po_id" value="${po_id}"> --%>
-	<%-- 			<input type="hidden" name="po_manger" value="${po_manger}"> --%>
-	<!-- 			<input type="submit" name="send" value="新增"> -->
-	<%-- 		</c:if> --%>
-	<!-- 	</form> -->
-
-			
 	<form action="<c:url value="/Po/queryinsert.controller"/>" method="post">
 	<c:if test="${not empty query}">		
-	<table border="1">					
+	<input class="form-control" id="myInput" type="text" placeholder="Search"><br/>
+	<table class="table table-striped table-hover">				
+				<thead>
 				<tr>
 					<th>採購單ID</th>
 					<th>料號</th>
@@ -49,6 +27,8 @@
 					<th>廠商</th>
 					<th>單價</th>
 				</tr>
+				</thead>
+				<tbody id='myTable'>
 				<c:forEach var="pODetailBean" items="${allPO_Deatil}">
 				<tr>
 					<td><input type="hidden" name="po_ID" value="${query.po_id}">${query.po_id}</td>
@@ -64,6 +44,7 @@
 					<td><input type="text" name="po_totalprice"></td>
 				</tr>				
 			</c:forEach>
+			</tbody>
 			</table>			
 			
 			<input type="hidden" name="po_sta" value="${po_sta}">
@@ -73,5 +54,6 @@
 						
 			</c:if>
 			</form>	
+		<script src="../js/app.js"></script>
 </body>
 </html>
