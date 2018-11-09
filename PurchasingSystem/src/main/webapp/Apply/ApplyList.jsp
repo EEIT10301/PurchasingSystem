@@ -5,7 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<title>請購清單</title>
 <c:if test="${cartnumber<=0}">
 	<%
 		request.setAttribute("cate", "尚無加入請購產品");
@@ -19,145 +22,58 @@
 	%>
 </c:if>
 <style>
-body {
-	background-repeat: no-repeat;
-	background-size: 100%;
-	margin: 0;
-	padding: 0;
-	font-family: '微軟正黑體';
-	background-attachment: fixed;
-}
 
-#back {
-	z-index: -1;
-	width: 100%;
-	height: 100%;
-	position: fixed;
-	background-color: rgba(255, 255, 255, 0.5);
-}
-
-.topTen {
-	height: 70%;
-	width: 180px;
-	border: 1px solid black;
-	position: fixed;
-	top: 210px;
-	left: 0;
-	z-index: 99;
-	overflow-y: scroll;
-	padding-left: 20px;
-}
-
-.prolist {
-	display: flex;
-	width: 70%;
-	margin: 0 auto;
-	flex-wrap: wrap;
-}
-
-.prolist {
-	display: flex;
-	margin: 0 auto;
-	flex-wrap: wrap;
-}
-
-.pro {
-	flex: 0 0 33.3;
-	margin: 10px;
-}
-
-.pro img {
-	width: 300px;
-	height: 300px;
-}
-
-.pro1 {
-	flex: 0 0 33.3;
-	margin: 10px;
-	text-align: center;
-}
-
-.pro1 img {
-	width: 100px;
-	height: 100px;
-}
-
-.pro1 text {
-	width: 500px;
-	heigt: 400px background-color: white;
-	font-size: 1.05em;
-}
-
-.pro p {
-	text-align: center;
-}
-
-.pro input {
-	width: 150px;
-	background-color: white;
-	font-size: 1.05em;
-}
-
-#history {
-	padding-left: 250px;
-}
 </style>
 </head>
 <body>
 	<h3>${cate}</h3>
 	<h3>${errors.cate}</h3>
-	<div class="prolist">
+<input class="form-control" id="myInput" type="text" width="300px" placeholder="Search"><br/>
+ <table class="table table-striped table-hover">
+               <thead>
+			     <tr>
+				<th>料號</th>
+				<th>產品名稱</th>
+				<th>產品大項</th>
+				<th>規格簡述</th>
+				<th>規格詳述</th>
+				<th>平均購買價格</th>
+				<th>請購數量</th>
+                 <th>該筆總金額</th>
+			     </tr>
+			    </thead>
 		<c:forEach var="pro" items="${cart}">
 		 <c:if test="${pro.pro_amount>0}">
-			<div class='pro'>
 				<form action="<c:url value="/Apply/ApplyListsend.controller" />"
 					method="post">
-					<p>料號:${pro.part_no}
-					<p>
-					<p>產品名稱:${pro.pro_name}
-					<p>
-					<p>產品大項:${pro.pro_cate}
-					<p>
-					<p>規格簡述:${pro.pro_spe}
-					<p>
-					<p>規格詳述:${pro.pro_intro}
-					<p>
-					<p>平均購買價格:${pro.pro_price}
-					<p>
-					<p>
-						請購數量:<input type="text" name="pro_amount"
-							value="${pro.pro_amount}">
-					<p>
-					<p>該筆總金額: ${pro.pro_amount*pro.pro_price} 元整
-					<p>
-						<Input type='hidden' name=part_no value='${pro.part_no}'>
-					<P />
+               <tbody id='myTable'>
+                    <tr>	
+                    <td>${pro.part_no}</td>
+                    <td>${pro.pro_name}</td>
+					<td>${pro.pro_cate}</td>
+					<td>${pro.pro_spe}</td>
+					<td>${pro.pro_intro}</td>
+					<td>${pro.pro_price}</td>
+	                <td><input type="text" name="pro_amount" value="${pro.pro_amount}"></td>
+					<td> ${pro.pro_amount*pro.pro_price} 元整</td>
+					<td><Input type='hidden' name=part_no value='${pro.part_no}'>
 					<Input type='hidden' name='pro_cate' value='${pro.pro_cate}'>
-					<P />
 					<Input type='hidden' name='pro_name' value='${pro.pro_name}'>
-					<P />
 					<Input type='hidden' name='pro_spe' value='${pro.pro_spe}'>
-					<P />
 					<Input type='hidden' name='pro_intro' value='${pro.pro_intro}'>
-					<P />
 					<Input type='hidden' name='pro_price' value='${pro.pro_price}'>
-					<P />
 					<Input type='hidden' name='pro_amount' value='${pro.pro_amount}'>
-					<P />
 					<Input type='hidden' name='pro_img' value='${pro.pro_img}'>
-					<P />
-					<Input type='hidden' name='pro_date' value='${pro.pro_date}'>
-					<P />
-					<Input type='submit' name='send' value='修改數量'> <Input
-						type='submit' name='send' value='刪除此項產品'>
+				    <Input type='hidden' name='pro_date' value='${pro.pro_date}'></td>
+					<td><Input type='submit' name='send' value='修改數量'> </td>
+					<td><Input type='submit' name='send' value='刪除此項產品'></td>
+					</tr>
+				</tbody>
 				</form>
-			</div>
 			</c:if>
-		</c:forEach>
-	</div>
-	<div class="prolist">
-		<div class='pro'>
-				<p>請購總價格:${Listprice}
+		</c:forEach>	
+					</table>	
+				<p>請購總價格:${Listprice}</p>
 			<form action="<c:url value="/Apply/ApplyListsend.controller" />"
 				method="post">
 				<p>
@@ -176,8 +92,7 @@ body {
 				<select name="Sign2Employee">
 　                                   <option value="${sign2.emp_id}">${sign2.emp_dep}: ${sign2.emp_name}經理</option>
                 <option value="emp002">研發部: 丁老闆 經理</option>
-　                                  <option value="emp011">研發部: 王憲春 經理</option>
-　  
+　                                  <option value="emp011">研發部: 王憲春 經理</option> 
              </select>
              <p>
              <c:if test="${not empty sign3}">
@@ -189,7 +104,6 @@ body {
 					<Input type='submit' name='send' value='產生請購單'> <Input
 						type='submit' name='send' value='刪除此次請購'>
 			</form>
-		</div>
-	</div>
+<script src="../js/app.js"></script>			
 </body>
 </html>
