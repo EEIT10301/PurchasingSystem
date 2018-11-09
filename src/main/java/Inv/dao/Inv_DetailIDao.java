@@ -5,6 +5,9 @@ import java.util.List;
 import Inv.model.Inv_DetailBean;
 
 public interface Inv_DetailIDao {
+	// new
+	public abstract List<Inv_DetailBean> select(String Inv_Part_no);
+	
 	public abstract Inv_DetailBean select(String Inv_Part_no,String Inv__Date);
 
 	public abstract List<Inv_DetailBean> select();
