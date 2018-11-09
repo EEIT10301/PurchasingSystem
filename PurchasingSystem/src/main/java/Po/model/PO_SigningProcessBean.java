@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.google.gson.annotations.Expose;
+
 import Apply.model.EmployeeBean;
 
 //PO_SigningProcessUionPKID
@@ -18,14 +20,23 @@ import Apply.model.EmployeeBean;
 @Table(name = "PO_SigningProcess")
 @IdClass(value=PO_SigningProcessUionPKID.class)
 public class PO_SigningProcessBean {
+@Expose	
 private String po_manger;
+@Expose
 private String po_sta;
+@Expose
 private String po_id;
+@Expose
 private java.util.Date sig_date;
+@Expose
 private String sig_sta;
+@Expose
 private String sig_sug;
+@Expose
 private Integer sig_rank;
+@Expose
 private PO_MainBean pO_MainBean;
+@Expose
 private EmployeeBean employeeBean;
 
 

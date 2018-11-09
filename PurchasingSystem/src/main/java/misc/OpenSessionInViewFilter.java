@@ -10,8 +10,8 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletRequest;
 
-import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.WebApplicationContext;
@@ -36,7 +36,8 @@ public class OpenSessionInViewFilter implements Filter {
 			chain.doFilter(req, resp);
 			sessionFactory.getCurrentSession().getTransaction().commit();
 			//sessionFactory.openSession().getTransaction().commit();
-		} catch (HibernateException e) {
+		} catch (Exception e) {
+			((HttpServletRequest) req).getRequestURI();
 			e.printStackTrace();
 			sessionFactory.getCurrentSession().getTransaction().rollback();
 			chain.doFilter(req, resp);

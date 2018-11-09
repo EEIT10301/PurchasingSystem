@@ -16,9 +16,9 @@
 	<h3>${applyok}</h3>
 	<c:if test="${user.emp_level==1}">
 		<a href='ApplySend.jsp'>請購申請 </a>
-		<a href='http://localhost:8080/PurchasingSystem/selectAll.html'>物料更新 </a>
-		
+		<a href='http://localhost:8080/PurchasingSystem/Apply/selectAll.html'>物料更新 </a>	
 	</c:if>
+		<a href='http://localhost:8080/PurchasingSystem/Apply/ApplySearchEndList.html'>已結案單子查詢 </a>
 	<%-- <c:if test="${user.emp_level!=1}"> --%>
 	<a href='toApplySignnerdetail.controller'>待簽核請購單</a>
 	<%-- </c:if> --%>

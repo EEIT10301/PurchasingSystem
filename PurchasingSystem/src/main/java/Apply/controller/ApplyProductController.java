@@ -31,7 +31,7 @@ public class ApplyProductController {
 	ProductListService productListService;
 	@Autowired
 	AppDetailService appDetailService;
-	@RequestMapping(path="/SearchCusmvc.do")
+	@RequestMapping(path="/Apply/SearchCusmvc.do")
 	@ResponseBody
 	public JSONArray SelectAll() {
 		 List<ProductListBean>  list = null;
@@ -42,7 +42,7 @@ public class ApplyProductController {
 		String json = gson.toJson(list) ;
 		return new JSONArray(json);
 	}
-	@RequestMapping(value="/SearchCus.do", produces ="text/html; charset=utf-8" )
+	@RequestMapping(value="/Apply/SearchCus.do", produces ="text/html; charset=utf-8" )
 	public 	@ResponseBody String SelectAllAJAX() throws IOException, ParseException {
 		 List<ProductListBean>  list = null;
 		list = productListService.selectAll();
@@ -54,7 +54,7 @@ public class ApplyProductController {
 		String json = gson.toJson(list) ;
 	    return json;
 	}
-	@RequestMapping(value="/RemoveCus.do", produces ="text/html; charset=utf-8" )
+	@RequestMapping(value="/Apply/RemoveCus.do", produces ="text/html; charset=utf-8" )
 	public 	@ResponseBody String UpdateAJAX(HttpServletRequest request) throws IOException, ParseException {
 		String jsonStr = readJSON(request);
 		JSONObject jsonObj = new JSONObject(jsonStr);
@@ -87,7 +87,7 @@ public class ApplyProductController {
 		while ((line = reader.readLine())!= null) {json.append(line);}
 		return json.toString();
 	};
-	@RequestMapping(value="/insertproduct.do", produces ="text/html; charset=utf-8" )
+	@RequestMapping(value="/Apply/insertproduct.do", produces ="text/html; charset=utf-8" )
 	public 	@ResponseBody String InsertAJAX(HttpServletRequest request) throws IOException, ParseException {
 		String jsonStr = readJSON(request);
 		JSONObject jsonObj = new JSONObject(jsonStr);
@@ -109,7 +109,7 @@ public class ApplyProductController {
 		
 		return "1";
 	}
-	@RequestMapping(value="/searchproduct.do", produces ="text/html; charset=utf-8" )
+	@RequestMapping(value="/Apply/searchproduct.do", produces ="text/html; charset=utf-8" )
 	public @ResponseBody String SearchAJAX(HttpServletRequest request) throws IOException, ParseException {
 //		String jsonStr = readJSON(request);
 //		JSONObject jsonObj = new JSONObject(jsonStr);
@@ -131,16 +131,20 @@ public class ApplyProductController {
 		
 		return "indexlogin.return";
 	}	
-@RequestMapping(path="/UpdateOrDeleteproduct.do")
+@RequestMapping(path="/Apply/UpdateOrDeleteproduct.do")
 @ResponseBody
 public JSONArray SearchJquery(HttpServletRequest request,String id,String Account
 		,String Password,String Button) throws IOException, ParseException {
 	List<AppDetailBean>  list = null;
 	list = appDetailService.selectpart_no(id);
-	Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create() ; 
-	String json = gson.toJson(list) ; 
-	JSONArray x =new JSONArray(json);
-	return x;	     
+	if(list!=null) {
+		
+		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create() ; 
+		String json = gson.toJson(list) ; 
+		JSONArray x =new JSONArray(json);
+		return x;	     
+	}
+	return null;	
 	}
 	
 }

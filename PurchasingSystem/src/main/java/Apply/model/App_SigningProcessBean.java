@@ -11,19 +11,30 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.google.gson.annotations.Expose;
+
 
 @Entity
 @Table(name = "App_SigningProcess")
 @IdClass(value=App_SigningProcessUionPKID.class) 
 public class App_SigningProcessBean {
+@Expose
 private String app_manger;
+@Expose
 private String app_sta;
+@Expose
 private String app_id;
+@Expose
 private java.util.Date sig_date;
+@Expose
 private String sig_sta;
+@Expose
 private String sig_sug;
+@Expose
 private Integer sig_rank;
+@Expose
 private App_MainBean app_MainBean;
+@Expose
 private EmployeeBean employeeBean;
 public App_SigningProcessBean(String app_manger, String app_sta, String app_id, Date sig_date, String sig_sta,
 		String sig_sug, Integer sig_rank) {

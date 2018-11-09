@@ -2,13 +2,12 @@
 <html>
 <head>
 <meta charset="BIG5">
-<title>Insert title here</title>
+<title>物料請購情形</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-<a href='http://localhost:8080/PurchasingSystem/selectAll.html'>物料更新</a>
 <input type="hidden" id="ID" disabled="disabled">
 <input type="hidden" id="Account">
 <input type="hidden" id="Password">
@@ -37,11 +36,15 @@ $(document).ready(function(){
 	$("#Account").val(object[1].split("=")[1])
 	$("#Password").val(object[2].split("=")[1])
 	$.ajax({
-		url:"UpdateOrDeleteproduct.do",
+		url:"../Apply/UpdateOrDeleteproduct.do",
 		type:"POST",
 		data:{Button:event.target.value,id:$("#ID").val(),Account:$("#Account").val(),Password:$("#Password").val()},
 		success:function(data){
-				var txt = ""			
+				var txt = ""
+				if(data.myArrayList==null){
+					alert("無下單紀錄");
+				  window.location.href='http://localhost:8080/PurchasingSystem/Apply/selectAll.html';
+				}
 				$.each(data.myArrayList,function(index,json){
 					//alert(json.map.productListBean.pro_name);
 					txt += "<tr>";
@@ -70,5 +73,6 @@ $("#myInput").on("keyup", function() {
 	
 });
 </script>
+<a href='http://localhost:8080/PurchasingSystem/Apply/selectAll.html'>物料更新</a>
 </body>
 </html>

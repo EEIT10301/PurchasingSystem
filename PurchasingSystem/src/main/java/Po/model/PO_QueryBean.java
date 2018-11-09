@@ -11,17 +11,25 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.google.gson.annotations.Expose;
+
 import Account.model.PO_Vendor_InfoBean;
 //PO_QueryUionPKID
 @Entity
 @Table(name = "PO_Query")
 @IdClass(value=PO_QueryUionPKID.class)
 public class PO_QueryBean {
+@Expose
 private String po_ID;
+@Expose
 private String	vendor_ID;
+@Expose
 private java.util.Date	po_querydate;
+@Expose
 private Integer	po_totalprice;
+@Expose
 private PO_Vendor_InfoBean pO_Vendor_InfoBean;
+
 private PO_MainBean pO_MainBean;
 public PO_QueryBean(String po_ID, String vendor_ID, Date po_querydate, Integer po_totalprice) {
 	super();
