@@ -15,12 +15,14 @@ import Apply.model.ProductListBean;
 import Apply.service.ProductListService;
 import Inv.model.Inv_DetailBean;
 import Inv.model.Inv_MainBean;
+import Inv.model.Inv_SigningProcessBean;
 import Inv.service.AdditemServie;
 import Inv.service.Inv_DetailService;
 import Inv.service.Inv_MainSerivce;
+import Inv.service.Inv_SigningProcessService;
 
 @Controller
-public class InvWareHouseController {
+public class InvtestController {
 
 	@Autowired
 	AdditemServie additemServie;
@@ -32,6 +34,8 @@ public class InvWareHouseController {
 	ProductListService productListService;
 	@Autowired
 	Inv＿ProductCheckService inv＿ProductCheckService;
+	@Autowired
+	Inv_SigningProcessService inv_SigningProcessService;
 
 	@RequestMapping("/Inv/item")
 	public String Allitem(Model model , Integer pageSize, Integer pageNo) {
@@ -72,13 +76,15 @@ public class InvWareHouseController {
 		System.out.println("這是庫存增加controller");
 		HashMap<String, String> error = new HashMap<String, String>();
 		Inv＿ProductCheckBean Check = additemServie.selectCheck(CheckPK);
+		Inv_SigningProcessBean signing = inv_SigningProcessService.select("驗收", CheckPK);
 		List<Inv_ProductListBean> Count =null ;
 		// 加入倒清單內部
 		Inv_MainBean bean = null;
 		Inv_DetailBean Detailbean = null;
 		Count = additemServie.selectCount(CheckPK);
 		// 加入倒清單內部
-		if (CheckPK != null && Check.getChk_Comment().equals("驗收狀況良好")) {
+		if(signing!=null && signing.getSig_Sug().equals("驗收成功")) {
+//		if (CheckPK != null && Check.getChk_Comment().equals("驗收狀況良好")) {
 			if (Count!=null&&Count.size() > 0) {
 				for (Inv_ProductListBean getones : Count) {
 					if (getones.getChk_status().equals("驗收完畢")) {
@@ -101,7 +107,7 @@ public class InvWareHouseController {
 					Detailbean.setInv_Amounts(null);
 					inv_Detailservice.insert(Detailbean);
 //					inv_MainSerivce.update(bean);	
-					getones.setChk_status("驗收完畢產品已入庫");
+				//	getones.setChk_status("驗收完畢產品已入庫");
 //					additemServie.update(getones);
 					}else {
 						
@@ -109,7 +115,7 @@ public class InvWareHouseController {
 					}
 				}
 				System.out.println("這是測試看數字的"+i);
-				Check.setChk_Comment("已新增至庫存");
+				//Check.setChk_Comment("已新增至庫存");
 //				inv＿ProductCheckService.update(Check);
 			}else {
 				error.put("notFind", "無法入庫，請重新確認產品內容");
