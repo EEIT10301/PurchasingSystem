@@ -44,13 +44,13 @@ public class POStatementController {
 		EmployeeBean empbean = (EmployeeBean) session.getAttribute("user");
 		String EmpId = empbean.getEmp_id();
 		if (empbean.getEmp_level() == 1) {// 如果是非主管的員工
-			List<PO_SigningProcessBean> Statement = pO_SigningProcessService.selectempID(EmpId);
+			List<PO_SigningProcessBean> Statement = pO_SigningProcessService.selectpo_sta("產生採購單");
 			model.addAttribute("POList", Statement);
 			return "POSignStatement.do";
 		}
 
 		else {
-			List<PO_SigningProcessBean> Statement = pO_SigningProcessService.selectempID(EmpId);
+			List<PO_SigningProcessBean> Statement = pO_SigningProcessService.selectpo_sta("產生採購單");
 			model.addAttribute("POList", Statement);
 			return "POSignStatement.do";
 			

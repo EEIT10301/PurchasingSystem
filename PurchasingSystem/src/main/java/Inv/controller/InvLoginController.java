@@ -57,7 +57,7 @@ public String invLogin(String username, String password, Model model, HttpSessio
 @RequestMapping("/Inv/InvLogout.controller")
 public String poLogout(String username, String password, Model model, HttpSession session) {
 	session.removeAttribute("user");
-	return "Invlogin.errors";
+	return "indexlogin.return";
 }
 
 }

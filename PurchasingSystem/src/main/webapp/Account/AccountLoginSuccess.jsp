@@ -14,68 +14,68 @@
 <style>
 .bg {
 	background-color: #FDF5E6;
-	/* 畫面間距 */
-	margin: 30px;
 }
 
 .f {
 	/* 方格排列 */
 	display: inline-block;
 	width: 13rem;
-	height: 14rem;
+	height: 16rem;
 }
 
-.imgp {
-	padding: 10px;
+.m {
+	/* 畫面內縮 */
+	margin: 30px;
 }
 </style>
 </head>
 
-<body class="bg">
+<body class="bg m">
 	<h3>財務系統</h3>
 	<div class="text-right">
 	${user.emp_dep}/${user.emp_name} ${user.emp_job},你好
-	<a href='AccountLogout.controller'><button type="button" class="btn">登出</button></a></div>
+	<a href='AccountLogout.controller'><button type="button" class="btn btn-primary btn-sm">登出</button></a>
+	</div>
 	<div class="text-center">
 		<hr>
 		<c:if test="${user.emp_level==2}">
 			<div class="card bg-light f">
-				<a href="ToDoAssignInvoice.controller" class="btn"> <img
-					class="card-img-top imgp" src="../sysimg/s1.png"></a>
+				<a href="ToDoAssignInvoice.controller" class="btn"> 
+				<img class="card-img-top" src="../sysimg/s1.png" style="padding: 10px;"></a>
 				<div class="card-body">
 					<h5 class="card-title">待分派請款單</h5>
 				</div>
 			</div>
 			<div class="card bg-light f">
-				<a href="ToDoSignInvoice.controller" class="btn"><img
-					class="card-img-top imgp" src="../sysimg/s2.png"></a>
+				<a href="ToDoSignInvoice.controller" class="btn">
+				<img class="card-img-top" src="../sysimg/s2.png" style="padding: 10px;"></a>
 				<div class="card-body">
-					<h5 class="card-title">待審核請款單</h5>
+					<h5 class="card-title">待簽核請款單</h5>
 				</div>
 			</div>
 
 		</c:if>
 		<c:if test="${user.emp_level==1}">
 			<div class="card bg-light f">
-				<a href="ToDoSignlevel1.controller" class="btn"><img
-					class="card-img-top imgp" src="../sysimg/s2.png"></a>
+				<a href="ToDoSignlevel1.controller" class="btn"><img class="card-img-top" src="../sysimg/s2.png"
+					style="padding: 10px;"></a>
 				<div class="card-body">
-					<h5 class="card-title">待審核請款單</h5>
+					<h5 class="card-title">待簽核請款單</h5>
 				</div>
 			</div>
 		</c:if>
 		<div class="card bg-light f">
-			<a href="StatusMainAcc.jsp" class="btn"><img
-				class="card-img-top imgp" src="../sysimg/s4.png"></a>
+			<a href="StatusMainAcc.jsp" class="btn"><img class="card-img-top" src="../sysimg/s4.png"
+				style="padding: 10px;"></a>
 			<div class="card-body">
 				<h5 class="card-title">查詢請款單狀態</h5>
 			</div>
 		</div>
 		<div class="card bg-light f">
-			<a href="ShowAccountPayableList.controller" class="btn"><img
-				class="card-img-top imgp" src="../sysimg/s3.png"></a>
+			<a href="ShowAccountPayableList.controller" class="btn"><img class="card-img-top" src="../sysimg/s3.png"
+				style="padding: 10px;"></a>
 			<div class="card-body">
-				<h5 class="card-title">查詢廠商帳款明細</h5>
+				<h5 class="card-title">查詢廠商款項明細</h5>
 			</div>
 		</div>
 	</div>
