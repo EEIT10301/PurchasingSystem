@@ -33,6 +33,10 @@ $(document).ready(function(){
 			type:"GET",
 			success:function(data){
 					var txt = ""
+							if(data.myArrayList==null){
+								alert("無結案請購單");
+							  window.location.href='http://localhost:8080/PurchasingSystem/Apply/ApplyLoginSuccess.jsp';
+							}
 					$.each(data.myArrayList,function(index,json){
 						txt += "<tr >";
 						txt += "<td id='appid'><a href='http://localhost:8080/PurchasingSystem/Apply/ApplySearchEndListDetail.html?appid="+json.map.app_id+"&appsta="+json.map.app_sta+"'>"+json.map.app_id+"</a></td>"
@@ -71,13 +75,18 @@ $("tbody").on("click","#insert",function(){
 				data : "{"+dataJSON+"}",
 				contentType:"application/json",
 				success : function(response) {
+					if(response==null){
+						alert("請勿新增重複料號");
+						//window.location.reload();
+					}else{				
 					alert("新增成功");
+					}
 					window.location.reload();
 				}
 			});
 		});
 $("tbody").on("click","#edit",function(){
-	$(this).parent().siblings("td:gt(2)").empty().append("<input type='text'/>");//全部清空變成input
+	$(this).parent().siblings("td:gt(0)").empty().append("<input type='text'/>");//全部清空變成input
 	//$(this)是#edit
 	//用#edit去更改除了自己以外的欄位,#edit的parent是一個td,這個td的siblings是td
 	var index = $(this).parent().siblings("td:first").text();//之後cancel放回原先值會用到
@@ -123,7 +132,7 @@ $("tbody").on("click","#update",function(){
 $("#editAll").click(function(){
 	var rowNum = $("tr #id:last").text(); //幾橫
 //	alert(rowNum);
-	$("tbody").children("tr").find("td:gt(2):lt(-1)").empty().append("<input type='text'/>");
+	$("tbody").children("tr").find("td:gt(0):lt(-1)").empty().append("<input type='text'/>");
 	//:gt(0)大於順數的第一個，:lt(-1)小於倒數的第二個
 	//如果只寫 $("tbody").find("td:gt(0)").empty();會只剩下第一筆的id因為是由tbody去算index的
 	

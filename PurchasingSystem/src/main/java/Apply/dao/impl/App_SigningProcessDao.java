@@ -281,10 +281,45 @@ public class App_SigningProcessDao implements App_SigningProcessIDao {
 	@Override
 	public List<App_SigningProcessBean> selectApp_staandSig_sta(String app_sta, String sig_sta) {
 		List<App_SigningProcessBean> list = null;
-		String hgl = "FROM App_SigningProcessBean where app_sta=:id1 and  sig_sta =:id2  order by Sig_Date desc";
+		String hgl = "FROM App_SigningProcessBean where app_sta=:id1 and  sig_sta=:id2  order by Sig_Date desc";
 		list =this.getSession().createQuery(hgl).setParameter("id1", app_sta).setParameter("id2", sig_sta).setMaxResults(50).list();
 		 if(list.size()>0) {
 			 return list;
+			 }
+		 else {
+			
+			 return null;
+		 }
+	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<App_SigningProcessBean> selectApp_staandSig_staemp(String app_sta, String sig_sta, String app_Manger) {
+		List<App_SigningProcessBean> list = null;
+		String hgl = "FROM App_SigningProcessBean where app_sta=:id1 and sig_sta=:id2 and app_Manger=:id3  order by Sig_Date desc";
+		list =this.getSession().createQuery(hgl).setParameter("id1", app_sta).setParameter("id2", sig_sta)
+				.setParameter("id3", app_Manger).setMaxResults(50).list();
+		 if(list.size()>0) {
+			 return list;
+			 }
+		 else {
+			
+			 return null;
+		 }
+	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public App_SigningProcessBean selectApp_idandSig_staAndApp_staEndlist(String app_id, String sig_sta,
+			String app_sta) {
+		List<App_SigningProcessBean> list = null;
+		App_SigningProcessBean thisbean=new App_SigningProcessBean();
+		String hgl = "FROM App_SigningProcessBean where app_id=:id1 and sig_sta=:id2 and app_sta=:id3  order by Sig_Date desc";
+		list =this.getSession().createQuery(hgl).setParameter("id1", app_id).setParameter("id2", sig_sta)
+				.setParameter("id3", app_sta).setMaxResults(50).list();
+		 if(list.size()>0) {
+			 for(App_SigningProcessBean x:list) {
+				 thisbean=x;
+			 }
+			 return thisbean;
 			 }
 		 else {
 			

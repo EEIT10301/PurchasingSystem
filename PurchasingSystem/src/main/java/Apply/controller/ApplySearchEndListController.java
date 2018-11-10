@@ -2,6 +2,8 @@ package Apply.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +14,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import Apply.model.App_SigningProcessBean;
-import Apply.model.ProductListBean;
+import Apply.model.EmployeeBean;
 import Apply.service.AppDetailService;
 import Apply.service.App_MainService;
 import Apply.service.App_SigningProcessService;
@@ -34,9 +36,15 @@ public class ApplySearchEndListController {
 	PO_SigningProcessService pO_SigningProcessService;
 	@RequestMapping(path="/Apply/SelectAllEndList.do")
 	@ResponseBody
-	public JSONArray SelectAllEndList() {
-		 List<App_SigningProcessBean>  list = null;
-		list = app_SigningProcessService.selectApp_staandSig_sta("請購核准","請購單完成");
+	public JSONArray SelectAllEndList(HttpSession session) {
+		//selectApp_staandSig_staemp
+		EmployeeBean user= (EmployeeBean) session.getAttribute("user"); 
+		List<App_SigningProcessBean>  list = null;
+		if(user.getEmp_level()==1) {
+			list = app_SigningProcessService.selectApp_staandSig_staemp("申請中","已簽核",user.getEmp_id());
+		}else {
+			list = app_SigningProcessService.selectApp_staandSig_sta("請購核准","請購單完成");
+		}
         if(list!=null) {
         	
         	Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create() ; 

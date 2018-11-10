@@ -66,7 +66,7 @@
 					<Input type='hidden' name='pro_img' value='${pro.pro_img}'>
 				    <Input type='hidden' name='pro_date' value='${pro.pro_date}'></td>
 					<td><Input type='submit' name='send' value='修改數量'> </td>
-					<td><Input type='submit' name='send' value='刪除此項產品'></td>
+					<td><Input type='submit' name='send' value='刪除'></td>
 					</tr>
 				</tbody>
 				</form>
