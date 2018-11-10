@@ -43,9 +43,9 @@
 </style>
 </head>
 <body class="bg">
-	<h3>採購系統</h3>
-	<div class="text-right">
-		${user.emp_id}/${user.emp_name} ${user.emp_job},你好 <a
+	<h3><font face="微軟正黑體">採購系統</font></h3>
+	<div class="text-right" style="font-family:微軟正黑體;">
+		${user.emp_id}/${user.emp_name} ${user.emp_job},你好<a
 			href='POLogout.controller'><button type="button" class="btn">登出</button></a>
 	</div>
 	<hr>
@@ -53,51 +53,51 @@
 		<br> <span>${sendok}</span>
 
 		<c:if test="${user.emp_level==1}">
-			<div class="card bg-light f">
+			<div class="card bg-light f" style="font-family:微軟正黑體;">
 				<a href='selectprice.controller' class="btn" style="height:2em"><img
 					class="card-img-top imgp" src="../sysimg/s1.png" style="height:35px; width:30px; float:left">待詢價採購單</a>
 			</div>
-			<div class="card bg-light f">
+			<div class="card bg-light f" style="font-family:微軟正黑體;">
 				<a href='signedorder.controller' class="btn" style="height:2em"><img
 					class="card-img-top imgp" src="../sysimg/s2.png" style="height:35px; width:30px; float:left">待下單採購單</a>
 			</div>
-			<div class="card bg-light f">
+			<div class="card bg-light f" style="font-family:微軟正黑體;">
 				<a href='placedOrder.controller' class="btn" style="height:2em"><img
 					class="card-img-top imgp" src="../sysimg/s2.png" style="height:35px; width:30px; float:left">待收貨採購單</a>
 			</div>
-			<div class="card bg-light f">
+			<div class="card bg-light f" style="font-family:微軟正黑體;">
 				<a href='POManagerSigner.controller' class="btn" style="height:2em"><img
 					class="card-img-top imgp" src="../sysimg/s2.png" style="height:35px; width:30px; float:left">待審核採購單</a>
 			</div>
-			<div class="card bg-light f">
+			<div class="card bg-light f" style="font-family:微軟正黑體;">
 				<a href='POSignStatement.controller' class="btn" style="height:2em"><img
 					class="card-img-top imgp" src="../sysimg/s2.png" style="height:35px; width:30px; float:left">採購單狀態</a>
 			</div>
-			<div class="card bg-light f">
+			<div class="card bg-light f" style="font-family:微軟正黑體;">
 				<a href='Polist.controller' class="btn" style="height:2em"><img
 					class="card-img-top imgp" src="../sysimg/s2.png" style="height:35px; width:30px; float:left">待辦請款單</a>
 			</div>
-			<div class="card bg-light f">
+			<div class="card bg-light f" style="font-family:微軟正黑體;">
 				<a href='StatusMain.jsp' class="btn" style="height:2em"><img
 					class="card-img-top imgp" src="../sysimg/s2.png" style="height:35px; width:30px; float:left">查詢請款單</a>
 			</div>
-			<div class="card bg-light f">
+			<div class="card bg-light f" style="font-family:微軟正黑體;">
 				<a href='POFinalStatement.controller' class="btn" style="height:2em"><img
 					class="card-img-top imgp" src="../sysimg/s2.png" style="height:35px; width:30px; float:left">查詢已結案請款單</a>
 			</div>
 		</c:if>
 		<c:if test="${user.emp_level==2}">
-			<div class="card bg-light f">
+			<div class="card bg-light f" style="font-family:微軟正黑體;">
 				<a href='sendEmployee.controller' class="btn"><img
 					class="card-img-top imgp" src="../sysimg/s2.png"></a>
 				<p class="card-text">待分派採購單</p>
 			</div>
-			<div class="card bg-light f">
+			<div class="card bg-light f" style="font-family:微軟正黑體;">
 				<a href='POManagerSigner.controller' class="btn"><img
 					class="card-img-top imgp" src="../sysimg/s2.png"></a>
 				<p class="card-text">待審核採購單</p>
 			</div>
-			<div class="card bg-light f">
+			<div class="card bg-light f" style="font-family:微軟正黑體;">
 				<a href='todoSignInvoice.controller' class="btn"><img
 					class="card-img-top imgp" src="../sysimg/s2.png"></a>
 				<p class="card-text">待審核請款單</p>
