@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="BIG5">
+<title>物料請購情形</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<input type="hidden" id="ID" disabled="disabled">
+<input type="hidden" id="Account">
+<input type="hidden" id="Password">
+<input class="form-control" id="myInput" type="text" placeholder="Search"><br/>
+<table class="table table-striped table-hover">
+<thead>
+<tr>
+<th>請購單編號</th>
+<th>料號</th>
+<th>產品名稱</th>
+<th>請購預估價格</th>
+<th>請購數量</th>
+<th>請購單總價</th>
+<th>請購員工</th>
+<th>請購部門</th>
+</tr>
+</thead>
+<tbody id="selectAll"></tbody>
+</table>
+<script type="text/javascript" charset="utf-8" >
+$(document).ready(function(){
+	var url = location.href;
+	var result = url.split("?");
+	var object = result[1].split("&");
+	$("#ID").val(object[0].split("=")[1])
+	$("#Account").val(object[1].split("=")[1])
+	$("#Password").val(object[2].split("=")[1])
+	$.ajax({
+		url:"../Apply/UpdateOrDeleteproduct.do",
+		type:"POST",
+		data:{Button:event.target.value,id:$("#ID").val(),Account:$("#Account").val(),Password:$("#Password").val()},
+		success:function(data){
+				var txt = ""
+				if(data.myArrayList==null){
+					alert("無下單紀錄");
+				  window.location.href='http://localhost:8080/PurchasingSystem/Apply/selectAll.html';
+				}
+				$.each(data.myArrayList,function(index,json){
+					//alert(json.map.productListBean.pro_name);
+					txt += "<tr>";
+					txt += "<td>"+json.map.app_id+"</td>"
+					txt += "<td>"+json.map.part_no+"</td>"
+					txt += "<td>"+json.map.productListBean.map.pro_name+"</td>"
+					txt += "<td>"+json.map.pro_price+"</td>"
+					txt += "<td>"+json.map.app_amount+"</td>"
+					txt += "<td>"+json.map.app_MainBean.map.app_price+"</td>"
+					txt += "<td>"+json.map.app_MainBean.map.employeeBean.map.emp_name+"</td>"
+					txt += "<td>"+json.map.app_MainBean.map.employeeBean.map.emp_dep+"</td>"			
+					txt += "</tr>"
+				})
+				$("#selectAll").html(txt);	
+		}
+	});
+	
+$("#myInput").on("keyup", function() {
+		   var value = $(this).val().toLowerCase();
+		    $("#selectAll tr").filter(function() {
+		      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+		   });
+		});		
+	
+	
+	
+});
+</script>
+<a href='http://localhost:8080/PurchasingSystem/Apply/selectAll.html'>物料更新</a>
+</body>
+</html>

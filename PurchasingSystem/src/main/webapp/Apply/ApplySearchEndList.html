@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="BIG5">
+<title>已結案請購單查詢</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<input class="form-control" id="myInput" type="text" placeholder="Search"><br/>
+<table class="table table-striped table-hover">
+<thead>
+<tr>
+<th>請購單號</th>
+<th>結案時間</th>
+<th>請購項目</th>
+<th>申請部門</th>
+<th >申請人</th>
+<th>結案意見</th>
+<th >請購總價</th>
+</tr>
+</thead>
+<tbody id="selectAll">
+
+</tbody>
+</table>
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function(){
+	var row = 6;
+		$.ajax({
+			url:"SelectAllEndList.do",
+			type:"GET",
+			success:function(data){
+					var txt = ""
+					$.each(data.myArrayList,function(index,json){
+						txt += "<tr >";
+						txt += "<td id='appid'><a href='http://localhost:8080/PurchasingSystem/Apply/ApplySearchEndListDetail.html?appid="+json.map.app_id+"&appsta="+json.map.app_sta+"'>"+json.map.app_id+"</a></td>"
+						txt += "<td id='sigdate'>"+json.map.sig_date+"</td>"
+						txt += "<td id='procate'>"+json.map.app_MainBean.map.pro_cate+"</td>"
+						txt += "<td id='empdep'>"+json.map.app_MainBean.map.employeeBean.map.emp_dep+"</td>"
+						txt += "<td id='empname'>"+json.map.app_MainBean.map.employeeBean.map.emp_name+"</td>"						
+						txt += "<td id='sigsug'>"+json.map.sig_sug+"</td>"
+						txt += "<td id='appprice'>"+json.map.app_MainBean.map.app_price+"</td>"
+						txt +="<td><input type='hidden' id='edit' class='btn btn-default' value='修改'/>";
+						txt +="&nbsp;&nbsp;&nbsp;";
+						txt +="<input type='hidden' id='search' class='btn btn-default' value='查詢'/></td>";
+						txt += "</tr>"
+
+					})
+					$("#selectAll").html(txt);	
+			}
+		});
+$("tbody").on("click","#insert",function(){		
+			var dataJSON ="";
+			dataJSON +="";
+			for(i=0; i<=row; i++){
+				if(i==(row)){
+					dataJSON += '\"'+($(this).parent().siblings("td:eq("+i+")").attr("id"))+'\":\"'
+									+($(this).parent().siblings("td:eq("+i+")").children().val())+'\"';
+				}else{
+					dataJSON += '\"'+($(this).parent().siblings("td:eq("+i+")").attr("id"))+'\":\"'
+									+($(this).parent().siblings("td:eq("+i+")").children().val())+'\",';	
+				}
+			}
+			//alert(dataJSON);
+			
+			$.ajax({
+				url : "http://localhost:8080/PurchasingSystem/Apply/insertproduct.do",
+				type : 'POST',
+				data : "{"+dataJSON+"}",
+				contentType:"application/json",
+				success : function(response) {
+					alert("新增成功");
+					window.location.reload();
+				}
+			});
+		});
+$("tbody").on("click","#edit",function(){
+	$(this).parent().siblings("td:gt(2)").empty().append("<input type='text'/>");//全部清空變成input
+	//$(this)是#edit
+	//用#edit去更改除了自己以外的欄位,#edit的parent是一個td,這個td的siblings是td
+	var index = $(this).parent().siblings("td:first").text();//之後cancel放回原先值會用到
+//	alert(index);
+	$(this).parent().empty().append(
+			"<input type='button' id='update' class='btn btn-default' value='update'/>&nbsp;&nbsp;&nbsp;"+
+			"<input type='button' id='cancel' name='"+index+"' class='btn btn-default' value='cancel'/>");
+});		
+
+$("tbody").on("click","#cancel",function(){
+
+	window.location.reload();
+});
+
+$("tbody").on("click","#update",function(){	
+	var dataJSON ="";
+	dataJSON += '\"'+($(this).parent().siblings("td:eq(0)").attr("id"))+'\":\"'
+					+($(this).parent().siblings("td:eq(0)").text())+'\",';
+	for(i=1; i<=row; i++){
+		if(i==(row)){
+			dataJSON += '\"'+($(this).parent().siblings("td:eq("+i+")").attr("id"))+'\":\"'
+							+($(this).parent().siblings("td:eq("+i+")").children().val())+'\"';
+		}else{
+			dataJSON += '\"'+($(this).parent().siblings("td:eq("+i+")").attr("id"))+'\":\"'
+							+($(this).parent().siblings("td:eq("+i+")").children().val())+'\",';	
+		}
+	}
+	alert(dataJSON);
+
+	$.ajax({
+		url : "http://localhost:8080/PurchasingSystem/Apply/RemoveCus.do",
+		type : 'POST',
+		data : "{"+dataJSON+"}",
+		contentType:"application/json",
+		success : function(response) {
+			alert("更新成功");
+			window.location.reload();
+			
+		}
+	});
+});
+
+$("#editAll").click(function(){
+	var rowNum = $("tr #id:last").text(); //幾橫
+//	alert(rowNum);
+	$("tbody").children("tr").find("td:gt(2):lt(-1)").empty().append("<input type='text'/>");
+	//:gt(0)大於順數的第一個，:lt(-1)小於倒數的第二個
+	//如果只寫 $("tbody").find("td:gt(0)").empty();會只剩下第一筆的id因為是由tbody去算index的
+	
+	$("tbody td:last-child").empty().append("<input type='button' id='update' class='btn btn-default' value='update'/>&nbsp;&nbsp;&nbsp;");
+	
+	for(i=1; i<=rowNum; i++){			
+		$("tbody tr td:last-child:eq("+(i-1)+")").append("<input type='button' id='cancel' name='"+i+"' class='btn btn-default' value='cancel'/>");
+	}//↑加name避免按cancel回填時填錯;
+});
+
+$("#myInput").on("keyup", function() {
+			   var value = $(this).val().toLowerCase();
+			    $("#selectAll tr").filter(function() {
+			      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+			   });
+			});		
+				
+	});
+
+</script>
+<a href='http://localhost:8080/PurchasingSystem/Apply/ApplyLoginSuccess.jsp'>請購首頁</a>
+</body>
+</html>
