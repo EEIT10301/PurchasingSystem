@@ -159,6 +159,18 @@
 		<property name="url" value="/Po/POSignStatementDetail.jsp"></property>
 
 	</bean>
+	<!-- 採購單簽核表單請款已結案-->
+	<bean id="POFinalStatement.do"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Po/POFinalStatement.jsp"></property>
+
+	</bean>
+	<!-- 採購單簽核表單請款已結案 主檔內容-->
+	<bean id="POFinalStatementDetail.do"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Po/POFinalStatementDetail.jsp"></property>
+
+	</bean>
 	<!-- 採購使用連結 -->
 	<!-- 驗收使用連結 -->
 	<bean id="Invlogin.success"

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>採購分派作業</title>
 </head>
 <body>
 	<c:if test="${not empty appmain}">
@@ -61,8 +61,7 @@
 		</c:forEach>	 	
 		</select>
 		<br>
-		    分派意見:<p><textarea rows="5" cols="50"  name="SignSug">
-             </textarea><font color="red"></font><p>
+		    分派意見:<p><textarea rows="5" cols="50"  name="SignSug"></textarea></p>
 	       	<Input type='hidden' name='po_manger' value='${SigningProcess.po_manger}'>
 			<Input type='hidden' name='po_sta' value='${SigningProcess.po_sta}'>
 		    <Input type='hidden' name='po_id' value='${SigningProcess.po_id}'>
