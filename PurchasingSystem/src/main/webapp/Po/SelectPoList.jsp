@@ -6,38 +6,74 @@
 <head>
 <meta charset="UTF-8">
 <title>待詢價表單頁面</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style type="text/css">
+#submit{
+ position:absolute; 
+ right:700px; 
+}
+
+
+
+</style>
 </head>
 <body>
+
 	<c:if test="${not empty selectlists}">
-	<c:forEach var="poprocess" items="${selectlists}">
-	<c:if test="${poprocess.sig_rank==2}">
-	<p>採購單編號: ${poprocess.po_id}<p>
-	<p>分派主管: ${poprocess.employeeBean.emp_name}<p>
-	<p>主管分派時間: ${poprocess.sig_date}<p>
-    
-        <c:forEach var="poprocess1" items="${selectlists}">
-    <c:if test="${poprocess1.sig_rank==3 and poprocess1.po_id == poprocess.po_id}">
-<%--     <Input type='text' name='po_manger' value='${poprocess1.po_manger}'> --%>
-<%--     <Input type='text' name='po_sta' value='${poprocess1.po_sta}'> --%>
-<%-- 	<Input type='text' name='po_id' value='${poprocess1.po_id}'> --%>
-<%-- 	<Input type='text' name='sig_date' value='${poprocess1.sig_date}'> --%>
-<%--     <Input type='text' name='sig_sta' value='${poprocess1.sig_sta}'> --%>
-<%--     <Input type='text' name='sig_sug' value='${poprocess1.sig_sug}'> --%>
-<%--     <Input type='text' name='sig_rank' value='${poprocess1.sig_rank}'> --%>
-<!--     <Input type='submit' name='send' value='開始詢價'> -->
-<a href='<c:url value="sendthisselectlist.controller?po_manger=${poprocess1.po_manger}&po_sta=${poprocess1.po_sta}&po_id=${poprocess1.po_id}" />'>
-      開始詢價</a> 
-       
-    </c:if>
-	</c:forEach>
-	</c:if>
-    	</c:forEach>
-    	
+	
 
 	
+	<table class="table table-striped table-hover" id="table">
+	
+	
+	<thead>
+	<tr>
+	<th><input class="form-control" id="myInput" type="text" placeholder="Search"><br/></th>
+	</tr>
+	<tr>
+	<th width="200px">採購單編號</th>
+	<th width="200px">分派主管</th>
+	<th width="200px">主管分派時間 </th>
+	<th id="tosubmit"></th>
+	
+	</tr>
+	</thead>
+	<tbody>
+		<c:forEach var="poprocess" items="${selectlists}">
+	<c:if test="${poprocess.sig_rank==2}">
+	<tr>
+	<td>${poprocess.po_id}</td>
+	<td>${poprocess.employeeBean.emp_name}</td>
+	<td>${poprocess.sig_date}</td>
+
+	
+	<c:forEach var="poprocess1" items="${selectlists}">
+	<form  action="<c:url value="sendthisselectlist.controller?po_manger=${poprocess1.po_manger}&po_sta=${poprocess1.po_sta}&po_id=${poprocess1.po_id}" />"
+		method="post">
+    <c:if test="${poprocess1.sig_rank==3 and poprocess1.po_id == poprocess.po_id}">
+	
+	<td ><input  id="submit" type="submit" name="send" value="開始詢價"></td>
+			
+	 </c:if>
+	 </form>
+	</c:forEach>
+	</tr>
+	
 	</c:if>
+    	</c:forEach>
+	</tbody>
+
+
+	</table>
+
+
+	</c:if>
+
 	<c:if test="${empty noselectlists}">
 	<h2>${noselectlists}</h2>
 	</c:if>
+	<script src="../js/app.js"></script>
 </body>
 </html>
