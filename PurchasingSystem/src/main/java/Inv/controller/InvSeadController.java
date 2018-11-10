@@ -18,7 +18,9 @@ import Account.model.Inv＿ProductCheckBean;
 import Account.service.Accout_PayableService;
 import Account.service.Inv_ProductListService;
 import Account.service.Inv＿ProductCheckService;
+import Apply.model.App_SigningProcessBean;
 import Apply.model.EmployeeBean;
+import Apply.service.App_SigningProcessService;
 import Apply.service.EmployeeService;
 import Inv.model.Inv_SigningProcessBean;
 import Inv.service.Inv_SigningProcessService;
@@ -44,11 +46,13 @@ public class InvSeadController {
 	PO_SigningProcessService po_SigningProcessService;
 	@Autowired
 	Accout_PayableService accout_PayableService;
+	@Autowired
+	App_SigningProcessService app_SigningProcessService;
 
 	@RequestMapping("/Inv/changeinvprosta")
-	public String changeinvprosta(Integer chk_Count, String chk_quality, Inv_ProductListBean prochkdatilbean,
-			Inv＿ProductCheckBean prochkmain, Inv_SigningProcessBean bean, String chkstatus, Model model,
-			HttpSession session, String chk_Id, String part_No) throws ParseException {
+	public String changeinvprosta(String send, Integer chk_Count, String chk_quality,
+			Inv_ProductListBean prochkdatilbean, Inv＿ProductCheckBean prochkmain, Inv_SigningProcessBean bean,
+			String chkstatus, Model model, HttpSession session, String chk_Id, String part_No) throws ParseException {
 		Date date = new Date();
 		java.sql.Date date1 = new java.sql.Date(date.getTime());
 		SimpleDateFormat dateFormate = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -62,8 +66,8 @@ public class InvSeadController {
 		System.out.println(chkstatus);
 		System.out.println("sss");
 		model.addAttribute("secondsigningrocess", secondsigningrocess.getChk_status());
-		if ("驗收中".equals(secondsigningrocess1.getSig_Sta())||"再次驗收".equals(secondsigningrocess1.getSig_Sta())) {
-			secondsigningrocess1.setSig_Sta("驗收作業進行中");
+		if ("再次驗收".equals(secondsigningrocess.getChk_status())) {
+			secondsigningrocess.setChk_status("驗收中");
 		}
 		if ("驗收成功".equals(chkstatus)) {
 			secondsigningrocess.setChk_Count(chk_Count);
@@ -102,61 +106,67 @@ public class InvSeadController {
 		String now = dateFormate.format(date1);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Date dates = sdf.parse(now);
+		String ap_id = "Ap" + chkId.substring(2);
+		App_SigningProcessBean secondsigningrocess2 = app_SigningProcessService.select("申請中", ap_id);
 		Inv_SigningProcessBean secondsigningrocess1 = inv_SigningProcessService.select("驗收", chkId);
-        String po_id = "Po" + chkId.substring(2);
+		String po_id = "Po" + chkId.substring(2);
 		PO_SigningProcessBean posecondsigningrocess = po_SigningProcessService.select("驗收作業", po_id);
-		System.out.println("驗收單:"+chkId);
-		System.out.println("驗收狀態:"+sigSta);
-		if ("驗收作業進行中".equals(sigSta)) {
+		System.out.println("驗收單:" + chkId);
+		System.out.println("驗收狀態:" + sigSta);
+		if ("驗收中".equals(sigSta)) {
 			secondsigningrocess1.setSig_Date(dates);
 			secondsigningrocess1.setSig_Sta("驗收成功");
-			posecondsigningrocess.setSig_sug("驗收完成未請款");
+			secondsigningrocess2.setSig_sta("待結案");
+			posecondsigningrocess.setSig_sta("驗收完成未請款");
+			posecondsigningrocess.setSig_date(date);
 			accout_PayableService.createAccountPayable(chkId);
 			return "Invlogin.success";
-		} else if("驗收失敗".equals(sigSta)){
+		} else if ("驗收失敗".equals(sigSta)) {
 			secondsigningrocess1.setSig_Date(dates);
-		return"Invlogin.success";
+			return "Invlogin.success";
 		}
 		return "Invlogin.success";
 	}
+
 	@RequestMapping("/Inv/chkprofail.controller")
 	public String chkprofail(Model model, HttpSession session) {
-		EmployeeBean beans = (EmployeeBean)session.getAttribute("user");
-		List<Inv_SigningProcessBean> secondsigningrocess = inv_SigningProcessService.selectempidsend(beans.getEmp_managerid(), "驗收失敗");
+		EmployeeBean beans = (EmployeeBean) session.getAttribute("user");
+		List<Inv_SigningProcessBean> secondsigningrocess = inv_SigningProcessService
+				.selectempidsend(beans.getEmp_managerid(), "驗收失敗");
 		List<Inv_SigningProcessBean> selectlists = null;
-		selectlists=new LinkedList<Inv_SigningProcessBean>();
-		if(secondsigningrocess==null) {
-			model.addAttribute("noselectlists","無失敗驗收單");
+		model.addAttribute("bean2", secondsigningrocess);
+		selectlists = new LinkedList<Inv_SigningProcessBean>();
+		if (secondsigningrocess == null) {
+			model.addAttribute("noselectlists", "無失敗驗收單");
 			return "chkpro.fail";
-		}else {
-			for(int i=0;i<secondsigningrocess.size();i++) {
+		} else {
+			for (int i = 0; i < secondsigningrocess.size(); i++) {
 				Inv_SigningProcessBean x = secondsigningrocess.get(i);
 				Inv_SigningProcessBean xs = inv_SigningProcessService.select("驗收分派", x.getChk_Id());
-			if(xs!=null) {
-				selectlists.add(x);
-				selectlists.add(xs);
-			}
-			model.addAttribute("selsctlists",selectlists);
+				if (xs != null) {
+					selectlists.add(x);
+					selectlists.add(xs);
+				}
+				model.addAttribute("selsctlists", selectlists);
 			}
 			return "chkpro.fail";
 		}
-		
-		
+
 	}
-	@RequestMapping("/Inv/sendfailinvprolist.controller")
-	public String chkprosucces(String chk_id,Model model, HttpSession session) {
-		EmployeeBean beans = (EmployeeBean) session.getAttribute("user");
-		Inv＿ProductCheckBean invmain = inv＿ProductCheckService.select(chk_id);
-		Inv_SigningProcessBean bean2 = inv_SigningProcessService.select("驗收", chk_id);
-		bean2.setSig_Sta("再次驗收");
-		String invid = chk_id;
-		String invidonlynumber = "Po" + invid.substring(2);
-		PO_MainBean pomain = po_MainService.select(invidonlynumber);
-		model.addAttribute("invmain", invmain);
-		model.addAttribute("pomain", pomain);
-		model.addAttribute("Inv_SigningProcessBean", bean2);
-	return "Inv.sign";
-	}
+//	@RequestMapping("/Inv/sendfailinvprolist.controller")
+//	public String chkprosucces(String chk_id,Model model, HttpSession session) {
+//		EmployeeBean beans = (EmployeeBean) session.getAttribute("user");
+//		Inv＿ProductCheckBean invmain = inv＿ProductCheckService.select(chk_id);
+//		Inv_SigningProcessBean bean2 = inv_SigningProcessService.select("驗收", chk_id);
+//		bean2.setSig_Sta("再次驗收");
+//		String invid = chk_id;
+//		String invidonlynumber = "Po" + invid.substring(2);
+//		PO_MainBean pomain = po_MainService.select(invidonlynumber);
+//		model.addAttribute("invmain", invmain);
+//		model.addAttribute("pomain", pomain);
+//		model.addAttribute("Inv_SigningProcessBean", bean2);
+//	return "Inv.sign";
+//	}
 //	@RequestMapping("/Inv/restchkpro")
 //	public String restchkpro(String inv_manger, String inv_sta, String chk_id, Model model, HttpSession session) {
 //		

@@ -8,7 +8,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<c:if test="${not empty selsctlists || empty selectlist.sig_Sug}">
+<c:set var='chkprosta' value="驗收作業進行中"/>
+<c:if test="${not empty selsctlists || selectlistnofinish.sig_Sta==chkprosta}">
 	<c:forEach var="poprocess" items="${selsctlists}">
 	<c:if test="${poprocess.sig_Rank==2}">
 	<p>驗收單編號: ${poprocess.chk_Id}<p>
