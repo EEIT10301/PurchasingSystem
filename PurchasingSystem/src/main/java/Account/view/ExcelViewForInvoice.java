@@ -13,8 +13,6 @@ import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;  
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.springframework.web.servlet.view.document.AbstractXlsView;
 import org.springframework.web.servlet.view.document.AbstractXlsxView;
 
 import Account.model.Accout_PayableBean;  
@@ -59,27 +57,38 @@ public class ExcelViewForInvoice extends AbstractXlsxView{
 	            for (int i = 0; i < len; i++) {  
 	                row = sheet.createRow(i + 1);  
 	                cell = row.createCell(0, CellType.STRING);  
-	                cell.setCellValue(list.get(i).getAccoutpayable_no());  
+	                cell.setCellValue(list.get(i).getAccoutpayable_no()); 
+	                sheet.autoSizeColumn(0);
 	                cell = row.createCell(1, CellType.STRING);
-	                cell.setCellValue(list.get(i).getInv_id());  
+	                cell.setCellValue(list.get(i).getInv_id());
+	                sheet.autoSizeColumn(1);
 	                cell = row.createCell(2, CellType.STRING); 
 	                cell.setCellValue(list.get(i).getpO_Vendor_InfoBean().getVendor_name());  
+	                sheet.autoSizeColumn(2);
 	                cell = row.createCell(3, CellType.STRING);  
 	                cell.setCellValue(list.get(i).getpO_Vendor_InfoBean().getPayment_term());  
+	                sheet.autoSizeColumn(3);
 	                cell = row.createCell(4, CellType.STRING); 
 	                cell.setCellValue(list.get(i).getAmount_Payable());  
+	                sheet.autoSizeColumn(4);
 	                cell = row.createCell(5, CellType.STRING);  
 	                cell.setCellValue(list.get(i).getBooking_Date());  
+	                sheet.autoSizeColumn(5);
 	                cell = row.createCell(6, CellType.STRING);  
-	                cell.setCellValue(list.get(i).getCheque_no());  
+	                cell.setCellValue(list.get(i).getCheque_no());
+	                sheet.autoSizeColumn(6);
 	                cell = row.createCell(7, CellType.STRING); 
 	                cell.setCellValue(list.get(i).getpO_Vendor_InfoBean().getVendor_acc());  
+	                sheet.autoSizeColumn(7);
 	                cell = row.createCell(8, CellType.STRING); 
 	                cell.setCellValue(list.get(i).getExcept_Payment_Date());  
+	                sheet.autoSizeColumn(8);
 	                cell = row.createCell(9, CellType.STRING);  
-	                cell.setCellValue(list.get(i).getPayable_Status());  
+	                cell.setCellValue(list.get(i).getPayable_Status()); 
+	                sheet.autoSizeColumn(9);	
 	                cell = row.createCell(10, CellType.STRING);  
 	                cell.setCellValue(list.get(i).getAmount_Paid());  
+	                sheet.autoSizeColumn(10);
 	            }  
 	        }  
 	  
