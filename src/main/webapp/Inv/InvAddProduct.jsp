@@ -70,6 +70,6 @@ table, td {
 </c:forEach>
 </table>
 </c:if>
-<a href="item?pageNo=1">查詢目前庫存</a>
+
 </body>
 </html>

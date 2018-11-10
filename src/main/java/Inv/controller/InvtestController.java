@@ -53,6 +53,7 @@ public class InvtestController {
 	
 	@RequestMapping("/Inv/CheckBean")
 	private String meth(Model model) {
+		
 	List<Inv＿ProductCheckBean> checkAll = additemServie.select();
 	model.addAttribute("check", checkAll);
 		
