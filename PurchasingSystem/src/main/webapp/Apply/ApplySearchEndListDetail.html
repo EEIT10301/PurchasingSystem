@@ -14,7 +14,7 @@
 <table class="table table-striped table-hover">
 <thead>
 <tr>
-<th>請購單號</th>
+<th>單號</th>
 <th>流程</th>
 <th>簽核順序</th>
 <th>簽核人</th>
@@ -32,16 +32,16 @@ $(document).ready(function(){
 	var object = result[1].split("&");
 	$("#appid").val(object[0].split("=")[1])
 	$("#appsta").val(object[1].split("=")[1])
+	var txt = ""
 	$.ajax({
 		url:"../Apply/SelectAllEndListdetail.do",
 		type:"POST",
 		data:{Button:event.target.value,appid:$("#appid").val(),appsta:$("#appsta").val()},
 		success:function(data){
-				var txt = ""
-				if(data.myArrayList==null){
-					alert("無簽核紀錄");
-				  window.location.href='http://localhost:8080/PurchasingSystem/Apply/ApplySearchEndList.html';
-				}
+			//	if(data.myArrayList==null){
+					alert("請購單");
+			//	  window.location.href='http://localhost:8080/PurchasingSystem/Apply/ApplySearchEndList.html';
+			//	}
 				$.each(data.myArrayList,function(index,json){
 					//alert(json.map.productListBean.pro_name);
 					txt += "<tr>";
@@ -55,9 +55,36 @@ $(document).ready(function(){
 					txt += "</tr>"
 				})
 				$("#selectAll").html(txt);	
+				//twoajax();
 		}
 	});
-	
+
+	$.ajax({
+		url:"../Apply/SelectAllPOEndListdetail.do",
+		type:"POST",
+		data:{Button:event.target.value,appid:$("#appid").val(),appsta:$("#appsta").val()},
+		success:function(data){
+				//var txt = ""
+				//if(data.myArrayList==null){
+					alert("採購單");
+				 // window.location.href='http://localhost:8080/PurchasingSystem/Apply/ApplySearchEndList.html';
+				//}
+				$.each(data.myArrayList,function(index,json){
+					//alert(json.map.productListBean.pro_name);
+					txt += "<tr>";
+					txt += "<td>"+json.map.po_id+"</td>"
+					txt += "<td>"+json.map.po_sta+"</td>"
+					txt += "<td>"+json.map.sig_rank+"</td>"
+					txt += "<td>"+json.map.employeeBean.map.emp_dep+json.map.employeeBean.map.emp_name+json.map.employeeBean.map.emp_job+"</td>"
+					txt += "<td>"+json.map.sig_date+"</td>"
+					txt += "<td>"+json.map.sig_sug+"</td>"
+					txt += "<td>"+json.map.pO_MainBean.map.total_price+"</td>"		
+					txt += "</tr>"
+				})
+        $("#selectAll").html(txt);	
+		} 
+	});	
+
 $("#myInput").on("keyup", function() {
 		   var value = $(this).val().toLowerCase();
 		    $("#selectAll tr").filter(function() {

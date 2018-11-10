@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -20,7 +21,10 @@ import Apply.model.App_SigningProcessBean;
 import Apply.model.EmployeeBean;
 import Inv.model.Inv_SigningProcessBean;
 import Inv.service.Inv_SigningProcessService;
+import Po.model.PO_DetailBean;
+import Po.model.PO_MainBean;
 import Po.model.PO_SigningProcessBean;
+import Po.service.PO_MainService;
 import Po.service.PO_SigningProcessService;
 
 @Controller
@@ -31,6 +35,8 @@ public class POStatementController {
 	Inv_SigningProcessService inv_SigningProcessService;
 	@Autowired
 	Account_SigningProcessService account_SigningProcessService;
+	@Autowired
+	PO_MainService pO_MainService;
 	
 	
 	@RequestMapping("/Po/POSignStatement.controller")
@@ -38,13 +44,13 @@ public class POStatementController {
 		EmployeeBean empbean = (EmployeeBean) session.getAttribute("user");
 		String EmpId = empbean.getEmp_id();
 		if (empbean.getEmp_level() == 1) {// 如果是非主管的員工
-			List<PO_SigningProcessBean> Statement = pO_SigningProcessService.selectempID(EmpId);
+			List<PO_SigningProcessBean> Statement = pO_SigningProcessService.selectpo_sta("產生採購單");
 			model.addAttribute("POList", Statement);
 			return "POSignStatement.do";
 		}
 
 		else {
-			List<PO_SigningProcessBean> Statement = pO_SigningProcessService.selectempID(EmpId);
+			List<PO_SigningProcessBean> Statement = pO_SigningProcessService.selectpo_sta("產生採購單");
 			model.addAttribute("POList", Statement);
 			return "POSignStatement.do";
 			
@@ -80,5 +86,40 @@ public class POStatementController {
 		
 		return "POSignStatementDetail.do";
 	}
+	
+	@RequestMapping("/Po/POFinalStatement.controller")
+	public String POFinalStatement(HttpSession session, Model model, PO_SigningProcessBean bean,
+			BindingResult bindingResult) {
+		
+		EmployeeBean EmployeeBeanbean = (EmployeeBean)session.getAttribute("user");
+		String empid = EmployeeBeanbean.getEmp_id();
+		List<PO_SigningProcessBean> accountDone = pO_SigningProcessService.selectempidsend(empid, "已結案");
+		if(accountDone!=null) {
+			model.addAttribute("accountDone",accountDone);
+		}
+		else {
+			model.addAttribute("noaccountDone","採購無結案請款單");
+		}
+		
+		return "POFinalStatement.do";
+	}
+	
+	@RequestMapping("/Po/POFinalStatementDetail.controller")
+	public String POFinalStatementDetail(HttpSession session, Model model, PO_SigningProcessBean bean,
+			BindingResult bindingResult,String po_id) {
+		PO_MainBean mainbean = pO_MainService.select(po_id);
+		//Set<PO_DetailBean> detailbean = mainbean.getpO_DetailBean();
+		if(mainbean!=null) {
+			model.addAttribute("mainbean",mainbean);
+			
+		}
+		else{
+			model.addAttribute("nomainbean","無請購資訊");
+		}
+		
+		
+		return "POFinalStatementDetail.do";
+	}
+	
 
 }

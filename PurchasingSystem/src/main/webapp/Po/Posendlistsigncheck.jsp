@@ -39,8 +39,7 @@
 <p>簽和順序 2: ${boss.emp_job}: ${boss.emp_name}  <p>
   <Input type='hidden' name='boss' value='${boss.emp_id}'>
 </c:if>
-    分派意見:<p><textarea rows="5" cols="50"  name="SignSug">
-             </textarea><p>
+    簽核意見:<p><textarea rows="5" cols="50"  name="SignSug"></textarea></p>
   <Input type='hidden' name='posta1' value='${posta1}'>
    <Input type='hidden' name='poid1' value='${poid1}'>	 
 <p><Input type='submit' name='send' value='重新輸入'><p>

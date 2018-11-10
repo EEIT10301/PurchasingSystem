@@ -114,7 +114,7 @@ public class POReceivingGoodsController {
 
 	@RequestMapping("/Po/receivedGoods.controller")
 	public String receivedGoods(PO_SigningProcessBean bean, BindingResult bindingResult, Model model,
-			HttpSession session, String send, String signSug) throws ParseException {
+			HttpSession session, String send, String signSug, java.util.Date shippingDate) throws ParseException {
 		EmployeeBean bean1 = (EmployeeBean) session.getAttribute("user");
 		String empid = bean1.getEmp_id();
 		java.util.Date date = new java.util.Date();
@@ -123,9 +123,9 @@ public class POReceivingGoodsController {
 		String currentDate = dateFormat.format(date1);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Date dateTime = sdf.parse(currentDate);
-		if (send.equals("確認到貨")) {
+		if (send.equals("確認收貨")) {
 			PO_SigningProcessBean receivedGoods = pO_SigningProcessService.select(bean.getPo_sta(), bean.getPo_id());
-			receivedGoods.setSig_date(dateTime);
+			receivedGoods.setSig_date(shippingDate);
 			receivedGoods.setSig_sta("已收貨");
 			receivedGoods.setSig_sug(signSug);
 
