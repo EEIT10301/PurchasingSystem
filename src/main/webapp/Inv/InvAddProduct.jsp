@@ -41,11 +41,11 @@ table, td {
 				<td>${check.total_price}</td>
 				<td>${check.vender_ID}</td>
 				<td>
-				<c:set var="in" value="驗收狀況良好"/>
+				<c:set var="in" value="尚未入庫"/>
 				<c:if test="${check.chk_Comment==in}" >		
 				<a href="itemin?CheckPK=${check.chk_Id}" onclick="reconfirmOrder()">入庫</a>
 				</c:if>
-				<c:set var="in" value="已新增至庫存"/>
+				<c:set var="in" value="已加入庫存"/>
 				<c:if test="${check.chk_Comment==in}">		
 				<input  disabled="disabled" value="已入庫" type="submit"></input>
 				</c:if>			

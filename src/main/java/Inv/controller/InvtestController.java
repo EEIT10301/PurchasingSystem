@@ -52,11 +52,9 @@ public class InvtestController {
 	}
 	
 	@RequestMapping("/Inv/CheckBean")
-	private String meth(Model model) {
-		
+	private String meth(Model model) {	
 	List<Inv＿ProductCheckBean> checkAll = additemServie.select();
-	model.addAttribute("check", checkAll);
-		
+	model.addAttribute("check", checkAll);	
 	return "invend.itemins";
 
 	}
@@ -70,25 +68,24 @@ public class InvtestController {
 		return "DetailView.Show";
 	}
 
-
 	@RequestMapping("/Inv/itemin")
 	private String Itemin(Model model, String CheckPK) {
 		int i = 0;
 		System.out.println("這是庫存增加controller");
 		HashMap<String, String> error = new HashMap<String, String>();
 		Inv＿ProductCheckBean Check = additemServie.selectCheck(CheckPK);
-		Inv_SigningProcessBean signing = inv_SigningProcessService.select("驗收", CheckPK);
+		Inv_SigningProcessBean signing = inv_SigningProcessService.select("驗收", CheckPK);//.getSig_sta取得流程"驗收成功"
 		List<Inv_ProductListBean> Count =null ;
 		// 加入倒清單內部
 		Inv_MainBean bean = null;
 		Inv_DetailBean Detailbean = null;
 		Count = additemServie.selectCount(CheckPK);
 		// 加入倒清單內部
-		if(signing!=null && signing.getSig_Sug().equals("驗收成功")) {
+		if(signing!=null && signing.getSig_Sta().equals("驗收成功")) {
 //		if (CheckPK != null && Check.getChk_Comment().equals("驗收狀況良好")) {
 			if (Count!=null&&Count.size() > 0) {
 				for (Inv_ProductListBean getones : Count) {
-					if (getones.getChk_status().equals("驗收完畢")) {
+//					if (getones.getChk_status().equals("驗收完畢")) {
 						// 新增至庫存MAIN
 						bean =new Inv_MainBean();
 						bean = inv_MainSerivce.select(getones.getPart_No());
@@ -110,24 +107,23 @@ public class InvtestController {
 //					inv_MainSerivce.update(bean);	
 				//	getones.setChk_status("驗收完畢產品已入庫");
 //					additemServie.update(getones);
-					}else {
-						
-						i++;
 					}
-				}
-				System.out.println("這是測試看數字的"+i);
-				//Check.setChk_Comment("已新增至庫存");
-//				inv＿ProductCheckService.update(Check);
-			}else {
-				error.put("notFind", "無法入庫，請重新確認產品內容");
+//				}
+				Check.setChk_Comment("已加入庫存");
+//				inv＿ProductCheckService.update(Check);			
 			}
+		}else {
+			error.put("notFind", "無法入庫，請重新確認產品內容");	
+		}
+		if(signing!=null && signing.getSig_Sta().equals("驗收成功")){
+			Count =null ;
+			Count = additemServie.ViewAddCheckDetail(CheckPK);
+		}else {
+			Count =null ;
 		}
 		List<Inv＿ProductCheckBean> checkAll = additemServie.select();
-		System.out.println(CheckPK);
-		Count =null ;
-		Count = additemServie.ViewAddCheckDetail(CheckPK);
+		model.addAttribute("Detail", Count);		
 		model.addAttribute("check", checkAll);
-		model.addAttribute("Detail", Count);
 		model.addAttribute("error",error);
 		return "invend.itemins";
 	}

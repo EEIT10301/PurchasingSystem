@@ -61,9 +61,9 @@ public class Inv_ProductListDao implements Inv_ProductListIDao{
 	public List<Inv_ProductListBean> ViewAddCheckDetail(String chk_Id) {
 		List<Inv_ProductListBean> list = null;
 		Inv_ProductListBean getone =new Inv_ProductListBean();
-		String hgl="FROM Inv_ProductListBean WHERE chk_Id=:id1 AND chk_status=:status";
+		String hgl="FROM Inv_ProductListBean WHERE chk_Id=:id1";
 		list =this.getSession().createQuery(hgl).setParameter("id1", chk_Id)
-				.setParameter("status", "驗收完畢產品已入庫").list();
+				.list();
 		 if(list.size()>0) {
 			  return list;
 		 }else {

@@ -27,11 +27,13 @@ public class Inv_SigningProcessDao implements Inv_SigningProcessIDao{
 		sessionFactory.getCurrentSession().beginTransaction();
 
 		Inv_SigningProcessIDao Inv_SigningProcessDAO = (Inv_SigningProcessIDao) context.getBean("inv_SigningProcessDao");
-		 List<Inv_SigningProcessBean> ddd = Inv_SigningProcessDAO.selectempidsend("emp000", "待驗收");
-		 for(int i=0;i<ddd.size();i++) {
-			 Inv_SigningProcessBean aaa = ddd.get(i);
-//			 System.out.println(aaa.getChk_Id());
-		 }		
+//		 List<Inv_SigningProcessBean> ddd = Inv_SigningProcessDAO.selectempidsend("emp000", "待驗收");
+		 Inv_SigningProcessBean ddd = Inv_SigningProcessDAO.select("驗收", "01");
+		 System.out.println(ddd.getSig_Sta());
+//		 for(int i=0;i<ddd.size();i++) {
+//			 Inv_SigningProcessBean aaa = ddd.get(i);
+////			 System.out.println(aaa.getChk_Id());
+//		 }		
 		 //		java.util.Date date = new java.util.Date();
 //		java.sql.Date datas =new java.sql.Date(date.getTime());
 //		Inv_SigningProcessBean ss=new Inv_SigningProcessBean("emp001","申請中","Ck20181013001",datas,"已簽核","請核准",1);
