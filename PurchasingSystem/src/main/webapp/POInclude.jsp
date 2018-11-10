@@ -18,15 +18,27 @@
 	margin: 30px;
 }
 
+.left {
+	width: 15%;
+	float: left;
+	text-align: center;
+}
+
 .f {
 	/* 方格排列 */
-	display: inline-block;
-	width: 13rem;
-	height: 14rem;
+ 	display: inline-block;
+	width: 200px;
+	height:50px;
+	margin-bottom:5px;
 }
 
 .imgp {
-	padding: 10px;
+	padding: 0px;
+	font-size: 11px;
+}
+
+.card-text {
+	font-size: 11px;
 }
 </style>
 </head>
@@ -36,90 +48,59 @@
 		${user.emp_id}/${user.emp_name} ${user.emp_job},你好 <a
 			href='POLogout.controller'><button type="button" class="btn">登出</button></a>
 	</div>
-	<div class="text-center">
+	<hr>
+	<div class="left">
 		<br> <span>${sendok}</span>
-		<hr>
 
 		<c:if test="${user.emp_level==1}">
 			<div class="card bg-light f">
-				<a href='selectprice.controller' class="btn"><img
-					class="card-img-top imgp" src="../sysimg/s1.png"></a>
-				<div class="card-body">
-					<h5 class="card-title">待詢價採購單</h5>
-				</div>
+				<a href='selectprice.controller' class="btn" style="height:2em"><img
+					class="card-img-top imgp" src="../sysimg/s1.png" style="height:35px; width:30px; float:left">待詢價採購單</a>
 			</div>
 			<div class="card bg-light f">
-				<a href='signedorder.controller' class="btn"><img
-					class="card-img-top imgp" src="../sysimg/s2.png"></a>
-				<div class="card-body">
-					<h5 class="card-title">待下單採購單</h5>
-				</div>
+				<a href='signedorder.controller' class="btn" style="height:2em"><img
+					class="card-img-top imgp" src="../sysimg/s2.png" style="height:35px; width:30px; float:left">待下單採購單</a>
 			</div>
 			<div class="card bg-light f">
-				<a href='placedOrder.controller' class="btn"><img
-					class="card-img-top imgp" src="../sysimg/s2.png"></a>
-				<div class="card-body">
-					<h5 class="card-title">待收貨採購單</h5>
-				</div>
+				<a href='placedOrder.controller' class="btn" style="height:2em"><img
+					class="card-img-top imgp" src="../sysimg/s2.png" style="height:35px; width:30px; float:left">待收貨採購單</a>
 			</div>
 			<div class="card bg-light f">
-				<a href='POManagerSigner.controller' class="btn"><img
-					class="card-img-top imgp" src="../sysimg/s2.png"></a>
-				<div class="card-body">
-					<h5 class="card-title">待審核採購單</h5>
-				</div>
-			</div>
-			<br>
-			<div class="card bg-light f">
-				<a href='POSignStatement.controller' class="btn"><img
-					class="card-img-top imgp" src="../sysimg/s2.png"></a>
-				<div class="card-body">
-					<h5 class="card-title">採購單狀態</h5>
-				</div>
+				<a href='POManagerSigner.controller' class="btn" style="height:2em"><img
+					class="card-img-top imgp" src="../sysimg/s2.png" style="height:35px; width:30px; float:left">待審核採購單</a>
 			</div>
 			<div class="card bg-light f">
-				<a href='Polist.controller' class="btn"><img
-					class="card-img-top imgp" src="../sysimg/s2.png"></a>
-				<div class="card-body">
-					<h5 class="card-title">待辦請款單</h5>
-				</div>
+				<a href='POSignStatement.controller' class="btn" style="height:2em"><img
+					class="card-img-top imgp" src="../sysimg/s2.png" style="height:35px; width:30px; float:left">採購單狀態</a>
 			</div>
 			<div class="card bg-light f">
-				<a href='StatusMain.jsp' class="btn"><img
-					class="card-img-top imgp" src="../sysimg/s2.png"></a>
-				<div class="card-body">
-					<h5 class="card-title">查詢請款單</h5>
-				</div>
+				<a href='Polist.controller' class="btn" style="height:2em"><img
+					class="card-img-top imgp" src="../sysimg/s2.png" style="height:35px; width:30px; float:left">待辦請款單</a>
 			</div>
 			<div class="card bg-light f">
-				<a href='POFinalStatement.controller' class="btn"><img
-					class="card-img-top imgp" src="../sysimg/s2.png"></a>
-				<div class="card-body">
-					<h5 class="card-title">查詢已結案請款單</h5>
-				</div>
+				<a href='StatusMain.jsp' class="btn" style="height:2em"><img
+					class="card-img-top imgp" src="../sysimg/s2.png" style="height:35px; width:30px; float:left">查詢請款單</a>
+			</div>
+			<div class="card bg-light f">
+				<a href='POFinalStatement.controller' class="btn" style="height:2em"><img
+					class="card-img-top imgp" src="../sysimg/s2.png" style="height:35px; width:30px; float:left">查詢已結案請款單</a>
 			</div>
 		</c:if>
 		<c:if test="${user.emp_level==2}">
 			<div class="card bg-light f">
 				<a href='sendEmployee.controller' class="btn"><img
 					class="card-img-top imgp" src="../sysimg/s2.png"></a>
-				<div class="card-body">
-					<h5 class="card-title">待分派採購單</h5>
-				</div>
+				<p class="card-text">待分派採購單</p>
 			</div>
 			<div class="card bg-light f">
 				<a href='POManagerSigner.controller' class="btn"><img
 					class="card-img-top imgp" src="../sysimg/s2.png"></a>
-				<div class="card-body">
-					<h5 class="card-title">待審核採購單</h5>
-				</div>
+				<p class="card-text">待審核採購單</p>
 			</div>
 			<div class="card bg-light f">
 				<a href='todoSignInvoice.controller' class="btn"><img
 					class="card-img-top imgp" src="../sysimg/s2.png"></a>
-				<div class="card-body">
-					<h5 class="card-title">待審核請款單</h5>
-				</div>
+				<p class="card-text">待審核請款單</p>
 			</div>
 		</c:if>
 	</div>

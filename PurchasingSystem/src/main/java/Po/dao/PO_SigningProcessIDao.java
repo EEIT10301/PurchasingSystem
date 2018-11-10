@@ -38,5 +38,7 @@ public interface PO_SigningProcessIDao {
 
 	PO_SigningProcessBean selectsigsta(String sig_sta, String po_id);
 
+	List<PO_SigningProcessBean> selectpo_sta(String po_sta);
+
 
 }

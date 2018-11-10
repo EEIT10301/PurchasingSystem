@@ -184,6 +184,20 @@ public class PO_SigningProcessDao implements PO_SigningProcessIDao {
 			return null;
 		}
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<PO_SigningProcessBean> selectpo_sta(String po_sta) {
+		List<PO_SigningProcessBean> list = null;
+		String hgl = "FROM PO_SigningProcessBean WHERE po_sta=:id1 order by sig_rank";
+		list = this.getSession().createQuery(hgl).setParameter("id1", po_sta).setMaxResults(50).list();
+		if (list.size() > 0) {
+			return list;
+		} else {
+			return null;
+		}
+	}
+	
 
 	@SuppressWarnings("unchecked")
 	@Override

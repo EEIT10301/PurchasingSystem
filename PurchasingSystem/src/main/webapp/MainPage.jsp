@@ -14,28 +14,29 @@
 </style>
 </head>
 <body class="bg-light" style="margin-top:150px">
-	<div class="mx-auto" style="width: 300px;">
+	<div class="mx-auto" style="width: 300px">
 		<div class="text-center">
 			<h3>員工登入</h3>
 		</div>
 		<form action="<c:url value="AllApplyLogin.controller" />"
 			method="post">
 			<div class="form-group">
-				<label for="exampleInputEmail1">Emp Email</label> <input type="text"
+				<label for="exampleInputEmail1">帳號</label> <input type="text"
 					class="form-control" name="username" value="${param.username}"
 					id="exampleInputEmail1" aria-describedby="emailHelp"
-					placeholder="Enter email">
+					placeholder="請輸入你的email" required>
 				<p>${errors.username}</p>
 			</div>
 			<div class="form-group">
-				<label for="exampleInputPassword1">Password</label> <input
+				<label for="exampleInputPassword1">密碼</label> <input
 					type="password" class="form-control" name="password"
 					value="${param.password}" id="exampleInputPassword1"
-					placeholder="Password">
+					placeholder="請輸入你的密碼 " required>
 				<p>${errors.password}</p>
 			</div>
-			<div class="text-right">
-				<button type="submit" class="btn btn-primary">Submit</button>
+			<div class="text-center">
+				<input class="btn btn-primary" type="reset" value="重新輸入">
+				<input class="btn btn-primary" type="submit" value="登入">
 			</div>
 		</form>
 	</div>

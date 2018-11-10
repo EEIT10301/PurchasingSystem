@@ -116,6 +116,14 @@ public class PO_SigningProcessService {
 			return beans;
 		}
 		return null;
+	}
+
+	public List<PO_SigningProcessBean> selectpo_sta(String po_sta) {
+		List<PO_SigningProcessBean> beans =pO_SigningProcessIDao.selectpo_sta(po_sta);
+		if(beans!=null) {
+			return beans;
+		}
+		return null;
 	}	
 
 }
