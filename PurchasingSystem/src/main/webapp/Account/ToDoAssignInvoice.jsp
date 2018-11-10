@@ -29,7 +29,7 @@
 	
 	<c:if test="${empty list}">
 	<div class="right">
-	<h3>財務系統>待分派請款單</h3>
+	<h3>財務系統>待分派請款單</h3><br>
 		<h4>尚無待分派請款單</h4>
 	</div>
 	</c:if>
