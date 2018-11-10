@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,7 +33,7 @@
 					<td>${invoiceData.employeeBean.emp_dep}</td>
 					<td>$${invoiceData.total_price}</td>
 					<td>${invoiceData.pO_MainBean.pO_Vendor_InfoBean.payment_method}</td>
-					<td>${invoiceData.recript_date}</td>
+					<td><fmt:formatDate pattern="yyyy/MM/dd" value="${invoiceData.recript_date}" /></td>
 					<td><a href="..${invoiceData.recript_pic}">${picName}</a></td>
 				</tr>
 			</tbody>
