@@ -31,7 +31,7 @@
 </style>
 </head>
 <body class="bg">
-	<h3><font face="微軟正黑體">採購系統</font></h3>
+	<h1><font face="微軟正黑體">採購系統</font></h1>
 	<div class="text-right"><font face="微軟正黑體">
 		${user.emp_id}/${user.emp_name} ${user.emp_job},你好 </font><a
 			href='POLogout.controller'><button type="button" class="btn">登出</button></a>

@@ -22,7 +22,7 @@
 	width: 15%;
 	float: left;
 	text-align: center;
-	height: 500px;
+	height: 1500px;
 }
 
 .f {
@@ -56,14 +56,15 @@ span {
 </style>
 </head>
 <body class="bg">
-	<h3><font face="微軟正黑體">採購系統</font></h3>
+	<h1><font face="微軟正黑體">採購系統</font></h1>
+	<a href="POLoginSuccess.jsp" style="font-family:微軟正黑體;">回首頁</a>
 	<div class="text-right" style="font-family:微軟正黑體;">
 		${user.emp_name} ${user.emp_job},你好<a
 			href='POLogout.controller'><button type="button" class="btn">登出</button></a>
 	</div>
 	<hr>
 	<div class="left">
-		<br> <span>${sendok}</span>
+<%-- 		<br> <span>${sendok}</span> --%>
 
 		<c:if test="${user.emp_level==1}">
 <!-- 			<div class="card bg-light f" style="font-family:微軟正黑體;"> -->
@@ -159,22 +160,30 @@ span {
             </ul>
 		</c:if>
 		<c:if test="${user.emp_level==2}">
-			<div class="card bg-light f" style="font-family:微軟正黑體;">
-				<a href='sendEmployee.controller' class="btn"><img
-					class="card-img-top imgp" src="../sysimg/s2.png"></a>
-				<p class="card-text">待分派採購單</p>
-			</div>
-			<div class="card bg-light f" style="font-family:微軟正黑體;">
-				<a href='POManagerSigner.controller' class="btn"><img
-					class="card-img-top imgp" src="../sysimg/s2.png"></a>
-				<p class="card-text">待審核採購單</p>
-			</div>
-			<div class="card bg-light f" style="font-family:微軟正黑體;">
-				<a href='todoSignInvoice.controller' class="btn"><img
-					class="card-img-top imgp" src="../sysimg/s2.png"></a>
-				<p class="card-text">待審核請款單</p>
-			</div>
-		</c:if>
+		<ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link active" href="sendEmployee.controller">
+                <img class="card-img-top imgp" src="../sysimg/s2.png">
+                  <span data-feather="home"></span>
+                  	待分派採購單 <span class="sr-only">(current)</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="POManagerSigner.controller">
+                <img class="card-img-top imgp" src="../sysimg/s2.png">
+                  <span data-feather="users"></span>
+                  	待審核採購單
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="todoSignInvoice.controller">
+                <img class="card-img-top imgp" src="../sysimg/s2.png">
+                  <span data-feather="file"></span>
+                  	待審核請款單
+                </a>
+              </li>
+             </ul>
+		</c:if>		
 	</div>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
