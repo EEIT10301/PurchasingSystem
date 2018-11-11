@@ -19,7 +19,7 @@ ${Mainbean.noFile}
 </c:if>
 <!-- align="center" -->
 	<c:if test="${Mainbean !=null}">
-		<table class="table table-striped table-hover" >
+		<table id="myTable" class="table table-striped table-hover" >
 			<thead>
 			<tr>
 				<td>料號</td>
@@ -53,5 +53,8 @@ ${Mainbean.noFile}
 			</tr>
 		</table>
 	</c:if>
+	
+	<script src="../js/app.js"></script>
+	
 </body>
 </html>
