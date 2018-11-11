@@ -41,7 +41,7 @@ font-size: 36px;
 <c:if test="${not empty AllPO_Vendor and not empty poprocess1}">
 <form action="<c:url value="/Po/checkvendorandpodetail.controller" />" method="post">
  <div class="right">
-<table class="table table-striped table-hover" id="table">
+<table class="table table-striped table-hover" id="myTable">
 <thead>
 <tr>
 <th id="thead">選擇廠商</th>
