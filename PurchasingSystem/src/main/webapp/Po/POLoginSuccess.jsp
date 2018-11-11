@@ -43,9 +43,16 @@
 		<c:if test="${user.emp_level==1}">
 			<div class="card bg-light f">
 				<a href='selectprice.controller' class="btn"><img
-					class="card-img-top imgp" src="../sysimg/s1.png"></a>
+					class="card-img-top imgp" src="../sysimg/s2.png"></a>
 				<div class="card-body">
 					<h5 class="card-title"><font face="微軟正黑體">待詢價採購單</font></h5>
+				</div>
+			</div>
+			<div class="card bg-light f">
+				<a href='POManagerSigner.controller' class="btn"><img
+					class="card-img-top imgp" src="../sysimg/s2.png"></a>
+				<div class="card-body">
+					<h5 class="card-title"><font face="微軟正黑體">待審核採購單</font></h5>
 				</div>
 			</div>
 			<div class="card bg-light f">
@@ -63,37 +70,30 @@
 				</div>
 			</div>
 			<div class="card bg-light f">
-				<a href='POManagerSigner.controller' class="btn"><img
-					class="card-img-top imgp" src="../sysimg/s2.png"></a>
-				<div class="card-body">
-					<h5 class="card-title"><font face="微軟正黑體">待審核採購單</font></h5>
-				</div>
-			</div>
-			<br>
-			<div class="card bg-light f">
-				<a href='POSignStatement.controller' class="btn"><img
-					class="card-img-top imgp" src="../sysimg/s2.png"></a>
-				<div class="card-body">
-					<h5 class="card-title"><font face="微軟正黑體">採購單狀態</font></h5>
-				</div>
-			</div>
-			<div class="card bg-light f">
 				<a href='Polist.controller' class="btn"><img
 					class="card-img-top imgp" src="../sysimg/s2.png"></a>
 				<div class="card-body">
 					<h5 class="card-title"><font face="微軟正黑體">待辦請款單</font></h5>
 				</div>
 			</div>
+			<br>
+			<div class="card bg-light f">
+				<a href='POSignStatement.controller' class="btn"><img
+					class="card-img-top imgp" src="../sysimg/s6.png"></a>
+				<div class="card-body">
+					<h5 class="card-title"><font face="微軟正黑體">採購單狀態</font></h5>
+				</div>
+			</div>
 			<div class="card bg-light f">
 				<a href='StatusMain.jsp' class="btn"><img
-					class="card-img-top imgp" src="../sysimg/s2.png"></a>
+					class="card-img-top imgp" src="../sysimg/s6.png"></a>
 				<div class="card-body">
 					<h5 class="card-title"><font face="微軟正黑體">查詢請款單</font></h5>
 				</div>
 			</div>
 			<div class="card bg-light f">
 				<a href='POFinalStatement.controller' class="btn"><img
-					class="card-img-top imgp" src="../sysimg/s2.png"></a>
+					class="card-img-top imgp" src="../sysimg/s6.png"></a>
 				<div class="card-body">
 					<h5 class="card-title"><font face="微軟正黑體">查詢已結案請款單</font></h5>
 				</div>
