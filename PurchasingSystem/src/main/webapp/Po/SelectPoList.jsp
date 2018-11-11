@@ -44,7 +44,7 @@
 
 
 			<thead>
-			
+
 				<tr>
 					<th width="200px">採購單編號</th>
 					<th width="200px">分派主管</th>
