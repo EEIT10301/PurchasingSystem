@@ -95,7 +95,7 @@
 				<a href='POFinalStatement.controller' class="btn"><img
 					class="card-img-top imgp" src="../sysimg/s2.png"></a>
 				<div class="card-body">
-					<h5 class="card-title">查詢已結案請款單</h5>
+					<h5 class="card-title">查詢已結案採購單</h5>
 				</div>
 			</div>
 		</c:if>
