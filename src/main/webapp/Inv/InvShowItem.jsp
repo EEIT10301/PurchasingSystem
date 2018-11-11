@@ -6,23 +6,21 @@
 <head>
 <meta charset="UTF-8">
 <title>倉庫庫存</title>
-<style>
-table, td {
-	border: 3pX solid skyblue;
-}
 
-#pageno {
-	border: none;
-}
-</style>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+<input class="form-control" id="myInput" type="text" placeholder="Search"><br/>
+<a href="http://localhost:8080/PurchasingSystem/Inv/InvLoginSuccess.jsp">返回首頁</a>
 <c:if test="${Mainbean==null}">
 ${Mainbean.noFile}
 </c:if>
-
+<!-- align="center" -->
 	<c:if test="${Mainbean !=null}">
-		<table align="center">
+		<table class="table table-striped table-hover" >
+			<thead>
 			<tr>
 				<td>料號</td>
 				<td>項目</td>
@@ -31,6 +29,7 @@ ${Mainbean.noFile}
 				<td>資訊</td>
 				<td>庫存數</td>
 			</tr>
+			<thead>
 			<c:forEach var='Mainbean' items='${Mainbean}'>
 				<tr>
 					<td><a href="DetailView?MainbeanPK=${Mainbean.inv_Part_no}">${Mainbean.inv_Part_no}</a></td>
@@ -41,13 +40,16 @@ ${Mainbean.noFile}
 					<td>${Mainbean.inv_Amount}</td>
 				</tr>
 			</c:forEach>
+			<tbody id="selectAll">
+			</tbody>
 		</table>
 		<table id="pageno" align="center">
 			<tr>
 				<td id="pageno"><a href="item?pageNo=1">1</a></td>
 				<td id="pageno"><a href="item?pageNo=2">2</a></td>
-				<td id="pageno"><a href="item?pageNo=3">3</a></td>
-				<td id="pageno"><a href="item?pageNo=4">4</a></td>
+				<td id="pageno"><a href="item?pageNo=3">3  </a></td>
+				<td id="pageno"><a href="item?pageNo=4">4  </a></td>
+				
 			</tr>
 		</table>
 	</c:if>

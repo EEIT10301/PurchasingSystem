@@ -41,7 +41,7 @@ public class InvtestController {
 	public String Allitem(Model model , Integer pageSize, Integer pageNo) {
 		HashMap<String, String> err = new HashMap<String, String>();
 		System.out.println("這是庫存顯示controller");
-		pageSize=20; //一頁顯示10筆資料
+		pageSize=10; //一頁顯示10筆資料
 		List<Inv_MainBean> Mainbean = inv_MainSerivce.selectPage(pageSize, pageNo);
 		if(Mainbean!=null&&Mainbean.size()>0) {
 		model.addAttribute("Mainbean", Mainbean);
@@ -127,6 +127,5 @@ public class InvtestController {
 		model.addAttribute("error",error);
 		return "invend.itemins";
 	}
-
 }
 

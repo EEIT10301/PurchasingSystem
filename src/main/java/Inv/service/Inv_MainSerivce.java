@@ -15,7 +15,7 @@ public class Inv_MainSerivce {
 @Autowired
 private Inv_MainIDao inv_MainIDao;
 
-//偉
+
 public List<Inv_MainBean> selectPage(Integer pageSize, Integer pageNo) {
 	List<Inv_MainBean> bean=inv_MainIDao.selectPage(pageSize, pageNo);
 	if(bean.size()!=0) {

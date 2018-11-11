@@ -6,11 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>產品入庫</title>
-<style>
-table, td {
-	border: 3pX solid skyblue;
-}
-</style>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script>
 	function reconfirmOrder() {		
 		confirm("確定要將驗收單內的產品加入到庫存資料表嗎 ? ") ;
@@ -18,10 +16,10 @@ table, td {
 	</script>
 </head>
 <body>
-	<b><span>${error.notFind}</span></b>
+<a href="http://localhost:8080/PurchasingSystem/Inv/InvLoginSuccess.jsp" text-align="left">返回首頁</a>
 	<form action="<c:url value="/Inv/itemin" />" method="get"> 
-	<table>
-
+	<table class="table table-striped table-hover">
+<thead>
 		<tr>
 			<th>驗收單號</th>
 			<th>採購單號</th>
@@ -31,6 +29,7 @@ table, td {
 			<th>驗收金額</th>
 			<th>產品廠商</th>
 		</tr>	
+		</thead>
 		<c:forEach var="check" items="${check}">
 			<tr>
 				<td>${check.chk_Id}</td>
@@ -55,6 +54,8 @@ table, td {
 	</table>
 
 </form>
+<div align="center"><span >
+<b>${error.notFind}</b></span>
 <c:if test="${!empty Detail}">
 <table>
 <caption>本次新增項目</caption>
@@ -70,6 +71,6 @@ table, td {
 </c:forEach>
 </table>
 </c:if>
-
+</div>
 </body>
 </html>
