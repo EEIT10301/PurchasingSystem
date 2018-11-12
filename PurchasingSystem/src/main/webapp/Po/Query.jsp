@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>新增詢價單</title>
+<link rel="stylesheet" type="text/css" href="../css/POcss.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -21,22 +22,11 @@ font-size: 36px;
 	position: absolute;
 	right: 700px;
 }
-
-.bg {
-	background-color: #FDF5E6;
-	/* 畫面間距 */
-	margin: 30px;
-}
-.right{
-	width:78%;
-    float:left;
-}
 </style>
 
 
 </head>
-<body class="bg">
-	
+<body class="bg">	
 <div class="right">
 	<form action="<c:url value="/Po/queryinsert.controller"/>" method="post">
 	<c:if test="${not empty query}">		
