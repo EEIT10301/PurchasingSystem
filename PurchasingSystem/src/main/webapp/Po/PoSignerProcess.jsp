@@ -57,6 +57,12 @@
 <h3>退回表單</h3>
 <div class="right">
 <table id="myTable" class="table table-striped table-hover">
+<thead>
+	<tr>
+		<th>採購單號</th>
+		
+	</tr>
+</thead>
 <c:forEach var='polists' varStatus='vs' items='${PO_SignBack}'>
 <p>採購單號 :${polists.po_id}</p>
 <p>廠商名稱:${polists.pO_MainBean.pO_Vendor_InfoBean.vendor_name}</p>
