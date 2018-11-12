@@ -21,7 +21,7 @@
 	<table class="table table-striped table-hover">
 <thead>
 		<tr>
-			<th>驗收單號hahaha</th>
+			<th>驗收單號hahahahahahahaha</th>
 			<th>採購單號</th>
 			<th>驗收人員</th>
 			<th>驗收金額</th>
