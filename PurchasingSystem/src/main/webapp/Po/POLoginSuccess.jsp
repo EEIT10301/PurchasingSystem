@@ -52,7 +52,7 @@
 				<a href='POManagerSigner.controller' class="btn"><img
 					class="card-img-top imgp" src="../sysimg/s2.png"></a>
 				<div class="card-body">
-					<h5 class="card-title"><font face="微軟正黑體">待審核採購單</font></h5>
+					<h5 class="card-title"><font face="微軟正黑體">待處理採購單</font></h5>
 				</div>
 			</div>
 			<div class="card bg-light f">
@@ -111,7 +111,7 @@
 				<a href='POManagerSigner.controller' class="btn"><img
 					class="card-img-top imgp" src="../sysimg/s2.png"></a>
 				<div class="card-body">
-					<h5 class="card-title"><font face="微軟正黑體">待審核採購單</font></h5>
+					<h5 class="card-title"><font face="微軟正黑體">待處理採購單</font></h5>
 				</div>
 			</div>
 			<div class="card bg-light f">
