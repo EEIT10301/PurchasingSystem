@@ -52,7 +52,7 @@
 <c:if test="${not empty selsctlists || selectlistnofinish.sig_Sta==chkprosta}">
 	 
 	<div class="right">
-	 <input class="" type="text" placeholder="search" id="search">
+	 <input class="form-control" type="text" placeholder="search" id="search">
      <style id="search_style"></style>
 <script type="text/javascript">
 var searchStyle = document.getElementById('search_style');

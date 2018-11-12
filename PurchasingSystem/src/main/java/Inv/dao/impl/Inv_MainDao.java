@@ -103,4 +103,11 @@ public class Inv_MainDao implements Inv_MainIDao{
 		return false;
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Inv_MainBean> selectPage(Integer pageSize, Integer pageNo) {
+		return this.getSession().createQuery(
+	"from Inv_MainBean ").setFirstResult((pageNo - 1)* pageSize).setMaxResults(pageSize).list();
+	}
+	
 }

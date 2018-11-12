@@ -21,6 +21,7 @@
 	width: 15%;
 	float: left;
 	text-align: center;
+	height: 1500px;
 }
 
 .f {
@@ -32,46 +33,85 @@
 }
 
 .imgp {
-	padding: 0px;
-	font-size: 11px;
+/* 	padding: 0px; */
+/* 	font-size: 11px; */
+/* 	margin-right:10px; */
+	float:left;
+	height:35px;
+	width:30px;
 }
 
 .card-text {
 	font-size: 11px;
 }
+
+ul {
+	font-family:微軟正黑體;
+	font-size: 19px;
+}
+span {
+	margin-left:1px;
+}
 </style>
 </head>
-<body class="bg">
-<h3><font face="微軟正黑體">驗收系統</font></h3>
-    <div class="text-right"><font face="微軟正黑體">
-		 ${user.emp_id}/${user.emp_name}/${user.emp_job} </font><a
-		  href='InvLogout.controller'><button type="button" class="btn">登出</button></a>
-    </div>
-
-   
-
+<body class="bg">		
+	<h1><font face="微軟正黑體">驗收系統</font></h1>
+	<a href="InvLoginSuccess.jsp" style="font-family:微軟正黑體;">回首頁</a>
+	<div class="text-right" style="font-family:微軟正黑體;">
+		${user.emp_name} ${user.emp_job},你好<a
+			href='InvLogout.controller'><button type="button" class="btn">登出</button></a>
+	</div>
+	<hr>		
     <div class="left">		
-		<br><span>${sendok}</span>
-		<hr>
+		
 		<c:if test="${user.emp_level==1 }">
-		<div class="card bg-light f" style="font-family:微軟正黑體;">
-				<a href='selectInvchk.controller' class="btn" style="height:2em"><img
-					class="card-img-top imgp" src="../sysimg/s1.png" style="height:35px; width:30px; float:left">待驗收清單</a>		
-			</div>
-		<div class="card bg-light f" style="font-family:微軟正黑體;">
-				<a href='' class="btn" style="height:2em"><img
-					class="card-img-top imgp" src="../sysimg/s1.png" style="height:35px; width:30px; float:left">驗收成功清單</a>			
-			</div>
-		<div class="card bg-light f" style="font-family:微軟正黑體;">
-				<a href='chkprofail.controller' class="btn" style="height:2em"><img
-					class="card-img-top imgp" src="../sysimg/s1.png" style="height:35px; width:30px; float:left">驗收失敗清單</a>			
-		</div>
+<!-- 		<div class="card bg-light f" style="font-family:微軟正黑體;"> -->
+<!-- 				<a href='selectInvchk.controller' class="btn" style="height:2em"><img -->
+<!-- 					class="card-img-top imgp" src="../sysimg/s1.png" style="height:35px; width:30px; float:left">待驗收清單</a>		 -->
+<!-- 			</div> -->
+<!-- 		<div class="card bg-light f" style="font-family:微軟正黑體;"> -->
+<!-- 				<a href='' class="btn" style="height:2em"><img -->
+<!-- 					class="card-img-top imgp" src="../sysimg/s1.png" style="height:35px; width:30px; float:left">驗收成功清單</a>			 -->
+<!-- 			</div> -->
+<!-- 		<div class="card bg-light f" style="font-family:微軟正黑體;"> -->
+<!-- 				<a href='chkprofail.controller' class="btn" style="height:2em"><img -->
+<!-- 					class="card-img-top imgp" src="../sysimg/s1.png" style="height:35px; width:30px; float:left">驗收失敗清單</a>			 -->
+<!-- 		</div> -->
+<ul class="nav flex-column">
+           <li class="nav-item">
+                <a class="nav-link" href="selectInvchk.controller">
+                <img class=" imgp" src="../sysimg/s2.png">
+                  <span data-feather="home"></span>
+                  	待驗收清單<span class="sr-only">(current)</span>
+                </a>
+           </li>
+           <li class="nav-item">
+                <a class="nav-link" href="selectInvchk.controller">
+                <img class=" imgp" src="../sysimg/s2.png">
+                  <span data-feather="users"></span>
+                  	驗收成功清單
+                </a>
+           </li>
+           <li class="nav-item">
+                <a class="nav-link" href="chkprofail.controller">
+                <img class="imgp" src="../sysimg/s2.png">
+                  <span data-feather="file"></span>
+                  	驗收失敗清單
+                </a>
+           </li>
+</ul>
 		</c:if>
 		<c:if test="${user.emp_level==2 }">
-		<div class="card bg-light f" style="font-family:微軟正黑體;">
-				<a href='sendEmployee.controller' class="btn" style="height:2em"><img
-					class="card-img-top imgp" src="../sysimg/s1.png" style="height:35px; width:30px; float:left">待分派清單</a>
-		</div>
+		<ul class="nav flex-column">
+           <li class="nav-item">
+                <a class="nav-link" href="sendEmployee.controller">
+                <img class=" imgp" src="../sysimg/s2.png">
+                  <span data-feather="home"></span>
+                  	待分派清單<span class="sr-only">(current)</span>
+                </a>
+           </li>
+           </ul>
+		
 		</c:if>
 		</div>
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
