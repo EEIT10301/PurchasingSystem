@@ -591,20 +591,20 @@ public class POInvoiceController {
 					"財務經理分派");
 			if (lists != null) {
 
-				model.addAttribute("lists", lists);
+				model.addAttribute("listsAll", lists);
 				return "statusList.show";
 
 			} else {
-				model.addAttribute("nolist", "尚無請款單單號");
+				model.addAttribute("nolistAll", "尚無請款單單號");
 				return "statusList.show";
 			}
 		} else {
 			List<Account_SigningProcessBean> lists = pO_InvoiceService.selectAccountManagerInvoiveOrNot(emp_id);
 			if (lists != null) {
-				model.addAttribute("lists", lists);
+				model.addAttribute("listsAll", lists);
 				return "statusList.show";
 			} else {
-				model.addAttribute("nolist", "尚無請款單單號");
+				model.addAttribute("nolistAll", "尚無請款單單號");
 				return "statusList.show";
 			}
 		}

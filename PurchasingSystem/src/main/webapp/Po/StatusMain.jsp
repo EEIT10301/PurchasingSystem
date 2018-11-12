@@ -20,7 +20,7 @@
 </head>
 <body>
 <div class="right">
-	<h3>採購系統>查詢請款單狀態</h3><br>
+	<h3>查詢請款單狀態</h3><br>
 <a href="queryStatus.controller">查詢所有請款單</a>
 <a href="queryStatusUndone.controller">查詢未完成請款單</a>
 <a href="queryStatusDone.controller">查詢已完成請款單</a>
