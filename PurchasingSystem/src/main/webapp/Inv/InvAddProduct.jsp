@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ include file="../Invchkclude.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,14 +15,43 @@
 		confirm("確定要將驗收單內的產品加入到庫存資料表嗎 ? ") ;
 	}
 	</script>
+<style type="text/css">
+#submit {
+	position: absolute;
+	right: 700px;
+}
+.bg {
+	background-color: #FDF5E6;
+	/* 畫面間距 */
+	margin: 30px;
+}
+.right{
+	width:78%;
+    float:left;
+}
+.search-form {
+  text-align: right;
+  input {
+    border: none;
+    padding: .5em;
+    background: rgba(255,255,255,.5);
+    color: #555;
+  }
+  button {
+    @extend input;
+  }
+}
+
+</style>
 </head>
-<body>
-<a href="http://localhost:8080/PurchasingSystem/Inv/InvLoginSuccess.jsp" text-align="left">返回首頁</a>
+<body class="bg">
+<div class="right">
+<!-- <a href="http://localhost:8080/PurchasingSystem/Inv/InvLoginSuccess.jsp" text-align="left">返回首頁</a> -->
 	<form action="<c:url value="/Inv/itemin" />" method="get"> 
 	<table class="table table-striped table-hover">
 <thead>
 		<tr>
-			<th>驗收單號hahaha</th>
+			<th>驗收單號</th>
 			<th>採購單號</th>
 			<th>驗收人員</th>
 			<th>驗收金額</th>
@@ -71,6 +101,7 @@
 </c:forEach>
 </table>
 </c:if>
+</div>
 </div>
 </body>
 </html>

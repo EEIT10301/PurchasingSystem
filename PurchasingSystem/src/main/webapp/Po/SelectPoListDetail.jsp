@@ -12,6 +12,7 @@
 <!-- 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" -->
 <!-- 	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" -->
 <!-- 	crossorigin="anonymous"> -->
+<link rel="stylesheet" type="text/css" href="../css/POcss.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script type="text/javascript"
@@ -43,19 +44,6 @@ display: inline;
  position:absolute; 
  right:700px; 
 }
-
-
-.bg {
-	background-color: #FDF5E6;
-	/* 畫面間距 */
-	margin: 30px;
-}
-.right{
-	width:78%;
-    float:left;
-}
-
-
 </style>
 
 
@@ -64,20 +52,12 @@ display: inline;
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
 <script type="text/javascript">
-
-
-
-window.onload = function() {
-    if(!window.location.hash) {
-        window.location = window.location + '#loaded';
-        window.location.reload();
-    }
-}
-
-
-
-
-
+// window.onload = function() {
+//     if(!window.location.hash) {
+//         window.location = window.location + '#loaded';
+//         window.location.reload();
+//     }
+// }
 </script>
 </head>
 <body class="bg">
@@ -91,7 +71,9 @@ window.onload = function() {
 
  
  <div class="right">
-<c:if test="${not empty query1 or not queryVendor }">
+
+<c:if test="${not empty query1 or not queryVendor or not empty now }">
+<!-- or not queryVendor or not empty now -->
 
 <table class="table table-striped table-hover" id="myTable">
 <thead>

@@ -20,11 +20,13 @@
 </head>
 <body>
 <div class="right">
-	<h3>財務系統>查詢請款單狀態</h3><br>
-
-<a href="../Po/queryStatus.controller">查詢所有請款單</a>
-<a href="../Po/queryStatusUndone.controller">查詢未完成請款單</a>
-<a href="../Po/queryStatusDone.controller">查詢已完成請款單</a>
+	<h3>查詢請款單狀態</h3>
+	<a href="../Po/queryStatus.controller" class="badge badge-info">查詢所有請款單</a>
+	<a href="../Po/queryStatusUndone.controller" class="badge badge-info">查詢未完成請款單</a>
+	<a href="../Po/queryStatusDone.controller" class="badge badge-info">查詢已完成請款單</a>
+<!-- <a href="../Po/queryStatus.controller">查詢所有請款單</a> -->
+<!-- <a href="../Po/queryStatusUndone.controller">查詢未完成請款單</a> -->
+<!-- <a href="../Po/queryStatusDone.controller">查詢已完成請款單</a> -->
 </div>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

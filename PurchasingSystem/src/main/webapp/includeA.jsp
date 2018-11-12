@@ -27,7 +27,7 @@ float:left;
 	/* 方格排列 */
 	display: inline-block;
 	width: 6rem;
-	height: 7rem;
+	height: 6.5rem;
 
 }
 
