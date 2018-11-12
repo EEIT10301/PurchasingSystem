@@ -38,7 +38,6 @@ text-size:10px;
 	<c:if test="${not empty dispatcherrormeg}">
 		<h2 id="message">${dispatcherrormeg}</h2>
 	</c:if>
-	
 	<c:if test="${empty list}">
 	<div class="right">
 	<h3>財務系統>待分派請款單</h3><br>

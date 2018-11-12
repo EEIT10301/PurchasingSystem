@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <html>
@@ -54,37 +54,37 @@ input, select {
 		<textarea rows="5" cols="50" name="SignSug" required>
 		</textarea>
 
-		<input class="btn btn-primary" type="reset" value="重新輸入"> 
-		<input class="btn btn-primary" type="submit" data-toggle="modal"
+		<input class="btn btn-primary" type="reset" value="重新輸入"> <input
+			class="btn btn-primary" type="submit" data-toggle="modal"
 			data-target="#exampleModalCenter" value="送出">
-		
-<!-- 		<div class="modal fade" id="exampleModalCenter" tabindex="-1" -->
-<!-- 		role="dialog" aria-labelledby="exampleModalCenterTitle" -->
-<!-- 		aria-hidden="true"> -->
-<!-- 		<div class="modal-dialog modal-dialog-centered" role="document"> -->
-<!-- 			<div class="modal-content"> -->
-<!-- 				<div class="modal-header"> -->
-<!-- 					<h5 class="modal-title" id="exampleModalLongTitle">訊息</h5> -->
-<!-- 					<button type="button" class="close" data-dismiss="modal" -->
-<!-- 						aria-label="Close"> -->
-<!-- 						<span aria-hidden="true">&times;</span> -->
-<!-- 					</button> -->
-<!-- 				</div> -->
-<!-- 				<div class="modal-body"> -->
-<%-- 					<c:if test="${not empty successmeg}"> --%>
-<%-- 						<h2>請款單:${inv_id}${successmeg}</h2> --%>
-<%-- 					</c:if> --%>
-<%-- 					<c:if test="${not empty errormeg}"> --%>
-<%-- 						<h2>請款單${errormeg}</h2> --%>
-<%-- 					</c:if> --%>
-<!-- 				</div> -->
-<!-- 				<div class="modal-footer"> -->
-<!-- 					<button type="button" class="btn btn-secondary" -->
-<!-- 						data-dismiss="modal">Close</button> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-<!-- 	</div> -->
+
+		<!-- 		<div class="modal fade" id="exampleModalCenter" tabindex="-1" -->
+		<!-- 		role="dialog" aria-labelledby="exampleModalCenterTitle" -->
+		<!-- 		aria-hidden="true"> -->
+		<!-- 		<div class="modal-dialog modal-dialog-centered" role="document"> -->
+		<!-- 			<div class="modal-content"> -->
+		<!-- 				<div class="modal-header"> -->
+		<!-- 					<h5 class="modal-title" id="exampleModalLongTitle">訊息</h5> -->
+		<!-- 					<button type="button" class="close" data-dismiss="modal" -->
+		<!-- 						aria-label="Close"> -->
+		<!-- 						<span aria-hidden="true">&times;</span> -->
+		<!-- 					</button> -->
+		<!-- 				</div> -->
+		<!-- 				<div class="modal-body"> -->
+		<%-- 					<c:if test="${not empty successmeg}"> --%>
+		<%-- 						<h2>請款單:${inv_id}${successmeg}</h2> --%>
+		<%-- 					</c:if> --%>
+		<%-- 					<c:if test="${not empty errormeg}"> --%>
+		<%-- 						<h2>請款單${errormeg}</h2> --%>
+		<%-- 					</c:if> --%>
+		<!-- 				</div> -->
+		<!-- 				<div class="modal-footer"> -->
+		<!-- 					<button type="button" class="btn btn-secondary" -->
+		<!-- 						data-dismiss="modal">Close</button> -->
+		<!-- 				</div> -->
+		<!-- 			</div> -->
+		<!-- 		</div> -->
+		<!-- 	</div> -->
 
 		<!-- 		<label class="btn btn-primary"> -->
 		<!-- 		<input id="upload_img" style="display:none;" type="file" name="Receiptpic"> -->
@@ -93,16 +93,16 @@ input, select {
 
 	</form>
 
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>
 	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
 		crossorigin="anonymous"></script>
 	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+		integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
 		crossorigin="anonymous"></script>
 </body>
 </html>

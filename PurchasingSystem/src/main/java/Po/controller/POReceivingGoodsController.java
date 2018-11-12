@@ -142,7 +142,7 @@ public class POReceivingGoodsController {
 			String ckid = "CK" + pO_MainBean.getPo_id().substring(2);
 
 			Inv＿ProductCheckBean inv＿ProductCheckBean = new Inv＿ProductCheckBean(ckid, bean.getPo_id(), "emp000",
-					pO_MainBean.getTotal_price(), null, null, pO_MainBean.getVendor_ID());
+					pO_MainBean.getTotal_price(), "尚未入庫", null, pO_MainBean.getVendor_ID());
 			inv＿ProductCheckService.insert(inv＿ProductCheckBean);
 			for (PO_DetailBean pd : pODetailBean) {
 				Inv_ProductListBean ip = new Inv_ProductListBean(ckid, pd.getPart_No(), null, null, null,

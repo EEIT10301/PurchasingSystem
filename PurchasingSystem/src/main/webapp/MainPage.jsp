@@ -15,26 +15,27 @@
 </head>
 <body class="bg-light" style="margin-top:150px">
 	<div class="mx-auto" style="width: 300px">
-		<div class="text-center">
+
+		<div class="text-center" style="font-family:微軟正黑體;">
 			<h3>員工登入</h3>
 		</div>
 		<form action="<c:url value="AllApplyLogin.controller" />"
 			method="post">
-			<div class="form-group">
+			<div class="form-group" style="font-family:微軟正黑體;">
 				<label for="exampleInputEmail1">帳號</label> <input type="text"
 					class="form-control" name="username" value="${param.username}"
 					id="exampleInputEmail1" aria-describedby="emailHelp"
 					placeholder="請輸入你的email" required>
 				<p>${errors.username}</p>
 			</div>
-			<div class="form-group">
+			<div class="form-group" style="font-family:微軟正黑體;">
 				<label for="exampleInputPassword1">密碼</label> <input
 					type="password" class="form-control" name="password"
 					value="${param.password}" id="exampleInputPassword1"
 					placeholder="請輸入你的密碼 " required>
 				<p>${errors.password}</p>
 			</div>
-			<div class="text-center">
+			<div class="text-center" style="font-family:微軟正黑體;">
 				<input class="btn btn-primary" type="reset" value="重新輸入">
 				<input class="btn btn-primary" type="submit" value="登入">
 			</div>

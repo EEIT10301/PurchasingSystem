@@ -42,8 +42,9 @@ float:left;
 <body class="bg">
 <h3>財務系統</h3>
 	<div class="text-right">
-		${user.emp_dep}/${user.emp_name} ${user.emp_job},你好 <a
-			href='AccountLogout.controller'><button type="button" class="btn">登出</button></a>
+		${user.emp_dep}/${user.emp_name} ${user.emp_job},你好 
+		<a href='AccountLogout.controller'><button type="button" class="btn btn-primary btn-sm">登出</button></a>
+
 	</div>
 	<hr>
 <div class="left">

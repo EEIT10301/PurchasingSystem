@@ -15,7 +15,6 @@
 
 <c:if test="${not empty invoiceData}">
 		<h2>請款單明細</h2>
-		<input class="form-control" id="myInput" type="text" placeholder="Search"><br/>
 		<table class="table table-striped table-hover">
 			<thead>
 			<tr>

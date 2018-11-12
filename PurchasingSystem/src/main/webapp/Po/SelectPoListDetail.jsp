@@ -1,11 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<jsp:include page="Query.jsp" flush="false"/>     
+<%@ include file="../POInclude.jsp"%>
+<%-- <jsp:include page="Query.jsp" flush="false"/>      --%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+
+<!-- <link rel="stylesheet" -->
+<!-- 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" -->
+<!-- 	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" -->
+<!-- 	crossorigin="anonymous"> -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
 <style type="text/css">
 #query{
 color: red;
@@ -30,6 +44,18 @@ display: inline;
  right:700px; 
 }
 
+
+.bg {
+	background-color: #FDF5E6;
+	/* 畫面間距 */
+	margin: 30px;
+}
+.right{
+	width:78%;
+    float:left;
+}
+
+
 </style>
 
 
@@ -38,10 +64,6 @@ display: inline;
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
 <script type="text/javascript">
-// $(document).ready(function(){
-// 	window.location.reload();
-// }) 
-
 
 
 
@@ -51,16 +73,27 @@ window.onload = function() {
         window.location.reload();
     }
 }
+
+
+
+
+
 </script>
 </head>
-<body>
+<body class="bg">
 
+<c:if test="${empty queryss and empty query1  and empty queryVendor}">
 
  <h2>${noselist}</h2>
  
  
-<c:if test="${not empty query1 or not queryVendor or not empty now}">
-<table class="table table-striped table-hover" id="table">
+ </c:if>
+
+ 
+ <div class="right">
+<c:if test="${not empty query1 or not queryVendor or not empty now }">
+
+<table class="table table-striped table-hover" id="myTable">
 <thead>
 <tr>
 <th id="thead">最新詢價紀錄</th>
@@ -87,7 +120,7 @@ window.onload = function() {
 
 
 <c:if test="${not empty queryss}">
-<table class="table table-striped table-hover" id="table">
+<table class="table table-striped table-hover" id="myTable">
 <thead>
 <tr>
 <th id="thead">詢價紀錄</th>
@@ -117,7 +150,7 @@ window.onload = function() {
 </c:if>
 
 <c:if test="${empty queryss and empty query1}">
-<table class="table table-striped table-hover" id="table">
+<table class="table table-striped table-hover" id="myTable">
 <thead>
 <tr>
 <th id="thead">詢價紀錄</th>
@@ -166,34 +199,9 @@ method="post">
 </div>
 </c:if>
 
+</div>
 
 
-
-<%-- <c:if test="${not empty poprocess1}"> --%>
-<%-- <a href='<c:url value="sendsc.controller?po_manger=${poprocess1.po_manger}&po_sta=${poprocess1.po_sta}&po_id=${poprocess1.po_id}" />'> --%>
-<!--       新增詢價紀錄</a> -->
-<%-- <a href='<c:url value="posendlistsign.controller?po_manger=${poprocess1.po_manger}&po_sta=${poprocess1.po_sta}&po_id=${poprocess1.po_id}" />'> --%>
-<!--       送出審核</a>  -->
-<%-- </c:if> --%>
-
-
-<%-- <c:if test="${not empty poprocess2}"> --%>
-<%-- <a href='<c:url value="sendsc.controller?po_manger=${poprocess2.po_manger}&po_sta=${poprocess2.po_sta}&po_id=${poprocess2.po_id}" />'> --%>
-<!--       新增詢價紀錄</a> -->
-<%-- <a href='<c:url value="posendlistsign.controller?po_manger=${poprocess2.po_manger}&po_sta=${poprocess2.po_sta}&po_id=${poprocess2.po_id}" />'> --%>
-<!--       送出審核</a>  -->
-<%-- </c:if> --%>
-
-
-
-
-
-
-
-
-
-
-
-
+	<script src="../js/app.js"></script>
 </body>
 </html>

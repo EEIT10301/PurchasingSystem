@@ -29,7 +29,6 @@ text-size:10px;
 		<h2 id="message">${returnerrormeg}</h2>
 	</c:if>
 
-
 <c:if test="${empty listtodosign and empty backInvoiceSign}">
 		<h2>目前無請款單需要簽核</h2>
 		<hr>

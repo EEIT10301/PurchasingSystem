@@ -43,8 +43,6 @@ text-size:10px;
 	<c:if test="${not empty returnerrormeg}">
 		<h2 id="message">${returnerrormeg}</h2>
 	</c:if>
-	
-
 	<c:if test="${empty list}">
 				<div class="right">
 			<h3>財務系統>待審核請款單</h3>
