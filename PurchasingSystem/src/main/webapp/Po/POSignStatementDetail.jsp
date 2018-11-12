@@ -8,36 +8,77 @@
 <title>採購單狀態流程</title>
 
 <style type="text/css">
-	body{
-		background-repeat:no-repeat;
-		background-size:100%;
-		margin:0;
-		padding:0;
-		font-family:'微軟正黑體';
-		background-attachment:fixed;
-	}
-	.prolist{
-		display: flex;
-		width:70%;
-		margin:0 auto;
-		flex-wrap:wrap;
-	}
-	.pro{
-		flex: 0 0 33.3;
-		margin:10px;
-	}
-	.pro p{
-		text-align:center;
-	}
-	.pro input{
-		width:120px;
-		background-color: white;
-		font-size: 1.05em;
-	}
+	
 </style>
 
 </head>
 <body>
+ <h2>採購單號 :${po_id}</h2>
+<c:if test="${not empty POprocess}">
+<table class="table table-striped table-hover" id="myTable">
+<thead>
+<tr>
+<th>流程進度</th>
+<th>簽核人</th>
+<th>簽核時間</th>
+<th>簽核情形</th>
+<th>簽核建議</th>
+</tr>
+<c:forEach var="POprocess" items="${POprocess}">
+<c:if test="${POprocess.sig_sta == '簽核中'  or POprocess.sig_sta == '退回中' or POprocess.sig_sta == '詢價中' or POprocess.sig_sta == '分派中' or POprocess.sig_sta == '下單中' or POprocess.sig_sta == '出貨中'}">
+<tr>
+<td><font color="red">${POprocess.po_sta}</font></td>
+<td><font color="red">${POprocess.employeeBean.emp_name}</font></td>
+<td>
+<font color="red">${POprocess.sig_date}</font>
+<c:if test="${empty POprocess.sig_date}"><font color="red">時間未暫定</font></c:if>
+</td>
+<td><font color="red">${POprocess.sig_sta}</font></td>
+<td>
+<font color="red">${POprocess.sig_sug}</font>
+<c:if test="${empty POprocess.sig_sug}"><font color="red">意見未更新</font></c:if>
+</td>
+</tr>
+</c:if>
+
+<c:if test="${POprocess.sig_sta != '簽核中'  and POprocess.sig_sta != '退回中' and POprocess.sig_sta != '詢價中' and POprocess.sig_sta != '分派中' and POprocess.sig_sta != '下單中' and POprocess.sig_sta != '出貨中'}">
+<tr>
+<td>${POprocess.po_sta}</td>
+<td>${POprocess.employeeBean.emp_name}</td>
+<td>${POprocess.sig_date}</td>
+<td>${POprocess.sig_sta}</td>
+<td>${POprocess.sig_sug}</td>
+
+</tr>
+</c:if>
+</c:forEach>
+</thead>
+</table>
+</c:if>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
  <h2>採購單號 :${po_id}</h2>
  <div class="prolist">

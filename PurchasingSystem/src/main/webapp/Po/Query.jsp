@@ -40,7 +40,8 @@ font-size: 36px;
 <div class="right">
 	<form action="<c:url value="/Po/queryinsert.controller"/>" method="post">
 	<c:if test="${not empty query}">		
-	<input class="form-control" id="myInput" type="text" placeholder="Search"><br/>
+	
+
 	<table class="table table-striped table-hover" id="myTable">				
 				<thead>
 				<tr>
