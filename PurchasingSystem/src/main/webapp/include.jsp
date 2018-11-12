@@ -27,7 +27,7 @@ float:left;
 	/* 方格排列 */
 	display: inline-block;
 	width: 6rem;
-	height: 7rem;
+	height: 6.5rem;
 
 }
 
@@ -42,8 +42,9 @@ float:left;
 <body class="bg">
 <h3>財務系統</h3>
 	<div class="text-right">
-		${user.emp_dep}/${user.emp_name} ${user.emp_job},你好 <a
-			href='AccountLogout.controller'><button type="button" class="btn btn-primary btn-sm">登出</button></a>
+		${user.emp_dep}/${user.emp_name} ${user.emp_job},你好 
+		<a href='AccountLogout.controller'><button type="button" class="btn btn-primary btn-sm">登出</button></a>
+
 	</div>
 	<hr>
 <div class="left">

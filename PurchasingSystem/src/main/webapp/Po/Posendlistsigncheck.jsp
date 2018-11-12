@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="../css/POcss.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -27,38 +28,24 @@ display: inline;
  position:absolute; 
  right:700px; 
 }
-.bg {
-	background-color: #FDF5E6;
-	/* 畫面間距 */
-	margin: 30px;
-}
-.right{
-	width:78%;
-    float:left;
-}
 </style>
 </head>
-
-
 <body class="bg">
 <div class="right">
 <c:if test="${not empty poid1 and not empty AllPO_Vendors and not empty Podetailbeans and  not empty allListprice}">
 <form action="<c:url value="/Po/podetailupdate.controller" />" method="post">
+<h3>採購單號:${poid1}</h3>
+<h3>選擇廠商:${AllPO_Vendors.vendor_name}</h3>
+
+
+
+
+
+
+
+
 <table class="table table-striped table-hover" id="myTable">
 <thead>
-<tr>
-<th id="thead2">採購單編號</th>
-<td id="thead2">${poid1}</td>
-
-</tr>
-<tr>
-<th id="thead2">選擇廠商</th>
-<td id="thead2">${AllPO_Vendors.vendor_name}</td>
-<td><Input type='hidden' name='AllPO_Vendors' value='${AllPO_Vendors.vendor_id}'></td>
-</tr>
-</thead>
-<tbody>
-
 <tr>
 <th>料號</th>
 <th>請購數量</th>
@@ -67,7 +54,8 @@ display: inline;
 <th>實際採購價格</th>
 <th>該物料總價格</th>
 </tr>
-
+</thead>
+<tbody>
 <c:forEach var="Podetailbeans1" items="${Podetailbeans}">
 <tr>
 <td>${Podetailbeans1.part_No}</td>
@@ -82,45 +70,48 @@ display: inline;
 <td><Input type='hidden' name='quotation' value='${Podetailbeans1.quotation}'></td>
 <td><Input type='hidden' name='total_Price' value='${Podetailbeans1.total_Price}'></td>
 <td><Input type='hidden' name='total_Qty' value='${Podetailbeans1.total_Qty}'></td>
+
 </tr>
 </c:forEach>
-<tr>
-<th>總採購價格</th>
-<td> ${allListprice}元</td>
-<td><Input type='hidden' name='allListprice' value='${allListprice}'></td>
-</tr>
-<tr>
-<th>簽和順序 step1</th>
-<td>
-<select name="pomanger">
+</tbody>
+</table>
+
+<p>總採購價格:${allListprice}元</p>
+
+
+
+
+<p>簽和順序 step1: <select name="pomanger">
 		<c:forEach var="pomangers1" items="${pomangers}">
 		   <option value='${pomangers1.emp_id}'>採購部主管: ${pomangers1.emp_name} ${pomangers1.emp_job}		   
 		    </option>
 		</c:forEach>	 	
-		</select>
-</td>
-</tr>
+		</select></p>
+
 <c:if test="${not empty boss}">
-<tr>
-<th>簽和順序 step2</th>
-<td>${boss.emp_job}: ${boss.emp_name} </td>
-<td> <Input type='hidden' name='boss' value='${boss.emp_id}'></td>
-</tr>
+
+<p>簽核順序 step2: ${boss.emp_job}: ${boss.emp_name}
+
 </c:if>
-<tr>
-<th>簽核意見</th>
-<td ><textarea   rows="5" cols="50"  name="SignSug"></textarea></td>
-<td><Input type='hidden' name='posta1' value='${posta1}'></td>
-<td><Input type='hidden' name='poid1' value='${poid1}'></td>
-</tr>
-</tbody>
-</table>
+
+
+簽核意見:<p><textarea   rows="5" cols="50"  name="SignSug"></textarea></p>
+
+
+
 
 <div id="doublesubmitbutton">
 
 <Input id="submitbutton" type='submit' name='send' value='重新輸入'>
 <Input id="submitbutton" type='submit' name='send' value='送出'>
 </div>
+
+<Input type='hidden' name='AllPO_Vendors' value='${AllPO_Vendors.vendor_id}'>
+<Input type='hidden' name='allListprice' value='${allListprice}'>
+<Input type='hidden' name='posta1' value='${posta1}'>
+<Input type='hidden' name='poid1' value='${poid1}'>
+<Input type='hidden' name='boss' value='${boss.emp_id}'>
+
 
 </form>
 </c:if>
@@ -166,5 +157,6 @@ display: inline;
 <!-- <p><Input type='submit' name='send' value='重新輸入'><p> -->
 <!-- <p><Input type='submit' name='send' value='送出'><p> -->
 <!-- </form> -->
+
 </body>
 </html>

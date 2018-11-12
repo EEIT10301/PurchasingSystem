@@ -19,10 +19,11 @@
 </head>
 <body class="bg">
 <%-- <h2>請購單編號:${signedOrderDetail.po_id}</h2> --%>
+<div class="right">
 <h2>採購單編號:${pm.po_id}</h2>
 	<h2>下單產品明細</h2>	
 	<form action="<c:url value="/Po/signedOrderSubmit.controller" />" method="post">
-	<div class="right">
+	
 <%-- 	<c:forEach var='signedOrderDetails' items='${signedOrderDetail}'> --%>
 
 <%-- 		<p>廠商名稱: ${signedOrderDetails.pO_Vendor_InfoBean.vendor_name}</p> --%>
@@ -67,14 +68,14 @@
 		
 		</tbody>
 		</table>
-		</div>
+		
 <%-- 		</c:forEach> --%>
 下單意見:<p><textarea rows="5" cols="50" name="signSug"></textarea></p>
 預計出貨時間:<input type="datetime" name="shippingDate">
 <p><input type="submit" name="send" value="送出">
 		</form>
+		</div>
 
-
-
+<script src="../js/app.js"></script>
 </body>
 </html>

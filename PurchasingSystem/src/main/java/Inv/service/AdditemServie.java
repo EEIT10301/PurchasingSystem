@@ -56,22 +56,22 @@ public class AdditemServie {
 	
 
 	
-//	//新增new
-//	public List<Inv_ProductListBean> ViewAddCheckDetail(String chk_Id) {
-//		List<Inv_ProductListBean> beans = inv_ProductListIDao.ViewAddCheckDetail(chk_Id);
-//		if(beans!=null) {
-//			return beans;
-//		}
-//		return null;
-//	}
-//	//新增new
-//	public List<Inv_ProductListBean> selectCount(String chk_Id) {
-//		 List<Inv_ProductListBean> beans = inv_ProductListIDao.select(chk_Id);
-//		if(beans!=null) {
-//			return beans;
-//		}
-//		return null;
-//	}
+	//新增new
+	public List<Inv_ProductListBean> ViewAddCheckDetail(String chk_Id) {
+		List<Inv_ProductListBean> beans = inv_ProductListIDao.ViewAddCheckDetail(chk_Id);
+		if(beans!=null) {
+			return beans;
+		}
+		return null;
+	}
+	//新增new
+	public List<Inv_ProductListBean> selectCount(String chk_Id) {
+		 List<Inv_ProductListBean> beans = inv_ProductListIDao.select(chk_Id);
+		if(beans!=null) {
+			return beans;
+		}
+		return null;
+	}
 	public  Inv_ProductListBean update(Inv_ProductListBean bean) {
 		Inv_ProductListBean beans = inv_ProductListIDao.update(bean);
 		if(beans!=null) {
