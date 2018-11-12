@@ -592,20 +592,20 @@ public class POInvoiceController {
 			if (lists != null) {
 
 				model.addAttribute("lists", lists);
-				return "statusList.show";
+				return "status.show";
 
 			} else {
 				model.addAttribute("nolist", "尚無請款單單號");
-				return "statusList.show";
+				return "status.show";
 			}
 		} else {
 			List<Account_SigningProcessBean> lists = pO_InvoiceService.selectAccountManagerInvoiveOrNot(emp_id);
 			if (lists != null) {
 				model.addAttribute("lists", lists);
-				return "statusList.show";
+				return "status.show";
 			} else {
 				model.addAttribute("nolist", "尚無請款單單號");
-				return "statusList.show";
+				return "status.show";
 			}
 		}
 	}
@@ -635,10 +635,10 @@ public class POInvoiceController {
 			}
 			if (listsd.size() > 0) {
 				model.addAttribute("lists", listsd);
-				return "statusList.show";
+				return "status.show";
 			} else {
 				model.addAttribute("nolist", "尚無已結案請款單單號");
-				return "statusList.show";
+				return "status.show";
 			}
 
 		} else {
@@ -660,10 +660,10 @@ public class POInvoiceController {
 			}
 			if (listsd.size() > 0) {
 				model.addAttribute("lists", listsd);
-				return "statusList.show";
+				return "status.show";
 			} else {
 				model.addAttribute("nolist", "尚無已結案請款單單號");
-				return "statusList.show";
+				return "status.show";
 			}
 		}
 	}
@@ -696,10 +696,10 @@ public class POInvoiceController {
 					liststaUn2.add(liststaUn);
 				}
 				model.addAttribute("listsUn", liststaUn2);
-				return "statusList.show";
+				return "status.show";
 			} else {
 				model.addAttribute("nolistUn", "尚無未結案請款單單號");
-				return "statusList.show";
+				return "status.show";
 			}
 		} else {
 			List<Account_SigningProcessBean> lists = pO_InvoiceService.selectAccountManagerInvoiveOrNot(emp_id);
@@ -723,10 +723,10 @@ public class POInvoiceController {
 					liststaUn2.add(liststaUn);
 				}
 				model.addAttribute("listsUn", liststaUn2);
-				return "statusList.show";
+				return "status.show";
 			} else {
 				model.addAttribute("nolistUn", "尚無未結案請款單單號");
-				return "statusList.show";
+				return "status.show";
 			}
 		}
 	}
