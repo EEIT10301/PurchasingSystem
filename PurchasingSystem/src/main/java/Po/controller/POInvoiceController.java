@@ -129,9 +129,9 @@ public class POInvoiceController {
 			throws IllegalStateException, IOException, ParseException {
 		// 上傳圖片
 		String invId = "In" + poid.substring(2);
-//		String destination="C:\\Users\\User\\Downloads\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
-		String destination = "D:\\Maven-project\\repository\\PurchasingSystem\\src\\main\\webapp\\images"
-				+ "\\" + invId + ".jpg";
+		String destination="C:\\Users\\User\\Downloads\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
+//		String destination = "D:\\Maven-project\\repository\\PurchasingSystem\\src\\main\\webapp\\images"
+//				+ "\\" + invId + ".jpg";
 		// String destination = "\\"+"images"+"\\"+invId+".jpg";
 //		String destination ="C:\\Users\\timmy\\git\\repository\\PurchasingSystem\\src\\main\\webapp\\images"+ "\\" + invId + ".jpg";
 		if (file != null || file.getSize() > 0) {
@@ -169,10 +169,10 @@ public class POInvoiceController {
 
 		// 上傳圖片
 		String invId = "In" + poid.substring(2);
-		// String destination
-		// ="C:\\Users\\User\\Downloads\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
-		String destination = "D:\\Maven-project\\repository\\PurchasingSystem\\src\\main\\webapp\\images"
-				+ "\\" + invId + ".jpg";
+		 String destination
+		 ="C:\\Users\\User\\Downloads\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
+//		String destination = "D:\\Maven-project\\repository\\PurchasingSystem\\src\\main\\webapp\\images"
+//				+ "\\" + invId + ".jpg";
 //		String destination = "C:\\Users\\jonat\\Downloads\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"
 //				+ "\\" + invId + ".jpg";
 //		String destination ="C:\\Users\\timmy\\git\\repository\\PurchasingSystem\\src\\main\\webapp\\images"+ "\\" + invId + ".jpg";
@@ -591,20 +591,20 @@ public class POInvoiceController {
 					"財務經理分派");
 			if (lists != null) {
 
-				model.addAttribute("lists", lists);
+				model.addAttribute("listsAll", lists);
 				return "statusList.show";
 
 			} else {
-				model.addAttribute("nolist", "尚無請款單單號");
+				model.addAttribute("nolistAll", "尚無請款單單號");
 				return "statusList.show";
 			}
 		} else {
 			List<Account_SigningProcessBean> lists = pO_InvoiceService.selectAccountManagerInvoiveOrNot(emp_id);
 			if (lists != null) {
-				model.addAttribute("lists", lists);
+				model.addAttribute("listsAll", lists);
 				return "statusList.show";
 			} else {
-				model.addAttribute("nolist", "尚無請款單單號");
+				model.addAttribute("nolistAll", "尚無請款單單號");
 				return "statusList.show";
 			}
 		}
