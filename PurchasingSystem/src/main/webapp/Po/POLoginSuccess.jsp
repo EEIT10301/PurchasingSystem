@@ -31,10 +31,10 @@
 </style>
 </head>
 <body class="bg">
-	<h3><font face="微軟正黑體">採購系統</font></h3>
+	<h1><font face="微軟正黑體">採購系統</font></h1>
 	<div class="text-right"><font face="微軟正黑體">
-		${user.emp_id}/${user.emp_name} ${user.emp_job},你好 </font><a
-			href='POLogout.controller'><button type="button" class="btn">登出</button></a>
+		${user.emp_dep}/${user.emp_name} ${user.emp_job},你好 </font><a
+			href='POLogout.controller'><button type="button" class="btn btn-primary">登出</button></a>
 	</div>
 	<div class="text-center">
 		<br> <span>${sendok}</span>
@@ -95,7 +95,7 @@
 				<a href='POFinalStatement.controller' class="btn"><img
 					class="card-img-top imgp" src="../sysimg/s6.png"></a>
 				<div class="card-body">
-					<h5 class="card-title"><font face="微軟正黑體">查詢已結案請款單</font></h5>
+					<h5 class="card-title">查詢已結案採購單</h5>
 				</div>
 			</div>
 		</c:if>

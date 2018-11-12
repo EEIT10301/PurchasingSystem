@@ -5,7 +5,9 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
@@ -61,6 +63,8 @@ public class ApplyProductController {
 		 ProductListBean em = null;
  
 		String partno = jsonObj.getString("id");
+		//String pro_cate = jsonObj.getString("cate");
+		String pro_name = jsonObj.getString("name");
 		String pro_spe = jsonObj.getString("spe");
 		String pro_intro = jsonObj.getString("intro");
 		Integer pro_price = Integer.valueOf(jsonObj.getString("price"));
@@ -72,6 +76,8 @@ public class ApplyProductController {
 		String now= dateFormate.format(data1);
 		SimpleDateFormat sdf =new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Date datas=sdf.parse(now);
+		em.setPro_name(pro_name);
+		//em.setPro_cate(pro_cate);
 		em.setPro_spe(pro_spe);
 		em.setPro_intro(pro_intro);
 		em.setPro_price(pro_price);
@@ -105,31 +111,35 @@ public class ApplyProductController {
 		SimpleDateFormat sdf =new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Date datas=sdf.parse(now);
 		ProductListBean em = new ProductListBean(partno,pro_cate,pro_name,pro_spe,pro_intro,pro_price,pro_amount,null,datas);
-		productListService.insert(em);
+		ProductListBean s=productListService.insert(em);
+		Map<String, String> errors = new HashMap<String, String>();
+		if(s==null) {
+			errors.put("insert", "請勿新增相同料號");
+		}else {
+			errors.put("insert", "新增成功");
+
+		}
+		Gson gson = new Gson();
+		String json = gson.toJson(errors) ; 
+		return json;
 		
-		return "1";
+		
 	}
-	@RequestMapping(value="/Apply/searchproduct.do", produces ="text/html; charset=utf-8" )
-	public @ResponseBody String SearchAJAX(HttpServletRequest request) throws IOException, ParseException {
-//		String jsonStr = readJSON(request);
-//		JSONObject jsonObj = new JSONObject(jsonStr);
-//		String partno = jsonObj.getString("id");
-//		String pro_cate = jsonObj.getString("cate");
-//		String pro_name = jsonObj.getString("name");
-//		String pro_spe = jsonObj.getString("spe");
-//		String pro_intro = jsonObj.getString("intro");
-//		Integer pro_price = Integer.valueOf(jsonObj.getString("price"));
-//		Integer pro_amount = Integer.valueOf(jsonObj.getString("amount"));
-//		java.util.Date date = new java.util.Date();
-//		java.sql.Date data1 = new java.sql.Date(date.getTime());
-//		DateFormat dateFormate =new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-//		String now= dateFormate.format(data1);
-//		SimpleDateFormat sdf =new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-//		Date datas=sdf.parse(now);
-//		ProductListBean em = new ProductListBean(partno,pro_cate,pro_name,pro_spe,pro_intro,pro_price,pro_amount,null,datas);
-//		productListService.insert(em);
-		
-		return "indexlogin.return";
+	@RequestMapping(value="/Apply/deletehproduct.do", produces ="text/html; charset=utf-8" )
+	public @ResponseBody String deleteAJAX(HttpServletRequest request) throws IOException, ParseException {
+		String jsonStr = readJSON(request);
+		JSONObject jsonObj = new JSONObject(jsonStr);
+		String partno = jsonObj.getString("id");
+		boolean s=productListService.delete(partno);
+		Map<String, String> errors = new HashMap<String, String>();
+		if(s==false) {
+			errors.put("deletes", "無法刪除有請購紀錄物料");
+		}else {
+			errors.put("deletes", "刪除成功");
+		}
+		Gson gson = new Gson();
+		String json = gson.toJson(errors) ; 
+		return json;
 	}	
 @RequestMapping(path="/Apply/UpdateOrDeleteproduct.do")
 @ResponseBody

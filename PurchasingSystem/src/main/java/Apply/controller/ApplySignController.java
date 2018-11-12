@@ -50,12 +50,14 @@ public class ApplySignController {
 	public String querySignprocess(App_SigningProcessBean bean,BindingResult bindingResult,
 	Model model ,HttpSession session) {
 		String appid=bean.getApp_id();
+		App_MainBean app_Main=app_MainService.select(appid);
 		List<App_SigningProcessBean> xs=app_SigningProcessService.selectallappid(appid);
 		String poid= "Po"+appid.substring(2);
 		List<PO_SigningProcessBean> beans = pO_SigningProcessService.selectpoid(poid);
 		if(beans ==null) {
 			//beans為空值，加請購單的appid,xs放入addAttribute到前端給apply.querysign
 			// 登入用請購員工介面，按請購單狀態
+			model.addAttribute("app_Main", app_Main);
 			model.addAttribute("appid", appid);
 			model.addAttribute("queryprocess", xs);
 			return "apply.querysign";
@@ -63,6 +65,7 @@ public class ApplySignController {
 			//beans有值，加請購單的appid,xs放入addAttribute到前端給apply.querysign
 					//	和採購單的poid,beans放入addAttribute到前端給apply.querysign
 					//  登入介面用請購員工，按請購單狀態
+			model.addAttribute("app_Main", app_Main);
 			model.addAttribute("poid", poid);
 			model.addAttribute("queryprocesspo", beans);
 			model.addAttribute("appid", appid);

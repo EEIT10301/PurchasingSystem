@@ -51,4 +51,11 @@ public class PO_DetailService {
 		boolean beans=pO_DetailIDao.delete(po_id, part_No);
 			return beans;
 	}
+	public List<PO_DetailBean> selectpo_id(String po_id){
+		 List<PO_DetailBean> beans=pO_DetailIDao.selectpo_id(po_id);
+		if (beans !=null) {
+			return beans;
+		}
+		return null;
+	}
 }

@@ -37,16 +37,14 @@
 
 	<c:if test="${not empty selectlists}">
 	<div class="right">
+<input class="form-control" id="myInput" type="text"
+						placeholder="Search"><br />
 
-
-		<table class="table table-striped table-hover" id="table">
+		<table class="table table-striped table-hover" id="myTable">
 
 
 			<thead>
-				<tr>
-					<th><input class="form-control" id="myInput" type="text"
-						placeholder="Search"><br /></th>
-				</tr>
+
 				<tr>
 					<th width="200px">採購單編號</th>
 					<th width="200px">分派主管</th>
