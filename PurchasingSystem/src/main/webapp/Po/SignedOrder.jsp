@@ -38,7 +38,7 @@
 	<c:if test='${not empty signedOrderList}'>
 		<div class="right">
 		<h3>待下單採購單</h3>
-		<form action="<c:url value="/Po/signedOrderDetail.controller" />"method="post">
+		
 		<table id="myTable" class="table table-striped table-hover">
 		<thead>
 			<tr>
@@ -47,7 +47,7 @@
 				<th width="200px">主管簽核時間</th>
 			</tr>		
 		</thead>
-		<tbody>
+		<tbody >
 		 
 		<c:forEach var='signedOrderList' items='${signedOrderList}'>
 			<tr>
@@ -66,7 +66,11 @@
 			<td><input type='hidden' name='sig_sta' value='${signedOrderList.sig_sta}'></td>
 			<td><input type='hidden' name='sig_sug' value='${signedOrderList.sig_sug}'></td>
 			<td><input type='hidden' name='sig_rank' value='${signedOrderList.sig_rank}'></td>		
-			<td><input type="submit" value="下單" id="submit"></td>			
+			<td>
+			<form action="<c:url value="/Po/signedOrderDetail.controller?po_id=${signedOrderList.po_id}" />"method="post">
+			<input type="submit" value="下單" id="submit">
+			</form>
+			</td>			
 			</tr> 
 		</c:forEach>		
 		
@@ -94,7 +98,7 @@
 <%-- 		</c:forEach> --%>
 
 	</table>
-	</form>
+
 	</div>
 	</c:if>
 	<script src="../js/app.js"></script>

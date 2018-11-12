@@ -91,7 +91,7 @@ window.onload = function() {
 
  
  <div class="right">
-<c:if test="${not empty query1 or not queryVendor or not empty now }">
+<c:if test="${not empty query1 or not queryVendor }">
 
 <table class="table table-striped table-hover" id="myTable">
 <thead>
@@ -109,7 +109,11 @@ window.onload = function() {
 <tr>
 <td id="query">${query1.po_ID}</td>
 <td>${queryVendor.vendor_name}</td>
+
+<c:if test="${ not empty now }">
 <td> ${now}</td>
+</c:if>
+
 <td> ${query1.po_totalprice}</td>
 </tr>
 
