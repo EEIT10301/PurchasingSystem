@@ -254,6 +254,7 @@ public class ApplySendController {
 						cartamount++;
 					}
 					x.setPart_no(part_no[i]);
+					x.setPro_name(pro_name[i]);
 					x.setPro_cate(pro_cate[i]);
 					x.setPro_spe(pro_spe[i]);
 					x.setPro_intro(pro_intro[i]);

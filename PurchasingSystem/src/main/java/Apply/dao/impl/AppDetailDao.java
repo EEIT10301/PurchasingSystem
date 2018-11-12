@@ -148,4 +148,17 @@ public class AppDetailDao implements AppDetailIDao{
 		 }
 	
 	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<AppDetailBean> selectapp_id(String app_id) {
+		List<AppDetailBean> list = null;
+		String hgl="FROM AppDetailBean WHERE  app_id=:id1 ";
+		list =this.getSession().createQuery(hgl).setParameter("id1", app_id)
+				.setMaxResults(50).list();
+		if(list.size()>0) {
+			 return list;
+		}else {
+			 return null;
+		 }
+	}
 }

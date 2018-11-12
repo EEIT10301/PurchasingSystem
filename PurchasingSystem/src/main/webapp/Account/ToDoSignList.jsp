@@ -22,11 +22,27 @@
 	width:78%;
     float:left;
 }
+
+#message{
+color:red;
+text-size:10px;
+}
 </style>
 </head>
 
 <body class="bg">
-
+<c:if test="${not empty sendsuccessmeg}">
+		<h2 id="message">${sendsuccessmeg}${inv_id}</h2>
+	</c:if>
+	<c:if test="${not empty senderrormeg}">
+		<h2 id="message">${senderrormeg}</h2>
+	</c:if>
+	<c:if test="${not empty returnsuccessmeg}">
+		<h2 id="message">${returnsuccessmeg}${inv_id}</h2>
+	</c:if>
+	<c:if test="${not empty returnerrormeg}">
+		<h2 id="message">${returnerrormeg}</h2>
+	</c:if>
 	<c:if test="${empty list}">
 				<div class="right">
 			<h3>財務系統>待審核請款單</h3>

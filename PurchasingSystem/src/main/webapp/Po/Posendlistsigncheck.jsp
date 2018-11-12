@@ -102,7 +102,7 @@ display: inline;
 </tr>
 <c:if test="${not empty boss}">
 <tr>
-<th>簽和順序 step2</th>
+<th>簽核順序 step2</th>
 <td>${boss.emp_job}: ${boss.emp_name} </td>
 <td> <Input type='hidden' name='boss' value='${boss.emp_id}'></td>
 </tr>
@@ -166,5 +166,6 @@ display: inline;
 <!-- <p><Input type='submit' name='send' value='重新輸入'><p> -->
 <!-- <p><Input type='submit' name='send' value='送出'><p> -->
 <!-- </form> -->
+
 </body>
 </html>

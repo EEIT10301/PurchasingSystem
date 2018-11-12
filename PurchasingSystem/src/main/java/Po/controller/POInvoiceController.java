@@ -12,17 +12,19 @@ import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
-import org.springframework.beans.propertyeditors.CustomNumberEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import Account.model.Account_InvoiceBean;
@@ -101,6 +103,8 @@ public class POInvoiceController {
 		String date = pO_InvoiceService.calcExpirePaymentDate(poMainBean.getpO_Vendor_InfoBean().getPayment_term(),
 				poSignBean.getSig_date());
 		String oldRecript_date = new SimpleDateFormat("yyyy/MM/dd").format(accountInvoiceBean.getRecript_date());
+		String recript_pic = accountInvoiceBean.getRecript_pic();
+		String picName = recript_pic.substring(8);
 		List<EmployeeBean> employee = employeeService.selectPoEmployee("採購部", 2);
 		if (accountInvoiceBean != null) {
 			model.addAttribute("invoice", accountInvoiceBean);
@@ -110,6 +114,8 @@ public class POInvoiceController {
 			model.addAttribute("manager", employee);
 			model.addAttribute("poid", poid);
 			model.addAttribute("sigSug", sigSug);
+			model.addAttribute("recript_pic", recript_pic);
+			model.addAttribute("picName", picName);
 		}
 		return "updateForm";
 	}
@@ -124,10 +130,10 @@ public class POInvoiceController {
 		// 上傳圖片
 		String invId = "In" + poid.substring(2);
 //		String destination="C:\\Users\\User\\Downloads\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
-//		String destination = "D:\\Maven-project\\repository\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"
-//				+ "\\" + invId + ".jpg";
+		String destination = "D:\\Maven-project\\repository\\PurchasingSystem\\src\\main\\webapp\\images"
+				+ "\\" + invId + ".jpg";
 		// String destination = "\\"+"images"+"\\"+invId+".jpg";
-		String destination ="C:\\Users\\jonat\\Downloads\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"+ "\\" + invId + ".jpg";
+//		String destination ="C:\\Users\\timmy\\git\\repository\\PurchasingSystem\\src\\main\\webapp\\images"+ "\\" + invId + ".jpg";
 		if (file != null || file.getSize() > 0) {
 			File files = new File(destination);
 			file.transferTo(files);
@@ -151,13 +157,11 @@ public class POInvoiceController {
 
 		// update 採購單請款作業簽核流程
 		pO_InvoiceService.updatePoSigningProcess(poid, SignSug, "請款中");
-		
 
-		return "newForm";
+		return "TodoInvoiceList";
 	}
 
 	// 採購承辦重送請款單
-
 	@RequestMapping(value = "/Po/resendInvoice.controller", method = RequestMethod.POST)
 	public String resend(Model model, HttpSession session, String name, @RequestParam("Receiptpic") MultipartFile file,
 			String selectPOManager, String poid, HttpServletRequest request, Integer sig_Rank, String SignSug,
@@ -167,9 +171,11 @@ public class POInvoiceController {
 		String invId = "In" + poid.substring(2);
 		// String destination
 		// ="C:\\Users\\User\\Downloads\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
-//		String destination = "D:\\Maven-project\\repository\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"
+		String destination = "D:\\Maven-project\\repository\\PurchasingSystem\\src\\main\\webapp\\images"
+				+ "\\" + invId + ".jpg";
+//		String destination = "C:\\Users\\jonat\\Downloads\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"
 //				+ "\\" + invId + ".jpg";
-		String destination ="C:\\Users\\jonat\\Downloads\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"+ "\\" + invId + ".jpg";
+//		String destination ="C:\\Users\\timmy\\git\\repository\\PurchasingSystem\\src\\main\\webapp\\images"+ "\\" + invId + ".jpg";
 
 		// String destination = "images/"+invId+".jpg";
 		System.out.println("uploadRootPath=" + destination);
@@ -194,7 +200,8 @@ public class POInvoiceController {
 		String sig_Sta1 = "已申請";
 		String sig_Sta2 = "簽核中";
 		pO_InvoiceService.updateAccountSigningProcess(invId, sig_Rank, sig_Sta1, sig_Sta2, SignSug, selectPOManager);
-		return "updateForm";
+		
+		return "TodoInvoiceList";
 	}
 
 	// 採購主管查看要審核的該張請款單
@@ -212,6 +219,7 @@ public class POInvoiceController {
 				bean.getpO_MainBean().getpO_Vendor_InfoBean().getPayment_term(), poSignBean.getSig_date());
 		String keyday = new SimpleDateFormat("yyyy/MM/dd").format(bean.getRecript_date());
 		String recript_pic = bean.getRecript_pic();
+		String picName = recript_pic.substring(8);
 		List<Account_SigningProcessBean> sug = pO_InvoiceService.selectInvidAndRankLower(invid, 2);
 		model.addAttribute("sug", sug);
 
@@ -228,6 +236,7 @@ public class POInvoiceController {
 		model.addAttribute("manager", employee);
 		model.addAttribute("invid", invid);
 		model.addAttribute("recript_pic", recript_pic);
+		model.addAttribute("picName", picName);
 		model.addAttribute("status", "review");
 		return "updateForm";
 	}
@@ -246,9 +255,9 @@ public class POInvoiceController {
 		String payMethod = bean.getpO_MainBean().getpO_Vendor_InfoBean().getPayment_method();
 		String paydate = pO_InvoiceService.calcExpirePaymentDate(
 				bean.getpO_MainBean().getpO_Vendor_InfoBean().getPayment_term(), poSignBean.getSig_date());
-		Date keyday = bean.getRecript_date();
+		String keyday = new SimpleDateFormat("yyyy/MM/dd").format(bean.getRecript_date());
 		String recript_pic = bean.getRecript_pic();
-
+		String picName = recript_pic.substring(8);
 		Set<Account_SigningProcessBean> selects = bean.getAccount_SigningProcessBean();
 		for (Account_SigningProcessBean x : selects) {
 			if (x.getSig_Rank() == 4) { // 要看財務承辦的退回原因(第四關)
@@ -270,6 +279,7 @@ public class POInvoiceController {
 		model.addAttribute("keyday", keyday);
 		model.addAttribute("manager", employee);
 		model.addAttribute("recript_pic", recript_pic);
+		model.addAttribute("picName", picName);
 		model.addAttribute("invid", invid);
 		model.addAttribute("status", "review");
 		return "updateForm";
@@ -329,7 +339,7 @@ public class POInvoiceController {
 				bean.getpO_MainBean().getpO_Vendor_InfoBean().getPayment_term(), poSignBean.getSig_date());
 		String keyday = new SimpleDateFormat("yyyy/MM/dd").format(bean.getRecript_date());
 		String recript_pic = bean.getRecript_pic();
-
+		String picName = recript_pic.substring(8);
 		List<Account_SigningProcessBean> sug = pO_InvoiceService.selectInvidAndRankLower(invid, 5);
 		model.addAttribute("sug", sug);
 
@@ -346,6 +356,7 @@ public class POInvoiceController {
 		model.addAttribute("keyday", keyday);
 		model.addAttribute("manager", employee);
 		model.addAttribute("recript_pic", recript_pic);
+		model.addAttribute("picName", picName);
 		model.addAttribute("invid", invid);
 		model.addAttribute("status", "review");
 		return "updateForm";
@@ -367,7 +378,7 @@ public class POInvoiceController {
 				bean.getpO_MainBean().getpO_Vendor_InfoBean().getPayment_term(), poSignBean.getSig_date());
 		String keyday = new SimpleDateFormat("yyyy/MM/dd").format(bean.getRecript_date());
 		String recript_pic = bean.getRecript_pic();
-
+		String picName = recript_pic.substring(8);
 		List<Account_SigningProcessBean> sug = pO_InvoiceService.selectInvidAndRankLower(invid, 4);
 		model.addAttribute("sug", sug);
 
@@ -384,6 +395,7 @@ public class POInvoiceController {
 		model.addAttribute("keyday", keyday);
 		model.addAttribute("manager", employee);
 		model.addAttribute("recript_pic", recript_pic);
+		model.addAttribute("picName", picName);
 		model.addAttribute("invid", invid);
 		model.addAttribute("status", "review");
 		return "updateForm";
@@ -405,11 +417,11 @@ public class POInvoiceController {
 				bean.getpO_MainBean().getpO_Vendor_InfoBean().getPayment_term(), poSignBean.getSig_date());
 		String keyday = new SimpleDateFormat("yyyy/MM/dd").format(bean.getRecript_date());
 		String recript_pic = bean.getRecript_pic();
+		String picName = recript_pic.substring(8);
 
 		Account_SigningProcessBean sug = pO_InvoiceService.selectForOneProcessbyAccountSign(invid, 5);
 		String sigSug = sug.getSig_Sug();
 		model.addAttribute("sigSug", sigSug);
-
 		List<EmployeeBean> employee = employeeService.selectPoEmployee("財務部", 2);
 
 		model.addAttribute("bean", bean);
@@ -425,6 +437,7 @@ public class POInvoiceController {
 		model.addAttribute("recript_pic", recript_pic);
 		model.addAttribute("invid", invid);
 		model.addAttribute("status", "review");
+		model.addAttribute("picName", picName);
 		return "updateForm";
 	}
 
@@ -474,7 +487,6 @@ public class POInvoiceController {
 
 	// 採購主管/財務/財務主管 分派/審核/退回請款單
 	@RequestMapping("/Account/ReviewInvoice.controller")
-
 	public String sendReviewInvoice(Model model, HttpSession session, String action, String invid, String SignSug,
 			String status, String selectPOManager) throws ParseException {
 		String poId = "po" + invid.substring(2);
@@ -494,6 +506,7 @@ public class POInvoiceController {
 			} else {
 				model.addAttribute("dispatcherrormeg", "分派失敗");
 			}
+			return "assignInv.show";
 		}
 		// 判斷審核是送出
 		if (action.equals("送出") && status.equals("review")) {
@@ -501,42 +514,71 @@ public class POInvoiceController {
 			if (dep.equals("採購部") && level == 2) {
 				result1 = pO_InvoiceService.updateAccountSigningProcess(invid, 2, "已核准", "分派中", SignSug,
 						selectPOManager);
+				if (result1) {
+					model.addAttribute("sendsuccessmeg", "審核成功");
+					model.addAttribute("inv_id", invid);
+				} else {
+					model.addAttribute("senderrormeg", "審核未完成");
+				}
+				return "todoSignInvoice.show";
 			} else if (dep.equals("財務部") && level == 1) {
 				result1 = pO_InvoiceService.updateAccountSigningProcess(invid, 4, "已簽核", "簽核中", SignSug,
 						selectPOManager);
+				if (result1) {
+					model.addAttribute("sendsuccessmeg", "審核成功");
+					model.addAttribute("inv_id", invid);
+				} else {
+					model.addAttribute("senderrormeg", "審核未完成");
+				}
+				return "signInv.show";
 			} else {
 				result1 = pO_InvoiceService.updateAccountSigningProcess(invid, 5, "已簽核", null, SignSug, null);
 				pO_InvoiceService.updatePoSigningProcess(poId, SignSug, "已結案");
 				accout_PayableService.updateAccountPayable(invid);
-			}
-			if (result1) {
-				model.addAttribute("sendsuccessmeg", "審核成功");
-				model.addAttribute("inv_id", invid);
-			} else {
-				model.addAttribute("senderrormeg", "審核未完成");
+				if (result1) {
+					model.addAttribute("sendsuccessmeg", "審核成功");
+					model.addAttribute("inv_id", invid);
+				} else {
+					model.addAttribute("senderrormeg", "審核未完成");
+				}
+				return "signInv.show";
 			}
 
 		}
+
 		// 判斷審核是退回
 		if (action.equals("退回") && status.equals("review")) {
 			if (dep.equals("採購部") && level == 2) {
 				result2 = pO_InvoiceService.updateAccountSigningProcessForReturn(invid, 2, "未簽核", "退回中", SignSug);
+				if (result2) {
+					model.addAttribute("returnsuccessmeg", "已退回");
+					model.addAttribute("inv_id", invid);
+				} else {
+					model.addAttribute("returnerrormeg", "未退回成功");
+				}
+				return "todoSignInvoice.show";
 			} else if (dep.equals("財務部") && level == 1) {
 				result2 = pO_InvoiceService.updateAccountSigningProcessForReturn(invid, 4, "未簽核", "退回中", SignSug);
+				if (result2) {
+					model.addAttribute("returnsuccessmeg", "已退回");
+					model.addAttribute("inv_id", invid);
+				} else {
+					model.addAttribute("returnerrormeg", "未退回成功");
+				}
+				return "signInv.show";
 			} else {
 				result2 = pO_InvoiceService.updateAccountSigningProcessForReturn(invid, 5, "未核准", "退回中", SignSug);
+				if (result2) {
+					model.addAttribute("returnsuccessmeg", "已退回");
+					model.addAttribute("inv_id", invid);
+				} else {
+					model.addAttribute("returnerrormeg", "未退回成功");
+				}
+				return "signInv.show";
 			}
-
-			if (result2) {
-				model.addAttribute("returnsuccessmeg", "已退回");
-				model.addAttribute("inv_id", invid);
-			} else {
-				model.addAttribute("returnerrormeg", "未退回成功");
-			}
-
+			
 		}
-
-		return "updateForm";
+		return "xxx";
 	}
 
 	// 採購/財務查詢所有請款單狀態
@@ -549,20 +591,20 @@ public class POInvoiceController {
 					"財務經理分派");
 			if (lists != null) {
 
-				model.addAttribute("listsAll", lists);
+				model.addAttribute("lists", lists);
 				return "statusList.show";
 
 			} else {
-				model.addAttribute("nolistAll", "尚無請款單單號");
+				model.addAttribute("nolist", "尚無請款單單號");
 				return "statusList.show";
 			}
 		} else {
 			List<Account_SigningProcessBean> lists = pO_InvoiceService.selectAccountManagerInvoiveOrNot(emp_id);
 			if (lists != null) {
-				model.addAttribute("listsAll", lists);
+				model.addAttribute("lists", lists);
 				return "statusList.show";
 			} else {
-				model.addAttribute("nolistAll", "尚無請款單單號");
+				model.addAttribute("nolist", "尚無請款單單號");
 				return "statusList.show";
 			}
 		}

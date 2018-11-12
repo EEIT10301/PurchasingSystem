@@ -17,6 +17,7 @@
 <tr>
 <th>請購單編號</th>
 <th>料號</th>
+<th>預計交貨時間</th>
 <th>產品名稱</th>
 <th>請購預估價格</th>
 <th>請購數量</th>
@@ -50,6 +51,7 @@ $(document).ready(function(){
 					txt += "<tr>";
 					txt += "<td>"+json.map.app_id+"</td>"
 					txt += "<td>"+json.map.part_no+"</td>"
+					txt += "<td>"+json.map.app_MainBean.map.app_GetDate+"</td>"
 					txt += "<td>"+json.map.productListBean.map.pro_name+"</td>"
 					txt += "<td>"+json.map.pro_price+"</td>"
 					txt += "<td>"+json.map.app_amount+"</td>"
