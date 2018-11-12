@@ -17,16 +17,16 @@
 </head>
 <body class="bg">
 
+<div class="right">	
 <h2>採購單編號:${pm.po_id}</h2>
 <h2>收貨明細</h2>
 <form action="<c:url value="/Po/receivedGoods.controller" />" method="post">
-	<div class="right">	
 	<table id="myTable" class="table table-striped table-hover">
 	<thead>
 			<tr>
-				<th>料號</th>
-				<th>產品名稱</th>
-				<th>總數量</th>
+				<th width="800px">料號</th>
+				<th width="800px">產品名稱</th>
+				<th width="1200px">總數量</th>
 			</tr>
 	</thead>
 	<tbody>
@@ -49,13 +49,14 @@
 		</tr>
 		</tbody>
 		</table>
-		</div>
+		
 <%-- 	</c:forEach> --%>
 收貨意見:<p><textarea rows="5" cols="50" name="signSug"></textarea></p>
 實際收貨時間:<input type="datetime" name="shippingDate">
 <p><input type="submit" name="send" value="確認收貨">
 
 </form>
+</div>
 <script src="../js/app.js"></script>	
 </body>
 </html>

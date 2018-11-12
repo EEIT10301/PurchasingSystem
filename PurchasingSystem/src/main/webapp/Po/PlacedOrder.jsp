@@ -22,9 +22,8 @@
 	</c:if>
 
 	<c:if test='${not empty placedOrderList}'>
-		<h3>待收貨表單</h3>
-		<form action="<c:url value="/Po/placedOrderDetail.controller"/>"method="post">
 		<div class="right">
+		<h3>待收貨表單</h3>
 		<table id="myTable" class="table table-striped table-hover">
 		<thead>
 			<tr>
@@ -34,6 +33,7 @@
 		</thead>
 		<tbody>
 		<c:forEach var='placedOrderList' items='${placedOrderList}'>
+		<form action="<c:url value="/Po/placedOrderDetail.controller"/>"method="post">
 		<tr>
 			<td>${placedOrderList.po_id}</td>
 			<td>${placedOrderList.pO_MainBean.shipping_Date}</td>
@@ -52,11 +52,11 @@
 			<td><input type='hidden' name='sig_rank' value='${placedOrderList.sig_rank}'></td>
 			<td><input type="submit" value="收貨" id="submit"></td>
 	</tr>
+	</form>
 	</c:forEach>
 	</tbody>
 	</table>
 	</div>
-	</form>
 	</c:if>
 	<script src="../js/app.js"></script>
 </body>

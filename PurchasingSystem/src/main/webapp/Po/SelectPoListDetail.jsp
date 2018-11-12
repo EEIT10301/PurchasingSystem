@@ -72,7 +72,7 @@ display: inline;
  
  <div class="right">
 <c:if test="${not empty query1 or not queryVendor or not empty now }">
-
+<!-- or not queryVendor or not empty now -->
 <table class="table table-striped table-hover" id="myTable">
 <thead>
 <tr>
