@@ -14,7 +14,7 @@
 
 <table class="table table-striped table-hover">
 <thead>
-<tr><td>產品名稱</td><td>驗收數量</td><td>入庫日期</td></tr>
+<tr><td>產品名稱heheh</td><td>驗收數量</td><td>入庫日期</td></tr>
 </thead>
 <c:forEach var="detail" items="${detailbean}" >
 <tr>
