@@ -10,15 +10,15 @@
 	margin: 30px;
 }
 .right{
-	width:85%;
-    float:left;
+	width:80%;
+    float:right;
 }
 
 /* .h3{ */
 /* 	font-family: "Times New Roman"; */
 /* } */
 
-/* th{ */
-/* 	font-family:"微軟正黑體""; */
-/* } */
+*{
+ 	font-family:"Microsoft JhengHei";
+ }
 

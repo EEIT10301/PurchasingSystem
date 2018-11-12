@@ -129,9 +129,9 @@ public class POInvoiceController {
 			throws IllegalStateException, IOException, ParseException {
 		// 上傳圖片
 		String invId = "In" + poid.substring(2);
-//		String destination="C:\\Users\\User\\Downloads\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
-		String destination = "D:\\Maven-project\\repository\\PurchasingSystem\\src\\main\\webapp\\images"
-				+ "\\" + invId + ".jpg";
+		String destination="C:\\Users\\User\\Downloads\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
+//		String destination = "D:\\Maven-project\\repository\\PurchasingSystem\\src\\main\\webapp\\images"
+//				+ "\\" + invId + ".jpg";
 		// String destination = "\\"+"images"+"\\"+invId+".jpg";
 //		String destination ="C:\\Users\\timmy\\git\\repository\\PurchasingSystem\\src\\main\\webapp\\images"+ "\\" + invId + ".jpg";
 		if (file != null || file.getSize() > 0) {
@@ -169,10 +169,10 @@ public class POInvoiceController {
 
 		// 上傳圖片
 		String invId = "In" + poid.substring(2);
-		// String destination
-		// ="C:\\Users\\User\\Downloads\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
-		String destination = "D:\\Maven-project\\repository\\PurchasingSystem\\src\\main\\webapp\\images"
-				+ "\\" + invId + ".jpg";
+		 String destination
+		 ="C:\\Users\\User\\Downloads\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
+//		String destination = "D:\\Maven-project\\repository\\PurchasingSystem\\src\\main\\webapp\\images"
+//				+ "\\" + invId + ".jpg";
 //		String destination = "C:\\Users\\jonat\\Downloads\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"
 //				+ "\\" + invId + ".jpg";
 //		String destination ="C:\\Users\\timmy\\git\\repository\\PurchasingSystem\\src\\main\\webapp\\images"+ "\\" + invId + ".jpg";
@@ -591,9 +591,9 @@ public class POInvoiceController {
 					"財務經理分派");
 			if (lists != null) {
 
+
 				model.addAttribute("lists", lists);
 				return "status.show";
-
 			} else {
 				model.addAttribute("nolist", "尚無請款單單號");
 				return "status.show";
@@ -627,7 +627,6 @@ public class POInvoiceController {
 					if (liststa.get(y).getSig_Sta() == null) {
 						continue;
 					}
-
 					else if (liststa.get(y).getSig_Sta().equals("已簽核")) {
 						listsd.add(liststa.get(y));
 					}

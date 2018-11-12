@@ -45,6 +45,12 @@ public class POStatementController {
 		String EmpId = empbean.getEmp_id();
 		if (empbean.getEmp_level() == 1) {// 如果是非主管的員工
 			List<PO_SigningProcessBean> Statement = pO_SigningProcessService.selectpo_sta("產生採購單");
+			for(int i=0;i<Statement.size();i++) {
+				PO_SigningProcessBean SingleStatement = Statement.get(i);
+				model.addAttribute("POSingle", SingleStatement);
+				
+			}
+			
 			model.addAttribute("POList", Statement);
 			return "POSignStatement.do";
 		}
