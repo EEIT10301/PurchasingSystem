@@ -63,7 +63,7 @@ $("#myInput").on("keyup", function() {
 			href='ApplyLogout.controller'><button type="button" class="btn">登出</button></a>
 	</div>
 	<div class="text-center">
-		<br> <span>${applyok}</span>
+		<br> 
 		<hr>
 			<c:if test="${user.emp_level==1}">
 	   	<div class="card bg-light f">

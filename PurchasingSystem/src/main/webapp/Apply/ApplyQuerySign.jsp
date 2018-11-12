@@ -41,7 +41,6 @@ font-size: 36px;
 <div class="right">
 <div class='container'>
 	<h3 align="center">請購進度查詢</h3><br/>
-<input class="form-control" id="myInput" type="text" placeholder="Search"><br/>
 <table class="table table-striped table-hover">
 <thead>
 <tr>
