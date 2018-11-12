@@ -52,11 +52,25 @@
 <c:if test="${not empty selsctlists || selectlistnofinish.sig_Sta==chkprosta}">
 	 
 	<div class="right">
+	 <input class="" type="text" placeholder="search" id="search">
+     <style id="search_style"></style>
+<script type="text/javascript">
+var searchStyle = document.getElementById('search_style');
+document.getElementById('search').addEventListener('input', function() {
+  if (!this.value) {
+    searchStyle.innerHTML = "";
+    return;
+  }
+  // look ma, no indexOf!
+  searchStyle.innerHTML = ".searchable:not([data-index*=\"" + this.value.toUpperCase() + "\"]) { display: none; }";
+  // beware of css injections!
+});
+</script>
 	
 	<table class="table table-striped table-hover" id="table">
 
 
-           <thead style="display:block;">
+           <thead >
 
 				
 <!-- 				<tr> -->
@@ -65,11 +79,9 @@
 <!-- 				<style id="m-search"></style> -->
 <!-- 				</tr> -->
 				<tr>
-					<th width="200px">驗收單編號</th>
-					<th width="200px">分派主管</th>
-					<th width="200px">主管分派時間</th>
-					<th id="tosubmit"></th>
-
+					<th >驗收單編號</th>
+					<th >分派主管</th>
+					<th >主管分派時間</th>
 				</tr>
 			</thead>
 	<tbody >
@@ -79,7 +91,7 @@
 	<c:forEach var="poprocess" items="${selsctlists}">
 	<c:if test="${poprocess.sig_Rank==2}">
 	<tr class="searchable" data-index="${poprocess.chk_Id}${poprocess.employeeBean.emp_name}${poprocess.sig_Date}">
-	<td > ${poprocess.chk_Id}</td>
+	<td width="200"> ${poprocess.chk_Id}</td>
 	<td> ${poprocess.employeeBean.emp_name}</td>
 	<td> ${poprocess.sig_Date}</td>
     <c:forEach var="poprocess1" items="${selsctlists}">

@@ -48,20 +48,7 @@
 		  href='InvLogout.controller'><button type="button" class="btn">登出</button></a>
     </div>
 
-    <input type="text" placeholder="search" id="search">
-<style id="search_style"></style>
-<script type="text/javascript">
-var searchStyle = document.getElementById('search_style');
-document.getElementById('search').addEventListener('input', function() {
-  if (!this.value) {
-    searchStyle.innerHTML = "";
-    return;
-  }
-  // look ma, no indexOf!
-  searchStyle.innerHTML = ".searchable:not([data-index*=\"" + this.value.toUpperCase() + "\"]) { display: none; }";
-  // beware of css injections!
-});
-</script>
+   
 
     <div class="left">		
 		<br><span>${sendok}</span>

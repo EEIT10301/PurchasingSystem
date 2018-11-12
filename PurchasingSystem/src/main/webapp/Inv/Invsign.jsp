@@ -48,7 +48,7 @@
 </head>
 <body>
 <c:if test="${Inv_SigningProcessBean.sig_Sta!='再次驗收' }">
-	<div>
+	<div class="right">
 	<table class="table table-striped table-hover" id="table">
 
 
@@ -80,7 +80,7 @@
 	       <td > ${invpromain.productListBean.pro_cate}</td>
 	       <td> ${invpromain.productListBean.pro_name}</td>
 	       <td>${invpromain.productListBean.pro_spe}</td>
-	       <td> ${invpromain.chk_Count}</td>	
+	       <td> ${invpromain.chk_Count}</td>
 		 <c:if test="${ empty invpromain.chk_status}">
 		  <td><input type="text" name='chk_quality' placeholder="驗收品質"></td>
 		   <td> <input type="text" name='chk_Count' placeholder="  實際數量"></td>
@@ -93,14 +93,14 @@
 		    <td><Input type='submit' name='send' value='送出'></td>
 	        </c:if>
 		    <c:if test="${not empty invpromain.chk_status}">
-		      驗收品質:<input type="text" name='chk_quality'  value="${invpromain.chk_quality}"><br>
-		      實際數量:<input type="text" name='chk_Count' value="${invpromain.chk_Count}"><br>
-		    <select name="chkstatus">
+		    <td><input type="text" name='chk_quality'  value="${invpromain.chk_quality}"></td>
+		      <td><input type="text" name='chk_Count' value="${invpromain.chk_Count}"></td>
+		   <td> <select name="chkstatus">
 		     <option <c:if test="${invpromain.chk_status=='驗收成功' }">selected</c:if> value="驗收成功">驗收成功</option>   
 		     <option <c:if test="${invpromain.chk_status=='驗收失敗' }">selected</c:if> value="驗收失敗">驗收失敗</option>   
-		       
 		    </select>		
-		    <Input disabled="disabled" type='submit' name='send' value='送出'>
+		  </td>	   
+		    <td><Input disabled="disabled" type='submit' name='send' value='已驗收'></td>
 	        </c:if>
 			<Input type='hidden' name="chk_Id" value='${invpromain.chk_Id}'>
 			<Input type='hidden' name="part_No" value='${invpromain.part_No}'>
@@ -114,39 +114,65 @@
 	</div>
 	</c:if>
 <c:if test="${Inv_SigningProcessBean.sig_Sta=='再次驗收' }">
+<div class="right">
+<table class="table table-striped table-hover" id="myTable">
+ <thead>
+ <tr lang="1000">
+					<th width="10%">驗收項目</th>
+					<th width="10%">驗收名稱</th>
+					<th width="10%">驗收規格</th>
+					<th width="10%">請購數量</th>
+					<th width="10%">前次驗收狀況</th>
+					<th width="10%">前次驗收品質</th>
+					<th width="10%">驗收品質</th>
+					<th width="10%">驗收數量</th>
+					<th id="tosubmit"></th>
+
+				</tr>
+			</thead>
+
 <c:forEach var="invpromain" items="${invmain.inv_ProductListBean}">
-<p>之前驗收狀況:${invpromain.chk_status}</p>
-<p>之前驗收品質${invpromain.chk_quality}</p>
-<p></p>
+<tr>
+ <td > ${invpromain.productListBean.pro_cate}</td>
+	       <td> ${invpromain.productListBean.pro_name}</td>
+	       <td>${invpromain.productListBean.pro_spe}</td>
+	       <td> ${invpromain.chk_Count}</td>	
+           <td>${invpromain.chk_status}</td> 
+           <td>${invpromain.chk_quality}</td>
+
 <form action="<c:url value="/Inv/changeinvprosta"/>" method="post">
           <c:if test="${invpromain.chk_status=='驗收失敗'}">
-		      驗收品質:<input type="text" name='chk_quality' ><br>
-		      實際數量:<input type="text" name='chk_Count' ><br>
+		   <td> <input type="text" name='chk_quality' placeholder="驗收品質"></td>
+		    <td> <input type="text" name='chk_Count' placeholder="實際數量"></td>
 		
-		    <select name="chkstatus">
+		    <td><select name="chkstatus">
 		     <option selected="selected">請選擇</option>   
 		     <option  value="驗收成功">驗收成功</option>   
 		     <option  value="驗收失敗">驗收失敗</option>   
 		       
-		    </select>		
-		    <Input type='submit' name='send' value='送出'>
+		    </select>	</td>	
+		   <td> <Input type='submit' name='send' value='送出'></td>
 	        </c:if>
 	      
   <c:if test="${invpromain.chk_status=='驗收成功'}">
-		      驗收品質:<input type="text" name='chk_quality'  value="${invpromain.chk_quality}"><br>
-		      實際數量:<input type="text" name='chk_Count' value="${invpromain.chk_Count}"><br>
+	<td> 驗收品質:<input type="text" name='chk_quality'  value="${invpromain.chk_quality}"></td>
+	<td>  實際數量:<input type="text" name='chk_Count' value="${invpromain.chk_Count}"></td>
 	
-		    <select name="chkstatus">
+		    <td><select name="chkstatus">
 		     <option <c:if test="${invpromain.chk_status=='驗收成功' }">selected</c:if> value="驗收成功">驗收成功</option>   
 		     <option <c:if test="${invpromain.chk_status=='驗收失敗' }">selected</c:if> value="驗收失敗">驗收失敗</option>   
 		       
-		    </select>		
-		    <Input disabled="disabled" type='submit' name='send' value='送出'>
+		    </select></td>		
+		   <td> <Input disabled="disabled" type='submit' name='send' value='已驗收'></td>
 	        </c:if>
 <Input type='hidden' name="chk_Id" value='${invpromain.chk_Id}'>
 <Input type='hidden' name="part_No" value='${invpromain.part_No}'>
 </form>
+</tr>
 </c:forEach>
+	</tbody>
+	</table>
+	</div>
 </c:if>
 
 
