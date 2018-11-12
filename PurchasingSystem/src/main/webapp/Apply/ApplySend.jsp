@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+ <%@ include file="../AppInclude.jsp"%>     
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,12 +10,29 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <title>請購申請</title>
-<style>
+<style type="text/css">
+#thead{
+font-size: 36px;
+}
 
+#submit {
+	position: absolute;
+	right: 700px;
+}
+
+.bg {
+	background-color: #FDF5E6;
+	/* 畫面間距 */
+	margin: 30px;
+}
+.right{
+	width:78%;
+    float:left;
+}
 </style>
 </head>
-<body>
-
+<body class="bg">
+<div class="right">
 <h3>${user.emp_id} ${user.emp_level} ${user.emp_name}</h3>
 <c:if test="${empty Categlory}">
 
@@ -83,5 +101,6 @@
 </form>
   </c:if>
 <script src="../js/app.js"></script>
+</div>
 </body>
 </html>

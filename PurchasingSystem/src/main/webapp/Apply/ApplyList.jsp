@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ include file="../AppInclude.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,7 +26,7 @@
 
 </style>
 </head>
-<body>
+<body class="bg">
 	<h3>${cate}</h3>
 	<h3>${errors.cate}</h3>
 <input class="form-control" id="myInput" type="text" width="300px" placeholder="Search"><br/>
