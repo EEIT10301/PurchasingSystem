@@ -21,13 +21,14 @@
 
 </head>
 <body>
+	<a href="queryStatus.controller" class="badge badge-info">查詢所有請款單</a>
+	<a href="queryStatusUndone.controller" class="badge badge-info">查詢未完成請款單</a>
+	<a href="queryStatusDone.controller" class="badge badge-info">查詢已完成請款單</a>
 	<c:if test='${not empty listsAll}'>
 		<div class="right">
 			<h3>查詢請款單狀態>所有請款單</h3>
 
-	<a href="queryStatus.controller" class="badge badge-info">查詢所有請款單</a>
-	<a href="queryStatusUndone.controller" class="badge badge-info">查詢未完成請款單</a>
-	<a href="queryStatusDone.controller" class="badge badge-info">查詢已完成請款單</a>
+
 			<table class="table table-striped table-hover">
 				<thead>
 					<tr>
@@ -50,9 +51,6 @@
 	<div class="right">
 		<h3>查詢請款單狀態>所有請款單</h3>
 
-			<a href="queryStatus.controller" class="badge badge-info">查詢所有請款單</a>
-	<a href="queryStatusUndone.controller" class="badge badge-info">查詢未完成請款單</a>
-	<a href="queryStatusDone.controller" class="badge badge-info">查詢已完成請款單</a><br><br>
 		${nolistAll}
 		</div>
 
@@ -62,9 +60,7 @@
 		<div class="right">
 			<h3>查詢請款單狀態>已完成請款單</h3>
 
-	<a href="queryStatus.controller" class="badge badge-info">查詢所有請款單</a>
-	<a href="queryStatusUndone.controller" class="badge badge-info">查詢未完成請款單</a>
-	<a href="queryStatusDone.controller" class="badge badge-info">查詢已完成請款單</a>
+	
 			<table class="table table-striped table-hover">
 				<thead>
 					<tr>
@@ -97,10 +93,7 @@
 	<div class="right">
 		<h3>查詢請款單狀態>未完成請款單</h3>
 
-	<a href="queryStatus.controller" class="badge badge-info">查詢所有請款單</a>
-	<a href="queryStatusUndone.controller" class="badge badge-info">查詢未完成請款單</a>
-	<a href="queryStatusDone.controller" class="badge badge-info">查詢已完成請款單</a>
-		
+	
 
 			<table class="table table-striped">
 				<thead>
@@ -124,9 +117,7 @@
 		<div class="right">
 			<h3>查詢請款單狀態>未完成請款單</h3>
 
-				<a href="queryStatus.controller" class="badge badge-info">查詢所有請款單</a>
-	<a href="queryStatusUndone.controller" class="badge badge-info">查詢未完成請款單</a>
-	<a href="queryStatusDone.controller" class="badge badge-info">查詢已完成請款單</a><br><br>
+		
 	${nolistUn}
 		</div>
 	</c:if>
