@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="BIG5">
+<title>待結案請購單</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<input class="form-control" id="myInput" type="text" placeholder="Search"><br/>
+<table class="table table-striped table-hover">
+<thead>
+<tr>
+<th>請購單號</th>
+<th>驗收完成時間</th>
+<th>請購項目</th>
+<th>申請部門</th>
+<th >申請人</th>
+<th >請購總價</th>
+</tr>
+</thead>
+<tbody id="selectAll">
+
+</tbody>
+</table>
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function(){
+	var row = 5;
+		$.ajax({
+			url:"SelectWaitEndAppList.do",
+			type:"GET",
+			success:function(data){
+				if (data.myArrayList==null){
+					alert("無待結案請購單");
+					 window.location.href='http://localhost:8080/PurchasingSystem/Apply/ApplyLoginSuccess.jsp';
+				}
+					var txt = ""
+					$.each(data.myArrayList,function(index,json){
+						txt += "<tr >";                                              
+						txt += "<td id='id' value="+json.map.app_id+"><a href='http://localhost:8080/PurchasingSystem/Apply/ApplyWaitEndListDetail.html?id="+json.map.app_id+"&account="+json.map.app_sta+"&password="+json.map.app_manger+"'>"+json.map.app_id+"</a></td>"
+						txt += "<td id='cate'>"+json.map.sig_date+"</td>"
+						txt += "<td id='name'>"+json.map.app_MainBean.map.pro_cate+"</td>"
+						txt += "<td id='spe'>"+json.map.employeeBean.map.emp_dep+"</td>"
+						txt += "<td id='intro'>"+json.map.employeeBean.map.emp_name+json.map.employeeBean.map.emp_job+"</td>"
+						txt += "<td id='price'>"+json.map.app_MainBean.map.app_price+"</td>"
+						txt +="<td><input type='hidden' id='edit' class='btn btn-default' value='修改'/>";
+						txt +="&nbsp;&nbsp;&nbsp;";
+						txt +="<input type='hidden' id='delete' class='btn btn-default' value='刪除'/></td>";
+						txt += "</tr>"
+					})
+					$("#selectAll").html(txt);	
+			}
+		});
+$("#myInput").on("keyup", function() {
+			   var value = $(this).val().toLowerCase();
+			    $("#selectAll tr").filter(function() {
+			      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+			   });
+			});		
+				
+	});
+
+</script>
+<a href='http://localhost:8080/PurchasingSystem/Apply/ApplyLoginSuccess.jsp'>請購首頁</a>
+</body>
+</html>

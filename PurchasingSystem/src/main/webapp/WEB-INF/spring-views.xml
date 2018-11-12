@@ -202,7 +202,26 @@
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/Inv/Invsign.jsp"></property>
 	</bean>
+
+	<!-- 驗收連結 -->
+    <bean id="invend.item"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Inv/InvShowItem.jsp"></property>
+	</bean>
+	<bean id="invend.itemins"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Inv/InvAddProduct.jsp"></property>
+	</bean>
+
+	<bean id="DetailView.Show"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Inv/InvDetailView.jsp"></property>
+	</bean>
 	<!-- 驗收使用連結 -->
+
+
+	<!-- 驗收使用連結 -->
+
 
 	<!--待請款單使用連結 -->
 	<bean id="TodoInvoiceList"
@@ -217,6 +236,7 @@
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/Account/Updateinvoiceform.jsp"></property>
 	</bean>
+	
 	<!-- 待請款單使用連結 -->
 
 

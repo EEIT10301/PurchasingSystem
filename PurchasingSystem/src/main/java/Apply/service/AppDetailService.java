@@ -54,5 +54,12 @@ public class AppDetailService {
 		}
 		return null;
 	}
+	public List<AppDetailBean> selectapp_id(String app_id){
+		List<AppDetailBean> bean =appDetailIDao.selectapp_id(app_id);
+		if(bean!=null) {
+			return bean;
+		}
+		return null;
+	}
 	
 }

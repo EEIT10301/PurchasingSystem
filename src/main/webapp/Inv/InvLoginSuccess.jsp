@@ -19,11 +19,12 @@
 		<h3>${sendok}</h3>
 		<c:if test="${user.emp_level==1 }">
 			<a href="selectInvchk.controller">待驗收清單</a>
-			<a href="">驗收成功清單</a>
+			<a href="CheckBean">驗收成功清單</a>
 			<a href="">驗收失敗清單</a>
 		</c:if>
 		<c:if test="${user.emp_level==2 }">
 			<a href="sendEmployee.controller">待分派清單</a>
 		</c:if>
+		<a href="item?pageNo=1">查詢目前庫存</a>
 </body>
 </html>

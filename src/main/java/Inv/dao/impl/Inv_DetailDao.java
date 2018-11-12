@@ -34,6 +34,19 @@ public class Inv_DetailDao implements Inv_DetailIDao{
          }
 		sessionFactory.getCurrentSession().getTransaction().commit();
 	}
+	
+	//new
+		@SuppressWarnings("unchecked")
+		@Override
+		public List<Inv_DetailBean> select(String Inv_Part_no) {
+			List<Inv_DetailBean> list = null;
+			Inv_DetailBean getone =new Inv_DetailBean();
+			String hgl="FROM Inv_DetailBean WHERE Inv_Part_no=:id1";
+			list =this.getSession().createQuery(hgl).setParameter("id1",Inv_Part_no).list();
+			
+			return list;
+		}
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public Inv_DetailBean select(String Inv_Part_no, String Inv__Date) {

@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,14 +24,14 @@
 			<tr>
 				<th>帳款對帳單號</th>
 				<th>請款單單號</th>
-				<th width="250px">廠商名稱</th>
-				<th>廠商結帳週期</th>
+				<th width="200px">廠商名稱</th>
+				<th width="80px">廠商結帳週期</th>
 				<th>應付款項金額</th>
-				<th>產生日期</th>
-				<th>支票號碼</th>
+				<th width="100px">產生日期</th>
+				<th width="75px">支票號碼</th>
 				<th>匯款帳號</th>
-				<th>預計付款日</th>
-				<th>付款狀況</th>
+				<th width="100px">預計付款日</th>
+				<th width="75px">付款狀況</th>
 				<th>實付金額</th>
 			</tr>
 			</thead>
@@ -45,10 +48,10 @@
 					<td>${row.pO_Vendor_InfoBean.vendor_name}</td>
 					<td>${row.pO_Vendor_InfoBean.payment_term}</td>
 					<td>$${row.amount_Payable}</td>
-					<td>${row.booking_Date}</td>
+					<td><fmt:formatDate pattern="yyyy/MM/dd" value="${row.booking_Date}" /></td>
 					<td>${row.cheque_no}</td>
 					<td>${row.pO_Vendor_InfoBean.vendor_acc}</td>
-					<td>${row.except_Payment_Date}</td>
+					<td><fmt:formatDate pattern="yyyy/MM/dd" value="${row.except_Payment_Date}" /></td>
 					<td>${row.payable_Status}</td>
 					<td>$${row.amount_Paid}</td>
 				</tr>

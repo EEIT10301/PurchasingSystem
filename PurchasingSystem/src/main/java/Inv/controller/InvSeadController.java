@@ -117,7 +117,9 @@ public class InvSeadController {
 			secondsigningrocess1.setSig_Date(dates);
 			secondsigningrocess1.setSig_Sta("驗收成功");
 
+
 			secondsigningrocess2.setSig_sta("待結案");
+			secondsigningrocess2.setSig_date(dates);
 
 			posecondsigningrocess.setSig_sta("驗收完成未請款");
 			posecondsigningrocess.setSig_date(date);

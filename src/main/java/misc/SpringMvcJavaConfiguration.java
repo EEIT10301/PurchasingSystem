@@ -57,8 +57,8 @@ public class SpringMvcJavaConfiguration implements WebMvcConfigurer {
 //		<property name="location" value="/WEB-INF/spring-views.xml"></property>
 //	</bean>
 		InternalResourceViewResolver internalResourceViewResolver = new InternalResourceViewResolver();
-		internalResourceViewResolver.setPrefix("/WEB-INF/pages/");
-		internalResourceViewResolver.setSuffix(".jsp");
+//		internalResourceViewResolver.setPrefix("/WEB-INF/pages/");
+//		internalResourceViewResolver.setSuffix(".jsp");
 		registry.viewResolver(internalResourceViewResolver);
 //		<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 //		<property name="prefix" value="/WEB-INF/pages/" />

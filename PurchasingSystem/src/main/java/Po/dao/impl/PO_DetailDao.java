@@ -111,7 +111,7 @@ public class PO_DetailDao implements PO_DetailIDao{
 	public boolean delete(String po_id, String part_No) {
 		List<PO_DetailBean> list = null;
 		PO_DetailBean getone =new PO_DetailBean();
-		String hgl="FROM AppDetailBean WHERE po_id=:id1 AND part_No=:id2";
+		String hgl="FROM PO_DetailBean WHERE po_id=:id1 AND part_No=:id2";
 		list =this.getSession().createQuery(hgl).setParameter("id1", po_id)
 				.setParameter("id2", part_No).setMaxResults(50).list();
 		 if(list.size()>0) {
@@ -123,6 +123,18 @@ public class PO_DetailDao implements PO_DetailIDao{
 		 }else {
 			 return false;
 		 }
+	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<PO_DetailBean> selectpo_id(String po_id) {
+		List<PO_DetailBean> list = null;
+		String hgl="FROM PO_DetailBean WHERE po_id=:id1 ";
+		list =this.getSession().createQuery(hgl).setParameter("id1", po_id)
+				.setMaxResults(50).list();
+		 if(list.size()>0) {
+			 return list;
+		 }
+		 return null;
 	}
 
 }
