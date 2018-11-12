@@ -23,6 +23,14 @@ public Inv_MainBean select(String id) {
 	return null;
 }
 
+public List<Inv_MainBean> selectPage(Integer pageSize, Integer pageNo) {
+	List<Inv_MainBean> bean=inv_MainIDao.selectPage(pageSize, pageNo);
+	if(bean.size()!=0) {
+		return bean;
+	}
+	return null;
+}
+
 public List<Inv_MainBean> select() {
 	List<Inv_MainBean> bean=inv_MainIDao.select();
 	if(bean.size()!=0) {

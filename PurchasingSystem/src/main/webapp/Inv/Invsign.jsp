@@ -43,6 +43,9 @@
   button {
     @extend input;
   }
+  #submit{
+  display: block;
+  }
 }
 </style>
 </head>
@@ -178,12 +181,14 @@
 
 
 <a href="confirmchk?sigSta=${Inv_SigningProcessBean.sig_Sta}chkId=${Inv_SigningProcessBean.chk_Id}"></a>
+		
 		<form action="invfinish.conll" method="post">
 		驗收單號:${Inv_SigningProcessBean.chk_Id }
 		驗收簽核狀態:${Inv_SigningProcessBean.sig_Sta }
 		<Input type='hidden' name="sigSta" value='${Inv_SigningProcessBean.sig_Sta}'>
 		<Input type='hidden' name="chkId" value='${Inv_SigningProcessBean.chk_Id}'>
-        <Input type='submit' name='send' value='驗收完成'>
-        </form>
+        <Input id="submit" type='submit' name='send' value='驗收完成'>
+       
+        </div>
 </body>
 </html>

@@ -12,20 +12,7 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<style type="text/css">
-.bg {
-	background-color: #FDF5E6;
-	/* 畫面間距 */
-	margin: 30px;
-}
-.right{
-
-	width:78%;
-    float:left;
-    
-}
-
-</style>
+<link rel="stylesheet" type="text/css" href="../css/POcss.css">
 </head>
 <body class="bg">
 
@@ -40,7 +27,7 @@
 
 <thead>
 <tr>
-<th >採購單號</th>
+<th>採購單號</th>
 <th>開始時間</th>
 </tr>
 </thead>
