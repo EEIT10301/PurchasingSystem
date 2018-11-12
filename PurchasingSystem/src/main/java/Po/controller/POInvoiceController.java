@@ -133,8 +133,7 @@ public class POInvoiceController {
 		String destination = "D:\\Maven-project\\repository\\PurchasingSystem\\src\\main\\webapp\\images"
 				+ "\\" + invId + ".jpg";
 		// String destination = "\\"+"images"+"\\"+invId+".jpg";
-//		String destination = "C:\\Users\\jonat\\Downloads\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"
-//				+ "\\" + invId + ".jpg";
+//		String destination ="C:\\Users\\timmy\\git\\repository\\PurchasingSystem\\src\\main\\webapp\\images"+ "\\" + invId + ".jpg";
 		if (file != null || file.getSize() > 0) {
 			File files = new File(destination);
 			file.transferTo(files);
@@ -176,6 +175,7 @@ public class POInvoiceController {
 				+ "\\" + invId + ".jpg";
 //		String destination = "C:\\Users\\jonat\\Downloads\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"
 //				+ "\\" + invId + ".jpg";
+//		String destination ="C:\\Users\\timmy\\git\\repository\\PurchasingSystem\\src\\main\\webapp\\images"+ "\\" + invId + ".jpg";
 
 		// String destination = "images/"+invId+".jpg";
 		System.out.println("uploadRootPath=" + destination);

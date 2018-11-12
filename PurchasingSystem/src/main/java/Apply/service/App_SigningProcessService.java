@@ -1,10 +1,10 @@
 package Apply.service;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import Apply.dao.App_SigningProcessIDao;
 import Apply.model.App_SigningProcessBean;
@@ -110,4 +110,23 @@ public class App_SigningProcessService {
 		}
 		return null;
 	}
+	public  List<App_SigningProcessBean> selectApp_staandSig_staemp(String app_sta,String sig_sta,String app_Manger){
+		List<App_SigningProcessBean> beans =app_SigningProcessIDao.selectApp_staandSig_staemp( app_sta, sig_sta, app_Manger);
+//		List<App_SigningProcessBean> bean=new LinkedList<App_SigningProcessBean>();
+//		if(beans!=null) {
+//			for(App_SigningProcessBean xz:beans) {
+//			 String thisappid=	xz.getApp_id();
+//			 App_SigningProcessBean xsz= app_SigningProcessIDao.selectApp_idandSig_staAndApp_staEndlist(thisappid,"請購單完成","請購核准");
+//			if(xsz !=null) {
+//				bean.add(xsz);
+//			}
+//			}
+			if(beans.size()>0) {	
+				return beans;
+			}else {
+				return null;
+			}
+	//	}
+	//	return null;
+	}	
 }
