@@ -8,6 +8,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+<div class='container'>
+	<h3 align="center">物料更新</h3><br/>
 <input class="form-control" id="myInput" type="text" placeholder="Search"><br/>
 <table class="table table-striped table-hover">
 <thead>
@@ -19,13 +21,14 @@
 <th >詳細規格</th>
 <th>價格</th>
 <th>庫存</th>
-<th>最後進貨日期</th>
+<th>最後修改時間</th>
 </tr>
 </thead>
 <tbody id="selectAll">
 
 </tbody>
 </table>
+</div>
 <script type="text/javascript" charset="utf-8">
 $(document).ready(function(){
 	var row = 7;
@@ -116,13 +119,13 @@ $("tbody").on("click","#delete",function(){
 	});
 });		
 $("tbody").on("click","#edit",function(){
-	$(this).parent().siblings("td:gt(1)").empty().append("<input type='text'/>");//全部清空變成input
+	$(this).parent().siblings("td:gt(1)").empty().append("<input type='text' style='width:100px' />");//全部清空變成input
 	//$(this)是#edit
 	//用#edit去更改除了自己以外的欄位,#edit的parent是一個td,這個td的siblings是td
 	var index = $(this).parent().siblings("td:first").text();//之後cancel放回原先值會用到
 //	alert(index);
 	$(this).parent().empty().append(
-			"<input type='button' id='update' class='btn btn-default' value='update'/>&nbsp;&nbsp;&nbsp;"+
+			"<input type='button' id='update' class='btn btn-default' value='update'/> &nbsp;&nbsp;&nbsp;"+
 			"<input type='button' id='cancel' name='"+index+"' class='btn btn-default' value='cancel'/>");
 });		
 
