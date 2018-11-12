@@ -40,58 +40,62 @@
 			<input type="hidden" value="${poid}" name="poid"> <input
 				type="hidden" value="1" name="sig_Rank">
 			<div class="form-group col-md-5">
-				<label for="Inv_id">請款單單號</label> <input type="text" class="form-control" name="Inv_id"
-					id="" readonly="readonly" value="${invoice.inv_id}">
+				<label for="Inv_id">請款單單號</label> <input type="text"
+					class="form-control" name="Inv_id" id="" readonly="readonly"
+					value="${invoice.inv_id}">
 			</div>
 			<div class="form-group col-md-5">
-				<label for="Emp_name">申請人</label> <input type="text" class="form-control" name="Emp_name"
-					id="" readonly="readonly" value="${user.emp_name}">
+				<label for="Emp_name">申請人</label> <input type="text"
+					class="form-control" name="Emp_name" id="" readonly="readonly"
+					value="${user.emp_name}">
 			</div>
 			<div class="form-group col-md-5">
-				<label for="Emp_dep">所屬部門</label> <input type="text" class="form-control" name="Emp_dep"
-					id="" readonly="readonly" value="${user.emp_dep}">
+				<label for="Emp_dep">所屬部門</label> <input type="text"
+					class="form-control" name="Emp_dep" id="" readonly="readonly"
+					value="${user.emp_dep}">
 			</div>
 			<div class="form-group col-md-5">
-				<label for="Vendor_name">廠商名稱</label> <input type="text" class="form-control" 
-					name="Vendor_name" readonly="readonly" id=""
+				<label for="Vendor_name">廠商名稱</label> <input type="text"
+					class="form-control" name="Vendor_name" readonly="readonly" id=""
 					value="${pomain.pO_Vendor_InfoBean.vendor_name}">
 			</div>
 			<div class="form-group col-md-5">
-				<label for="Vendor_id">廠商統編</label> <input type="text" class="form-control" 
-					name="Vendor_id" readonly="readonly" id=""
+				<label for="Vendor_id">廠商統編</label> <input type="text"
+					class="form-control" name="Vendor_id" readonly="readonly" id=""
 					value="${pomain.pO_Vendor_InfoBean.vendor_id}">
 			</div>
 			<div class="form-group col-md-5">
-				<label for="Total_price">請款金額</label> <input type="text" class="form-control" 
-					name="Total_price" readonly="readonly" id=""
+				<label for="Total_price">請款金額</label> <input type="text"
+					class="form-control" name="Total_price" readonly="readonly" id=""
 					value="${invoice.total_price}">
 			</div>
 			<div class="form-group col-md-5">
-				<label for="Payment_method">付款方式</label> <input type="text" class="form-control" 
-					name="Payment_method" readonly="readonly" id=""
-					value="${pomain.pO_Vendor_InfoBean.payment_method}">
+				<label for="Payment_method">付款方式</label> <input type="text"
+					class="form-control" name="Payment_method" readonly="readonly"
+					id="" value="${pomain.pO_Vendor_InfoBean.payment_method}">
 			</div>
 			<div class="form-group col-md-5">
-				<label for="Except_Payment_Date">預計付款日</label> <input type="text" class="form-control" 
-					name="Except_Payment_Date" id="" value="${paymentDate}"
-					readonly="readonly">
+				<label for="Except_Payment_Date">預計付款日</label> <input type="text"
+					class="form-control" name="Except_Payment_Date" id=""
+					value="${paymentDate}" readonly="readonly">
 			</div>
 			<div class="form-group col-md-5">
-				<label for="oldRecript_date">原憑證日期</label> <input type="text" class="form-control" 
-					name="oldRecript_date" id="" value="${oldRecript_date}"
-					readonly="readonly">
+				<label for="oldRecript_date">原憑證日期</label> <input type="text"
+					class="form-control" name="oldRecript_date" id=""
+					value="${oldRecript_date}" readonly="readonly">
 			</div>
 			<div class="form-group col-md-5">
-				<label for="Recript_date">修改憑證日期</label> <input type="date" class="form-control" 
-					name="Recript_date" id="" value="">
+				<label for="Recript_date">修改憑證日期</label> <input type="date"
+					class="form-control" name="Recript_date" id="" value="">
 			</div>
 			<div class="form-group col-md-5">
-				<label>原憑證圖檔</label> <img src="..${invoice.recript_pic}" alt=""
-					height="200" width="200"> <input type="file"
-					name="Receiptpic" id="" value="">
+				<label>原憑證圖檔</label> 
+				<a href="..${recript_pic}" target="_blank">${picName}</a>
 			</div>
 			<div class="form-group col-md-5">
 				<label for="Receiptpic">修改憑證圖檔 </label>
+				<input type="file"
+					name="Receiptpic" id="" value="">
 			</div>
 			<div class="form-group col-md-5">
 				<label>退回原因:${sigSug}</label>
@@ -111,12 +115,42 @@
 				<textarea rows="5" cols="50" name="SignSug"></textarea>
 			</div>
 			<div class="form-group col-md-5 text-right">
-
-			<input type="submit" value="送出">
+				<input class="btn btn-primary" type="reset" value="重新輸入"> 
+				<input class="btn btn-primary" type="submit" value="送出" data-toggle="modal"
+			data-target="#exampleModalCenter">
 			</div>
 		</form>
+<!-- 		<div class="modal fade" id="exampleModalCenter" tabindex="-1" -->
+<!-- 		role="dialog" aria-labelledby="exampleModalCenterTitle" -->
+<!-- 		aria-hidden="true"> -->
+<!-- 		<div class="modal-dialog modal-dialog-centered" role="document"> -->
+<!-- 			<div class="modal-content"> -->
+<!-- 				<div class="modal-header"> -->
+<!-- 					<h5 class="modal-title" id="exampleModalLongTitle">訊息</h5> -->
+<!-- 					<button type="button" class="close" data-dismiss="modal" -->
+<!-- 						aria-label="Close"> -->
+<!-- 						<span aria-hidden="true">&times;</span> -->
+<!-- 					</button> -->
+<!-- 				</div> -->
+<!-- 				<div class="modal-body"> -->
+<%-- 					<c:if test="${not empty successmeg}"> --%>
+<%-- 					<c:set var="successmeg" value="請款單:${inv_id}${successmeg}"></c:set> --%>
+<%-- 					<c:out value="successmeg"></c:out> --%>
+<%-- 					</c:if> --%>
+<%-- 					<c:if test="${not empty errormeg}"> --%>
+<%-- 					<c:set var="errormeg" value="請款單:${errormeg}"></c:set> --%>
+<%-- 					<c:out value="errormeg"></c:out> --%>
+<%-- 					</c:if> --%>
+<!-- 				</div> -->
+<!-- 				<div class="modal-footer"> -->
+<!-- 					<button type="button" class="btn btn-secondary" -->
+<!-- 						data-dismiss="modal">Close</button> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
 	</c:if>
-
+<!-- --------------------------------審核/分派/退回  ----------------------------------------- -->
 	<c:if test="${not empty sendsuccessmeg}">
 		<h2>${sendsuccessmeg}${inv_id}</h2>
 	</c:if>
@@ -157,8 +191,7 @@
 			</c:otherwise>
 		</c:choose>
 
-		<form method="post"
-			action="<c:url value=" /Account/ReviewInvoice.controller "/>">
+		<form method="post" action="<c:url value="/Account/ReviewInvoice.controller"/>">
 
 			<input type="hidden" name="status" value="${status}"> <input
 				type="hidden" value="${invid}" name="invid">
@@ -211,30 +244,30 @@
 
 			</div>
 			<div class="form-group col-md-5">
-				<label>憑證圖檔</label> <img src="..${recript_pic}" alt="" height="200"
-					width="200">
+				<label>憑證圖檔</label> 
+				<a href="..${recript_pic}" target="_blank">${picName}</a>
 			</div>
 			<c:if test="${not empty sug}">
 				<div class="form-group col-md-5">
 					<label> 簽核 說明:</label>
 					<table class="table table-hover">
-					<thead>
-						<tr>
-							<th>流程順序</th>
-							<th>簽核人</th>
-							<th>簽核意見</th>
-							<th>簽核日期</th>
-						</tr>
+						<thead>
+							<tr>
+								<th>流程順序</th>
+								<th>簽核人</th>
+								<th>簽核意見</th>
+								<th>簽核日期</th>
+							</tr>
 						</thead>
 						<tbody>
-						<c:forEach var="sig" items="${sug}">
-							<tr>
-								<td>${sig.sig_Rank}</td>
-								<td>${sig.employeeBean.emp_name}</td>
-								<td>${sig.sig_Sug}</td>
-								<td>${sig.sig_Date}</td>
-							</tr>
-						</c:forEach>
+							<c:forEach var="sig" items="${sug}">
+								<tr>
+									<td>${sig.sig_Rank}</td>
+									<td>${sig.employeeBean.emp_name}</td>
+									<td>${sig.sig_Sug}</td>
+									<td>${sig.sig_Date}</td>
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 				</div>
@@ -260,11 +293,11 @@
 				<textarea rows="5" cols="50" name="SignSug">
     </textarea>
 			</div>
-						<div class="form-group col-md-5 text-right">
-			
-			<input type="submit" name="action" value="送出"> <input
-				type="submit" name="action" value="退回">
-				</div>
+			<div class="form-group col-md-5 text-right">
+
+				<input type="submit" name="action" value="送出"> <input
+					type="submit" name="action" value="退回">
+			</div>
 		</form>
 	</c:if>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

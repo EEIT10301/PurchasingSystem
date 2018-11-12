@@ -7,8 +7,28 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+#message{
+color:red;
+text-size:10px;
+}
+
+</style>
 </head>
 <body>
+<c:if test="${not empty sendsuccessmeg}">
+		<h2 id="message">${sendsuccessmeg}${inv_id}</h2>
+	</c:if>
+	<c:if test="${not empty senderrormeg}">
+		<h2 id="message">${senderrormeg}</h2>
+	</c:if>
+	<c:if test="${not empty returnsuccessmeg}">
+		<h2 id="message">${returnsuccessmeg}${inv_id}</h2>
+	</c:if>
+	<c:if test="${not empty returnerrormeg}">
+		<h2 id="message">${returnerrormeg}</h2>
+	</c:if>
+
 
 <c:if test="${empty listtodosign and empty backInvoiceSign}">
 		<h2>目前無請款單需要簽核</h2>

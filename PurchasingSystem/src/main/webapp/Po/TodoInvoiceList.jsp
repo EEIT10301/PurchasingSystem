@@ -6,8 +6,21 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+#message{
+color:red;
+text-size:10px;
+}
+
+</style>
 </head>
 <body>
+	<c:if test="${not empty successmeg}">
+	<h2 id="message">請款單:${inv_id}${successmeg}</h2>
+	</c:if>
+	<c:if test="${not empty errormeg}">
+	<h2 id="message">請款單${errormeg}</h2>
+	</c:if>
 
 	<c:if test="${empty list and empty listback}">
 		<h2>目前無採購單需要請款</h2>

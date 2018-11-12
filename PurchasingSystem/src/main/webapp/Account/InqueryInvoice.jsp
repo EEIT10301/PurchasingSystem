@@ -34,7 +34,7 @@
 					<td>$${invoiceData.total_price}</td>
 					<td>${invoiceData.pO_MainBean.pO_Vendor_InfoBean.payment_method}</td>
 					<td><fmt:formatDate pattern="yyyy/MM/dd" value="${invoiceData.recript_date}" /></td>
-					<td><a href="..${invoiceData.recript_pic}">${picName}</a></td>
+					<td><a href="..${invoiceData.recript_pic}" target="_blank">${picName}</a></td>
 				</tr>
 			</tbody>
 		</table>

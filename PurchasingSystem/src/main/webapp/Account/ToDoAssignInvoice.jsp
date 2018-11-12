@@ -22,10 +22,22 @@
 	width:78%;
     float:left;
 }
+
+#message{
+color:red;
+text-size:10px;
+}
 </style>
 </head>
 
 <body class="bg">
+
+	<c:if test="${not empty dispatchsuccessmeg}">
+		<h2 id="message">${dispatchsuccessmeg}${inv_id}</h2>
+	</c:if>
+	<c:if test="${not empty dispatcherrormeg}">
+		<h2 id="message">${dispatcherrormeg}</h2>
+	</c:if>
 	
 	<c:if test="${empty list}">
 	<div class="right">
