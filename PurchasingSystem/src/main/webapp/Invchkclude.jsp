@@ -86,7 +86,7 @@ span {
                 </a>
            </li>
            <li class="nav-item">
-                <a class="nav-link" href="selectInvchk.controller">
+                <a class="nav-link" href="CheckBean">
                 <img class=" imgp" src="../sysimg/s2.png">
                   <span data-feather="users"></span>
                   	驗收成功清單
@@ -97,6 +97,13 @@ span {
                 <img class="imgp" src="../sysimg/s2.png">
                   <span data-feather="file"></span>
                   	驗收失敗清單
+                </a>
+           </li>
+                      <li class="nav-item">
+                <a class="nav-link" href="item?pageNo=1">
+                <img class="imgp" src="../sysimg/s2.png">
+                  <span data-feather="file"></span>
+                  	查詢庫存
                 </a>
            </li>
 </ul>
