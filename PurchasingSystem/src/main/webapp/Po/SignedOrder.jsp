@@ -13,11 +13,7 @@
 	src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<style type="text/css">
-body{
-font-family:"微軟正黑體"";
-}
-</style>	
+	
 
 <title>待下單採購單</title>
 </head>
@@ -40,9 +36,9 @@ font-family:"微軟正黑體"";
 	</c:if>
 
 	<c:if test='${not empty signedOrderList}'>
+		<div class="right">
 		<h3>待下單採購單</h3>
 		<form action="<c:url value="/Po/signedOrderDetail.controller" />"method="post">
-		<div class="right">
 		<table id="myTable" class="table table-striped table-hover">
 		<thead>
 			<tr>
@@ -98,8 +94,8 @@ font-family:"微軟正黑體"";
 <%-- 		</c:forEach> --%>
 
 	</table>
-	</div>
 	</form>
+	</div>
 	</c:if>
 	<script src="../js/app.js"></script>
 </body>
