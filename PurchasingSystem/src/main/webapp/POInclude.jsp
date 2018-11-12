@@ -67,38 +67,7 @@ span {
 <%-- 		<br> <span>${sendok}</span> --%>
 
 		<c:if test="${user.emp_level==1}">
-<!-- 			<div class="card bg-light f" style="font-family:微軟正黑體;"> -->
-<!-- 				<a href='selectprice.controller' class="btn" style="height:2em"><img -->
-<!-- 					class="card-img-top imgp" src="../sysimg/s1.png" style="height:35px; width:30px; float:left">待詢價採購單</a> -->
-<!-- 			</div> -->
-<!-- 			<div class="card bg-light f" style="font-family:微軟正黑體;"> -->
-<!-- 				<a href='signedorder.controller' class="btn" style="height:2em"><img -->
-<!-- 					class="card-img-top imgp" src="../sysimg/s2.png" style="height:35px; width:30px; float:left">待下單採購單</a> -->
-<!-- 			</div> -->
-<!-- 			<div class="card bg-light f" style="font-family:微軟正黑體;"> -->
-<!-- 				<a href='placedOrder.controller' class="btn" style="height:2em"><img -->
-<!-- 					class="card-img-top imgp" src="../sysimg/s2.png" style="height:35px; width:30px; float:left">待收貨採購單</a> -->
-<!-- 			</div> -->
-<!-- 			<div class="card bg-light f" style="font-family:微軟正黑體;"> -->
-<!-- 				<a href='POManagerSigner.controller' class="btn" style="height:2em"><img -->
-<!-- 					class="card-img-top imgp" src="../sysimg/s2.png" style="height:35px; width:30px; float:left">待審核採購單</a> -->
-<!-- 			</div> -->
-<!-- 			<div class="card bg-light f" style="font-family:微軟正黑體;"> -->
-<!-- 				<a href='POSignStatement.controller' class="btn" style="height:2em"><img -->
-<!-- 					class="card-img-top imgp" src="../sysimg/s2.png" style="height:35px; width:30px; float:left">採購單狀態</a> -->
-<!-- 			</div> -->
-<!-- 			<div class="card bg-light f" style="font-family:微軟正黑體;"> -->
-<!-- 				<a href='Polist.controller' class="btn" style="height:2em"><img -->
-<!-- 					class="card-img-top imgp" src="../sysimg/s2.png" style="height:35px; width:30px; float:left">待辦請款單</a> -->
-<!-- 			</div> -->
-<!-- 			<div class="card bg-light f" style="font-family:微軟正黑體;"> -->
-<!-- 				<a href='StatusMain.jsp' class="btn" style="height:2em"><img -->
-<!-- 					class="card-img-top imgp" src="../sysimg/s2.png" style="height:35px; width:30px; float:left">查詢請款單</a> -->
-<!-- 			</div> -->
-<!-- 			<div class="card bg-light f" style="font-family:微軟正黑體;"> -->
-<!-- 				<a href='POFinalStatement.controller' class="btn" style="height:2em"><img -->
-<!-- 					class="card-img-top imgp" src="../sysimg/s2.png" style="height:35px; width:30px; float:left">查詢已結案請款單</a> -->
-<!-- 			</div> -->
+
 		<ul class="nav flex-column">
               <li class="nav-item">
                 <a class="nav-link active" href="selectprice.controller">
@@ -111,7 +80,7 @@ span {
                 <a class="nav-link" href="POManagerSigner.controller">
                 <img class="card-img-top imgp" src="../sysimg/s2.png">
                   <span data-feather="users"></span>
-                  	待審核採購單
+                  	待處理採購單
                 </a>
               </li>
               <li class="nav-item">
@@ -172,7 +141,7 @@ span {
                 <a class="nav-link" href="POManagerSigner.controller">
                 <img class="card-img-top imgp" src="../sysimg/s2.png">
                   <span data-feather="users"></span>
-                  	待審核採購單
+                  	待處理採購單
                 </a>
               </li>
               <li class="nav-item">
