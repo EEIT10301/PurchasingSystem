@@ -23,7 +23,7 @@ table, td {
 	<table>
 
 		<tr>
-			<th>驗收單號</th>
+			<th>驗收單號 123123123</th>
 			<th>採購單號</th>
 			<th>驗收人員</th>
 			<th>驗收金額</th>
