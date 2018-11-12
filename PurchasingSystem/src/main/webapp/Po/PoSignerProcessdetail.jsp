@@ -8,10 +8,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h2>採購單編號:${pomainlist.po_id}</h2>
-<c:if test="${not empty thispro}">
-<p>簽核中流程<p>
-<p><font color='red'>${user.emp_name}簽核中</font><p>
+	<h2>採購單編號:${pomainlist.po_id}</h2>
+	<c:if test="${not empty thispro}">
+	<p>簽核中流程<p>
+	<p><font color='red'>${user.emp_name}簽核中</font><p>
 <p>職稱: ${user.emp_dep} ${user.emp_job}</p>
 <p>申請人: ${pomainlist.employeeBean.emp_name}</p>
 <p>採購預估總價格: ${pomainlist.total_price}</p>
