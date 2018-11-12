@@ -24,4 +24,6 @@ public interface App_SigningProcessIDao {
 	public abstract List<App_SigningProcessBean> selectemppoidsendpages(String app_Manger, String sig_sta ,Integer beginindex,Integer pagesize);
 	public abstract List<App_SigningProcessBean> selectfromlastemp1(Integer Sig_Rank);
 	public abstract List<App_SigningProcessBean> selectApp_staandSig_sta(String app_sta,String sig_sta);
+	public abstract List<App_SigningProcessBean> selectApp_staandSig_staemp(String app_sta,String sig_sta,String app_Manger);
+	public abstract App_SigningProcessBean selectApp_idandSig_staAndApp_staEndlist(String app_id,String sig_sta,String app_sta);
 }

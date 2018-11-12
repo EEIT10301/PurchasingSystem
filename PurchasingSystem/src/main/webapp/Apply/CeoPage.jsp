@@ -13,7 +13,8 @@
 	<a href='ApplyLogout.controller'>登出</a>
 <a href='toApplySignnerdetail.controller'>待簽核請購單</a>	
 <a href='ceoPOManagerSigner.controller'>待審核採購單</a>
-	
+<a href='http://localhost:8080/PurchasingSystem/Apply/ApplySearchEndList.html'>已結案請購單查詢 </a>
+<a href='toApplySignpro.controller'>請購中請購單 </a>	
 	
 </body>
 </html>

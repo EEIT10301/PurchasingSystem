@@ -14,4 +14,5 @@ public interface PO_DetailIDao {
 	public abstract PO_DetailBean update(PO_DetailBean bean);
 
 	public abstract boolean delete(String po_id,String part_No);
+	public abstract List<PO_DetailBean> selectpo_id(String po_id);
 }

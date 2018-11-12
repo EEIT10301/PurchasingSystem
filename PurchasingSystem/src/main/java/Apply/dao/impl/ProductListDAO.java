@@ -1,5 +1,6 @@
 package Apply.dao.impl;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -84,7 +85,7 @@ public class ProductListDAO implements ProductListIDAO {
 	@Override
 	public List<ProductListBean> select() {
 		return this.getSession().createQuery(
-				"from ProductListBean", ProductListBean.class).setMaxResults(50).list();
+				"from ProductListBean", ProductListBean.class).setMaxResults(500).list();
 	}
 
 	@Override
@@ -114,7 +115,18 @@ public class ProductListDAO implements ProductListIDAO {
 	public boolean delete(String id) {
 		ProductListBean temp = this.getSession().get(ProductListBean.class, id);
 		if(temp!=null) {
-			this.getSession().delete(temp);
+			try {	
+				this.getSession().delete(temp);
+				sessionFactory.getCurrentSession().getTransaction().commit();
+			}catch (Exception e) {
+				e.printStackTrace();
+				sessionFactory.getCurrentSession().getTransaction().rollback();
+			}
+				sessionFactory.getCurrentSession().beginTransaction();
+				ProductListBean temp2 = this.getSession().get(ProductListBean.class, id);
+				if(temp2!=null) {
+					return false;
+				}
 			return true;
 		}
 		return false;

@@ -8,24 +8,27 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+<div class='container'>
+	<h3 align="center">物料更新</h3><br/>
 <input class="form-control" id="myInput" type="text" placeholder="Search"><br/>
 <table class="table table-striped table-hover">
 <thead>
 <tr>
 <th>料號</th>
-<th>產品大項</th>
-<th >產品名稱</th>
+<th>物料項目</th>
+<th >物料名稱</th>
 <th>規格簡述</th>
 <th >詳細規格</th>
 <th>價格</th>
 <th>庫存</th>
-<th>最後進貨日期</th>
+<th>最後修改時間</th>
 </tr>
 </thead>
 <tbody id="selectAll">
 
 </tbody>
 </table>
+</div>
 <script type="text/javascript" charset="utf-8">
 $(document).ready(function(){
 	var row = 7;
@@ -35,21 +38,23 @@ $(document).ready(function(){
 			success:function(data){
 					var txt = ""
 						txt += "<tr >";
-						txt += "<td id='id' ><input style='width:50px' type='text' /></td>";
-						txt += "<td  id='cate'><input style='width:50px' type='text'/></td>";
-						txt += "<td  id='name'><input style='width:70px' type='text'/></td>";
+						//<input style='width:70px' type='text'/>
+						txt += "<td id='id'><input style='width:70px' type='text' /></td>";
+						txt += "<td id='cate' >"+"<select > <option value='零組件'  >零組件 </option> <option value='PC' >PC </option> <option value='組合材號' > 組合材號 </option> <option value='主板組件' > 主板組件 </option> <option value='說明書' > 說明書 </option> </select> "
+						+"</td>";	
+						txt += "<td  id='name'><input style='width:80px' type='text'/></td>";
 						txt += "<td  id='spe'><input style='width:80px' type='text'/></td>";
 						txt += "<td  id='intro'><input style='width:100px' type='text'/></td>";
 						txt += "<td  id='price' ><input style='width:50px' type='text'/></td>";
 						txt += "<td  id='amount' ><input style='width:50px' type='text'/></td>";
-						txt += "<td  id='date' ><input style='width:100px'   type='text'  value=''/></td>";
+						txt += "<td  id='date' >現在時間</td>";
 						txt +="<td><input type='button' id='insert' class='btn btn-default' value='新增'/>";
 						txt +="&nbsp;&nbsp;&nbsp;";
-						txt +="<input type='hidden' id='search' class='btn btn-default' value='查詢'/></td>";
+						txt +="<input type='hidden' id='delete' class='btn btn-default' value='刪除'/></td>";
 						txt += "</tr>"
 					$.each(data.myArrayList,function(index,json){
 						txt += "<tr >";
-						txt += "<td id='id'><a href='http://localhost:8080/PurchasingSystem/Apply/updateanddelete.html?id="+json.map.part_no+"&account="+json.map.pro_cate+"&password="+json.map.pro_name+"'>"+json.map.part_no+"</a></td>"
+						txt += "<td id='id' value="+json.map.part_no+"><a href='http://localhost:8080/PurchasingSystem/Apply/updateanddelete.html?id="+json.map.part_no+"&account="+json.map.pro_cate+"&password="+json.map.pro_name+"'>"+json.map.part_no+"</a></td>"
 						txt += "<td id='cate'>"+json.map.pro_cate+"</td>"
 						txt += "<td id='name'>"+json.map.pro_name+"</td>"
 						txt += "<td id='spe'>"+json.map.pro_spe+"</td>"
@@ -59,7 +64,7 @@ $(document).ready(function(){
 						txt += "<td id='date'>"+json.map.pro_date+"</td>"
 						txt +="<td><input type='button' id='edit' class='btn btn-default' value='修改'/>";
 						txt +="&nbsp;&nbsp;&nbsp;";
-						txt +="<input type='hidden' id='search' class='btn btn-default' value='查詢'/></td>";
+						txt +="<input type='button' id='delete' class='btn btn-default' value='刪除'/></td>";
 						txt += "</tr>"
 
 					})
@@ -86,19 +91,41 @@ $("tbody").on("click","#insert",function(){
 				data : "{"+dataJSON+"}",
 				contentType:"application/json",
 				success : function(response) {
-					alert("新增成功");
+					//alert(response);
+					var items = JSON.parse(response);
+					alert(items.insert);
 					window.location.reload();
 				}
 			});
 		});
+$("tbody").on("click","#delete",function(){		
+	var finId = $(this).parent().siblings("td:eq(0)").text();
+	var dataJSON ="";
+	dataJSON += '\"'+($(this).parent().siblings("td:eq(0)").attr("id"))+'\":\"'
+	+($(this).parent().siblings("td:eq(0)").text())+'\",';
+	//alert(dataJSON);
+	
+	$.ajax({
+		url : "http://localhost:8080/PurchasingSystem/Apply/deletehproduct.do",
+		type : 'POST',
+		data : "{"+dataJSON+"}",
+		contentType:"application/json",
+		success : function(response) {
+			//alert(response);
+			var items = JSON.parse(response);
+			alert(items.deletes);
+			window.location.reload();
+		}
+	});
+});		
 $("tbody").on("click","#edit",function(){
-	$(this).parent().siblings("td:gt(2)").empty().append("<input type='text'/>");//全部清空變成input
+	$(this).parent().siblings("td:gt(1)").empty().append("<input type='text' style='width:100px' />");//全部清空變成input
 	//$(this)是#edit
 	//用#edit去更改除了自己以外的欄位,#edit的parent是一個td,這個td的siblings是td
 	var index = $(this).parent().siblings("td:first").text();//之後cancel放回原先值會用到
 //	alert(index);
 	$(this).parent().empty().append(
-			"<input type='button' id='update' class='btn btn-default' value='update'/>&nbsp;&nbsp;&nbsp;"+
+			"<input type='button' id='update' class='btn btn-default' value='update'/> &nbsp;&nbsp;&nbsp;"+
 			"<input type='button' id='cancel' name='"+index+"' class='btn btn-default' value='cancel'/>");
 });		
 
@@ -138,7 +165,7 @@ $("tbody").on("click","#update",function(){
 $("#editAll").click(function(){
 	var rowNum = $("tr #id:last").text(); //幾橫
 //	alert(rowNum);
-	$("tbody").children("tr").find("td:gt(2):lt(-1)").empty().append("<input type='text'/>");
+	$("tbody").children("tr").find("td:gt(1):lt(-1)").empty().append("<input type='text'/>");
 	//:gt(0)大於順數的第一個，:lt(-1)小於倒數的第二個
 	//如果只寫 $("tbody").find("td:gt(0)").empty();會只剩下第一筆的id因為是由tbody去算index的
 	
