@@ -60,7 +60,7 @@ span {
 	<a href="POLoginSuccess.jsp" style="font-family:微軟正黑體;">回首頁</a>
 	<div class="text-right" style="font-family:微軟正黑體;">
 		${user.emp_name} ${user.emp_job},你好<a
-			href='POLogout.controller'><button type="button" class="btn">登出</button></a>
+			href='POLogout.controller'><button type="button" class="btn btn-primary btn-sm">登出</button></a>
 	</div>
 	<hr>
 	<div class="left">

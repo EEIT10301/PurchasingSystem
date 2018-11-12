@@ -586,26 +586,34 @@ public class POInvoiceController {
 	public String queryStatus(Model model, HttpSession session) {
 		EmployeeBean empbean = (EmployeeBean) session.getAttribute("user");
 		String emp_id = empbean.getEmp_id();
-		if (emp_id.equals("emp009")) {
+		String emp_dep=empbean.getEmp_dep();
+		if(emp_dep.equals("採購部")) {
+			List<Account_SigningProcessBean> lists = pO_InvoiceService.selectAccountManagerInvoiveOrNot(emp_id);
+			if (lists != null) {
+				model.addAttribute("listsallforbuyer", lists);
+				return "status.show";
+			} else {
+				model.addAttribute("nolistsallforbuyer", "尚無請款單單號");
+				return "status.show";
+			}
+		} else if (emp_id.equals("emp009")) {
 			List<Account_SigningProcessBean> lists = pO_InvoiceService.selectAccountManagerInvoiveOrNotM(emp_id,
 					"財務經理分派");
 			if (lists != null) {
-
-
-				model.addAttribute("lists", lists);
-				return "status.show";
+				model.addAttribute("listsallforaccboss", lists);
+				return "statusforAcc.show";
 			} else {
-				model.addAttribute("nolist", "尚無請款單單號");
-				return "status.show";
+				model.addAttribute("nolistsallforaccboss", "尚無請款單單號");
+				return "statusforAcc.show";
 			}
 		} else {
 			List<Account_SigningProcessBean> lists = pO_InvoiceService.selectAccountManagerInvoiveOrNot(emp_id);
 			if (lists != null) {
-				model.addAttribute("lists", lists);
-				return "status.show";
+				model.addAttribute("listsallforaccemp", lists);
+				return "statusforAcc.show";
 			} else {
-				model.addAttribute("nolist", "尚無請款單單號");
-				return "status.show";
+				model.addAttribute("nolistsallforaccemp", "尚無請款單單號");
+				return "statusforAcc.show";
 			}
 		}
 	}
@@ -615,6 +623,7 @@ public class POInvoiceController {
 	public String queryStatusDone(Model model, HttpSession session) {
 		EmployeeBean empbean = (EmployeeBean) session.getAttribute("user");
 		String emp_id = empbean.getEmp_id();
+		String emp_dep=empbean.getEmp_dep();
 		if (emp_id.equals("emp009")) { // 找自己有參與的請款單
 			List<Account_SigningProcessBean> lists = pO_InvoiceService.selectAccountManagerInvoiveOrNotM(emp_id,
 					"財務經理分派");
@@ -633,14 +642,14 @@ public class POInvoiceController {
 				}
 			}
 			if (listsd.size() > 0) {
-				model.addAttribute("lists", listsd);
-				return "status.show";
+				model.addAttribute("finishlistsforaccboss", listsd);
+				return "statusforAcc.show";
 			} else {
-				model.addAttribute("nolist", "尚無已結案請款單單號");
-				return "status.show";
+				model.addAttribute("nofinishlistsforaccboss", "尚無已結案請款單單號");
+				return "statusforAcc.show";
 			}
 
-		} else {
+		} else if(emp_dep.equals("採購部")){
 			List<Account_SigningProcessBean> lists = pO_InvoiceService.selectAccountManagerInvoiveOrNot(emp_id);
 			List<Account_SigningProcessBean> liststa = new LinkedList<Account_SigningProcessBean>();
 			List<Account_SigningProcessBean> listsd = new LinkedList<Account_SigningProcessBean>();
@@ -658,11 +667,36 @@ public class POInvoiceController {
 				}
 			}
 			if (listsd.size() > 0) {
-				model.addAttribute("lists", listsd);
+				model.addAttribute("finishlistsforbuyer", listsd);
 				return "status.show";
 			} else {
-				model.addAttribute("nolist", "尚無已結案請款單單號");
+				model.addAttribute("nofinishlistsforbuyer", "尚無已結案請款單單號");
 				return "status.show";
+			}}
+			else {
+				List<Account_SigningProcessBean> lists = pO_InvoiceService.selectAccountManagerInvoiveOrNot(emp_id);
+				List<Account_SigningProcessBean> liststa = new LinkedList<Account_SigningProcessBean>();
+				List<Account_SigningProcessBean> listsd = new LinkedList<Account_SigningProcessBean>();
+				for (int i = 0; i < lists.size(); i++) {
+					String id = lists.get(i).getInv_id();
+					liststa = pO_InvoiceService.selectDone(id, 5);
+					for (int y = 0; y < liststa.size(); y++) {
+						if (liststa.get(y).getSig_Sta() == null) {
+							continue;
+						}
+
+						else if (liststa.get(y).getSig_Sta().equals("已簽核")) {
+							listsd.add(liststa.get(y));
+						}
+					}
+				}
+				if (listsd.size() > 0) {
+					model.addAttribute("finishlistsforaccemp", listsd);
+					return "statusforAcc.show";
+				} else {
+					model.addAttribute("nofinishlistsforaccemp", "尚無已結案請款單單號");
+					return "statusforAcc.show";
+				
 			}
 		}
 	}
@@ -672,6 +706,7 @@ public class POInvoiceController {
 	public String queryStatusUndone(Model model, HttpSession session) {
 		EmployeeBean empbean = (EmployeeBean) session.getAttribute("user");
 		String emp_id = empbean.getEmp_id();
+		String emp_dep=empbean.getEmp_dep();
 		if (emp_id.equals("emp009")) { // 找自己有參與的請款單
 			List<Account_SigningProcessBean> lists = pO_InvoiceService.selectAccountManagerInvoiveOrNotM(emp_id,
 					"財務經理分派");
@@ -694,13 +729,13 @@ public class POInvoiceController {
 					liststaUn = pO_InvoiceService.selectInvoice(inv);
 					liststaUn2.add(liststaUn);
 				}
-				model.addAttribute("listsUn", liststaUn2);
-				return "status.show";
+				model.addAttribute("unfinishlistsforaccboss", liststaUn2);
+				return "statusforAcc.show";
 			} else {
-				model.addAttribute("nolistUn", "尚無未結案請款單單號");
-				return "status.show";
+				model.addAttribute("nounfinishlistsforaccboss", "尚無未結案請款單單號");
+				return "statusforAcc.show";
 			}
-		} else {
+		} else if(emp_dep.equals("採購部")){
 			List<Account_SigningProcessBean> lists = pO_InvoiceService.selectAccountManagerInvoiveOrNot(emp_id);
 			PO_SigningProcessBean liststa = new PO_SigningProcessBean();
 			List<PO_SigningProcessBean> liststa2 = new LinkedList<PO_SigningProcessBean>();
@@ -721,25 +756,60 @@ public class POInvoiceController {
 					liststaUn = pO_InvoiceService.selectInvoice(inv);
 					liststaUn2.add(liststaUn);
 				}
-				model.addAttribute("listsUn", liststaUn2);
+				model.addAttribute("unfinishlistsforbuyer", liststaUn2);
 				return "status.show";
 			} else {
-				model.addAttribute("nolistUn", "尚無未結案請款單單號");
+				model.addAttribute("nounfinishlistsforbuyer", "尚無未結案請款單單號");
 				return "status.show";
 			}
+		}else {
+			List<Account_SigningProcessBean> lists = pO_InvoiceService.selectAccountManagerInvoiveOrNot(emp_id);
+			PO_SigningProcessBean liststa = new PO_SigningProcessBean();
+			List<PO_SigningProcessBean> liststa2 = new LinkedList<PO_SigningProcessBean>();
+			Account_InvoiceBean liststaUn = new Account_InvoiceBean();
+			List<Account_InvoiceBean> liststaUn2 = new LinkedList<Account_InvoiceBean>();
+			for (int i = 0; i < lists.size(); i++) {
+				String id = "Po" + lists.get(i).getInv_id().substring(2);
+				liststa = pO_InvoiceService.selectForOneProcessbyPoSigSta("請款中", id);
+				if (liststa != null) {
+					liststa2.add(liststa);
+				} else {
+					continue;
+				}
+			}
+			if (liststa2.size() > 0) {
+				for (int j = 0; j < liststa2.size(); j++) {
+					String inv = "In" + liststa2.get(j).getPo_id().substring(2);
+					liststaUn = pO_InvoiceService.selectInvoice(inv);
+					liststaUn2.add(liststaUn);
+				}
+				model.addAttribute("unfinishlistsforaccemp", liststaUn2);
+				return "statusforAcc.show";
+			} else {
+				model.addAttribute("nounfinishlistsforaccemp", "尚無未結案請款單單號");
+				return "statusforAcc.show";
+			}
 		}
-	}
+		}
+	
 
 	// 查詢該張請款單狀態
 	@RequestMapping("/Po/queryStatusIn.controller")
 	public String queryStatusIn(Model model, HttpSession session, String invid) {
+		EmployeeBean empbean = (EmployeeBean) session.getAttribute("user");
+		String emp_dep=empbean.getEmp_dep();
+		
 		List<Account_SigningProcessBean> stat = pO_InvoiceService.selectStatus(invid);
 		model.addAttribute("stat", stat);
 
 		Account_InvoiceBean bean = account_InvoiceService.select(invid);
 		model.addAttribute("bean", bean);
-
+		if(emp_dep.equals("採購部")) {
 		return "statusIn.show";
+		}else {
+		return "statusInforAcc.show";
+		}
+		
 	}
 
 }

@@ -304,6 +304,14 @@
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/Po/StatusOfInvIn.jsp"></property>
 	</bean>
+	<bean id="statusforAcc.show"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Account/StatusMainAcc.jsp"></property>
+	</bean>
+	<bean id="statusInforAcc.show"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Account/StatusOfInvInAcc.jsp"></property>
+	</bean>
 <!-- 查詢請款單狀態連結-->
 
 </beans>

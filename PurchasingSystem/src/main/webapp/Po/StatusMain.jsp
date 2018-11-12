@@ -83,7 +83,7 @@ span {
 	</h1>
 	<a href="POLoginSuccess.jsp" style="font-family: 微軟正黑體;">回首頁</a>
 	<div class="text-right" style="font-family: 微軟正黑體;">
-		${user.emp_name} ${user.emp_job},你好<a href='POLogout.controller'><button
+		${user.emp_dep}/${user.emp_name} ${user.emp_job},你好<a href='POLogout.controller'><button
 				type="button" class="btn">登出</button></a>
 	</div>
 	<hr>
@@ -158,7 +158,7 @@ span {
 		<a href="queryStatusUndone.controller" class="btn btn-info">查詢未完成請款單</a>
 		<a href="queryStatusDone.controller" class="btn btn-info">查詢已完成請款單</a>
 		<br>
-		<c:if test="${not empty listAll}">
+		<c:if test="${not empty listsallforbuyer}">
 				<br>
 			<h3>採購系統>查詢請款單狀態>所有請款單</h3>
 			<table class="table table-striped table-hover">
@@ -169,7 +169,7 @@ span {
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="sta" items="${listsAll}">
+					<c:forEach var="sta" items="${listsallforbuyer}">
 						<tr>
 							<td><a href="queryStatusIn.controller?invid=${sta.inv_id}">${sta.inv_id}</a></td>
 							<td>${sta.account_InvoiceBean.pO_MainBean.pO_Vendor_InfoBean.vendor_name}</td>
@@ -179,7 +179,7 @@ span {
 			</table>
 		</c:if>
 
-		<c:if test='${not empty nolistAll}'>
+		<c:if test='${not empty nolistsallforaccboss}'>
 		<br>
 			<h3>採購系統>查詢請款單狀態>所有請款單</h3>
 			<table class="table table-striped table-hover">
@@ -190,9 +190,10 @@ span {
 					</tr>
 				</thead>
 			</table>
+						<h2>${nolistsallforaccboss}</h2>
 		</c:if>
 
-		<c:if test='${not empty lists}'>
+		<c:if test='${not empty finishlistsforbuyer}'>
 <br>
 			<h3>採購系統>查詢請款單狀態>已完成請款單</h3>
 			<table class="table table-striped table-hover">
@@ -203,7 +204,7 @@ span {
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="sta" items="${lists}">
+					<c:forEach var="sta" items="${finishlistsforbuyer}">
 						<tr>
 							<td><a href="queryStatusIn.controller?invid=${sta.inv_id}">${sta.inv_id}</a></td>
 							<td>${sta.account_InvoiceBean.pO_MainBean.pO_Vendor_InfoBean.vendor_name}</td>
@@ -213,7 +214,7 @@ span {
 			</table>
 
 		</c:if>
-		<c:if test='${not empty nolist}'>
+		<c:if test='${not empty nofinishlistsforbuyer}'>
 		<br>
 			<h3>採購系統>查詢請款單狀態>已完成請款單</h3>
 			
@@ -226,9 +227,10 @@ span {
 					</tr>
 				</thead>
 			</table>
+			<h2>${nofinishlistsforbuyer}</h2>
 		</c:if>
 
-		<c:if test='${not empty listsUn}'>
+		<c:if test='${not empty unfinishlistsforbuyer}'>
 		<br>
 			<h3>採購系統>查詢請款單狀態>未完成請款單</h3>
 
@@ -240,7 +242,7 @@ span {
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="sta" items="${listsUn}">
+					<c:forEach var="sta" items="${unfinishlistsforbuyer}">
 						<tr>
 							<td><a href="queryStatusIn.controller?invid=${sta.inv_id}">${sta.inv_id}</a></td>
 							<td>${sta.pO_MainBean.pO_Vendor_InfoBean.vendor_name}</td>
@@ -250,7 +252,7 @@ span {
 			</table>
 
 		</c:if>
-		<c:if test='${not empty nolistUn}'>
+		<c:if test='${not empty nounfinishlistsforbuyer}'>
 			<br>
 		<h3>採購系統>查詢請款單狀態>未完成請款單</h3>
 	
@@ -262,6 +264,7 @@ span {
 					</tr>
 				</thead>
 			</table>
+			<h2>${unfinishlistsforbuyer}</h2>
 		</c:if>
 
 	</div>
