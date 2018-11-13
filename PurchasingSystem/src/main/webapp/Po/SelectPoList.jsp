@@ -24,7 +24,7 @@
 
 	<c:if test="${not empty selectlists}">
 	<div class="right">
-	<h3>待詢價採購單</h3>
+	<h2>待詢價採購單</h2>
 		<table class="table table-striped table-hover">
 			<thead>
 				<tr>
