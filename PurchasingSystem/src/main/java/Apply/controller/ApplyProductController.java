@@ -43,6 +43,7 @@ public class ApplyProductController {
 		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create() ; 
 		String json = gson.toJson(list) ;
 		return new JSONArray(json);
+		
 	}
 	@RequestMapping(value="/Apply/SearchCus.do", produces ="text/html; charset=utf-8" )
 	public 	@ResponseBody String SelectAllAJAX() throws IOException, ParseException {
@@ -54,6 +55,7 @@ public class ApplyProductController {
 //		lists=list;
 		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create() ; 
 		String json = gson.toJson(list) ;
+		
 	    return json;
 	}
 	@RequestMapping(value="/Apply/RemoveCus.do", produces ="text/html; charset=utf-8" )

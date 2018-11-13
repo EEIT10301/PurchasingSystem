@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.google.gson.annotations.Expose;
+
 import Apply.model.ProductListBean;
 
 //Inv_ProductListUionPKID
@@ -18,13 +20,21 @@ import Apply.model.ProductListBean;
 @Table(name = "Inv_ProductList")
 @IdClass(value=Inv_ProductListUionPKID.class)
 public class Inv_ProductListBean {
+	@Expose
 	private String chk_Id;
+	@Expose
 	private String part_No;
+	@Expose
 	private Integer chk_Count;
+	@Expose
 	private String chk_quality;
+	@Expose
 	private java.util.Date chk_Date;
+	@Expose
 	private String chk_status;
+	@Expose
 	private Inv＿ProductCheckBean inv＿ProductCheckBean;
+	@Expose
 	private ProductListBean productListBean;
 	public Inv_ProductListBean(String chk_Id, String part_No, Integer chk_Count, String chk_quality, Date chk_Date,
 			String chk_status) {
