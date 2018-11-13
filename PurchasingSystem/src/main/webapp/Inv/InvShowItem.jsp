@@ -43,7 +43,7 @@
 <body class="bg">
 <div class="right">
 <input class="form-control" id="myInput" type="text" placeholder="Search"><br/>
-<a href="http://localhost:8080/PurchasingSystem/Inv/InvLoginSuccess.jsp">返回首頁</a>
+<!-- <a href="http://localhost:8080/PurchasingSystem/Inv/InvLoginSuccess.jsp">返回首頁</a> -->
 <c:if test="${Mainbean==null}">
 ${Mainbean.noFile}
 </c:if>

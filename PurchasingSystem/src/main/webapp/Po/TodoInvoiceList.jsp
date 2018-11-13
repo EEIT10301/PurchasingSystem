@@ -1,11 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ include file="../POInclude.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="../css/POcss.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
 <title>Insert title here</title>
+
 <style type="text/css">
 #message{
 color:red;
@@ -14,7 +21,8 @@ text-size:10px;
 
 </style>
 </head>
-<body>
+<body class="bg">
+	<div class="right">
 	<c:if test="${not empty successmeg}">
 	<h2 id="message">請款單:${inv_id}${successmeg}</h2>
 	</c:if>
@@ -81,5 +89,6 @@ text-size:10px;
 <!-- 			</tr> -->
 <%-- 		</c:forEach> --%>
 <!-- 		</table> -->
+</div>
 </body>
 </html>

@@ -22,9 +22,14 @@
 </head>
 <body class="bg">
 
+		
+
+
+
+
 	<c:if test="${not empty selectlists}">
 	<div class="right">
-	<h3>待詢價採購單</h3>
+	<h2>待詢價採購單</h2>
 		<table class="table table-striped table-hover">
 			<thead>
 				<tr>
@@ -68,7 +73,7 @@
 	</div>
 	</c:if>
 
-	<c:if test="${empty noselectlists}">
+	<c:if test="${empty selectlists}">
 		<h2>${noselectlists}</h2>
 	</c:if>
 	<script src="../js/app.js"></script>

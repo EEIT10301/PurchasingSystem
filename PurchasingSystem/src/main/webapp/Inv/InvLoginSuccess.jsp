@@ -61,13 +61,7 @@
 					<h5 class="card-title"><font face="微軟正黑體">驗收失敗清單</font></h5>
 				</div>
 		</div>
-				<div class="card bg-light f">
-				<a href='item?pageNo=1' class="btn"><img
-					class="card-img-top imgp" src="../sysimg/s1.png"></a>
-				<div class="card-body">
-					<h5 class="card-title"><font face="微軟正黑體">查詢庫存</font></h5>
-				</div>
-		</div>
+
 		</c:if>
 		<c:if test="${user.emp_level==2 }">
 		<div class="card bg-light f">
@@ -77,7 +71,21 @@
 					<h5 class="card-title"><font face="微軟正黑體">待分派清單</font></h5>
 				</div>
 		</div>
+								<div class="card bg-light f">
+				<a href='singcheck' class="btn"><img
+					class="card-img-top imgp" src="../sysimg/s1.png"></a>
+				<div class="card-body">
+					<h5 class="card-title"><font face="微軟正黑體">查詢驗收單狀態</font></h5>
+				</div>
+		</div>
 		</c:if>
+						<div class="card bg-light f">
+				<a href='item?pageNo=1' class="btn"><img
+					class="card-img-top imgp" src="../sysimg/s1.png"></a>
+				<div class="card-body">
+					<h5 class="card-title"><font face="微軟正黑體">查詢庫存</font></h5>
+				</div>
+		</div>
 		</div>
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
