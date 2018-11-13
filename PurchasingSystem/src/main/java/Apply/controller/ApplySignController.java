@@ -30,6 +30,7 @@ import Po.model.PO_SigningProcessBean;
 import Po.service.PO_DetailService;
 import Po.service.PO_MainService;
 import Po.service.PO_SigningProcessService;
+import misc.AutoSendEmailByJava;
 
 
 
@@ -493,6 +494,9 @@ App_SigningProcessBean thissign1 = app_SigningProcessService.select(bean.getApp_
 	thissign1.setSig_sta("已簽核");
 	thissign1.setSig_sug(SignSug);
 App_SigningProcessBean thissign2 = app_SigningProcessService.selectrank(bean.getApp_id(), bean.getSig_rank()+1);
+String thissendemail = thissign2.getEmployeeBean().getEmp_email();
+AutoSendEmailByJava sendemail =new AutoSendEmailByJava();
+sendemail.processMemberWishNotice(thissendemail, "待簽核請購單", "您有一張待簽核的請購單 請點下列連結登入"+"http://localhost:8080/PurchasingSystem/MainPage.jsp");
 thissign2.setSig_date( null);
 thissign2.setSig_sta("簽核中"); 
 thissign2.setSig_sug(null);
@@ -503,6 +507,9 @@ App_SigningProcessBean thissign1 = app_SigningProcessService.select(bean.getApp_
             	thissign1.setSig_sta("未簽核");
             	thissign1.setSig_sug(SignSug);
 App_SigningProcessBean thissign2 = app_SigningProcessService.selectrank(bean.getApp_id(), bean.getSig_rank()-1);
+String thissendemail = thissign2.getEmployeeBean().getEmp_email();
+AutoSendEmailByJava sendemail =new AutoSendEmailByJava();
+sendemail.processMemberWishNotice(thissendemail, "待簽核請購單", "您有一張被退回的請購單 請點下列連結登入"+"http://localhost:8080/PurchasingSystem/MainPage.jsp");
             thissign2.setSig_sta("退回中");  	
 		    	
 		    }
