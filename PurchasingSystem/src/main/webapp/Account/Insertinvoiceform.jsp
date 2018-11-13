@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%@ include file="../POInclude.jsp"%>
 
 <html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" type="text/css" href="../css/POcss.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
@@ -16,11 +17,11 @@
 /* input, select { */
 /* 	display: block; */
 /* } */
-.bg {
-	background-color: #FDF5E6;
-	/* 畫面間距 */
-	margin: 30px;
-}
+/* .bg { */
+/* 	background-color: #FDF5E6; */
+/* 	/* 畫面間距 */ */
+/* 	margin: 30px; */
+/* } */
 
 .lr {
 	width: 33%;
@@ -35,6 +36,7 @@
 </head>
 
 <body class="bg">
+	<div class="right">
 	<h1>請款單</h1>
 	<br>
 	<!-- 	<a href='Polist.controller'>回上一頁</a> -->
@@ -161,5 +163,6 @@
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
 		integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
 		crossorigin="anonymous"></script>
+		</div>
 </body>
 </html>
