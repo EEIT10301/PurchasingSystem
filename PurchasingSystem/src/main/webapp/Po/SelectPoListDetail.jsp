@@ -44,15 +44,7 @@
 	right: 700px;
 }
 </style>
-
-
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script type="text/javascript"
-	src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<title>Insert title here</title>
+<title>詢價紀錄</title>
 <script type="text/javascript">
 	// window.onload = function() {
 	//     if(!window.location.hash) {
@@ -64,10 +56,10 @@
 </head>
 <body class="bg">
 
-	<c:if test="${empty queryss and empty query1  and empty queryVendor}">
-		<h2>${noselist}</h2>
-	</c:if>
 	<div class="right">
+		<c:if test="${empty queryss and empty query1  and empty queryVendor}">
+			<h2>${noselist}</h2>
+		</c:if>
 		<c:if test="${not empty query1 or not queryVendor or not empty now }">
 			<!-- or not queryVendor or not empty now -->
 			<table class="table table-striped table-hover" id="myTable">
@@ -134,12 +126,14 @@
 				<form id="submitbutton"
 					action="<c:url value="sendsc.controller?po_manger=${poprocess1.po_manger}&po_sta=${poprocess1.po_sta}&po_id=${poprocess1.po_id}" />"
 					method="post">
-					<input type="submit" name="sendFirstsendsc" value="新增詢價紀錄">
+<!-- 					<input type="submit" name="sendFirstsendsc" value="新增詢價紀錄"> -->
+				<button id='' class='btn btn-default' value=''>新增詢價紀錄</button>
 				</form>
 				<form id="submitbutton"
 					action="<c:url value="posendlistsign.controller?po_manger=${poprocess1.po_manger}&po_sta=${poprocess1.po_sta}&po_id=${poprocess1.po_id}" />"
 					method="post">
-					<input type="submit" name="sendFirstposendlistsign" value="送出審核">
+<!-- 					<input type="submit" name="sendFirstposendlistsign" value="送出審核"> -->
+					<button id='' class='btn btn-default' value=''>送出審核</button>				
 				</form>
 			</div>
 		</c:if>

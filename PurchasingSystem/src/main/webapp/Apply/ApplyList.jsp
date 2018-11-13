@@ -92,17 +92,19 @@ font-size: 36px;
 		</c:forEach>	
 				</tbody>
 					</table>	
-				<p>請購總價格:${Listprice}</p>
+				<p>請購總價格:${Listprice} 元整</p>
+			
 			<form action="<c:url value="/Apply/ApplyListsend.controller" />"
 				method="post">
 				<p>
 					<Input type='hidden' name='Listprice' value='${Listprice}'>
 				<P />
 				<p>    追交日期:<Input type='text' name='getdate' value=''> <P />
-				請購原因:
+					<div align="center">
+				提案內容:
 				<p>
 					<textarea rows="5" cols="50" name="suggestion">
-</textarea>
+                </textarea>
 				<p>
 				
 				 <p>簽核順序   1.${user.emp_name}<p>
@@ -122,6 +124,8 @@ font-size: 36px;
 				<p>
 					<Input type='submit' name='send' value='產生請購單'> <Input
 						type='submit' name='send' value='刪除此次請購'>
+			</div>
+						
 			</form>
 			</div>
 <script src="../js/app.js"></script>			

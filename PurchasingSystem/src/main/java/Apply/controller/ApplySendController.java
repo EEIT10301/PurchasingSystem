@@ -284,8 +284,10 @@ public class ApplySendController {
 			 user= (EmployeeBean) session.getAttribute("user"); 
 			 
 		 }
-		 EmployeeBean userManger =employeeService.select(Sign2Employee);
+		 EmployeeBean userManger =employeeService.select(user.getEmp_managerid());
 		 EmployeeBean boss =employeeService.select(userManger.getEmp_managerid());
+		 
+	
 		
 		Map<String, String> errors = new HashMap<String, String>();
 		if(send.equals("刪除此次請購")){//按下刪除此次請購
@@ -384,7 +386,10 @@ public class ApplySendController {
 	    }
 	    
 	    else {
-	    	
+	    	 EmployeeBean usersendemail=null;
+	     if(Sign2Employee !=null) {
+	    	  usersendemail =employeeService.select(Sign2Employee);
+		   }
 	   // 	SimpleDateFormat sdf2 =new SimpleDateFormat("yyyy/MM/dd");
 		//	String thisdate= sdf2.format(getdate);
 	    	EmployeeBean emp=(EmployeeBean) session.getAttribute("user");
@@ -419,7 +424,9 @@ public class ApplySendController {
 	    	{
 	    		//userManger
 	    		AutoSendEmailByJava sendemail =new AutoSendEmailByJava();
-	    		sendemail.processMemberWishNotice(userManger.getEmp_email(), "待簽核請購單", "您有一張待簽核的請購單 請點下列連結登入"+"http://localhost:8080/PurchasingSystem/MainPage.jsp");
+	    		if(usersendemail!=null) {	 
+	    			sendemail.processMemberWishNotice(usersendemail.getEmp_email(), "待簽核請購單", "您有一張待簽核的請購單 請點下列連結登入"+"http://localhost:8080/PurchasingSystem/MainPage.jsp");
+	    		}
 	    		java.util.Date date = new java.util.Date();
 	    		java.sql.Date data1 = new java.sql.Date(date.getTime());
 	    		DateFormat dateFormate =new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -433,7 +440,9 @@ public class ApplySendController {
 	    		
 	    	}else {
 	    		AutoSendEmailByJava sendemail =new AutoSendEmailByJava();
-	    		sendemail.processMemberWishNotice(userManger.getEmp_email(), "待簽核請購單", "您有一張待簽核的請購單 請點下列連結登入"+"http://localhost:8080/PurchasingSystem/MainPage.jsp");
+	    		if(usersendemail!=null) {	 
+	    			sendemail.processMemberWishNotice(usersendemail.getEmp_email(), "待簽核請購單", "您有一張待簽核的請購單 請點下列連結登入"+"http://localhost:8080/PurchasingSystem/MainPage.jsp");
+	    		}
 	    		java.util.Date date = new java.util.Date();
 	    		java.sql.Date data1 = new java.sql.Date(date.getTime());
 	    		DateFormat dateFormate =new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
