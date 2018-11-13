@@ -296,7 +296,6 @@ public class POSigningController {
 		List<PO_DetailBean> Podetailbeans = new LinkedList<PO_DetailBean>();
 		Map<String, String> errors = new HashMap<String, String>();
 
-		PO_DetailBean Podetailbean = new PO_DetailBean();
 		Integer allListprice = 0;
 		PO_SigningProcessBean bean = pO_SigningProcessService.select(posta1, poid1);
 //		List<PO_Vendor_InfoBean> AllPO_Vendor = pO_Vendor_InfoService.select();
@@ -316,6 +315,7 @@ public class POSigningController {
 				model.addAttribute("AllPO_Vendor", AllPO_Vendor);
 				return "Posend.sign";
 			}
+			PO_DetailBean Podetailbean = new PO_DetailBean();
 			String poid = po_id[i];
 			Podetailbean.setPo_id(poid);
 			String partno = part_No[i];
@@ -331,7 +331,7 @@ public class POSigningController {
 			Integer thislistprice = quot * totalPrice;
 			allListprice += thislistprice;
 			Podetailbeans.add(Podetailbean);
-
+//			model.addAttribute("Podetailbeans", Podetailbeans);
 		}
 		PO_Vendor_InfoBean VendorBean = pO_Vendor_InfoService.select(AllPO_Vendors);
 		List<EmployeeBean> pomangers = employeeService.selectPoEmployee("採購部", 2);
