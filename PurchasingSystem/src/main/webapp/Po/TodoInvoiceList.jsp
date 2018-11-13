@@ -181,12 +181,13 @@ span {
 	<c:if test="${not empty list}">
 	<h2>待請款採購單</h2>
 
-<table>
+<table class="table table-striped table-hover">
 <tr>
-		<th>採購單單號</th>
-		<th>承辦人姓名</th>
-		<th>廠商名稱</th>
-		<th>總金額</th>
+		<th scope="col">採購單單號</th>
+		<th scope="col">承辦人姓名</th>
+		<th scope="col">廠商名稱</th>
+		<th scope="col">總金額</th>
+		<th scope="col"></th>
 		</tr>
 		<c:forEach var="row" items="${list}">
 
@@ -205,13 +206,15 @@ span {
 
 	<c:if test="${not empty listback}">
 	<h2>退回請款單</h2>
-<table>
+<table class="table table-striped table-hover">
 		<c:forEach var="back" items="${listback}">
 		<tr>
-		<th>請款單單號</th>
-		<th>承辦人姓名</th>
-		<th>廠商名稱</th>
-		<th>總金額</th>
+		<th scope="col">請款單單號</th>
+		<th scope="col">承辦人姓名</th>
+		<th scope="col">廠商名稱</th>
+		<th scope="col">總金額</th>
+		<th scope="col"></th>
+		
 		</tr>
 			<tr>
 				<td>${back.inv_id}</td>
