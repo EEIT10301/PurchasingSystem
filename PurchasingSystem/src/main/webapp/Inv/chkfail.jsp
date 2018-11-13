@@ -48,7 +48,7 @@
 </style>
 </head>
 <body class="bg">
-<c:if test="${not empty selsctlists || empty selectlist.sig_Sug}">
+
 <div class="right">
 	<input class="form-control" type="text" placeholder="search" id="search">
 	<style id="search_style"></style>
@@ -85,13 +85,9 @@ document.getElementById('search').addEventListener('input', function() {
     </c:if>
 	</c:forEach>
 	</c:if>
-	<c:if test="${not empty noselectlists}">
-	<h2>${noselectlists}</h2>
-    </c:if>   
     </c:forEach>
 	</table>	
 	</div>	
-	</c:if>
 <script src="../js/app.js"></script>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
