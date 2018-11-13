@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ include file="../POInclude.jsp"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,7 +40,7 @@
 							<tr>
 								<td>${poprocess.po_id}</td>
 								<td>${poprocess.employeeBean.emp_name}</td>
-								<td>${poprocess.sig_date}</td>
+								<td><fmt:formatDate pattern="yyyy/MM/dd HH:mm" value="${poprocess.sig_date}"/></td>
 
 
 								<c:forEach var="poprocess1" items="${selectlists}">

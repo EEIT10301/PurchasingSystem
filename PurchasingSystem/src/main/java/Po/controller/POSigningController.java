@@ -260,14 +260,14 @@ public class POSigningController {
 			searchbean.setPo_querydate(datas);
 			searchbean.setPo_totalprice(allListprice);
 			model.addAttribute("query1", searchbean);
-			model.addAttribute("now", now);
+			model.addAttribute("now", datas);
 		} else {
 			PO_QueryBean pO_QueryBean = new PO_QueryBean(poId, vendorId, datas, allListprice);
 			PO_QueryBean insert = pO_QueryService.insert(pO_QueryBean);
 
 //			PO_QueryBean insert = pO_QueryService.insert(bean);
 			PO_Vendor_InfoBean xs = pO_Vendor_InfoService.select(insert.getVendor_ID());
-			model.addAttribute("now", now);
+			model.addAttribute("now", datas);
 			model.addAttribute("queryVendor", xs);
 			model.addAttribute("query1", insert);
 			// searchbean=pO_QueryService.select(bean.getPo_ID(), bean.getVendor_ID());

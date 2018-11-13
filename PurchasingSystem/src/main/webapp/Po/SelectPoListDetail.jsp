@@ -2,7 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ include file="../POInclude.jsp"%>
-<%-- <jsp:include page="Query.jsp" flush="false"/>      --%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -78,7 +79,7 @@
 					<tr>
 						<td id="query">${query1.po_ID}</td>
 						<td>${queryVendor.vendor_name}</td>
-						<td>${now}</td>
+						<td><fmt:formatDate pattern="yyyy/MM/dd HH:mm" value="${now}"/></td>
 						<td>${query1.po_totalprice}</td>
 					</tr>
 				</tbody>
@@ -102,7 +103,7 @@
 						<tr>
 							<td>${querysss.po_ID}</td>
 							<td>${querysss.pO_Vendor_InfoBean.vendor_name}</td>
-							<td>${querysss.po_querydate}</td>
+							<td><fmt:formatDate pattern="yyyy/MM/dd HH:mm" value="${querysss.po_querydate}"/></td>
 							<td>${querysss.po_totalprice}</td>
 						</tr>
 					</c:forEach>
@@ -126,14 +127,14 @@
 				<form id="submitbutton"
 					action="<c:url value="sendsc.controller?po_manger=${poprocess1.po_manger}&po_sta=${poprocess1.po_sta}&po_id=${poprocess1.po_id}" />"
 					method="post">
-<!-- 					<input type="submit" name="sendFirstsendsc" value="新增詢價紀錄"> -->
-				<button id='' class='btn btn-default' value=''>新增詢價紀錄</button>
+					<!-- 					<input type="submit" name="sendFirstsendsc" value="新增詢價紀錄"> -->
+					<button id='' class='btn btn-default' value=''>新增詢價紀錄</button>
 				</form>
 				<form id="submitbutton"
 					action="<c:url value="posendlistsign.controller?po_manger=${poprocess1.po_manger}&po_sta=${poprocess1.po_sta}&po_id=${poprocess1.po_id}" />"
 					method="post">
-<!-- 					<input type="submit" name="sendFirstposendlistsign" value="送出審核"> -->
-					<button id='' class='btn btn-default' value=''>送出審核</button>				
+					<!-- 					<input type="submit" name="sendFirstposendlistsign" value="送出審核"> -->
+					<button id='' class='btn btn-default' value=''>送出審核</button>
 				</form>
 			</div>
 		</c:if>
@@ -142,13 +143,15 @@
 				<form id="submitbutton"
 					action="<c:url value="sendsc.controller?po_manger=${poprocess2.po_manger}&po_sta=${poprocess2.po_sta}&po_id=${poprocess2.po_id}" />"
 					method="post">
-					<input type="submit" name="sendSecondsendsc" value="新增詢價紀錄">
+<!-- 					<input type="submit" name="sendSecondsendsc" value="新增詢價紀錄"> -->
+				<button id='' class='btn btn-default' value=''>新增詢價紀錄</button>
 				</form>
 
 				<form id="submitbutton"
 					action="<c:url value="posendlistsign.controller?po_manger=${poprocess2.po_manger}&po_sta=${poprocess2.po_sta}&po_id=${poprocess2.po_id}" />"
 					method="post">
-					<input type="submit" name="sendSecondposendlistsign" value="送出審核">
+<!-- 					<input type="submit" name="sendSecondposendlistsign" value="送出審核"> -->
+				<button id='' class='btn btn-default' value=''>送出審核</button>
 				</form>
 			</div>
 		</c:if>
