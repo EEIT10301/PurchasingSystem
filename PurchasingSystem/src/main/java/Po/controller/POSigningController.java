@@ -22,7 +22,6 @@ import Account.model.Account_InvoiceBean;
 import Account.model.PO_Vendor_InfoBean;
 import Account.service.PO_Vendor_InfoService;
 import Apply.model.App_MainBean;
-import Apply.model.App_SigningProcessBean;
 import Apply.model.EmployeeBean;
 import Apply.service.App_MainService;
 import Apply.service.EmployeeService;
@@ -211,7 +210,31 @@ public class POSigningController {
 		DateFormat dateFormate = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		bean.setPo_querydate(datas);
 		String now = dateFormate.format(datas);
-
+		
+		Map<String, String> errors = new HashMap<String, String>();
+		model.addAttribute("errors", errors);
+		
+		for (int i = 0; i < po_ID.length; i++) {
+			if(vendor_ID[i]=="ven001" || po_totalprice[i].isEmpty()) {				
+				errors.put("error", "請選取或輸入廠商和單價");				
+				
+				PO_SigningProcessBean bean1 = pO_SigningProcessService.select(po_sta, po_id);
+				List<PO_Vendor_InfoBean> AllPO_Vendor1 = pO_Vendor_InfoService.select();
+				Set<PO_DetailBean> pODetailBean = bean1.getpO_MainBean().getpO_DetailBean();
+				
+				model.addAttribute("query", bean1);
+				model.addAttribute("po_manger", po_manger);
+				model.addAttribute("po_sta", po_sta);
+				model.addAttribute("po_id", po_id);
+				model.addAttribute("AllPO_Vendor1", AllPO_Vendor1);
+				model.addAttribute("allPO_Deatil", pODetailBean);
+				
+				return "QueryMemo.show";
+			}
+		}
+		
+		
+		
 		Integer allListprice = 0;
 		String poId = "";
 		String vendorId = "";
@@ -251,6 +274,8 @@ public class POSigningController {
 		model.addAttribute("po_id", po_id);
 		model.addAttribute("queryss", query);
 		return "select.listDetail";
+		
+		
 	}
 	// 有問題
 //	@RequestMapping("/Po/queryTable.controller")
