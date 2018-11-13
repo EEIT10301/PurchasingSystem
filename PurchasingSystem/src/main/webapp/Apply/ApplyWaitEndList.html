@@ -26,7 +26,7 @@ font-size: 36px;
 	margin: 30px;
 }
 .right{
-	width:75%;
+	width:78%;
     float:left;
     font-size:15px;
 }
@@ -99,10 +99,9 @@ $(document).ready(function(){
 			var Applist = JSON.parse(data);
 				var txt = ""
 					txt += "<h1><font face='微軟正黑體'>請購系統</font></h1>"
-					txt += "<a href='ApplyLoginSuccess.jsp' style='font-family:微軟正黑體;'>回首頁</a>"
-					txt += "<div class='text-right' style='font-family:微軟正黑體;'>"
-					txt += "<h1><font face='微軟正黑體'>請購系統</font></h1>"
-					txt +=""+Applist.empdep+Applist.empname+Applist.empjob+",您好 <a href='ApplyLogout.controller'><button type='button' class='btn'>登出</button></a> </div>"		
+					txt += "<a href='ApplyLoginSuccess.jsp'  style='font-family:微軟正黑體;font-size: 15px;'>回首頁</a>"
+					txt += "<div class='text-right' style='font-family:微軟正黑體;font-size: 15px;'>"
+					txt +=""+Applist.empdep+Applist.empname+Applist.empjob+",您好 <a href='ApplyLogout.controller'><button type='button' class='btn' style='font-family:微軟正黑體;font-size: 15px;'>登出</button></a> </div>"		
 				    txt += "<hr> <div class='left'>"
 						var emplevel = Applist.emplevel;
 						if(emplevel=="1"){
