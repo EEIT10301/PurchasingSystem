@@ -26,4 +26,5 @@ public interface App_SigningProcessIDao {
 	public abstract List<App_SigningProcessBean> selectApp_staandSig_sta(String app_sta,String sig_sta);
 	public abstract List<App_SigningProcessBean> selectApp_staandSig_staemp(String app_sta,String sig_sta,String app_Manger);
 	public abstract App_SigningProcessBean selectApp_idandSig_staAndApp_staEndlist(String app_id,String sig_sta,String app_sta);
+	public List<App_SigningProcessBean> selectApp_staandSig_staandAppmanger(String app_sta, String sig_sta,String app_Manger);
 }

@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-	<%@ include file="../include.jsp" %>
 
 <!DOCTYPE html>
 <html>
@@ -13,16 +12,6 @@
 	crossorigin="anonymous">
 <title>財務系統</title>
 <style>
-.bg {
-	background-color: #FDF5E6;
-	/* 畫面間距 */
-	margin: 30px;
-}
-.right{
-	width:78%;
-    float:left;
-}
-
 #message{
 color:red;
 text-size:10px;
@@ -30,6 +19,7 @@ text-size:10px;
 </style>
 </head>
 
+	<%@ include file="../includeA.jsp" %>
 <body class="bg">
 <c:if test="${not empty sendsuccessmeg}">
 		<h2 id="message">${sendsuccessmeg}${inv_id}</h2>
@@ -53,8 +43,6 @@ text-size:10px;
 	<c:if test="${not empty list}">
 				<div class="right">
 				<h3>待審核請款單</h3><br>
-	
-			<h4>待簽核請款單</h4>
 		<table class="table table-striped table-hover">
 			<thead class="thead-light">
 				<tr>
@@ -73,11 +61,11 @@ text-size:10px;
 						<td>${sign.pO_MainBean.pO_Vendor_InfoBean.vendor_name}</td>
 						<td>$${sign.total_price}</td>
 						<c:if test="${user.emp_level==2}">
-							<td><a href="AccSignInvForm.controller?invid=${sign.inv_id}">查看</a></td>
+							<td><a href="AccSignInvForm.controller?invid=${sign.inv_id}"><button type="button" class="btn btn-primary btn-sm">審核請款單</button></a></td>
 						</c:if>
 						<c:if test="${user.emp_level==1}">
 							<td><a
-								href="AccSignInvlevel1.controller?invid=${sign.inv_id}">查看</a></td>
+								href="AccSignInvlevel1.controller?invid=${sign.inv_id}"><button type="button" class="btn btn-primary btn-sm">審核請款單</button></a></td>
 						</c:if>
 				</c:forEach>
 			</tbody>

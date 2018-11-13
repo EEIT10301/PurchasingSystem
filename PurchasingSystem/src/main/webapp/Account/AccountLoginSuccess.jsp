@@ -35,6 +35,12 @@
 	/* 畫面內縮 */
 	margin: 30px;
 }
+
+.text-center{
+position: absolute;
+  	top: 200px;
+  	left:200px;
+}
 </style>
 </head>
 
@@ -47,7 +53,7 @@
 				class="btn btn-primary btn-sm">登出</button></a>
 		<hr width=100% size=5 color=white><br>
 	</div>
-
+		<hr>
 	<div class="text-center">
 		<c:if test="${user.emp_level==2}">
 			<div class="card bg-light f">

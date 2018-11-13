@@ -99,7 +99,7 @@ font-size: 36px;
 				<p>
 					<Input type='hidden' name='Listprice' value='${Listprice}'>
 				<P />
-				<p>    追交日期:<Input type='text' name='getdate' value=''> <P />
+				<p>    追交日期:<Input type='date' name='getdate' value=''> <P />
 					<div align="center">
 				提案內容:
 				<p>

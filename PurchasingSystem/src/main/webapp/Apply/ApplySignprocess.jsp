@@ -50,7 +50,7 @@ font-size: 36px;
 <div class="right">
 <!-- <input class="form-control" id="myInput" type="text" placeholder="Search"><br/> -->
 <c:if test='${not empty noApplylist}'>
-<h4>${noApplylist}</h4>
+<h2>${noApplylist}</h2>
 </c:if>
 <c:if test='${not empty Applylists}'>
 <table class="table table-striped table-hover">
@@ -65,6 +65,7 @@ font-size: 36px;
 <th>起單時間</th>
 <th>申請部門</th>
 <th>申請人</th>
+<th></th>
 <th></th>
 </tr>
 <c:forEach var='applylist' varStatus='vs' items='${Applylists}'>
@@ -94,9 +95,10 @@ font-size: 36px;
 <c:if test='${empty thispage}'>
 第 1 頁
 </c:if>
-頁數:
+
 <c:forEach var='i' begin='1' end='${pages}'>
-<a href='toApplySignpropage.controller?page=<c:out value="${i}"/>'><c:out value="${i}"/></a>
+<a href='toApplySignpropage.controller?page=<c:out value="${i}"/>'>
+<button id='' class='btn btn-default' value=''><c:out value="${i}"/></button></a>
 </c:forEach>
 </c:if>
 <script src="../js/app.js"></script>

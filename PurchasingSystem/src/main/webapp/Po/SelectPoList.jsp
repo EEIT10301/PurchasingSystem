@@ -41,8 +41,6 @@
 								<td>${poprocess.po_id}</td>
 								<td>${poprocess.employeeBean.emp_name}</td>
 								<td><fmt:formatDate pattern="yyyy/MM/dd HH:mm" value="${poprocess.sig_date}"/></td>
-
-
 								<c:forEach var="poprocess1" items="${selectlists}">
 									<form
 										action="<c:url value="sendthisselectlist.controller?po_manger=${poprocess1.po_manger}&po_sta=${poprocess1.po_sta}&po_id=${poprocess1.po_id}" />"

@@ -72,6 +72,7 @@ span {
 <div class="class='container">
 <div class="right">
 <h3 align="center">已結案單子查詢</h3><br>
+<input class="form-control" id="myInput" type="text" placeholder="Search"><br/>
 <table class="table table-striped table-hover">
 <thead>
 <tr>
@@ -110,12 +111,12 @@ $(document).ready(function(){
 							txt +='<li class="nav-item"> <a class="nav-link active" href="http://localhost:8080/PurchasingSystem/Apply/selectAll.html"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> 物料更新 <font color=red>'+'</font> </a></li>'
 							txt +='<li class="nav-item"> <a class="nav-link active" href="http://localhost:8080/PurchasingSystem/Apply/ApplySearchEndList.html"><img class="card-img-top imgp" src="../sysimg/s6.png"><span data-feather="home"></span> 已結案單子查詢 <font color=red>'+'</font> </a></li>'
 							txt +='<li class="nav-item"> <a class="nav-link active" href="toApplySignnerdetail.controller"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> 待簽核請購單 <font color=red>'+Applist.SignAppList+'</font> </a></li>'
-							txt +='<li class="nav-item"> <a class="nav-link active" href="toApplySignpro.controller"><img class="card-img-top imgp" src="../sysimg/s6.png"><span data-feather="home"></span> 待簽核請購單 <font color=red>'+Applist.Appnow+'</font> </a></li> </ul></div>'
+							txt +='<li class="nav-item"> <a class="nav-link active" href="toApplySignpro.controller"><img class="card-img-top imgp" src="../sysimg/s6.png"><span data-feather="home"></span> 請購進度查詢 <font color=red>'+Applist.Appnow+'</font> </a></li> </ul></div>'
 						}else{
 							txt +='<ul class="nav flex-column"> <li class="nav-item"> <a class="nav-link active" href="http://localhost:8080/PurchasingSystem/Apply/selectAll.html"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> 物料更新 <font color=red>'+'</font> </a></li> '
 							txt +='<li class="nav-item"> <a class="nav-link active" href="http://localhost:8080/PurchasingSystem/Apply/ApplySearchEndList.html"><img class="card-img-top imgp" src="../sysimg/s6.png"><span data-feather="home"></span> 已結案單子查詢 <font color=red>'+'</font> </a></li>'
 							txt +='<li class="nav-item"> <a class="nav-link active" href="toApplySignnerdetail.controller"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> 待簽核請購單 <font color=red>'+Applist.SignAppList+'</font> </a></li>'
-							txt +='<li class="nav-item"> <a class="nav-link active" href="toApplySignpro.controller"><img class="card-img-top imgp" src="../sysimg/s6.png"><span data-feather="home"></span> 待簽核請購單 <font color=red>'+Applist.Appnow+'</font> </a></li> </ul></div>'
+							txt +='<li class="nav-item"> <a class="nav-link active" href="toApplySignpro.controller"><img class="card-img-top imgp" src="../sysimg/s6.png"><span data-feather="home"></span> 請購進度查詢 <font color=red>'+Applist.Appnow+'</font> </a></li> </ul></div>'
 						}
 					
 				
