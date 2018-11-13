@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ include file="../POInclude.jsp"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,24 +40,24 @@
 		<div class="right">
 		<h3>待下單採購單</h3>
 		
-		<table id="myTable" class="table table-striped table-hover">
+		<table class="table table-striped table-hover">
 		<thead>
 			<tr>
 				<th width="200px">採購單號</th>
 				<th width="200px">簽核主管</th>
 				<th width="200px">主管簽核時間</th>
+				
 			</tr>		
 		</thead>
-		<tbody >
-		 
+		<tbody id="myTable">		 
 		<c:forEach var='signedOrderList' items='${signedOrderList}'>
 			<tr>
 				<td>${signedOrderList.po_id}</td>
-				<td>${signedOrderList.po_id}</td>
+				<td>${managerID.emp_name}</td>
 				<c:forEach var='signedOrderListM_Info'
 				items='${signedOrderListM_Info}'>
 				<c:if test='${signedOrderList.po_id == signedOrderListM_Info.po_id}'>
-				<td>${signedOrderListM_Info.sig_date}</td>
+				<td><fmt:formatDate pattern="yyyy/MM/dd HH:mm" value="${signedOrderListM_Info.sig_date}"/></td>
 				</c:if>
 				</c:forEach>
 			<td><input type='hidden' name='po_manger' value='${signedOrderList.po_manger}'></td>
@@ -68,9 +69,10 @@
 			<td><input type='hidden' name='sig_rank' value='${signedOrderList.sig_rank}'></td>		
 			<td>
 			<form action="<c:url value="/Po/signedOrderDetail.controller?po_id=${signedOrderList.po_id}" />"method="post">
-			<input type="submit" value="下單" id="submit">
+<!-- 			<input type="submit" value="下單" id="submit" class='btn btn-default'> -->
+			<button id='submit' class='btn btn-default btn-sm' value=''>下單</button>
 			</form>
-			</td>			
+			</td>
 			</tr> 
 		</c:forEach>		
 		

@@ -42,11 +42,19 @@
 <body class="bg">
 <div class="right">
 	<c:if test="${not empty sendlist }">
+	<table id="myTable" class="table table-striped table-hover" >
+			<thead>
+			<tr>
+			<th>驗收單單號:</th>
+			<th>產生時間:</th>
+			</tr>
+			<thead>
 		<c:forEach var="sendl" items="${sendlist}">
 			<c:if test="${sendl.sig_Rank==1}">
-				<P>驗收單單號:${sendl.chk_Id }
-				<P>
-					產生時間: ${sendl.sig_Date}
+		<tr>
+				<td>${sendl.chk_Id }</td>				
+				<td> ${sendl.sig_Date}</td>
+		
 					<c:forEach var="sendl1" items="${sendlist}">
 						<form action="<c:url value="/Inv/InvsendEmployee.controller" />"
 							method="post">
@@ -54,26 +62,22 @@
 								test="${sendl1.chk_Id == sendl.chk_Id and sendl1.sig_Rank ==2}">
 								<Input type='hidden' name='inv_Manger'
 									value='${sendl1.inv_Manger}'>
-								<P />
 								<Input type='hidden' name='inv_Sta' value='${sendl1.inv_Sta}'>
-								<P />
 								<Input type='hidden' name='chk_Id' value='${sendl1.chk_Id}'>
-								<P />
 								<Input type='hidden' name='sig_Date' value='${sendl1.sig_Date}'>
-								<P />
 								<Input type='hidden' name='sig_Sta' value='${sendl1.sig_Sta}'>
-								<P />
 								<Input type='hidden' name='sig_Sug' value='${sendl1.sig_Sug}'>
-								<P />
 								<Input type='hidden' name='sig_Rank' value='${sendl1.sig_Rank}'>
-								<P />
-								<Input type='submit' name='send' value='分派'>
+								<td><Input type='submit' name='send' value='分派'></td>
+										</tr>
 							</c:if>
-						</form>
+						</form>	
 					</c:forEach>
 			</c:if>
-
 		</c:forEach>
+			<tbody id="selectAll">
+			</tbody>
+		</table>
 	</c:if>
 	<c:if test="${not empty nosendlist }">
 		<h2>${nosendlist}</h2>

@@ -53,7 +53,7 @@
 <%-- 	</c:forEach> --%>
 收貨意見:<p><textarea rows="5" cols="50" name="signSug"></textarea></p>
 實際收貨時間:<input type="datetime" name="shippingDate">
-<p><input type="submit" name="send" value="確認收貨">
+<p><input type="submit" name="send"  class='btn btn-default' value="確認收貨">
 
 </form>
 </div>
