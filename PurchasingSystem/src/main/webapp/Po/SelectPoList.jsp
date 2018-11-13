@@ -26,7 +26,7 @@
 	<div class="right">
 
 
-		<table class="table table-striped table-hover" id="myTable">
+		<table class="table table-striped table-hover">
 
 
 			<thead>
@@ -39,7 +39,7 @@
 
 				</tr>
 			</thead>
-			<tbody>
+			<tbody id="myTable">
 				<c:forEach var="poprocess" items="${selectlists}">
 					<c:if test="${poprocess.sig_rank==2}">
 						<tr>
