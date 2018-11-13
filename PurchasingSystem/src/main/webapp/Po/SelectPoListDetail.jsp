@@ -126,12 +126,14 @@
 				<form id="submitbutton"
 					action="<c:url value="sendsc.controller?po_manger=${poprocess1.po_manger}&po_sta=${poprocess1.po_sta}&po_id=${poprocess1.po_id}" />"
 					method="post">
-					<input type="submit" name="sendFirstsendsc" value="新增詢價紀錄">
+<!-- 					<input type="submit" name="sendFirstsendsc" value="新增詢價紀錄"> -->
+				<button id='' class='btn btn-default' value=''>新增詢價紀錄</button>
 				</form>
 				<form id="submitbutton"
 					action="<c:url value="posendlistsign.controller?po_manger=${poprocess1.po_manger}&po_sta=${poprocess1.po_sta}&po_id=${poprocess1.po_id}" />"
 					method="post">
-					<input type="submit" name="sendFirstposendlistsign" value="送出審核">
+<!-- 					<input type="submit" name="sendFirstposendlistsign" value="送出審核"> -->
+					<button id='' class='btn btn-default' value=''>送出審核</button>				
 				</form>
 			</div>
 		</c:if>
