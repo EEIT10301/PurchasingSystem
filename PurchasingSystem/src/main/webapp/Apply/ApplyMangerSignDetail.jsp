@@ -196,7 +196,8 @@ font-size: 36px;
 </tr>
 
 <tr>
-<th class='text-center' colspan='6'>請購商品明細</th>
+<th class='text-center' colspan='5'>請購商品明細</th>
+<th></th>
 </tr>
 <tr>
 <th >料號</th>
@@ -216,6 +217,10 @@ font-size: 36px;
 <td></td>
 </tr>
 </c:forEach>
+<tr>
+<th class='text-center' colspan='5'>簽核流程</th>
+<th></th>
+</tr>
 <tr>
 <th>簽核順序</th>
 <th>簽核情形</th>
