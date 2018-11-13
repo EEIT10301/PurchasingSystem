@@ -63,10 +63,9 @@ $("#myInput").on("keyup", function() {
 			href='ApplyLogout.controller'><button type="button" class="btn">登出</button></a>
 	</div>
 	<div class="text-center">
-		<br> <span>${applyok}</span>
+		<br> 
 		<hr>
-		
-	<c:if test="${user.emp_level==1}">
+			<c:if test="${user.emp_level==1}">
 	   	<div class="card bg-light f">
 				<a href='ApplySend.jsp' class="btn"><img
 					class="card-img-top imgp" src="../sysimg/s1.png"></a>
@@ -81,7 +80,6 @@ $("#myInput").on("keyup", function() {
 					<h5 class="card-title">驗收完成待結案   <font color=red>${waitendsign}</font></h5>
 				</div>
 			</div>
-	</c:if>
 	 	<div class="card bg-light f">
 				<a href='http://localhost:8080/PurchasingSystem/Apply/selectAll.html' class="btn"><img
 					class="card-img-top imgp" src="../sysimg/s1.png"></a>
@@ -92,7 +90,7 @@ $("#myInput").on("keyup", function() {
 				<br>
 		 	<div class="card bg-light f">
 				<a href='http://localhost:8080/PurchasingSystem/Apply/ApplySearchEndList.html' class="btn"><img
-					class="card-img-top imgp" src="../sysimg/s1.png"></a>
+					class="card-img-top imgp" src="../sysimg/s6.png"></a>
 				<div class="card-body">
 					<h5 class="card-title">已結案單子查詢 </h5>
 				</div>
@@ -106,13 +104,46 @@ $("#myInput").on("keyup", function() {
 			</div>
 			<div class="card bg-light f">
 			<a href='toApplySignpro.controller' class="btn"><img
-					class="card-img-top imgp" src="../sysimg/s1.png"></a>
+					class="card-img-top imgp" src="../sysimg/s6.png"></a>
 				<div class="card-body">
 					<h5 class="card-title">請購進度查詢 <font color=red>${Appnow}</font> </h5>
 				</div>
-			</div>		
+			</div>
+			</c:if >
+			<c:if test="${user.emp_level==2}">
+	 	<div class="card bg-light f">
+				<a href='http://localhost:8080/PurchasingSystem/Apply/selectAll.html' class="btn"><img
+					class="card-img-top imgp" src="../sysimg/s1.png"></a>
+				<div class="card-body">
+					<h5 class="card-title">物料更新</h5>
+				</div>
+			</div>
+		 	<div class="card bg-light f">
+				<a href='http://localhost:8080/PurchasingSystem/Apply/ApplySearchEndList.html' class="btn"><img
+					class="card-img-top imgp" src="../sysimg/s6.png"></a>
+				<div class="card-body">
+					<h5 class="card-title">已結案單子查詢 </h5>
+				</div>
+			</div>
+			<div class="card bg-light f">
+			<a href='toApplySignnerdetail.controller' class="btn"><img
+					class="card-img-top imgp" src="../sysimg/s1.png"></a>
+				<div class="card-body">
+					<h5 class="card-title">待簽核請購單 <font color=red>${SignAppList}</font> </h5>
+				</div>
+			</div>
+			<div class="card bg-light f">
+			<a href='toApplySignpro.controller' class="btn"><img
+					class="card-img-top imgp" src="../sysimg/s6.png"></a>
+				<div class="card-body">
+					<h5 class="card-title">請購進度查詢 <font color=red>${Appnow}</font> </h5>
+				</div>
+			</div>
+			</c:if >
+					
 		</div>
-
+   
+    
 	<script
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
 		integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
