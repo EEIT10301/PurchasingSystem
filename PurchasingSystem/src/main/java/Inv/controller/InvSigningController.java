@@ -132,7 +132,7 @@ public String selectInvchk(Model model,HttpSession session) {//待驗收驗收�
 			model.addAttribute("selectlistnofinish",selectlistnofinish);
 		}}
 		
-		return "selectInvchk.list";
+		return "";
 	}
 		
 	}
