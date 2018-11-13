@@ -14,20 +14,30 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.google.gson.annotations.Expose;
+
 import Apply.model.EmployeeBean;
 import Inv.model.Inv_SigningProcessBean;
 import Po.model.PO_MainBean;
 @Entity
 @Table(name = "Inv_ProductCheck")
 public class Inv＿ProductCheckBean {
+@Expose	
 private String chk_Id;
+@Expose
 private String po_ID;
+@Expose
 private String emp_ID;
+@Expose
 private Integer chk_Money;
+@Expose
 private String chk_Comment;
+@Expose
 private Integer total_price;
+@Expose
 private String vender_ID;
 private Accout_PayableBean accout_PayableBean;
+@Expose
 private EmployeeBean employeeBean;
 private Set<Inv_SigningProcessBean> inv_SigningProcessBean = new LinkedHashSet<>();
 private PO_Vendor_InfoBean pO_Vendor_InfoBean;

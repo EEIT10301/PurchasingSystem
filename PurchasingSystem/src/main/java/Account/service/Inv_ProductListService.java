@@ -56,5 +56,12 @@ public class Inv_ProductListService  {
 			return beans;
 	
 	}
+	public List<Inv_ProductListBean> ViewAddCheckDetail(String chk_Id) {
+		List<Inv_ProductListBean> beans =inv_ProductListIDao.ViewAddCheckDetail(chk_Id);
+		if(beans!=null) {
+			return beans;
+		}
+		return null;
+	}
 
 }

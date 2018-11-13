@@ -55,7 +55,7 @@ font-size: 36px;
 .d {
 	/* 方格排列 */
 	display: inline-block;
-	width: 13rem;
+	width: 14rem;
 	height: 4rem;
 }
 </style>

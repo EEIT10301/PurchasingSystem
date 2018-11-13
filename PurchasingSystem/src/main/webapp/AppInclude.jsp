@@ -57,13 +57,26 @@ span {
 </style>
 </head>
 <body class="bg">
+	<c:if test="${user.emp_level<=2}">
 	<h1><font face="微軟正黑體">請購系統</font></h1>
-	<a href="ApplyLoginSuccess.jsp" style="font-family:微軟正黑體;">回首頁</a>
-	<div class="text-right" style="font-family:微軟正黑體;">
-		${user.emp_name} ${user.emp_job},你好<a
-			href='ApplyLogout.controller'><button type="button" class="btn">登出</button></a>
+	<a href="ApplyLoginSuccess.jsp" style="font-family:微軟正黑體;font-size: 15px;">回首頁</a>
+	<div class="text-right" style="font-family:微軟正黑體;font-size: 15px;">
+		${user.emp_dep}${user.emp_name} ${user.emp_job},你好<a
+			href='ApplyLogout.controller'><button type="button" class="btn" style="font-family:微軟正黑體;font-size: 15px;">
+			登出</button></a>
 	</div>
 	<hr>
+	</c:if>
+		<c:if test="${user.emp_level==3}">
+	<h1><font face="微軟正黑體">總經理</font></h1>
+	<a href="CeoPage.jsp" style="font-family:微軟正黑體;font-size: 15px;">回首頁</a>
+	<div class="text-right" style="font-family:微軟正黑體;font-size: 15px;">
+		${user.emp_dep}${user.emp_name} ${user.emp_job},你好<a
+			href='ApplyLogout.controller'><button type="button" class="btn" style="font-family:微軟正黑體;font-size: 15px;">
+			登出</button></a>
+	</div>
+	<hr>
+	</c:if>
 	<div class="left">
 <%-- 		<br> <span>${sendok}</span> --%>
 
@@ -114,6 +127,7 @@ span {
               </li>
             </ul>
 		</c:if>
+	
 		<c:if test="${user.emp_level==2}">
 			<ul class="nav flex-column">
               <li class="nav-item">
@@ -145,6 +159,32 @@ span {
                 </a>
               </li>
             </ul>
+		</c:if>
+		<c:if test="${user.emp_level==3}">
+		<ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link" href="toApplySignnerdetail.controller">
+                <img class="card-img-top imgp" src="../sysimg/s2.png">
+                  <span data-feather="layers"></span>
+                  	待簽核請購單 <font color=red>${SignAppList}</font>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="toApplySignpro.controller">
+                <img class="card-img-top imgp" src="../sysimg/s6.png">
+                  <span data-feather="bar-chart-2"></span>
+                 	 請購進度查詢 <font color=red>${Appnow}</font>
+                </a>
+              </li>
+               <li class="nav-item">
+                <a class="nav-link" href="ceoPOManagerSigner.controller">
+                <img class="card-img-top imgp" src="../sysimg/s2.png">
+                  <span data-feather="bar-chart-2"></span>
+                 	 待審核採購單 <font color=red></font>
+                </a>
+              </li>
+            </ul>
+				
 		</c:if>		
 	</div>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
