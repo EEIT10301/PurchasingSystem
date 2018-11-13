@@ -26,7 +26,7 @@ font-size: 36px;
 	margin: 30px;
 }
 .right{
-	width:75%;
+	width:78%;
     float:left;
     font-size:15px;
 }
@@ -99,10 +99,9 @@ $(document).ready(function(){
 				var Applist = JSON.parse(data);
 					var txt = ""
 						txt += "<h1><font face='微軟正黑體'>請購系統</font></h1>"
-						txt += "<a href='ApplyLoginSuccess.jsp' style='font-family:微軟正黑體;'>回首頁</a>"
-						txt += "<div class='text-right' style='font-family:微軟正黑體;'>"
-						txt += "<h1><font face='微軟正黑體'>請購系統</font></h1>"
-						txt +=""+Applist.empdep+Applist.empname+Applist.empjob+",您好 <a href='ApplyLogout.controller'><button type='button' class='btn'>登出</button></a> </div>"		
+						txt += "<a href='ApplyLoginSuccess.jsp'  style='font-family:微軟正黑體;font-size: 15px;'>回首頁</a>"
+						txt += "<div class='text-right' style='font-family:微軟正黑體;font-size: 15px;'>"
+						txt +=""+Applist.empdep+Applist.empname+Applist.empjob+",您好 <a href='ApplyLogout.controller'><button type='button' class='btn' style='font-family:微軟正黑體;font-size: 15px;'>登出</button></a> </div>"		
 					    txt += "<hr> <div class='left'>"
 							var emplevel = Applist.emplevel;
 							if(emplevel=="1"){
@@ -210,6 +209,37 @@ $.ajax({
 				//twoajax();
 		}
 	});	
+$.ajax({
+	url:"../Apply/Inv＿ProductCheckdetail.do",
+	type:"POST",
+	data:{Button:event.target.value,appid:$("#appid").val(),appsta:$("#appsta").val()},
+	async:false,
+	success:function(data){
+			txt += "<tr>"
+			txt += "<th>料號</th>"
+			txt += "<th>物料名稱</th>"
+			txt += "<th>驗收數量</th>"
+			txt += "<th>驗收良率</th>"
+			txt += "<th>驗收日期</th>"	
+			txt += "<th>驗收人員</th>"
+			txt += "</tr>"
+			$.each(data.myArrayList,function(index,json){
+				//alert(json.map.productListBean.pro_name);
+		
+				txt += "<tr>";
+				txt += "<td>"+json.map.part_No+"</td>"
+				txt += "<td>"+json.map.productListBean.map.pro_name+"</td>"
+				txt += "<td>"+json.map.chk_Count+"</td>"
+				txt += "<td>"+json.map.chk_quality+"</td>"
+				txt += "<td>"+json.map.chk_Date+"</td>"
+				txt += "<td>"+json.map.inv＿ProductCheckBean.map.employeeBean.map.emp_name+"</td>"
+				txt += "</tr>"
+
+			})		
+			$("#selectAll").html(txt);	
+			//twoajax();
+	}
+});	
 	$.ajax({
 		url:"../Apply/SelectAllEndListdetail.do",
 		type:"POST",
