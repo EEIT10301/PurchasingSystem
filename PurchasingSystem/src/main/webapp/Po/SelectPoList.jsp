@@ -22,6 +22,11 @@
 </head>
 <body class="bg">
 
+		
+
+
+
+
 	<c:if test="${not empty selectlists}">
 	<div class="right">
 	<h3>待詢價採購單</h3>
@@ -68,7 +73,7 @@
 	</div>
 	</c:if>
 
-	<c:if test="${empty noselectlists}">
+	<c:if test="${empty selectlists}">
 		<h2>${noselectlists}</h2>
 	</c:if>
 	<script src="../js/app.js"></script>
