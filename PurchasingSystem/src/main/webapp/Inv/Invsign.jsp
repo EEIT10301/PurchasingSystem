@@ -19,8 +19,28 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script>
 	function reconfirmOrder() {		
-		confirm("確定驗收成功嗎? ") ;
+		if(confirm("確定驗收成功嗎? "))
+		{
+			window.event.returnValue=true;
+			}
+			else
+			{
+			alert("此動作已經被取消");
+			window.event.returnValue=false;
+			}
 	}
+	</script>
+	<script type="text/javascript">
+	$(document).ready(function(){		
+	if($(":submit").prop("disabled")==true){
+		alert("aaa");
+		$("#finish").show();
+	}else{
+		alert("sss");
+		$("#finish").hide();
+	}})
+	
+	
 	</script>
 <style type="text/css">
 #submit {
@@ -47,8 +67,9 @@
   button {
     @extend input;
   }
-  #submit{
-  display: block;
+  .send123{
+  position:absolute;
+  right: 500px
   }
 }
 </style>
@@ -57,6 +78,7 @@
 <h1>驗收單號:${Inv_SigningProcessBean.chk_Id }</h1>
 <c:if test="${Inv_SigningProcessBean.sig_Sta!='再次驗收' }">
 	<div class="right">
+	
 	<table class="table table-striped table-hover" id="table">
 
 
@@ -80,6 +102,7 @@
 				</tr>
 			</thead>
 	<tbody>
+	
 	<c:forEach var="invpromain" items="${invmain.inv_ProductListBean}">
 	
 	<form action="<c:url value="/Inv/changeinvprosta"/>" method="post">
@@ -98,7 +121,7 @@
 		     <option  value="驗收成功">驗收成功</option>   
 		     <option  value="驗收失敗">驗收失敗</option>   
 		    </select>	</td>	
-		    <td><Input type='submit' name='send' value='送出'></td>
+		    <td><Input type='submit' class='subimit11' name='send' value='送出'></td>
 	        </c:if>
 		    <c:if test="${not empty invpromain.chk_status}">
 		    <td><input type="text" name='chk_quality'  value="${invpromain.chk_quality}"></td>
@@ -108,7 +131,7 @@
 		     <option <c:if test="${invpromain.chk_status=='驗收失敗' }">selected</c:if> value="驗收失敗">驗收失敗</option>   
 		    </select>		
 		  </td>	   
-		   <td> <Input disabled="disabled" type='submit' name='send' value='已驗收'></td>
+		   <td> <Input class='subimit11' disabled="disabled" type='submit' name='send' value='已驗收'></td>
 	        </c:if>
 			<Input type='hidden' name="chk_Id" value='${invpromain.chk_Id}'>
 			<Input type='hidden' name="part_No" value='${invpromain.part_No}'>
@@ -122,14 +145,15 @@
 	</div>
 	</c:if>
 
-		
+	
 		<form action="invfinish.conll" method="post">
 		驗收單號:${Inv_SigningProcessBean.chk_Id }
 		驗收簽核狀態:${Inv_SigningProcessBean.sig_Sta }
 		<Input type='hidden' name="sigSta" value='${Inv_SigningProcessBean.sig_Sta}'>
 		<Input type='hidden' name="chkId" value='${Inv_SigningProcessBean.chk_Id}'>
-        <Input onclick="reconfirmOrder()" id="submit" type='submit' name='send' value='驗收完成'>
-       
+        <Input style="position:absolute;right:700px ;" onclick="reconfirmOrder()" id="finish" type='submit' class='send123'name='send123' value='驗收完成'>
+        </form>
+      
 <!--         </div> -->
 </body>
 </html>

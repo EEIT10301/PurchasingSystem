@@ -50,7 +50,8 @@ public class InvSeadController {
 	App_SigningProcessService app_SigningProcessService;
 
 	@RequestMapping("/Inv/changeinvprosta")
-	public String changeinvprosta(String send, Integer chk_Count, String chk_quality,
+	public String changeinvprosta(
+			String sigSta,String send, Integer chk_Count, String chk_quality,
 			Inv_ProductListBean prochkdatilbean, Inv＿ProductCheckBean prochkmain, Inv_SigningProcessBean bean,
 			String chkstatus, Model model, HttpSession session, String chk_Id, String part_No) throws ParseException {
 		Date date = new Date();
@@ -66,8 +67,27 @@ public class InvSeadController {
 		System.out.println(chkstatus);
 		System.out.println("sss");
 		model.addAttribute("secondsigningrocess", secondsigningrocess.getChk_status());
-		if ("再次驗收".equals(secondsigningrocess1.getSig_Sta())) {
-			secondsigningrocess.setChk_status("驗收中");
+        if("再次驗收".equals(sigSta)) {
+             	if ("驗收成功".equals(chkstatus)) {
+    			secondsigningrocess.setChk_Count(chk_Count);
+    			secondsigningrocess.setChk_quality(chk_quality);
+    			secondsigningrocess.setChk_status("驗收成功");
+    			secondsigningrocess.setChk_Date(dates);
+    			model.addAttribute("Inv_SigningProcessBean", secondsigningrocess1);
+    			model.addAttribute("invmain", invmain);
+    			System.out.println("成功");
+    			return "Inv.restchk";
+    		} else if ("驗收失敗".equals(chkstatus)) {
+    			secondsigningrocess1.setSig_Sta("再次驗收");
+    			secondsigningrocess.setChk_Date(dates);
+    			secondsigningrocess.setChk_status("驗收失敗");
+    			secondsigningrocess.setChk_quality(chk_quality);
+    			secondsigningrocess.setChk_Count(chk_Count);
+    			model.addAttribute("Inv_SigningProcessBean", secondsigningrocess1);
+    			model.addAttribute("invmain", invmain);
+    			System.out.println("失敗");
+    			return "Inv.restchk";
+    		}
 		}
 		if ("驗收成功".equals(chkstatus)) {
 			secondsigningrocess.setChk_Count(chk_Count);
@@ -114,13 +134,17 @@ public class InvSeadController {
 		PO_SigningProcessBean posecondsigningrocess = po_SigningProcessService.select("驗收作業", po_id);
 		System.out.println("驗收單:" + chkId);
 		System.out.println("驗收狀態:" + sigSta);
-		if ("驗收中".equals(sigSta)) {
+	
+		
+		if ("驗收中".equals(sigSta)||"再次驗收".equals(sigSta)) {
 			secondsigningrocess1.setSig_Date(dates);
 			secondsigningrocess1.setSig_Sta("驗收成功");
+
 			secondsigningrocess2.setSig_sta("待結案");
 			secondsigningrocess2.setSig_date(dates);
 			posecondsigningrocess.setSig_sta("驗收完成未請款");
 			posecondsigningrocess.setSig_date(date);
+
 			accout_PayableService.createAccountPayable(chkId);
 			return "Invlogin.success";
 		} else if ("驗收失敗".equals(sigSta)) {
@@ -130,6 +154,11 @@ public class InvSeadController {
 		return "Invlogin.success";
 	}
 
+//	@RequestMapping("finalchk.controller")
+//	public String finalchk() {
+//		
+//	}
+	
 	@RequestMapping("/Inv/chkprofail.controller")
 	public String chkprofail(Model model, HttpSession session) {
 		EmployeeBean beans = (EmployeeBean) session.getAttribute("user");
@@ -140,7 +169,23 @@ public class InvSeadController {
 		List<Inv_SigningProcessBean> selectlists = null;
 		model.addAttribute("bean2", secondsigningrocess);
 		selectlists = new LinkedList<Inv_SigningProcessBean>();
+		
+		
+			
+		
+		
 		if (secondsigningrocess == null) {
+			if(secondsigningrocess3!=null) {
+				for(int i=0;i<secondsigningrocess3.size();i++) {
+					Inv_SigningProcessBean x = secondsigningrocess3.get(i);
+					Inv_SigningProcessBean xs = inv_SigningProcessService.select("驗收分派", x.getChk_Id());
+					if(xs!=null) {
+						selectlists.add(x);
+						selectlists.add(xs);
+					}
+					model.addAttribute("selsctlists",selectlists);
+				}
+			}
 			model.addAttribute("noselectlists", "無失敗驗收單");
 			return "chkpro.fail";
 		} else {
@@ -154,7 +199,7 @@ public class InvSeadController {
 				
 				model.addAttribute("selsctlists", selectlists);
 			}
-			if(secondsigningrocess3!=null) {
+		
 				for(int i=0;i<secondsigningrocess3.size();i++) {
 					Inv_SigningProcessBean x = secondsigningrocess3.get(i);
 					Inv_SigningProcessBean xs = inv_SigningProcessService.select("驗收分派", x.getChk_Id());
@@ -163,11 +208,13 @@ public class InvSeadController {
 						selectlists.add(xs);
 					}
 					model.addAttribute("selsctlists",selectlists);
-				}}
+				}
+			
+		
 				
 			return "chkpro.fail";
 		}
-
+	
 	}
 //	@RequestMapping("/Inv/sendfailinvprolist.controller")
 //	public String chkprosucces(String chk_id,Model model, HttpSession session) {

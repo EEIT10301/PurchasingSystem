@@ -137,6 +137,11 @@ public class POSigningController {
 		String empid = beans.getEmp_id();
 		List<PO_SigningProcessBean> selectlist = pO_SigningProcessService.selectempidsend(empid, "詢價中");
 		List<PO_SigningProcessBean> selectlists = null;
+		
+		
+		
+		
+		
 		selectlists = new LinkedList<PO_SigningProcessBean>();
 		if (selectlist == null) {
 
@@ -146,6 +151,7 @@ public class POSigningController {
 			for (int i = 0; i < selectlist.size(); i++) {
 				PO_SigningProcessBean x = selectlist.get(i);
 				PO_SigningProcessBean xs = pO_SigningProcessService.select("分派採購者", x.getPo_id());
+				
 				if (xs != null) {
 					selectlists.add(x);
 					selectlists.add(xs);

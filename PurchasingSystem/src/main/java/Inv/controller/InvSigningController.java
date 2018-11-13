@@ -141,7 +141,7 @@ public String invsendlistign(String inv_manger, String inv_sta, String chk_id, M
 		EmployeeBean beans = (EmployeeBean) session.getAttribute("user");
 		Inv＿ProductCheckBean invmain = inv＿ProductCheckService.select(chk_id);
 		Inv_SigningProcessBean bean2 = inv_SigningProcessService.select("驗收", chk_id);
-		if("驗收失敗".equals(bean2.getSig_Sta())) {
+		if("驗收失敗".equals(bean2.getSig_Sta())||"再次驗收".equals(bean2.getSig_Sta())) {
 			bean2.setSig_Sta("再次驗收");	
 			model.addAttribute("invmain", invmain);
 			model.addAttribute("Inv_SigningProcessBean", bean2);

@@ -67,7 +67,8 @@
  </thead>
  <tbody>
  <c:forEach var="invpromain" items="${invmain.inv_ProductListBean}">
-<tr>
+<form action="<c:url value="/Inv/changeinvprosta"/>" method="post">
+<tr class="searchable" data-index="${invpromain.productListBean.pro_cate}${invpromain.productListBean.pro_name}${invpromain.productListBean.pro_spe}${invpromain.chk_Count}">
  <td > ${invpromain.productListBean.pro_cate}</td>
 	       <td>${invpromain.productListBean.pro_name}</td>
 	       <td>${invpromain.productListBean.pro_spe}</td>
@@ -75,15 +76,16 @@
            <td>${invpromain.chk_status}</td> 
            <td>${invpromain.chk_quality}</td>
 
-<form action="<c:url value="/Inv/changeinvprosta"/>" method="post">
           <c:if test="${invpromain.chk_status=='驗收失敗'}">
 		   <td> <input type="text" name='chk_quality' placeholder="驗收品質"></td>
 		    <td> <input type="text" name='chk_Count' placeholder="實際數量"></td>
 		
 		    <td><select name="chkstatus">
-		     <option selected="selected">請選擇</option>   
-		     <option  value="驗收成功">驗收成功</option>   
-		     <option  value="驗收失敗">驗收失敗</option>   
+<!-- 		     <option selected="selected">請選擇</option>    -->
+<!-- 		     <option  value="驗收成功">驗收成功</option>    -->
+<!-- 		     <option  value="驗收失敗">驗收失敗</option>    -->
+		       <option <c:if test="${invpromain.chk_status=='驗收成功' }">selected</c:if> value="驗收成功">驗收成功</option>   
+		     <option <c:if test="${invpromain.chk_status=='驗收失敗' }">selected</c:if> value="驗收失敗">驗收失敗</option>   
 		       
 		    </select>	</td>	
 		   <td> <Input type='submit' name='send' value='送出'></td>
@@ -102,8 +104,9 @@
 	        </c:if>
 <Input type='hidden' name="chk_Id" value='${invpromain.chk_Id}'>
 <Input type='hidden' name="part_No" value='${invpromain.part_No}'>
-</form>
+<Input type='hidden' name="sigSta" value='${Inv_SigningProcessBean.sig_Sta}'>
 </tr>
+</form>
 </c:forEach>
  </tbody>
 </table>
@@ -115,6 +118,7 @@
 		<Input type='hidden' name="sigSta" value='${Inv_SigningProcessBean.sig_Sta}'>
 		<Input type='hidden' name="chkId" value='${Inv_SigningProcessBean.chk_Id}'>
         <Input onclick="reconfirmOrder()" id="submit" type='submit' name='send' value='驗收完成'>
+        </form>
 </div>   
 </body>
 </html>

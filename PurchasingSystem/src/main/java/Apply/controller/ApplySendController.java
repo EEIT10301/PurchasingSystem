@@ -419,7 +419,7 @@ public class ApplySendController {
 	    	{
 	    		//userManger
 	    		AutoSendEmailByJava sendemail =new AutoSendEmailByJava();
-	    		sendemail.processMemberWishNotice("apple14181923@gmail.com", "待簽核請購單", "您有一張待簽核的請購單 請點下列連結"+"http://localhost:8080/PurchasingSystem/MainPage.jsp");
+	    		sendemail.processMemberWishNotice(userManger.getEmp_email(), "待簽核請購單", "您有一張待簽核的請購單 請點下列連結登入"+"http://localhost:8080/PurchasingSystem/MainPage.jsp");
 	    		java.util.Date date = new java.util.Date();
 	    		java.sql.Date data1 = new java.sql.Date(date.getTime());
 	    		DateFormat dateFormate =new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -433,7 +433,7 @@ public class ApplySendController {
 	    		
 	    	}else {
 	    		AutoSendEmailByJava sendemail =new AutoSendEmailByJava();
-	    		sendemail.processMemberWishNotice("apple14181923@gmail.com", "待簽核請購單", "您有一張待簽核的請購單 請點下列連結"+"http://localhost:8080/PurchasingSystem/MainPage.jsp");
+	    		sendemail.processMemberWishNotice(userManger.getEmp_email(), "待簽核請購單", "您有一張待簽核的請購單 請點下列連結登入"+"http://localhost:8080/PurchasingSystem/MainPage.jsp");
 	    		java.util.Date date = new java.util.Date();
 	    		java.sql.Date data1 = new java.sql.Date(date.getTime());
 	    		DateFormat dateFormate =new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
