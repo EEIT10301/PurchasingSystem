@@ -202,6 +202,10 @@
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/Inv/Invsign.jsp"></property>
 	</bean>
+	<bean id="Inv.restchk"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Inv/Invrestchk.jsp"></property>
+	</bean>
 
 	<!-- 驗收連結 -->
     <bean id="invend.item"
@@ -216,7 +220,16 @@
 	<bean id="DetailView.Show"
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/Inv/InvDetailView.jsp"></property>
+	</bean>	
+		<bean id="InvSinging.go"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url"  value="/Inv/InvSingingSearch.jsp"></property>
 	</bean>
+			<bean id="InvViewSing.show"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url"  value="/Inv/InvViewSinging.jsp"></property>
+	</bean>
+
 	<!-- 驗收使用連結 -->
 
 
@@ -296,9 +309,21 @@
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/Po/StatusOfInv.jsp"></property>
 	</bean>
+	<bean id="status.show"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Po/StatusMain.jsp"></property>
+	</bean>
 	<bean id="statusIn.show"
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url" value="/Po/StatusOfInvIn.jsp"></property>
+	</bean>
+	<bean id="statusforAcc.show"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Account/StatusMainAcc.jsp"></property>
+	</bean>
+	<bean id="statusInforAcc.show"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url" value="/Account/StatusOfInvInAcc.jsp"></property>
 	</bean>
 <!-- 查詢請款單狀態連結-->
 

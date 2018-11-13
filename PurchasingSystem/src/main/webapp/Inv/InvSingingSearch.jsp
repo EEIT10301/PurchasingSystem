@@ -1,20 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ include file="../Invchkclude.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>產品入庫</title>
+<title>驗證流程查看</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script>
-	function reconfirmOrder() {		
-		confirm("確定要將驗收單內的產品加入到庫存資料表嗎 ? ") ;
-	}
-	</script>
 <style type="text/css">
 #submit {
 	position: absolute;
@@ -46,8 +41,6 @@
 </head>
 <body class="bg">
 <div class="right">
-<!-- <a href="http://localhost:8080/PurchasingSystem/Inv/InvLoginSuccess.jsp" text-align="left">返回首頁</a> -->
-	<form action="<c:url value="/Inv/itemin" />" method="get"> 
 	<table class="table table-striped table-hover">
 <thead>
 		<tr>
@@ -58,9 +51,10 @@
 			<th>入庫狀態</th>
 			<th>驗收金額</th>
 			<th>產品廠商</th>
+			<th>驗收狀態</th>
 		</tr>	
 		</thead>
-		<c:forEach var="check" items="${check}">
+		<c:forEach var="check" items="${checkBean}">
 			<tr>
 				<td>${check.chk_Id}</td>
 				<td>${check.po_ID}</td>
@@ -69,39 +63,10 @@
 				<td>${check.chk_Comment}</td>
 				<td>${check.total_price}</td>
 				<td>${check.vender_ID}</td>
-				<td>
-				<c:set var="in" value="尚未入庫"/>
-				<c:if test="${check.chk_Comment==in}" >		
-				<a href="itemin?CheckPK=${check.chk_Id}" onclick="reconfirmOrder()">入庫</a>
-				</c:if>
-				<c:set var="in" value="已加入庫存"/>
-				<c:if test="${check.chk_Comment==in}">		
-				<input  disabled="disabled" value="已入庫" type="submit"></input>
-				</c:if>			
-				</td>
-			</tr>
+				<td><a href="singstatus?ChPK=${check.chk_Id}">查看細項</a></td>			
+							</tr>
 		</c:forEach>
 	</table>
-
-</form>
-<div align="center"><span >
-<b>${error.notFind}</b></span>
-<c:if test="${!empty Detail}">
-<table>
-<caption>本次新增項目</caption>
-<th>產品料號</th><th>產品數量</th><th>驗收日期</th><th>產品良率</th>
-<c:forEach var="Detail" items="${Detail}">
-<tr>
-<td>${Detail.part_No}</td>
-<td>${Detail.chk_Count}</td>
-<td>${Detail.chk_Date}</td>
-<td>${Detail.chk_quality}</td>
-
-</tr>
-</c:forEach>
-</table>
-</c:if>
-</div>
 </div>
 </body>
 </html>

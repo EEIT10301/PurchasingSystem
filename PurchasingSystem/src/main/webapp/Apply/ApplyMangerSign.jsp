@@ -1,40 +1,52 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page import="java.util.*"%>
-<%@ page import="Apply.service.*"%>
-<%@ page import="Apply.model.*"%>
-<%@ page import="Apply.dao.*"%>
-<%@ page import="org.springframework.web.context.*"%>
-<%@ page import="org.springframework.web.context.support.WebApplicationContextUtils"%>      
+<%@ include file="../AppInclude.jsp"%>     
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-
-<title>待簽核請購單</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<meta charset="UTF-8">
+<title>待簽核請購單</title>
+
+<style type="text/css">
+#thead{
+font-size: 36px;
+}
+
+#submit {
+	position: absolute;
+	right: 700px;
+}
+
+.bg {
+	background-color: #FDF5E6;
+	/* 畫面間距 */
+	margin: 30px;
+}
+.right{
+	width:78%;
+    float:left;
+}
+</style>
 </head>
-<body>
-<input class="form-control" id="myInput" type="text" placeholder="Search"><br/>
+<body class="bg"> 
+
+<div class="right">
+<div class='container'>
 <c:if test='${not empty noApplylist}'>
 <h2>${noApplylist}</h2>
 </c:if>
-
 <c:if test='${not empty Applylists}'>
-<table class="table table-striped table-hover">
+<table class="table table-striped table-hover" id="myTable">
 <thead>
 <tr>
-<th>待簽核表單</th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
+<th class='text-center' colspan='5'>待簽核表單</th>
 </tr>
 </thead>
-<tbody id="myTable">
+<tbody >
 <tr>
 <th>請購單號</th>
 <th>請購項目</th>
@@ -54,7 +66,8 @@
  </c:if>
  </c:forEach>
 <td><a href='ApplySignnerdetail.controller?app_manger=${applylist.app_manger}&app_sta=${applylist.app_sta}&app_id=${applylist.app_id}&send=sendok'>
-開始簽核</a></td>
+<button id='' class='btn btn-default' value='已結案'>
+開始簽核</button></a></td>
 </tr>
 </c:forEach>
 </tbody>
@@ -62,14 +75,10 @@
 </c:if>
 
 <c:if test='${not empty nosend}'>
-<table class="table table-striped table-hover">
+<table class="table table-striped table-hover" id="myTable">
 <thead>
 <tr>
-<th>退回表單</th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
+<th class='text-center' colspan='5'>退回表單</th>
 </tr>
 </thead>
 <tbody id="myTable">
@@ -87,7 +96,7 @@
  <td>${nosends.app_MainBean.app_price}</td>
 <td>${nosends.sig_date}</td>
 <td><a href='ApplySignnerdetail.controller?app_manger=${nosends.app_manger}&app_sta=${nosends.app_sta}&app_id=${nosends.app_id}&send=nosend'>
-開始簽核</a></td>
+<button id='' class='btn btn-default' value=''>開始簽核</button></a></td>
  </tr>
 </c:forEach>
 </tbody>
@@ -107,5 +116,7 @@
 </c:forEach>
 <p>
 <script src="../js/app.js"></script>
+</div>
+</div>
 </body>
 </html>

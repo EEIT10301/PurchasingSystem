@@ -11,6 +11,7 @@
 	crossorigin="anonymous">
 <title>主畫面</title>
 <style>
+
 body {
   	font-family: 'Lato', sans-serif;
   	font-weight: 400;
@@ -97,6 +98,9 @@ body {
   	background-color: #fff;
   	color: #777;
 	font-size: 14px;
+
+input[type=reset]{
+margin-right:40px;
 }
 </style>
 </head>
