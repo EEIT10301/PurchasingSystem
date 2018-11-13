@@ -21,10 +21,13 @@
 
 </head>
 <body>
+	<a href="queryStatus.controller" class="btn btn-info">查詢所有請款單</a>
+	<a href="queryStatusUndone.controller" class="btn btn-info">查詢未完成請款單</a>
+	<a href="queryStatusDone.controller" class="btn btn-info">查詢已完成請款單</a>
 	<c:if test='${not empty listsAll}'>
 		<div class="right">
-			<h3>財務系統>查詢請款單狀態>所有請款單</h3>
-			<br>
+			<h3>查詢請款單狀態>所有請款單</h3>
+
 
 			<table class="table table-striped table-hover">
 				<thead>
@@ -45,17 +48,19 @@
 		</div>
 	</c:if>
 	<c:if test='${not empty nolistAll}'>
-		<h3>財務系統>查詢請款單狀態>所有請款單</h3>
-		<br>
+	<div class="right">
+		<h3>查詢請款單狀態>所有請款單</h3>
 
-		<div class="right">${nolistAll}</div>
+		${nolistAll}
+		</div>
+
 	</c:if>
 	
 	<c:if test='${not empty lists}'>
 		<div class="right">
-			<h3>財務系統>查詢請款單狀態>已完成請款單</h3>
-			<br>
+			<h3>查詢請款單狀態>已完成請款單</h3>
 
+	
 			<table class="table table-striped table-hover">
 				<thead>
 					<tr>
@@ -75,17 +80,20 @@
 		</div>
 	</c:if>
 	<c:if test='${not empty nolist}'>
-		<h3>財務系統>查詢請款單狀態>已完成請款單</h3>
-		<br>
+	<div class="right">
+		<h3>查詢請款單狀態>已完成請款單</h3>
 
-		<div class="right">${nolist}</div>
+	<a href="queryStatus.controller" class="badge badge-info">查詢所有請款單</a>
+	<a href="queryStatusUndone.controller" class="badge badge-info">查詢未完成請款單</a>
+	<a href="queryStatusDone.controller" class="badge badge-info">查詢已完成請款單</a><br><br>
+		${nolist}</div>
 	</c:if>
 
 	<c:if test='${not empty listsUn}'>
-		<h3>財務系統>查詢請款單狀態>未完成請款單</h3>
-		<br>
+	<div class="right">
+		<h3>查詢請款單狀態>未完成請款單</h3>
 
-		<div class="right">
+	
 
 			<table class="table table-striped">
 				<thead>
@@ -107,8 +115,10 @@
 	</c:if>
 	<c:if test='${not empty nolistUn}'>
 		<div class="right">
-			<h3>財務系統>查詢請款單狀態>未完成請款單</h3>
-			<br> ${nolistUn}
+			<h3>查詢請款單狀態>未完成請款單</h3>
+
+		
+	${nolistUn}
 		</div>
 	</c:if>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

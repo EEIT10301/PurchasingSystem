@@ -11,6 +11,9 @@
 	crossorigin="anonymous">
 <title>主畫面</title>
 <style>
+input[type=reset]{
+margin-right:40px;
+}
 </style>
 </head>
 <body class="bg-light" style="margin-top:150px">

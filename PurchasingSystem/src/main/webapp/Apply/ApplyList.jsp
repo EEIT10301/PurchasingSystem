@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ include file="../AppInclude.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +10,7 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <title>請購清單</title>
+
 <c:if test="${cartnumber<=0}">
 	<%
 		request.setAttribute("cate", "尚無加入請購產品");
@@ -21,15 +23,33 @@
 			request.getRequestDispatcher("/Apply/ApplySend.jsp").forward(request, response);
 	%>
 </c:if>
-<style>
+<style type="text/css">
+#thead{
+font-size: 36px;
+}
 
+#submit {
+	position: absolute;
+	right: 700px;
+}
+
+.bg {
+	background-color: #FDF5E6;
+	/* 畫面間距 */
+	margin: 30px;
+}
+.right{
+	width:78%;
+    float:left;
+}
 </style>
 </head>
-<body>
-	<h3>${cate}</h3>
-	<h3>${errors.cate}</h3>
-<input class="form-control" id="myInput" type="text" width="300px" placeholder="Search"><br/>
- <table class="table table-striped table-hover">
+<body class="bg">
+<h4 align="center">請購清單</h4>
+	<h4 align="center">${cate}</h4>
+	<h4 align="center">${errors.cate}</h4>
+	<div class="right">
+ <table class="table table-striped table-hover" id='myTable'>
                <thead>
 			     <tr>
 				<th>料號</th>
@@ -42,12 +62,11 @@
                  <th>該筆總金額</th>
 			     </tr>
 			    </thead>
+               <tbody >
 		<c:forEach var="pro" items="${cart}">
 		 <c:if test="${pro.pro_amount>0}">
-				<form action="<c:url value="/Apply/ApplyListsend.controller" />"
-					method="post">
-               <tbody id='myTable'>
-                    <tr>	
+		            <form action="<c:url value="/Apply/ApplyListsend.controller" />" method="post">
+		             <tr>	 
                     <td>${pro.part_no}</td>
                     <td>${pro.pro_name}</td>
 					<td>${pro.pro_cate}</td>
@@ -66,12 +85,12 @@
 					<Input type='hidden' name='pro_img' value='${pro.pro_img}'>
 				    <Input type='hidden' name='pro_date' value='${pro.pro_date}'></td>
 					<td><Input type='submit' name='send' value='修改數量'> </td>
-					<td><Input type='submit' name='send' value='刪除'></td>
+					<td><Input type='submit' name='send' value='刪除'></td> 
 					</tr>
-				</tbody>
-				</form>
+					</form>
 			</c:if>
 		</c:forEach>	
+				</tbody>
 					</table>	
 				<p>請購總價格:${Listprice}</p>
 			<form action="<c:url value="/Apply/ApplyListsend.controller" />"
@@ -104,6 +123,7 @@
 					<Input type='submit' name='send' value='產生請購單'> <Input
 						type='submit' name='send' value='刪除此次請購'>
 			</form>
+			</div>
 <script src="../js/app.js"></script>			
 </body>
 </html>

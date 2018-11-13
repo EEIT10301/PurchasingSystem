@@ -142,7 +142,10 @@ public String invsendlistign(String inv_manger, String inv_sta, String chk_id, M
 		Inv＿ProductCheckBean invmain = inv＿ProductCheckService.select(chk_id);
 		Inv_SigningProcessBean bean2 = inv_SigningProcessService.select("驗收", chk_id);
 		if("驗收失敗".equals(bean2.getSig_Sta())) {
-			bean2.setSig_Sta("再次驗收");
+			bean2.setSig_Sta("再次驗收");	
+			model.addAttribute("invmain", invmain);
+			model.addAttribute("Inv_SigningProcessBean", bean2);
+		return "Inv.restchk";
 		}
 		String invid = chk_id;
 		String invidonlynumber = "Po" + invid.substring(2);
