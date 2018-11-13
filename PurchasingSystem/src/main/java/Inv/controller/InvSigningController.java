@@ -109,7 +109,7 @@ public String selectInvchk(Model model,HttpSession session) {//待驗收驗收�
 	List<Inv_SigningProcessBean> selectlists = null;
 	selectlists=new LinkedList<Inv_SigningProcessBean>();
 	if(selectlist==null) {
-		model.addAttribute("noselectlists","無待驗收單");
+		model.addAttribute("noselectlists","無待驗收單"); 
 		return "selectInvchk.list";
 	}else {
 		for(int i=0;i<selectlist.size();i++) {
