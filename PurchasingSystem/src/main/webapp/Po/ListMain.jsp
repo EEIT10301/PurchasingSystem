@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ include file="../POInclude.jsp"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -74,7 +75,7 @@
 			${appsigningprocess.employeeBean.emp_name}
 			${appsigningprocess.employeeBean.emp_job}</td>
 			<td>${appsigningprocess.app_sta}</td>
-			<td>${appsigningprocess.sig_date}</td>
+			<td><fmt:formatDate pattern="yyyy/MM/dd HH:mm" value="${appsigningprocess.sig_date}"/></td>
 			<td>${appsigningprocess.sig_sta}</td>
 			<td>${appsigningprocess.sig_sug}</td>
 		</tr>			
@@ -89,7 +90,7 @@
 			${appsigningprocess.employeeBean.emp_name}
 			${appsigningprocess.employeeBean.emp_job}</td>
 			<td>${appsigningprocess.app_sta}</td>
-			<td>${appsigningprocess.sig_date}</td>
+			<td><fmt:formatDate pattern="yyyy/MM/dd HH:mm" value="${appsigningprocess.sig_date}"/></td>
 			<td>${appsigningprocess.sig_sta}</td>
 			<td>${appsigningprocess.sig_sug}</td>
 			</tr>
@@ -103,7 +104,7 @@
 			<td>${appsigningprocess.employeeBean.emp_name}
 			${appsigningprocess.employeeBean.emp_job}</td>
 			<td>${appsigningprocess.app_sta}</td> 
-			<td>${appsigningprocess.sig_date}</td>
+			<td><fmt:formatDate pattern="yyyy/MM/dd HH:mm" value="${appsigningprocess.sig_date}"/></td>
 			<td>${appsigningprocess.sig_sta}</td> 
 			<td>${appsigningprocess.sig_sug}</td>
 			</tr>			
@@ -128,7 +129,7 @@
 			<Input type='hidden' name='sig_sta' value='${seSigningProcessndl1.sig_sta}'>
 			<Input type='hidden' name='sig_sug' value='${SigningProcess.sig_sug}'>
 			<Input type='hidden' name='sig_rank' value='${SigningProcess.sig_rank}'>
-			<Input type='submit' name='send' value='送出'>
+			<Input type='submit' name='send' class='btn btn-default' value='送出'>
 		</form>
 	</div>
 	</c:if>

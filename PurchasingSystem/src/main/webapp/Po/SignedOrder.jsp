@@ -69,8 +69,8 @@
 			<td><input type='hidden' name='sig_rank' value='${signedOrderList.sig_rank}'></td>		
 			<td>
 			<form action="<c:url value="/Po/signedOrderDetail.controller?po_id=${signedOrderList.po_id}" />"method="post">
-<!-- 			<input type="submit" value="下單" id="submit" class='btn btn-default'> -->
-			<button id='submit' class='btn btn-default btn-sm' value=''>下單</button>
+			<input type="submit" value="下單" id="submit" class='btn btn-default'>
+<!-- 			<button id='submit' class='btn btn-default btn-sm' value=''>下單</button> -->
 			</form>
 			</td>
 			</tr> 
