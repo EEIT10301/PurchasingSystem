@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ include file="../POInclude.jsp"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,7 +37,7 @@
 		<form action="<c:url value="/Po/placedOrderDetail.controller"/>"method="post">
 		<tr>
 			<td>${placedOrderList.po_id}</td>
-			<td>${placedOrderList.pO_MainBean.shipping_Date}</td>
+			<td><fmt:formatDate pattern="yyyy/MM/dd HH:mm" value="${placedOrderList.pO_MainBean.shipping_Date}"/></td>
 <%-- 			<c:forEach var='placedOrderListInfo' items='${placedOrderListInfo}'> --%>
 <%-- 			<c:if test='${placedOrderListInfo.po_id == placedOrderListInfo.po_id}'> --%>
 <%-- 			<p>出貨時間:${placedOrderListInfo.sig_date}</p> --%>
@@ -50,7 +51,8 @@
 			<td><input type='hidden' name='sig_sta' value='${placedOrderList.sig_sta}'></td>
 			<td><input type='hidden' name='sig_sug' value='${placedOrderList.sig_sug}'></td>
 			<td><input type='hidden' name='sig_rank' value='${placedOrderList.sig_rank}'></td>
-			<td><input type="submit" value="收貨" id="submit"></td>
+<!-- 			<td><input type="submit" value="收貨" id="submit" class='btn btn-default btn-sm'></td> -->
+			<td><button id='submit' class='btn btn-default btn-sm' value=''>收貨</button></td>
 	</tr>
 	</form>
 	</c:forEach>

@@ -341,7 +341,7 @@ public class POManagerSignController {
 		model.addAttribute("pomainlist", pomain);//採購主表
 		model.addAttribute("poquery", poquery);//採購詢價
 		model.addAttribute("posignprocess", posignprocess);//採購簽核
-		
+
 		return "PoSignerProcessdetail.to";
 		
 		
@@ -350,6 +350,8 @@ public class POManagerSignController {
 	public String POManagerSignertosigndetail(PO_SigningProcessBean Bean,BindingResult bindingResult,
 			Model model, HttpSession session
 			,String send,String SignSug) throws ParseException {
+		EmployeeBean ben=(EmployeeBean) session.getAttribute("user");
+		String empid=ben.getEmp_id();
 		java.util.Date date = new java.util.Date();
 		java.sql.Date data1 = new java.sql.Date(date.getTime());
 		DateFormat dateFormate =new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -399,6 +401,9 @@ nextsign.setSig_sta("簽核中");
 
         	beforesign.setSig_sta("退回中");
         }
+		if(ben.getEmp_level()==3) {
+			return "ceo.login";
+		}
 		return "POlogin.successint";
 		
 		

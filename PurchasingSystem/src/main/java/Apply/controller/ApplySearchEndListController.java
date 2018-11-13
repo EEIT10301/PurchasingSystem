@@ -5,7 +5,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -20,6 +19,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import Account.model.Inv_ProductListBean;
+import Account.service.Inv_ProductListService;
 import Apply.model.AppDetailBean;
 import Apply.model.App_SigningProcessBean;
 import Apply.model.EmployeeBean;
@@ -46,6 +47,8 @@ public class ApplySearchEndListController {
 	PO_SigningProcessService pO_SigningProcessService;
 	@Autowired
 	PO_DetailService pO_DetailService;
+	@Autowired
+	Inv_ProductListService inv_ProductListService;
 	@RequestMapping(path="/Apply/SelectAllEndList.do")
 	@ResponseBody
 	public JSONArray SelectAllEndList(HttpSession session) {
@@ -134,12 +137,30 @@ public class ApplySearchEndListController {
         }
         return null;
 	}
+	@RequestMapping(path="/Apply/Inv＿ProductCheckdetail.do")
+	@ResponseBody
+	public JSONArray Inv＿ProductCheckdetail(String appid,String appsta) {
+		List<Inv_ProductListBean>  ckidlist = null;
+		String ckid="CK"+appid.substring(2);
+		ckidlist =inv_ProductListService.ViewAddCheckDetail(ckid);
+		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create() ; 
+		String json =null;
+         if(ckidlist!=null){
+        	 json = gson.toJson(ckidlist) ;
+        }
+
+        if(json!=null) {
+        	return new JSONArray(json);
+        }
+        return null;
+	}
 	@RequestMapping(path="/Apply/SelectWaitEndAppList.do")
 	@ResponseBody
-	public JSONArray SelectWaitEndAppList() {
-		
+	public JSONArray SelectWaitEndAppList(HttpSession session) {
+		EmployeeBean ben=(EmployeeBean) session.getAttribute("user");
+		String empid=ben.getEmp_id();
 		List<App_SigningProcessBean>  prolist = null;
-		prolist =app_SigningProcessService.selectApp_staandSig_sta("申請中","待結案");
+		prolist =app_SigningProcessService.selectApp_staandSig_staemp("申請中","待結案",empid);;
 		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create() ; 
 		String json =null;
 
@@ -179,7 +200,7 @@ public class ApplySearchEndListController {
 		EmployeeBean ben=(EmployeeBean) session.getAttribute("user");
 		String empid=ben.getEmp_id();
 		List<App_SigningProcessBean>  prolist = null;
-		prolist =app_SigningProcessService.selectApp_staandSig_sta("申請中","待結案");
+		prolist =app_SigningProcessService.selectApp_staandSig_staemp("申請中","待結案",empid);
 		if(prolist !=null) {		
 			Integer x =prolist.size();
 			session.setAttribute("waitendsign",x);
@@ -221,7 +242,20 @@ public class ApplySearchEndListController {
 			session.removeAttribute("Appnow");
 		}
 	}//請購中請購單數量
-	
+	List<PO_SigningProcessBean> PO_SignSend=pO_SigningProcessService.selectempidsend(empid, "簽核中");
+	List<PO_SigningProcessBean> PO_SignBack=pO_SigningProcessService.selectempidsend(empid, "退回中");
+	Integer SignPoList=0;
+	if(PO_SignSend!=null) {
+		SignPoList+=PO_SignSend.size();
+	}
+	if(PO_SignBack!=null) {
+		SignPoList+=PO_SignBack.size();
+	}
+	if(SignPoList !=0) {		
+		session.setAttribute("SignPoList",SignPoList);
+	}else {
+		session.removeAttribute("SignPoList");
+	}//待簽核請購單數量
 	
 	return null;
 	}

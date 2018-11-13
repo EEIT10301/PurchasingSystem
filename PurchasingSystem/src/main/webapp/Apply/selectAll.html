@@ -27,7 +27,7 @@ font-size: 36px;
 	margin: 30px;
 }
 .right{
-	width:75%;
+	width:78%;
     float:left;
     font-size:15px;
 }
@@ -103,10 +103,9 @@ $(document).ready(function(){
 			var Applist = JSON.parse(data);
 				var txt = ""
 					txt += "<h1><font face='微軟正黑體'>請購系統</font></h1>"
-					txt += "<a href='ApplyLoginSuccess.jsp' style='font-family:微軟正黑體;'>回首頁</a>"
-					txt += "<div class='text-right' style='font-family:微軟正黑體;'>"
-					txt += "<h1><font face='微軟正黑體'>請購系統</font></h1>"
-					txt +=""+Applist.empdep+Applist.empname+Applist.empjob+",您好 <a href='ApplyLogout.controller'><button type='button' class='btn'>登出</button></a> </div>"		
+				    txt += "<a href='ApplyLoginSuccess.jsp'  style='font-family:微軟正黑體;font-size: 15px;'>回首頁</a>"
+					txt += "<div class='text-right' style='font-family:微軟正黑體;font-size: 15px;'>"
+					txt +=""+Applist.empdep+Applist.empname+Applist.empjob+",您好 <a href='ApplyLogout.controller'><button type='button' class='btn' style='font-family:微軟正黑體;font-size: 15px;'>登出</button></a> </div>"		
 				    txt += "<hr> <div class='left'>"
 						var emplevel = Applist.emplevel;
 						if(emplevel=="1"){
@@ -115,12 +114,12 @@ $(document).ready(function(){
 							txt +='<li class="nav-item"> <a class="nav-link active" href="http://localhost:8080/PurchasingSystem/Apply/selectAll.html"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> 物料更新 <font color=red>'+'</font> </a></li>'
 							txt +='<li class="nav-item"> <a class="nav-link active" href="http://localhost:8080/PurchasingSystem/Apply/ApplySearchEndList.html"><img class="card-img-top imgp" src="../sysimg/s6.png"><span data-feather="home"></span> 已結案單子查詢 <font color=red>'+'</font> </a></li>'
 							txt +='<li class="nav-item"> <a class="nav-link active" href="toApplySignnerdetail.controller"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> 待簽核請購單 <font color=red>'+Applist.SignAppList+'</font> </a></li>'
-							txt +='<li class="nav-item"> <a class="nav-link active" href="toApplySignpro.controller"><img class="card-img-top imgp" src="../sysimg/s6.png"><span data-feather="home"></span> 待簽核請購單 <font color=red>'+Applist.Appnow+'</font> </a></li> </ul></div>'
+							txt +='<li class="nav-item"> <a class="nav-link active" href="toApplySignpro.controller"><img class="card-img-top imgp" src="../sysimg/s6.png"><span data-feather="home"></span> 請購進度查詢 <font color=red>'+Applist.Appnow+'</font> </a></li> </ul></div>'
 						}else{
 							txt +='<ul class="nav flex-column"> <li class="nav-item"> <a class="nav-link active" href="http://localhost:8080/PurchasingSystem/Apply/selectAll.html"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> 物料更新 <font color=red>'+'</font> </a></li> '
 							txt +='<li class="nav-item"> <a class="nav-link active" href="http://localhost:8080/PurchasingSystem/Apply/ApplySearchEndList.html"><img class="card-img-top imgp" src="../sysimg/s6.png"><span data-feather="home"></span> 已結案單子查詢 <font color=red>'+'</font> </a></li>'
 							txt +='<li class="nav-item"> <a class="nav-link active" href="toApplySignnerdetail.controller"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> 待簽核請購單 <font color=red>'+Applist.SignAppList+'</font> </a></li>'
-							txt +='<li class="nav-item"> <a class="nav-link active" href="toApplySignpro.controller"><img class="card-img-top imgp" src="../sysimg/s6.png"><span data-feather="home"></span> 待簽核請購單 <font color=red>'+Applist.Appnow+'</font> </a></li> </ul></div>'
+							txt +='<li class="nav-item"> <a class="nav-link active" href="toApplySignpro.controller"><img class="card-img-top imgp" src="../sysimg/s6.png"><span data-feather="home"></span> 請購進度查詢 <font color=red>'+Applist.Appnow+'</font> </a></li> </ul></div>'
 						}
 					
 				
@@ -139,8 +138,8 @@ $(document).ready(function(){
 						txt += "<td id='cate' >"+"<select > <option value='零組件'  >零組件 </option> <option value='PC' >PC </option> <option value='組合材號' > 組合材號 </option> <option value='主板組件' > 主板組件 </option> <option value='說明書' > 說明書 </option> </select> "
 						+"</td>";	
 						txt += "<td  id='name'><input style='width:80px' type='text'/></td>";
-						txt += "<td  id='spe'><input style='width:80px' type='text'/></td>";
-						txt += "<td  id='intro'><input style='width:100px' type='text'/></td>";
+						txt += "<td  id='spe'><input style='width:120px' type='text'/></td>";
+						txt += "<td  id='intro'><input style='width:120px' type='text'/></td>";
 						txt += "<td  id='price' ><input style='width:50px' type='text'/></td>";
 						txt += "<td  id='amount' ><input style='width:50px' type='text'/></td>";
 						txt += "<td  id='date' >現在時間</td>";

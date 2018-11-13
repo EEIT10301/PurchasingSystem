@@ -28,6 +28,7 @@ import Apply.service.App_MainService;
 import Apply.service.App_SigningProcessService;
 import Apply.service.EmployeeService;
 import Apply.service.ProductListService;
+import misc.AutoSendEmailByJava;
 
 
 @Controller
@@ -138,11 +139,14 @@ public class ApplySendController {
 				if(x.getPart_no().equals(Part_no)) {
 					x.setPro_amount(proamt+x.getPro_amount());
 					xz++;
+					//cartamount++;
 				}else if(!(x.getPro_cate().equals(Pro_cate))){
 					errors.put("cate", "請選擇相同大項");
 					model.addAttribute("errors", errors);
 					return "app.product";
 				}
+ 
+
 			}
 			if(xz==0) {
 				
@@ -155,18 +159,6 @@ public class ApplySendController {
 		}
 		cartamount=beans.size();
 		session.setAttribute("cart",beans);
-//		ProductListBean bean=new ProductListBean();
-//		bean.setPart_no(part_no);
-//		bean.setPro_cate(pro_cate);
-//		bean.setPro_name(pro_name);
-//		bean.setPro_spe(pro_spe);
-//		bean.setPro_intro(pro_intro);
-//		bean.setPro_price(pro_price);
-//		bean.setPro_amount(pro_amount);
-//		bean.setPro_date(pro_date);
-//		beans.add(bean);
-		
-		
 	    	session.setAttribute("cartnumber", cartamount);
 	    	return "app.product";
 	    
@@ -285,6 +277,8 @@ public class ApplySendController {
 		 }
 		 EmployeeBean userManger =employeeService.select(user.getEmp_managerid());
 		 EmployeeBean boss =employeeService.select(userManger.getEmp_managerid());
+		 
+	
 		
 		Map<String, String> errors = new HashMap<String, String>();
 		if(send.equals("刪除此次請購")){//按下刪除此次請購
@@ -346,12 +340,20 @@ public class ApplySendController {
 				}
 				session.setAttribute("Listprice",xs);//////////
 			}
-			session.setAttribute("cartnumber",beans.size());
-			session.setAttribute("cartamount",beans.size());
+			Integer xszza=0;
+    		for(int i=0;i<beans.size();i++) {
+    			ProductListBean x=beans.get(i);
+    			if(x.getPro_amount()>0) {
+    				xszza++;
+    			}
+    		}
+			session.setAttribute("cartnumber",xszza);
+			session.setAttribute("cartamount",xszza);
 			session.setAttribute("cart",beans);
 	    	return "Apply.List";
 	    }else if(send.equals("刪除")){//按下刪除商品
 	    	Integer xs=0;
+	    	
 	    	for(int i=0;i<beans.size();i++) {
 				ProductListBean x=beans.get(i);
 				if(x.getPart_no().equals(Part_no)) {
@@ -363,7 +365,6 @@ public class ApplySendController {
 					return "app.product";
 				}
 				if(beans.size()>0) {
-					
 					xs+=x.getPro_amount()*x.getPro_price();
 					session.setAttribute("Listprice",xs);
 				}
@@ -375,15 +376,25 @@ public class ApplySendController {
 	    		errors.put("cate", "已無產品");
 	    		return "app.product";
 	    	}else {
-	    		session.setAttribute("cartnumber",beans.size());
-	    		session.setAttribute("cartamount",beans.size());
+	    		Integer xszza=0;
+	    		for(int i=0;i<beans.size();i++) {
+	    			ProductListBean x=beans.get(i);
+	    			if(x.getPro_amount()>0) {
+	    				xszza++;
+	    			}
+	    		}
+	    		session.setAttribute("cartnumber",xszza);
+	    		session.setAttribute("cartamount",xszza);
 	    		session.setAttribute("cart",beans);
 	    		return "Apply.List";
 	    	}
 	    }
 	    
 	    else {
-	    	
+	    	 EmployeeBean usersendemail=null;
+	     if(Sign2Employee !=null) {
+	    	  usersendemail =employeeService.select(Sign2Employee);
+		   }
 	   // 	SimpleDateFormat sdf2 =new SimpleDateFormat("yyyy/MM/dd");
 		//	String thisdate= sdf2.format(getdate);
 	    	EmployeeBean emp=(EmployeeBean) session.getAttribute("user");
@@ -416,6 +427,11 @@ public class ApplySendController {
 	    	}
 	    	if (Listprices<=1000000)
 	    	{
+	    		//userManger
+	    		AutoSendEmailByJava sendemail =new AutoSendEmailByJava();
+	    		if(usersendemail!=null) {	 
+	    			sendemail.processMemberWishNotice(usersendemail.getEmp_email(), "待簽核請購單", "您有一張待簽核的請購單 請點下列連結登入"+"http://localhost:8080/PurchasingSystem/MainPage.jsp");
+	    		}
 	    		java.util.Date date = new java.util.Date();
 	    		java.sql.Date data1 = new java.sql.Date(date.getTime());
 	    		DateFormat dateFormate =new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -426,7 +442,12 @@ public class ApplySendController {
 	    		App_SigningProcessBean ss1=new App_SigningProcessBean(Sign2Employee,"請購核准",apid,null,"簽核中",null,2);
 	    		app_SigningProcessService.insert(ss);
 	    		app_SigningProcessService.insert(ss1);
+	    		
 	    	}else {
+	    		AutoSendEmailByJava sendemail =new AutoSendEmailByJava();
+	    		if(usersendemail!=null) {	 
+	    			sendemail.processMemberWishNotice(usersendemail.getEmp_email(), "待簽核請購單", "您有一張待簽核的請購單 請點下列連結登入"+"http://localhost:8080/PurchasingSystem/MainPage.jsp");
+	    		}
 	    		java.util.Date date = new java.util.Date();
 	    		java.sql.Date data1 = new java.sql.Date(date.getTime());
 	    		DateFormat dateFormate =new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");

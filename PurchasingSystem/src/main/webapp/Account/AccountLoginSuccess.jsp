@@ -13,7 +13,11 @@
 <title>財務系統</title>
 <style>
 .bg {
-	background-color: #FDF5E6;
+	background-image:  	  linear-gradient(to right bottom,  
+      rgba(50, 0, 50, 0.1), 
+      rgba(50, 0, 50, 0.1)), 
+  	url('https://images.unsplash.com/photo-1495464101292-552d0b52fe41?auto=format&fit=crop&w=1350&q=80');
+  	
 }
 
 .f {
@@ -21,6 +25,10 @@
 	display: inline-block;
 	width: 13rem;
 	height: 16rem;
+}
+
+.ff {
+	color:white
 }
 
 .m {
@@ -37,24 +45,27 @@ position: absolute;
 </head>
 
 <body class="bg m">
-	<h3>財務系統</h3>
-	<div class="text-right">
-	${user.emp_dep}/${user.emp_name} ${user.emp_job},你好
-	<a href='AccountLogout.controller'><button type="button" class="btn btn-primary btn-sm">登出</button></a>
+	<h3 class="ff">財務系統</h3>
+
+	<div class="text-right ff">
+		${user.emp_dep}/${user.emp_name} ${user.emp_job},你好 <a
+			href='AccountLogout.controller'><button type="button"
+				class="btn btn-primary btn-sm">登出</button></a>
+		<hr width=100% size=5 color=white><br>
 	</div>
 		<hr>
 	<div class="text-center">
 		<c:if test="${user.emp_level==2}">
 			<div class="card bg-light f">
-				<a href="ToDoAssignInvoice.controller" class="btn"> 
-				<img class="card-img-top" src="../sysimg/s1.png" style="padding: 10px;"></a>
+				<a href="ToDoAssignInvoice.controller" class="btn"> <img
+					class="card-img-top" src="../sysimg/s1.png" style="padding: 10px;"></a>
 				<div class="card-body">
 					<h5 class="card-title">待分派請款單</h5>
 				</div>
 			</div>
 			<div class="card bg-light f">
-				<a href="ToDoSignInvoice.controller" class="btn">
-				<img class="card-img-top" src="../sysimg/s2.png" style="padding: 10px;"></a>
+				<a href="ToDoSignInvoice.controller" class="btn"> <img
+					class="card-img-top" src="../sysimg/s2.png" style="padding: 10px;"></a>
 				<div class="card-body">
 					<h5 class="card-title">待簽核請款單</h5>
 				</div>
@@ -63,38 +74,28 @@ position: absolute;
 		</c:if>
 		<c:if test="${user.emp_level==1}">
 			<div class="card bg-light f">
-				<a href="ToDoSignlevel1.controller" class="btn"><img class="card-img-top" src="../sysimg/s2.png"
-					style="padding: 10px;"></a>
+				<a href="ToDoSignlevel1.controller" class="btn"><img
+					class="card-img-top" src="../sysimg/s2.png" style="padding: 10px;"></a>
 				<div class="card-body">
 					<h5 class="card-title">待簽核請款單</h5>
 				</div>
 			</div>
 		</c:if>
 		<div class="card bg-light f">
-			<a href="StatusMainAcc.jsp" class="btn"><img class="card-img-top" src="../sysimg/s4.png"
-				style="padding: 10px;"></a>
+			<a href="StatusMainAcc.jsp" class="btn"><img class="card-img-top"
+				src="../sysimg/s4.png" style="padding: 10px;"></a>
 			<div class="card-body">
 				<h5 class="card-title">查詢請款單狀態</h5>
 			</div>
 		</div>
 		<div class="card bg-light f">
-			<a href="ShowAccountPayableList.controller" class="btn"><img class="card-img-top" src="../sysimg/s3.png"
-				style="padding: 10px;"></a>
+			<a href="ShowAccountPayableList.controller" class="btn"><img
+				class="card-img-top" src="../sysimg/s3.png" style="padding: 10px;"></a>
 			<div class="card-body">
 				<h5 class="card-title">查詢廠商款項明細</h5>
 			</div>
 		</div>
 	</div>
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
-		integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
-		crossorigin="anonymous"></script>
+
 </body>
 </html>

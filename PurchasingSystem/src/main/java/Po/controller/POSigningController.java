@@ -22,7 +22,6 @@ import Account.model.Account_InvoiceBean;
 import Account.model.PO_Vendor_InfoBean;
 import Account.service.PO_Vendor_InfoService;
 import Apply.model.App_MainBean;
-import Apply.model.App_SigningProcessBean;
 import Apply.model.EmployeeBean;
 import Apply.service.App_MainService;
 import Apply.service.EmployeeService;
@@ -138,6 +137,11 @@ public class POSigningController {
 		String empid = beans.getEmp_id();
 		List<PO_SigningProcessBean> selectlist = pO_SigningProcessService.selectempidsend(empid, "詢價中");
 		List<PO_SigningProcessBean> selectlists = null;
+		
+		
+		
+		
+		
 		selectlists = new LinkedList<PO_SigningProcessBean>();
 		if (selectlist == null) {
 
@@ -147,6 +151,7 @@ public class POSigningController {
 			for (int i = 0; i < selectlist.size(); i++) {
 				PO_SigningProcessBean x = selectlist.get(i);
 				PO_SigningProcessBean xs = pO_SigningProcessService.select("分派採購者", x.getPo_id());
+				
 				if (xs != null) {
 					selectlists.add(x);
 					selectlists.add(xs);
@@ -205,16 +210,41 @@ public class POSigningController {
 	@RequestMapping("/Po/queryinsert.controller")
 	public String queryMemoInsert(String[] po_ID, String[] vendor_ID, String[] po_totalprice, String[] total_Qty,
 			String po_manger, String po_sta, String po_id, PO_QueryBean bean, Model model, HttpSession session) {
-		
+
 		java.util.Date date = new java.util.Date();
 		java.sql.Date datas = new java.sql.Date(date.getTime());
 		DateFormat dateFormate = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		bean.setPo_querydate(datas);
 		String now = dateFormate.format(datas);
 
+		Map<String, String> errors = new HashMap<String, String>();
+		model.addAttribute("errors", errors);
+		for (int i = 0; i < po_ID.length; i++) {
+			if (vendor_ID[i] == "ven001" || po_totalprice[i].trim().isEmpty()) {
+				errors.put("error", "廠商和單價不可為空白");
+				PO_SigningProcessBean bean1 = pO_SigningProcessService.select(po_sta, po_id);
+				List<PO_Vendor_InfoBean> AllPO_Vendor1 = pO_Vendor_InfoService.select();
+				Set<PO_DetailBean> pODetailBean = bean1.getpO_MainBean().getpO_DetailBean();
+				model.addAttribute("query", bean1);
+				model.addAttribute("po_manger", po_manger);
+				model.addAttribute("po_sta", po_sta);
+				model.addAttribute("po_id", po_id);
+				model.addAttribute("AllPO_Vendor1", AllPO_Vendor1);
+				model.addAttribute("allPO_Deatil", pODetailBean);
+
+				return "QueryMemo.show";
+			}
+		}
 		Integer allListprice = 0;
 		String poId = "";
-		String vendorId = "";
+		String vendorId = "";//
+//		if(po_totalprice==null || po_totalprice.length==0) {
+//			errors.put("po_totalprice", "請輸入價格");
+//		}
+//		
+//		if(errors!=null && !errors.isEmpty()) {
+//			return "QueryMemo.show";
+//		}	
 		for (int i = 0; i < po_ID.length; i++) {
 			poId = po_ID[i];
 			vendorId = vendor_ID[i];
@@ -230,20 +260,20 @@ public class POSigningController {
 			searchbean.setPo_querydate(datas);
 			searchbean.setPo_totalprice(allListprice);
 			model.addAttribute("query1", searchbean);
-			model.addAttribute("now", now);
+			model.addAttribute("now", datas);
 		} else {
 			PO_QueryBean pO_QueryBean = new PO_QueryBean(poId, vendorId, datas, allListprice);
-			PO_QueryBean insert =pO_QueryService.insert(pO_QueryBean);
+			PO_QueryBean insert = pO_QueryService.insert(pO_QueryBean);
 
 //			PO_QueryBean insert = pO_QueryService.insert(bean);
 			PO_Vendor_InfoBean xs = pO_Vendor_InfoService.select(insert.getVendor_ID());
-			model.addAttribute("now", now);
+			model.addAttribute("now", datas);
 			model.addAttribute("queryVendor", xs);
 			model.addAttribute("query1", insert);
 			// searchbean=pO_QueryService.select(bean.getPo_ID(), bean.getVendor_ID());
 
 		}
-		
+
 		List<PO_QueryBean> query = pO_QueryService.selectQueryBean(poId);
 		model.addAttribute("poprocess2", sendbean);
 		model.addAttribute("po_manger", po_manger);
@@ -251,6 +281,7 @@ public class POSigningController {
 		model.addAttribute("po_id", po_id);
 		model.addAttribute("queryss", query);
 		return "select.listDetail";
+
 	}
 	// 有問題
 //	@RequestMapping("/Po/queryTable.controller")
@@ -263,8 +294,6 @@ public class POSigningController {
 //		return "select.listDetail";
 //	}
 
-
-
 	@RequestMapping("/Po/checkvendorandpodetail.controller") // 採購人員於待詢價採購單頁面選擇送出審核
 	public String checkvendorandpodetail(String[] po_id, String[] part_No, String[] market_Price, String[] quotation,
 			String[] total_Price, String[] total_Qty, Model model, HttpSession session, String AllPO_Vendors,
@@ -272,10 +301,11 @@ public class POSigningController {
 
 		List<PO_DetailBean> Podetailbeans = new LinkedList<PO_DetailBean>();
 		Map<String, String> errors = new HashMap<String, String>();
-		PO_DetailBean Podetailbean = new PO_DetailBean();
+
 		Integer allListprice = 0;
 		PO_SigningProcessBean bean = pO_SigningProcessService.select(posta1, poid1);
-		List<PO_Vendor_InfoBean> AllPO_Vendor = pO_Vendor_InfoService.select();
+//		List<PO_Vendor_InfoBean> AllPO_Vendor = pO_Vendor_InfoService.select();
+		List<PO_QueryBean> AllPO_Vendor = pO_QueryService.selectQueryBean(poid1);
 //		 if(send.equals("重新輸入")) {
 //	    	   model.addAttribute("poprocess1",bean);
 //	    	   model.addAttribute("AllPO_Vendor",AllPO_Vendor);
@@ -284,12 +314,14 @@ public class POSigningController {
 		for (int i = 0; i < po_id.length; i++) {
 			if (quotation[i].equals("") || quotation[i].trim().isEmpty() || total_Price[i].equals("")
 					|| total_Price[i].trim().isEmpty()) {
-				errors.put("number", "請輸入整數");
-				model.addAttribute("poprocess1", bean);
+				errors.put("number", "請輸入採購金額和數量");
+//				PO_SigningProcessBean bean = pO_SigningProcessService.select(po_sta, po_id);
 				model.addAttribute("errors", errors);
+				model.addAttribute("poprocess1", bean);
 				model.addAttribute("AllPO_Vendor", AllPO_Vendor);
 				return "Posend.sign";
 			}
+			PO_DetailBean Podetailbean = new PO_DetailBean();
 			String poid = po_id[i];
 			Podetailbean.setPo_id(poid);
 			String partno = part_No[i];
@@ -305,7 +337,7 @@ public class POSigningController {
 			Integer thislistprice = quot * totalPrice;
 			allListprice += thislistprice;
 			Podetailbeans.add(Podetailbean);
-
+//			model.addAttribute("Podetailbeans", Podetailbeans);
 		}
 		PO_Vendor_InfoBean VendorBean = pO_Vendor_InfoService.select(AllPO_Vendors);
 		List<EmployeeBean> pomangers = employeeService.selectPoEmployee("採購部", 2);

@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<%-- <%@ include file="../POInclude.jsp"%> --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,6 +24,16 @@
 color:red;
 text-size:10px;
 }
+.right {
+	width: 75%;
+	float: left;
+}
+.bg {
+	background-color: #FDF5E6;
+	/* 畫面間距 */
+	margin: 30px;
+}
+
 
 .right {
 	width: 75%;
@@ -72,7 +84,7 @@ span {
 }
 </style>
 </head>
-	<%@ include file="../POIncludeforAcc.jsp"%>
+<%@ include file="../POIncludeforAcc.jsp"%>
 <body class="bg">
 		<c:if test="${not empty successmeg}">
 			<h2 id="message">請款單:${inv_id}${successmeg}</h2>
@@ -114,7 +126,6 @@ span {
 			</table>
 		</c:if>
 		<hr>
-
 		<c:if test="${not empty listback}">
 			<h2>退回請款單</h2>
 			<table class="table table-striped table-hover">

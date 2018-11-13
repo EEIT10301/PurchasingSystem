@@ -27,15 +27,16 @@
 </style>
 </head>
 <body class="bg">
-	<c:if test="${empty AllPO_Vendor or empty poprocess1}">
-
-	</c:if>
+	<div class="right">
+<%-- 	<c:if test="${empty AllPO_Vendor or empty poprocess1}"> --%>
+<%-- 		${errors.errors} --%>
+<%-- 	</c:if> --%>
 
 
 	<c:if test="${not empty AllPO_Vendor and not empty poprocess1}">
 		<form action="<c:url value="/Po/checkvendorandpodetail.controller" />"
 			method="post">
-			<div class="right">
+			
 
 				<label for="AllPO_Vendors">選擇廠商:</label> <select
 					name="AllPO_Vendors">
@@ -48,6 +49,8 @@
 
 
 				<h3>採購單號:${poprocess1.pO_MainBean.po_id}</h3>
+				<span style="color:red; font-size:20px;">${errors.number}</span>
+				
 				<Input type='hidden' name='posta1' value='${poprocess1.po_sta}'>
 				<Input type='hidden' name='poid1' value='${poprocess1.po_id}'>
 
@@ -58,7 +61,7 @@
 							<th width="200px">預估價格</th>
 							<th width="200px">請購數量</th>
 							<th width="200px">採購實際金額</th>
-							<th width="200px">採購實際數量</th>
+							<th width="400px">採購實際數量</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -69,7 +72,7 @@
 								<td>${thispo_detailBean.market_Price}</td>
 								<td>${thispo_detailBean.total_Qty}</td>
 								<td><Input type='text' name='total_Price'
-									value='${param.total_Price}'>${errors.number}</td>
+									value='${param.total_Price}'></td>
 								<td><Input type='text' name='quotation'
 									value='${param.quotation}'>${errors.number}</td>
 								<td><Input type='hidden' name='po_id'
@@ -84,13 +87,11 @@
 						</c:forEach>
 					</tbody>
 				</table>
-				<Input type='submit' name='send' value='產生詢價單' id="submit">
-
-			</div>
-
+<!-- 				<Input type='submit' name='send' value='產生詢價單' id="submit"> -->
+				<button id='submit' class='btn btn-default' value=''>產生詢價單</button>
 		</form>
 	</c:if>
-
+</div>
 
 	<script src="../js/app.js"></script>
 </body>
