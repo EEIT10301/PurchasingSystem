@@ -36,13 +36,7 @@ display: inline;
 <form action="<c:url value="/Po/podetailupdate.controller" />" method="post">
 <h3>採購單號:${poid1}</h3>
 <h3>選擇廠商:${AllPO_Vendors.vendor_name}</h3>
-
-
-
-
-
-
-
+<Input type='hidden' name='AllPO_Vendors' value='${AllPO_Vendors.vendor_id}'>
 
 <table class="table table-striped table-hover" id="myTable">
 <thead>
@@ -77,9 +71,7 @@ display: inline;
 </table>
 
 <p>總採購價格:${allListprice}元</p>
-
-
-
+<Input type='hidden' name='allListprice' value='${allListprice}'>
 
 <p>簽和順序 step1: <select name="pomanger">
 		<c:forEach var="pomangers1" items="${pomangers}">
@@ -91,11 +83,20 @@ display: inline;
 <c:if test="${not empty boss}">
 
 <p>簽核順序 step2: ${boss.emp_job}: ${boss.emp_name}
-
+<Input type='hidden' name='boss' value='${boss.emp_id}'>
 </c:if>
 
 
+
 簽核意見:<p><textarea   rows="5" cols="50"  name="SignSug"></textarea></p>
+
+
+
+
+
+<Input type='hidden' name='posta1' value='${posta1}'>
+<Input type='hidden' name='poid1' value='${poid1}'>
+
 
 
 
@@ -106,16 +107,19 @@ display: inline;
 <Input id="submitbutton" type='submit' name='send' value='送出'>
 </div>
 
-<Input type='hidden' name='AllPO_Vendors' value='${AllPO_Vendors.vendor_id}'>
-<Input type='hidden' name='allListprice' value='${allListprice}'>
-<Input type='hidden' name='posta1' value='${posta1}'>
-<Input type='hidden' name='poid1' value='${poid1}'>
-<Input type='hidden' name='boss' value='${boss.emp_id}'>
+
 
 
 </form>
 </c:if>
 </div>
+
+
+
+
+
+
+
 
 
 

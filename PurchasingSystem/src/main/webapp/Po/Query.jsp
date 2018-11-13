@@ -28,6 +28,7 @@ font-size: 36px;
 </head>
 <body class="bg">	
 <div class="right">
+	<h3>待詢價採購單</h3><span style="color:red; font-size:13px;">${errors.error}</span>
 	<form action="<c:url value="/Po/queryinsert.controller"/>" method="post">
 	<c:if test="${not empty query}">		
 	
@@ -57,6 +58,7 @@ font-size: 36px;
 							</c:forEach>
 					</select></td>
 					<td><input type="text" name="po_totalprice"></td>
+					<td>${errors.po_totalprice}</td>
 				</tr>				
 			</c:forEach>
 			</tbody>

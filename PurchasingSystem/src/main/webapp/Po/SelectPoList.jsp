@@ -24,22 +24,17 @@
 
 	<c:if test="${not empty selectlists}">
 	<div class="right">
-
-
-		<table class="table table-striped table-hover" id="myTable">
-
-
+	<h3>待詢價採購單</h3>
+		<table class="table table-striped table-hover">
 			<thead>
-
 				<tr>
 					<th width="200px">採購單編號</th>
 					<th width="200px">分派主管</th>
 					<th width="200px">主管分派時間</th>
 					<th id="tosubmit"></th>
-
 				</tr>
 			</thead>
-			<tbody>
+			<tbody id="myTable">
 				<c:forEach var="poprocess" items="${selectlists}">
 					<c:if test="${poprocess.sig_rank==2}">
 						<tr>

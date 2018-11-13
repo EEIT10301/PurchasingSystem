@@ -28,6 +28,7 @@ import Apply.service.App_MainService;
 import Apply.service.App_SigningProcessService;
 import Apply.service.EmployeeService;
 import Apply.service.ProductListService;
+import misc.AutoSendEmailByJava;
 
 
 @Controller
@@ -283,7 +284,7 @@ public class ApplySendController {
 			 user= (EmployeeBean) session.getAttribute("user"); 
 			 
 		 }
-		 EmployeeBean userManger =employeeService.select(user.getEmp_managerid());
+		 EmployeeBean userManger =employeeService.select(Sign2Employee);
 		 EmployeeBean boss =employeeService.select(userManger.getEmp_managerid());
 		
 		Map<String, String> errors = new HashMap<String, String>();
@@ -416,6 +417,9 @@ public class ApplySendController {
 	    	}
 	    	if (Listprices<=1000000)
 	    	{
+	    		//userManger
+	    		AutoSendEmailByJava sendemail =new AutoSendEmailByJava();
+	    		sendemail.processMemberWishNotice(userManger.getEmp_email(), "待簽核請購單", "您有一張待簽核的請購單 請點下列連結登入"+"http://localhost:8080/PurchasingSystem/MainPage.jsp");
 	    		java.util.Date date = new java.util.Date();
 	    		java.sql.Date data1 = new java.sql.Date(date.getTime());
 	    		DateFormat dateFormate =new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -426,7 +430,10 @@ public class ApplySendController {
 	    		App_SigningProcessBean ss1=new App_SigningProcessBean(Sign2Employee,"請購核准",apid,null,"簽核中",null,2);
 	    		app_SigningProcessService.insert(ss);
 	    		app_SigningProcessService.insert(ss1);
+	    		
 	    	}else {
+	    		AutoSendEmailByJava sendemail =new AutoSendEmailByJava();
+	    		sendemail.processMemberWishNotice(userManger.getEmp_email(), "待簽核請購單", "您有一張待簽核的請購單 請點下列連結登入"+"http://localhost:8080/PurchasingSystem/MainPage.jsp");
 	    		java.util.Date date = new java.util.Date();
 	    		java.sql.Date data1 = new java.sql.Date(date.getTime());
 	    		DateFormat dateFormate =new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");

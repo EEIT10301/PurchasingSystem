@@ -267,7 +267,7 @@ $.ajax({
 			    txt += "<th>簽核人</th>"
 			    txt += "<th>簽核時間</th>"
 			    txt += "<th>簽核建議</th>"
-			    txt += "<th>簽核情形</th>"
+			    txt += "<th>進度</th>"
 			    txt += "</tr>"
 				$.each(data.myArrayList,function(index,json){
 					//alert(json.map.productListBean.pro_name);
@@ -282,12 +282,12 @@ $.ajax({
 					   txt += "<td>"+json.map.sig_date+"</td>"	
 						}
 					if(json.map.sig_sug==null){
-						"<td></td>"
+						txt +="<td></td>"
 					}else{				
 						txt += "<td>"+json.map.sig_sug+"</td>"	
 					}
 					if(json.map.sig_sta==null){
-						"<td></td>"
+						txt +="<td></td>"
 					}else{				
 					txt += "<td>"+json.map.sig_sta+"</td>"	
 					}
