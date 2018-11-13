@@ -156,10 +156,11 @@ public class ApplySearchEndListController {
 	}
 	@RequestMapping(path="/Apply/SelectWaitEndAppList.do")
 	@ResponseBody
-	public JSONArray SelectWaitEndAppList() {
-		
+	public JSONArray SelectWaitEndAppList(HttpSession session) {
+		EmployeeBean ben=(EmployeeBean) session.getAttribute("user");
+		String empid=ben.getEmp_id();
 		List<App_SigningProcessBean>  prolist = null;
-		prolist =app_SigningProcessService.selectApp_staandSig_sta("申請中","待結案");
+		prolist =app_SigningProcessService.selectApp_staandSig_staemp("申請中","待結案",empid);;
 		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create() ; 
 		String json =null;
 
@@ -199,7 +200,7 @@ public class ApplySearchEndListController {
 		EmployeeBean ben=(EmployeeBean) session.getAttribute("user");
 		String empid=ben.getEmp_id();
 		List<App_SigningProcessBean>  prolist = null;
-		prolist =app_SigningProcessService.selectApp_staandSig_sta("申請中","待結案");
+		prolist =app_SigningProcessService.selectApp_staandSig_staemp("申請中","待結案",empid);
 		if(prolist !=null) {		
 			Integer x =prolist.size();
 			session.setAttribute("waitendsign",x);

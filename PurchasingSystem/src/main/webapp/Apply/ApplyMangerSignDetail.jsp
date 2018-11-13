@@ -36,7 +36,7 @@ font-size: 36px;
 <c:if test="${not empty thispro}">
 <div class='container'>
 <h4 align="center" >請購單編號:${appmain.app_id}</h4><br/>
-<h5 align="center">簽核中請購單</h5>
+<h3 align="center">簽核中請購單</h3>
 <table class="table table-striped table-hover">
 <thead>
 <tr>
@@ -81,6 +81,9 @@ font-size: 36px;
 </tr>
 </c:forEach>
 <tr>
+<th class='text-center' colspan='5'>簽核流程</th>
+</tr>
+<tr>
 <th>簽核順序</th>
 <th>簽核情形</th>
 <th>職稱</th>
@@ -98,9 +101,9 @@ font-size: 36px;
 </c:if>
 </c:forEach>
 </tr>
-<tr>
 <c:forEach var='appsignpro' varStatus='vs' items='${app_Sign}'>
 <c:if test="${appsignpro.sig_rank==2}">
+<tr>
 <td>2</td>
 <td>${appsignpro.employeeBean.emp_name} ${appsignpro.sig_sta}</td>
 <td>${appsignpro.employeeBean.emp_dep} ${appsignpro.employeeBean.emp_job}</td>
@@ -108,13 +111,12 @@ font-size: 36px;
 <td>${appsignpro.sig_date} </td>
 <td>${appsignpro.sig_sug} </td>
 </c:if>
+</tr>
 </c:if>
 </c:forEach>
-</tr>
-<tr>
 <c:forEach var='appsignpro' varStatus='vs' items='${app_Sign}'>
+<tr>
 <c:if test="${appsignpro.sig_rank==3}">
-<c:if test="${appsignpro.sig_sta=='未簽核' or appsignpro.sig_sta=='簽核中'}">
 <td>3</td>
 <td>${appsignpro.employeeBean.emp_name} ${appsignpro.sig_sta}</td>
 <td>${appsignpro.employeeBean.emp_dep} ${appsignpro.employeeBean.emp_job}</td>
@@ -123,9 +125,8 @@ font-size: 36px;
 <td>${appsignpro.sig_sug} </td>
 </c:if>
 </c:if>
-</c:if>
-</c:forEach>
 </tr>
+</c:forEach>
 </tbody>
 </table>
 <form action="<c:url value="/Apply/applysignss.controller" />" method="post">

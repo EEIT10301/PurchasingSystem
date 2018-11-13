@@ -30,10 +30,15 @@ font-size: 36px;
 	margin: 30px;
 }
 .right{
-	width:78%;
+	width:82%;
     float:left;
+    font-size: 1.5em;
 }
-
+.right input{
+		width:120px;
+		background-color: white;
+		font-size: 1.05em;
+	}
 
 .f {
 	/* 方格排列 */
@@ -111,7 +116,7 @@ font-size: 36px;
 <c:if test="${not empty product}">
 <div class="right">
 <c:if test="${not empty Categlory}">
-<h4 align="center">產品項目: ${Categlory}</h4>
+<h3 align="center">產品項目: ${Categlory}</h3>
 </c:if>
 
 <c:if test="${cartnumber>0}">
