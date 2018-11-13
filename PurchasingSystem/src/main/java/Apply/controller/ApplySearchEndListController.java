@@ -224,5 +224,44 @@ public class ApplySearchEndListController {
 	
 	
 	return null;
+	}
+	@RequestMapping(path="/Apply/AppSignListInclude.do",produces ="text/html; charset=utf-8")
+	@ResponseBody
+	public String AppSignListInclude(HttpSession session) {
+		EmployeeBean ben=(EmployeeBean) session.getAttribute("user");
+		String empid=ben.getEmp_id();
+		Integer waitendsign=0;
+		Integer SignAppList=0;
+		Integer Appnow=0;
+		Map<String, String> Applist = new HashMap<String, String>();
+		Applist.put("empid",empid);
+		Applist.put("empname",ben.getEmp_name());
+		Applist.put("empjob",ben.getEmp_job());
+		Applist.put("empdep",ben.getEmp_dep());
+		Applist.put("emplevel",""+ben.getEmp_level());
+		if(session.getAttribute("waitendsign")!=null) {
+			waitendsign=(Integer) session.getAttribute("waitendsign");
+			//驗收完成待結案請購單數量
+			Applist.put("waitendsign",""+waitendsign);
+		}else {
+			Applist.put("waitendsign","");
+		}
+		if(session.getAttribute("SignAppList")!=null) {
+			SignAppList=(Integer) session.getAttribute("SignAppList");
+			//待簽核請購單數量
+			Applist.put("SignAppList",""+SignAppList);
+		}else {
+			Applist.put("SignAppList",""+"");
+		}
+		if(session.getAttribute("Appnow")!=null) {
+			Appnow=(Integer) session.getAttribute("Appnow");
+			Applist.put("Appnow",""+Appnow);
+		}else {
+			Applist.put("Appnow","");
+		}
+	
+	Gson gson =new Gson();
+		String json = gson.toJson(Applist) ;
+		return json;
 	}	
 }

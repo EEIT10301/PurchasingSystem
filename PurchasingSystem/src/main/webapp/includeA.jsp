@@ -12,30 +12,58 @@
 	crossorigin="anonymous">
 <title>Insert title here</title>
 <style>
+.right {
+	width: 75%;
+	float: right;
+	text-align: center;
+	height: 1500px;
+}
+
+.nav nav-tabs {
+	width: 75%;
+}
+
 .bg {
 	background-color: #FDF5E6;
 	/* 畫面間距 */
 	margin: 30px;
 }
-.left{
-	width:15%;
-float:left;
-	text-align: center;
 
+.left {
+	width: 20%;
+	float: left;
+	text-align: center;
+	height: 1500px;
 }
+
 .f {
 	/* 方格排列 */
 	display: inline-block;
-	width: 6rem;
-	height: 6.5rem;
-
+	width: 200px;
+	height: 50px;
+	margin-bottom: 5px;
 }
 
 .imgp {
-	padding: 10px;
+	/* 	padding: 0px; */
+	/* 	font-size: 11px; */
+	/* 	margin-right:10px; */
+	float: left;
+	height: 35px;
+	width: 30px;
 }
-.card-text{
-	font-size:11px;
+
+.card-text {
+	font-size: 11px;
+}
+
+ul {
+	font-family: 微軟正黑體;
+	font-size: 19px;
+}
+
+span {
+	margin-left: 1px;
 }
 </style>
 </head>
@@ -47,37 +75,39 @@ float:left;
 	</div>
 	<hr>
 <div class="left">
+<ul class="nav flex-column">
 <c:if test="${user.emp_level==2}">
-			<div class="card bg-light f">
-				<a href="../Account/ToDoAssignInvoice.controller" class="btn"> <img
-					class="card-img-top imgp" src="../sysimg/s1.png"></a>
-					<p class="card-text">待分派請款單</p>
-
-			</div>
-			<div class="card bg-light f">
-				<a href="../Account/ToDoSignInvoice.controller" class="btn"><img
-					class="card-img-top imgp" src="../sysimg/s2.png"></a>
-					<p class="card-text">待審核請款單</p>
-			</div>
-
+			<li class="nav-item"><a class="nav-link active"
+					href="../Account/ToDoAssignInvoice.controller"> <img
+					class="card-img-top imgp" src="../sysimg/s1.png"> <span data-feather="home"></span>
+						待分派請款單 <span class="sr-only"></span>
+				</a></li>
+				
+			<li class="nav-item"><a class="nav-link active"
+					href="../Account/ToDoSignInvoice.controller"> <img
+					class="card-img-top imgp" src="../sysimg/s2.png"> <span data-feather="home"></span>
+						待審核請款單 <span class="sr-only"></span>
+				</a></li>
 		</c:if>
 		<c:if test="${user.emp_level==1}">
-			<div class="card bg-light f">
-				<a href="../Account/ToDoSignlevel1.controller" class="btn"><img
-					class="card-img-top imgp" src="../sysimg/s2.png"></a>
-					<p class="card-text">待審核請款單</p>
-			</div>
+		<li class="nav-item"><a class="nav-link active"
+					href="../Account/ToDoSignlevel1.controller"> <img
+					class="card-img-top imgp" src="../sysimg/s2.png"> <span data-feather="home"></span>
+						待審核請款單 <span class="sr-only"></span>
+				</a></li>
 		</c:if>
-		<div class="card bg-light f">
-			<a href="../Account/StatusMainAcc.jsp" class="btn"><img
-				class="card-img-top imgp" src="../sysimg/s4.png"></a>
-				<h5 class="card-text">查詢請款單狀態</h5>
-		</div>
-		<div class="card bg-light f">
-			<a href="../Account/ShowAccountPayableList.controller" class="btn"><img
-				class="card-img-top imgp" src="../sysimg/s3.png"></a>
-				<h5 class="card-text">查詢廠商帳款明細</h5>
-		</div>
+		<li class="nav-item"><a class="nav-link active"
+					href="../Account/StatusMainAcc.jsp"> <img
+					class="card-img-top imgp" src="../sysimg/s4.png"> <span data-feather="home"></span>
+						查詢請款單狀態 <span class="sr-only"></span>
+				</a></li>
+		
+		<li class="nav-item"><a class="nav-link active"
+					href="../Account/ShowAccountPayableList.controller"> <img
+					class="card-img-top imgp" src="../sysimg/s3.png"> <span data-feather="home"></span>
+						查詢廠商帳款明細 <span class="sr-only"></span>
+				</a></li>
+		</ul>
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

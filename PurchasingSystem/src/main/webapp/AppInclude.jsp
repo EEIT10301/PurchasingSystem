@@ -6,11 +6,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
 	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
 	crossorigin="anonymous">
-<title>採購系統</title>
+<title>請購系統</title>
 <style>
 .bg {
 	background-color: #FDF5E6;
@@ -56,102 +57,94 @@ span {
 </style>
 </head>
 <body class="bg">
-	<h1><font face="微軟正黑體">採購系統</font></h1>
-	<a href="POLoginSuccess.jsp" style="font-family:微軟正黑體;">回首頁</a>
+	<h1><font face="微軟正黑體">請購系統</font></h1>
+	<a href="ApplyLoginSuccess.jsp" style="font-family:微軟正黑體;">回首頁</a>
 	<div class="text-right" style="font-family:微軟正黑體;">
 		${user.emp_name} ${user.emp_job},你好<a
-			href='POLogout.controller'><button type="button" class="btn btn-primary btn-sm">登出</button></a>
+			href='ApplyLogout.controller'><button type="button" class="btn">登出</button></a>
 	</div>
 	<hr>
 	<div class="left">
 <%-- 		<br> <span>${sendok}</span> --%>
 
 		<c:if test="${user.emp_level==1}">
-
 		<ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link active" href="selectprice.controller">
+                <a class="nav-link active" href="ApplySend.jsp">
                 <img class="card-img-top imgp" src="../sysimg/s2.png">
                   <span data-feather="home"></span>
-                  	待詢價採購單 <span class="sr-only">(current)</span>
+                  	請購申請 <span class="sr-only"></span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="POManagerSigner.controller">
+                <a class="nav-link" href="http://localhost:8080/PurchasingSystem/Apply/ApplyWaitEndList.html">
                 <img class="card-img-top imgp" src="../sysimg/s2.png">
                   <span data-feather="users"></span>
-                  	待處理採購單
+                  	驗收完成待結案<font color=red>${waitendsign}</font>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="signedorder.controller">
+                <a class="nav-link" href="http://localhost:8080/PurchasingSystem/Apply/selectAll.html">
                 <img class="card-img-top imgp" src="../sysimg/s2.png">
                   <span data-feather="file"></span>
-                  	待下單採購單
+                  	物料更新
                 </a>
               </li>
+              
               <li class="nav-item">
-                <a class="nav-link" href="placedOrder.controller">
-                <img class="card-img-top imgp" src="../sysimg/s2.png">
+                <a class="nav-link" href="http://localhost:8080/PurchasingSystem/Apply/ApplySearchEndList.html">
+                <img class="card-img-top imgp" src="../sysimg/s6.png">
                   <span data-feather="shopping-cart"></span>
-                  	待收貨採購單
+                  	已結案單子查詢
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="Polist.controller">
+                <a class="nav-link" href="toApplySignnerdetail.controller">
                 <img class="card-img-top imgp" src="../sysimg/s2.png">
                   <span data-feather="layers"></span>
-                  	待辦請款單
+                  	待簽核請購單 <font color=red>${SignAppList}</font>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="POSignStatement.controller">
+                <a class="nav-link" href="toApplySignpro.controller">
                 <img class="card-img-top imgp" src="../sysimg/s6.png">
                   <span data-feather="bar-chart-2"></span>
-                 	 查詢採購單狀態
-                </a>
-              </li>
-
-              <li class="nav-item">
-                <a class="nav-link" href="StatusMain.jsp">
-                <img class="card-img-top imgp" src="../sysimg/s6.png">
-                  <span data-feather="layers"></span>
-                  	查詢請款單狀態
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="POFinalStatement.controller">
-                <img class="card-img-top imgp" src="../sysimg/s6.png">
-                  <span data-feather="layers"></span>
-                  	查詢結案請款單
+                 	 請購進度查詢 <font color=red>${Appnow}</font>
                 </a>
               </li>
             </ul>
 		</c:if>
 		<c:if test="${user.emp_level==2}">
-		<ul class="nav flex-column">
+			<ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link active" href="sendEmployee.controller">
-                <img class="card-img-top imgp" src="../sysimg/s2.png">
-                  <span data-feather="home"></span>
-                  	待分派採購單 <span class="sr-only">(current)</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="POManagerSigner.controller">
-                <img class="card-img-top imgp" src="../sysimg/s2.png">
-                  <span data-feather="users"></span>
-                  	待處理採購單
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="todoSignInvoice.controller">
+                <a class="nav-link" href="http://localhost:8080/PurchasingSystem/Apply/selectAll.html">
                 <img class="card-img-top imgp" src="../sysimg/s2.png">
                   <span data-feather="file"></span>
-                  	待審核請款單
+                  	物料更新
                 </a>
               </li>
-             </ul>
+              <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8080/PurchasingSystem/Apply/ApplySearchEndList.html">
+                <img class="card-img-top imgp" src="../sysimg/s2.png">
+                  <span data-feather="shopping-cart"></span>
+                  	已結案單子查詢
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="toApplySignnerdetail.controller">
+                <img class="card-img-top imgp" src="../sysimg/s2.png">
+                  <span data-feather="layers"></span>
+                  	待簽核請購單 <font color=red>${SignAppList}</font>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="toApplySignpro.controller">
+                <img class="card-img-top imgp" src="../sysimg/s6.png">
+                  <span data-feather="bar-chart-2"></span>
+                 	 請購進度查詢 <font color=red>${Appnow}</font>
+                </a>
+              </li>
+            </ul>
 		</c:if>		
 	</div>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

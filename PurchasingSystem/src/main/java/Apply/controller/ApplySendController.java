@@ -350,7 +350,7 @@ public class ApplySendController {
 			session.setAttribute("cartamount",beans.size());
 			session.setAttribute("cart",beans);
 	    	return "Apply.List";
-	    }else if(send.equals("刪除此項產品")){//按下刪除商品
+	    }else if(send.equals("刪除")){//按下刪除商品
 	    	Integer xs=0;
 	    	for(int i=0;i<beans.size();i++) {
 				ProductListBean x=beans.get(i);
@@ -461,7 +461,7 @@ public class ApplySendController {
     		session.removeAttribute("cart");
     		session.removeAttribute("Listprice");
 	    	model.addAttribute("applyok","請購成功");
-	    	return "apply.ok";
+	    	return "login.success";
 	    }
 		
 	}
