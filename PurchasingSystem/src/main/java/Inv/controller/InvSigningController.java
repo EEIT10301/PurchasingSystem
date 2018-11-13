@@ -98,7 +98,11 @@ public String invsendlist (Inv_SigningProcessBean bean, BindingResult bindingRes
 				null, "驗收中", null, 3);
 	 inv_SigningProcessService.insert(secondsigningrocess1);
 	 model.addAttribute("sendok","分派完成");
-		return "Invlogin.success";		
+	 
+//	 return "InvSendEmployee.do";		
+     return "redirect:/Inv/sendEmployee.controller"; 	
+//		return "Invlogin.success";
+	 
 	}
 	@RequestMapping("/Inv/selectInvchk.controller")
 public String selectInvchk(Model model,HttpSession session) {//待驗收驗收單畫面
@@ -109,7 +113,7 @@ public String selectInvchk(Model model,HttpSession session) {//待驗收驗收�
 	List<Inv_SigningProcessBean> selectlists = null;
 	selectlists=new LinkedList<Inv_SigningProcessBean>();
 	if(selectlist==null) {
-		model.addAttribute("noselectlists","無待驗收單");
+		model.addAttribute("noselectlists","無待驗收單"); 
 		return "selectInvchk.list";
 	}else {
 		for(int i=0;i<selectlist.size();i++) {
@@ -132,7 +136,8 @@ public String selectInvchk(Model model,HttpSession session) {//待驗收驗收�
 			model.addAttribute("selectlistnofinish",selectlistnofinish);
 		}}
 		
-		return "selectInvchk.list";
+
+		return "InvSendEmployee.do";
 	}
 		
 	}
