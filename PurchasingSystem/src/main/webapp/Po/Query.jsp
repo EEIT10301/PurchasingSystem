@@ -58,6 +58,7 @@ font-size: 36px;
 							</c:forEach>
 					</select></td>
 					<td><input type="text" name="po_totalprice"></td>
+					<td>${errors.po_totalprice}</td>
 				</tr>				
 			</c:forEach>
 			</tbody>

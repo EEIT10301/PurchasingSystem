@@ -90,12 +90,14 @@ public class POPlacementController {
 	}
 
 	@RequestMapping("/Po/signedOrderDetail.controller")
-	public String signedOrderDetail(PO_SigningProcessBean bean, BindingResult bindingResult, Model model,String poid,
+
+	public String signedOrderDetail(PO_SigningProcessBean bean, BindingResult bindingResult, Model model,String po_id,
 			HttpSession session) {
 
-		PO_MainBean pm = pO_MainService.select(poid);
+
+		PO_MainBean pm = pO_MainService.select(po_id);
 //		Set<PO_SigningProcessBean> po_Sign = pm.getpO_SigningProcessBean();
-		PO_SigningProcessBean po_Sign = pO_SigningProcessService.select("下單中", poid);
+		PO_SigningProcessBean po_Sign = pO_SigningProcessService.select("下單中", po_id);
 		Set<PO_DetailBean> poDetail = pm.getpO_DetailBean();
 		model.addAttribute("pm", pm);
 		model.addAttribute("po_Sign", po_Sign);

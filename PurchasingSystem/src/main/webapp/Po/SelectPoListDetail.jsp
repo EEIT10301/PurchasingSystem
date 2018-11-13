@@ -143,9 +143,6 @@
 				</form>
 			</div>
 		</c:if>
-
-
-
 		<c:if test="${not empty poprocess2}">
 			<div id="doublesubmitbutton">
 				<form id="submitbutton"
@@ -161,9 +158,7 @@
 				</form>
 			</div>
 		</c:if>
-
 	</div>
-
 
 	<script src="../js/app.js"></script>
 </body>
