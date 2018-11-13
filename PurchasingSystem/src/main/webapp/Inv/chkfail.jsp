@@ -64,6 +64,7 @@ document.getElementById('search').addEventListener('input', function() {
   // beware of css injections!
 });
 </script>
+
 <table class="table table-striped table-hover" id="table">
 	<thead >
 				<tr>
