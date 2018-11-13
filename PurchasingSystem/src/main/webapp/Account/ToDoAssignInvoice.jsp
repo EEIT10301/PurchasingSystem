@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-	<%@ include file="../include.jsp" %>
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,7 +31,7 @@ text-size:10px;
 </head>
 
 <body class="bg">
-
+<%@ include file="../includeA.jsp" %>
 	<c:if test="${not empty dispatchsuccessmeg}">
 		<h2 id="message">${dispatchsuccessmeg}${inv_id}</h2>
 	</c:if>
@@ -67,7 +67,7 @@ text-size:10px;
 						<td>${assign.pO_MainBean.pO_Vendor_InfoBean.vendor_name}</td>
 						<td>$${assign.total_price}</td>
 						<td><a
-							href="AccSignInvoiceForm.controller?invid=${assign.inv_id}">查看</a></td>
+							href="AccSignInvoiceForm.controller?invid=${assign.inv_id}"><button type="button" class="btn btn-primary btn-sm">分派請款單</button></a></td>
 					</tr>
 				</c:forEach>
 			</tbody>

@@ -27,6 +27,12 @@
 	/* 畫面內縮 */
 	margin: 30px;
 }
+
+.text-center{
+position: absolute;
+  	top: 200px;
+  	left:200px;
+}
 </style>
 </head>
 
@@ -36,8 +42,8 @@
 	${user.emp_dep}/${user.emp_name} ${user.emp_job},你好
 	<a href='AccountLogout.controller'><button type="button" class="btn btn-primary btn-sm">登出</button></a>
 	</div>
-	<div class="text-center">
 		<hr>
+	<div class="text-center">
 		<c:if test="${user.emp_level==2}">
 			<div class="card bg-light f">
 				<a href="ToDoAssignInvoice.controller" class="btn"> 

@@ -36,7 +36,6 @@
 					<th width="200px">分派主管</th>
 					<th width="200px">主管分派時間</th>
 					<th id="tosubmit"></th>
-
 				</tr>
 			</thead>
 			<tbody>
@@ -46,21 +45,20 @@
 							<td>${poprocess.po_id}</td>
 							<td>${poprocess.employeeBean.emp_name}</td>
 							<td>${poprocess.sig_date}</td>
-
-
+							<td>
 							<c:forEach var="poprocess1" items="${selectlists}">
 								<form
 									action="<c:url value="sendthisselectlist.controller?po_manger=${poprocess1.po_manger}&po_sta=${poprocess1.po_sta}&po_id=${poprocess1.po_id}" />"
 									method="post">
 									<c:if
 										test="${poprocess1.sig_rank==3 and poprocess1.po_id == poprocess.po_id}">
-
-										<td><input id="submit" type="submit" name="send"
-											value="開始詢價"></td>
-
+										<input id="submit" type="submit" name="send"
+											value="開始詢價">
 									</c:if>
 								</form>
+								
 							</c:forEach>
+							</td>
 						</tr>
 
 					</c:if>

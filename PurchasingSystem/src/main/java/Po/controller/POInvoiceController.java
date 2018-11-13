@@ -1,3 +1,4 @@
+
 package Po.controller;
 
 import java.io.File;
@@ -147,10 +148,10 @@ public class POInvoiceController {
 		Account_InvoiceBean account_InvoiceBean = new Account_InvoiceBean(invId, date, src, poid, Emp_id, price);
 		Account_InvoiceBean result = account_InvoiceService.insert(account_InvoiceBean);
 		if (result != null) {
-			model.addAttribute("successmeg", "新增成功");
+			model.addAttribute("successmeg", "3");
 			model.addAttribute("inv_id", invId);
 		} else {
-			model.addAttribute("errormeg", "新增失敗");
+			model.addAttribute("errormeg", "4");
 		}
 		// insert 請款單流程
 		pO_InvoiceService.insertAccountSigningProcess(invId, Emp_id, selectPOManager, SignSug);
@@ -158,7 +159,7 @@ public class POInvoiceController {
 		// update 採購單請款作業簽核流程
 		pO_InvoiceService.updatePoSigningProcess(poid, SignSug, "請款中");
 
-		return "TodoInvoiceList";
+		return "newForm";
 	}
 
 	// 採購承辦重送請款單
@@ -191,17 +192,17 @@ public class POInvoiceController {
 		accbean.setRecript_date(date);
 		Account_InvoiceBean result = pO_InvoiceService.updateInvoiceData(accbean);
 		if (result != null) {
-			model.addAttribute("successmeg", "修改申請成功");
+			model.addAttribute("successmeg", "1");
 			model.addAttribute("inv_id", invId);
 		} else {
-			model.addAttribute("errormeg", "修改申請失敗");
+			model.addAttribute("errormeg", "2");
 		}
 		// update 請款單簽核流程
 		String sig_Sta1 = "已申請";
 		String sig_Sta2 = "簽核中";
 		pO_InvoiceService.updateAccountSigningProcess(invId, sig_Rank, sig_Sta1, sig_Sta2, SignSug, selectPOManager);
 		
-		return "TodoInvoiceList";
+		return "updateForm";
 	}
 
 	// 採購主管查看要審核的該張請款單
@@ -501,12 +502,12 @@ public class POInvoiceController {
 		if (status.equals("dispatch") && action.equals("送出")) {
 			result3 = pO_InvoiceService.updateAccountSigningProcess(invid, 3, "已分派", "簽核中", SignSug, selectPOManager);
 			if (result3) {
-				model.addAttribute("dispatchsuccessmeg", "已分派承辦審核");
+				model.addAttribute("dispatchsuccessmeg", "1");
 				model.addAttribute("inv_id", invid);
 			} else {
-				model.addAttribute("dispatcherrormeg", "分派失敗");
+				model.addAttribute("dispatcherrormeg", "2");
 			}
-			return "assignInv.show";
+			return "updateForm";
 		}
 		// 判斷審核是送出
 		if (action.equals("送出") && status.equals("review")) {
@@ -515,33 +516,33 @@ public class POInvoiceController {
 				result1 = pO_InvoiceService.updateAccountSigningProcess(invid, 2, "已核准", "分派中", SignSug,
 						selectPOManager);
 				if (result1) {
-					model.addAttribute("sendsuccessmeg", "審核成功");
+					model.addAttribute("sendsuccessmeg", "1");
 					model.addAttribute("inv_id", invid);
 				} else {
-					model.addAttribute("senderrormeg", "審核未完成");
+					model.addAttribute("senderrormeg", "2");
 				}
-				return "todoSignInvoice.show";
+				return "updateForm";
 			} else if (dep.equals("財務部") && level == 1) {
 				result1 = pO_InvoiceService.updateAccountSigningProcess(invid, 4, "已簽核", "簽核中", SignSug,
 						selectPOManager);
 				if (result1) {
-					model.addAttribute("sendsuccessmeg", "審核成功");
+					model.addAttribute("sendsuccessmeg", "3");
 					model.addAttribute("inv_id", invid);
 				} else {
-					model.addAttribute("senderrormeg", "審核未完成");
+					model.addAttribute("senderrormeg", "4");
 				}
-				return "signInv.show";
+				return "updateForm";
 			} else {
 				result1 = pO_InvoiceService.updateAccountSigningProcess(invid, 5, "已簽核", null, SignSug, null);
 				pO_InvoiceService.updatePoSigningProcess(poId, SignSug, "已結案");
 				accout_PayableService.updateAccountPayable(invid);
 				if (result1) {
-					model.addAttribute("sendsuccessmeg", "審核成功");
+					model.addAttribute("sendsuccessmeg", "3");
 					model.addAttribute("inv_id", invid);
 				} else {
-					model.addAttribute("senderrormeg", "審核未完成");
+					model.addAttribute("senderrormeg", "4");
 				}
-				return "signInv.show";
+				return "updateForm";
 			}
 
 		}
@@ -551,30 +552,30 @@ public class POInvoiceController {
 			if (dep.equals("採購部") && level == 2) {
 				result2 = pO_InvoiceService.updateAccountSigningProcessForReturn(invid, 2, "未簽核", "退回中", SignSug);
 				if (result2) {
-					model.addAttribute("returnsuccessmeg", "已退回");
+					model.addAttribute("returnsuccessmeg", "1");
 					model.addAttribute("inv_id", invid);
 				} else {
-					model.addAttribute("returnerrormeg", "未退回成功");
+					model.addAttribute("returnerrormeg", "2");
 				}
-				return "todoSignInvoice.show";
+				return "updateForm";
 			} else if (dep.equals("財務部") && level == 1) {
 				result2 = pO_InvoiceService.updateAccountSigningProcessForReturn(invid, 4, "未簽核", "退回中", SignSug);
 				if (result2) {
-					model.addAttribute("returnsuccessmeg", "已退回");
+					model.addAttribute("returnsuccessmeg", "3");
 					model.addAttribute("inv_id", invid);
 				} else {
-					model.addAttribute("returnerrormeg", "未退回成功");
+					model.addAttribute("returnerrormeg", "4");
 				}
-				return "signInv.show";
+				return "updateForm";
 			} else {
 				result2 = pO_InvoiceService.updateAccountSigningProcessForReturn(invid, 5, "未核准", "退回中", SignSug);
 				if (result2) {
-					model.addAttribute("returnsuccessmeg", "已退回");
+					model.addAttribute("returnsuccessmeg", "3");
 					model.addAttribute("inv_id", invid);
 				} else {
-					model.addAttribute("returnerrormeg", "未退回成功");
+					model.addAttribute("returnerrormeg", "4");
 				}
-				return "signInv.show";
+				return "updateForm";
 			}
 			
 		}
