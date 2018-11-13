@@ -23,18 +23,24 @@
 <c:if test="${not empty po_id }">
  <h2>採購單號 :${po_id}</h2>
 <c:if test="${not empty POprocess}">
+<input class="form-control" id="myInput" type="text" placeholder="Search"><br/>
 <table class="table table-striped table-hover" id="myTable">
 <thead>
 <tr>
+<th width="200px">簽核順序</th>
 <th width="200px">流程進度</th>
 <th width="200px">簽核人</th>
 <th width="200px">簽核時間</th>
 <th width="200px">簽核情形</th>
 <th>簽核建議</th>
 </tr>
+</thead>
+
 <c:forEach var="POprocess" items="${POprocess}">
 <c:if test="${POprocess.sig_sta == '簽核中'  or POprocess.sig_sta == '退回中' or POprocess.sig_sta == '詢價中' or POprocess.sig_sta == '分派中' or POprocess.sig_sta == '下單中' or POprocess.sig_sta == '出貨中'}">
+<tbody>
 <tr>
+<td><font color="red">${POprocess.sig_rank}</font></td>
 <td><font color="red">${POprocess.po_sta}</font></td>
 <td><font color="red">${POprocess.employeeBean.emp_name}</font></td>
 <td>
@@ -47,10 +53,13 @@
 
 </td>
 </tr>
+</tbody>
 </c:if>
 
 <c:if test="${POprocess.sig_sta != '簽核中'  and POprocess.sig_sta != '退回中' and POprocess.sig_sta != '詢價中' and POprocess.sig_sta != '分派中' and POprocess.sig_sta != '下單中' and POprocess.sig_sta != '出貨中'}">
+<tbody>
 <tr>
+<td>${POprocess.sig_rank}</td>
 <td>${POprocess.po_sta}</td>
 <td>${POprocess.employeeBean.emp_name}</td>
 <td>
@@ -64,9 +73,10 @@ ${POprocess.sig_sug}
 </td>
 
 </tr>
+</tbody>
 </c:if>
 </c:forEach>
-</thead>
+
 </table>
 </c:if>
 </c:if>
@@ -85,7 +95,7 @@ ${POprocess.sig_sug}
 <h2>驗收單號 :${ck_id}</h2>
 <c:if test="${not empty Invprocess}">
 
-
+<input class="form-control" id="myInput" type="text" placeholder="Search"><br/>
 <table class="table table-striped table-hover" id="myTable">
 <thead>
 <tr>
@@ -95,9 +105,10 @@ ${POprocess.sig_sug}
 <th width="200px">簽核情形</th>
 <th>簽核建議</th>
 </tr>
-
+</thead>
 <c:forEach var="Invprocess" items="${Invprocess}">
 <c:if test="${Invprocess.sig_Sta != '待分派' and Invprocess.sig_Sta != '驗收中' }">
+<tbody>
 <tr>
 
 <td>${Invprocess.inv_Sta}</td>
@@ -106,13 +117,13 @@ ${POprocess.sig_sug}
 <td>${Invprocess.sig_Sta}</td>
 <td>${Invprocess.sig_Sug}</td>
 </tr>
-
+</tbody>
 </c:if>
 </c:forEach>
 
 <c:forEach var="Invprocess" items="${Invprocess}">
 <c:if test="${Invprocess.sig_Sta == '待分派' or Invprocess.sig_Sta == '驗收中' }">
-
+<tbody>
 <tr>
 <td><font color="red">${Invprocess.inv_Sta}</font></td>
 <td><font color="red">${Invprocess.employeeBean.emp_name}</font></td>
@@ -120,11 +131,11 @@ ${POprocess.sig_sug}
 <td><font color="red">${Invprocess.sig_Sta}</font></td>
 <td><font color="red">${Invprocess.sig_Sug}</font></td>
 </tr>
-
+</tbody>
 </c:if>
 </c:forEach>
 
-</thead>
+
 </table>
 </c:if>
 </c:if>
@@ -132,7 +143,7 @@ ${POprocess.sig_sug}
 
 </div>
 
-
+<script src="../js/app.js"></script>
 
 
 
@@ -257,6 +268,6 @@ ${POprocess.sig_sug}
 
 
 
-<script src="../js/app.js"></script>
+
 </body>
 </html>
