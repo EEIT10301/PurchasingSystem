@@ -172,8 +172,8 @@
 <Input type='hidden' name='sig_rank' value='${thispro.sig_rank}'>
 簽核意見:<p><textarea rows="5" cols="50"  name="SignSug">
 </textarea><font color="red">${error.plz}</font><p>
-<Input type='submit' name='send' value='${sendsubmit1}'>
-<Input type='submit' name='send' value='${sendsubmit2}'>
+<Input type='submit' name='send' value='${sendsubmit1}' onclick="tosend()">
+<Input type='submit' name='send' value='${sendsubmit2}' onclick="tosend()">
 </form>
 
 </c:if>
@@ -337,8 +337,8 @@ ${posign.sig_sug}
 <Input type='hidden' name='sig_rank' value='${nothispro.sig_rank}'>
 簽核意見:<p><textarea rows="5" cols="50"  name="SignSug">
 </textarea><font color="red">${error.plz}</font><p>
-<Input type='submit' name='send' value='${sendsubmit1}'>
-<Input type='submit' name='send' value='${sendsubmit2}'>
+<Input type='submit' name='send' value='${sendsubmit1}' onclick="tosend()">
+<Input type='submit' name='send' value='${sendsubmit2}' onclick="tosend()">
 </form>
 
 
