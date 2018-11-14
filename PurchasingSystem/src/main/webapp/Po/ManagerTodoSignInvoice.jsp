@@ -77,18 +77,45 @@ span {
 		<h2 id="message">${returnerrormeg}</h2>
 	</c:if>
 
-<c:if test="${empty listtodosign and empty backInvoiceSign}">
-		<h2>目前無請款單需要簽核</h2>
-		<hr>
-		<h2>無退回請款單</h2>
-</c:if>
+
 
 <div class="right">
+<c:if test="${empty listtodosign and empty backInvoiceSign}">
+<h2>待簽核請款單</h2>
+			<hr>
+			<table class="table table-striped table-hover">
+				<thead class="thead-light">
+					<tr>
+						<th>採購單單號</th>
+						<th>承辦人姓名</th>
+						<th>廠商名稱</th>
+						<th>總金額</th>
+						<th></th>
+					</tr>
+				</thead>
+			</table>	
+			<p>目前無請款單需要簽核</p>
+			<hr>
+		<h2>退回請款單</h2>
+		<hr>
+			<table class="table table-striped table-hover">
+				<thead class="thead-light">
+					<tr>
+						<th>採購單單號</th>
+						<th>承辦人姓名</th>
+						<th>廠商名稱</th>
+						<th>總金額</th>
+						<th></th>
+					</tr>
+				</thead>
+			</table>	
+			<p>無退回請款單需要處理</p>
+		</c:if>
 	<c:if test="${not empty listtodosign}">
 		<h2>待簽核請款單</h2>
 		<hr>
 			<table class="table table-striped table-hover">
-				<thead>
+				<thead class="thead-light">
 					<tr>
 				<th>請款單單號</th>
 				<th>承辦人姓名</th>
@@ -113,7 +140,7 @@ span {
 		<c:if test="${not empty backInvoiceSign}">
 			<h2>退回請款單</h2>
 			<table class="table table-striped table-hover">
-		<thead>
+		<thead class="thead-light">
 					<tr>
 					<th>請款單單號</th>
 					<th>承辦人姓名</th>

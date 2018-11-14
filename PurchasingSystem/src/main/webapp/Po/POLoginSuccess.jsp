@@ -34,7 +34,7 @@
 	<h1><font face="微軟正黑體">採購系統</font></h1>
 	<div class="text-right"><font face="微軟正黑體">
 		${user.emp_dep}/${user.emp_name} ${user.emp_job},你好 </font><a
-			href='POLogout.controller'><button type="button" class="btn btn-primary btn-sm">登出</button></a>
+			href='POLogout.controller'><button type="button" class="btn btn-white btn-sm">登出</button></a>
 	</div>
 	<div class="text-center">
 		<br> <span>${sendok}</span>
@@ -73,7 +73,7 @@
 				<a href='Polist.controller' class="btn"><img
 					class="card-img-top imgp" src="../sysimg/s2.png"></a>
 				<div class="card-body">
-					<h5 class="card-title"><font face="微軟正黑體">待辦請款單</font></h5>
+					<h5 class="card-title"><font face="微軟正黑體">待處理請款單</font></h5>
 				</div>
 			</div>
 			<br>
@@ -81,14 +81,14 @@
 				<a href='POSignStatement.controller' class="btn"><img
 					class="card-img-top imgp" src="../sysimg/s6.png"></a>
 				<div class="card-body">
-					<h5 class="card-title"><font face="微軟正黑體">採購單狀態</font></h5>
+					<h5 class="card-title"><font face="微軟正黑體">查詢採購單狀態</font></h5>
 				</div>
 			</div>
 			<div class="card bg-light f">
 				<a href='StatusMain.jsp' class="btn"><img
 					class="card-img-top imgp" src="../sysimg/s6.png"></a>
 				<div class="card-body">
-					<h5 class="card-title"><font face="微軟正黑體">查詢請款單</font></h5>
+					<h5 class="card-title"><font face="微軟正黑體">查詢請款單狀態</font></h5>
 				</div>
 			</div>
 			<div class="card bg-light f">

@@ -40,8 +40,19 @@ text-size:10px;
 	</c:if>
 	<c:if test="${empty list}">
 	<div class="right">
-	<h3>待分派請款單</h3><br>
-		<h4>尚無待分派請款單</h4>
+	<h3>待分派請款單</h3>
+			<table class="table table-striped table-hover">
+				<thead class="thead-light">
+					<tr>
+						<th>採購單單號</th>
+						<th>承辦人姓名</th>
+						<th>廠商名稱</th>
+						<th>總金額</th>
+						<th></th>
+					</tr>
+				</thead>
+			</table>	
+		<h4>目前無請款單需要分派</h4>
 	</div>
 	</c:if>
 	

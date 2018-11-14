@@ -33,7 +33,7 @@
 <body class="bg">
 	<h3><font face="微軟正黑體">驗收系統</font></h3>
     <div class="text-right"><font face="微軟正黑體">
-		 ${user.emp_id}/${user.emp_name}/${user.emp_job} </font><a
+		 ${user.emp_id},${user.emp_name},${user.emp_job} </font><a
 		  href='InvLogout.controller'><button type="button" class="btn">登出</button></a>
     </div>
     <div class="text-center">		
