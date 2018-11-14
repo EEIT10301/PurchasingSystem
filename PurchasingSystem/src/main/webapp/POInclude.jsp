@@ -60,7 +60,7 @@ span {
 	<a href="POLoginSuccess.jsp" style="font-family:微軟正黑體;">回首頁</a>
 	<div class="text-right" style="font-family:微軟正黑體;">
 		${user.emp_dep}/${user.emp_name} ${user.emp_job},你好<a
-			href='POLogout.controller'><button type="button" class="btn btn-primary btn-sm">登出</button></a>
+			href='POLogout.controller'><button type="button" class="btn btn-white btn-sm">登出</button></a>
 	</div>
 	<hr>
 	<div class="left">
@@ -101,7 +101,7 @@ span {
                 <a class="nav-link" href="Polist.controller">
                 <img class="card-img-top imgp" src="../sysimg/s2.png">
                   <span data-feather="layers"></span>
-                  	待辦請款單
+                  	待處理請款單
                 </a>
               </li>
               <li class="nav-item">
@@ -123,7 +123,7 @@ span {
                 <a class="nav-link" href="POFinalStatement.controller">
                 <img class="card-img-top imgp" src="../sysimg/s6.png">
                   <span data-feather="layers"></span>
-                  	查詢結案請款單
+                  	查詢已結案採購單
                 </a>
               </li>
             </ul>

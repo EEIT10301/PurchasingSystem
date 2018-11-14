@@ -13,11 +13,11 @@
 <title>財務系統</title>
 <style>
 .bg {
-	background-image:  	  linear-gradient(to right bottom,  
+	background-image:  	  
+	linear-gradient(to right bottom,  
       rgba(50, 0, 50, 0.1), 
       rgba(50, 0, 50, 0.1)), 
   	url('https://images.unsplash.com/photo-1495464101292-552d0b52fe41?auto=format&fit=crop&w=1350&q=80');
-  	
 }
 
 .f {
@@ -39,7 +39,7 @@
 .text-center{
 position: absolute;
   	top: 200px;
-  	left:200px;
+  	left:250px;
 }
 </style>
 </head>
@@ -50,7 +50,7 @@ position: absolute;
 	<div class="text-right ff">
 		${user.emp_dep}/${user.emp_name} ${user.emp_job},你好 <a
 			href='AccountLogout.controller'><button type="button"
-				class="btn btn-primary btn-sm">登出</button></a>
+				class="btn btn-white btn-sm">登出</button></a>
 		<hr width=100% size=5 color=white><br>
 	</div>
 		<hr>

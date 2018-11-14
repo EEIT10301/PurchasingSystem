@@ -33,16 +33,25 @@ text-size:10px;
 	<c:if test="${not empty returnerrormeg}">
 		<h2 id="message">${returnerrormeg}</h2>
 	</c:if>
-	<c:if test="${empty list}">
 				<div class="right">
+	<c:if test="${empty list}">
 			<h3>待審核請款單</h3>
-<br>
-		<h4>尚無待簽核請款單</h4>
-		</div>
+<table class="table table-striped table-hover">
+			<thead class="thead-light">
+				<tr>
+					<th scope="col">請款單單號</th>
+					<th scope="col">承辦人姓名</th>
+					<th scope="col">廠商名稱</th>
+					<th scope="col">總金額</th>
+					<th scope="col"></th>
+				</tr>
+			</thead>
+			</table>
+		<h4>目前無請款單需要簽核</h4>
 	</c:if>
 	<c:if test="${not empty list}">
-				<div class="right">
-				<h3>待審核請款單</h3><br>
+				
+				<h3>待審核請款單</h3>
 		<table class="table table-striped table-hover">
 			<thead class="thead-light">
 				<tr>
@@ -70,18 +79,26 @@ text-size:10px;
 				</c:forEach>
 			</tbody>
 		</table>
-		</div>
 	</c:if>
 	<c:if test="${user.emp_level==1 and empty listback}">
-			<div class="right">
-	
-	<hr>
-		<h4>尚無被退回請款單</h4>
-		</div>
+			<table class="table table-striped table-hover">
+			<thead class="thead-light">
+				<tr>
+					<th scope="col">請款單單號</th>
+					<th scope="col">承辦人姓名</th>
+					<th scope="col">廠商名稱</th>
+					<th scope="col">總金額</th>
+					<th scope="col"></th>
+				</tr>
+			</thead>
+			</table>
+
+		<h4>無退回請款單需要處理</h4>
+		
 	</c:if>
 
 	<c:if test="${not empty listback}">
-				<div class="right">
+				
 	
 	<hr>
 		<h2>被退回請款單</h2>
@@ -107,9 +124,9 @@ text-size:10px;
 				</c:forEach>
 			</tbody>
 		</table>
-		</div>
+		
 	</c:if>
-
+</div>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>

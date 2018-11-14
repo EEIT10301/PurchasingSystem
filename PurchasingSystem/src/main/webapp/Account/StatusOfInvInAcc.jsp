@@ -22,7 +22,7 @@
 	<br>
 	<h2>請款單單號:${bean.inv_id}</h2>
 <table class="table table-striped table-hover">
- <thead >
+ <thead class="thead-light">
 <tr>
 	<th scope="col">流程順序</th>
 	<th scope="col">流程</th>
