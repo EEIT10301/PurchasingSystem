@@ -29,9 +29,9 @@
 						<th width="200px">廠商名稱</th>
 						<th width="200px">料號</th>
 						<th width="200px">產品名稱</th>
+						<th width="200px">總數量</th>
 						<th width="200px">單價</th>
 						<th width="200px">總價</th>
-						<th width="200px">總數量</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -40,9 +40,9 @@
 							<td>${poDetail.pO_MainBean.pO_Vendor_InfoBean.vendor_name}</td>
 							<td>${poDetail.part_No}</td>
 							<td>${poDetail.productListBean.pro_name}</td>
+							<td>${poDetail.total_Qty}</td>
 							<td>${poDetail.quotation}</td>
 							<td>${poDetail.total_Price}</td>
-							<td>${poDetail.total_Qty}</td>
 						</tr>
 					</c:forEach>
 					<tr>
@@ -68,13 +68,13 @@
 
 			<%-- 		</c:forEach> --%>
 			
-			<p>請購需求交期:${appmain.app_GetDate}</p>
+			<h3>請購需求交期:${appmain.app_GetDate}</h3>
 			
 			下單意見:
 			<p>
 				<textarea rows="5" cols="50" name="signSug"></textarea>
 			</p>
-			預計出貨時間:<input type="datetime" name="shippingDate">
+			預計出貨時間:<input type="date" name="shippingDate">
 			<p>
 				<input type="submit" name="send" class='btn btn-default' value="送出">
 		</form>
