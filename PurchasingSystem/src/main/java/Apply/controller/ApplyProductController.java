@@ -70,7 +70,7 @@ public class ApplyProductController {
 		String pro_spe = jsonObj.getString("spe");
 		String pro_intro = jsonObj.getString("intro");
 		Integer pro_price = Integer.valueOf(jsonObj.getString("price"));
-		Integer pro_amount = Integer.valueOf(jsonObj.getString("amount"));
+		//Integer pro_amount = Integer.valueOf(jsonObj.getString("amount"));
 		em=productListService.select(partno);
 		java.util.Date date = new java.util.Date();
 		java.sql.Date data1 = new java.sql.Date(date.getTime());
@@ -83,7 +83,7 @@ public class ApplyProductController {
 		em.setPro_spe(pro_spe);
 		em.setPro_intro(pro_intro);
 		em.setPro_price(pro_price);
-		em.setPro_amount(pro_amount);
+		//em.setPro_amount(pro_amount);
 		em.setPro_date(datas);
 		return "1";
 	}
@@ -105,7 +105,8 @@ public class ApplyProductController {
 		String pro_spe = jsonObj.getString("spe");
 		String pro_intro = jsonObj.getString("intro");
 		Integer pro_price = Integer.valueOf(jsonObj.getString("price"));
-		Integer pro_amount = Integer.valueOf(jsonObj.getString("amount"));
+		//Integer pro_amount = Integer.valueOf(jsonObj.getString("amount"));
+		Integer pro_amount = 0;
 		java.util.Date date = new java.util.Date();
 		java.sql.Date data1 = new java.sql.Date(date.getTime());
 		DateFormat dateFormate =new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");

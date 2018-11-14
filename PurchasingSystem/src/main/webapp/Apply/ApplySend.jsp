@@ -35,7 +35,7 @@ font-size: 36px;
     font-size: 1.5em;
 }
 .right input{
-		width:120px;
+		width:150px;
 		background-color: white;
 		font-size: 1.05em;
 	}
@@ -120,7 +120,6 @@ font-size: 36px;
 <c:if test="${not empty Categlory}">
 <h3 align="center">物料項目: ${Categlory}</h3>
 </c:if>
-
 <c:if test="${cartnumber>0}">
 <%-- <h4>請購清單: 已加入${cartnumber}項物料</h4> --%>
 <div class="card bg-light d">
@@ -128,20 +127,22 @@ font-size: 36px;
 </a>
 <div class="card-body">
 <h5 class="card-title">已加入${cartnumber}項物料</h5>
-</div></div>
+</div>
+</div>
 </c:if>
 <h4><span>${cate}</span></h4>
 <h4><span>${errors.cate}</span></h4>
 <form action="<c:url value="/Apply/ApplyShoppingaddcart.controller" />" method="post">
-<input class="form-control" id="myInput" type="text" width="500px" placeholder="Search"><br/>
+<input class="form-control"  id="myInput" type="text" width="500px" placeholder="Search"><br/>
+
 <table class="table table-striped table-hover">
 <thead>
 			<tr>
 				<th>料號</th>
-				<th>產品名稱</th>
-				<th width="250px">產品大項</th>
-				<th>產品大項</th>
+				<th>物料名稱</th>
+				<th >物料項目</th>
 				<th>規格簡述</th>
+				<th>規格詳述</th>
 				<th>平均購買價格</th>
 				<th>目前庫存</th>
 				<th>請購數量</th>
@@ -174,6 +175,11 @@ font-size: 36px;
  </table>
   <Input type='submit' name='send' value='加入請購清單'>
 </form>
+<br>
+<div class="card bg-light d">
+<a href='ApplySend.controller?Categorly=again'><img class="card-img-top imgp" src="../sysimg/s13.png">
+</a><div class="card-body"><h5 class="card-title">返回物料項目</h5></div></div>
+
 </div>
   </c:if>
 <script src="../js/app.js"></script>

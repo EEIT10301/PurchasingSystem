@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+	<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -113,11 +113,11 @@ margin-right: 10px;
 			<div class="text-right">
 				<form action="ShowInvoice.xls" enctype="multipart/form-data"
 					method="post" id="xls">
-					<input class="btn btn-primary btn-sm" type="submit" value="下載Excel檔"></input>
+					<input class="btn btn-white btn-sm" type="submit" value="下載Excel檔"></input>
 				</form>
 				<form action="ShowInvoice.pdf" enctype="multipart/form-data"
 					method="post" id="pdf">
-				   <input class="btn btn-primary btn-sm" type="submit" value="下載Pdf檔"></input>
+				   <input class="btn btn-white btn-sm" type="submit" value="下載Pdf檔"></input>
 				</form>
 			</div>
 		</div>

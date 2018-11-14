@@ -84,7 +84,7 @@ public class POPlacementController {
 
 			return "SignedOrder.show";
 		} else {
-			model.addAttribute("noSignedOrderList", "無待簽核表單");
+			model.addAttribute("noSignedOrderList", "無待下單表單");
 			return "SignedOrder.show";
 		}
 	}

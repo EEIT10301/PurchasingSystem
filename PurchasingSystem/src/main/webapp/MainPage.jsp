@@ -98,10 +98,11 @@ body {
   	background-color: #fff;
   	color: #777;
 	font-size: 14px;
-
-input[type=reset]{
-margin-right:40px;
+	margin-left:30px;
+	margin-right:30px;
 }
+
+
 </style>
 </head>
 <body>

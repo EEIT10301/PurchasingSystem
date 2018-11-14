@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ include file="../POInclude.jsp"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,7 +30,7 @@
 				<c:if test="${sendl.sig_rank==1}">
 				<tr>
 					<td>${sendl.po_id}</td>
-					<td>${sendl.sig_date}</td>
+					<td><fmt:formatDate pattern="yyyy/MM/dd HH:mm" value="${sendl.sig_date}"/></td>
 					
 				<form action="<c:url value="/Po/sendEmployeesss.controller" />" method="post">
 					<c:forEach var="sendl1" items="${sendlist}">
@@ -42,7 +43,7 @@
 						<td><input type='hidden' name='sig_sta' value='${sendl1.sig_sta}'></td>
 						<td><input type='hidden' name='sig_sug' value='${sendl1.sig_sug}'></td>
 						<td><input type='hidden' name='sig_rank' value='${sendl1.sig_rank}'></td>
-						<td><input type='submit' name='send' value='分派'></td>
+						<td><input type='submit' name='send'  class='btn btn-default' value='分派'></td>
 										
 				</c:if>
 				</c:forEach>

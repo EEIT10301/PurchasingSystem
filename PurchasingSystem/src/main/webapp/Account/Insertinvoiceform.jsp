@@ -90,113 +90,9 @@ span {
 }
 </style>
 </head>
-<<<<<<< HEAD
 <%@ include file="../POInclude.jsp" %>
 <body>
 <div class="right">
-=======
-
-<body class="bg">
-<h1><font face="微軟正黑體">採購系統</font></h1>
-	<a href="POLoginSuccess.jsp" style="font-family:微軟正黑體;">回首頁</a>
-	<div class="text-right" style="font-family:微軟正黑體;">
-		${user.emp_dep}/${user.emp_name} ${user.emp_job},你好<a
-			href='POLogout.controller'><button type="button" class="btn btn-primary btn-sm">登出</button></a>
-	</div>
-	<hr>
-	<div class="left">
-<%-- 		<br> <span>${sendok}</span> --%>
-
-		<c:if test="${user.emp_level==1}">
-
-		<ul class="nav flex-column">
-              <li class="nav-item">
-                <a class="nav-link active" href="selectprice.controller">
-                <img class="card-img-top imgp" src="../sysimg/s2.png">
-                  <span data-feather="home"></span>
-                  	待詢價採購單 <span class="sr-only">(current)</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="POManagerSigner.controller">
-                <img class="card-img-top imgp" src="../sysimg/s2.png">
-                  <span data-feather="users"></span>
-                  	待處理採購單
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="signedorder.controller">
-                <img class="card-img-top imgp" src="../sysimg/s2.png">
-                  <span data-feather="file"></span>
-                  	待下單採購單
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="placedOrder.controller">
-                <img class="card-img-top imgp" src="../sysimg/s2.png">
-                  <span data-feather="shopping-cart"></span>
-                  	待收貨採購單
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="Polist.controller">
-                <img class="card-img-top imgp" src="../sysimg/s2.png">
-                  <span data-feather="layers"></span>
-                  	待辦請款單
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="POSignStatement.controller">
-                <img class="card-img-top imgp" src="../sysimg/s6.png">
-                  <span data-feather="bar-chart-2"></span>
-                 	 查詢採購單狀態
-                </a>
-              </li>
-
-              <li class="nav-item">
-                <a class="nav-link" href="StatusMain.jsp">
-                <img class="card-img-top imgp" src="../sysimg/s6.png">
-                  <span data-feather="layers"></span>
-                  	查詢請款單狀態
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="POFinalStatement.controller">
-                <img class="card-img-top imgp" src="../sysimg/s6.png">
-                  <span data-feather="layers"></span>
-                  	查詢結案請款單
-                </a>
-              </li>
-            </ul>
-		</c:if>
-		<c:if test="${user.emp_level==2}">
-		<ul class="nav flex-column">
-              <li class="nav-item">
-                <a class="nav-link active" href="sendEmployee.controller">
-                <img class="card-img-top imgp" src="../sysimg/s2.png">
-                  <span data-feather="home"></span>
-                  	待分派採購單 <span class="sr-only">(current)</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="POManagerSigner.controller">
-                <img class="card-img-top imgp" src="../sysimg/s2.png">
-                  <span data-feather="users"></span>
-                  	待處理採購單
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="todoSignInvoice.controller">
-                <img class="card-img-top imgp" src="../sysimg/s2.png">
-                  <span data-feather="file"></span>
-                  	待審核請款單
-                </a>
-              </li>
-             </ul>
-		</c:if>		
-	</div>
-	<div class="right">
->>>>>>> branch 'master' of https://github.com/EEIT10301/PurchasingSystem.git
 	<h1>請款單</h1>
 	<br>
 	<!-- 	<a href='Polist.controller'>回上一頁</a> -->
@@ -277,9 +173,6 @@ span {
 					data-target="#exampleModalCenter" value="送出">
 			</div>
 
-		<input class="btn btn-primary" type="reset" value="重新輸入"> <input
-			class="btn btn-primary" type="submit"  id="opener" value="送出">
-			<input type="hidden" value="${inv_id}" name="invid">
 	</form>
 	
 	</div>
@@ -297,6 +190,7 @@ span {
      
 			
 	
+			<input type="hidden" value="${inv_id}" name="invid">
 	<script>
 $(document).ready(function(){
 	var invid="${inv_id}";
@@ -310,18 +204,5 @@ $(document).ready(function(){
 	window.location.href='http://localhost:8080/PurchasingSystem/Po/POLoginSuccess.jsp';}
 });
 </script>
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
-		integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
-		crossorigin="anonymous"></script>
-		</div>
-
 </body>
 </html>
