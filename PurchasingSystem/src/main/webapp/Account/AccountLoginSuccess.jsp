@@ -13,11 +13,14 @@
 <title>財務系統</title>
 <style>
 .bg {
-	background-image:  	  
-	linear-gradient(to right bottom,  
-      rgba(50, 0, 50, 0.1), 
-      rgba(50, 0, 50, 0.1)), 
-  	url('https://images.unsplash.com/photo-1495464101292-552d0b52fe41?auto=format&fit=crop&w=1350&q=80');
+
+/* 	background-image:  	  linear-gradient(to right bottom,   */
+/*       rgba(50, 0, 50, 0.1),  */
+/*       rgba(50, 0, 50, 0.1)),  */
+/*   	url('https://images.unsplash.com/photo-1495464101292-552d0b52fe41?auto=format&fit=crop&w=1350&q=80'); */
+  	background-color: #FDF5E6;
+  		margin: 30px;
+  	
 }
 
 .f {
@@ -28,7 +31,7 @@
 }
 
 .ff {
-	color:white
+	color:black;
 }
 
 .m {
