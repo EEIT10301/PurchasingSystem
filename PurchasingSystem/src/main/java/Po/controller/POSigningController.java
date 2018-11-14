@@ -136,11 +136,7 @@ public class POSigningController {
 		EmployeeBean beans = (EmployeeBean) session.getAttribute("user");
 		String empid = beans.getEmp_id();
 		List<PO_SigningProcessBean> selectlist = pO_SigningProcessService.selectempidsend(empid, "詢價中");
-		List<PO_SigningProcessBean> selectlists = null;
-		
-		
-		
-		
+		List<PO_SigningProcessBean> selectlists = null;		
 		
 		selectlists = new LinkedList<PO_SigningProcessBean>();
 		if (selectlist == null) {
@@ -156,9 +152,14 @@ public class POSigningController {
 					selectlists.add(x);
 					selectlists.add(xs);
 				}
+//				String poid = x.getPo_id();
+//				String poid1 = "Ap" + poid.substring(2);
+//				App_MainBean appmain = app_MainService.select(poid1);
+				
+//				model.addAttribute("appmain", appmain);
 				model.addAttribute("selectlists", selectlists);
-
-			}
+				
+			}			
 			return "select.list";
 		}
 

@@ -13,8 +13,7 @@
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>	
 
 <title>待下單採購單</title>
 </head>
@@ -31,26 +30,25 @@
 	<%-- </c:forEach> --%>
 	<%-- </c:if> --%>
 
-
+	<div class="right">
 	<c:if test='${not empty noSignedOrderList}'>
-		<h2>${noApplylist}</h2>
+		<h2>${noSignedOrderList}</h2>
 	</c:if>
 
 	<c:if test='${not empty signedOrderList}'>
-		<div class="right">
-		<h3>待下單採購單</h3>
 		
+		<h3>待下單採購單</h3>		
 		<table class="table table-striped table-hover">
 		<thead>
 			<tr>
 				<th width="200px">採購單號</th>
 				<th width="200px">簽核主管</th>
-				<th width="200px">主管簽核時間</th>
-				
+				<th width="200px">主管簽核時間</th>				
 			</tr>		
 		</thead>
 		<tbody id="myTable">		 
 		<c:forEach var='signedOrderList' items='${signedOrderList}'>
+		<form action="<c:url value="/Po/signedOrderDetail.controller"/>"method="post">
 			<tr>
 				<td>${signedOrderList.po_id}</td>
 				<td>${managerID.emp_name}</td>
@@ -67,13 +65,14 @@
 			<td><input type='hidden' name='sig_sta' value='${signedOrderList.sig_sta}'></td>
 			<td><input type='hidden' name='sig_sug' value='${signedOrderList.sig_sug}'></td>
 			<td><input type='hidden' name='sig_rank' value='${signedOrderList.sig_rank}'></td>		
-			<td>
-			<form action="<c:url value="/Po/signedOrderDetail.controller?po_id=${signedOrderList.po_id}" />"method="post">
-			<input type="submit" value="下單" id="submit" class='btn btn-default'>
-<!-- 			<button id='submit' class='btn btn-default btn-sm' value=''>下單</button> -->
-			</form>
-			</td>
+<!-- 			<td><input type="submit" value="下單" id="submit" class='btn btn-default'></td> -->
+<%-- 			<form action="<c:url value="/Po/signedOrderDetail.controller?po_id=${signedOrderList.po_id}" />"method="post"> --%>
+			
+			<td><button id='submit' class='btn btn-default btn-sm' value=''>下單</button></td>
+<!-- 			</form> -->
+			
 			</tr> 
+			</form>
 		</c:forEach>		
 		
 		</tbody>
@@ -101,8 +100,9 @@
 
 	</table>
 
-	</div>
+	
 	</c:if>
+	</div>
 	<script src="../js/app.js"></script>
 </body>
 </html>
