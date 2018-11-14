@@ -57,7 +57,7 @@
 <td></td>
 <td>${pomain}元</td>
 </tr>
-
+ 
 <c:forEach var="podetail"  items="${podetail}">
 <tr>
 <td></td>
