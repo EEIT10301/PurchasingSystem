@@ -62,4 +62,10 @@ public class AccountLoginController {
 		session.removeAttribute("user");
 		return "indexlogin.return";
 	}
+	
+	@RequestMapping("/Account/POLogout.controller")
+	public String PoLogout2(String username, String password, Model model, HttpSession session) {
+		session.removeAttribute("user");
+		return "indexlogin.return";
+	}
 }

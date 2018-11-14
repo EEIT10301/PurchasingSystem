@@ -31,14 +31,18 @@
 	}
 	</script>
 	<script type="text/javascript">
-	$(document).ready(function(){		
-	if($(":submit").prop("disabled")==true){
-		alert("aaa");
-		$("#finish").show();
-	}else{
-		alert("sss");
-		$("#finish").hide();
-	}})
+	$(document).ready(function(){
+		var size = $(".subimit11").length;
+		var che=true; 
+		$(".subimit11").each(function(){
+				if($(this).prop("disabled")==false){
+					che=false;	
+				}	
+		 });
+		if(che==true)
+			$("#finish").attr("hidden",false);
+		
+	})
 	
 	
 	</script>
@@ -151,7 +155,7 @@
 		驗收簽核狀態:${Inv_SigningProcessBean.sig_Sta }
 		<Input type='hidden' name="sigSta" value='${Inv_SigningProcessBean.sig_Sta}'>
 		<Input type='hidden' name="chkId" value='${Inv_SigningProcessBean.chk_Id}'>
-        <Input style="position:absolute;right:700px ;" onclick="reconfirmOrder()" id="finish" type='submit' class='send123'name='send123' value='驗收完成'>
+        <Input style="position:absolute;right:700px;" onclick="reconfirmOrder()" id="finish" type='submit' class='send123'name='send123' value='驗收完成' hidden="hidden">
         </form>
       
 <!--         </div> -->

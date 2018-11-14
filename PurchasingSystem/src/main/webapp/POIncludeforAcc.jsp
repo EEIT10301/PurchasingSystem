@@ -19,11 +19,22 @@
 }
 
 .left {
-	width: 15%;
+	width: 20%;
 	float: left;
 	text-align: center;
 	height: 1500px;
 }
+
+.right{
+margin-left:50px;
+width: 75%;
+	float: left;
+	text-align: center;
+	height: 1500px;
+
+
+}
+
 
 .f {
 	/* 方格排列 */
@@ -38,8 +49,8 @@
 /* 	font-size: 11px; */
 /* 	margin-right:10px; */
 	float:left;
-	height:35px;
-	width:30px;
+	height:50px;
+	width:50px;
 }
 
 .card-text {

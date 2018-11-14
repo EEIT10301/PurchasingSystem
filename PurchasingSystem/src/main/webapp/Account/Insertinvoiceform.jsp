@@ -13,6 +13,22 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
+	</script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+		integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+		crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <style type="text/css">
 /* input, select { */
 /* 	display: block; */
@@ -74,107 +90,9 @@ span {
 }
 </style>
 </head>
-
-<body class="bg">
-<h1><font face="微軟正黑體">採購系統</font></h1>
-	<a href="POLoginSuccess.jsp" style="font-family:微軟正黑體;">回首頁</a>
-	<div class="text-right" style="font-family:微軟正黑體;">
-		${user.emp_dep}/${user.emp_name} ${user.emp_job},你好<a
-			href='POLogout.controller'><button type="button" class="btn btn-primary btn-sm">登出</button></a>
-	</div>
-	<hr>
-	<div class="left">
-<%-- 		<br> <span>${sendok}</span> --%>
-
-		<c:if test="${user.emp_level==1}">
-
-		<ul class="nav flex-column">
-              <li class="nav-item">
-                <a class="nav-link active" href="selectprice.controller">
-                <img class="card-img-top imgp" src="../sysimg/s2.png">
-                  <span data-feather="home"></span>
-                  	待詢價採購單 <span class="sr-only">(current)</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="POManagerSigner.controller">
-                <img class="card-img-top imgp" src="../sysimg/s2.png">
-                  <span data-feather="users"></span>
-                  	待處理採購單
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="signedorder.controller">
-                <img class="card-img-top imgp" src="../sysimg/s2.png">
-                  <span data-feather="file"></span>
-                  	待下單採購單
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="placedOrder.controller">
-                <img class="card-img-top imgp" src="../sysimg/s2.png">
-                  <span data-feather="shopping-cart"></span>
-                  	待收貨採購單
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="Polist.controller">
-                <img class="card-img-top imgp" src="../sysimg/s2.png">
-                  <span data-feather="layers"></span>
-                  	待辦請款單
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="POSignStatement.controller">
-                <img class="card-img-top imgp" src="../sysimg/s6.png">
-                  <span data-feather="bar-chart-2"></span>
-                 	 查詢採購單狀態
-                </a>
-              </li>
-
-              <li class="nav-item">
-                <a class="nav-link" href="StatusMain.jsp">
-                <img class="card-img-top imgp" src="../sysimg/s6.png">
-                  <span data-feather="layers"></span>
-                  	查詢請款單狀態
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="POFinalStatement.controller">
-                <img class="card-img-top imgp" src="../sysimg/s6.png">
-                  <span data-feather="layers"></span>
-                  	查詢結案請款單
-                </a>
-              </li>
-            </ul>
-		</c:if>
-		<c:if test="${user.emp_level==2}">
-		<ul class="nav flex-column">
-              <li class="nav-item">
-                <a class="nav-link active" href="sendEmployee.controller">
-                <img class="card-img-top imgp" src="../sysimg/s2.png">
-                  <span data-feather="home"></span>
-                  	待分派採購單 <span class="sr-only">(current)</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="POManagerSigner.controller">
-                <img class="card-img-top imgp" src="../sysimg/s2.png">
-                  <span data-feather="users"></span>
-                  	待處理採購單
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="todoSignInvoice.controller">
-                <img class="card-img-top imgp" src="../sysimg/s2.png">
-                  <span data-feather="file"></span>
-                  	待審核請款單
-                </a>
-              </li>
-             </ul>
-		</c:if>		
-	</div>
-	<div class="right">
+<%@ include file="../POInclude.jsp" %>
+<body>
+<div class="right">
 	<h1>請款單</h1>
 	<br>
 	<!-- 	<a href='Polist.controller'>回上一頁</a> -->
@@ -255,52 +173,36 @@ span {
 					data-target="#exampleModalCenter" value="送出">
 			</div>
 
-			<!-- 		<div class="modal fade" id="exampleModalCenter" tabindex="-1" -->
-			<!-- 		role="dialog" aria-labelledby="exampleModalCenterTitle" -->
-			<!-- 		aria-hidden="true"> -->
-			<!-- 		<div class="modal-dialog modal-dialog-centered" role="document"> -->
-			<!-- 			<div class="modal-content"> -->
-			<!-- 				<div class="modal-header"> -->
-			<!-- 					<h5 class="modal-title" id="exampleModalLongTitle">訊息</h5> -->
-			<!-- 					<button type="button" class="close" data-dismiss="modal" -->
-			<!-- 						aria-label="Close"> -->
-			<!-- 						<span aria-hidden="true">&times;</span> -->
-			<!-- 					</button> -->
-			<!-- 				</div> -->
-			<!-- 				<div class="modal-body"> -->
-			<%-- 					<c:if test="${not empty successmeg}"> --%>
-			<%-- 						<h2>請款單:${inv_id}${successmeg}</h2> --%>
-			<%-- 					</c:if> --%>
-			<%-- 					<c:if test="${not empty errormeg}"> --%>
-			<%-- 						<h2>請款單${errormeg}</h2> --%>
-			<%-- 					</c:if> --%>
-			<!-- 				</div> -->
-			<!-- 				<div class="modal-footer"> -->
-			<!-- 					<button type="button" class="btn btn-secondary" -->
-			<!-- 						data-dismiss="modal">Close</button> -->
-			<!-- 				</div> -->
-			<!-- 			</div> -->
-			<!-- 		</div> -->
-			<!-- 	</div> -->
-
-			<!-- 		<label class="btn btn-primary"> -->
-			<!-- 		<input id="upload_img" style="display:none;" type="file" name="Receiptpic"> -->
-			<!-- 		上傳圖片</label> -->
-
-		</div>
 	</form>
-
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
-		integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
-		crossorigin="anonymous"></script>
-		</div>
+	
+	</div>
+	
+<%-- <c:if test="${not empty successmeg}"> --%>
+<!-- 	<div id="dialog" title="Basic dialog"> -->
+<%-- 		<p>${successmeg}${inv_id}</p> --%>
+<!-- 	</div>	 -->
+<%-- 	</c:if> --%>
+<%-- 	<c:if test="${not empty errormeg}"> --%>
+<!-- 	<div id="dialog" title="Basic dialog"> -->
+<%-- 		<p>${errormeg}</p> --%>
+<!-- 	</div>	 -->
+<%-- 	</c:if> --%>
+     
+			
+	
+			<input type="hidden" value="${inv_id}" name="invid">
+	<script>
+$(document).ready(function(){
+	var invid="${inv_id}";
+	var successmeg="${successmeg}";
+	var errormeg="${errormeg}";
+	if(successmeg==="3"){
+	alert("請款單:"+invid+"新增成功");
+	window.location.href='http://localhost:8080/PurchasingSystem/Po/POLoginSuccess.jsp';}
+	if(errormeg=="4"){
+	alert("請款單:"+invid+"新增失敗");
+	window.location.href='http://localhost:8080/PurchasingSystem/Po/POLoginSuccess.jsp';}
+});
+</script>
 </body>
 </html>
