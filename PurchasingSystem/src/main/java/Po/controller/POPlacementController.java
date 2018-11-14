@@ -17,6 +17,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import Account.service.PO_Vendor_InfoService;
+import Apply.model.App_MainBean;
 import Apply.model.EmployeeBean;
 import Apply.service.App_MainService;
 import Apply.service.EmployeeService;
@@ -99,6 +100,12 @@ public class POPlacementController {
 //		Set<PO_SigningProcessBean> po_Sign = pm.getpO_SigningProcessBean();
 		PO_SigningProcessBean po_Sign = pO_SigningProcessService.select("下單中", po_id);
 		Set<PO_DetailBean> poDetail = pm.getpO_DetailBean();
+		
+		String poid = pm.getPo_id();
+		String poid1 = "Ap" + poid.substring(2);
+		App_MainBean appmain = app_MainService.select(poid1);
+		
+		model.addAttribute("appmain", appmain);		
 		model.addAttribute("pm", pm);
 		model.addAttribute("po_Sign", po_Sign);
 		model.addAttribute("poDetail", poDetail);

@@ -67,6 +67,9 @@
 			</table>
 
 			<%-- 		</c:forEach> --%>
+			
+			<p>請購需求交期:${appmain.app_GetDate}</p>
+			
 			下單意見:
 			<p>
 				<textarea rows="5" cols="50" name="signSug"></textarea>

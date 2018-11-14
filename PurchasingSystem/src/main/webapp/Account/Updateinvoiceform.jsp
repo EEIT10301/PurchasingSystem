@@ -53,7 +53,8 @@ table {
 	font-size: 13px;
 }
 
-<c:if test ="${user .emp_dep=='採購部'}">
+<c:if test ="${user.emp_dep=='採購部'}">
+
 .left {
 	width: 15%;
 	float: left;

@@ -71,42 +71,42 @@ span {
 		<ul class="nav flex-column">
               <li class="nav-item">
                 <a class="nav-link active" href="selectprice.controller">
-                <img class="card-img-top imgp" src="../sysimg/s2.png">
+                <img class="card-img-top imgp" src="../sysimg/s16.png">
                   <span data-feather="home"></span>
                   	待詢價採購單 <span class="sr-only">(current)</span>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="POManagerSigner.controller">
-                <img class="card-img-top imgp" src="../sysimg/s2.png">
+                <img class="card-img-top imgp" src="../sysimg/s15.png">
                   <span data-feather="users"></span>
                   	待處理採購單
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="signedorder.controller">
-                <img class="card-img-top imgp" src="../sysimg/s2.png">
+                <img class="card-img-top imgp" src="../sysimg/s17.png">
                   <span data-feather="file"></span>
                   	待下單採購單
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="placedOrder.controller">
-                <img class="card-img-top imgp" src="../sysimg/s2.png">
+                <img class="card-img-top imgp" src="../sysimg/s18.png">
                   <span data-feather="shopping-cart"></span>
                   	待收貨採購單
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="Polist.controller">
-                <img class="card-img-top imgp" src="../sysimg/s2.png">
+                <img class="card-img-top imgp" src="../sysimg/s14.png">
                   <span data-feather="layers"></span>
                   	待處理請款單
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="POSignStatement.controller">
-                <img class="card-img-top imgp" src="../sysimg/s6.png">
+                <img class="card-img-top imgp" src="../sysimg/s19.png">
                   <span data-feather="bar-chart-2"></span>
                  	 查詢採購單狀態
                 </a>
@@ -121,7 +121,7 @@ span {
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="POFinalStatement.controller">
-                <img class="card-img-top imgp" src="../sysimg/s6.png">
+                <img class="card-img-top imgp" src="../sysimg/s2.png">
                   <span data-feather="layers"></span>
                   	查詢已結案採購單
                 </a>
