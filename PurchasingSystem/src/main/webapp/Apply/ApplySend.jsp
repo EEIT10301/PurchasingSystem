@@ -138,10 +138,10 @@ font-size: 36px;
 <thead>
 			<tr>
 				<th>料號</th>
-				<th>產品名稱</th>
-				<th width="250px">產品大項</th>
-				<th>產品大項</th>
+				<th>物料名稱</th>
+				<th >物料項目</th>
 				<th>規格簡述</th>
+				<th>規格詳述</th>
 				<th>平均購買價格</th>
 				<th>目前庫存</th>
 				<th>請購數量</th>
@@ -174,6 +174,14 @@ font-size: 36px;
  </table>
   <Input type='submit' name='send' value='加入請購清單'>
 </form>
+<br>
+<br>
+<div class="card bg-light d">
+<a href='ApplySend.controller?Categorly=again'><img class="card-img-top imgp" src="../sysimg/s1.png">
+</a>
+<div class="card-body">
+<h6 class="card-title">重新選擇物料項目</h6>
+</div></div>
 </div>
   </c:if>
 <script src="../js/app.js"></script>
