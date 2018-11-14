@@ -30,16 +30,21 @@ font-size: 36px;
 	margin: 30px;
 }
 .right{
-	width:78%;
+	width:82%;
     float:left;
+    font-size: 1.5em;
 }
-
+.right input{
+		width:120px;
+		background-color: white;
+		font-size: 1.05em;
+	}
 
 .f {
 	/* 方格排列 */
 	display: inline-block;
-	width: 15rem;
-	height: 15rem;
+	width: 18rem;
+	height: 18rem;
 }
 
 .imgp {
@@ -49,8 +54,8 @@ font-size: 36px;
 }
 .imgp1 {
 
-	height:80px;
-	width:80px;
+	height:128px;
+	width:128px;
 }
 .d {
 	/* 方格排列 */
@@ -66,34 +71,36 @@ font-size: 36px;
 <c:if test="${empty Categlory}">
 <div class="right">
 <div class="text-center">
-<h3 align="center">選擇產品大項</h3>
+<h3 align="center">選擇物料項目</h3>
+<br>
+<br>
 <div class="card bg-light f">
 <a href='ApplySend.controller?Categorly=零組件' class="btn">
-<img class="card-img-top imgp1" src="../sysimg/s1.png"></a>
+<img class="card-img-top imgp1" src="../sysimg/s8.png"></a>
 <div class="card-body">
 <h5 class="card-title">零組件</h5>
 </div></div>
 <div class="card bg-light f">
 <a href='ApplySend.controller?Categorly=PC' class="btn">
-<img class="card-img-top imgp1" src="../sysimg/s1.png"></a>
+<img class="card-img-top imgp1" src="../sysimg/s9.png"></a>
 <div class="card-body">
 <h5 class="card-title">PC</h5>
 </div></div>
 <div class="card bg-light f">
 <a href='ApplySend.controller?Categorly=主板組件' class="btn">
-<img class="card-img-top imgp1" src="../sysimg/s1.png"></a>
+<img class="card-img-top imgp1" src="../sysimg/s10.png"></a>
 <div class="card-body">
 <h5 class="card-title">主板組件</h5>
 </div></div>
 <div class="card bg-light f">
 <a href='ApplySend.controller?Categorly=組合材號' class="btn">
-<img class="card-img-top imgp1" src="../sysimg/s1.png"></a>
+<img class="card-img-top imgp1" src="../sysimg/s11.png"></a>
 <div class="card-body">
-<h5 class="card-title">組合材號</h5>
+<h5 class="card-title">組合材料</h5>
 </div></div>
 <div class="card bg-light f">
 <a href='ApplySend.controller?Categorly=說明書' class="btn">
-<img class="card-img-top imgp1" src="../sysimg/s1.png"></a>
+<img class="card-img-top imgp1" src="../sysimg/s12.png"></a>
 <div class="card-body">
 <h5 class="card-title">說明書</h5>
 </div></div>
@@ -111,7 +118,7 @@ font-size: 36px;
 <c:if test="${not empty product}">
 <div class="right">
 <c:if test="${not empty Categlory}">
-<h4 align="center">產品項目: ${Categlory}</h4>
+<h3 align="center">物料項目: ${Categlory}</h3>
 </c:if>
 
 <c:if test="${cartnumber>0}">

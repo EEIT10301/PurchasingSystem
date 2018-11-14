@@ -36,8 +36,8 @@ font-size: 36px;
 <c:if test="${not empty thispro}">
 <div class="right">
 <div class='container'>
-<h4 align="center" >採購單編號:${pomainlist.po_id}</h4><br/>
-<h5 align="center">簽核中採購單</h5>
+<h3 align="center" >採購單編號:${pomainlist.po_id}</h3><br/>
+<h4 align="center">簽核中採購單</h4>
 <table class="table table-striped table-hover">
 <thead>
 <tr>
@@ -118,9 +118,7 @@ font-size: 36px;
 <td class='text-center' colspan='7'>${pomainlist.pO_Vendor_InfoBean.vendor_name}</td>
 </tr>
 <tr>
-<th class='text-center' colspan='5'>簽核流程</th>
-<th ></th>
-<th ></th>
+<th class='text-center' colspan='7'>簽核流程</th>
 </tr>
 <tr>
 <th>簽核順序</th>
@@ -128,7 +126,6 @@ font-size: 36px;
 <th>職稱</th>
 <th>簽核時間</th>
 <th>簽核建議</th>
-<th></th>
 <th></th>
 <th></th>
 </tr>
@@ -143,7 +140,6 @@ font-size: 36px;
 <td>${posignpro.sig_sug} </td>
 <td></td>
 <td></td>
-<td></td>
 </tr>
 </c:if>
 </c:forEach>
@@ -156,7 +152,6 @@ font-size: 36px;
 <c:if test="${not empty posignpro.sig_date}">
 <td>${posignpro.sig_date} </td>
 <td>${posignpro.sig_sug} </td>
-<td></td>
 <td></td>
 <td></td>
 </c:if>
@@ -175,11 +170,9 @@ font-size: 36px;
 <td>${posignpro.sig_sug} </td>
 <td></td>
 <td></td>
-<td></td>
 </c:if>
 <c:if test="${ empty posignpro.sig_date}">
 <td> </td>
-<td></td>
 <td></td>
 <td></td>
 <td></td>

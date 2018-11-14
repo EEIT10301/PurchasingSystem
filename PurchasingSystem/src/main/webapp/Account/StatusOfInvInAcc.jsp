@@ -18,8 +18,8 @@
 	<h3>查詢請款單狀態</h3>
 	<a href="../Po/queryStatus.controller" class="btn btn-info">查詢所有請款單</a>
 	<a href="../Po/queryStatusUndone.controller" class="btn btn-info">查詢未完成請款單</a>
-	<a href="../Po/queryStatusDone.controller" class="btn btn-info">查詢已完成請款單</a>
-<br>
+	<a href="../Po/queryStatusDone.controller" class="btn btn-info">查詢已完成請款單</a><br>
+	<br>
 	<h2>請款單單號:${bean.inv_id}</h2>
 <table class="table table-striped table-hover">
  <thead >

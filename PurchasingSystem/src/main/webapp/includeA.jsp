@@ -34,6 +34,9 @@
 	float: left;
 	text-align: center;
 	height: 1500px;
+	 position: absolute;
+  	top: 150px;
+
 }
 
 .f {
@@ -49,8 +52,8 @@
 	/* 	font-size: 11px; */
 	/* 	margin-right:10px; */
 	float: left;
-	height: 35px;
-	width: 30px;
+	height: 50px;
+	width: 50px;
 }
 
 .card-text {
@@ -64,6 +67,17 @@ ul {
 
 span {
 	margin-left: 1px;
+}
+
+.bg {
+	background-color: #FDF5E6;
+	/* 畫面間距 */
+	margin: 30px;
+}
+
+#message{
+color:red;
+text-size:10px;
 }
 </style>
 </head>
