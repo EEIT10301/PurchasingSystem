@@ -67,7 +67,8 @@ font-size: 36px;
 			<input type="hidden" name="po_sta" value="${po_sta}">
 			<input type="hidden" name="po_id" value="${po_id}">
 			<input type="hidden" name="po_manger" value="${po_manger}">
-			<input id="submit" type="submit" name="send" value="新增">
+<!-- 			<input id="submit" type="submit" name="send" value="新增"> -->
+			<button id='submit' class='btn btn-default' value=''>新增</button>
 						
 			</c:if>
 			</form>	

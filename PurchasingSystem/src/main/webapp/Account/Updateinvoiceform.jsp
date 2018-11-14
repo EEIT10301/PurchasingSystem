@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ include file="../include.jsp"%>
+<c:if test="${user.emp_dep=='財務部'}">
+	<%@ include file="../include.jsp"%></c:if>
+
 <html>
 
 <head>
@@ -12,6 +14,17 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
 	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
 	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+	integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+	integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+	crossorigin="anonymous"></script>
 <style type="text/css">
 /* input, select { */
 /* 	display: block; */
@@ -35,14 +48,134 @@
 /* label { */
 /* 	margin-right: 15px; */
 /* } */
-
 table {
 	font-size: 13px;
 }
+
+<c:if test="${user .emp_dep=='採購部'}">
+.left {
+	width: 15%;
+	float: left;
+	text-align: center;
+	height: 1500px;
+}
+
+.f {
+	/* 方格排列 */
+	display: inline-block;
+	width: 200px;
+	height: 50px;
+	margin-bottom: 5px;
+}
+
+.imgp {
+	/* 	padding: 0px; */
+	/* 	font-size: 11px; */
+	/* 	margin-right:10px; */
+	float: left;
+	height: 35px;
+	width: 30px;
+}
+
+.card-text {
+	font-size: 11px;
+}
+
+ul {
+	font-family: 微軟正黑體;
+	font-size: 19px;
+}
+
+span {
+	margin-left: 1px;
+}
+</c:if>
 </style>
 </head>
 
 <body class="bg">
+
+	<c:if test="${user.emp_dep=='採購部'}">
+
+		<h1>
+			<font face="微軟正黑體">採購系統</font>
+		</h1>
+		<a href="POLoginSuccess.jsp" style="font-family: 微軟正黑體;">回首頁</a>
+		<div class="text-right" style="font-family: 微軟正黑體;">
+			${user.emp_dep}/${user.emp_name} ${user.emp_job},你好<a
+				href='POLogout.controller'><button type="button"
+					class="btn btn-primary btn-sm">登出</button></a>
+		</div>
+		<hr>
+		<div class="left">
+			<%-- 		<br> <span>${sendok}</span> --%>
+
+			<c:if test="${user.emp_level==1}">
+
+				<ul class="nav flex-column">
+					<li class="nav-item"><a class="nav-link active"
+						href="selectprice.controller"> <img class="card-img-top imgp"
+							src="../sysimg/s2.png"> <span data-feather="home"></span>
+							待詢價採購單 <span class="sr-only">(current)</span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="POManagerSigner.controller"> <img
+							class="card-img-top imgp" src="../sysimg/s2.png"> <span
+							data-feather="users"></span> 待處理採購單
+					</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="signedorder.controller"> <img class="card-img-top imgp"
+							src="../sysimg/s2.png"> <span data-feather="file"></span>
+							待下單採購單
+					</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="placedOrder.controller"> <img class="card-img-top imgp"
+							src="../sysimg/s2.png"> <span data-feather="shopping-cart"></span>
+							待收貨採購單
+					</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="Polist.controller"> <img class="card-img-top imgp"
+							src="../sysimg/s2.png"> <span data-feather="layers"></span>
+							待辦請款單
+					</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="POSignStatement.controller"> <img
+							class="card-img-top imgp" src="../sysimg/s6.png"> <span
+							data-feather="bar-chart-2"></span> 查詢採購單狀態
+					</a></li>
+
+					<li class="nav-item"><a class="nav-link" href="StatusMain.jsp">
+							<img class="card-img-top imgp" src="../sysimg/s6.png"> <span
+							data-feather="layers"></span> 查詢請款單狀態
+					</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="POFinalStatement.controller"> <img
+							class="card-img-top imgp" src="../sysimg/s6.png"> <span
+							data-feather="layers"></span> 查詢結案請款單
+					</a></li>
+				</ul>
+			</c:if>
+			<c:if test="${user.emp_level==2}">
+				<ul class="nav flex-column">
+					<li class="nav-item"><a class="nav-link active"
+						href="sendEmployee.controller"> <img class="card-img-top imgp"
+							src="../sysimg/s2.png"> <span data-feather="home"></span>
+							待分派採購單 <span class="sr-only">(current)</span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="POManagerSigner.controller"> <img
+							class="card-img-top imgp" src="../sysimg/s2.png"> <span
+							data-feather="users"></span> 待處理採購單
+					</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="todoSignInvoice.controller"> <img
+							class="card-img-top imgp" src="../sysimg/s2.png"> <span
+							data-feather="file"></span> 待審核請款單
+					</a></li>
+				</ul>
+			</c:if>
+		</div>
+	</c:if>
 	<h3>請款單細項</h3>
 	<br>
 	<c:if test="${not empty successmeg}">
@@ -51,6 +184,9 @@ table {
 	<c:if test="${not empty errormeg}">
 		<h2>${errormeg}</h2>
 	</c:if>
+
+	<h3>請款單細項</h3>
+
 	<c:if test="${not empty invoice}">
 		<a href='Polist.controller'>回上一頁</a>
 		<form class="form-inline" method="post"
@@ -149,55 +285,28 @@ table {
 				</div>
 			</div>
 		</form>
-		<!-- 		<div class="modal fade" id="exampleModalCenter" tabindex="-1" -->
-		<!-- 		role="dialog" aria-labelledby="exampleModalCenterTitle" -->
-		<!-- 		aria-hidden="true"> -->
-		<!-- 		<div class="modal-dialog modal-dialog-centered" role="document"> -->
-		<!-- 			<div class="modal-content"> -->
-		<!-- 				<div class="modal-header"> -->
-		<!-- 					<h5 class="modal-title" id="exampleModalLongTitle">訊息</h5> -->
-		<!-- 					<button type="button" class="close" data-dismiss="modal" -->
-		<!-- 						aria-label="Close"> -->
-		<!-- 						<span aria-hidden="true">&times;</span> -->
-		<!-- 					</button> -->
-		<!-- 				</div> -->
-		<!-- 				<div class="modal-body"> -->
-		<%-- 					<c:if test="${not empty successmeg}"> --%>
-		<%-- 					<c:set var="successmeg" value="請款單:${inv_id}${successmeg}"></c:set> --%>
-		<%-- 					<c:out value="successmeg"></c:out> --%>
-		<%-- 					</c:if> --%>
-		<%-- 					<c:if test="${not empty errormeg}"> --%>
-		<%-- 					<c:set var="errormeg" value="請款單:${errormeg}"></c:set> --%>
-		<%-- 					<c:out value="errormeg"></c:out> --%>
-		<%-- 					</c:if> --%>
-		<!-- 				</div> -->
-		<!-- 				<div class="modal-footer"> -->
-		<!-- 					<button type="button" class="btn btn-secondary" -->
-		<!-- 						data-dismiss="modal">Close</button> -->
-		<!-- 				</div> -->
-		<!-- 			</div> -->
-		<!-- 		</div> -->
-		<!-- 	</div> -->
 	</c:if>
+
 	<!-- --------------------------------審核/分派/退回  ----------------------------------------- -->
-	<c:if test="${not empty sendsuccessmeg}">
-		<h2>${sendsuccessmeg}${inv_id}</h2>
-	</c:if>
-	<c:if test="${not empty senderrormeg}">
-		<h2>${senderrormeg}</h2>
-	</c:if>
-	<c:if test="${not empty returnsuccessmeg}">
-		<h2>${returnsuccessmeg}${inv_id}</h2>
-	</c:if>
-	<c:if test="${not empty returnerrormeg}">
-		<h2>${returnerrormeg}</h2>
-	</c:if>
-	<c:if test="${not empty dispatchsuccessmeg}">
-		<h2>${dispatchsuccessmeg}${inv_id}</h2>
-	</c:if>
-	<c:if test="${not empty dispatcherrormeg}">
-		<h2>${dispatcherrormeg}</h2>
-	</c:if>
+
+	<%-- 	<c:if test="${not empty sendsuccessmeg}"> --%>
+	<%-- 		<h2>${sendsuccessmeg}${inv_id}</h2> --%>
+	<%-- 	</c:if> --%>
+	<%-- 	<c:if test="${not empty senderrormeg}"> --%>
+	<%-- 		<h2>${senderrormeg}</h2> --%>
+	<%-- 	</c:if> --%>
+	<%-- 	<c:if test="${not empty returnsuccessmeg}"> --%>
+	<%-- 		<h2>${returnsuccessmeg}${inv_id}</h2> --%>
+	<%-- 	</c:if> --%>
+	<%-- 	<c:if test="${not empty returnerrormeg}"> --%>
+	<%-- 		<h2>${returnerrormeg}</h2> --%>
+	<%-- 	</c:if> --%>
+	<%-- 	<c:if test="${not empty dispatchsuccessmeg}"> --%>
+	<%-- 		<h2>${dispatchsuccessmeg}${inv_id}</h2> --%>
+	<%-- 	</c:if> --%>
+	<%-- 	<c:if test="${not empty dispatcherrormeg}"> --%>
+	<%-- 		<h2>${dispatcherrormeg}</h2> --%>
+	<%-- 	</c:if> --%>
 
 	<c:if test="${not empty invid}">
 		<%-- 		<c:set var="dep" value="${user.emp_dep}" /> --%>
@@ -225,6 +334,7 @@ table {
 
 			<input type="hidden" name="status" value="${status}"> <input
 				type="hidden" value="${invid}" name="invid">
+
 			<div class="lr">
 				<div class="form-group mb-2">
 					<label for="Inv_id" class="col-md-4">請款單單號</label> <input
@@ -261,7 +371,6 @@ table {
 						type="text" class="form-control col-md-5 mb-2"
 						name="Payment_method" readonly="readonly" id=""
 						value="${payMethod}">
-
 				</div>
 				<div class="form-group mb-2">
 					<label for="Except_Payment_Date" class="col-md-4">預計付款日</label> <input
@@ -329,24 +438,78 @@ table {
     </textarea>
 				</div>
 				<div class=" text-right">
-
-					<input  class="btn" type="submit" name="action" value="送出"> <input
-						  class="btn" type="submit" name="action" value="退回">
+					<input class="btn" type="submit" name="action" value="送出">
+					<input class="btn" type="submit" name="action" value="退回">
 				</div>
 			</div>
 		</form>
 	</c:if>
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
-		integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
-		crossorigin="anonymous"></script>
+	<input type="hidden" value="${inv_id}" name="invidback">
+
+	<script>
+		$(document)
+				.ready(
+						function() {
+							var invid = "${inv_id}";
+							var sendsuccessmeg = "${sendsuccessmeg}";
+							var senderrormeg = "${senderrormeg}";
+							var successmeg = "${successmeg}";
+							var errormeg = "${errormeg}";
+							var returnsuccessmeg = "${returnsuccessmeg}";
+							var returnerrormeg = "${returnerrormeg}";
+							var dispatchsuccessmeg = "${dispatchsuccessmeg}";
+							var dispatcherrormeg = "${dispatcherrormeg}";
+
+							if (successmeg === "1") {
+								alert("請款單" + invid + "修改送出成功");
+								window.location.href = 'http://localhost:8080/PurchasingSystem/Po/POLoginSuccess.jsp';
+							}
+							if (errormeg === "2") {
+								alert("請款單" + invid + "修改送出失敗");
+								window.location.href = 'http://localhost:8080/PurchasingSystem/Po/POLoginSuccess.jsp';
+							}
+							if (sendsuccessmeg === "1") {
+								alert("請款單" + invid + "審核送出成功");
+								window.location.href = 'http://localhost:8080/PurchasingSystem/Po/POLoginSuccess.jsp';
+							}
+							if (senderrormeg == "2") {
+								alert("請款單" + invid + "審核送出失敗");
+								window.location.href = 'http://localhost:8080/PurchasingSystem/Po/POLoginSuccess.jsp';
+							}
+							if (sendsuccessmeg == "3") {
+								alert("請款單" + invid + "審核送出成功");
+								window.location.href = 'http://localhost:8080/PurchasingSystem/Account/AccountLoginSuccess.jsp';
+							}
+							if (senderrormeg == "4") {
+								alert("請款單" + invid + "審核送出失敗");
+								window.location.href = 'http://localhost:8080/PurchasingSystem/Account/AccountLoginSuccess.jsp';
+							}
+							if (returnsuccessmeg == "1") {
+								alert("請款單" + invid + "退回成功");
+								window.location.href = 'http://localhost:8080/PurchasingSystem/Po/POLoginSuccess.jsp';
+							}
+							if (returnsuccessmeg == "2") {
+								alert("請款單" + invid + "退回失敗");
+								window.location.href = 'http://localhost:8080/PurchasingSystem/Po/POLoginSuccess.jsp';
+							}
+							if (returnerrormeg == "3") {
+								alert("請款單" + invid + "退回成功");
+								window.location.href = 'http://localhost:8080/PurchasingSystem/Account/AccountLoginSuccess.jsp';
+							}
+							if (returnerrormeg == "4") {
+								alert("請款單" + invid + "退回失敗");
+								window.location.href = 'http://localhost:8080/PurchasingSystem/Account/AccountLoginSuccess.jsp';
+							}
+							if (dispatchsuccessmeg == "1") {
+								alert("請款單" + invid + "分派成功");
+								window.location.href = 'http://localhost:8080/PurchasingSystem/Account/AccountLoginSuccess.jsp';
+							}
+							if (dispatcherrormeg == "2") {
+								alert("請款單" + invid + "分派失敗");
+								window.location.href = 'http://localhost:8080/PurchasingSystem/Account/AccountLoginSuccess.jsp';
+							}
+						});
+	</script>
 </body>
 
 </html>

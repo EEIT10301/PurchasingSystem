@@ -110,9 +110,12 @@ font-size: 36px;
 <c:if test='${empty thispage}'>
 第 1 頁
 </c:if>
-頁數:
+
 <c:forEach var='i' begin='1' end='${pages}'>
-<a href='toApplySignnerdetailpages.controller?page=<c:out value="${i}"/>'><c:out value="${i}"/></a>
+
+<a href='toApplySignnerdetailpages.controller?page=<c:out value="${i}"/>'>
+<button id='' class='btn btn-default' value=''><c:out value="${i}"/></button>
+</a>
 </c:forEach>
 <p>
 <script src="../js/app.js"></script>

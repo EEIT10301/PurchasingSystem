@@ -49,7 +49,7 @@
 
 
 				<h3>採購單號:${poprocess1.pO_MainBean.po_id}</h3>
-				<span style="color:red; font-size:20px;">${errors.number}</span>
+<%-- 				<span style="color:red; font-size:20px;">${errors.number}</span> --%>
 				
 				<Input type='hidden' name='posta1' value='${poprocess1.po_sta}'>
 				<Input type='hidden' name='poid1' value='${poprocess1.po_id}'>
@@ -73,8 +73,9 @@
 								<td>${thispo_detailBean.total_Qty}</td>
 								<td><Input type='text' name='total_Price'
 									value='${param.total_Price}'></td>
-								<td><Input type='text' name='quotation'
-									value='${param.quotation}'>${errors.number}</td>
+								<td><Input type='text' name='quotation'									 
+									value='${param.quotation}'>
+									<font size="3" color="red">${errors.number}</font></td>
 								<td><Input type='hidden' name='po_id'
 									value='${thispo_detailBean.po_id}'></td>
 								<td><Input type='hidden' name='part_No'
@@ -87,7 +88,8 @@
 						</c:forEach>
 					</tbody>
 				</table>
-				<Input type='submit' name='send' value='產生詢價單' id="submit">
+<!-- 				<Input type='submit' name='send' value='產生詢價單' id="submit"> -->
+				<button id='submit' class='btn btn-default' value=''>產生詢價單</button>
 		</form>
 	</c:if>
 </div>

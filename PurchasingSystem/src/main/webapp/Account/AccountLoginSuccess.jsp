@@ -13,10 +13,13 @@
 <title>財務系統</title>
 <style>
 .bg {
-	background-image:  	  linear-gradient(to right bottom,  
-      rgba(50, 0, 50, 0.1), 
-      rgba(50, 0, 50, 0.1)), 
-  	url('https://images.unsplash.com/photo-1495464101292-552d0b52fe41?auto=format&fit=crop&w=1350&q=80');
+
+/* 	background-image:  	  linear-gradient(to right bottom,   */
+/*       rgba(50, 0, 50, 0.1),  */
+/*       rgba(50, 0, 50, 0.1)),  */
+/*   	url('https://images.unsplash.com/photo-1495464101292-552d0b52fe41?auto=format&fit=crop&w=1350&q=80'); */
+  	background-color: #FDF5E6;
+  		margin: 30px;
   	
 }
 
@@ -28,12 +31,18 @@
 }
 
 .ff {
-	color:white
+	color:black;
 }
 
 .m {
 	/* 畫面內縮 */
 	margin: 30px;
+}
+
+.text-center{
+position: absolute;
+  	top: 200px;
+  	left:250px;
 }
 </style>
 </head>
@@ -44,10 +53,10 @@
 	<div class="text-right ff">
 		${user.emp_dep}/${user.emp_name} ${user.emp_job},你好 <a
 			href='AccountLogout.controller'><button type="button"
-				class="btn btn-primary btn-sm">登出</button></a>
+				class="btn btn-white btn-sm">登出</button></a>
 		<hr width=100% size=5 color=white><br>
 	</div>
-
+		<hr>
 	<div class="text-center">
 		<c:if test="${user.emp_level==2}">
 			<div class="card bg-light f">
