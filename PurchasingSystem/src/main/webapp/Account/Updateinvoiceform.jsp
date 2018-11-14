@@ -183,14 +183,6 @@ span {
 	</c:if>
 	<h3>請款單細項</h3>
 	<br>
-	<c:if test="${not empty successmeg}">
-		<h2>${successmeg}${inv_id}</h2>
-	</c:if>
-	<c:if test="${not empty errormeg}">
-		<h2>${errormeg}</h2>
-	</c:if>
-
-<!-- 	<h3>請款單細項</h3> -->
 
 	<c:if test="${not empty invoice}">
 		<a href='Polist.controller'>回上一頁</a>
@@ -316,25 +308,6 @@ span {
 	</c:if>
 
 	<!-- --------------------------------審核/分派/退回  ----------------------------------------- -->
-
-	<%-- 	<c:if test="${not empty sendsuccessmeg}"> --%>
-	<%-- 		<h2>${sendsuccessmeg}${inv_id}</h2> --%>
-	<%-- 	</c:if> --%>
-	<%-- 	<c:if test="${not empty senderrormeg}"> --%>
-	<%-- 		<h2>${senderrormeg}</h2> --%>
-	<%-- 	</c:if> --%>
-	<%-- 	<c:if test="${not empty returnsuccessmeg}"> --%>
-	<%-- 		<h2>${returnsuccessmeg}${inv_id}</h2> --%>
-	<%-- 	</c:if> --%>
-	<%-- 	<c:if test="${not empty returnerrormeg}"> --%>
-	<%-- 		<h2>${returnerrormeg}</h2> --%>
-	<%-- 	</c:if> --%>
-	<%-- 	<c:if test="${not empty dispatchsuccessmeg}"> --%>
-	<%-- 		<h2>${dispatchsuccessmeg}${inv_id}</h2> --%>
-	<%-- 	</c:if> --%>
-	<%-- 	<c:if test="${not empty dispatcherrormeg}"> --%>
-	<%-- 		<h2>${dispatcherrormeg}</h2> --%>
-	<%-- 	</c:if> --%>
 
 	<c:if test="${not empty invid}">
 		<%-- 		<c:set var="dep" value="${user.emp_dep}" /> --%>
