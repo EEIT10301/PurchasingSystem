@@ -163,9 +163,7 @@ span {
 			</div>
 			<div class="form-group  mb-2">
 				<label class="col-md-2">簽核意見</label>
-				<textarea rows="2" cols="58" name="SignSug" class="col-md-6 mb-2"
-					required>
-		</textarea>
+				<textarea rows="2" cols="58" name="SignSug" class="col-md-6 mb-2" required></textarea>
 			</div>
 			<div class=" text-right">
 				<input class="btn" type="reset" value="重新輸入"> <input
