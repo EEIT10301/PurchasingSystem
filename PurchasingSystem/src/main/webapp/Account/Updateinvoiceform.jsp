@@ -16,6 +16,19 @@
 	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
 	crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+<<<<<<< HEAD
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+		integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+		crossorigin="anonymous"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+=======
 	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 	crossorigin="anonymous"></script>
 <script
@@ -26,6 +39,7 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
 	integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
 	crossorigin="anonymous"></script>
+>>>>>>> branch 'master' of https://github.com/EEIT10301/PurchasingSystem.git
 <style type="text/css">
 /* input, select { */
 /* 	display: block; */
@@ -99,6 +113,9 @@ span {
 </head>
 
 <body class="bg">
+<<<<<<< HEAD
+	<h3>請款單細項</h3>
+=======
 
 	<c:if test="${user.emp_dep=='採購部'}">
 
@@ -183,15 +200,8 @@ span {
 	</c:if>
 	<h3>請款單細項</h3>
 	<br>
-	<c:if test="${not empty successmeg}">
-		<h2>${successmeg}${inv_id}</h2>
-	</c:if>
-	<c:if test="${not empty errormeg}">
-		<h2>${errormeg}</h2>
-	</c:if>
 
-<!-- 	<h3>請款單細項</h3> -->
-
+>>>>>>> branch 'master' of https://github.com/EEIT10301/PurchasingSystem.git
 	<c:if test="${not empty invoice}">
 		<a href='Polist.controller'>回上一頁</a>
 		<form class="form-inline" method="post"
@@ -263,6 +273,7 @@ span {
 					<label class="col-md-3">原憑證圖檔</label> <a class="mb-2"
 						href="..${recript_pic}" target="_blank">${picName}</a>
 				</div>
+
 				<div class="form-group mb-2">
 					<label for="Receiptpic" class="col-md-3">修改憑證圖檔 </label> <input
 						class="form-control col-md-3 mb-2" type="file" name="Receiptpic"
@@ -317,45 +328,26 @@ span {
 
 	<!-- --------------------------------審核/分派/退回  ----------------------------------------- -->
 
-	<%-- 	<c:if test="${not empty sendsuccessmeg}"> --%>
-	<%-- 		<h2>${sendsuccessmeg}${inv_id}</h2> --%>
-	<%-- 	</c:if> --%>
-	<%-- 	<c:if test="${not empty senderrormeg}"> --%>
-	<%-- 		<h2>${senderrormeg}</h2> --%>
-	<%-- 	</c:if> --%>
-	<%-- 	<c:if test="${not empty returnsuccessmeg}"> --%>
-	<%-- 		<h2>${returnsuccessmeg}${inv_id}</h2> --%>
-	<%-- 	</c:if> --%>
-	<%-- 	<c:if test="${not empty returnerrormeg}"> --%>
-	<%-- 		<h2>${returnerrormeg}</h2> --%>
-	<%-- 	</c:if> --%>
-	<%-- 	<c:if test="${not empty dispatchsuccessmeg}"> --%>
-	<%-- 		<h2>${dispatchsuccessmeg}${inv_id}</h2> --%>
-	<%-- 	</c:if> --%>
-	<%-- 	<c:if test="${not empty dispatcherrormeg}"> --%>
-	<%-- 		<h2>${dispatcherrormeg}</h2> --%>
-	<%-- 	</c:if> --%>
-
 	<c:if test="${not empty invid}">
-		<%-- 		<c:set var="dep" value="${user.emp_dep}" /> --%>
-		<%-- 		<c:set var="dep1" value="採購部" /> --%>
-		<%-- 		<c:set var="dep2" value="財務部" /> --%>
-		<%-- 		<c:set var="status1" value="dispatch" /> --%>
-		<%-- 		<c:choose> --%>
-		<%-- 			<c:when test="${(dep==dep1) && (user.emp_level==2)}"> --%>
-		<!-- 				<a href='todoSignInvoice.controller'>回上一頁</a> -->
-		<%-- 			</c:when> --%>
-		<%-- 			<c:when test="${(dep==dep2) && (user.emp_level==1)}"> --%>
-		<!-- 				<a href='ToDoSignlevel1.controller'>回上一頁</a> -->
-		<%-- 			</c:when> --%>
-		<%-- 			<c:when --%>
-		<%-- 				test="${(dep==dep2) && (user.emp_level==2) && (status==status1)}"> --%>
-		<!-- 				<a href='ToDoAssignInvoice.controller'>回上一頁</a> -->
-		<%-- 			</c:when> --%>
-		<%-- 			<c:otherwise> --%>
-		<!-- 				<a href='ToDoSignInvoice.controller'>回上一頁</a> -->
-		<%-- 			</c:otherwise> --%>
-		<%-- 		</c:choose> --%>
+				<c:set var="dep" value="${user.emp_dep}" />
+				<c:set var="dep1" value="採購部" />
+				<c:set var="dep2" value="財務部" />
+				<c:set var="status1" value="dispatch" />
+				<c:choose>
+					<c:when test="${(dep==dep1) && (user.emp_level==2)}">
+						<a href='todoSignInvoice.controller'>回上一頁</a>
+					</c:when>
+					<c:when test="${(dep==dep2) && (user.emp_level==1)}">
+						<a href='ToDoSignlevel1.controller'>回上一頁</a>
+					</c:when>
+					<c:when
+						test="${(dep==dep2) && (user.emp_level==2) && (status==status1)}"> 
+						<a href='ToDoAssignInvoice.controller'>回上一頁</a>
+		 			</c:when> 
+		 			<c:otherwise> 
+						<a href='ToDoSignInvoice.controller'>回上一頁</a>
+		 			</c:otherwise> 
+		 		</c:choose> 
 
 		<form class="form-inline" method="post"
 			action="<c:url value="/Account/ReviewInvoice.controller"/>">
@@ -491,69 +483,50 @@ span {
 	<input type="hidden" value="${inv_id}" name="invidback">
 
 	<script>
-		$(document)
-				.ready(
-						function() {
-							var invid = "${inv_id}";
-							var sendsuccessmeg = "${sendsuccessmeg}";
-							var senderrormeg = "${senderrormeg}";
-							var successmeg = "${successmeg}";
-							var errormeg = "${errormeg}";
-							var returnsuccessmeg = "${returnsuccessmeg}";
-							var returnerrormeg = "${returnerrormeg}";
-							var dispatchsuccessmeg = "${dispatchsuccessmeg}";
-							var dispatcherrormeg = "${dispatcherrormeg}";
-
-							if (successmeg === "1") {
-								alert("請款單" + invid + "修改送出成功");
-								window.location.href = 'http://localhost:8080/PurchasingSystem/Po/POLoginSuccess.jsp';
-							}
-							if (errormeg === "2") {
-								alert("請款單" + invid + "修改送出失敗");
-								window.location.href = 'http://localhost:8080/PurchasingSystem/Po/POLoginSuccess.jsp';
-							}
-							if (sendsuccessmeg === "1") {
-								alert("請款單" + invid + "審核送出成功");
-								window.location.href = 'http://localhost:8080/PurchasingSystem/Po/POLoginSuccess.jsp';
-							}
-							if (senderrormeg == "2") {
-								alert("請款單" + invid + "審核送出失敗");
-								window.location.href = 'http://localhost:8080/PurchasingSystem/Po/POLoginSuccess.jsp';
-							}
-							if (sendsuccessmeg == "3") {
-								alert("請款單" + invid + "審核送出成功");
-								window.location.href = 'http://localhost:8080/PurchasingSystem/Account/AccountLoginSuccess.jsp';
-							}
-							if (senderrormeg == "4") {
-								alert("請款單" + invid + "審核送出失敗");
-								window.location.href = 'http://localhost:8080/PurchasingSystem/Account/AccountLoginSuccess.jsp';
-							}
-							if (returnsuccessmeg == "1") {
-								alert("請款單" + invid + "退回成功");
-								window.location.href = 'http://localhost:8080/PurchasingSystem/Po/POLoginSuccess.jsp';
-							}
-							if (returnsuccessmeg == "2") {
-								alert("請款單" + invid + "退回失敗");
-								window.location.href = 'http://localhost:8080/PurchasingSystem/Po/POLoginSuccess.jsp';
-							}
-							if (returnerrormeg == "3") {
-								alert("請款單" + invid + "退回成功");
-								window.location.href = 'http://localhost:8080/PurchasingSystem/Account/AccountLoginSuccess.jsp';
-							}
-							if (returnerrormeg == "4") {
-								alert("請款單" + invid + "退回失敗");
-								window.location.href = 'http://localhost:8080/PurchasingSystem/Account/AccountLoginSuccess.jsp';
-							}
-							if (dispatchsuccessmeg == "1") {
-								alert("請款單" + invid + "分派成功");
-								window.location.href = 'http://localhost:8080/PurchasingSystem/Account/AccountLoginSuccess.jsp';
-							}
-							if (dispatcherrormeg == "2") {
-								alert("請款單" + invid + "分派失敗");
-								window.location.href = 'http://localhost:8080/PurchasingSystem/Account/AccountLoginSuccess.jsp';
-							}
-						});
-	</script>
+	$(document).ready(function(){
+		var invid="${inv_id}";
+		var sendsuccessmeg="${sendsuccessmeg}";
+		var senderrormeg="${senderrormeg}";
+		var successmeg="${successmeg}";
+		var errormeg="${errormeg}";
+		var returnsuccessmeg="${returnsuccessmeg}";
+		var returnerrormeg="${returnerrormeg}";
+		var dispatchsuccessmeg="${dispatchsuccessmeg}";
+		var dispatcherrormeg="${dispatcherrormeg}";
+		if(successmeg==="1"){
+			swal("","請款單:"+invid+"修改送出成功","success").then(function(){
+				window.location.href='http://localhost:8080/PurchasingSystem/Po/POLoginSuccess.jsp'
+			});
+		}
+		if(sendsuccessmeg=="1"){
+			swal("","請款單"+invid+"審核送出成功","success").then(function(){
+				window.location.href='http://localhost:8080/PurchasingSystem/Po/POLoginSuccess.jsp'
+			});
+		}
+		if(sendsuccessmeg=="3"){
+			swal("","請款單"+invid+"審核送出成功","success").then(function(){
+				window.location.href='http://localhost:8080/PurchasingSystem/Account/AccountLoginSuccess.jsp'
+			});
+		}
+		if(returnsuccessmeg=="1"){
+			swal("","請款單"+invid+"退回成功","success").then(function(){
+				window.location.href='http://localhost:8080/PurchasingSystem/Po/POLoginSuccess.jsp'
+			});
+		}
+		
+		if(returnsuccessmeg=="3"){
+			swal("","請款單"+invid+"退回成功","success").then(function(){
+				window.location.href='http://localhost:8080/PurchasingSystem/Account/AccountLoginSuccess.jsp'
+			});
+		}
+		if(dispatchsuccessmeg=="1"){
+			swal("","請款單"+invid+"分派成功","success").then(function(){
+				window.location.href='http://localhost:8080/PurchasingSystem/Account/AccountLoginSuccess.jsp'
+			});
+		}
+	});
+	
+</script>
 </body>
 
 </html>

@@ -131,7 +131,7 @@ span {
 					<td>${show.employeeBean.emp_name}</td>
 					<td>${show.pO_MainBean.pO_Vendor_InfoBean.vendor_name}</td>
 					<td>$${show.total_price}</td>
-					<td><a href="SignInvoiceForm.controller?invid=${show.inv_id}"><button type="button" class="btn btn-primary btn-sm">審核請款單</button></a></td>
+					<td><a href="SignInvoiceForm.controller?invid=${show.inv_id}"><button type="button" class="btn btn-white btn-sm">審核請款單</button></a></td>
 				</tr>
 			</c:forEach>
 		</table>
@@ -157,7 +157,7 @@ span {
 						<td>${show2.pO_MainBean.pO_Vendor_InfoBean.vendor_name}</td>
 						<td>$${show2.total_price}</td>
 						<td><a
-							href="SignInvoiceFormBack.controller?invid=${show2.inv_id}">查看</a></td>
+							href="SignInvoiceFormBack.controller?invid=${show2.inv_id}"><button type="button" class="btn btn-white btn-sm">審核請款單</button></a></td>
 					</tr>
 				</c:forEach>
 				</tbody>

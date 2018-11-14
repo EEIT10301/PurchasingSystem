@@ -25,6 +25,7 @@
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
 		integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
 		crossorigin="anonymous"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="/resources/demos/style.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -80,20 +81,20 @@ span {
 	margin-left:1px;
 }
 .lr {
-	width: 33%;
+	width: 40%;
 	float: left;
 }
 
 .dlr {
-	width: 64%;
+	width: 55%;
 	float: left;
 }
 </style>
 </head>
-<%@ include file="../POInclude.jsp" %>
 <body>
+<%@ include file="../POIncludeforAcc.jsp" %>
 <div class="right">
-	<h1>請款單</h1>
+	<h1>新增請款單</h1>
 	<br>
 	<!-- 	<a href='Polist.controller'>回上一頁</a> -->
 	<form class="form-inline" method="post"
@@ -114,7 +115,7 @@ span {
 			</div>
 			<div class="form-group mb-2">
 				<label for="Vendor_name" class="col-md-4">廠商名稱</label> <input
-					type="text" class="form-control col-md-7 mb-2" name="Vendor_name"
+					type="text" class="form-control col-md-8 mb-2" name="Vendor_name"
 					readonly="readonly" id=""
 					value="${bean.pO_Vendor_InfoBean.vendor_name}">
 			</div>
@@ -144,7 +145,7 @@ span {
 		<div class="dlr">
 			<div class="form-group  mb-2">
 				<label for="Recript_date" class="col-md-2">憑證日期</label> <input
-					type="date" class="form-control col-md-3 mb-2" name="Recript_date"
+					type="date" class="form-control col-md-5 mb-2" name="Recript_date"
 					id="" value="" required>
 			</div>
 			<div class="form-group  mb-2">
@@ -167,8 +168,7 @@ span {
 			</div>
 			<div class=" text-right">
 				<input class="btn" type="reset" value="重新輸入"> <input
-					class="btn" type="submit" data-toggle="modal"
-					data-target="#exampleModalCenter" value="送出">
+					class="btn" type="submit" id="agree" value="送出">
 			</div>
 
 	</form>
@@ -186,21 +186,24 @@ span {
 <!-- 	</div>	 -->
 <%-- 	</c:if> --%>
      
-			
-	
 			<input type="hidden" value="${inv_id}" name="invid">
 	<script>
-$(document).ready(function(){
-	var invid="${inv_id}";
-	var successmeg="${successmeg}";
-	var errormeg="${errormeg}";
-	if(successmeg==="3"){
-	alert("請款單:"+invid+"新增成功");
-	window.location.href='http://localhost:8080/PurchasingSystem/Po/POLoginSuccess.jsp';}
-	if(errormeg=="4"){
-	alert("請款單:"+invid+"新增失敗");
-	window.location.href='http://localhost:8080/PurchasingSystem/Po/POLoginSuccess.jsp';}
-});
+	$(document).ready(function(){
+		var invid="${inv_id}";
+		var successmeg="${successmeg}";
+		var errormeg="${errormeg}";
+		if(successmeg==="3"){
+			swal("","請款單:"+invid+"新增成功","success").then(function(){
+				window.location.href='http://localhost:8080/PurchasingSystem/Po/POLoginSuccess.jsp'
+			});
+		}
+		if(errormeg=="4"){
+			swal("","請款單:"+invid+"新增失敗","success").then(function(){
+				window.location.href='http://localhost:8080/PurchasingSystem/Po/POLoginSuccess.jsp'
+			});
+		}
+	});
+ 
 </script>
 </body>
 </html>
