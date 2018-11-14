@@ -68,6 +68,16 @@ public class POStatementController {
 	public String POSignStatementDetail(HttpSession session, Model model, PO_SigningProcessBean bean,
 			BindingResult bindingResult) throws ParseException {
 		String po_id = bean.getPo_id();
+		List<PO_SigningProcessBean> POpart = pO_SigningProcessService.selectpoid(po_id);
+		for(int i=0;i<POpart.size();i++) {
+			PO_SigningProcessBean n = POpart.get(i);
+			Set<PO_DetailBean> podetail = n.getpO_MainBean().getpO_DetailBean();
+			model.addAttribute("podetail",podetail);
+			PO_MainBean pomain = n.getpO_MainBean();
+			model.addAttribute("pomain",pomain);
+		}
+		
+		
 		List<PO_SigningProcessBean> POprocess = pO_SigningProcessService.selectpoid(po_id);
 		String ck_id = "CK"+po_id.substring(2);
 		List<Inv_SigningProcessBean> Invprocess = inv_SigningProcessService.selectchk_Id(ck_id);
