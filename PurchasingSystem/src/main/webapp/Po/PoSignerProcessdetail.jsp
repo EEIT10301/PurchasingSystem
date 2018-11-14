@@ -173,6 +173,7 @@
 
 
 
+
 		<c:if test="${not empty nothispro}">
 			<h2>退回中採購單${pomainlist.po_id}</h2>
 			<table id="myTable" class="table table-striped table-hover">
@@ -188,6 +189,7 @@
 					<th>採購廠商</th>
 					<th>詢價建議</th>
 				</tr>
+
 
 				<tr>
 					<td>${user.emp_name}</td>
@@ -265,6 +267,7 @@
 			<h2>簽核順序</h2>
 			<table id="myTable" class="table table-striped table-hover">
 
+
 				<tr>
 					<th>步驟</th>
 					<th>簽核人</th>
@@ -275,6 +278,8 @@
 				</tr>
 				<c:forEach var='posignpro' varStatus='vs' items='${posignprocess}'>
 					<c:if test="${posignpro.sig_rank>=3 and posignpro.sig_rank<=4}">
+
+
 
 						<%-- <h4>第1步:${posignpro.employeeBean.emp_name} ${posignpro.sig_sta}</h4> --%>
 						<tr>
@@ -287,7 +292,10 @@
 							<td>${posignpro.sig_sug}</td>
 						</tr>
 
+
+
 					</c:if>
+
 
 
 
@@ -307,7 +315,9 @@
 					</c:if>
 				</c:forEach>
 
+
 			</table>
+
 
 			<form
 				action="<c:url value="/Po/POManagerSignertosigndetail.controller" />"
@@ -328,6 +338,7 @@
 					<Input type='submit' name='send' class='btn btn-default' value='${sendsubmit1}'> <Input
 						type='submit' name='send' class='btn btn-default' value='${sendsubmit2}'>
 			</form>
+
 
 
 
