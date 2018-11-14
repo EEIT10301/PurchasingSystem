@@ -81,55 +81,7 @@
 							value='${po_Sign.sig_rank}'></td>
 					</tr>
 
-<<<<<<< HEAD
-<%-- 		<p>廠商名稱: ${signedOrderDetails.pO_Vendor_InfoBean.vendor_name}</p> --%>
-<%-- 		<p>料號: ${signedOrderDetails.pO_DetailBean.part_No}</p> --%>
-<%-- 		<p>產品名稱: ${signedOrderDetails.pO_DetailBean.productListBean.pro_name}</p> --%>
-<%-- 		<p>單價: ${signedOrderDetails.pO_DetailBean.quotation}</p> --%>
-<%-- 		<p>總價: ${signedOrderDetails.pO_DetailBean.total_Price}</p> --%>
-<%-- 		<p>總數量: ${signedOrderDetails.pO_DetailBean.total_Qty}</p> --%>
-<%-- 		</c:forEach> --%>
-		<table id="myTable" class="table table-striped table-hover">
-		<thead>
-			<tr>
-				<th width="200px">廠商名稱</th>
-				<th width="200px">料號</th>
-				<th width="200px">產品名稱</th>
-				<th width="200px">單價</th>
-				<th width="200px">總價</th>
-				<th width="200px">總數量</th>
-			</tr>		
-		</thead>
-		<tbody>
-		<c:forEach var='poDetail' items='${poDetail}'>
-		<tr>
-			<td>${poDetail.pO_MainBean.pO_Vendor_InfoBean.vendor_name}</td>
-			<td>${poDetail.part_No}</td>
-			<td>${poDetail.productListBean.pro_name}</td>
-			<td>${poDetail.quotation}</td>
-			<td>${poDetail.total_Price}</td>
-			<td>${poDetail.total_Qty}</td>
-			</tr>	
-			</c:forEach>
-		<tr>
-<%-- 		<c:forEach var='po_Sign' items='${po_Sign}'> --%>
-		<td><input type='hidden' name='po_manger' value='${po_Sign.po_manger}'></td>
-		<td><input type='hidden' name='po_sta' value='${po_Sign.po_sta}'></td>
-		<td><input type='hidden' name='po_id' value='${po_Sign.po_id}'></td>
-		<td><input type='hidden' name='sig_date' value='${po_Sign.sig_date}'></td>
-		<td><input type='hidden' name='sig_sta' value='${po_Sign.sig_sta}'></td>
-		<td><input type='hidden' name='sig_sug' value='${po_Sign.sig_sug}'></td>
-		<td><input type='hidden' name='sig_rank' value='${po_Sign.sig_rank}'></td>
-		</tr>
-		
-		</tbody>
-		</table>
-		
-<%-- 		</c:forEach> --%>
-下單意見:<p><textarea rows="5" cols="50" name="signSug"></textarea></p>
-預計出貨時間:<input type="datetime" name="shippingDate">
-<p><input type="submit" name="send" value="送出" onclick="tosend()">
-=======
+
 				</tbody>
 			</table>
 
@@ -144,7 +96,7 @@
 			預計出貨時間:<input type="datetime" name="shippingDate">
 			<p>
 				<input type="submit" name="send" class='btn btn-default' value="送出">
->>>>>>> branch 'master' of https://github.com/EEIT10301/PurchasingSystem.git
+
 		</form>
 	</div>
 

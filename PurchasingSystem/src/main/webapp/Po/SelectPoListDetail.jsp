@@ -159,12 +159,10 @@ $(document).ready(function(){
 				<form id="submitbutton"
 					action="<c:url value="posendlistsign.controller?po_manger=${poprocess1.po_manger}&po_sta=${poprocess1.po_sta}&po_id=${poprocess1.po_id}" />"
 					method="post">
-<<<<<<< HEAD
-					<input type="submit" name="sendFirstposendlistsign" value="送出審核" id="sendsubmit" onclick="submit()">
-=======
+
 					<!-- 					<input type="submit" name="sendFirstposendlistsign" value="送出審核"> -->
 					<button id='' class='btn btn-default' value=''>送出審核</button>
->>>>>>> branch 'master' of https://github.com/EEIT10301/PurchasingSystem.git
+
 				</form>
 			</div>
 		</c:if>
