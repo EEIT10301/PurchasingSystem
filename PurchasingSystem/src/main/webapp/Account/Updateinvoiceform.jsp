@@ -23,6 +23,7 @@
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
 		integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
 		crossorigin="anonymous"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <style type="text/css">
 /* input, select { */
 /* 	display: block; */
@@ -55,12 +56,6 @@ table {
 
 <body class="bg">
 	<h3>請款單細項</h3>
-<%-- 	<c:if test="${not empty successmeg}"> --%>
-<%-- 		<h2>${successmeg}${inv_id}</h2> --%>
-<%-- 	</c:if> --%>
-<%-- 	<c:if test="${not empty errormeg}"> --%>
-<%-- 		<h2>${errormeg}</h2> --%>
-<%-- 	</c:if> --%>
 	<c:if test="${not empty invoice}">
 		<a href='Polist.controller'>回上一頁</a>
 		<form class="form-inline" method="post"
@@ -130,11 +125,11 @@ table {
 					<label class="col-md-2">原憑證圖檔</label> <a class="mb-2"
 						href="..${recript_pic}" target="_blank">${picName}</a>
 				</div>
-				<div class="form-group mb-2">
-					<label for="Receiptpic" class="col-md-2">修改憑證圖檔 </label> <input
-						class="form-control col-md-3 mb-2" type="file" name="Receiptpic"
-						id="" value="">
-				</div>
+				<div class="form-group  mb-2">
+				<label class="col-md-3" for="Receiptpic">修改憑證圖檔</label><input
+					class="mb-2" type="file" name="Receiptpic"
+					id="" value="">
+			</div>
 				<div class="form-group mb-2">
 					<label class="col-md-2">退回原因:${sigSug}</label>
 				</div>
@@ -163,45 +158,27 @@ table {
 
 <!-- --------------------------------審核/分派/退回  ----------------------------------------- -->
 
-<%-- 	<c:if test="${not empty sendsuccessmeg}"> --%>
-<%-- 		<h2>${sendsuccessmeg}${inv_id}</h2> --%>
-<%-- 	</c:if> --%>
-<%-- 	<c:if test="${not empty senderrormeg}"> --%>
-<%-- 		<h2>${senderrormeg}</h2> --%>
-<%-- 	</c:if> --%>
-<%-- 	<c:if test="${not empty returnsuccessmeg}"> --%>
-<%-- 		<h2>${returnsuccessmeg}${inv_id}</h2> --%>
-<%-- 	</c:if> --%>
-<%-- 	<c:if test="${not empty returnerrormeg}"> --%>
-<%-- 		<h2>${returnerrormeg}</h2> --%>
-<%-- 	</c:if> --%>
-<%-- 	<c:if test="${not empty dispatchsuccessmeg}"> --%>
-<%-- 		<h2>${dispatchsuccessmeg}${inv_id}</h2> --%>
-<%-- 	</c:if> --%>
-<%-- 	<c:if test="${not empty dispatcherrormeg}"> --%>
-<%-- 		<h2>${dispatcherrormeg}</h2> --%>
-<%-- 	</c:if> --%>
 
 	<c:if test="${not empty invid}">
-		<%-- 		<c:set var="dep" value="${user.emp_dep}" /> --%>
-		<%-- 		<c:set var="dep1" value="採購部" /> --%>
-		<%-- 		<c:set var="dep2" value="財務部" /> --%>
-		<%-- 		<c:set var="status1" value="dispatch" /> --%>
-		<%-- 		<c:choose> --%>
-		<%-- 			<c:when test="${(dep==dep1) && (user.emp_level==2)}"> --%>
-		<!-- 				<a href='todoSignInvoice.controller'>回上一頁</a> -->
-		<%-- 			</c:when> --%>
-		<%-- 			<c:when test="${(dep==dep2) && (user.emp_level==1)}"> --%>
-		<!-- 				<a href='ToDoSignlevel1.controller'>回上一頁</a> -->
-		<%-- 			</c:when> --%>
-		<%-- 			<c:when --%>
-		<%-- 				test="${(dep==dep2) && (user.emp_level==2) && (status==status1)}"> --%>
-		<!-- 				<a href='ToDoAssignInvoice.controller'>回上一頁</a> -->
-		<%-- 			</c:when> --%>
-		<%-- 			<c:otherwise> --%>
-		<!-- 				<a href='ToDoSignInvoice.controller'>回上一頁</a> -->
-		<%-- 			</c:otherwise> --%>
-		<%-- 		</c:choose> --%>
+				<c:set var="dep" value="${user.emp_dep}" />
+				<c:set var="dep1" value="採購部" />
+				<c:set var="dep2" value="財務部" />
+				<c:set var="status1" value="dispatch" />
+				<c:choose>
+					<c:when test="${(dep==dep1) && (user.emp_level==2)}">
+						<a href='todoSignInvoice.controller'>回上一頁</a>
+					</c:when>
+					<c:when test="${(dep==dep2) && (user.emp_level==1)}">
+						<a href='ToDoSignlevel1.controller'>回上一頁</a>
+					</c:when>
+					<c:when
+						test="${(dep==dep2) && (user.emp_level==2) && (status==status1)}"> 
+						<a href='ToDoAssignInvoice.controller'>回上一頁</a>
+		 			</c:when> 
+		 			<c:otherwise> 
+						<a href='ToDoSignInvoice.controller'>回上一頁</a>
+		 			</c:otherwise> 
+		 		</c:choose> 
 
 		<form class="form-inline" method="post"
 			action="<c:url value="/Account/ReviewInvoice.controller"/>">
@@ -321,54 +298,49 @@ table {
 <input type="hidden" value="${inv_id}" name="invidback">
 
 	<script>
-$(document).ready(function(){
-	var invid="${inv_id}";
-	var sendsuccessmeg="${sendsuccessmeg}";
-	var senderrormeg="${senderrormeg}";
-	var successmeg="${successmeg}";
-	var errormeg="${errormeg}";
-	var returnsuccessmeg="${returnsuccessmeg}";
-	var returnerrormeg="${returnerrormeg}";
-	var dispatchsuccessmeg="${dispatchsuccessmeg}";
-	var dispatcherrormeg="${dispatcherrormeg}";
+	$(document).ready(function(){
+		var invid="${inv_id}";
+		var sendsuccessmeg="${sendsuccessmeg}";
+		var senderrormeg="${senderrormeg}";
+		var successmeg="${successmeg}";
+		var errormeg="${errormeg}";
+		var returnsuccessmeg="${returnsuccessmeg}";
+		var returnerrormeg="${returnerrormeg}";
+		var dispatchsuccessmeg="${dispatchsuccessmeg}";
+		var dispatcherrormeg="${dispatcherrormeg}";
+		if(successmeg==="1"){
+			swal("","請款單:"+invid+"修改送出成功","success").then(function(){
+				window.location.href='http://localhost:8080/PurchasingSystem/Po/POLoginSuccess.jsp'
+			});
+		}
+		if(sendsuccessmeg=="1"){
+			swal("","請款單"+invid+"審核送出成功","success").then(function(){
+				window.location.href='http://localhost:8080/PurchasingSystem/Po/POLoginSuccess.jsp'
+			});
+		}
+		if(sendsuccessmeg=="3"){
+			swal("","請款單"+invid+"審核送出成功","success").then(function(){
+				window.location.href='http://localhost:8080/PurchasingSystem/Account/AccountLoginSuccess.jsp'
+			});
+		}
+		if(returnsuccessmeg=="1"){
+			swal("","請款單"+invid+"退回成功","success").then(function(){
+				window.location.href='http://localhost:8080/PurchasingSystem/Po/POLoginSuccess.jsp'
+			});
+		}
+		
+		if(returnsuccessmeg=="3"){
+			swal("","請款單"+invid+"退回成功","success").then(function(){
+				window.location.href='http://localhost:8080/PurchasingSystem/Account/AccountLoginSuccess.jsp'
+			});
+		}
+		if(dispatchsuccessmeg=="1"){
+			swal("","請款單"+invid+"分派成功","success").then(function(){
+				window.location.href='http://localhost:8080/PurchasingSystem/Account/AccountLoginSuccess.jsp'
+			});
+		}
+	});
 	
-	if(successmeg==="1"){
-	alert("請款單"+invid+"修改送出成功");
-	window.location.href='http://localhost:8080/PurchasingSystem/Po/POLoginSuccess.jsp';}
-	if(errormeg==="2"){
-	alert("請款單"+invid+"修改送出失敗");
-	window.location.href='http://localhost:8080/PurchasingSystem/Po/POLoginSuccess.jsp';}
-	if(sendsuccessmeg==="1"){
-	alert("請款單"+invid+"審核送出成功");
-	window.location.href='http://localhost:8080/PurchasingSystem/Po/POLoginSuccess.jsp';}
-	if(senderrormeg=="2"){
-	alert("請款單"+invid+"審核送出失敗");
-	window.location.href='http://localhost:8080/PurchasingSystem/Po/POLoginSuccess.jsp';}
-	if(sendsuccessmeg=="3"){
-	alert("請款單"+invid+"審核送出成功");
-	window.location.href='http://localhost:8080/PurchasingSystem/Account/AccountLoginSuccess.jsp';}
-	if(senderrormeg=="4"){
-	alert("請款單"+invid+"審核送出失敗");
-	window.location.href='http://localhost:8080/PurchasingSystem/Account/AccountLoginSuccess.jsp';}
-	if(returnsuccessmeg=="1"){
-	alert("請款單"+invid+"退回成功");
-	window.location.href='http://localhost:8080/PurchasingSystem/Po/POLoginSuccess.jsp';}
-	if(returnsuccessmeg=="2"){
-	alert("請款單"+invid+"退回失敗");
-	window.location.href='http://localhost:8080/PurchasingSystem/Po/POLoginSuccess.jsp';}
-	if(returnerrormeg=="3"){
-	alert("請款單"+invid+"退回成功");
-	window.location.href='http://localhost:8080/PurchasingSystem/Account/AccountLoginSuccess.jsp';}
-	if(returnerrormeg=="4"){
-	alert("請款單"+invid+"退回失敗");
-	window.location.href='http://localhost:8080/PurchasingSystem/Account/AccountLoginSuccess.jsp';}
-	if(dispatchsuccessmeg=="1"){
-	alert("請款單"+invid+"分派成功");
-	window.location.href='http://localhost:8080/PurchasingSystem/Account/AccountLoginSuccess.jsp';}
-	if(dispatcherrormeg=="2"){
-	alert("請款單"+invid+"分派失敗");
-	window.location.href='http://localhost:8080/PurchasingSystem/Account/AccountLoginSuccess.jsp';}
-});
 </script>
 </body>
 

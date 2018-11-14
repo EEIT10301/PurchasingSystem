@@ -78,7 +78,7 @@ text-size:10px;
 						<td>${assign.pO_MainBean.pO_Vendor_InfoBean.vendor_name}</td>
 						<td>$${assign.total_price}</td>
 						<td><a
-							href="AccSignInvoiceForm.controller?invid=${assign.inv_id}"><button type="button" class="btn btn-primary btn-sm">分派請款單</button></a></td>
+							href="AccSignInvoiceForm.controller?invid=${assign.inv_id}"><button type="button" class="btn btn-white btn-sm">分派請款單</button></a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
