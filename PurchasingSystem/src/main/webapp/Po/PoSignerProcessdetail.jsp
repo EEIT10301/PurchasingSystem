@@ -88,21 +88,22 @@
 					</tr>
 				</c:forEach>
 			</table>
-			<h2>簽核順序</h2>
+			<h2>簽核流程</h2>
 			<table id="myTable" class="table table-striped table-hover">
 				<tr>
-					<th>步驟</th>
+					<th>簽核順序</th>
 					<th>簽核人</th>
 					<th>職稱</th>
 					<th>狀態</th>
 					<th>簽核時間</th>
 					<th>簽核建議</th>
 				</tr>
+				<tr>
 				<c:forEach var='posignpro' varStatus='vs' items='${posignprocess}'>
 					<c:if test="${posignpro.sig_rank>=3 and posignpro.sig_rank<=4}">
 
 						<%-- <h4>第1步:${posignpro.employeeBean.emp_name} ${posignpro.sig_sta}</h4> --%>
-						<tr>
+<!-- 						<tr> -->
 							<td>${posignpro.sig_rank-2}</td>
 							<td>${posignpro.employeeBean.emp_name}</td>
 							<td>${posignpro.employeeBean.emp_dep}
@@ -110,10 +111,10 @@
 							<td>${posignpro.sig_sta}</td>
 							<td><fmt:formatDate pattern="yyyy/MM/dd HH:mm" value="${posignpro.sig_date}"/></td>
 							<td>${posignpro.sig_sug}</td>
-						</tr>
+<!-- 						</tr> -->
 
 					</c:if>
-
+					</tr>
 
 
 					<c:if test="${posignpro.sig_rank==5}">
