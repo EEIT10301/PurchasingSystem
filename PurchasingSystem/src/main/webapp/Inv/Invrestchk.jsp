@@ -17,9 +17,31 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+
+	
+function reconfirmOrder() {	
+	var r=confirm("Press a button!");
+	if (r==true)
+	  {	
+		document.getElementById('submit').disabled=true;
+		document.getElementById("submit").value="以重新驗收"
+	  alert("You pressed OK!");
+	  }
+	else
+	  {
+	  alert("You pressed Cancel!");
+	  }
+// 	$(".subimit11").click(function{
+// 		$(this).attr("")
+// 	});
+	
+	
+}
+</script>
 <title>Insert title here</title>
 <style type="text/css">
-#submit {
+#submit1{
 	position: absolute;
 	right: 700px;
 }
@@ -43,7 +65,7 @@
   button {
     @extend input;
   }
-  #submit{
+  #submit1{
   display: block;
   }
 }
@@ -67,7 +89,7 @@
  </thead>
  <tbody>
  <c:forEach var="invpromain" items="${invmain.inv_ProductListBean}">
-<form action="<c:url value="/Inv/changeinvprosta"/>" method="post">
+<form action="<c:url value="/Inv/reschangeinvprosta"/>" method="post">
 <tr class="searchable" data-index="${invpromain.productListBean.pro_cate}${invpromain.productListBean.pro_name}${invpromain.productListBean.pro_spe}${invpromain.chk_Count}">
  <td > ${invpromain.productListBean.pro_cate}</td>
 	       <td>${invpromain.productListBean.pro_name}</td>
@@ -76,7 +98,6 @@
            <td>${invpromain.chk_status}</td> 
            <td>${invpromain.chk_quality}</td>
 
-          <c:if test="${invpromain.chk_status=='驗收失敗'}">
 		   <td> <input type="text" name='chk_quality' placeholder="驗收品質"></td>
 		    <td> <input type="text" name='chk_Count' placeholder="實際數量"></td>
 		
@@ -88,20 +109,9 @@
 		     <option <c:if test="${invpromain.chk_status=='驗收失敗' }">selected</c:if> value="驗收失敗">驗收失敗</option>   
 		       
 		    </select>	</td>	
-		   <td> <Input type='submit' name='send' value='送出'></td>
-	        </c:if>
+		   <td> <Input onclick="reconfirmOrder()" class="subimit11" id="submit" type='submit' name='send1' value='送出'></td>
+	        
 	      
-  <c:if test="${invpromain.chk_status=='驗收成功'}">
-	<td> 驗收品質:<input type="text" name='chk_quality'  value="${invpromain.chk_quality}"></td>
-	<td>  實際數量:<input type="text" name='chk_Count' value="${invpromain.chk_Count}"></td>
-	
-		    <td><select name="chkstatus">
-		     <option <c:if test="${invpromain.chk_status=='驗收成功' }">selected</c:if> value="驗收成功">驗收成功</option>   
-		     <option <c:if test="${invpromain.chk_status=='驗收失敗' }">selected</c:if> value="驗收失敗">驗收失敗</option>   
-		       
-		    </select></td>		
-		   <td> <Input disabled="disabled" type='submit' name='send' value='已驗收'></td>
-	        </c:if>
 <Input type='hidden' name="chk_Id" value='${invpromain.chk_Id}'>
 <Input type='hidden' name="part_No" value='${invpromain.part_No}'>
 <Input type='hidden' name="sigSta" value='${Inv_SigningProcessBean.sig_Sta}'>
@@ -117,7 +127,7 @@
 		驗收簽核狀態:${Inv_SigningProcessBean.sig_Sta }
 		<Input type='hidden' name="sigSta" value='${Inv_SigningProcessBean.sig_Sta}'>
 		<Input type='hidden' name="chkId" value='${Inv_SigningProcessBean.chk_Id}'>
-        <Input onclick="reconfirmOrder()" id="submit" type='submit' name='send' value='驗收完成'>
+        <Input onclick="reconfirmOrder()"  id="submit1" type='submit' name='send' value='驗收完成'>
         </form>
 </div>   
 </body>

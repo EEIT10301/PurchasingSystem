@@ -17,6 +17,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import Account.service.PO_Vendor_InfoService;
+import Apply.model.App_MainBean;
 import Apply.model.EmployeeBean;
 import Apply.service.App_MainService;
 import Apply.service.EmployeeService;
@@ -84,7 +85,7 @@ public class POPlacementController {
 
 			return "SignedOrder.show";
 		} else {
-			model.addAttribute("noSignedOrderList", "無待簽核表單");
+			model.addAttribute("noSignedOrderList", "無待下單表單");
 			return "SignedOrder.show";
 		}
 	}
@@ -99,6 +100,12 @@ public class POPlacementController {
 //		Set<PO_SigningProcessBean> po_Sign = pm.getpO_SigningProcessBean();
 		PO_SigningProcessBean po_Sign = pO_SigningProcessService.select("下單中", po_id);
 		Set<PO_DetailBean> poDetail = pm.getpO_DetailBean();
+		
+		String poid = pm.getPo_id();
+		String poid1 = "Ap" + poid.substring(2);
+		App_MainBean appmain = app_MainService.select(poid1);
+		
+		model.addAttribute("appmain", appmain);		
 		model.addAttribute("pm", pm);
 		model.addAttribute("po_Sign", po_Sign);
 		model.addAttribute("poDetail", poDetail);
@@ -108,15 +115,18 @@ public class POPlacementController {
 
 	@RequestMapping("/Po/signedOrderSubmit.controller")
 	public String signedOrderSubmit(PO_SigningProcessBean bean, BindingResult bindingResult, Model model,
-			HttpSession session, String send, String signSug, java.util.Date shippingDate) throws ParseException {
+			HttpSession session, String send, String signSug, String shippingDate) throws ParseException {
 		EmployeeBean bean1 = (EmployeeBean) session.getAttribute("user");
 		String empid = bean1.getEmp_id();
 		java.util.Date date = new java.util.Date();
 		java.sql.Date date1 = new java.sql.Date(date.getTime());
-		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		String currentDate = dateFormat.format(date1);
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date dateTime = sdf.parse(currentDate);
+		Date dateTime1 = sdf.parse(shippingDate);
+		
 		if (send.equals("送出")) {
 			PO_SigningProcessBean placeOrder = pO_SigningProcessService.select(bean.getPo_sta(), bean.getPo_id());
 			placeOrder.setSig_date(dateTime);
@@ -125,7 +135,7 @@ public class POPlacementController {
 			PO_SigningProcessBean placeOrder1 = pO_SigningProcessService.select("待收貨", bean.getPo_id());
 			placeOrder1.setSig_sta("出貨中");
 			PO_MainBean shippingUpdate = pO_MainService.select(bean.getPo_id());
-			shippingUpdate.setShipping_Date(shippingDate);
+			shippingUpdate.setShipping_Date(dateTime1);
 		}
 		return "POlogin.success";
 	}

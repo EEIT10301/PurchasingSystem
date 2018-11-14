@@ -122,12 +122,12 @@ font-size: 36px;
              <p> 
              </c:if>
 				<p>
-					<Input type='submit' name='send' value='產生請購單'> <Input
-						type='submit' name='send' value='刪除此次請購'>
+					<Input id='send1' type='submit' name='send' value='產生請購單'> <Input
+					id='send2'	type='submit' name='send' value='刪除此次請購'>
 			</div>
 						
 			</form>
 			</div>
-<script src="../js/app.js"></script>			
+<script src="../js/applysign.js"></script>			
 </body>
 </html>

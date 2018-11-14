@@ -8,12 +8,30 @@
 <meta charset="UTF-8">
 <title>產生詢價單</title>
 <link rel="stylesheet" type="text/css" href="../css/POcss.css">
+
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+
+		function tosend() {
+			if(confirm("確定送出審核")){
+				window.event.returnValue=true;
+				alert("資料已送出");
+			}
+			else{
+				window.event.returnValue=false;
+				
+			}
+		}
+		
+
+
+</script>
 
 <style type="text/css">
 #thead2 {
@@ -145,6 +163,8 @@
 	<!-- <p><Input type='submit' name='send' value='重新輸入'><p> -->
 	<!-- <p><Input type='submit' name='send' value='送出'><p> -->
 	<!-- </form> -->
+
+
 
 </body>
 </html>

@@ -53,6 +53,32 @@
 	//         window.location.reload();
 	//     }
 	// }
+	
+
+
+$(document).ready(function(){
+	$.ajax({
+		url:"sendthisselectlist.controller",
+		type:"GET",
+		async:false,
+		success:
+			$("#sendsubmit").click(
+					function submit(data){
+						
+// 						var Polist = JSON.parse(data);
+						if (data.myArrayList==null){
+							alert("請新增詢價紀錄");
+							 window.location.href="http://localhost:8080/PurchasingSystem/Po/Posendlistsign.jsp";     
+						}
+							
+							
+					})
+			
+	});
+});
+
+
+
 </script>
 </head>
 <body class="bg">
@@ -133,8 +159,10 @@
 				<form id="submitbutton"
 					action="<c:url value="posendlistsign.controller?po_manger=${poprocess1.po_manger}&po_sta=${poprocess1.po_sta}&po_id=${poprocess1.po_id}" />"
 					method="post">
+
 					<!-- 					<input type="submit" name="sendFirstposendlistsign" value="送出審核"> -->
 					<button id='' class='btn btn-default' value=''>送出審核</button>
+
 				</form>
 			</div>
 		</c:if>

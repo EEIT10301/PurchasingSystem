@@ -95,8 +95,6 @@ body {
 }
 
 .btn-white {
-  	background-color: #fff;
-  	color: #777;
 	font-size: 14px;
 	margin-left:30px;
 	margin-right:30px;

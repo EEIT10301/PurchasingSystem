@@ -24,7 +24,6 @@ import Apply.service.App_SigningProcessService;
 import Apply.service.EmployeeService;
 import Inv.model.Inv_SigningProcessBean;
 import Inv.service.Inv_SigningProcessService;
-import Po.model.PO_MainBean;
 import Po.model.PO_SigningProcessBean;
 import Po.service.PO_MainService;
 import Po.service.PO_SigningProcessService;
@@ -67,28 +66,7 @@ public class InvSeadController {
 		System.out.println(chkstatus);
 		System.out.println("sss");
 		model.addAttribute("secondsigningrocess", secondsigningrocess.getChk_status());
-        if("再次驗收".equals(sigSta)) {
-             	if ("驗收成功".equals(chkstatus)) {
-    			secondsigningrocess.setChk_Count(chk_Count);
-    			secondsigningrocess.setChk_quality(chk_quality);
-    			secondsigningrocess.setChk_status("驗收成功");
-    			secondsigningrocess.setChk_Date(dates);
-    			model.addAttribute("Inv_SigningProcessBean", secondsigningrocess1);
-    			model.addAttribute("invmain", invmain);
-    			System.out.println("成功");
-    			return "Inv.restchk";
-    		} else if ("驗收失敗".equals(chkstatus)) {
-    			secondsigningrocess1.setSig_Sta("再次驗收");
-    			secondsigningrocess.setChk_Date(dates);
-    			secondsigningrocess.setChk_status("驗收失敗");
-    			secondsigningrocess.setChk_quality(chk_quality);
-    			secondsigningrocess.setChk_Count(chk_Count);
-    			model.addAttribute("Inv_SigningProcessBean", secondsigningrocess1);
-    			model.addAttribute("invmain", invmain);
-    			System.out.println("失敗");
-    			return "Inv.restchk";
-    		}
-		}
+      
 		if ("驗收成功".equals(chkstatus)) {
 			secondsigningrocess.setChk_Count(chk_Count);
 			secondsigningrocess.setChk_quality(chk_quality);
@@ -118,9 +96,60 @@ public class InvSeadController {
 		}
 
 	}
+@RequestMapping("/Inv/reschangeinvprosta")
+public String reschangeinvprosta(String sigSta,String send, Integer chk_Count, String chk_quality,
+		Inv_ProductListBean prochkdatilbean, Inv＿ProductCheckBean prochkmain, Inv_SigningProcessBean bean,
+		String chkstatus, Model model, HttpSession session, String chk_Id, String part_No) throws ParseException {
+	Date date = new Date();
+	java.sql.Date date1 = new java.sql.Date(date.getTime());
+	SimpleDateFormat dateFormate = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	String now = dateFormate.format(date1);
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	Date dates = sdf.parse(now);
+	Inv＿ProductCheckBean invmain = inv＿ProductCheckService.select(chk_Id);
+	Inv_SigningProcessBean secondsigningrocess1 = inv_SigningProcessService.select("驗收", chk_Id);
+	Inv_ProductListBean secondsigningrocess = inv_ProductListService.select(chk_Id, part_No);
+	System.out.println(secondsigningrocess.getChk_status());
+	System.out.println(chkstatus);
+	System.out.println("sss");
+	model.addAttribute("secondsigningrocess", secondsigningrocess.getChk_status());
+	  
+       	if ("驗收成功".equals(chkstatus)) {
+			secondsigningrocess.setChk_Count(chk_Count);
+			secondsigningrocess.setChk_quality(chk_quality);
+			secondsigningrocess.setChk_status("驗收成功");
+			secondsigningrocess.setChk_Date(dates);
+			model.addAttribute("Inv_SigningProcessBean", secondsigningrocess1);
+			model.addAttribute("invmain", invmain);
+			System.out.println("成功");
+			return "Inv.restchk";
+		} else if ("驗收失敗".equals(chkstatus)) {
+			secondsigningrocess1.setSig_Sta("驗收失敗");
+			secondsigningrocess.setChk_Date(dates);
+			secondsigningrocess.setChk_status("驗收失敗");
+			secondsigningrocess.setChk_quality(chk_quality);
+			secondsigningrocess.setChk_Count(chk_Count);
+			model.addAttribute("Inv_SigningProcessBean", secondsigningrocess1);
+			model.addAttribute("invmain", invmain);
+			System.out.println("失敗");
+			return "Inv.restchk";
+		}
+		else {
+//	    	secondsigningrocess.setChk_status(null);
+			model.addAttribute("Inv_SigningProcessBean", secondsigningrocess1);
+			model.addAttribute("invmain", invmain);
+			System.out.println(chkstatus);
+			System.out.println("沒值");
+			return "Inv.sign";
+		}
+	}
+	
+
+
+
 
 	@RequestMapping("/Inv/invfinish.conll")
-	public String invfinisg(String chkId, String sigSta, Model model, HttpSession session) throws ParseException {
+	public String invfinisg(String SignSug,String chkId, String sigSta, Model model, HttpSession session) throws ParseException {
 		Date date = new Date();
 		java.sql.Date date1 = new java.sql.Date(date.getTime());
 		SimpleDateFormat dateFormate = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");		
@@ -132,6 +161,7 @@ public class InvSeadController {
 		Inv_SigningProcessBean secondsigningrocess1 = inv_SigningProcessService.select("驗收", chkId);
 		String po_id = "Po" + chkId.substring(2);
 		PO_SigningProcessBean posecondsigningrocess = po_SigningProcessService.select("驗收作業", po_id);
+		secondsigningrocess1.setSig_Sug(SignSug);
 		System.out.println("驗收單:" + chkId);
 		System.out.println("驗收狀態:" + sigSta);
 	
@@ -162,33 +192,17 @@ public class InvSeadController {
 	@RequestMapping("/Inv/chkprofail.controller")
 	public String chkprofail(Model model, HttpSession session) {
 		EmployeeBean beans = (EmployeeBean) session.getAttribute("user");
-		List<Inv_SigningProcessBean> secondsigningrocess = inv_SigningProcessService
-				.selectempidsend(beans.getEmp_managerid(), "驗收失敗");
-		List<Inv_SigningProcessBean> secondsigningrocess3 = inv_SigningProcessService
-				.selectempidsend(beans.getEmp_managerid(), "再次驗收");
+		String chkempid = beans.getEmp_id();
+		List<Inv_SigningProcessBean> secondsigningrocess = inv_SigningProcessService.selectempidsend(chkempid,"驗收失敗");
+		List<Inv_SigningProcessBean> secondsigningrocess3 = inv_SigningProcessService.selectempidsend(chkempid,"再次驗收");
 		List<Inv_SigningProcessBean> selectlists = null;
 		model.addAttribute("bean2", secondsigningrocess);
-		selectlists = new LinkedList<Inv_SigningProcessBean>();
-		
-		
-			
-		
-		
-		if (secondsigningrocess == null) {
-			if(secondsigningrocess3!=null) {
-				for(int i=0;i<secondsigningrocess3.size();i++) {
-					Inv_SigningProcessBean x = secondsigningrocess3.get(i);
-					Inv_SigningProcessBean xs = inv_SigningProcessService.select("驗收分派", x.getChk_Id());
-					if(xs!=null) {
-						selectlists.add(x);
-						selectlists.add(xs);
-					}
-					model.addAttribute("selsctlists",selectlists);
-				}
-			}
+		selectlists = new LinkedList<Inv_SigningProcessBean>();	
+		if (secondsigningrocess == null&&secondsigningrocess3==null) {
 			model.addAttribute("noselectlists", "無失敗驗收單");
 			return "chkpro.fail";
 		} else {
+			if(secondsigningrocess!=null) {
 			for (int i = 0; i < secondsigningrocess.size(); i++) {
 				Inv_SigningProcessBean x = secondsigningrocess.get(i);
 				Inv_SigningProcessBean xs = inv_SigningProcessService.select("驗收分派", x.getChk_Id());
@@ -198,8 +212,8 @@ public class InvSeadController {
 				}
 				
 				model.addAttribute("selsctlists", selectlists);
-			}
-		
+			}}
+			if(secondsigningrocess3!=null) {
 				for(int i=0;i<secondsigningrocess3.size();i++) {
 					Inv_SigningProcessBean x = secondsigningrocess3.get(i);
 					Inv_SigningProcessBean xs = inv_SigningProcessService.select("驗收分派", x.getChk_Id());
@@ -208,7 +222,7 @@ public class InvSeadController {
 						selectlists.add(xs);
 					}
 					model.addAttribute("selsctlists",selectlists);
-				}
+				}}
 			
 		
 				

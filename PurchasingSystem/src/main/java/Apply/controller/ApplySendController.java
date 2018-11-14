@@ -57,6 +57,16 @@ public class ApplySendController {
 			
 			return "app.product";
 		}
+		if(Categorly.equals("again") ) {
+			session.removeAttribute("Categlory");
+			session.removeAttribute("product");
+			session.removeAttribute("cartnumber");
+    		session.removeAttribute("cartamount");
+    		session.removeAttribute("cart");
+    		session.removeAttribute("Listprice");
+    		return "app.product";
+		}
+		
 		//呼叫model
 		List<ProductListBean> bean = productListService.selectCate(Categorly);
 				
