@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:if test="${user.emp_dep=='財務部'}">
 	<%@ include file="../include.jsp"%></c:if>
 
@@ -52,7 +53,8 @@ table {
 	font-size: 13px;
 }
 
-<c:if test="${user .emp_dep=='採購部'}">
+<c:if test ="${user.emp_dep=='採購部'}">
+
 .left {
 	width: 15%;
 	float: left;
@@ -91,6 +93,9 @@ span {
 }
 </c:if>
 </style>
+<script type="text/javascript">
+	
+</script>
 </head>
 
 <body class="bg">
@@ -185,7 +190,7 @@ span {
 		<h2>${errormeg}</h2>
 	</c:if>
 
-	<h3>請款單細項</h3>
+<!-- 	<h3>請款單細項</h3> -->
 
 	<c:if test="${not empty invoice}">
 		<a href='Polist.controller'>回上一頁</a>
@@ -242,39 +247,62 @@ span {
 			</div>
 			<div class="dlr">
 				<div class="form-group mb-2">
-					<label for="oldRecript_date" class="col-md-2">原憑證日期</label> <input
+					<label for="oldRecript_date" class="col-md-3">原憑證日期</label> <input
 						type="text" class="form-control col-md-3 mb-2"
 						name="oldRecript_date" id="" value="${oldRecript_date}"
 						readonly="readonly">
 				</div>
 				<div class="form-group mb-2">
-					<label for="Recript_date" class="col-md-2">修改憑證日期</label> <input
+					<label for="Recript_date" class="col-md-3">修改憑證日期</label> <input
 						type="date" class="form-control col-md-3 mb-2" name="Recript_date"
-						id="" value="">
+						id="ttt" value="">
+						<input name="xxzs" type="hidden"  value="${oldRecript_date}">
+<!-- 						<button class="btn" id="bbb">修改日期</button> -->
 				</div>
 				<div class="form-group mb-2">
-					<label class="col-md-2">原憑證圖檔</label> <a class="mb-2"
+					<label class="col-md-3">原憑證圖檔</label> <a class="mb-2"
 						href="..${recript_pic}" target="_blank">${picName}</a>
 				</div>
 				<div class="form-group mb-2">
-					<label for="Receiptpic" class="col-md-2">修改憑證圖檔 </label> <input
+					<label for="Receiptpic" class="col-md-3">修改憑證圖檔 </label> <input
 						class="form-control col-md-3 mb-2" type="file" name="Receiptpic"
 						id="" value="">
 				</div>
-				<div class="form-group mb-2">
-					<label class="col-md-2">退回原因:${sigSug}</label>
-				</div>
+
+					<div class="form-group  mb-2">
+						<label class="col-md-3">退回原因:</label>
+						<table class="table table-hover col-md-6 mb-2">
+						<thead>
+								<tr>
+									<th>簽核人</th>
+									<th>簽核意見</th>
+									<th>退回日期</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+										<td> ${sigman}</td>
+										<td> ${sigSug}</td>
+										<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${sigtime}"/> </td>
+									</tr>
+							</tbody>
+						</table>
+					</div>
+
 				<c:if test="${not empty manager}">
-					<label class="col-md-2">審核人員</label>
+									<div class="form-group  mb-2">
+				
+					<label class="col-md-3">審核人員</label>
 					<select class="mb-2" name="selectPOManager">
 						<c:forEach var="poman" items="${manager}">
 							<option value="${poman.emp_id}">${poman.emp_name}
 								${poman.emp_job}</option>
 						</c:forEach>
 					</select>
+					</div>
 				</c:if>
 				<div class="form-group mb-2">
-					<label class="col-md-2">簽核意見:</label>
+					<label class="col-md-3">簽核意見:</label>
 
 					<textarea rows="2" cols="58" name="SignSug" class="col-md-6 mb-2"></textarea>
 				</div>
@@ -408,7 +436,7 @@ span {
 										<td>${sig.sig_Rank}</td>
 										<td>${sig.employeeBean.emp_name}</td>
 										<td>${sig.sig_Sug}</td>
-										<td>${sig.sig_Date}</td>
+										<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${sig.sig_Date}"/></td>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -417,7 +445,23 @@ span {
 				</c:if>
 				<c:if test="${not empty sigSug}">
 					<div class="form-group  mb-2">
-						<label class="col-md-2">退回原因: ${sigSug}</label>
+						<label class="col-md-2">退回原因:</label>
+						<table class="table table-hover col-md-6 mb-2">
+						<thead>
+								<tr>
+									<th>簽核人</th>
+									<th>簽核意見</th>
+									<th>退回日期</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+										<td> ${sigman}</td>
+										<td> ${sigSug}</td>
+										<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${sigtime}"/> </td>
+									</tr>
+							</tbody>
+						</table>
 					</div>
 				</c:if>
 
