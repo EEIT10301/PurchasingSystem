@@ -30,16 +30,21 @@ font-size: 36px;
 	margin: 30px;
 }
 .right{
-	width:78%;
+	width:82%;
     float:left;
+    font-size: 1.5em;
 }
-
+.right input{
+		width:150px;
+		background-color: white;
+		font-size: 1.05em;
+	}
 
 .f {
 	/* 方格排列 */
 	display: inline-block;
-	width: 15rem;
-	height: 15rem;
+	width: 18rem;
+	height: 18rem;
 }
 
 .imgp {
@@ -49,8 +54,8 @@ font-size: 36px;
 }
 .imgp1 {
 
-	height:80px;
-	width:80px;
+	height:128px;
+	width:128px;
 }
 .d {
 	/* 方格排列 */
@@ -66,34 +71,36 @@ font-size: 36px;
 <c:if test="${empty Categlory}">
 <div class="right">
 <div class="text-center">
-<h3 align="center">選擇產品大項</h3>
+<h3 align="center">選擇物料項目</h3>
+<br>
+<br>
 <div class="card bg-light f">
 <a href='ApplySend.controller?Categorly=零組件' class="btn">
-<img class="card-img-top imgp1" src="../sysimg/s1.png"></a>
+<img class="card-img-top imgp1" src="../sysimg/s8.png"></a>
 <div class="card-body">
 <h5 class="card-title">零組件</h5>
 </div></div>
 <div class="card bg-light f">
 <a href='ApplySend.controller?Categorly=PC' class="btn">
-<img class="card-img-top imgp1" src="../sysimg/s1.png"></a>
+<img class="card-img-top imgp1" src="../sysimg/s9.png"></a>
 <div class="card-body">
 <h5 class="card-title">PC</h5>
 </div></div>
 <div class="card bg-light f">
 <a href='ApplySend.controller?Categorly=主板組件' class="btn">
-<img class="card-img-top imgp1" src="../sysimg/s1.png"></a>
+<img class="card-img-top imgp1" src="../sysimg/s10.png"></a>
 <div class="card-body">
 <h5 class="card-title">主板組件</h5>
 </div></div>
 <div class="card bg-light f">
 <a href='ApplySend.controller?Categorly=組合材號' class="btn">
-<img class="card-img-top imgp1" src="../sysimg/s1.png"></a>
+<img class="card-img-top imgp1" src="../sysimg/s11.png"></a>
 <div class="card-body">
-<h5 class="card-title">組合材號</h5>
+<h5 class="card-title">組合材料</h5>
 </div></div>
 <div class="card bg-light f">
 <a href='ApplySend.controller?Categorly=說明書' class="btn">
-<img class="card-img-top imgp1" src="../sysimg/s1.png"></a>
+<img class="card-img-top imgp1" src="../sysimg/s12.png"></a>
 <div class="card-body">
 <h5 class="card-title">說明書</h5>
 </div></div>
@@ -111,9 +118,8 @@ font-size: 36px;
 <c:if test="${not empty product}">
 <div class="right">
 <c:if test="${not empty Categlory}">
-<h4 align="center">產品項目: ${Categlory}</h4>
+<h3 align="center">物料項目: ${Categlory}</h3>
 </c:if>
-
 <c:if test="${cartnumber>0}">
 <%-- <h4>請購清單: 已加入${cartnumber}項物料</h4> --%>
 <div class="card bg-light d">
@@ -121,20 +127,22 @@ font-size: 36px;
 </a>
 <div class="card-body">
 <h5 class="card-title">已加入${cartnumber}項物料</h5>
-</div></div>
+</div>
+</div>
 </c:if>
 <h4><span>${cate}</span></h4>
 <h4><span>${errors.cate}</span></h4>
 <form action="<c:url value="/Apply/ApplyShoppingaddcart.controller" />" method="post">
-<input class="form-control" id="myInput" type="text" width="500px" placeholder="Search"><br/>
+<input class="form-control"  id="myInput" type="text" width="500px" placeholder="Search"><br/>
+
 <table class="table table-striped table-hover">
 <thead>
 			<tr>
 				<th>料號</th>
-				<th>產品名稱</th>
-				<th width="250px">產品大項</th>
-				<th>產品大項</th>
+				<th>物料名稱</th>
+				<th >物料項目</th>
 				<th>規格簡述</th>
+				<th>規格詳述</th>
 				<th>平均購買價格</th>
 				<th>目前庫存</th>
 				<th>請購數量</th>
@@ -167,6 +175,11 @@ font-size: 36px;
  </table>
   <Input type='submit' name='send' value='加入請購清單'>
 </form>
+<br>
+<div class="card bg-light d">
+<a href='ApplySend.controller?Categorly=again'><img class="card-img-top imgp" src="../sysimg/s13.png">
+</a><div class="card-body"><h5 class="card-title">返回物料項目</h5></div></div>
+
 </div>
   </c:if>
 <script src="../js/app.js"></script>

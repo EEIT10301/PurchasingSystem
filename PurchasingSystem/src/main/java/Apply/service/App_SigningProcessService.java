@@ -121,12 +121,21 @@ public class App_SigningProcessService {
 //				bean.add(xsz);
 //			}
 //			}
-			if(beans.size()>0) {	
+			if(beans!=null) {	
 				return beans;
 			}else {
 				return null;
 			}
 	//	}
 	//	return null;
-	}	
+	}
+	public List<App_SigningProcessBean> selectApp_staandSig_staandAppmanger(String app_sta, String sig_sta,String app_Manger){
+		List<App_SigningProcessBean> beans =app_SigningProcessIDao.selectApp_staandSig_staandAppmanger( app_sta, sig_sta, app_Manger);
+		if(beans!=null) {	
+			return beans;
+		}else {
+			return null;
+		}
+	
+	}
 }

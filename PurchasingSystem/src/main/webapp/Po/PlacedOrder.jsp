@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ include file="../POInclude.jsp"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,26 +18,27 @@
 <title>待收貨採購單</title>
 </head>
 <body class="bg">
+<div class="right">
 	<c:if test='${not empty noPlacedOrderList}'>
-		<h2>${noApplylist}</h2>
+		<h2>${noPlacedOrderList}</h2>
 	</c:if>
 
 	<c:if test='${not empty placedOrderList}'>
-		<div class="right">
+		
 		<h3>待收貨表單</h3>
-		<table id="myTable" class="table table-striped table-hover">
+		<table  class="table table-striped table-hover">
 		<thead>
 			<tr>
 				<th width="200px">採購單號</th>
 				<th width="200px">出貨時間</th>
 			</tr>		
 		</thead>
-		<tbody>
+		<tbody id="myTable">
 		<c:forEach var='placedOrderList' items='${placedOrderList}'>
 		<form action="<c:url value="/Po/placedOrderDetail.controller"/>"method="post">
 		<tr>
 			<td>${placedOrderList.po_id}</td>
-			<td>${placedOrderList.pO_MainBean.shipping_Date}</td>
+			<td><fmt:formatDate pattern="yyyy/MM/dd" value="${placedOrderList.pO_MainBean.shipping_Date}"/></td>
 <%-- 			<c:forEach var='placedOrderListInfo' items='${placedOrderListInfo}'> --%>
 <%-- 			<c:if test='${placedOrderListInfo.po_id == placedOrderListInfo.po_id}'> --%>
 <%-- 			<p>出貨時間:${placedOrderListInfo.sig_date}</p> --%>
@@ -50,14 +52,15 @@
 			<td><input type='hidden' name='sig_sta' value='${placedOrderList.sig_sta}'></td>
 			<td><input type='hidden' name='sig_sug' value='${placedOrderList.sig_sug}'></td>
 			<td><input type='hidden' name='sig_rank' value='${placedOrderList.sig_rank}'></td>
-			<td><input type="submit" value="收貨" id="submit"></td>
+			<td><input type="submit" value="收貨" id="submit" class='btn btn-default btn-sm'></td>
+<!-- 			<td><button id='submit' class='btn btn-default btn-sm' value=''>收貨</button></td> -->
 	</tr>
 	</form>
 	</c:forEach>
 	</tbody>
-	</table>
-	</div>
+	</table>	
 	</c:if>
+	</div>
 	<script src="../js/app.js"></script>
 </body>
 </html>

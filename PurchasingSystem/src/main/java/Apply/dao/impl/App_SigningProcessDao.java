@@ -326,4 +326,19 @@ public class App_SigningProcessDao implements App_SigningProcessIDao {
 			 return null;
 		 }
 	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<App_SigningProcessBean> selectApp_staandSig_staandAppmanger(String app_sta, String sig_sta,
+			String app_Manger) {
+		List<App_SigningProcessBean> list = null;
+		String hgl = "FROM App_SigningProcessBean where app_sta=:id1 and sig_sta=:id2 and app_Manger=:id3 order by Sig_Date desc";
+		list =this.getSession().createQuery(hgl).setParameter("id1", app_sta).setParameter("id2", sig_sta).setParameter("id3", app_Manger).setMaxResults(50).list();
+		 if(list.size()>0) {
+			 return list;
+			 }
+		 else {
+			
+			 return null;
+		 }
+	}
 }

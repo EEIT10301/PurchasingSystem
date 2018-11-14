@@ -30,7 +30,7 @@
 				<br>
 			<h3>財務系統>查詢請款單狀態>所有請款單</h3>
 			<table class="table table-striped table-hover">
-				<thead>
+				<thead class="thead-light">
 					<tr>
 						<th scope="col">請款單單號</th>
 						<th scope="col">廠商名稱</th>
@@ -51,7 +51,7 @@
 		<br>
 			<h3>財務系統>查詢請款單狀態>所有請款單</h3>
 			<table class="table table-striped table-hover">
-				<thead>
+				<thead class="thead-light">
 					<tr>
 						<th scope="col">請款單單號</th>
 						<th scope="col">廠商名稱</th>
@@ -65,7 +65,7 @@
 				<br>
 			<h3>財務系統>查詢請款單狀態>所有請款單</h3>
 			<table class="table table-striped table-hover">
-				<thead>
+				<thead class="thead-light">
 					<tr>
 						<th scope="col">請款單單號</th>
 						<th scope="col">廠商名稱</th>
@@ -86,7 +86,7 @@
 		<br>
 			<h3>財務系統>查詢請款單狀態>所有請款單</h3>
 			<table class="table table-striped table-hover">
-				<thead>
+				<thead class="thead-light">
 					<tr>
 						<th scope="col">請款單單號</th>
 						<th scope="col">廠商名稱</th>
@@ -100,7 +100,7 @@
 <br>
 			<h3>財務系統>查詢請款單狀態>已完成請款單</h3>
 			<table class="table table-striped table-hover">
-				<thead>
+				<thead class="thead-light">
 					<tr>
 						<th scope="col">請款單單號</th>
 						<th scope="col">廠商名稱</th>
@@ -123,7 +123,7 @@
 			
 
 			<table class="table table-striped table-hover">
-				<thead>
+				<thead class="thead-light">
 					<tr>
 						<th scope="col">請款單單號</th>
 						<th scope="col">廠商名稱</th>
@@ -137,7 +137,7 @@
 <br>
 			<h3>財務系統>查詢請款單狀態>已完成請款單</h3>
 			<table class="table table-striped table-hover">
-				<thead>
+				<thead class="thead-light">
 					<tr>
 						<th scope="col">請款單單號</th>
 						<th scope="col">廠商名稱</th>
@@ -160,7 +160,7 @@
 			
 
 			<table class="table table-striped table-hover">
-				<thead>
+				<thead class="thead-light">
 					<tr>
 						<th scope="col">請款單單號</th>
 						<th scope="col">廠商名稱</th>
@@ -175,7 +175,7 @@
 			<h3>財務系統>查詢請款單狀態>未完成請款單</h3>
 
 			<table class="table table-striped">
-				<thead>
+				<thead class="thead-light">
 					<tr>
 						<th scope="col">請款單單號</th>
 						<th scope="col">廠商名稱</th>
@@ -197,7 +197,7 @@
 		<h3>財務系統>查詢請款單狀態>未完成請款單</h3>
 	
 			<table class="table table-striped">
-				<thead>
+				<thead class="thead-light">
 					<tr>
 						<th scope="col">請款單單號</th>
 						<th scope="col">廠商名稱</th>
@@ -211,7 +211,7 @@
 			<h3>財務系統>查詢請款單狀態>未完成請款單</h3>
 
 			<table class="table table-striped">
-				<thead>
+				<thead class="thead-light">
 					<tr>
 						<th scope="col">請款單單號</th>
 						<th scope="col">廠商名稱</th>
@@ -233,7 +233,7 @@
 		<h3>財務系統>查詢請款單狀態>未完成請款單</h3>
 	
 			<table class="table table-striped">
-				<thead>
+				<thead class="thead-light">
 					<tr>
 						<th scope="col">請款單單號</th>
 						<th scope="col">廠商名稱</th>

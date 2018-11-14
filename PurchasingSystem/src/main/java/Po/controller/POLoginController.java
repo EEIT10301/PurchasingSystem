@@ -46,7 +46,7 @@ public class POLoginController {
 			
 		//根據model執行結果，導向view
 				if(bean==null) {
-					errors.put("password", "Login failed, please try again.");
+					errors.put("password", "登入失敗請重新登入");
 					return "POlogin.errors";
 					
 				} else {

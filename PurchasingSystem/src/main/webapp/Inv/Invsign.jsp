@@ -19,7 +19,7 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script>
 	function reconfirmOrder() {		
-		if(confirm("確定驗收成功嗎? "))
+		if(confirm("確定驗收? "))
 		{
 			window.event.returnValue=true;
 			}
@@ -28,17 +28,23 @@
 			alert("此動作已經被取消");
 			window.event.returnValue=false;
 			}
+		
+		
 	}
 	</script>
 	<script type="text/javascript">
-	$(document).ready(function(){		
-	if($(":submit").prop("disabled")==true){
-		alert("aaa");
-		$("#finish").show();
-	}else{
-		alert("sss");
-		$("#finish").hide();
-	}})
+	$(document).ready(function(){
+		var size = $(".subimit11").length;
+		var che=true; 
+		$(".subimit11").each(function(){
+				if($(this).prop("disabled")==false){
+					che=false;	
+				}	
+		 });
+		if(che==true)
+			$("#finish").attr("hidden",false);
+		
+	})
 	
 	
 	</script>
@@ -71,6 +77,7 @@
   position:absolute;
   right: 500px
   }
+
 }
 </style>
 </head>
@@ -121,7 +128,7 @@
 		     <option  value="驗收成功">驗收成功</option>   
 		     <option  value="驗收失敗">驗收失敗</option>   
 		    </select>	</td>	
-		    <td><Input type='submit' class='subimit11' name='send' value='送出'></td>
+		    <td><Input type='submit' class='subimit11' onclick="reconfirmOrder()" name='send' value='送出'></td>
 	        </c:if>
 		    <c:if test="${not empty invpromain.chk_status}">
 		    <td><input type="text" name='chk_quality'  value="${invpromain.chk_quality}"></td>
@@ -146,12 +153,13 @@
 	</c:if>
 
 	
-		<form action="invfinish.conll" method="post">
+		<form id="finish" action="invfinish.conll" method="post" hidden="hidden">
 		驗收單號:${Inv_SigningProcessBean.chk_Id }
 		驗收簽核狀態:${Inv_SigningProcessBean.sig_Sta }
+		驗收意見:<p><textarea rows="5" cols="50"  name="SignSug"></textarea><font color="red"></font><p>
 		<Input type='hidden' name="sigSta" value='${Inv_SigningProcessBean.sig_Sta}'>
 		<Input type='hidden' name="chkId" value='${Inv_SigningProcessBean.chk_Id}'>
-        <Input style="position:absolute;right:700px ;" onclick="reconfirmOrder()" id="finish" type='submit' class='send123'name='send123' value='驗收完成'>
+        <Input style="position:absolute;right:700px;"   type='submit' class='send123'name='send123' value='驗收完成' >
         </form>
       
 <!--         </div> -->

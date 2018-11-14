@@ -86,7 +86,7 @@ public class ApplyLoginController {
 				
 		//根據model執行結果，導向view
 				if(bean==null) {
-					errors.put("password", "Login failed, please try again.");
+					errors.put("password", "帳號或密碼有誤,請重新輸入.");
 					return "indexlogin.error";
 					
 				} else {

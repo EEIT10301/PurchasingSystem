@@ -4,5 +4,13 @@ $("#myInput").on("keyup", function() {
 	      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
 	   });
 	});
+$("#send1").click(function(){
+    alert($(this).val()+"成功");
+		
+});
+$("#send2").click(function(){
+   alert($(this).val()+"成功");
+		
+});
 
 

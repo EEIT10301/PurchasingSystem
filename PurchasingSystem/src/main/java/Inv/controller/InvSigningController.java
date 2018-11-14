@@ -98,14 +98,17 @@ public String invsendlist (Inv_SigningProcessBean bean, BindingResult bindingRes
 				null, "驗收中", null, 3);
 	 inv_SigningProcessService.insert(secondsigningrocess1);
 	 model.addAttribute("sendok","分派完成");
-		return "Invlogin.success";		
+	 
+//	 return "InvSendEmployee.do";		
+     return "redirect:/Inv/sendEmployee.controller"; 	
+//		return "Invlogin.success";
+	 
 	}
 	@RequestMapping("/Inv/selectInvchk.controller")
 public String selectInvchk(Model model,HttpSession session) {//待驗收驗收單畫面
 	EmployeeBean beans=(EmployeeBean)session.getAttribute("user");
 	String invpro = beans.getEmp_id();
 	List<Inv_SigningProcessBean> selectlist = inv_SigningProcessService.selectempidsend(invpro, "驗收中");
-	List<Inv_SigningProcessBean> selectlistnofinish = inv_SigningProcessService.selectempidsend(invpro, "驗收作業進行中");	
 	List<Inv_SigningProcessBean> selectlists = null;
 	selectlists=new LinkedList<Inv_SigningProcessBean>();
 	if(selectlist==null) {
@@ -121,17 +124,6 @@ public String selectInvchk(Model model,HttpSession session) {//待驗收驗收�
 		}
 		model.addAttribute("selsctlists",selectlists);
 		}
-		if(selectlistnofinish!=null) {
-		for(int i=0;i<selectlistnofinish.size();i++) {
-			Inv_SigningProcessBean x = selectlistnofinish.get(i);
-			Inv_SigningProcessBean xs = inv_SigningProcessService.select("驗收分派", x.getChk_Id());
-			if(xs!=null) {
-				selectlists.add(x);
-				selectlists.add(xs);
-			}
-			model.addAttribute("selectlistnofinish",selectlistnofinish);
-		}}
-		
 		return "selectInvchk.list";
 	}
 		
