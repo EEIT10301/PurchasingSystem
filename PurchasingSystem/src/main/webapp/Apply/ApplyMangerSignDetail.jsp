@@ -139,8 +139,8 @@ font-size: 36px;
 <Input type='hidden' name='sig_rank' value='${thispro.sig_rank}'>
 簽核意見:<p><textarea rows="5" cols="50"  name="SignSug">
 </textarea><font color="red">${error.plz}</font><p>
-<Input type='submit' name='send' value='${sendsubmit1}'>
-<Input type='submit' name='send' value='${sendsubmit2}'>
+<Input id='send1' type='submit' name='send' value='${sendsubmit1}'>
+<Input id='send2' type='submit' name='send' value='${sendsubmit2}'>
 </form>
 </div>
 </c:if>
@@ -284,13 +284,13 @@ font-size: 36px;
 <Input type='hidden' name='sig_rank' value='${nothispro.sig_rank}'>
 簽核意見:<p><textarea rows="5" cols="50"  name="SignSug">
 </textarea><font color="red">${error.plz}</font><p>
-<Input type='submit' name='send' value='${sendsubmit1}'>
-<Input type='submit' name='send' value='${sendsubmit2}'>
+<Input id='send1' type='submit' name='send' value='${sendsubmit1}'>
+<Input id='send2' type='submit' name='send' value='${sendsubmit2}'>
 </form>
 </div>
 </c:if>
 
-<script src="../js/app.js"></script>
+<script src="../js/applysign.js"></script>
 </div>
 </body>
 </html>
