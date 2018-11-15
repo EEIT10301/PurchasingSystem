@@ -81,24 +81,24 @@
 								<td>${Podetailbeans1.quotation}</td>
 								<td>${Podetailbeans1.total_Price}元</td>
 								<td>${Podetailbeans1.total_Price*Podetailbeans1.quotation}元</td>
-								<td><Input type='text' name='po_id'
+								<td><Input type='hidden' name='po_id'
 									value='${Podetailbeans1.po_id}'></td>
-								<td><Input type='text' name='part_No'
+								<td><Input type='hidden' name='part_No'
 									value='${Podetailbeans1.part_No}'></td>
-								<td><Input type='text' name='market_Price'
+								<td><Input type='hidden' name='market_Price'
 									value='${Podetailbeans1.market_Price}'></td>
-								<td><Input type='text' name='quotation'
+								<td><Input type='hidden' name='quotation'
 									value='${Podetailbeans1.quotation}'></td>
-								<td><Input type='text' name='total_Price'
+								<td><Input type='hidden' name='total_Price'
 									value='${Podetailbeans1.total_Price}'></td>
-								<td><Input type='text' name='total_Qty'
+								<td><Input type='hidden' name='total_Qty'
 									value='${Podetailbeans1.total_Qty}'></td>
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
 				<p>總採購價格:${allListprice}元</p>
-				<Input type='text' name='allListprice' value='${allListprice}'>
+				<Input type='hidden' name='allListprice' value='${allListprice}'>
 				<p>
 					簽和順序 step1: <select name="pomanger">
 						<c:forEach var="pomangers1" items="${pomangers}">
