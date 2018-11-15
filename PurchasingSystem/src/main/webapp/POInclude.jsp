@@ -101,7 +101,7 @@ span {
                 <a class="nav-link active" href="selectprice.controller">
                 <img class="card-img-top imgp" src="../sysimg/s16.png">
                   <span data-feather="home"></span>
-                  	待詢價採購單<font color=red>${queryUndoneNo}</font>
+                  	待詢價採購單<span class="badge badge-danger">${queryUndoneNo}</span>
                   	<span class="sr-only">(current)</span>
                 </a>
               </li>
@@ -109,28 +109,28 @@ span {
                 <a class="nav-link" href="POManagerSigner.controller">
                 <img class="card-img-top imgp" src="../sysimg/s15.png">
                   <span data-feather="users"></span>
-                  	待處理採購單<font color=red>${pOUndoListsNo}</font>
+                  	待處理採購單<span class="badge badge-danger">${pOUndoListsNo}</span>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="signedorder.controller">
                 <img class="card-img-top imgp" src="../sysimg/s17.png">
                   <span data-feather="file"></span>
-                  	待下單採購單<font color=red>${unPlacedOrderNo}</font>
+                  	待下單採購單<span class="badge badge-danger">${unPlacedOrderNo}</span>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="placedOrder.controller">
                 <img class="card-img-top imgp" src="../sysimg/s18.png">
                   <span data-feather="shopping-cart"></span>
-                  	待收貨採購單<font color=red>${unReceivedGoodsNo}</font>
+                  	待收貨採購單<span class="badge badge-danger">${unReceivedGoodsNo}</span>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="Polist.controller">
                 <img class="card-img-top imgp" src="../sysimg/s14.png">
                   <span data-feather="layers"></span>
-                  	待處理請款單
+                  	待處理請款單<span class="badge badge-danger">${noSignInv}</span>
                 </a>
               </li>
               <li class="nav-item">
@@ -163,7 +163,7 @@ span {
                 <a class="nav-link active" href="sendEmployee.controller">
                 <img class="card-img-top imgp" src="../sysimg/s2.png">
                   <span data-feather="home"></span>
-                  	待分派採購單 <font color=red>${unAssignedEmpNo}</font>
+                  	待分派採購單 <span class="badge badge-danger">${unAssignedEmpNo}</span>
                   	<span class="sr-only">(current)</span>
                 </a>
               </li>
@@ -171,14 +171,14 @@ span {
                 <a class="nav-link" href="POManagerSigner.controller">
                 <img class="card-img-top imgp" src="../sysimg/s2.png">
                   <span data-feather="users"></span>
-                  	待處理採購單<font color=red>${pOUndoListsNo}</font>
+                  	待處理採購單<span class="badge badge-danger">${pOUndoListsNo}</span>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="todoSignInvoice.controller">
                 <img class="card-img-top imgp" src="../sysimg/s2.png">
                   <span data-feather="file"></span>
-                  	待審核請款單
+                  	待審核請款單<span class="badge badge-danger">${noSignInvforBoss}</span>
                 </a>
               </li>
              </ul>

@@ -108,7 +108,7 @@ padding-right:30px;
 					class="card-img-top imgp" src="../sysimg/s16.png"></a>
 				<div class="card-body">
 					<h5 class="card-title">
-						<font face="微軟正黑體">待詢價採購單<font color=red>${queryUndoneNo}</font></font> 
+						<font face="微軟正黑體">待詢價採購單<span class="badge badge-danger">${queryUndoneNo}</span></font> 
 					</h5>
 				</div>
 			</div>
@@ -117,7 +117,7 @@ padding-right:30px;
 					class="card-img-top imgp" src="../sysimg/s15.png"></a>
 				<div class="card-body">
 					<h5 class="card-title">
-						<font face="微軟正黑體">待處理採購單<font color=red>${pOUndoListsNo}</font></font>
+						<font face="微軟正黑體">待處理採購單<span class="badge badge-danger">${pOUndoListsNo}</span></font>
 					</h5>
 				</div>
 			</div>
@@ -126,7 +126,7 @@ padding-right:30px;
 					class="card-img-top imgp" src="../sysimg/s17.png"></a>
 				<div class="card-body">
 					<h5 class="card-title">
-						<font face="微軟正黑體">待下單採購單<font color=red>${unPlacedOrderNo}</font></font>
+						<font face="微軟正黑體">待下單採購單<span class="badge badge-danger">${unPlacedOrderNo}</span></font>
 					</h5>
 				</div>
 			</div>
@@ -135,7 +135,7 @@ padding-right:30px;
 					class="card-img-top imgp" src="../sysimg/s18.png"></a>
 				<div class="card-body">
 					<h5 class="card-title">
-						<font face="微軟正黑體">待收貨採購單<font color=red>${unReceivedGoodsNo}</font></font>
+						<font face="微軟正黑體">待收貨採購單<span class="badge badge-danger">${unReceivedGoodsNo}</span></font>
 					</h5>
 				</div>
 			</div>
@@ -144,7 +144,7 @@ padding-right:30px;
 					class="card-img-top imgp" src="../sysimg/s14.png"></a>
 				<div class="card-body">
 					<h5 class="card-title">
-						<font face="微軟正黑體">待處理請款單</font>
+						<font face="微軟正黑體">待處理請款單<span class="badge badge-danger">${noSignInv}</span></font>
 					</h5>
 				</div>
 			</div>
@@ -183,7 +183,7 @@ padding-right:30px;
 					class="card-img-top imgp" src="../sysimg/s2.png"></a>
 				<div class="card-body">
 					<h5 class="card-title">
-						<font face="微軟正黑體">待分派採購單<font color=red>${unAssignedEmpNo}</font></font>
+						<font face="微軟正黑體">待分派採購單<span class="badge badge-danger">${unAssignedEmpNo}</span></font>
 					</h5>
 				</div>
 			</div>
@@ -192,7 +192,7 @@ padding-right:30px;
 					class="card-img-top imgp" src="../sysimg/s2.png"></a>
 				<div class="card-body">
 					<h5 class="card-title">
-						<font face="微軟正黑體">待處理採購單<font color=red>${pOUndoListsNo}</font></font>
+						<font face="微軟正黑體">待處理採購單<span class="badge badge-danger">${pOUndoListsNo}</span></font>
 					</h5>
 				</div>
 			</div>
@@ -201,7 +201,7 @@ padding-right:30px;
 					class="card-img-top imgp" src="../sysimg/s2.png"></a>
 				<div class="card-body">
 					<h5 class="card-title">
-						<font face="微軟正黑體">待審核請款單</font>
+						<font face="微軟正黑體">待審核請款單<span class="badge badge-danger">${noSignInvforBoss}</span></font>
 					</h5>
 				</div>
 			</div>

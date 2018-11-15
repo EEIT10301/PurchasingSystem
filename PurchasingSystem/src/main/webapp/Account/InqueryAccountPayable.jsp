@@ -54,9 +54,7 @@ float: right;
 }
 
 
-form{
-margin-right: 10px;
-}
+
 
 </style>
 </head>
