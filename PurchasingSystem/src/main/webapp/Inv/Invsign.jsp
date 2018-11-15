@@ -82,16 +82,51 @@
 </style>
 </head>
 <body>
-<h1>驗收單號:${Inv_SigningProcessBean.chk_Id }</h1>
+<h1>採購單號:${pomain.po_id }</h1>
 <c:if test="${Inv_SigningProcessBean.sig_Sta!='再次驗收' }">
 	<div class="right">
-	
+	 <input class="form-control" type="text" placeholder="search" id="search">
+     <style id="search_style"></style>
+<script type="text/javascript">
+var searchStyle = document.getElementById('search_style');
+document.getElementById('search').addEventListener('input', function() {
+  if (!this.value) {
+    searchStyle.innerHTML = "";
+    return;
+  }
+  // look ma, no indexOf!
+  searchStyle.innerHTML = ".searchable:not([data-index*=\"" + this.value.toLowerCase() + "\"]) { display: none; }";
+  // beware of css injections!
+});
+</script>
 	<table class="table table-striped table-hover" id="table">
-
-
            <thead>
+           <tr>
+					<th width="10%">採購項目</th>
+					<th width="10%">採購名稱</th>
+					<th width="10%">採購料號</th>
+					<th width="10%">採購規格</th>
+					<th width="10%">驗收數量</th>
+				</tr>
+			</thead>
+	<tbody>
+	<c:forEach var="podetail" items="${pomain.pO_DetailBean}">
+	<tr class="searchable" data-index="${podetail.productListBean.pro_cate }${podetail.productListBean.pro_name }${podetail.part_No }${podetail.productListBean.pro_spe  }${podetail.total_Qty  }">
+	<td>${podetail.productListBean.pro_cate }</td>
+	<td>${podetail.productListBean.pro_name }</td>
+	<td>${podetail.part_No }</td>
+	<td>${podetail.productListBean.pro_spe  }</td>
+	<td>${podetail.total_Qty  }</td>	
+	</tr>
+	</c:forEach>
 
-				
+
+</tbody>
+</table>	
+<hr />
+<h1>驗收單號:${Inv_SigningProcessBean.chk_Id }</h1>
+	<table class="table table-striped table-hover" id="table">
+           <thead>			
 <!-- 				<tr> -->
 <!-- 					<th><input  class="form-control" id="myInput" type="text" -->
 <!-- 						placeholder="Search"><br /></th> -->
@@ -100,8 +135,8 @@
 				<tr lang="1000">
 					<th width="10%">驗收項目</th>
 					<th width="10%">驗收名稱</th>
+					<th width="10%">驗收料號</th>					
 					<th width="10%">驗收規格</th>
-					<th width="10%">請購數量</th>
 					<th width="10%">驗收品質</th>
 					<th width="10%">驗收數量</th>
 					<th id="tosubmit"></th>
@@ -109,16 +144,16 @@
 				</tr>
 			</thead>
 	<tbody>
-	
+
 	<c:forEach var="invpromain" items="${invmain.inv_ProductListBean}">
 	
 	<form action="<c:url value="/Inv/changeinvprosta"/>" method="post">
 	        
-		<tr class="searchable" data-index="${invpromain.productListBean.pro_cate}${invpromain.productListBean.pro_name}${invpromain.productListBean.pro_spe}${invpromain.chk_Count}">
+<tr class="searchable" data-index="${invpromain.productListBean.part_no}${invpromain.productListBean.pro_cate}${invpromain.productListBean.pro_name}${invpromain.productListBean.pro_spe}${invpromain.chk_Count}">
 	       <td > ${invpromain.productListBean.pro_cate}</td>
 	       <td> ${invpromain.productListBean.pro_name}</td>
+	       <td> ${invpromain.productListBean.part_no}</td>
 	       <td>${invpromain.productListBean.pro_spe}</td>
-	       <td> ${invpromain.chk_Count}</td>
 		 <c:if test="${ empty invpromain.chk_status}">
 		  <td><input type="text" name='chk_quality' placeholder="驗收品質"></td>
 		   <td> <input type="text" name='chk_Count' placeholder="實際數量"></td>
@@ -131,11 +166,11 @@
 		    <td><Input type='submit' class='subimit11' onclick="reconfirmOrder()" name='send' value='送出'></td>
 	        </c:if>
 		    <c:if test="${not empty invpromain.chk_status}">
-		    <td><input type="text" name='chk_quality'  value="${invpromain.chk_quality}"></td>
-		      <td><input type="text" name='chk_Count' value="${invpromain.chk_Count}"></td>
+		    <td><input type="text" disabled="disabled" name='chk_quality'  value="${invpromain.chk_quality}"></td>
+		      <td><input type="text" disabled="disabled" name='chk_Count' value="${invpromain.chk_Count}"></td>
 		   <td> <select name="chkstatus">
-		     <option <c:if test="${invpromain.chk_status=='驗收成功' }">selected</c:if> value="驗收成功">驗收成功</option>   
-		     <option <c:if test="${invpromain.chk_status=='驗收失敗' }">selected</c:if> value="驗收失敗">驗收失敗</option>   
+		     <option disabled="disabled" <c:if test="${invpromain.chk_status=='驗收成功' }">selected</c:if> value="驗收成功">驗收成功</option>   
+		     <option  disabled="disabled"<c:if test="${invpromain.chk_status=='驗收失敗' }">selected</c:if> value="驗收失敗">驗收失敗</option>   
 		    </select>		
 		  </td>	   
 		   <td> <Input class='subimit11' disabled="disabled" type='submit' name='send' value='已驗收'></td>
