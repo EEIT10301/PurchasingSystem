@@ -385,7 +385,7 @@ public class POSigningController {
 			model.addAttribute("AllPO_Vendor", POQuery);
 			return "Posend.sign";
 		} else {// 按下送出時
-			if (boss == null) {// 如果部會到總經理的話
+			if (boss == null) {// 如果不會到總經理的話
 				PO_MainBean pomain = pO_MainService.select(poid1);
 				pomain.setVendor_ID(AllPO_Vendors);
 				pomain.setTotal_price(Integer.valueOf(allListprice));

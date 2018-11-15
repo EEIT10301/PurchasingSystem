@@ -55,7 +55,6 @@ public class WareHouseController {
 	List<Inv＿ProductCheckBean> checkAll = additemServie.select();
 	model.addAttribute("check", checkAll);	
 	return "invend.itemins";
-
 	}
 	
 	@RequestMapping("/Inv/DetailView")
