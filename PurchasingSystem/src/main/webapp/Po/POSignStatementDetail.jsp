@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
        <%@ include file="../POInclude.jsp"%>
+       <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +24,7 @@
 <c:if test="${not empty po_id }">
 
 
-<h2>採購主檔</h2>
+<h2>採購單編號 :${po_id}</h2>
 <table class="table table-striped table-hover" id="myTable">
 
 <tr>
@@ -51,7 +52,7 @@
 <c:if test="${not empty podetail}">
 
 
-<h2>採購細項</h2>
+<h2>採購清單</h2>
 <table class="table table-striped table-hover" id="myTable">
 
 
@@ -121,7 +122,7 @@
 
 
 <c:if test="${not empty POprocess}">
-<h2>採購簽核流程 :${po_id}</h2>
+<h2>採購簽核流程</h2>
 <table class="table table-striped table-hover" id="myTable">
 <thead>
 <tr>
@@ -142,8 +143,12 @@
 <td><font color="red">${POprocess.po_sta}</font></td>
 <td><font color="red">${POprocess.employeeBean.emp_name}</font></td>
 <td>
-<font color="red">${POprocess.sig_date}</font>
+<font color="red">
 
+<fmt:formatDate  pattern="yyyy/MM/dd HH:mm"  value="${POprocess.sig_date}"/>
+ </font>
+
+<%-- </fmt:formatDate> --%>
 </td>
 <td><font color="red">${POprocess.sig_sta}</font></td>
 <td>
@@ -161,7 +166,7 @@
 <td>${POprocess.po_sta}</td>
 <td>${POprocess.employeeBean.emp_name}</td>
 <td>
-${POprocess.sig_date}
+<fmt:formatDate pattern="yyyy/MM/dd HH:mm"  value="${POprocess.sig_date}"/>
 
 </td>
 <td>${POprocess.sig_sta}</td>
@@ -190,10 +195,10 @@ ${POprocess.sig_sug}
 
 
 <c:if test="${not empty ck_id}">
-<h2>驗收簽核流程:${ck_id}</h2>
+<h2>驗收簽核流程</h2>
 <c:if test="${not empty Invprocess}">
 
-<input class="form-control" id="myInput" type="text" placeholder="Search"><br/>
+
 <table class="table table-striped table-hover" id="myTable">
 <thead>
 <tr>
@@ -212,7 +217,9 @@ ${POprocess.sig_sug}
 <td>${Invprocess.sig_Rank}</td>
 <td>${Invprocess.inv_Sta}</td>
 <td>${Invprocess.employeeBean.emp_name}</td>
-<td>${Invprocess.sig_Date}</td>
+<td>
+<fmt:formatDate  pattern="yyyy/MM/dd HH:mm"  value="${Invprocess.sig_Date}"/>
+</td>
 <td>${Invprocess.sig_Sta}</td>
 <td>${Invprocess.sig_Sug}</td>
 </tr>
@@ -227,7 +234,9 @@ ${POprocess.sig_sug}
 <td><font color="red">${Invprocess.sig_Rank}</font></td>
 <td><font color="red">${Invprocess.inv_Sta}</font></td>
 <td><font color="red">${Invprocess.employeeBean.emp_name}</font></td>
-<td><font color="red">${Invprocess.sig_Date}</font></td>
+<td><font color="red">
+<fmt:formatDate  pattern="yyyy/MM/dd HH:mm"  value="${Invprocess.sig_Date}"/>
+</font></td>
 <td><font color="red">${Invprocess.sig_Sta}</font></td>
 <td><font color="red">${Invprocess.sig_Sug}</font></td>
 </tr>

@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-   <%@taglib  uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-   <%@ include file="../POInclude.jsp"%> 
+<%@taglib  uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ include file="../POInclude.jsp"%> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,7 +35,7 @@
 
 <tr>
 <td><a href="<c:url value="/Po/POSignStatementDetail.controller?po_id=${POLists.po_id}"/>">${POLists.po_id}</a></td>
-<td>${POLists.sig_date}</td>
+<td><fmt:formatDate pattern="yyyy/MM/dd HH:mm" value="${POLists.sig_date}"/></td>
 
 
 <td><Input type='hidden' name=po_manger value='${POLists.po_manger}'></td>
