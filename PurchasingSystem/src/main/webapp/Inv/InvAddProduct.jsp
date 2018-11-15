@@ -49,9 +49,7 @@ button { @extend input;
 	
 }
 }
-    .intab,.tr1,.as{
-        border: 2px solid  rgb(255, 174, 0) ;
-    }
+
 </style>
 </head>
 <body class="bg">
@@ -99,12 +97,16 @@ button { @extend input;
 		<div align="center">
 			<span> <b>${error.notFind}</b></span>
 			<c:if test="${!empty Detail}">
-				<table class="intab">
+				<table  class="table table-striped table-hover">
 					<caption class="as">本次新增項目</caption>
+									<thead>
+					<tr>
 					<th class="tr1">產品料號</th>
 					<th class="tr1">產品數量</th>
 					<th class="tr1">驗收日期</th>
 					<th class="tr1">產品良率</th>
+										</tr>
+				</thead>
 					<c:forEach var="Detail" items="${Detail}">
 						<tr class="tr1">
 							<td class="tr1">${Detail.part_No}</td>
@@ -114,6 +116,8 @@ button { @extend input;
 
 						</tr>
 					</c:forEach>
+					<tbody id="selectAll">
+				</tbody>
 				</table>
 			</c:if>
 		</div>
