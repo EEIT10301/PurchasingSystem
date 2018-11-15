@@ -18,5 +18,7 @@ public interface Inv_ProductListIDao {
 	public abstract List<Inv_ProductListBean> select(String id);
 	
 	public abstract List<Inv_ProductListBean> ViewAddCheckDetail(String chk_Id);
+
+	public abstract List<Inv_ProductListBean> selectIdandSigsta(String chk_Id, String chk_status);
 	
 }

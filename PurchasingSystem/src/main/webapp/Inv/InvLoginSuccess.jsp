@@ -49,14 +49,14 @@
 			</div>
 		<div class="card bg-light f">
 				<a href='CheckBean' class="btn"><img
-					class="card-img-top imgp" src="../sysimg/s1.png"></a>
+					class="card-img-top imgp" src="../sysimg/s20.png"></a>
 				<div class="card-body">
 					<h5 class="card-title"><font face="微軟正黑體">驗收成功清單</font></h5>
 				</div>
 			</div>
 		<div class="card bg-light f">
 				<a href='chkprofail.controller' class="btn"><img
-					class="card-img-top imgp" src="../sysimg/s1.png"></a>
+					class="card-img-top imgp" src="../sysimg/s15.png"></a>
 				<div class="card-body">
 					<h5 class="card-title"><font face="微軟正黑體">驗收失敗清單</font></h5>
 				</div>
@@ -73,7 +73,7 @@
 		</div>
 								<div class="card bg-light f">
 				<a href='singcheck' class="btn"><img
-					class="card-img-top imgp" src="../sysimg/s1.png"></a>
+					class="card-img-top imgp" src="../sysimg/s14.png"></a>
 				<div class="card-body">
 					<h5 class="card-title"><font face="微軟正黑體">查詢驗收單狀態</font></h5>
 				</div>
@@ -81,7 +81,7 @@
 		</c:if>
 						<div class="card bg-light f">
 				<a href='item?pageNo=1' class="btn"><img
-					class="card-img-top imgp" src="../sysimg/s1.png"></a>
+					class="card-img-top imgp" src="../sysimg/s19.png"></a>
 				<div class="card-body">
 					<h5 class="card-title"><font face="微軟正黑體">查詢庫存</font></h5>
 				</div>

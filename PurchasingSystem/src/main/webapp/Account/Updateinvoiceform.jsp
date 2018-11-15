@@ -11,6 +11,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
 <!-- bootstrap 4.x is supported. You can also use the bootstrap css 3.3.x versions -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/css/fileinput.min.css" media="all" rel="stylesheet"
@@ -115,7 +116,6 @@ span {
 </head>
 
 <body class="bg">
-
 	<c:if test="${user.emp_dep=='採購部'}">
 
 		<h1>
@@ -199,7 +199,6 @@ span {
 	</c:if>
 	<h3>請款單細項</h3>
 	<br>
-
 	<c:if test="${not empty invoice}">
 		<a href='Polist.controller'>回上一頁</a>
 		<form class="form-inline" method="post"
@@ -483,9 +482,11 @@ span {
 	<input type="hidden" value="${inv_id}" name="invidback">
 
 	<script>
+
 	$(document).ready(function(){
 	     $("#input-b5").fileinput({ showCaption: false, dropZoneEnabled: false });
 	});
+
 	$(document).ready(function(){
 		var invid="${inv_id}";
 		var sendsuccessmeg="${sendsuccessmeg}";

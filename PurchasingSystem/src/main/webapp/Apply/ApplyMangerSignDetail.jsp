@@ -48,7 +48,6 @@ font-size: 36px;
 <th>提案意見</th>
 </tr>
 </thead>
-<tbody id="myTable">
 <tr>
 <td><font color='red'>${user.emp_name}簽核中</font></td>
 <td> ${user.emp_dep} ${user.emp_job}</td>
@@ -60,10 +59,16 @@ font-size: 36px;
 <td>${appsign.sig_sug} </td>
 </c:if>
 </c:forEach>
-</tr>
-<tr>
-<th class='text-center' colspan='5'>請購商品明細</th>
-</tr>
+</tr></table>
+<!-- xxxx -->
+<div class="card">
+<div data-toggle="collapse" data-target="#demo3"
+						class="accordion-toggle">
+						<h5 class="text-center font-weight-bold">請購商品明細 ↓</h5>
+					</div>
+										<div class="accordian-body collapse" id="demo3">
+					
+<table  class="table table-striped table-hover">
 <tr>
 <th >料號</th>
 <th >物料名稱</th>
@@ -79,7 +84,9 @@ font-size: 36px;
 <td>${appdetail.app_amount} </td>
 <td>${appdetail.app_amount*appdetail.pro_price} 元整 </td>
 </tr>
-</c:forEach>
+</c:forEach></table></div></div><br>
+<!-- xxxx -->
+<table  class="table table-striped table-hover">
 <tr>
 <th class='text-center' colspan='5'>簽核流程</th>
 </tr>
@@ -107,10 +114,9 @@ font-size: 36px;
 <td>2</td>
 <td>${appsignpro.employeeBean.emp_name} ${appsignpro.sig_sta}</td>
 <td>${appsignpro.employeeBean.emp_dep} ${appsignpro.employeeBean.emp_job}</td>
-<c:if test="${not empty appsignpro.sig_date}">
 <td>${appsignpro.sig_date} </td>
 <td>${appsignpro.sig_sug} </td>
-</c:if>
+
 </tr>
 </c:if>
 </c:forEach>
@@ -120,14 +126,11 @@ font-size: 36px;
 <td>3</td>
 <td>${appsignpro.employeeBean.emp_name} ${appsignpro.sig_sta}</td>
 <td>${appsignpro.employeeBean.emp_dep} ${appsignpro.employeeBean.emp_job}</td>
-<c:if test="${not empty appsignpro.sig_date}">
 <td>${appsignpro.sig_date} </td>
 <td>${appsignpro.sig_sug} </td>
 </c:if>
-</c:if>
 </tr>
 </c:forEach>
-</tbody>
 </table>
 <form action="<c:url value="/Apply/applysignss.controller" />" method="post">
 <Input type='hidden' name='app_manger' value='${thispro.app_manger}'>

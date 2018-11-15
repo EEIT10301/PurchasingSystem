@@ -29,7 +29,7 @@ public class POAddVendorController {
 	@Autowired
 	PO_Vendor_InfoService pO_Vendor_InfoService;
 
-	@RequestMapping(path = "/POAddVendorSelectAll.do")
+	@RequestMapping(path="/Po/POAddVendorSelectAll.do")
 	@ResponseBody
 	public JSONArray SelectAllPoVendor() {
 		List<PO_Vendor_InfoBean> list = null;
@@ -39,7 +39,7 @@ public class POAddVendorController {
 		return new JSONArray(json);
 	}
 
-	@RequestMapping(value = "/POAddVendorinsertproduct.do", produces = "text/html; charset=utf-8")
+	@RequestMapping(value = "/PO/POAddVendorinsertproduct.do", produces = "text/html; charset=utf-8")
 	public @ResponseBody String InsertAJAX(HttpServletRequest request) throws IOException, ParseException {
 		String jsonStr = readJSON(request);
 		JSONObject jsonObj = new JSONObject(jsonStr);
@@ -67,7 +67,7 @@ public class POAddVendorController {
 		return json.toString();
 	};
 
-	@RequestMapping(value = "/POAddVendorupdate.do", produces = "text/html; charset=utf-8")
+	@RequestMapping(value = "/PO/POAddVendorupdate.do", produces = "text/html; charset=utf-8")
 	public @ResponseBody String UpdateAJAX(HttpServletRequest request) throws IOException, ParseException {
 		String jsonStr = readJSON(request);
 		JSONObject jsonObj = new JSONObject(jsonStr);
