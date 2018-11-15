@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="BIG5">
-<title>ª«®Æ§ó·s</title>
+<meta charset="utf-8">
+<title>ç‰©æ–™æ›´æ–°</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -23,7 +23,7 @@ font-size: 36px;
 
 .bg {
 	background-color: #FDF5E6;
-	/* µe­±¶¡¶Z */
+	/* ç•«é¢é–“è· */
 	margin: 30px;
 }
 .right{
@@ -39,7 +39,7 @@ font-size: 36px;
 }
 
 .f {
-	/* ¤è®æ±Æ¦C */
+	/* æ–¹æ ¼æ’åˆ— */
  	display: inline-block;
 	width: 200px;
 	height:50px;
@@ -60,7 +60,7 @@ font-size: 36px;
 }
 
 ul {
-	font-family:·L³n¥¿¶ÂÅé;
+	font-family:å¾®è»Ÿæ­£é»‘é«”;
 	font-size: 19px;
 }
 span {
@@ -72,19 +72,19 @@ span {
 <div id="xxx" ></div>
 <div class="right">
 <div class='container'>
-	<h3 align="center">ª«®Æ§ó·s</h3><br/>
+	<h3 align="center">ç‰©æ–™æ›´æ–°</h3><br/>
 <input class="form-control" id="myInput" type="text" placeholder="Search"><br/>
 <table class="table table-striped table-hover">
 <thead>
 <tr>
-<th>®Æ¸¹</th>
-<th>ª«®Æ¶µ¥Ø</th>
-<th>®w¦s</th>
-<th >ª«®Æ¦WºÙ</th>
-<th>³W®æÂ²­z</th>
-<th >¸Ô²Ó³W®æ</th>
-<th>»ù®æ</th>
-<th>³Ì«á­×§ï®É¶¡</th>
+<th>æ–™è™Ÿ</th>
+<th>ç‰©æ–™é …ç›®</th>
+<th>åº«å­˜</th>
+<th >ç‰©æ–™åç¨±</th>
+<th>è¦æ ¼ç°¡è¿°</th>
+<th >è©³ç´°è¦æ ¼</th>
+<th>åƒ¹æ ¼</th>
+<th>æœ€å¾Œä¿®æ”¹æ™‚é–“</th>
 </tr>
 </thead>
 <tbody id="selectAll">
@@ -102,24 +102,24 @@ $(document).ready(function(){
 		success:function(data){
 			var Applist = JSON.parse(data);
 				var txt = ""
-					txt += "<h1><font face='·L³n¥¿¶ÂÅé'>½ĞÁÊ¨t²Î</font></h1>"
-				    txt += "<a href='ApplyLoginSuccess.jsp'  style='font-family:·L³n¥¿¶ÂÅé;font-size: 15px;'>¦^­º­¶</a>"
-					txt += "<div class='text-right' style='font-family:·L³n¥¿¶ÂÅé;font-size: 15px;'>"
-					txt +=""+Applist.empdep+Applist.empname+Applist.empjob+",±z¦n <a href='ApplyLogout.controller'><button type='button' class='btn' style='font-family:·L³n¥¿¶ÂÅé;font-size: 15px;'>µn¥X</button></a> </div>"		
+					txt += "<h1><font face='å¾®è»Ÿæ­£é»‘é«”'>è«‹è³¼ç³»çµ±</font></h1>"
+				    txt += "<a href='ApplyLoginSuccess.jsp'  style='font-family:å¾®è»Ÿæ­£é»‘é«”;font-size: 15px;'>å›é¦–é </a>"
+					txt += "<div class='text-right' style='font-family:å¾®è»Ÿæ­£é»‘é«”;font-size: 15px;'>"
+					txt +=""+Applist.empdep+Applist.empname+Applist.empjob+",æ‚¨å¥½ <a href='ApplyLogout.controller'><button type='button' class='btn' style='font-family:å¾®è»Ÿæ­£é»‘é«”;font-size: 15px;'>ç™»å‡º</button></a> </div>"		
 				    txt += "<hr> <div class='left'>"
 						var emplevel = Applist.emplevel;
 						if(emplevel=="1"){
-							txt +='<ul class="nav flex-column"> <li class="nav-item"> <a class="nav-link active" href="ApplySend.jsp"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> ½ĞÁÊ¥Ó½Ğ <span class="sr-only"></span></a></li>'
-							txt +='<li class="nav-item"> <a class="nav-link active" href="http://localhost:8080/PurchasingSystem/Apply/ApplyWaitEndList.html"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> Åç¦¬§¹¦¨«İµ²®× <font color=red>'+Applist.waitendsign+'</font> </a></li>'
-							txt +='<li class="nav-item"> <a class="nav-link active" href="http://localhost:8080/PurchasingSystem/Apply/selectAll.html"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> ª«®Æ§ó·s <font color=red>'+'</font> </a></li>'
-							txt +='<li class="nav-item"> <a class="nav-link active" href="http://localhost:8080/PurchasingSystem/Apply/ApplySearchEndList.html"><img class="card-img-top imgp" src="../sysimg/s6.png"><span data-feather="home"></span> ¤wµ²®×³æ¤l¬d¸ß <font color=red>'+'</font> </a></li>'
-							txt +='<li class="nav-item"> <a class="nav-link active" href="toApplySignnerdetail.controller"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> «İÃ±®Ö½ĞÁÊ³æ <font color=red>'+Applist.SignAppList+'</font> </a></li>'
-							txt +='<li class="nav-item"> <a class="nav-link active" href="toApplySignpro.controller"><img class="card-img-top imgp" src="../sysimg/s6.png"><span data-feather="home"></span> ½ĞÁÊ¶i«×¬d¸ß <font color=red>'+Applist.Appnow+'</font> </a></li> </ul></div>'
+							txt +='<ul class="nav flex-column"> <li class="nav-item"> <a class="nav-link active" href="ApplySend.jsp"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> è«‹è³¼ç”³è«‹ <span class="sr-only"></span></a></li>'
+							txt +='<li class="nav-item"> <a class="nav-link active" href="http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Apply/ApplyWaitEndList.html"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> é©—æ”¶å®Œæˆå¾…çµæ¡ˆ <font color=red>'+Applist.waitendsign+'</font> </a></li>'
+							txt +='<li class="nav-item"> <a class="nav-link active" href="http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Apply/selectAll.html"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> ç‰©æ–™æ›´æ–° <font color=red>'+'</font> </a></li>'
+							txt +='<li class="nav-item"> <a class="nav-link active" href="http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Apply/ApplySearchEndList.html"><img class="card-img-top imgp" src="../sysimg/s6.png"><span data-feather="home"></span> å·²çµæ¡ˆå–®å­æŸ¥è©¢ <font color=red>'+'</font> </a></li>'
+							txt +='<li class="nav-item"> <a class="nav-link active" href="toApplySignnerdetail.controller"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> å¾…ç°½æ ¸è«‹è³¼å–® <font color=red>'+Applist.SignAppList+'</font> </a></li>'
+							txt +='<li class="nav-item"> <a class="nav-link active" href="toApplySignpro.controller"><img class="card-img-top imgp" src="../sysimg/s6.png"><span data-feather="home"></span> è«‹è³¼é€²åº¦æŸ¥è©¢ <font color=red>'+Applist.Appnow+'</font> </a></li> </ul></div>'
 						}else{
-							txt +='<ul class="nav flex-column"> <li class="nav-item"> <a class="nav-link active" href="http://localhost:8080/PurchasingSystem/Apply/selectAll.html"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> ª«®Æ§ó·s <font color=red>'+'</font> </a></li> '
-							txt +='<li class="nav-item"> <a class="nav-link active" href="http://localhost:8080/PurchasingSystem/Apply/ApplySearchEndList.html"><img class="card-img-top imgp" src="../sysimg/s6.png"><span data-feather="home"></span> ¤wµ²®×³æ¤l¬d¸ß <font color=red>'+'</font> </a></li>'
-							txt +='<li class="nav-item"> <a class="nav-link active" href="toApplySignnerdetail.controller"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> «İÃ±®Ö½ĞÁÊ³æ <font color=red>'+Applist.SignAppList+'</font> </a></li>'
-							txt +='<li class="nav-item"> <a class="nav-link active" href="toApplySignpro.controller"><img class="card-img-top imgp" src="../sysimg/s6.png"><span data-feather="home"></span> ½ĞÁÊ¶i«×¬d¸ß <font color=red>'+Applist.Appnow+'</font> </a></li> </ul></div>'
+							txt +='<ul class="nav flex-column"> <li class="nav-item"> <a class="nav-link active" href="http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Apply/selectAll.html"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> ç‰©æ–™æ›´æ–° <font color=red>'+'</font> </a></li> '
+							txt +='<li class="nav-item"> <a class="nav-link active" href="http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Apply/ApplySearchEndList.html"><img class="card-img-top imgp" src="../sysimg/s6.png"><span data-feather="home"></span> å·²çµæ¡ˆå–®å­æŸ¥è©¢ <font color=red>'+'</font> </a></li>'
+							txt +='<li class="nav-item"> <a class="nav-link active" href="toApplySignnerdetail.controller"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> å¾…ç°½æ ¸è«‹è³¼å–® <font color=red>'+Applist.SignAppList+'</font> </a></li>'
+							txt +='<li class="nav-item"> <a class="nav-link active" href="toApplySignpro.controller"><img class="card-img-top imgp" src="../sysimg/s6.png"><span data-feather="home"></span> è«‹è³¼é€²åº¦æŸ¥è©¢ <font color=red>'+Applist.Appnow+'</font> </a></li> </ul></div>'
 						}
 					
 				
@@ -135,21 +135,21 @@ $(document).ready(function(){
 						txt += "<tr >";
 						//<input style='width:70px' type='text'/>
 						txt += "<td id='id'><input style='width:70px' type='text' /></td>";
-						txt += "<td id='cate' >"+"<select > <option value='¹s²Õ¥ó'  >¹s²Õ¥ó </option> <option value='PC' >PC </option> <option value='²Õ¦X§÷¸¹' > ²Õ¦X§÷¸¹ </option> <option value='¥DªO²Õ¥ó' > ¥DªO²Õ¥ó </option> <option value='»¡©ú®Ñ' > »¡©ú®Ñ </option> </select> "
+						txt += "<td id='cate' >"+"<select > <option value='é›¶çµ„ä»¶'  >é›¶çµ„ä»¶ </option> <option value='PC' >PC </option> <option value='çµ„åˆæè™Ÿ' > çµ„åˆæè™Ÿ </option> <option value='ä¸»æ¿çµ„ä»¶' > ä¸»æ¿çµ„ä»¶ </option> <option value='èªªæ˜æ›¸' > èªªæ˜æ›¸ </option> </select> "
 						+"</td>";	
 						txt += "<td  id='amount' style='width:60px'>  0  </td>";
 						txt += "<td  id='name'><input style='width:120px' type='text'/></td>";
 						txt += "<td  id='spe'><input style='width:120px' type='text'/></td>";
 						txt += "<td  id='intro'><input style='width:120px' type='text'/></td>";
 						txt += "<td  id='price' ><input style='width:50px' type='text'/></td>";
-						txt += "<td  id='date' >²{¦b®É¶¡</td>";
-						txt +="<td><input type='button' id='insert' class='btn btn-default' value='·s¼W'/>";
+						txt += "<td  id='date' >ç¾åœ¨æ™‚é–“</td>";
+						txt +="<td><input type='button' id='insert' class='btn btn-default' value='æ–°å¢'/>";
 						txt +="&nbsp;&nbsp;&nbsp;";
-						txt +="<input type='hidden' id='delete' class='btn btn-default' value='§R°£'/></td>";
+						txt +="<input type='hidden' id='delete' class='btn btn-default' value='åˆªé™¤'/></td>";
 						txt += "</tr>"
 					$.each(data.myArrayList,function(index,json){
 						txt += "<tr >";
-						txt += "<td id='id' value="+json.map.part_no+"><a href='http://localhost:8080/PurchasingSystem/Apply/updateanddelete.html?id="+json.map.part_no+"&account="+json.map.pro_cate+"&password="+json.map.pro_name+"'>"+json.map.part_no+"</a></td>"
+						txt += "<td id='id' value="+json.map.part_no+"><a href='http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Apply/updateanddelete.html?id="+json.map.part_no+"&account="+json.map.pro_cate+"&password="+json.map.pro_name+"'>"+json.map.part_no+"</a></td>"
 						txt += "<td id='cate'>"+json.map.pro_cate+"</td>"
 						txt += "<td id='amount'>"+json.map.pro_amount+"</td>"
 						txt += "<td id='name'>"+json.map.pro_name+"</td>"
@@ -157,9 +157,9 @@ $(document).ready(function(){
 						txt += "<td id='intro'>"+json.map.pro_intro+"</td>"
 						txt += "<td id='price'>"+json.map.pro_price+"</td>"
 						txt += "<td id='date'>"+json.map.pro_date+"</td>"
-						txt +="<td><input type='button' id='edit' class='btn btn-default' value='­×§ï'/>";
+						txt +="<td><input type='button' id='edit' class='btn btn-default' value='ä¿®æ”¹'/>";
 						txt +="&nbsp;&nbsp;&nbsp;";
-						txt +="<input type='button' id='delete' class='btn btn-default' value='§R°£'/></td>";
+						txt +="<input type='button' id='delete' class='btn btn-default' value='åˆªé™¤'/></td>";
 						txt += "</tr>"
 
 					})
@@ -181,7 +181,7 @@ $("tbody").on("click","#insert",function(){
 			//alert(dataJSON);
 			
 			$.ajax({
-				url : "http://localhost:8080/PurchasingSystem/Apply/insertproduct.do",
+				url : "http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Apply/insertproduct.do",
 				type : 'POST',
 				data : "{"+dataJSON+"}",
 				contentType:"application/json",
@@ -201,7 +201,7 @@ $("tbody").on("click","#delete",function(){
 	//alert(dataJSON);
 	
 	$.ajax({
-		url : "http://localhost:8080/PurchasingSystem/Apply/deletehproduct.do",
+		url : "http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Apply/deletehproduct.do",
 		type : 'POST',
 		data : "{"+dataJSON+"}",
 		contentType:"application/json",
@@ -214,10 +214,10 @@ $("tbody").on("click","#delete",function(){
 	});
 });		
 $("tbody").on("click","#edit",function(){
-	$(this).parent().siblings("td:gt(2)").empty().append("<input type='text' style='width:100px' />");//¥ş³¡²MªÅÅÜ¦¨input
-	//$(this)¬O#edit
-	//¥Î#edit¥h§ó§ï°£¤F¦Û¤v¥H¥~ªºÄæ¦ì,#editªºparent¬O¤@­Ótd,³o­Ótdªºsiblings¬Otd
-	var index = $(this).parent().siblings("td:first").text();//¤§«ácancel©ñ¦^­ì¥ı­È·|¥Î¨ì
+	$(this).parent().siblings("td:gt(2)").empty().append("<input type='text' style='width:100px' />");//å…¨éƒ¨æ¸…ç©ºè®Šæˆinput
+	//$(this)æ˜¯#edit
+	//ç”¨#editå»æ›´æ”¹é™¤äº†è‡ªå·±ä»¥å¤–çš„æ¬„ä½,#editçš„parentæ˜¯ä¸€å€‹td,é€™å€‹tdçš„siblingsæ˜¯td
+	var index = $(this).parent().siblings("td:first").text();//ä¹‹å¾Œcancelæ”¾å›åŸå…ˆå€¼æœƒç”¨åˆ°
 //	alert(index);
 	$(this).parent().empty().append(
 			"<input type='button' id='update' class='btn btn-default' value='update'/> &nbsp;&nbsp;&nbsp;"+
@@ -245,12 +245,12 @@ $("tbody").on("click","#update",function(){
 	alert(dataJSON);
 
 	$.ajax({
-		url : "http://localhost:8080/PurchasingSystem/Apply/RemoveCus.do",
+		url : "http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Apply/RemoveCus.do",
 		type : 'POST',
 		data : "{"+dataJSON+"}",
 		contentType:"application/json",
 		success : function(response) {
-			alert("§ó·s¦¨¥\");
+			alert("æ›´æ–°æˆåŠŸ");
 			window.location.reload();
 			
 		}
@@ -258,17 +258,17 @@ $("tbody").on("click","#update",function(){
 });
 
 $("#editAll").click(function(){
-	var rowNum = $("tr #id:last").text(); //´X¾î
+	var rowNum = $("tr #id:last").text(); //å¹¾æ©«
 //	alert(rowNum);
 	$("tbody").children("tr").find("td:gt(1):lt(-1)").empty().append("<input type='text'/>");
-	//:gt(0)¤j©ó¶¶¼Æªº²Ä¤@­Ó¡A:lt(-1)¤p©ó­Ë¼Æªº²Ä¤G­Ó
-	//¦pªG¥u¼g $("tbody").find("td:gt(0)").empty();·|¥u³Ñ¤U²Ä¤@µ§ªºid¦]¬°¬O¥Ñtbody¥hºâindexªº
+	//:gt(0)å¤§æ–¼é †æ•¸çš„ç¬¬ä¸€å€‹ï¼Œ:lt(-1)å°æ–¼å€’æ•¸çš„ç¬¬äºŒå€‹
+	//å¦‚æœåªå¯« $("tbody").find("td:gt(0)").empty();æœƒåªå‰©ä¸‹ç¬¬ä¸€ç­†çš„idå› ç‚ºæ˜¯ç”±tbodyå»ç®—indexçš„
 	
 	$("tbody td:last-child").empty().append("<input type='button' id='update' class='btn btn-default' value='update'/>&nbsp;&nbsp;&nbsp;");
 	
 	for(i=1; i<=rowNum; i++){			
 		$("tbody tr td:last-child:eq("+(i-1)+")").append("<input type='button' id='cancel' name='"+i+"' class='btn btn-default' value='cancel'/>");
-	}//¡ô¥[nameÁ×§K«öcancel¦^¶ñ®É¶ñ¿ù;
+	}//â†‘åŠ nameé¿å…æŒ‰cancelå›å¡«æ™‚å¡«éŒ¯;
 });
 
 $("#myInput").on("keyup", function() {

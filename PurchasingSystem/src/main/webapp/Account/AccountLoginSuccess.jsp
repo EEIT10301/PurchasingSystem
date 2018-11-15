@@ -54,7 +54,6 @@ position: absolute;
 		${user.emp_dep}/${user.emp_name} ${user.emp_job},你好 <a
 			href='AccountLogout.controller'><button type="button"
 				class="btn btn-white btn-sm">登出</button></a>
-		<hr width=100% size=5 color=white><br>
 	</div>
 		<hr>
 	<div class="text-center">
