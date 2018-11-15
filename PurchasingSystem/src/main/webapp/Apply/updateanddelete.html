@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="BIG5">
-<title>╙╚╝ф╫пай╠║╖н</title>
+<meta charset="utf-8">
+<title>Г┴╘Ф√≥Х╚▀ХЁ╪Ф┐┘Е╫╒</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -22,7 +22,7 @@ font-size: 36px;
 
 .bg {
 	background-color: #FDF5E6;
-	/* ╣e╜╠╤║╤Z */
+	/* Г∙╚И²╒И√⌠Х╥² */
 	margin: 30px;
 }
 .right{
@@ -38,7 +38,7 @@ font-size: 36px;
 }
 
 .f {
-	/* ╓Х╝Ф╠ф╕C */
+	/* Ф√╧Ф═╪Ф▌▓Е┬≈ */
  	display: inline-block;
 	width: 200px;
 	height:50px;
@@ -59,7 +59,7 @@ font-size: 36px;
 }
 
 ul {
-	font-family:╥LЁn╔©╤беИ;
+	font-family:Е╬╝Х╩÷Ф╜ёИ╩▒И╚■;
 	font-size: 19px;
 }
 span {
@@ -74,20 +74,20 @@ span {
 <input type="hidden" id="Account">
 <input type="hidden" id="Password">
 <div class='container'>
-<h3 align="center">╙╚╝ф╫пай╠║╖н</h3><br/>
+<h3 align="center">Г┴╘Ф√≥Х╚▀ХЁ╪Ф┐┘Е╫╒</h3><br/>
 <input class="form-control" id="myInput" type="text" placeholder="Search"><br/>
 <table class="table table-striped table-hover">
 <thead>
 <tr>
-<th>╫пайЁФ╫s╦╧</th>
-<th>╝ф╦╧</th>
-<th>╧w╜p╔ФЁf╝и╤║</th>
-<th>╡ё╚~╕W╨ы</th>
-<th>╫пай╧w╕Т╩Ы╝Ф</th>
-<th>╫пай╪ф╤q</th>
-<th>╫пайЁФа`╩Ы</th>
-<th>╫пай╜Ш╓u</th>
-<th>╫пайЁ║╙Ы</th>
+<th>Х╚▀ХЁ╪Е√╝Г╥╗Х≥÷</th>
+<th>Ф√≥Х≥÷</th>
+<th>И═░Х╗┬Д╨╓Х╡╗Ф≥┌И√⌠</th>
+<th>Г■╒Е⌠│Е░█Г╗╠</th>
+<th>Х╚▀ХЁ╪И═░Д╪╟Е┐╧Ф═╪</th>
+<th>Х╚▀ХЁ╪Ф∙╦И┤▐</th>
+<th>Х╚▀ХЁ╪Е√╝Г╦╫Е┐╧</th>
+<th>Х╚▀ХЁ╪Е⌠║Е╥╔</th>
+<th>Х╚▀ХЁ╪И┐╗И√─</th>
 </tr>
 </thead>
 <tbody id="selectAll"></tbody>
@@ -107,24 +107,24 @@ $(document).ready(function(){
 			success:function(data){
 				var Applist = JSON.parse(data);
 					var txt = ""
-						txt += "<h1><font face='╥LЁn╔©╤беИ'>╫пай╗t╡н</font></h1>"
-						txt += "<a href='ApplyLoginSuccess.jsp'  style='font-family:╥LЁn╔©╤беИ;font-size: 15px;'>╕^╜╨╜╤</a>"
-						txt += "<div class='text-right' style='font-family:╥LЁn╔©╤беИ;font-size: 15px;'>"
-						txt +=""+Applist.empdep+Applist.empname+Applist.empjob+",╠z╕n <a href='ApplyLogout.controller'><button type='button' class='btn' style='font-family:╥LЁn╔©╤беИ;font-size: 15px;'>╣n╔X</button></a> </div>"		
+						txt += "<h1><font face='Е╬╝Х╩÷Ф╜ёИ╩▒И╚■'>Х╚▀ХЁ╪ГЁ╩Г╣╠</font></h1>"
+						txt += "<a href='ApplyLoginSuccess.jsp'  style='font-family:Е╬╝Х╩÷Ф╜ёИ╩▒И╚■;font-size: 15px;'>Е⌡·И╕√И═│</a>"
+						txt += "<div class='text-right' style='font-family:Е╬╝Х╩÷Ф╜ёИ╩▒И╚■;font-size: 15px;'>"
+						txt +=""+Applist.empdep+Applist.empname+Applist.empjob+",Ф┌╗Е╔╫ <a href='ApplyLogout.controller'><button type='button' class='btn' style='font-family:Е╬╝Х╩÷Ф╜ёИ╩▒И╚■;font-size: 15px;'>Г≥╩Е┤╨</button></a> </div>"		
 					    txt += "<hr> <div class='left'>"
 							var emplevel = Applist.emplevel;
 							if(emplevel=="1"){
-								txt +='<ul class="nav flex-column"> <li class="nav-item"> <a class="nav-link active" href="ApplySend.jsp"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> ╫пай╔с╫п <span class="sr-only"></span></a></li>'
-								txt +='<li class="nav-item"> <a class="nav-link active" href="http://localhost:8080/PurchasingSystem/Apply/ApplyWaitEndList.html"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> еГ╕╛╖╧╕╗╚щ╣╡╝в <font color=red>'+Applist.waitendsign+'</font> </a></li>'
-								txt +='<li class="nav-item"> <a class="nav-link active" href="http://localhost:8080/PurchasingSystem/Apply/selectAll.html"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> ╙╚╝ф╖С╥s <font color=red>'+'</font> </a></li>'
-								txt +='<li class="nav-item"> <a class="nav-link active" href="http://localhost:8080/PurchasingSystem/Apply/ApplySearchEndList.html"><img class="card-img-top imgp" src="../sysimg/s6.png"><span data-feather="home"></span> ╓w╣╡╝вЁФ╓l╛d╦ъ <font color=red>'+'</font> </a></li>'
-								txt +='<li class="nav-item"> <a class="nav-link active" href="toApplySignnerdetail.controller"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> ╚щц╠╝ж╫пайЁФ <font color=red>'+Applist.SignAppList+'</font> </a></li>'
-								txt +='<li class="nav-item"> <a class="nav-link active" href="toApplySignpro.controller"><img class="card-img-top imgp" src="../sysimg/s6.png"><span data-feather="home"></span> ╫пай╤i╚в╛d╦ъ <font color=red>'+Applist.Appnow+'</font> </a></li> </ul></div>'
+								txt +='<ul class="nav flex-column"> <li class="nav-item"> <a class="nav-link active" href="ApplySend.jsp"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> Х╚▀ХЁ╪Г■ЁХ╚▀ <span class="sr-only"></span></a></li>'
+								txt +='<li class="nav-item"> <a class="nav-link active" href="http://localhost:8080/PurchasingSystem/Apply/ApplyWaitEndList.html"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> И╘≈Ф■╤Е╝▄Ф┬░Е╬┘Г╣░Ф║┬ <font color=red>'+Applist.waitendsign+'</font> </a></li>'
+								txt +='<li class="nav-item"> <a class="nav-link active" href="http://localhost:8080/PurchasingSystem/Apply/selectAll.html"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> Г┴╘Ф√≥Ф⌡╢Ф√╟ <font color=red>'+'</font> </a></li>'
+								txt +='<li class="nav-item"> <a class="nav-link active" href="http://localhost:8080/PurchasingSystem/Apply/ApplySearchEndList.html"><img class="card-img-top imgp" src="../sysimg/s6.png"><span data-feather="home"></span> Е╥╡Г╣░Ф║┬Е√╝Е╜░Ф÷╔Х╘╒ <font color=red>'+'</font> </a></li>'
+								txt +='<li class="nav-item"> <a class="nav-link active" href="toApplySignnerdetail.controller"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> Е╬┘Г╟╫Ф═╦Х╚▀ХЁ╪Е√╝ <font color=red>'+Applist.SignAppList+'</font> </a></li>'
+								txt +='<li class="nav-item"> <a class="nav-link active" href="toApplySignpro.controller"><img class="card-img-top imgp" src="../sysimg/s6.png"><span data-feather="home"></span> Х╚▀ХЁ╪И─╡Е╨╕Ф÷╔Х╘╒ <font color=red>'+Applist.Appnow+'</font> </a></li> </ul></div>'
 							}else{
-								txt +='<ul class="nav flex-column"> <li class="nav-item"> <a class="nav-link active" href="http://localhost:8080/PurchasingSystem/Apply/selectAll.html"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> ╙╚╝ф╖С╥s <font color=red>'+'</font> </a></li> '
-								txt +='<li class="nav-item"> <a class="nav-link active" href="http://localhost:8080/PurchasingSystem/Apply/ApplySearchEndList.html"><img class="card-img-top imgp" src="../sysimg/s6.png"><span data-feather="home"></span> ╓w╣╡╝вЁФ╓l╛d╦ъ <font color=red>'+'</font> </a></li>'
-								txt +='<li class="nav-item"> <a class="nav-link active" href="toApplySignnerdetail.controller"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> ╚щц╠╝ж╫пайЁФ <font color=red>'+Applist.SignAppList+'</font> </a></li>'
-								txt +='<li class="nav-item"> <a class="nav-link active" href="toApplySignpro.controller"><img class="card-img-top imgp" src="../sysimg/s6.png"><span data-feather="home"></span> ╫пай╤i╚в╛d╦ъ <font color=red>'+Applist.Appnow+'</font> </a></li> </ul></div>'
+								txt +='<ul class="nav flex-column"> <li class="nav-item"> <a class="nav-link active" href="http://localhost:8080/PurchasingSystem/Apply/selectAll.html"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> Г┴╘Ф√≥Ф⌡╢Ф√╟ <font color=red>'+'</font> </a></li> '
+								txt +='<li class="nav-item"> <a class="nav-link active" href="http://localhost:8080/PurchasingSystem/Apply/ApplySearchEndList.html"><img class="card-img-top imgp" src="../sysimg/s6.png"><span data-feather="home"></span> Е╥╡Г╣░Ф║┬Е√╝Е╜░Ф÷╔Х╘╒ <font color=red>'+'</font> </a></li>'
+								txt +='<li class="nav-item"> <a class="nav-link active" href="toApplySignnerdetail.controller"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> Е╬┘Г╟╫Ф═╦Х╚▀ХЁ╪Е√╝ <font color=red>'+Applist.SignAppList+'</font> </a></li>'
+								txt +='<li class="nav-item"> <a class="nav-link active" href="toApplySignpro.controller"><img class="card-img-top imgp" src="../sysimg/s6.png"><span data-feather="home"></span> Х╚▀ХЁ╪И─╡Е╨╕Ф÷╔Х╘╒ <font color=red>'+Applist.Appnow+'</font> </a></li> </ul></div>'
 							}
 						
 					
@@ -139,7 +139,7 @@ $(document).ready(function(){
 		success:function(data){
 				var txt = ""
 				if(data.myArrayList==null){
-					alert("╣L╓UЁФ╛Ж©Щ");
+					alert("Г└║Д╦▀Е√╝Г╢─И▄└");
 				  window.location.href='http://localhost:8080/PurchasingSystem/Apply/selectAll.html';
 				}
 				$.each(data.myArrayList,function(index,json){

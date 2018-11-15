@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="BIG5">
-<title>¤wµ²®×½ĞÁÊ³æ¬d¸ß</title>
+<meta charset="utf-8">
+<title>å·²çµæ¡ˆè«‹è³¼å–®æŸ¥è©¢</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -22,7 +22,7 @@ font-size: 36px;
 
 .bg {
 	background-color: #FDF5E6;
-	/* µe­±¶¡¶Z */
+	/* ç•«é¢é–“è· */
 	margin: 30px;
 }
 .right{
@@ -38,7 +38,7 @@ font-size: 36px;
 }
 
 .f {
-	/* ¤è®æ±Æ¦C */
+	/* æ–¹æ ¼æ’åˆ— */
  	display: inline-block;
 	width: 200px;
 	height:50px;
@@ -59,7 +59,7 @@ font-size: 36px;
 }
 
 ul {
-	font-family:·L³n¥¿¶ÂÅé;
+	font-family:å¾®è»Ÿæ­£é»‘é«”;
 	font-size: 19px;
 }
 span {
@@ -71,18 +71,18 @@ span {
 <div id="xxx" ></div>
 <div class="class='container">
 <div class="right">
-<h3 align="center">¤wµ²®×³æ¤l¬d¸ß</h3><br>
+<h3 align="center">å·²çµæ¡ˆå–®å­æŸ¥è©¢</h3><br>
 <input class="form-control" id="myInput" type="text" placeholder="Search"><br/>
 <table class="table table-striped table-hover">
 <thead>
 <tr>
-<th>½ĞÁÊ³æ¸¹</th>
-<th>µ²®×®É¶¡</th>
-<th>½ĞÁÊ¶µ¥Ø</th>
-<th>¥Ó½Ğ³¡ªù</th>
-<th >¥Ó½Ğ¤H</th>
-<th>µ²®×·N¨£</th>
-<th >½ĞÁÊÁ`»ù</th>
+<th>è«‹è³¼å–®è™Ÿ</th>
+<th>çµæ¡ˆæ™‚é–“</th>
+<th>è«‹è³¼é …ç›®</th>
+<th>ç”³è«‹éƒ¨é–€</th>
+<th >ç”³è«‹äºº</th>
+<th>çµæ¡ˆæ„è¦‹</th>
+<th >è«‹è³¼ç¸½åƒ¹</th>
 </tr>
 </thead>
 <tbody id="selectAll">
@@ -99,24 +99,24 @@ $(document).ready(function(){
 		success:function(data){
 			var Applist = JSON.parse(data);
 				var txt = ""
-					txt += "<h1><font face='·L³n¥¿¶ÂÅé'>½ĞÁÊ¨t²Î</font></h1>"
-					txt += "<a href='ApplyLoginSuccess.jsp'  style='font-family:·L³n¥¿¶ÂÅé;font-size: 15px;'>¦^­º­¶</a>"
-					txt += "<div class='text-right' style='font-family:·L³n¥¿¶ÂÅé;font-size: 15px;'>"
-					txt +=""+Applist.empdep+Applist.empname+Applist.empjob+",±z¦n <a href='ApplyLogout.controller'><button type='button' class='btn' style='font-family:·L³n¥¿¶ÂÅé;font-size: 15px;'>µn¥X</button></a> </div>"		
+					txt += "<h1><font face='å¾®è»Ÿæ­£é»‘é«”'>è«‹è³¼ç³»çµ±</font></h1>"
+					txt += "<a href='ApplyLoginSuccess.jsp'  style='font-family:å¾®è»Ÿæ­£é»‘é«”;font-size: 15px;'>å›é¦–é </a>"
+					txt += "<div class='text-right' style='font-family:å¾®è»Ÿæ­£é»‘é«”;font-size: 15px;'>"
+					txt +=""+Applist.empdep+Applist.empname+Applist.empjob+",æ‚¨å¥½ <a href='ApplyLogout.controller'><button type='button' class='btn' style='font-family:å¾®è»Ÿæ­£é»‘é«”;font-size: 15px;'>ç™»å‡º</button></a> </div>"		
 				    txt += "<hr> <div class='left'>"
 						var emplevel = Applist.emplevel;
 						if(emplevel=="1"){
-							txt +='<ul class="nav flex-column"> <li class="nav-item"> <a class="nav-link active" href="ApplySend.jsp"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> ½ĞÁÊ¥Ó½Ğ <span class="sr-only"></span></a></li>'
-							txt +='<li class="nav-item"> <a class="nav-link active" href="http://localhost:8080/PurchasingSystem/Apply/ApplyWaitEndList.html"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> Åç¦¬§¹¦¨«İµ²®× <font color=red>'+Applist.waitendsign+'</font> </a></li>'
-							txt +='<li class="nav-item"> <a class="nav-link active" href="http://localhost:8080/PurchasingSystem/Apply/selectAll.html"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> ª«®Æ§ó·s <font color=red>'+'</font> </a></li>'
-							txt +='<li class="nav-item"> <a class="nav-link active" href="http://localhost:8080/PurchasingSystem/Apply/ApplySearchEndList.html"><img class="card-img-top imgp" src="../sysimg/s6.png"><span data-feather="home"></span> ¤wµ²®×³æ¤l¬d¸ß <font color=red>'+'</font> </a></li>'
-							txt +='<li class="nav-item"> <a class="nav-link active" href="toApplySignnerdetail.controller"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> «İÃ±®Ö½ĞÁÊ³æ <font color=red>'+Applist.SignAppList+'</font> </a></li>'
-							txt +='<li class="nav-item"> <a class="nav-link active" href="toApplySignpro.controller"><img class="card-img-top imgp" src="../sysimg/s6.png"><span data-feather="home"></span> ½ĞÁÊ¶i«×¬d¸ß <font color=red>'+Applist.Appnow+'</font> </a></li> </ul></div>'
+							txt +='<ul class="nav flex-column"> <li class="nav-item"> <a class="nav-link active" href="ApplySend.jsp"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> è«‹è³¼ç”³è«‹ <span class="sr-only"></span></a></li>'
+							txt +='<li class="nav-item"> <a class="nav-link active" href="http://localhost:8080/PurchasingSystem/Apply/ApplyWaitEndList.html"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> é©—æ”¶å®Œæˆå¾…çµæ¡ˆ <font color=red>'+Applist.waitendsign+'</font> </a></li>'
+							txt +='<li class="nav-item"> <a class="nav-link active" href="http://localhost:8080/PurchasingSystem/Apply/selectAll.html"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> ç‰©æ–™æ›´æ–° <font color=red>'+'</font> </a></li>'
+							txt +='<li class="nav-item"> <a class="nav-link active" href="http://localhost:8080/PurchasingSystem/Apply/ApplySearchEndList.html"><img class="card-img-top imgp" src="../sysimg/s6.png"><span data-feather="home"></span> å·²çµæ¡ˆå–®å­æŸ¥è©¢ <font color=red>'+'</font> </a></li>'
+							txt +='<li class="nav-item"> <a class="nav-link active" href="toApplySignnerdetail.controller"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> å¾…ç°½æ ¸è«‹è³¼å–® <font color=red>'+Applist.SignAppList+'</font> </a></li>'
+							txt +='<li class="nav-item"> <a class="nav-link active" href="toApplySignpro.controller"><img class="card-img-top imgp" src="../sysimg/s6.png"><span data-feather="home"></span> è«‹è³¼é€²åº¦æŸ¥è©¢ <font color=red>'+Applist.Appnow+'</font> </a></li> </ul></div>'
 						}else{
-							txt +='<ul class="nav flex-column"> <li class="nav-item"> <a class="nav-link active" href="http://localhost:8080/PurchasingSystem/Apply/selectAll.html"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> ª«®Æ§ó·s <font color=red>'+'</font> </a></li> '
-							txt +='<li class="nav-item"> <a class="nav-link active" href="http://localhost:8080/PurchasingSystem/Apply/ApplySearchEndList.html"><img class="card-img-top imgp" src="../sysimg/s6.png"><span data-feather="home"></span> ¤wµ²®×³æ¤l¬d¸ß <font color=red>'+'</font> </a></li>'
-							txt +='<li class="nav-item"> <a class="nav-link active" href="toApplySignnerdetail.controller"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> «İÃ±®Ö½ĞÁÊ³æ <font color=red>'+Applist.SignAppList+'</font> </a></li>'
-							txt +='<li class="nav-item"> <a class="nav-link active" href="toApplySignpro.controller"><img class="card-img-top imgp" src="../sysimg/s6.png"><span data-feather="home"></span> ½ĞÁÊ¶i«×¬d¸ß <font color=red>'+Applist.Appnow+'</font> </a></li> </ul></div>'
+							txt +='<ul class="nav flex-column"> <li class="nav-item"> <a class="nav-link active" href="http://localhost:8080/PurchasingSystem/Apply/selectAll.html"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> ç‰©æ–™æ›´æ–° <font color=red>'+'</font> </a></li> '
+							txt +='<li class="nav-item"> <a class="nav-link active" href="http://localhost:8080/PurchasingSystem/Apply/ApplySearchEndList.html"><img class="card-img-top imgp" src="../sysimg/s6.png"><span data-feather="home"></span> å·²çµæ¡ˆå–®å­æŸ¥è©¢ <font color=red>'+'</font> </a></li>'
+							txt +='<li class="nav-item"> <a class="nav-link active" href="toApplySignnerdetail.controller"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> å¾…ç°½æ ¸è«‹è³¼å–® <font color=red>'+Applist.SignAppList+'</font> </a></li>'
+							txt +='<li class="nav-item"> <a class="nav-link active" href="toApplySignpro.controller"><img class="card-img-top imgp" src="../sysimg/s6.png"><span data-feather="home"></span> è«‹è³¼é€²åº¦æŸ¥è©¢ <font color=red>'+Applist.Appnow+'</font> </a></li> </ul></div>'
 						}
 					
 				
@@ -130,7 +130,7 @@ $(document).ready(function(){
 			success:function(data){
 					var txt = ""
 							if(data.myArrayList==null){
-								alert("µLµ²®×½ĞÁÊ³æ");
+								alert("ç„¡çµæ¡ˆè«‹è³¼å–®");
 							  window.location.href='http://localhost:8080/PurchasingSystem/Apply/ApplyLoginSuccess.jsp';
 							}
 					$.each(data.myArrayList,function(index,json){
@@ -142,9 +142,9 @@ $(document).ready(function(){
 						txt += "<td id='empname'>"+json.map.app_MainBean.map.employeeBean.map.emp_name+"</td>"						
 						txt += "<td id='sigsug'>"+json.map.sig_sug+"</td>"
 						txt += "<td id='appprice'>"+json.map.app_MainBean.map.app_price+"</td>"
-						txt +="<td><input type='hidden' id='edit' class='btn btn-default' value='­×§ï'/>";
+						txt +="<td><input type='hidden' id='edit' class='btn btn-default' value='ä¿®æ”¹'/>";
 						txt +="&nbsp;&nbsp;&nbsp;";
-						txt +="<input type='hidden' id='search' class='btn btn-default' value='¬d¸ß'/></td>";
+						txt +="<input type='hidden' id='search' class='btn btn-default' value='æŸ¥è©¢'/></td>";
 						txt += "</tr>"
 
 					})
@@ -172,20 +172,20 @@ $("tbody").on("click","#insert",function(){
 				contentType:"application/json",
 				success : function(response) {
 					if(response==null){
-						alert("½Ğ¤Å·s¼W­«½Æ®Æ¸¹");
+						alert("è«‹å‹¿æ–°å¢é‡è¤‡æ–™è™Ÿ");
 						//window.location.reload();
 					}else{				
-					alert("·s¼W¦¨¥\");
+					alert("æ–°å¢æˆåŠŸ");
 					}
 					window.location.reload();
 				}
 			});
 		});
 $("tbody").on("click","#edit",function(){
-	$(this).parent().siblings("td:gt(0)").empty().append("<input type='text'/>");//¥ş³¡²MªÅÅÜ¦¨input
-	//$(this)¬O#edit
-	//¥Î#edit¥h§ó§ï°£¤F¦Û¤v¥H¥~ªºÄæ¦ì,#editªºparent¬O¤@­Ótd,³o­Ótdªºsiblings¬Otd
-	var index = $(this).parent().siblings("td:first").text();//¤§«ácancel©ñ¦^­ì¥ı­È·|¥Î¨ì
+	$(this).parent().siblings("td:gt(0)").empty().append("<input type='text'/>");//å…¨éƒ¨æ¸…ç©ºè®Šæˆinput
+	//$(this)æ˜¯#edit
+	//ç”¨#editå»æ›´æ”¹é™¤äº†è‡ªå·±ä»¥å¤–çš„æ¬„ä½,#editçš„parentæ˜¯ä¸€å€‹td,é€™å€‹tdçš„siblingsæ˜¯td
+	var index = $(this).parent().siblings("td:first").text();//ä¹‹å¾Œcancelæ”¾å›åŸå…ˆå€¼æœƒç”¨åˆ°
 //	alert(index);
 	$(this).parent().empty().append(
 			"<input type='button' id='update' class='btn btn-default' value='update'/>&nbsp;&nbsp;&nbsp;"+
@@ -218,7 +218,7 @@ $("tbody").on("click","#update",function(){
 		data : "{"+dataJSON+"}",
 		contentType:"application/json",
 		success : function(response) {
-			alert("§ó·s¦¨¥\");
+			alert("æ›´æ–°æˆåŠŸ");
 			window.location.reload();
 			
 		}
@@ -226,17 +226,17 @@ $("tbody").on("click","#update",function(){
 });
 
 $("#editAll").click(function(){
-	var rowNum = $("tr #id:last").text(); //´X¾î
+	var rowNum = $("tr #id:last").text(); //å¹¾æ©«
 //	alert(rowNum);
 	$("tbody").children("tr").find("td:gt(0):lt(-1)").empty().append("<input type='text'/>");
-	//:gt(0)¤j©ó¶¶¼Æªº²Ä¤@­Ó¡A:lt(-1)¤p©ó­Ë¼Æªº²Ä¤G­Ó
-	//¦pªG¥u¼g $("tbody").find("td:gt(0)").empty();·|¥u³Ñ¤U²Ä¤@µ§ªºid¦]¬°¬O¥Ñtbody¥hºâindexªº
+	//:gt(0)å¤§æ–¼é †æ•¸çš„ç¬¬ä¸€å€‹ï¼Œ:lt(-1)å°æ–¼å€’æ•¸çš„ç¬¬äºŒå€‹
+	//å¦‚æœåªå¯« $("tbody").find("td:gt(0)").empty();æœƒåªå‰©ä¸‹ç¬¬ä¸€ç­†çš„idå› ç‚ºæ˜¯ç”±tbodyå»ç®—indexçš„
 	
 	$("tbody td:last-child").empty().append("<input type='button' id='update' class='btn btn-default' value='update'/>&nbsp;&nbsp;&nbsp;");
 	
 	for(i=1; i<=rowNum; i++){			
 		$("tbody tr td:last-child:eq("+(i-1)+")").append("<input type='button' id='cancel' name='"+i+"' class='btn btn-default' value='cancel'/>");
-	}//¡ô¥[nameÁ×§K«öcancel¦^¶ñ®É¶ñ¿ù;
+	}//â†‘åŠ nameé¿å…æŒ‰cancelå›å¡«æ™‚å¡«éŒ¯;
 });
 
 $("#myInput").on("keyup", function() {
