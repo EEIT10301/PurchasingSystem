@@ -22,8 +22,13 @@
 <!-- 	crossorigin="anonymous"> -->
 </head>
 <body class="bg">
+	<div class="right">
+	<c:if test="${empty selectlists}">
+		<h2>${noselectlists}</h2>
+	</c:if>
+
 	<c:if test="${not empty selectlists}">
-		<div class="right">
+		
 			<h2>待詢價採購單</h2>
 			<table class="table table-striped table-hover">
 				<thead>
@@ -61,11 +66,9 @@
 					</c:forEach>
 				</tbody>
 			</table>
-		</div>
+		
 	</c:if>
-	<c:if test="${empty selectlists}">
-		<h2>${noselectlists}</h2>
-	</c:if>
+	</div>
 	<script src="../js/app.js"></script>
 	<!-- 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" -->
 	<!-- 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" -->
