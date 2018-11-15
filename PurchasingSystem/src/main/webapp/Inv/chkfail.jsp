@@ -64,7 +64,7 @@ document.getElementById('search').addEventListener('input', function() {
   // beware of css injections!
 });
 </script>
-
+<c:if test="${not empty selsctlists }">
 <table class="table table-striped table-hover" id="table">
 	<thead >
 				<tr>
@@ -81,14 +81,19 @@ document.getElementById('search').addEventListener('input', function() {
 	<td> ${poprocess.sig_Date}</td>
     <c:forEach var="poprocess1" items="${selsctlists}">
     <c:if test="${poprocess1.sig_Rank==2 and poprocess1.chk_Id == poprocess.chk_Id}">
-    <td><a href='<c:url value="/Inv/sendthisselectinvprolist.controller?inv_manger=${poprocess1.inv_Manger}&inv_sta=${poprocess1.inv_Sta}&chk_id=${poprocess1.chk_Id}&inv_Sta=${poprocess1.sig_Sug }" />'>
+    <td><a href='<c:url value="/Inv/sendthisselectinvprolist.controller?inv_manger=${poprocess1.inv_Manger}&inv_sta=${poprocess1.inv_Sta}&chk_id=${poprocess1.chk_Id}&inv_Sta=${poprocess1.inv_Sta }" />'>
         重新驗收</a></td>        
     </c:if>
 	</c:forEach>
 	</c:if>
     </c:forEach>
 	</table>	
+</c:if>
+	<c:if test="${not empty noselectlists }">
+		<h2>${noselectlists}</h2>
+	</c:if>
 	</div>	
+	
 <script src="../js/app.js"></script>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

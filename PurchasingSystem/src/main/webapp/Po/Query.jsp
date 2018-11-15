@@ -32,7 +32,15 @@ font-size: 36px;
 	<form action="<c:url value="/Po/queryinsert.controller"/>" method="post">
 	<c:if test="${not empty query}">		
 	
-
+	<select name="vendor_ID">
+	<c:forEach var="queryVendor" items="${AllPO_Vendor1}">
+	<c:set var="ven" value="ven001"></c:set>
+	<c:if test="${queryVendor.vendor_id != ven}">	
+	<option value="${queryVendor.vendor_id}">${queryVendor.vendor_name}</option>
+	</c:if>
+	</c:forEach>
+ 	</select>
+ 	
 	<table class="table table-striped table-hover" id="myTable">				
 				<thead>
 				<tr>
@@ -40,7 +48,7 @@ font-size: 36px;
 					<th>料號</th>
 					<th>品名</th>
 					<th>採購數量</th>
-					<th>廠商</th>
+<!-- 					<th>廠商</th> -->
 					<th>單價</th>
 				</tr>
 				</thead>
@@ -52,12 +60,12 @@ font-size: 36px;
 					<td><input type="hidden" name="pro_name" value="${pODetailBean.productListBean.pro_name}">${pODetailBean.productListBean.pro_name}</td>
 					<td><input type="hidden" name="total_Qty" value="${pODetailBean.total_Qty}">${pODetailBean.total_Qty}</td>					
 					
-					<td><select name="vendor_ID">
-							<c:forEach var="queryVendor" items="${AllPO_Vendor1}">
-								<option value="${queryVendor.vendor_id}">${queryVendor.vendor_name}</option>
-							</c:forEach>
-					</select></td>
-					<td><input type="text" name="po_totalprice"></td>
+<!-- 					<td><select name="vendor_ID"> -->
+<%-- 							<c:forEach var="queryVendor" items="${AllPO_Vendor1}"> --%>
+<%-- 								<option value="${queryVendor.vendor_id}">${queryVendor.vendor_name}</option> --%>
+<%-- 							</c:forEach> --%>
+<!-- 					</select></td> -->
+					<td><input type="text" name="po_totalprice" required></td>
 					<td>${errors.po_totalprice}</td>
 				</tr>				
 			</c:forEach>

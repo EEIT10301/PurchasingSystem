@@ -63,5 +63,12 @@ public class Inv_ProductListService  {
 		}
 		return null;
 	}
+	public List<Inv_ProductListBean> selectIdandSigsta(String chk_Id,String chk_status) {
+		List<Inv_ProductListBean> beans =inv_ProductListIDao.selectIdandSigsta(chk_Id,chk_status);
+		if(beans!=null) {
+			return beans;
+		}
+		return null;
+	}
 
 }
