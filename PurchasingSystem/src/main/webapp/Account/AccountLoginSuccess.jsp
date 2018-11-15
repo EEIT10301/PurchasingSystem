@@ -24,45 +24,70 @@
 	/*       rgba(50, 0, 50, 0.1)),  */
 	/*   	url('https://images.unsplash.com/photo-1495464101292-552d0b52fe41?auto=format&fit=crop&w=1350&q=80'); */
 	background-color: #FDF5E6;
-	margin: 30px;
+	font-family: "微軟正黑體";
+/* 	margin: 30px; */
 }
 
 .f {
 	/* 方格排列 */
 	display: inline-block;
 	width: 13rem;
-	height: 16rem;
-}
-
-.ff {
-	color: black;
-}
-
-.m {
-	/* 畫面內縮 */
-	margin: 30px;
+	height: 14.5rem;
 }
 
 .text-center {
-	position: absolute;
-	top: 200px;
-	left: 250px;
+	
+	margin-top: 100px;
+}
+
+.imgp {
+	padding: 10px;
+}
+
+.btn:link,
+.btn:visited {
+  	text-transform: uppercase;
+  	text-decoration: none;
+  	padding: 10px 20px;
+  	display: inline-block;
+  	border-radius: 100px;
+  	transition: all .2s;
+  	position: relative;
+}
+
+.btn:hover {
+  	transform: translateY(-3px);
+  	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+  	transform: translateY(-1px);
+  	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+nav{
+background-color: rgb(248, 219, 166);
+padding-top:30px;
+padding-left:30px;
+padding-right:30px;
 }
 </style>
 
 </head>
 
-<body class="bg m">
-	<h3 class="ff">財務系統</h3>
+<body class="bg">
+<nav>
 
-	<div class="text-right ff">
+	<h2><font face="微軟正黑體">財務系統</font></h2>
+
+	<div class="text-right">
 		${user.emp_dep}/${user.emp_name} ${user.emp_job},你好 <a
 			href='AccountLogout.controller'><button type="button"
 				class="btn btn-white btn-sm">登出</button></a>
-		<hr width=100% size=5 color=white>
-		<br>
+			<hr>
 	</div>
-	<hr>
+	</nav>
+	
 	<div class="text-center">
 		<c:if test="${user.emp_level==2}">
 			<div class="card bg-light f">
@@ -70,7 +95,7 @@
 					class="card-img-top" src="../sysimg/s1.png" style="padding: 10px;"></a>
 				<div class="card-body">
 					<h5 class="card-title">
-						待分派請款單<span class="badge badge-danger">${noDispatchInv}</span>
+						<font face="微軟正黑體">待分派請款單</font><span class="badge badge-danger">${noDispatchInv}</span>
 					</h5>
 				</div>
 			</div>
@@ -79,7 +104,7 @@
 					class="card-img-top" src="../sysimg/s2.png" style="padding: 10px;"></a>
 				<div class="card-body">
 					<h5 class="card-title">
-						待簽核請款單<span class="badge badge-danger">${noToSignInvforBoss}</span>
+						<font face="微軟正黑體">待簽核請款單</font><span class="badge badge-danger">${noToSignInvforBoss}</span>
 					</h5>
 				</div>
 			</div>
@@ -90,7 +115,7 @@
 					class="card-img-top" src="../sysimg/s2.png" style="padding: 10px;"></a>
 				<div class="card-body">
 					<h5 class="card-title">
-						待簽核請款單<span class="badge badge-danger">${noToSignInvReturn+noToSignInv}</span>
+						<font face="微軟正黑體">待簽核請款單</font><span class="badge badge-danger">${noToSignInvReturn+noToSignInv}</span>
 					</h5>
 				</div>
 			</div>
@@ -99,14 +124,14 @@
 			<a href="StatusMainAcc.jsp" class="btn"><img class="card-img-top"
 				src="../sysimg/s4.png" style="padding: 10px;"></a>
 			<div class="card-body">
-				<h5 class="card-title">查詢請款單狀態</h5>
+				<h5 class="card-title"><font face="微軟正黑體">查詢請款單狀態</font></h5>
 			</div>
 		</div>
 		<div class="card bg-light f">
 			<a href="ShowAccountPayableList.controller" class="btn"><img
 				class="card-img-top" src="../sysimg/s3.png" style="padding: 10px;"></a>
 			<div class="card-body">
-				<h5 class="card-title">查詢廠商款項明細</h5>
+				<h5 class="card-title"><font face="微軟正黑體">查詢廠商款項明細</font></h5>
 			</div>
 		</div>
 	</div>

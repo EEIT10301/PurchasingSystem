@@ -182,6 +182,17 @@ padding-right:30px;
 					<h5 class="card-title">查詢已結案採購單</h5>
 				</div>
 			</div>
+			
+<!-- 			------- -->
+				<div class="card bg-light f">
+				<a href='POVendor.jsp' class="btn"><img
+					class="card-img-top imgp" src="../sysimg/s2.png"></a>
+				<div class="card-body">
+					<h5 class="card-title">廠商更新</h5>
+				</div>
+			</div>
+			
+			
 		</c:if>
 		<c:if test="${user.emp_level==2}">
 			<div class="card bg-light f">
