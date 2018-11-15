@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-   <%@taglib  uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-   <%@ include file="../POInclude.jsp"%> 
+<%@taglib  uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ include file="../POInclude.jsp"%> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +18,7 @@
 <body class="bg">
 
 
-<c:if test="${not empty POList}">
+
 <div class="right">
 <input class="form-control" id="myInput" type="text" placeholder="Search"><br/>
 
@@ -25,21 +26,18 @@
 
 <table class="table table-striped table-hover" id="myTable">
 
-<thead>
+<c:if test="${not empty POList}">
 <tr>
 <th>採購單號</th>
 <th>開始時間</th>
 </tr>
-</thead>
-
 <c:forEach  var="POLists" items="${POList}">
-
-<tbody>
-
 
 <tr>
 <td><a href="<c:url value="/Po/POSignStatementDetail.controller?po_id=${POLists.po_id}"/>">${POLists.po_id}</a></td>
-<td>${POLists.sig_date}</td>
+<td><fmt:formatDate pattern="yyyy/MM/dd HH:mm" value="${POLists.sig_date}"/></td>
+
+
 <td><Input type='hidden' name=po_manger value='${POLists.po_manger}'></td>
 <td><Input type='hidden' name='po_sta' value='${POLists.po_sta}'></td>
 <td><Input type='hidden' name='po_id' value='${POLists.po_id}'></td>
@@ -47,18 +45,14 @@
 <td><Input type='hidden' name='sig_sta' value='${POLists.sig_sta}'></td>
 <td><Input type='hidden' name='sig_sug' value='${POLists.sig_sug}'></td>
 <td><Input type='hidden' name='sig_rank' value='${POLists.sig_rank}'></td>
-
 </tr>
-
-
-
-</tbody>
-
-
 </c:forEach>
+
+</c:if>
+
 </table>
 </div>
-</c:if>
+
 
 
 

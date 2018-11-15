@@ -14,11 +14,12 @@
 .bg {
 	background-color: #FDF5E6;
 	/* 畫面間距 */
-	margin: 30px;
+/* 	margin: 30px; */
+font-family: '微軟正黑體';
 }
 
 .left {
-	width: 15%;
+	width: 20%;
 	float: left;
 	text-align: center;
 	height: 1500px;
@@ -53,18 +54,53 @@ ul {
 span {
 	margin-left: 1px;
 }
+
+.btn:link,
+.btn:visited {
+  	text-transform: uppercase;
+  	text-decoration: none;
+  	padding: 10px 20px;
+  	display: inline-block;
+  	border-radius: 100px;
+  	transition: all .2s;
+  	position: relative;
+}
+
+.btn:hover {
+  	transform: translateY(-3px);
+  	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+  	transform: translateY(-1px);
+  	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-white {
+	font-size: 14px;
+	margin-left:30px;
+	margin-right:30px;
+}
+nav {
+	background-color: rgb(248, 219, 166);
+	padding-top: 30px;
+	padding-left: 30px;
+	padding-right: 30px;
+}
 </style>
 </head>
 <body class="bg">
+<nav>
 	<h1>
 		<font face="微軟正黑體">驗收系統</font>
 	</h1>
 	<a href="InvLoginSuccess.jsp" style="font-family: 微軟正黑體;">回首頁</a>
 	<div class="text-right" style="font-family: 微軟正黑體;">
 		${user.emp_name} ${user.emp_job},你好<a href='InvLogout.controller'><button
-				type="button" class="btn">登出</button></a>
-	</div>
+				type="button" class="btn btn-sm">登出</button></a>
 	<hr>
+	</div>
+	</nav>
 	<div class="left">
 
 		<c:if test="${user.emp_level==1 }">
@@ -84,19 +120,29 @@ span {
 				<li class="nav-item"><a class="nav-link"
 					href="selectInvchk.controller"> <img class=" imgp"
 						src="../sysimg/s1.png"> <span data-feather="home"></span>
-						待驗收清單<span class="sr-only">(current)</span>
+
+						待驗收清單<font color=red>${waitendsign}</font>
+
 				</a></li>
 				<li class="nav-item"><a class="nav-link" href="CheckBean">
+
 						<img class=" imgp" src="../sysimg/s20.png"> <span
+
 						data-feather="users"></span> 驗收成功清單
 				</a></li>
 				<li class="nav-item"><a class="nav-link"
 					href="chkprofail.controller"> <img class="imgp"
+
 						src="../sysimg/s15.png"> <span data-feather="file"></span>
-						驗收失敗清單
+						驗收失敗清單<font color=red>${waitendsign1}</font>
+
 				</a></li>
 				<li class="nav-item"><a class="nav-link" href="item?pageNo=1">
+
+						
+
 						<img class="imgp" src="../sysimg/s19.png"> <span
+
 						data-feather="file"></span> 查詢庫存
 				</a></li>
 			</ul>

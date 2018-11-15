@@ -73,7 +73,7 @@
 								<c:if test="${appsigningprocess.sig_rank==1}">
 									<tbody id="myTable">
 										<tr>
-											<td>${appsigningprocess.sig_rank}</td>
+											<td>1</td>
 											<td>${appsigningprocess.employeeBean.emp_dep}
 												${appsigningprocess.employeeBean.emp_name}
 												${appsigningprocess.employeeBean.emp_job}</td>
@@ -90,7 +90,7 @@
 								items="${appmain.app_SigningProcessBean}">
 								<c:if test="${appsigningprocess.sig_rank==2}">
 									<tr>
-										<td>${appsigningprocess.sig_rank}</td>
+										<td>2</td>
 										<td>${appsigningprocess.employeeBean.emp_dep}
 											${appsigningprocess.employeeBean.emp_name}
 											${appsigningprocess.employeeBean.emp_job}</td>
@@ -107,7 +107,7 @@
 								items="${appmain.app_SigningProcessBean}">
 								<c:if test="${appsigningprocess.sig_rank==3}">
 									<tr>
-										<td>${appsigningprocess.sig_rank}</td>
+										<td>3</td>
 										<td>${appsigningprocess.employeeBean.emp_name}
 											${appsigningprocess.employeeBean.emp_job}</td>
 										<td>${appsigningprocess.app_sta}</td>

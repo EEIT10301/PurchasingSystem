@@ -75,9 +75,9 @@
 								<td>${thispo_detailBean.market_Price}</td>
 								<td>${thispo_detailBean.total_Qty}</td>
 								<td><Input type='text' name='total_Price'
-									value='${param.total_Price}'></td>
+									value='${param.total_Price}' required></td>
 								<td><Input type='text' name='quotation'
-									value='${param.quotation}'> <font size="3" color="red">${errors.number}</font></td>
+									value='${param.quotation}' required> <font size="3" color="red">${errors.number}</font></td>
 								<td><Input type='hidden' name='po_id'
 									value='${thispo_detailBean.po_id}'></td>
 								<td><Input type='hidden' name='part_No'

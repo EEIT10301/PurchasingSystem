@@ -9,24 +9,21 @@
 
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
-	crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-	crossorigin="anonymous"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-	integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-	crossorigin="anonymous"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
-	integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
-	crossorigin="anonymous"></script>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/css/fileinput.min.css" media="all" rel="stylesheet"
+        type="text/css" />
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/js/plugins/piexif.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/js/plugins/sortable.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/js/plugins/purify.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/js/fileinput.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/js/locales/LANG.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <style type="text/css">
 /* input, select { */
 /* 	display: block; */
@@ -99,10 +96,16 @@ span {
 </script>
 </head>
 
+
 <body class="bg">
-<<<<<<< HEAD
-	<h3>請款單細項</h3>
-=======
+
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path;
+	pageContext.setAttribute("basePath",basePath);  
+%>
 
 	<c:if test="${user.emp_dep=='採購部'}">
 
@@ -186,9 +189,9 @@ span {
 		</div>
 	</c:if>
 	<h3>請款單細項</h3>
+
 	<br>
 
->>>>>>> branch 'master' of https://github.com/EEIT10301/PurchasingSystem.git
 	<c:if test="${not empty invoice}">
 		<a href='Polist.controller'>回上一頁</a>
 		<form class="form-inline" method="post"
@@ -258,14 +261,13 @@ span {
 				</div>
 				<div class="form-group mb-2">
 					<label class="col-md-3">原憑證圖檔</label> <a class="mb-2"
-						href="..${recript_pic}" target="_blank">${picName}</a>
+						href="${basePath}${recript_pic}" target="_blank">${picName}</a>
 				</div>
 
-				<div class="form-group mb-2">
-					<label for="Receiptpic" class="col-md-3">修改憑證圖檔 </label> <input
-						class="form-control col-md-3 mb-2" type="file" name="Receiptpic"
-						id="" value="">
-				</div>
+				<div class="form-group  mb-2">
+					<label class="col-md-3" for="Receiptpic" >修改憑證圖檔</label>
+    				<input id="input-b5" name="Receiptpic" type="file">
+    		</div>
 
 					<div class="form-group  mb-2">
 						<label class="col-md-3">退回原因:</label>
@@ -395,7 +397,7 @@ span {
 				</div>
 				<div class="form-group mb-2">
 					<label class="col-md-2">憑證圖檔</label> <a class="mb-2"
-						href="..${recript_pic}" target="_blank">${picName}</a>
+						href="${basePath}${recript_pic}" target="_blank">${picName}</a>
 				</div>
 				<c:if test="${not empty sug}">
 					<div class="form-group mb-2">
@@ -470,6 +472,11 @@ span {
 	<input type="hidden" value="${inv_id}" name="invidback">
 
 	<script>
+
+	$(document).ready(function(){
+	     $("#input-b5").fileinput({ showCaption: false, dropZoneEnabled: false ,showUpload: false});
+	});
+
 	$(document).ready(function(){
 		var invid="${inv_id}";
 		var sendsuccessmeg="${sendsuccessmeg}";

@@ -17,23 +17,25 @@ body {
   	font-weight: 400;
   	font-size: 16px;
   	line-height: 1.7;
-  	color: #eee;
+  	background-image: url("images/worldwide-occupier-services.jpg");
+  	background-repeat: no-repeat;
+  	background-size: cover;
 }
 
-.header {
-  	height: 100vh;
-  	background-image: 
- 	  linear-gradient(to right bottom,  
-      rgba(0, 0, 0, 0.3), 
-      rgba(30, 0, 0, 0.3)), 
-     url('https://images.unsplash.com/photo-1495464101292-552d0b52fe41?auto=format&fit=crop&w=1350&q=80');
-  	
-	background-size: cover;
-  	background-position: top;
-  	position: relative;
+/* .header { */
+/*   	height: 100vh; */
+/*   	background-image:  */
+/*  	  linear-gradient(to right bottom,   */
+/*       rgba(0, 0, 0, 0.3),  */
+/*       rgba(30, 0, 0, 0.3)),  */
+/*      url('https://images.unsplash.com/photo-1495464101292-552d0b52fe41?auto=format&fit=crop&w=1350&q=80'); */
+  
+/* 	background-size: cover; */
+/*   	background-position: top; */
+/*   	position: relative; */
 
-  	clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
-}
+/*   	clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); */
+/* } */
 
 .brand-box {
   	position: absolute;
@@ -52,9 +54,7 @@ body {
 }
 
 .heading-primary {
-  	color: #fff;
   	text-transform: uppercase;
-
   	backface-visibility: hidden;
   	margin-bottom: 30px;
 }
@@ -64,6 +64,7 @@ body {
   	font-size: 26px;
   	font-weight: 400;
   	letter-spacing: 5px;
+  	font-family:"Microsoft JhengHei";
 }
 
 .heading-primary-sub {
@@ -104,15 +105,10 @@ body {
 </style>
 </head>
 <body>
-<header class="header">
-	<div class="brand-box">
-<!-- 		<span class="brand">員工登入</span> -->
-	</div>
-	
+
 	<div class="text-box">
 		<h1 class="heading-primary">
 			<span class="heading-primary-main">員工登入</span>
-<!-- 			<span class="heading-primary-sub">員工登入</span> -->
 		</h1>
 		<form action="<c:url value="AllApplyLogin.controller" />"
 			method="post">
@@ -135,55 +131,6 @@ body {
 				<input class="btn btn-white btn-animated" type="submit" value="登入">
 			</div>
 		</form>
-<!-- 		<a href="#" class="btn btn-white btn-animated">Login</a> -->
 	</div>
-</header>
-<!-- 	<div class="mx-auto" style="width: 300px"> -->
-
-<!-- 		<div class="text-center" style="font-family:微軟正黑體;"> -->
-<!-- 			<h3>員工登入</h3> -->
-<!-- 		</div> -->
-<%-- 		<form action="<c:url value="AllApplyLogin.controller" />" --%>
-<!-- 			method="post"> -->
-<!-- 			<div class="form-group" style="font-family:微軟正黑體;"> -->
-<!-- 				<label for="exampleInputEmail1">帳號</label> <input type="text" -->
-<%-- 					class="form-control" name="username" value="${param.username}" --%>
-<!-- 					id="exampleInputEmail1" aria-describedby="emailHelp" -->
-<!-- 					placeholder="請輸入你的email" required> -->
-<%-- 				<p>${errors.username}</p> --%>
-<!-- 			</div> -->
-<!-- 			<div class="form-group" style="font-family:微軟正黑體;"> -->
-<!-- 				<label for="exampleInputPassword1">密碼</label> <input -->
-<!-- 					type="password" class="form-control" name="password" -->
-<%-- 					value="${param.password}" id="exampleInputPassword1" --%>
-<!-- 					placeholder="請輸入你的密碼 " required> -->
-<%-- 				<p>${errors.password}</p> --%>
-<!-- 			</div> -->
-<!-- 			<div class="text-center" style="font-family:微軟正黑體;"> -->
-<!-- 				<input class="btn btn-primary" type="reset" value="重新輸入"> -->
-<!-- 				<input class="btn btn-primary" type="submit" value="登入"> -->
-<!-- 			</div> -->
-<!-- 		</form> -->
-<!-- 	</div> -->
-	<%--      <form action="<c:url value="AllApplyLogin.controller" />" method="post"> --%>
-	<!--     <table> -->
-	<!-- 	<tr> -->
-	<!-- 		<td>ID : </td> -->
-	<%-- 		<td><input type="text" name="username" value="${param.username}"></td> --%>
-	<%-- 		<td>${errors.username}</td> --%>
-	<!-- 	</tr> -->
-	<!-- 	<tr> -->
-	<!-- 		<td>PWD : </td> -->
-	<%-- 		<td><input type="password" name="password" value="${param.password}"></td> --%>
-	<%-- 		<td>${errors.password}</td> --%>
-	<!-- 	</tr> -->
-	<!-- 	<tr> -->
-	<!-- 		<td>　</td> -->
-	<!-- 		<td align="right"><input type="submit" value="Login"></td> -->
-	<!-- 	</tr> -->
-	<!-- </table> -->
-
-	<!-- </form> -->
-
 </body>
 </html>

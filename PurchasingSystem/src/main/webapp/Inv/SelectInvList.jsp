@@ -26,7 +26,7 @@
 .bg {
 	background-color: #FDF5E6;
 	/* 畫面間距 */
-	margin: 30px;
+/* 	margin: 30px; */
 }
 .right{
 	width:78%;

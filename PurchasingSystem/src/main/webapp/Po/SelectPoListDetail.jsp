@@ -47,47 +47,38 @@
 </style>
 <title>詢價紀錄</title>
 <script type="text/javascript">
-	// window.onload = function() {
-	//     if(!window.location.hash) {
-	//         window.location = window.location + '#loaded';
-	//         window.location.reload();
-	//     }
-	// }
-	
+	window.onload = function() {
+	    if(!window.location.hash) {
+	        window.location = window.location + '#loaded';
+	        window.location.reload();
+	    }
+	}
 
 
-$(document).ready(function(){
-	$.ajax({
-		url:"sendthisselectlist.controller",
-		type:"GET",
-		async:false,
-		success:
-			$("#sendsubmit").click(
-					function submit(data){
-						
+// $(document).ready(function(){
+// 	$.ajax({
+// 		url:"sendthisselectlist.controller",
+// 		type:"GET",
+// 		async:false,
+// 		success:
+// 			$("#sendsubmit").click(
+// 					function submit(data){						
 // 						var Polist = JSON.parse(data);
-						if (data.myArrayList==null){
-							alert("請新增詢價紀錄");
-							 window.location.href="http://localhost:8080/PurchasingSystem/Po/Posendlistsign.jsp";     
-						}
-							
-							
-					})
-			
-	});
-});
-
-
-
+// 						if (data.myArrayList==null){
+// 							alert("請新增詢價紀錄");
+// 							 window.location.href="http://localhost:8080/PurchasingSystem/Po/Posendlistsign.jsp";     
+// 						}							
+// 					})			
+// 	});
+// });
 </script>
 </head>
 <body class="bg">
-
 	<div class="right">
 		<c:if test="${empty queryss and empty query1  and empty queryVendor}">
 			<h2>${noselist}</h2>
 		</c:if>
-		<c:if test="${not empty query1 or not queryVendor or not empty now }">
+		<c:if test="${not empty query1 }"> 
 			<!-- or not queryVendor or not empty now -->
 			<table class="table table-striped table-hover" id="myTable">
 				<thead>
@@ -104,8 +95,15 @@ $(document).ready(function(){
 				<tbody>
 					<tr>
 						<td id="query">${query1.po_ID}</td>
+						<c:if test="${not empty queryVendor}">
 						<td>${queryVendor.vendor_name}</td>
+						</c:if>
+						<c:if test="${empty queryVendor}">
+						<td>${query1.pO_Vendor_InfoBean.vendor_name}</td>
+						</c:if>
+						<c:if test="${not empty now}">
 						<td><fmt:formatDate pattern="yyyy/MM/dd HH:mm" value="${now}"/></td>
+						</c:if>
 						<td>${query1.po_totalprice}</td>
 					</tr>
 				</tbody>
@@ -143,7 +141,7 @@ $(document).ready(function(){
 						<th id="thead">詢價紀錄</th>
 					</tr>
 					<tr>
-						<th><p id="nolist">尚未詢價紀錄</p></th>
+						<th><p id="nolist">尚未有詢價紀錄</p></th>
 					</tr>
 				</thead>
 			</table>
@@ -153,15 +151,15 @@ $(document).ready(function(){
 				<form id="submitbutton"
 					action="<c:url value="sendsc.controller?po_manger=${poprocess1.po_manger}&po_sta=${poprocess1.po_sta}&po_id=${poprocess1.po_id}" />"
 					method="post">
-					<!-- 					<input type="submit" name="sendFirstsendsc" value="新增詢價紀錄"> -->
-					<button id='' class='btn btn-default' value=''>新增詢價紀錄</button>
+						<input type="submit" name="sendFirstsendsc" class='btn btn-default' value="新增詢價紀錄">
+<!-- 					<button id='' class='btn btn-default' value=''>新增詢價紀錄</button> -->
 				</form>
 				<form id="submitbutton"
 					action="<c:url value="posendlistsign.controller?po_manger=${poprocess1.po_manger}&po_sta=${poprocess1.po_sta}&po_id=${poprocess1.po_id}" />"
 					method="post">
 
-					<!-- 					<input type="submit" name="sendFirstposendlistsign" value="送出審核"> -->
-					<button id='' class='btn btn-default' value=''>送出審核</button>
+					<input type="submit" name="sendFirstposendlistsign" class='btn btn-default' value="送出審核">
+<!-- 					<button id='' class='btn btn-default' value=''>送出審核</button> -->
 
 				</form>
 			</div>
@@ -171,15 +169,15 @@ $(document).ready(function(){
 				<form id="submitbutton"
 					action="<c:url value="sendsc.controller?po_manger=${poprocess2.po_manger}&po_sta=${poprocess2.po_sta}&po_id=${poprocess2.po_id}" />"
 					method="post">
-<!-- 					<input type="submit" name="sendSecondsendsc" value="新增詢價紀錄"> -->
-				<button id='' class='btn btn-default' value=''>新增詢價紀錄</button>
+					<input type="submit" name="sendSecondsendsc" class='btn btn-default' value="新增詢價紀錄">
+<!-- 				<button id='' class='btn btn-default' value=''>新增詢價紀錄</button> -->
 				</form>
 
 				<form id="submitbutton"
 					action="<c:url value="posendlistsign.controller?po_manger=${poprocess2.po_manger}&po_sta=${poprocess2.po_sta}&po_id=${poprocess2.po_id}" />"
 					method="post">
-<!-- 					<input type="submit" name="sendSecondposendlistsign" value="送出審核"> -->
-				<button id='' class='btn btn-default' value=''>送出審核</button>
+					<input type="submit" name="sendSecondposendlistsign" class='btn btn-default' value="送出審核">
+<!-- 				<button id='' class='btn btn-default' value=''>送出審核</button> -->
 				</form>
 			</div>
 		</c:if>
