@@ -18,6 +18,7 @@ import Account.model.Inv＿ProductCheckBean;
 import Account.service.Accout_PayableService;
 import Account.service.Inv_ProductListService;
 import Account.service.Inv＿ProductCheckService;
+import Apply.model.App_SigningProcessBean;
 import Apply.model.EmployeeBean;
 import Apply.service.App_SigningProcessService;
 import Apply.service.EmployeeService;
@@ -155,8 +156,8 @@ public String reschangeinvprosta(String sigSta,String send, Integer chk_Count, S
 		String now = dateFormate.format(date1);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Date dates = sdf.parse(now);
-//		String ap_id = "Ap" + chkId.substring(2);
-//		App_SigningProcessBean secondsigningrocess2 = app_SigningProcessService.select("申請中", ap_id);
+		String ap_id = "Ap" + chkId.substring(2);
+		App_SigningProcessBean secondsigningrocess2 = app_SigningProcessService.select("申請中", ap_id);
 		Inv_SigningProcessBean secondsigningrocess1 = inv_SigningProcessService.select("驗收", chkId);
 		String po_id = "Po" + chkId.substring(2);
 		PO_SigningProcessBean posecondsigningrocess = po_SigningProcessService.select("驗收作業", po_id);
@@ -169,8 +170,8 @@ public String reschangeinvprosta(String sigSta,String send, Integer chk_Count, S
 			secondsigningrocess1.setSig_Date(dates);
 			secondsigningrocess1.setSig_Sta("驗收成功");
 
-//			secondsigningrocess2.setSig_sta("待結案");
-//			secondsigningrocess2.setSig_date(dates);
+			secondsigningrocess2.setSig_sta("待結案");
+			secondsigningrocess2.setSig_date(dates);
 			posecondsigningrocess.setSig_sta("驗收完成未請款");
 			posecondsigningrocess.setSig_date(date);
 
