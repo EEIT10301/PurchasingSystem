@@ -64,6 +64,7 @@ body {
   	font-size: 26px;
   	font-weight: 400;
   	letter-spacing: 5px;
+  	font-family:"Microsoft JhengHei";
 }
 
 .heading-primary-sub {
