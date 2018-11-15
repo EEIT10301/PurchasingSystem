@@ -174,8 +174,10 @@ public class POInvoiceController {
 		EmployeeBean empbean = (EmployeeBean) session.getAttribute("user");
 		String email = employeeService.select(empbean.getEmp_managerid()).getEmp_email();
 		String subject = "請款單簽核通知";
-		String text = "您有一張待簽核的請款單 請點下列連結登入：http://localhost:8080/PurchasingSystem/MainPage.jsp";
-		//misc.AutoSendEmailByJava.processMemberWishNotice(email, subject, text);
+
+		String text = "您有一張待簽核的請款單"+"(單號為:"+invId+")請點下列連結登入：http://localhost:8080/PurchasingSystem/MainPage.jsp";
+		misc.AutoSendEmailByJava.processMemberWishNotice(email, subject, text);
+
 		return "newForm";
 	}
 
@@ -228,12 +230,12 @@ public class POInvoiceController {
 		String sig_Sta2 = "簽核中";
 		pO_InvoiceService.updateAccountSigningProcess(invId, sig_Rank, sig_Sta1, sig_Sta2, SignSug, selectPOManager);
 		
-//		//送出email通知下一關
-//				Account_SigningProcessBean bean = pO_InvoiceService.selectForOneProcessbyAccountSign(invId, 2);
-//				String email = bean.getEmployeeBean().getEmp_email();
-//				String subject = "請款單簽核通知";
-//				String text = "您有一張待簽核的請款單 請點下列連結登入：http://localhost:8080/PurchasingSystem/MainPage.jsp";
-//				misc.AutoSendEmailByJava.processMemberWishNotice(email, subject, text);
+		//送出email通知下一關
+				Account_SigningProcessBean bean = pO_InvoiceService.selectForOneProcessbyAccountSign(invId, 2);
+				String email = bean.getEmployeeBean().getEmp_email();
+				String subject = "請款單簽核通知";
+				String text = "您有一張待簽核的請款單"+"(單號為:"+invId+")請點下列連結登入：http://localhost:8080/PurchasingSystem/MainPage.jsp";
+				misc.AutoSendEmailByJava.processMemberWishNotice(email, subject, text);
 		return "updateForm";
 	}
 
@@ -541,8 +543,10 @@ public class POInvoiceController {
 			//送出email通知下一關
 			String email = employeeService.select(selectPOManager).getEmp_email();
 			String subject = "請款單簽核通知";
-			String text = "您有一張待簽核的請款單 請點下列連結登入：http://localhost:8080/PurchasingSystem/MainPage.jsp";
-			//misc.AutoSendEmailByJava.processMemberWishNotice(email, subject, text);
+
+			String text = "您有一張待分派的請款單"+"(單號為:"+invid+")請點下列連結登入：http://localhost:8080/PurchasingSystem/MainPage.jsp";
+			misc.AutoSendEmailByJava.processMemberWishNotice(email, subject, text);
+
 			if (result3) {
 				model.addAttribute("dispatchsuccessmeg", "1");
 				model.addAttribute("inv_id", invid);
@@ -561,8 +565,10 @@ public class POInvoiceController {
 				//送出email通知下一關
 				String email =  employeeService.select(selectPOManager).getEmp_email();
 				String subject = "請款單分派通知";
-				String text = "您有一張待分派的請款單 請點下列連結登入：http://localhost:8080/PurchasingSystem/MainPage.jsp";
-				//misc.AutoSendEmailByJava.processMemberWishNotice(email, subject, text);
+
+				String text = "您有一張待簽核的請款單"+"(單號為:"+invid+")請點下列連結登入：http://localhost:8080/PurchasingSystem/MainPage.jsp";
+				misc.AutoSendEmailByJava.processMemberWishNotice(email, subject, text);
+
 
 				if (result1) {
 					model.addAttribute("sendsuccessmeg", "1");
@@ -576,8 +582,10 @@ public class POInvoiceController {
 						selectPOManager);
 				String email =  employeeService.select(selectPOManager).getEmp_email();
 				String subject = "請款單簽核通知";
-				String text = "您有一張待簽核的請款單 請點下列連結登入：http://localhost:8080/PurchasingSystem/MainPage.jsp";
-				//misc.AutoSendEmailByJava.processMemberWishNotice(email, subject, text);
+
+				String text = "您有一張待簽核的請款單"+"(單號為:"+invid+")請點下列連結登入：http://localhost:8080/PurchasingSystem/MainPage.jsp";
+				misc.AutoSendEmailByJava.processMemberWishNotice(email, subject, text);
+
 				if (result1) {
 					model.addAttribute("sendsuccessmeg", "3");
 					model.addAttribute("inv_id", invid);
@@ -606,7 +614,7 @@ public class POInvoiceController {
 				result2 = pO_InvoiceService.updateAccountSigningProcessForReturn(invid, 2, "未簽核", "退回中", SignSug);
 				String email =  employeeService.select(selectPOManager).getEmp_email();
 				String subject = "請款單簽核通知";
-				String text = "您有一張待簽核的請款單 請點下列連結登入：http://localhost:8080/PurchasingSystem/MainPage.jsp";
+				String text = "您有一張待簽核的請款單"+"(單號為:"+invid+")請點下列連結登入：http://localhost:8080/PurchasingSystem/MainPage.jsp";
 				misc.AutoSendEmailByJava.processMemberWishNotice(email, subject, text);
 				if (result2) {
 					model.addAttribute("returnsuccessmeg", "1");
@@ -619,7 +627,7 @@ public class POInvoiceController {
 				result2 = pO_InvoiceService.updateAccountSigningProcessForReturn(invid, 4, "未簽核", "退回中", SignSug);
 				String email =  employeeService.select(selectPOManager).getEmp_email();
 				String subject = "請款單簽核通知";
-				String text = "您有一張待簽核的請款單 請點下列連結登入：http://localhost:8080/PurchasingSystem/MainPage.jsp";
+				String text = "您有一張待簽核的請款單"+"(單號為:"+invid+")請點下列連結登入：http://localhost:8080/PurchasingSystem/MainPage.jsp";
 				misc.AutoSendEmailByJava.processMemberWishNotice(email, subject, text);
 				if (result2) {
 					model.addAttribute("returnsuccessmeg", "3");
@@ -632,7 +640,7 @@ public class POInvoiceController {
 				result2 = pO_InvoiceService.updateAccountSigningProcessForReturn(invid, 5, "未核准", "退回中", SignSug);
 				String email =  employeeService.select(selectPOManager).getEmp_email();
 				String subject = "請款單簽核通知";
-				String text = "您有一張待簽核的請款單 請點下列連結登入：http://localhost:8080/PurchasingSystem/MainPage.jsp";
+				String text = "您有一張待簽核的請款單"+"(單號為:"+invid+")請點下列連結登入：http://localhost:8080/PurchasingSystem/MainPage.jsp";
 				misc.AutoSendEmailByJava.processMemberWishNotice(email, subject, text);
 				if (result2) {
 					model.addAttribute("returnsuccessmeg", "3");

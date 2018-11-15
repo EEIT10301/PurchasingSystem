@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="BIG5">
-<title>ª«®Æ½ĞÁÊ±¡§Î</title>
+<meta charset="utf-8">
+<title>ç‰©æ–™è«‹è³¼æƒ…å½¢</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -22,7 +22,7 @@ font-size: 36px;
 
 .bg {
 	background-color: #FDF5E6;
-	/* µe­±¶¡¶Z */
+	/* ç•«é¢é–“è· */
 	margin: 30px;
 }
 .right{
@@ -38,7 +38,7 @@ font-size: 36px;
 }
 
 .f {
-	/* ¤è®æ±Æ¦C */
+	/* æ–¹æ ¼æ’åˆ— */
  	display: inline-block;
 	width: 200px;
 	height:50px;
@@ -59,7 +59,7 @@ font-size: 36px;
 }
 
 ul {
-	font-family:·L³n¥¿¶ÂÅé;
+	font-family:å¾®è»Ÿæ­£é»‘é«”;
 	font-size: 19px;
 }
 span {
@@ -74,20 +74,20 @@ span {
 <input type="hidden" id="Account">
 <input type="hidden" id="Password">
 <div class='container'>
-<h3 align="center">ª«®Æ½ĞÁÊ±¡§Î</h3><br/>
+<h3 align="center">ç‰©æ–™è«‹è³¼æƒ…å½¢</h3><br/>
 <input class="form-control" id="myInput" type="text" placeholder="Search"><br/>
 <table class="table table-striped table-hover">
 <thead>
 <tr>
-<th>½ĞÁÊ³æ½s¸¹</th>
-<th>®Æ¸¹</th>
-<th>¹w­p¥æ³f®É¶¡</th>
-<th>²£«~¦WºÙ</th>
-<th>½ĞÁÊ¹w¦ô»ù®æ</th>
-<th>½ĞÁÊ¼Æ¶q</th>
-<th>½ĞÁÊ³æÁ`»ù</th>
-<th>½ĞÁÊ­û¤u</th>
-<th>½ĞÁÊ³¡ªù</th>
+<th>è«‹è³¼å–®ç·¨è™Ÿ</th>
+<th>æ–™è™Ÿ</th>
+<th>é è¨ˆäº¤è²¨æ™‚é–“</th>
+<th>ç”¢å“åç¨±</th>
+<th>è«‹è³¼é ä¼°åƒ¹æ ¼</th>
+<th>è«‹è³¼æ•¸é‡</th>
+<th>è«‹è³¼å–®ç¸½åƒ¹</th>
+<th>è«‹è³¼å“¡å·¥</th>
+<th>è«‹è³¼éƒ¨é–€</th>
 </tr>
 </thead>
 <tbody id="selectAll"></tbody>
@@ -107,24 +107,24 @@ $(document).ready(function(){
 			success:function(data){
 				var Applist = JSON.parse(data);
 					var txt = ""
-						txt += "<h1><font face='·L³n¥¿¶ÂÅé'>½ĞÁÊ¨t²Î</font></h1>"
-						txt += "<a href='ApplyLoginSuccess.jsp'  style='font-family:·L³n¥¿¶ÂÅé;font-size: 15px;'>¦^­º­¶</a>"
-						txt += "<div class='text-right' style='font-family:·L³n¥¿¶ÂÅé;font-size: 15px;'>"
-						txt +=""+Applist.empdep+Applist.empname+Applist.empjob+",±z¦n <a href='ApplyLogout.controller'><button type='button' class='btn' style='font-family:·L³n¥¿¶ÂÅé;font-size: 15px;'>µn¥X</button></a> </div>"		
+						txt += "<h1><font face='å¾®è»Ÿæ­£é»‘é«”'>è«‹è³¼ç³»çµ±</font></h1>"
+						txt += "<a href='ApplyLoginSuccess.jsp'  style='font-family:å¾®è»Ÿæ­£é»‘é«”;font-size: 15px;'>å›é¦–é </a>"
+						txt += "<div class='text-right' style='font-family:å¾®è»Ÿæ­£é»‘é«”;font-size: 15px;'>"
+						txt +=""+Applist.empdep+Applist.empname+Applist.empjob+",æ‚¨å¥½ <a href='ApplyLogout.controller'><button type='button' class='btn' style='font-family:å¾®è»Ÿæ­£é»‘é«”;font-size: 15px;'>ç™»å‡º</button></a> </div>"		
 					    txt += "<hr> <div class='left'>"
 							var emplevel = Applist.emplevel;
 							if(emplevel=="1"){
-								txt +='<ul class="nav flex-column"> <li class="nav-item"> <a class="nav-link active" href="ApplySend.jsp"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> ½ĞÁÊ¥Ó½Ğ <span class="sr-only"></span></a></li>'
-								txt +='<li class="nav-item"> <a class="nav-link active" href="http://localhost:8080/PurchasingSystem/Apply/ApplyWaitEndList.html"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> Åç¦¬§¹¦¨«İµ²®× <font color=red>'+Applist.waitendsign+'</font> </a></li>'
-								txt +='<li class="nav-item"> <a class="nav-link active" href="http://localhost:8080/PurchasingSystem/Apply/selectAll.html"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> ª«®Æ§ó·s <font color=red>'+'</font> </a></li>'
-								txt +='<li class="nav-item"> <a class="nav-link active" href="http://localhost:8080/PurchasingSystem/Apply/ApplySearchEndList.html"><img class="card-img-top imgp" src="../sysimg/s6.png"><span data-feather="home"></span> ¤wµ²®×³æ¤l¬d¸ß <font color=red>'+'</font> </a></li>'
-								txt +='<li class="nav-item"> <a class="nav-link active" href="toApplySignnerdetail.controller"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> «İÃ±®Ö½ĞÁÊ³æ <font color=red>'+Applist.SignAppList+'</font> </a></li>'
-								txt +='<li class="nav-item"> <a class="nav-link active" href="toApplySignpro.controller"><img class="card-img-top imgp" src="../sysimg/s6.png"><span data-feather="home"></span> ½ĞÁÊ¶i«×¬d¸ß <font color=red>'+Applist.Appnow+'</font> </a></li> </ul></div>'
+								txt +='<ul class="nav flex-column"> <li class="nav-item"> <a class="nav-link active" href="ApplySend.jsp"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> è«‹è³¼ç”³è«‹ <span class="sr-only"></span></a></li>'
+								txt +='<li class="nav-item"> <a class="nav-link active" href="http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Apply/ApplyWaitEndList.html"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> é©—æ”¶å®Œæˆå¾…çµæ¡ˆ <font color=red>'+Applist.waitendsign+'</font> </a></li>'
+								txt +='<li class="nav-item"> <a class="nav-link active" href="http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Apply/selectAll.html"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> ç‰©æ–™æ›´æ–° <font color=red>'+'</font> </a></li>'
+								txt +='<li class="nav-item"> <a class="nav-link active" href="http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Apply/ApplySearchEndList.html"><img class="card-img-top imgp" src="../sysimg/s6.png"><span data-feather="home"></span> å·²çµæ¡ˆå–®å­æŸ¥è©¢ <font color=red>'+'</font> </a></li>'
+								txt +='<li class="nav-item"> <a class="nav-link active" href="toApplySignnerdetail.controller"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> å¾…ç°½æ ¸è«‹è³¼å–® <font color=red>'+Applist.SignAppList+'</font> </a></li>'
+								txt +='<li class="nav-item"> <a class="nav-link active" href="toApplySignpro.controller"><img class="card-img-top imgp" src="../sysimg/s6.png"><span data-feather="home"></span> è«‹è³¼é€²åº¦æŸ¥è©¢ <font color=red>'+Applist.Appnow+'</font> </a></li> </ul></div>'
 							}else{
-								txt +='<ul class="nav flex-column"> <li class="nav-item"> <a class="nav-link active" href="http://localhost:8080/PurchasingSystem/Apply/selectAll.html"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> ª«®Æ§ó·s <font color=red>'+'</font> </a></li> '
-								txt +='<li class="nav-item"> <a class="nav-link active" href="http://localhost:8080/PurchasingSystem/Apply/ApplySearchEndList.html"><img class="card-img-top imgp" src="../sysimg/s6.png"><span data-feather="home"></span> ¤wµ²®×³æ¤l¬d¸ß <font color=red>'+'</font> </a></li>'
-								txt +='<li class="nav-item"> <a class="nav-link active" href="toApplySignnerdetail.controller"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> «İÃ±®Ö½ĞÁÊ³æ <font color=red>'+Applist.SignAppList+'</font> </a></li>'
-								txt +='<li class="nav-item"> <a class="nav-link active" href="toApplySignpro.controller"><img class="card-img-top imgp" src="../sysimg/s6.png"><span data-feather="home"></span> ½ĞÁÊ¶i«×¬d¸ß <font color=red>'+Applist.Appnow+'</font> </a></li> </ul></div>'
+								txt +='<ul class="nav flex-column"> <li class="nav-item"> <a class="nav-link active" href="http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Apply/selectAll.html"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> ç‰©æ–™æ›´æ–° <font color=red>'+'</font> </a></li> '
+								txt +='<li class="nav-item"> <a class="nav-link active" href="http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Apply/ApplySearchEndList.html"><img class="card-img-top imgp" src="../sysimg/s6.png"><span data-feather="home"></span> å·²çµæ¡ˆå–®å­æŸ¥è©¢ <font color=red>'+'</font> </a></li>'
+								txt +='<li class="nav-item"> <a class="nav-link active" href="toApplySignnerdetail.controller"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> å¾…ç°½æ ¸è«‹è³¼å–® <font color=red>'+Applist.SignAppList+'</font> </a></li>'
+								txt +='<li class="nav-item"> <a class="nav-link active" href="toApplySignpro.controller"><img class="card-img-top imgp" src="../sysimg/s6.png"><span data-feather="home"></span> è«‹è³¼é€²åº¦æŸ¥è©¢ <font color=red>'+Applist.Appnow+'</font> </a></li> </ul></div>'
 							}
 						
 					
@@ -139,8 +139,8 @@ $(document).ready(function(){
 		success:function(data){
 				var txt = ""
 				if(data.myArrayList==null){
-					alert("µL¤U³æ¬ö¿ı");
-				  window.location.href='http://localhost:8080/PurchasingSystem/Apply/selectAll.html';
+					alert("ç„¡ä¸‹å–®ç´€éŒ„");
+				  window.location.href='http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Apply/selectAll.html';
 				}
 				$.each(data.myArrayList,function(index,json){
 					//alert(json.map.productListBean.pro_name);
