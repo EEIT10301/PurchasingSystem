@@ -90,7 +90,8 @@ public class AutoSendEmailByJava {
 		   message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(memberEmail));//你要寄給誰
 		   message.setSubject(subject);//主旨
 		   message.setText(text);//內文
-
+		   message.setContent(text,"text/html;charset=UTF-8");
+		   message.setContent(subject,"text/html;charset=UTF-8");
 		   Transport transport = session.getTransport("smtp");
 		   transport.connect(host, port, username, password);
 
