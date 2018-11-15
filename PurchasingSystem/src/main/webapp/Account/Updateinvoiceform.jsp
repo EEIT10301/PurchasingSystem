@@ -26,7 +26,7 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
 	integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
 	crossorigin="anonymous"></script>
-
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <style type="text/css">
 /* input, select { */
 /* 	display: block; */
@@ -100,9 +100,6 @@ span {
 </head>
 
 <body class="bg">
-<<<<<<< HEAD
-	<h3>請款單細項</h3>
-=======
 
 	<c:if test="${user.emp_dep=='採購部'}">
 
@@ -188,7 +185,6 @@ span {
 	<h3>請款單細項</h3>
 	<br>
 
->>>>>>> branch 'master' of https://github.com/EEIT10301/PurchasingSystem.git
 	<c:if test="${not empty invoice}">
 		<a href='Polist.controller'>回上一頁</a>
 		<form class="form-inline" method="post"
