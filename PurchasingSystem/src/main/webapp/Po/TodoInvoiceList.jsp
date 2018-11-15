@@ -145,7 +145,7 @@ span {
 							<td>${row.employeeBean.emp_name}</td>
 							<td>${row.pO_Vendor_InfoBean.vendor_name}</td>
 							<td>$${row.total_price}</td>
-							<td><a href="NewInvoiceForm.controller?poid=${row.po_id}"><button type="button" class="btn btn-primary btn-sm">新增請款單</button></a></td>
+							<td><a href="NewInvoiceForm.controller?poid=${row.po_id}"><button type="button" class="btn btn-white btn-sm">新增請款單</button></a></td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -171,7 +171,7 @@ span {
 							<td>${back.employeeBean.emp_name}</td>
 							<td>${back.pO_MainBean.pO_Vendor_InfoBean.vendor_name}</td>
 							<td>${back.total_price}</td>
-							<td><a href="ShowReturnInvoiceForm.controller?poid=${back.po_id}"><button type="button" class="btn btn-primary btn-sm">修改請款單</button></a></td>
+							<td><a href="ShowReturnInvoiceForm.controller?poid=${back.po_id}"><button type="button" class="btn btn-white btn-sm">修改請款單</button></a></td>
 						</tr>
 					</c:forEach>
 				</tbody>

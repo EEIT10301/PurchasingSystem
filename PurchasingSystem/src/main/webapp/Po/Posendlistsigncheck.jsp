@@ -8,12 +8,30 @@
 <meta charset="UTF-8">
 <title>產生詢價單</title>
 <link rel="stylesheet" type="text/css" href="../css/POcss.css">
+
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+
+		function tosend() {
+			if(confirm("確定送出審核")){
+				window.event.returnValue=true;
+				alert("資料已送出");
+			}
+			else{
+				window.event.returnValue=false;
+				
+			}
+		}
+		
+
+
+</script>
 
 <style type="text/css">
 #thead2 {
@@ -44,17 +62,20 @@
 					<thead>
 						<tr>
 							<th>料號</th>
+							<th>品名</th>
 							<th>請購數量</th>
 							<th>預估價格</th>
 							<th>實際採購數量</th>
 							<th>實際採購價格</th>
-							<th>該物料總價格</th>
+							<th>採購項目總金額</th>
 						</tr>
 					</thead>
 					<tbody>
 						<c:forEach var="Podetailbeans1" items="${Podetailbeans}">
 							<tr>
+<!-- 							.pO_MainBean.pO_DetailBean. -->
 								<td>${Podetailbeans1.part_No}</td>
+								<td>${Podetailbeans1.productListBean.pro_name}</td>
 								<td>${Podetailbeans1.total_Qty}</td>
 								<td>${Podetailbeans1.market_Price}元</td>
 								<td>${Podetailbeans1.quotation}</td>
@@ -145,6 +166,8 @@
 	<!-- <p><Input type='submit' name='send' value='重新輸入'><p> -->
 	<!-- <p><Input type='submit' name='send' value='送出'><p> -->
 	<!-- </form> -->
+
+
 
 </body>
 </html>

@@ -53,6 +53,8 @@ public class POInvoiceController {
 	Account_InvoiceService account_InvoiceService;
 	@Autowired
 	Accout_PayableService accout_PayableService;
+	
+	
 
 //	@InitBinder
 //	public void registerPropertyEditor(WebDataBinder dataBinder) {
@@ -99,7 +101,9 @@ public class POInvoiceController {
 		Account_InvoiceBean accountInvoiceBean = pO_InvoiceService.selectInvoice(invId);
 		PO_MainBean poMainBean = pO_MainService.select(poid);
 		PO_SigningProcessBean poSignBean = pO_InvoiceService.selectForOneProcessbyPoSign("驗收作業", poid);
+		String sigman = pO_InvoiceService.selectForOneProcessbyAccountSign(invId, 2).getEmployeeBean().getEmp_name();
 		String sigSug = pO_InvoiceService.selectForOneProcessbyAccountSign(invId, 2).getSig_Sug();
+		Date sigtime = pO_InvoiceService.selectForOneProcessbyAccountSign(invId, 2).getSig_Date();
 		String date = pO_InvoiceService.calcExpirePaymentDate(poMainBean.getpO_Vendor_InfoBean().getPayment_term(),
 				poSignBean.getSig_date());
 		String oldRecript_date = new SimpleDateFormat("yyyy/MM/dd").format(accountInvoiceBean.getRecript_date());
@@ -113,7 +117,9 @@ public class POInvoiceController {
 			model.addAttribute("oldRecript_date", oldRecript_date);
 			model.addAttribute("manager", employee);
 			model.addAttribute("poid", poid);
+			model.addAttribute("sigman", sigman);
 			model.addAttribute("sigSug", sigSug);
+			model.addAttribute("sigtime", sigtime);
 			model.addAttribute("recript_pic", recript_pic);
 			model.addAttribute("picName", picName);
 		}
@@ -130,10 +136,10 @@ public class POInvoiceController {
 		// 上傳圖片
 		String invId = "In" + poid.substring(2);
 //		String destination="C:\\Users\\User\\Downloads\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
-//		String destination = "D:\\Maven-project\\repository\\PurchasingSystem\\src\\main\\webapp\\images"
-//				+ "\\" + invId + ".jpg";
+		String destination = "D:\\Maven-project\\repository\\PurchasingSystem\\src\\main\\webapp\\images"
+				+ "\\" + invId + ".jpg";
 //		// String destination = "\\"+"images"+"\\"+invId+".jpg";
-		String destination ="C:\\Users\\timmy\\git\\repository\\PurchasingSystem\\src\\main\\webapp\\images"+ "\\" + invId + ".jpg";
+//		String destination ="C:\\Users\\timmy\\git\\repository\\PurchasingSystem\\src\\main\\webapp\\images"+ "\\" + invId + ".jpg";
 		if (file != null || file.getSize() > 0) {
 			File files = new File(destination);
 			file.transferTo(files);
@@ -159,7 +165,6 @@ public class POInvoiceController {
 		pO_InvoiceService.updatePoSigningProcess(poid, SignSug, "請款中");
 		
 		//送出email通知下一關
-		Account_SigningProcessBean bean = pO_InvoiceService.selectForOneProcessbyAccountSign(invId, 2);
 		EmployeeBean empbean = (EmployeeBean) session.getAttribute("user");
 		String email = employeeService.select(empbean.getEmp_managerid()).getEmp_email();
 		String subject = "請款單簽核通知";
@@ -172,17 +177,17 @@ public class POInvoiceController {
 	@RequestMapping(value = "/Po/resendInvoice.controller", method = RequestMethod.POST)
 	public String resend(Model model, HttpSession session, String name, @RequestParam("Receiptpic") MultipartFile file,
 			String selectPOManager, String poid, HttpServletRequest request, Integer sig_Rank, String SignSug,
-			String Recript_date) throws IllegalStateException, IOException, ParseException {
+			String Recript_date,String xxzs) throws IllegalStateException, IOException, ParseException {
 
 		// 上傳圖片
 		String invId = "In" + poid.substring(2);
 //		 String destination
 //		 ="C:\\Users\\User\\Downloads\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
-//		String destination = "D:\\Maven-project\\repository\\PurchasingSystem\\src\\main\\webapp\\images"
-//				+ "\\" + invId + ".jpg";
+		String destination = "D:\\Maven-project\\repository\\PurchasingSystem\\src\\main\\webapp\\images"
+				+ "\\" + invId + ".jpg";
 //		String destination = "C:\\Users\\jonat\\Downloads\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"
 //				+ "\\" + invId + ".jpg";
-		String destination ="C:\\Users\\timmy\\git\\repository\\PurchasingSystem\\src\\main\\webapp\\images"+ "\\" + invId + ".jpg";
+//		String destination ="C:\\Users\\timmy\\git\\repository\\PurchasingSystem\\src\\main\\webapp\\images"+ "\\" + invId + ".jpg";
 
 		// String destination = "images/"+invId+".jpg";
 		System.out.println("uploadRootPath=" + destination);
@@ -193,9 +198,18 @@ public class POInvoiceController {
 
 		// update請款單
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		Date date = sdf.parse(Recript_date);
 		Account_InvoiceBean accbean = account_InvoiceService.select(invId);
-		accbean.setRecript_date(date);
+		Date date = null;
+		int xs=0;
+		try {
+			
+			 date = sdf.parse(Recript_date);
+		}catch( ParseException e){
+			xs++;
+		}
+		if(xs==0) {
+			accbean.setRecript_date(date);
+		}
 		Account_InvoiceBean result = pO_InvoiceService.updateInvoiceData(accbean);
 		if (result != null) {
 			model.addAttribute("successmeg", "1");
@@ -208,12 +222,12 @@ public class POInvoiceController {
 		String sig_Sta2 = "簽核中";
 		pO_InvoiceService.updateAccountSigningProcess(invId, sig_Rank, sig_Sta1, sig_Sta2, SignSug, selectPOManager);
 		
-		//送出email通知下一關
-				Account_SigningProcessBean bean = pO_InvoiceService.selectForOneProcessbyAccountSign(invId, 2);
-				String email = bean.getEmployeeBean().getEmp_email();
-				String subject = "請款單簽核通知";
-				String text = "您有一張待簽核的請款單 請點下列連結登入：http://localhost:8080/PurchasingSystem/MainPage.jsp";
-				misc.AutoSendEmailByJava.processMemberWishNotice(email, subject, text);
+//		//送出email通知下一關
+//				Account_SigningProcessBean bean = pO_InvoiceService.selectForOneProcessbyAccountSign(invId, 2);
+//				String email = bean.getEmployeeBean().getEmp_email();
+//				String subject = "請款單簽核通知";
+//				String text = "您有一張待簽核的請款單 請點下列連結登入：http://localhost:8080/PurchasingSystem/MainPage.jsp";
+//				misc.AutoSendEmailByJava.processMemberWishNotice(email, subject, text);
 		return "updateForm";
 	}
 
@@ -274,8 +288,12 @@ public class POInvoiceController {
 		Set<Account_SigningProcessBean> selects = bean.getAccount_SigningProcessBean();
 		for (Account_SigningProcessBean x : selects) {
 			if (x.getSig_Rank() == 4) { // 要看財務承辦的退回原因(第四關)
+				String sigman=x.getEmployeeBean().getEmp_name();
 				String sigSug = x.getSig_Sug();
+				Date sigtime=x.getSig_Date();
+				model.addAttribute("sigman", sigman);
 				model.addAttribute("sigSug", sigSug);
+				model.addAttribute("sigtime", sigtime);
 			}
 		}
 
@@ -514,12 +532,11 @@ public class POInvoiceController {
 		// 判斷是否為分派
 		if (status.equals("dispatch") && action.equals("送出")) {
 			result3 = pO_InvoiceService.updateAccountSigningProcess(invid, 3, "已分派", "簽核中", SignSug, selectPOManager);
-//			//送出email通知下一關
-//			Account_SigningProcessBean bean = pO_InvoiceService.selectForOneProcessbyAccountSign(invid, 4);
-//			String email = bean.getEmployeeBean().getEmp_email();
-//			String subject = "請款單簽核通知";
-//			String text = "您有一張待簽核的請款單 請點下列連結登入：http://localhost:8080/PurchasingSystem/MainPage.jsp";
-//			misc.AutoSendEmailByJava.processMemberWishNotice(email, subject, text);
+			//送出email通知下一關
+			String email = employeeService.select(selectPOManager).getEmp_email();
+			String subject = "請款單簽核通知";
+			String text = "您有一張待簽核的請款單 請點下列連結登入：http://localhost:8080/PurchasingSystem/MainPage.jsp";
+			misc.AutoSendEmailByJava.processMemberWishNotice(email, subject, text);
 			if (result3) {
 				model.addAttribute("dispatchsuccessmeg", "1");
 				model.addAttribute("inv_id", invid);
@@ -534,12 +551,13 @@ public class POInvoiceController {
 			if (dep.equals("採購部") && level == 2) {
 				result1 = pO_InvoiceService.updateAccountSigningProcess(invid, 2, "已核准", "分派中", SignSug,
 						selectPOManager);
+
 				//送出email通知下一關
-				//Account_SigningProcessBean bean = pO_InvoiceService.selectForOneProcessbyAccountSign(invid, 3);
 				String email =  employeeService.select(selectPOManager).getEmp_email();
 				String subject = "請款單分派通知";
 				String text = "您有一張待分派的請款單 請點下列連結登入：http://localhost:8080/PurchasingSystem/MainPage.jsp";
 				misc.AutoSendEmailByJava.processMemberWishNotice(email, subject, text);
+
 				if (result1) {
 					model.addAttribute("sendsuccessmeg", "1");
 					model.addAttribute("inv_id", invid);
@@ -550,8 +568,6 @@ public class POInvoiceController {
 			} else if (dep.equals("財務部") && level == 1) {
 				result1 = pO_InvoiceService.updateAccountSigningProcess(invid, 4, "已簽核", "簽核中", SignSug,
 						selectPOManager);
-				//送出email通知下一關
-//				Account_SigningProcessBean bean = pO_InvoiceService.selectForOneProcessbyAccountSign(invid, 5);
 				String email =  employeeService.select(selectPOManager).getEmp_email();
 				String subject = "請款單簽核通知";
 				String text = "您有一張待簽核的請款單 請點下列連結登入：http://localhost:8080/PurchasingSystem/MainPage.jsp";
@@ -582,8 +598,6 @@ public class POInvoiceController {
 		if (action.equals("退回") && status.equals("review")) {
 			if (dep.equals("採購部") && level == 2) {
 				result2 = pO_InvoiceService.updateAccountSigningProcessForReturn(invid, 2, "未簽核", "退回中", SignSug);
-//				//送出email通知下一關
-//				Account_SigningProcessBean bean = pO_InvoiceService.selectForOneProcessbyAccountSign(invid, 1);
 				String email =  employeeService.select(selectPOManager).getEmp_email();
 				String subject = "請款單簽核通知";
 				String text = "您有一張待簽核的請款單 請點下列連結登入：http://localhost:8080/PurchasingSystem/MainPage.jsp";
@@ -597,8 +611,6 @@ public class POInvoiceController {
 				return "updateForm";
 			} else if (dep.equals("財務部") && level == 1) {
 				result2 = pO_InvoiceService.updateAccountSigningProcessForReturn(invid, 4, "未簽核", "退回中", SignSug);
-//				//送出email通知下一關
-//				Account_SigningProcessBean bean = pO_InvoiceService.selectForOneProcessbyAccountSign(invid, 2);
 				String email =  employeeService.select(selectPOManager).getEmp_email();
 				String subject = "請款單簽核通知";
 				String text = "您有一張待簽核的請款單 請點下列連結登入：http://localhost:8080/PurchasingSystem/MainPage.jsp";
@@ -612,8 +624,6 @@ public class POInvoiceController {
 				return "updateForm";
 			} else {
 				result2 = pO_InvoiceService.updateAccountSigningProcessForReturn(invid, 5, "未核准", "退回中", SignSug);
-				//送出email通知下一關
-//				Account_SigningProcessBean bean = pO_InvoiceService.selectForOneProcessbyAccountSign(invid, 4);
 				String email =  employeeService.select(selectPOManager).getEmp_email();
 				String subject = "請款單簽核通知";
 				String text = "您有一張待簽核的請款單 請點下列連結登入：http://localhost:8080/PurchasingSystem/MainPage.jsp";
