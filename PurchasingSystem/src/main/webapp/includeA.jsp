@@ -12,21 +12,24 @@
 	crossorigin="anonymous">
 <title>Insert title here</title>
 <style>
+.bg {
+	background-color: #FDF5E6;
+	/* 畫面間距 */
+	/* 	margin: 30px; */
+	font-family: "微軟正黑體";
+}
+
 .right {
 	width: 75%;
 	float: right;
 	text-align: center;
 	height: 1500px;
+	    margin-right:30px;
+	
 }
 
 .nav nav-tabs {
 	width: 75%;
-}
-
-.bg {
-	background-color: #FDF5E6;
-	/* 畫面間距 */
-	margin: 30px;
 }
 
 .left {
@@ -34,9 +37,10 @@
 	float: left;
 	text-align: center;
 	height: 1500px;
-	 position: absolute;
-  	top: 150px;
-
+	position: absolute;
+	top: 150px;
+	margin-top: 30px;
+	margin-left: 30px;
 }
 
 .f {
@@ -54,6 +58,7 @@
 	float: left;
 	height: 50px;
 	width: 50px;
+	padding: 10px;
 }
 
 .card-text {
@@ -69,53 +74,54 @@ span {
 	margin-left: 1px;
 }
 
-.bg {
-	background-color: #FDF5E6;
-	/* 畫面間距 */
-	margin: 30px;
+#message {
+	color: red;
+	text-size: 10px;
 }
 
-#message{
-color:red;
-text-size:10px;
-}
-
-.btn:link,
-.btn:visited {
-  	text-transform: uppercase;
-  	text-decoration: none;
-  	padding: 10px 20px;
-  	display: inline-block;
-  	border-radius: 100px;
-  	transition: all .2s;
-  	position: relative;
+.btn:link, .btn:visited {
+	text-transform: uppercase;
+	text-decoration: none;
+	padding: 10px 20px;
+	display: inline-block;
+	border-radius: 100px;
+	transition: all .2s;
+	position: relative;
 }
 
 .btn:hover {
-  	transform: translateY(-3px);
-  	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+	transform: translateY(-3px);
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .btn:active {
-  	transform: translateY(-1px);
-  	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	transform: translateY(-1px);
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
-.btn-white {
-	font-size: 14px;
-	margin-left:30px;
-	margin-right:30px;
+/* .btn-white { */
+/* 	font-size: 14px; */
+/* 	margin-left:30px; */
+/* 	margin-right:30px; */
+/* } */
+.n {
+	background-color: rgb(248, 219, 166);
+	padding-top: 30px;
+	padding-left: 30px;
+	padding-right: 30px;
 }
 </style>
 </head>
 <body class="bg">
+<nav class="n">
 <h3>財務系統</h3>
 	<div class="text-right">
 		${user.emp_dep}/${user.emp_name} ${user.emp_job},你好 <a
-			href='../Account/AccountLogout.controller'><button type="button" class="btn btn-white btn-sm">登出</button></a>
+			href='../Account/AccountLogout.controller'><button type="button" class="btn btn-sm">登出</button></a>
 	<a href="AccountLoginSuccess.jsp" style="font-family:微軟正黑體;">回首頁</a>
 	</div>
 	<hr>
+	</nav>
 <div class="left">
 <ul class="nav flex-column">
 <c:if test="${user.emp_level==2}">
