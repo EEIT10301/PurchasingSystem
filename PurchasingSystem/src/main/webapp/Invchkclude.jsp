@@ -14,11 +14,12 @@
 .bg {
 	background-color: #FDF5E6;
 	/* 畫面間距 */
-	margin: 30px;
+/* 	margin: 30px; */
+font-family: '微軟正黑體';
 }
 
 .left {
-	width: 15%;
+	width: 20%;
 	float: left;
 	text-align: center;
 	height: 1500px;
@@ -80,18 +81,26 @@ span {
 	margin-left:30px;
 	margin-right:30px;
 }
+nav {
+	background-color: rgb(248, 219, 166);
+	padding-top: 30px;
+	padding-left: 30px;
+	padding-right: 30px;
+}
 </style>
 </head>
 <body class="bg">
+<nav>
 	<h1>
 		<font face="微軟正黑體">驗收系統</font>
 	</h1>
 	<a href="InvLoginSuccess.jsp" style="font-family: 微軟正黑體;">回首頁</a>
 	<div class="text-right" style="font-family: 微軟正黑體;">
 		${user.emp_name} ${user.emp_job},你好<a href='InvLogout.controller'><button
-				type="button" class="btn">登出</button></a>
-	</div>
+				type="button" class="btn btn-sm">登出</button></a>
 	<hr>
+	</div>
+	</nav>
 	<div class="left">
 
 		<c:if test="${user.emp_level==1 }">

@@ -15,11 +15,11 @@
 <style>
 .bg {
 	background-color: #FDF5E6;
-	/* 畫面間距 */
 }
 .right{
 	width:78%;
     float:left;
+    margin-right:30px;
 }
 
 #message{

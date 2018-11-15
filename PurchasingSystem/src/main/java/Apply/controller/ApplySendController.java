@@ -1,5 +1,6 @@
 package Apply.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -279,7 +280,7 @@ public class ApplySendController {
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/Apply/ApplyListsend.controller") 
 	public String ApplyList(ProductListBean bean,BindingResult bindingResult,Model model 
-		,HttpSession session,String part_no,String send,String productamount, String suggestion,String Sign2Employee,String getdate) throws ParseException {//產生清單
+		,HttpSession session,String part_no,String send,String productamount, String suggestion,String Sign2Employee,String getdate) throws ParseException, UnsupportedEncodingException {//產生清單
 		 EmployeeBean user =new EmployeeBean();
 		 if(session.getAttribute("user")!=null) {
 			 user= (EmployeeBean) session.getAttribute("user"); 

@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ include file="../POInclude.jsp"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,7 +37,9 @@
 				
 				
 				<td>${accountDone.employeeBean.emp_name}</td>
-				<td>${accountDone.sig_date}</td>
+				<td>
+				<fmt:formatDate pattern="yyyy/MM/dd HH:mm" value="${accountDone.sig_date}"/>
+				</td>
 				<td width="700px">${accountDone.sig_sug}</td>
 				</c:forEach>
 				</tr>

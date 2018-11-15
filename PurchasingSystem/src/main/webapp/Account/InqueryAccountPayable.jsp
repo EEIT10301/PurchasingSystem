@@ -21,7 +21,7 @@
 .bg {
 	background-color: #FDF5E6;
 	/* 畫面間距 */
-	margin: 30px;
+
 }
 
 .f {
@@ -36,9 +36,9 @@
 .imgp {
 	padding: 10px;
 }
-.card-text{
-	font-size:11px;
-}
+/* .card-text{ */
+/* 	font-size:11px; */
+/* } */
 .right {
 	width: 87%;
 	float: left;

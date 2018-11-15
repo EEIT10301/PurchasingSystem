@@ -25,7 +25,7 @@
 .bg {
 	background-color: #FDF5E6;
 	/* 畫面間距 */
-	margin: 30px;
+/* 	margin: 30px; */
 }
 
 .left {
@@ -100,17 +100,25 @@ span {
 
 th {
     text-align: center; 
+    }
+
+nav{
+	background-color: rgb(248, 219, 166);
+	padding-top: 30px;
+	padding-left: 30px;
+	padding-right: 30px;
 }
 </style>
 </head>
 <body class="bg">
+<nav>
 	<h1><font face="微軟正黑體">採購系統</font></h1>
 	<a href="POLoginSuccess.jsp" style="font-family:微軟正黑體;">回首頁</a>
 	<div class="text-right" style="font-family:微軟正黑體;">
 		${user.emp_dep}/${user.emp_name} ${user.emp_job},你好<a
 			href='POLogout.controller'><button type="button" class="btn btn-white btn-sm">登出</button></a>
 	</div>
-	<hr>
+	<hr></nav><br>
 	<div class="left">
 <%-- 		<br> <span>${sendok}</span> --%>
 
