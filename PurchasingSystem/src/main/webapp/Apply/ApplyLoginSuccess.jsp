@@ -5,7 +5,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-	
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <script type="text/javascript" charset="utf-8">
 $(document).ready(function(){

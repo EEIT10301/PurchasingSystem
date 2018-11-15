@@ -136,7 +136,7 @@ public class Inv_SigningProcessDao implements Inv_SigningProcessIDao{
 	public List<Inv_SigningProcessBean> selectempidsend(String inv_manger, String sig_sta) {
 		List<Inv_SigningProcessBean> list = null;
 		//from Inv_SigningProcess where Inv_Manger='emp005' and Sig_Sta='分派中'
-		String hgl="FROM Inv_SigningProcessBean where inv_manger=:id1 and sig_sta=:id2";
+		String hgl="FROM Inv_SigningProcessBean where inv_manger=:id1 and sig_sta=:id2 order by Sig_Date asc";
 		list =this.getSession().createQuery(hgl).setParameter("id1",inv_manger).setParameter("id2", sig_sta).setMaxResults(50).list();	
 		if(list.size()>0) {
 			  return list;
