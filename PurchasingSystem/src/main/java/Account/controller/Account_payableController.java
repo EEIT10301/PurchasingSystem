@@ -1,6 +1,5 @@
 package Account.controller;
 
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -8,10 +7,12 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import Account.model.Account_InvoiceBean;
@@ -20,7 +21,10 @@ import Account.service.Account_InvoiceService;
 import Account.service.Accout_PayableService;
 import Account.view.ExcelViewForInvoice;
 import Account.view.PdfViewForInvoice;
-
+import Apply.model.App_SigningProcessBean;
+import Apply.model.EmployeeBean;
+import Po.model.PO_SigningProcessBean;
+import Po.service.PO_InvoiceService;
 
 @Controller
 public class Account_payableController {
@@ -28,43 +32,91 @@ public class Account_payableController {
 	Accout_PayableService accout_PayableService;
 	@Autowired
 	Account_InvoiceService account_InvoiceService;
-	
-	//顯示所有應付款資料
+	@Autowired
+	PO_InvoiceService pO_InvoiceService;
+
+	// 顯示所有應付款資料
 	@RequestMapping("/Account/ShowAccountPayableList.controller")
 	public String showAccountPayableDataByAll(Model model) {
 		List<Accout_PayableBean> list = accout_PayableService.select();
 		model.addAttribute("allPayableList", list);
 		return "queryAccountPayable";
-		
+
 	}
-	//點選請款單單號可顯示請款單資料
+
+	// 點選請款單單號可顯示請款單資料
 	@RequestMapping("/Account/ShowInvoice.controller")
 	public String showInvoiceData(Model model, HttpSession session, String invid) {
 		Account_InvoiceBean result = account_InvoiceService.select(invid);
-		String picName=result.getRecript_pic().substring(8);
-		model.addAttribute("invoiceData",result);
-		model.addAttribute("picName",picName);
+		String picName = result.getRecript_pic().substring(8);
+		model.addAttribute("invoiceData", result);
+		model.addAttribute("picName", picName);
 		return "queryInvoice";
 	}
-	
-	//請款單資料產生excel檔
-	  @RequestMapping("/Account/ShowInvoice.xls")  
-	    public ModelAndView downloadExcel(){  
-		  List<Accout_PayableBean> list = accout_PayableService.select();
-	        Map<String,List<Accout_PayableBean>> map = new HashMap<>();  
-	        map.put("infoList", list);  
-	        ExcelViewForInvoice ve = new ExcelViewForInvoice();  
-	        return new ModelAndView(ve,map);  
-	    }     
-	
-	
-	//產生pdf檔
-	  @RequestMapping("/Account/ShowInvoice.pdf")  
-	    public ModelAndView downloadPdf(){  
-		  List<Accout_PayableBean> list = accout_PayableService.select();
-	        Map<String,List<Accout_PayableBean>> map = new HashMap<>();  
-	        map.put("infoList", list);  
-	        PdfViewForInvoice  pv = new PdfViewForInvoice ();  
-	        return new ModelAndView(pv,map);  
-	    }     
+
+	// 請款單資料產生excel檔
+	@RequestMapping("/Account/ShowInvoice.xls")
+	public ModelAndView downloadExcel() {
+		List<Accout_PayableBean> list = accout_PayableService.select();
+		Map<String, List<Accout_PayableBean>> map = new HashMap<>();
+		map.put("infoList", list);
+		ExcelViewForInvoice ve = new ExcelViewForInvoice();
+		return new ModelAndView(ve, map);
 	}
+
+	// 產生pdf檔
+	@RequestMapping("/Account/ShowInvoice.pdf")
+	public ModelAndView downloadPdf() {
+		List<Accout_PayableBean> list = accout_PayableService.select();
+		Map<String, List<Accout_PayableBean>> map = new HashMap<>();
+		map.put("infoList", list);
+		PdfViewForInvoice pv = new PdfViewForInvoice();
+		return new ModelAndView(pv, map);
+	}
+
+	// 產生待辦件數
+		@RequestMapping(path = "/Account/LoginSuccessSelectInvSignList.do")
+		@ResponseBody
+		public JSONArray LoginSucessSelectAppSignList(HttpSession session) {
+			EmployeeBean ben = (EmployeeBean) session.getAttribute("user");
+			String emp_id = ben.getEmp_id();
+			if (ben.getEmp_level() == 1) {
+				// 財務承辦未審核請款單數量
+				List<Account_InvoiceBean> noToSignInv = pO_InvoiceService.findTodoBackInvn(emp_id, "簽核中", 4);
+				if (noToSignInv != null&&noToSignInv.size()>0) {
+					int noToSignInvQuy = noToSignInv.size();
+					session.setAttribute("noToSignInv", noToSignInvQuy);
+				} else {
+					session.setAttribute("noToSignInv",0);
+				}
+				// 財務承辦未審核退回請款單數量
+				List<Account_InvoiceBean> noToSignInvReturn = pO_InvoiceService.findTodoBackInvn(emp_id, "退回中", 4);
+				if (noToSignInvReturn != null&&noToSignInvReturn.size()>0) {
+					int noToSignInvReturnQry = noToSignInvReturn.size();
+					session.setAttribute("noToSignInvReturn", noToSignInvReturnQry);
+				} else {
+					session.setAttribute("noToSignInvReturn",0);
+				}
+			} 
+			if (ben.getEmp_level() == 2) {
+				// 財務主管未分派請款單數量
+				List<Account_InvoiceBean> noDispatchInv = pO_InvoiceService.findTodoBackInvn(emp_id, "分派中", 5);
+				if (noDispatchInv != null&&noDispatchInv.size()>0) {
+					int noDispatchInvQry = noDispatchInv.size();
+					session.setAttribute("noDispatchInv", noDispatchInvQry);
+				} else {
+					session.setAttribute("noDispatchInv",0);
+				}
+				// 財務主管未審核請款單數量
+				List<Account_InvoiceBean> noToSignInvforBoss = pO_InvoiceService.findTodoBackInvn(emp_id, "簽核中", 5);
+				if (noToSignInvforBoss != null && noToSignInvforBoss.size()>0) {
+					int noToSignInvforBossQry = noToSignInvforBoss.size();
+					session.setAttribute("noToSignInvforBoss", noToSignInvforBossQry);
+				} else {
+					session.setAttribute("noToSignInvforBoss",0);
+				}
+			}
+			return null;
+		}
+
+}

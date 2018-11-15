@@ -8,11 +8,13 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import Account.model.Inv_ProductListBean;
 import Account.model.Inv＿ProductCheckBean;
@@ -38,6 +40,33 @@ public class InvSigningController {
 	@Autowired
 	Inv＿ProductCheckService inv＿ProductCheckService;
 
+	@RequestMapping(path="/Inv/LoginSucessSelectInvcSignList.do")
+	@ResponseBody
+public JSONArray LoginSucessSelectInvSignList(HttpSession session) {
+		EmployeeBean beans=(EmployeeBean) session.getAttribute("user");
+		String empid=beans.getEmp_id();
+		List<Inv_SigningProcessBean> lists=null;
+		List<Inv_SigningProcessBean> lists1=null;
+		List<Inv_SigningProcessBean> lists2=null;
+		lists=inv_SigningProcessService.selectempidsend(empid, "驗收中");
+		if(lists !=null) {		
+			Integer x =lists.size();
+			session.setAttribute("waitendsign",x);
+		}else {
+			session.removeAttribute("waitendsign");
+			}
+		lists1=inv_SigningProcessService.selectempidsend(empid, "驗收失敗");
+		if(lists1 !=null ) {		
+			Integer x1 =lists1.size();			
+			session.setAttribute("waitendsign1",x1);
+		}else {
+			session.removeAttribute("waitendsign1");
+			}
+	
+		return null;
+	}
+	
+	
 	@RequestMapping("/Inv/sendEmployee.controller") // 多少驗收單分派頁面
 	public String sendEmployee(Model model, HttpSession session) {
 		EmployeeBean beans = (EmployeeBean) session.getAttribute("user");

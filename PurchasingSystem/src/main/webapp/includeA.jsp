@@ -79,6 +79,33 @@ span {
 color:red;
 text-size:10px;
 }
+
+.btn:link,
+.btn:visited {
+  	text-transform: uppercase;
+  	text-decoration: none;
+  	padding: 10px 20px;
+  	display: inline-block;
+  	border-radius: 100px;
+  	transition: all .2s;
+  	position: relative;
+}
+
+.btn:hover {
+  	transform: translateY(-3px);
+  	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+  	transform: translateY(-1px);
+  	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-white {
+	font-size: 14px;
+	margin-left:30px;
+	margin-right:30px;
+}
 </style>
 </head>
 <body class="bg">
@@ -86,6 +113,7 @@ text-size:10px;
 	<div class="text-right">
 		${user.emp_dep}/${user.emp_name} ${user.emp_job},你好 <a
 			href='../Account/AccountLogout.controller'><button type="button" class="btn btn-white btn-sm">登出</button></a>
+	<a href="AccountLoginSuccess.jsp" style="font-family:微軟正黑體;">回首頁</a>
 	</div>
 	<hr>
 <div class="left">

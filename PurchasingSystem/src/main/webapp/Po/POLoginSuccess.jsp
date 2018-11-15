@@ -43,7 +43,7 @@
 .bg {
 	background-color: #FDF5E6;
 	/* 畫面間距 */
-	margin: 30px;
+/* 	margin: 30px; */
 }
 
 .f {
@@ -57,20 +57,50 @@
 .imgp {
 	padding: 10px;
 }
+
+.btn:link,
+.btn:visited {
+  	text-transform: uppercase;
+  	text-decoration: none;
+  	padding: 10px 20px;
+  	display: inline-block;
+  	border-radius: 100px;
+  	transition: all .2s;
+  	position: relative;
+}
+
+.btn:hover {
+  	transform: translateY(-3px);
+  	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+  	transform: translateY(-1px);
+  	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+nav{
+background-color: rgb(248, 219, 166);
+padding-top:30px;
+padding-left:30px;
+padding-right:30px;
+}
+
+
 </style>
 </head>
 <body class="bg">
-	<h1>
-		<font face="微軟正黑體">採購系統</font>
-	</h1>
-	<div class="text-right">
-		<font face="微軟正黑體"> ${user.emp_dep}/${user.emp_name}
-			${user.emp_job},你好 </font><a href='POLogout.controller'><button
-				type="button" class="btn btn-white btn-sm">登出</button></a>
+
+<nav>
+	<h1><font face="微軟正黑體">採購系統</font></h1>
+	<div class="text-right"><font face="微軟正黑體">
+		${user.emp_dep}/${user.emp_name} ${user.emp_job},你好 </font><a
+			href='POLogout.controller'><button type="button" class="btn btn-white btn-sm">登出</button></a>
+		<hr>
 	</div>
+</nav>
 	<div class="text-center">
 		<br> <span>${sendok}</span>
-		<hr>
 
 		<c:if test="${user.emp_level==1}">
 			<div class="card bg-light f">
