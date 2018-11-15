@@ -106,7 +106,7 @@ padding-right:30px;
 	</div>
 </nav>
 	<div class="text-center">
-		<br> <span>${sendok}</span>
+<%-- 		<br> <span>${sendok}</span> --%>
 
 		<c:if test="${user.emp_level==1}">
 			<div class="card bg-light f">
@@ -179,7 +179,9 @@ padding-right:30px;
 				<a href='POFinalStatement.controller' class="btn"><img
 					class="card-img-top imgp" src="../sysimg/s2.png"></a>
 				<div class="card-body">
-					<h5 class="card-title">查詢已結案採購單</h5>
+					<h5 class="card-title">
+					<font face="微軟正黑體">查詢已結案採購單</font>
+					</h5>
 				</div>
 			</div>
 			
@@ -188,7 +190,9 @@ padding-right:30px;
 				<a href='POVendor.jsp' class="btn"><img
 					class="card-img-top imgp" src="../sysimg/s2.png"></a>
 				<div class="card-body">
-					<h5 class="card-title">廠商更新</h5>
+					<h5 class="card-title">
+					<font face="微軟正黑體">廠商更新</font>
+					</h5>
 				</div>
 			</div>
 			
