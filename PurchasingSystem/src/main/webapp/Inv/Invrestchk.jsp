@@ -18,27 +18,48 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript">
-
-	
-function reconfirmOrder() {	
-	var r=confirm("Press a button!");
-	if (r==true)
-	  {	
-		document.getElementById('submit').disabled=true;
-		document.getElementById("submit").value="以重新驗收"
-	  alert("You pressed OK!");
-	  }
-	else
-	  {
-	  alert("You pressed Cancel!");
-	  }
-// 	$(".subimit11").click(function{
-// 		$(this).attr("")
-// 	});
-	
-	
-}
+var searchStyle = document.getElementById('search_style');
+document.getElementById('search').addEventListener('input', function() {
+  if (!this.value) {
+    searchStyle.innerHTML = "";
+    return;
+  }
+  // look ma, no indexOf!
+  searchStyle.innerHTML = ".searchable:not([data-index*=\"" + this.value.toLowerCase() + "\"]) { display: none; }";
+  // beware of css injections!
+});
 </script>
+<script>
+	function reconfirmOrder() {		
+		if(confirm("確定驗收? "))
+		{
+			window.event.returnValue=true;
+			}
+			else
+			{
+			alert("此動作已經被取消");
+			window.event.returnValue=false;
+			}
+		
+		
+	}
+	</script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		var size = $(".subimit11").length;
+		var che=true; 
+		$(".subimit11").each(function(){
+				if($(this).prop("disabled")==false){
+					che=false;	
+				}	
+		 });
+		if(che==true)
+			$("#finish").attr("hidden",false);
+		
+	})
+	
+	
+	</script>
 <title>Insert title here</title>
 <style type="text/css">
 #submit1{
@@ -72,7 +93,7 @@ function reconfirmOrder() {
 </style>
 </head>
 <body>
-<h1>驗收單號:${Inv_SigningProcessBean.chk_Id }</h1>
+<h1>重新驗收單號:${Inv_SigningProcessBean.chk_Id }</h1>
 <div class="right">
 <table class="table table-striped table-hover" id="table">
  <thead>
@@ -95,21 +116,33 @@ function reconfirmOrder() {
 	       <td>${invpromain.productListBean.pro_name}</td>
 	       <td>${invpromain.productListBean.pro_spe}</td>
 	       <td>${invpromain.chk_Count}</td>	
+           <c:if test="${empty invpromain.chk_status }">
+           <td>驗收失敗</td>
+           </c:if>
+            <c:if test="${not empty invpromain.chk_status }">
            <td>${invpromain.chk_status}</td> 
+           </c:if>
            <td>${invpromain.chk_quality}</td>
-
-		   <td> <input type="text" name='chk_quality' placeholder="驗收品質"></td>
-		    <td> <input type="text" name='chk_Count' placeholder="實際數量"></td>
-		
+          <c:if test="${ empty invpromain.chk_status}">
+		  <td><input type="text" name='chk_quality' placeholder="驗收品質"></td>
+		  <td> <input type="text" name='chk_Count' placeholder="實際數量"></td>		
 		    <td><select name="chkstatus">
-<!-- 		     <option selected="selected">請選擇</option>    -->
-<!-- 		     <option  value="驗收成功">驗收成功</option>    -->
-<!-- 		     <option  value="驗收失敗">驗收失敗</option>    -->
-		       <option <c:if test="${invpromain.chk_status=='驗收成功' }">selected</c:if> value="驗收成功">驗收成功</option>   
-		     <option <c:if test="${invpromain.chk_status=='驗收失敗' }">selected</c:if> value="驗收失敗">驗收失敗</option>   
-		       
+		     <option selected="selected">請選擇</option>   
+		     <option  value="驗收成功">驗收成功</option>   
+		     <option  value="驗收失敗">驗收失敗</option>   
 		    </select>	</td>	
-		   <td> <Input onclick="reconfirmOrder()" class="subimit11" id="submit" type='submit' name='send1' value='送出'></td>
+		    <td><Input type='submit' class='subimit11' onclick="reconfirmOrder()" name='send' value='送出'></td>
+	        </c:if>
+		  <c:if test="${not empty invpromain.chk_status}">
+		    <td><input type="text" disabled="disabled" name='chk_quality'  value="${invpromain.chk_quality}"></td>
+		      <td><input type="text" disabled="disabled" name='chk_Count' value="${invpromain.chk_Count}"></td>
+		   <td> <select name="chkstatus">
+		     <option disabled="disabled" <c:if test="${invpromain.chk_status=='驗收成功' }">selected</c:if> value="驗收成功">驗收成功</option>   
+		     <option  disabled="disabled"<c:if test="${invpromain.chk_status=='驗收失敗' }">selected</c:if> value="驗收失敗">驗收失敗</option>   
+		    </select>		
+		  </td>	   
+		   <td> <Input class='subimit11' disabled="disabled" type='submit' name='send' value='已驗收'></td>
+	        </c:if>
 	        
 	      
 <Input type='hidden' name="chk_Id" value='${invpromain.chk_Id}'>
@@ -122,12 +155,13 @@ function reconfirmOrder() {
 </table>
 </div>
 <div>
-<form action="invfinish.conll" method="post">
+<form  action="invfinish.conll" method="post" >
 		驗收單號:${Inv_SigningProcessBean.chk_Id }
 		驗收簽核狀態:${Inv_SigningProcessBean.sig_Sta }
+		驗收意見:<p><textarea rows="5" cols="50"  name="SignSug">${Inv_SigningProcessBean.sig_Sug }</textarea><font color="red"></font><p>
 		<Input type='hidden' name="sigSta" value='${Inv_SigningProcessBean.sig_Sta}'>
 		<Input type='hidden' name="chkId" value='${Inv_SigningProcessBean.chk_Id}'>
-        <Input onclick="reconfirmOrder()"  id="submit1" type='submit' name='send' value='驗收完成'>
+        <Input id="finish" style="position:absolute;right:700px;" hidden="hidden" id="submit1" type='submit' name='send' value='驗收完成'>
         </form>
 </div>   
 </body>

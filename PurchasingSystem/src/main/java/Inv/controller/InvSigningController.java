@@ -62,8 +62,8 @@ public class InvSigningController {
 
 	}
 
-	@RequestMapping("/Inv/InvsendEmployee.controller")//分派驗收單頁面
-	public String InvsendEmployee( Inv_SigningProcessBean bean, BindingResult bindingResult, Model model,
+	@RequestMapping("/Inv/InvsendEmployee.controller") // 分派驗收單頁面
+	public String InvsendEmployee(Inv_SigningProcessBean bean, BindingResult bindingResult, Model model,
 			HttpSession session, String send, String employeesend) {
 		EmployeeBean beans = (EmployeeBean) session.getAttribute("user");
 		Inv＿ProductCheckBean invmain = inv＿ProductCheckService.select(bean.getChk_Id());
@@ -71,73 +71,85 @@ public class InvSigningController {
 		String invidonlynumber = "Po" + invid.substring(2);
 		PO_MainBean pomain = po_MainService.select(invidonlynumber);
 		List<EmployeeBean> empinvchkbeans = employeeService.selectPoEmployee(beans.getEmp_dep(), 1);
-		model.addAttribute("pomain",pomain);
-		model.addAttribute("empinvchkbeans",empinvchkbeans);
-		model.addAttribute("invmain",invmain);
-		model.addAttribute("SigningProcess",bean);		
+		model.addAttribute("pomain", pomain);
+		model.addAttribute("empinvchkbeans", empinvchkbeans);
+		model.addAttribute("invmain", invmain);
+		model.addAttribute("SigningProcess", bean);
 		return "InvList.show";
 	}
-	@RequestMapping("/Inv/Invsendlist.controller")//分派畫面
-public String invsendlist (Inv_SigningProcessBean bean, BindingResult bindingResult, Model model,
-		HttpSession session, String send, String employeesend,String SignSug) throws ParseException {
-		EmployeeBean beans = (EmployeeBean)session.getAttribute("user");
-		Date date=new Date();
-		java.sql.Date date1=new java.sql.Date(date.getTime());
-	    SimpleDateFormat dateFormate = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+
+	@RequestMapping("/Inv/Invsendlist.controller") // 分派畫面
+	public String invsendlist(Inv_SigningProcessBean bean, BindingResult bindingResult, Model model,
+			HttpSession session, String send, String employeesend, String SignSug) throws ParseException {
+		EmployeeBean beans = (EmployeeBean) session.getAttribute("user");
+		Date date = new Date();
+		java.sql.Date date1 = new java.sql.Date(date.getTime());
+		SimpleDateFormat dateFormate = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		String now = dateFormate.format(date1);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-	    Date dates = sdf.parse(now);
-	    Inv＿ProductCheckBean invpromain = inv＿ProductCheckService.select(bean.getChk_Id());
+		Date dates = sdf.parse(now);
+		Inv＿ProductCheckBean invpromain = inv＿ProductCheckService.select(bean.getChk_Id());
 		invpromain.setEmp_ID(employeesend);
-		Inv_SigningProcessBean secondsigningrocess = inv_SigningProcessService.select(bean.getInv_Sta(), bean.getChk_Id());
+		Inv_SigningProcessBean secondsigningrocess = inv_SigningProcessService.select(bean.getInv_Sta(),
+				bean.getChk_Id());
 		System.out.println(SignSug);
 		secondsigningrocess.setSig_Sta("已分派");
 		secondsigningrocess.setSig_Date(dates);
 		secondsigningrocess.setSig_Sug(SignSug);
-	 Inv_SigningProcessBean secondsigningrocess1=new Inv_SigningProcessBean(employeesend, "驗收", bean.getChk_Id(),
+		Inv_SigningProcessBean secondsigningrocess1 = new Inv_SigningProcessBean(employeesend, "驗收", bean.getChk_Id(),
 				null, "驗收中", null, 3);
-	 inv_SigningProcessService.insert(secondsigningrocess1);
-	 model.addAttribute("sendok","分派完成");
-	 
+		inv_SigningProcessService.insert(secondsigningrocess1);
+		model.addAttribute("sendok", "分派完成");
+
 //	 return "InvSendEmployee.do";		
-     return "redirect:/Inv/sendEmployee.controller"; 	
+		return "redirect:/Inv/sendEmployee.controller";
 //		return "Invlogin.success";
-	 
+
 	}
+
 	@RequestMapping("/Inv/selectInvchk.controller")
-public String selectInvchk(Model model,HttpSession session) {//待驗收驗收單畫面
-	EmployeeBean beans=(EmployeeBean)session.getAttribute("user");
-	String invpro = beans.getEmp_id();
-	List<Inv_SigningProcessBean> selectlist = inv_SigningProcessService.selectempidsend(invpro, "驗收中");
-	List<Inv_SigningProcessBean> selectlists = null;
-	selectlists=new LinkedList<Inv_SigningProcessBean>();
-	if(selectlist==null) {
-		model.addAttribute("noselectlists","無待驗收單"); 
-		return "selectInvchk.list";
-	}else {
-		for(int i=0;i<selectlist.size();i++) {
-			Inv_SigningProcessBean x = selectlist.get(i);
-			Inv_SigningProcessBean xs = inv_SigningProcessService.select("驗收分派", x.getChk_Id());
-		if(xs!=null) {
-			selectlists.add(x);
-			selectlists.add(xs);
-		}
-		model.addAttribute("selsctlists",selectlists);
-		}
-		return "selectInvchk.list";
-	}
-		
-	}
-	@RequestMapping("/Inv/sendthisselectinvprolist.controller")
-public String invsendlistign(String inv_manger, String inv_sta, String chk_id, Model model, HttpSession session) {
+	public String selectInvchk(Model model, HttpSession session) {// 待驗收驗收單畫面
 		EmployeeBean beans = (EmployeeBean) session.getAttribute("user");
+		String invpro = beans.getEmp_id();
+		List<Inv_SigningProcessBean> selectlist = inv_SigningProcessService.selectempidsend(invpro, "驗收中");
+		List<Inv_SigningProcessBean> selectlists = null;
+		selectlists = new LinkedList<Inv_SigningProcessBean>();
+		if (selectlist == null) {
+			model.addAttribute("noselectlists", "無待驗收單");
+			return "selectInvchk.list";
+		} else {
+			for (int i = 0; i < selectlist.size(); i++) {
+				Inv_SigningProcessBean x = selectlist.get(i);
+				Inv_SigningProcessBean xs = inv_SigningProcessService.select("驗收分派", x.getChk_Id());
+				if (xs != null) {
+					selectlists.add(x);
+					selectlists.add(xs);
+				}
+				model.addAttribute("selsctlists", selectlists);
+			}
+			return "selectInvchk.list";
+		}
+
+	}
+
+	@RequestMapping("/Inv/sendthisselectinvprolist.controller")
+	public String invsendlistign(String inv_manger, String inv_sta, String chk_id, Model model, HttpSession session) {
+		EmployeeBean beans = (EmployeeBean) session.getAttribute("user");
+		System.out.println("dddd"+chk_id);
 		Inv＿ProductCheckBean invmain = inv＿ProductCheckService.select(chk_id);
 		Inv_SigningProcessBean bean2 = inv_SigningProcessService.select("驗收", chk_id);
-		if("驗收失敗".equals(bean2.getSig_Sta())||"再次驗收".equals(bean2.getSig_Sta())) {
-			bean2.setSig_Sta("再次驗收");	
+		List<Inv_ProductListBean> reschksta = inv_ProductListService.selectIdandSigsta(chk_id, "驗收失敗");
+		if ("驗收失敗".equals(bean2.getSig_Sta()) || "再次驗收".equals(bean2.getSig_Sta())) {
+			bean2.setSig_Sta("再次驗收");
+			if(reschksta!=null) {
+			for (int i = 0; i < reschksta.size(); i++) {
+				Inv_ProductListBean sss = reschksta.get(i);
+				sss.setChk_status(null);
+			}
+			}
 			model.addAttribute("invmain", invmain);
 			model.addAttribute("Inv_SigningProcessBean", bean2);
-		return "Inv.restchk";
+			return "Inv.restchk";
 		}
 		String invid = chk_id;
 		String invidonlynumber = "Po" + invid.substring(2);
@@ -145,7 +157,7 @@ public String invsendlistign(String inv_manger, String inv_sta, String chk_id, M
 		model.addAttribute("invmain", invmain);
 		model.addAttribute("pomain", pomain);
 		model.addAttribute("Inv_SigningProcessBean", bean2);
-	return "Inv.sign";
+		return "Inv.sign";
 	}
 
 }
