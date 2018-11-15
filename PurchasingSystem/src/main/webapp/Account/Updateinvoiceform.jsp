@@ -23,7 +23,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/js/fileinput.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/js/locales/LANG.js"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <style type="text/css">
 /* input, select { */
 /* 	display: block; */
@@ -96,7 +96,9 @@ span {
 </script>
 </head>
 
+
 <body class="bg">
+
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -187,7 +189,9 @@ span {
 		</div>
 	</c:if>
 	<h3>請款單細項</h3>
+
 	<br>
+
 	<c:if test="${not empty invoice}">
 		<a href='Polist.controller'>回上一頁</a>
 		<form class="form-inline" method="post"

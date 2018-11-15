@@ -87,8 +87,8 @@ public class ApplyLoginController {
 		//根據model執行結果，導向view
 				if(bean==null) {
 					errors.put("password", "帳號或密碼有誤,請重新輸入.");
-					return "indexlogin.error";
-					
+					return "indexlogin.error";				
+	                
 				} else {
 					if(bean.getEmp_dep().equals("採購部")) {
 						session.setAttribute("user", bean);

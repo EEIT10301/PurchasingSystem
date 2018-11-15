@@ -16,14 +16,21 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import Account.model.Account_SigningProcessBean;
+import Account.model.PO_Vendor_InfoBean;
 import Account.service.Account_SigningProcessService;
+import Apply.model.AppDetailBean;
+import Apply.model.App_MainBean;
 import Apply.model.App_SigningProcessBean;
 import Apply.model.EmployeeBean;
+import Apply.service.AppDetailService;
+import Apply.service.App_MainService;
+import Apply.service.App_SigningProcessService;
 import Inv.model.Inv_SigningProcessBean;
 import Inv.service.Inv_SigningProcessService;
 import Po.model.PO_DetailBean;
 import Po.model.PO_MainBean;
 import Po.model.PO_SigningProcessBean;
+import Po.service.PO_DetailService;
 import Po.service.PO_MainService;
 import Po.service.PO_SigningProcessService;
 
@@ -36,7 +43,15 @@ public class POStatementController {
 	@Autowired
 	Account_SigningProcessService account_SigningProcessService;
 	@Autowired
+	App_SigningProcessService app_SigningProcessService;
+	@Autowired
 	PO_MainService pO_MainService;
+	@Autowired
+	PO_DetailService pO_DetailService;
+	@Autowired
+	App_MainService app_MainService;
+	@Autowired
+	AppDetailService appDetailService;
 	
 	
 	@RequestMapping("/Po/POSignStatement.controller")
@@ -44,8 +59,12 @@ public class POStatementController {
 		EmployeeBean empbean = (EmployeeBean) session.getAttribute("user");
 		String EmpId = empbean.getEmp_id();
 		if (empbean.getEmp_level() == 1) {// 如果是非主管的員工
+			
 			List<PO_SigningProcessBean> Statement = pO_SigningProcessService.selectpo_sta("產生採購單");
+//			List<PO_SigningProcessBean> Statement =pO_SigningProcessService.selectempID(EmpId);
+			
 			for(int i=0;i<Statement.size();i++) {
+				
 				PO_SigningProcessBean SingleStatement = Statement.get(i);
 				model.addAttribute("POSingle", SingleStatement);
 				
@@ -73,8 +92,17 @@ public class POStatementController {
 			PO_SigningProcessBean n = POpart.get(i);
 			Set<PO_DetailBean> podetail = n.getpO_MainBean().getpO_DetailBean();
 			model.addAttribute("podetail",podetail);
+			
 			PO_MainBean pomain = n.getpO_MainBean();
 			model.addAttribute("pomain",pomain);
+			
+			EmployeeBean poEmployee = pomain.getEmployeeBean();
+			model.addAttribute("poEmployee",poEmployee);
+			
+			PO_Vendor_InfoBean vendor = pomain.getpO_Vendor_InfoBean();
+			model.addAttribute("vendor",vendor);
+			
+	
 		}
 		
 		
@@ -123,15 +151,38 @@ public class POStatementController {
 	@RequestMapping("/Po/POFinalStatementDetail.controller")
 	public String POFinalStatementDetail(HttpSession session, Model model, PO_SigningProcessBean bean,
 			BindingResult bindingResult,String po_id) {
-		PO_MainBean mainbean = pO_MainService.select(po_id);
-		//Set<PO_DetailBean> detailbean = mainbean.getpO_DetailBean();
-		if(mainbean!=null) {
-			model.addAttribute("mainbean",mainbean);
+
+		
+		
+		List<PO_SigningProcessBean> poDone = pO_SigningProcessService.selectpoid(po_id);
+		model.addAttribute("poDone",poDone);//採購單簽核流程
+		
+		String Applyid = "Ap"+po_id.substring(2);
+		List<App_SigningProcessBean> applyDone = app_SigningProcessService.selectallappid(Applyid);
+		model.addAttribute("applyDone",applyDone);//請購單簽核流程
+		
+		String Invid = "CK"+po_id.substring(2);
+		List<Inv_SigningProcessBean> InvDone = inv_SigningProcessService.selectchk_Id(Invid);
+		model.addAttribute("InvDone",InvDone);//驗收單簽核流程
+		
+		
+		String acc_id = "In"+Invid.substring(2);
+		List<Account_SigningProcessBean> ACCDone = account_SigningProcessService.selectPOprocess(acc_id);
+		model.addAttribute("ACCDone",ACCDone);//請款單簽核流程
+		
+
+		PO_MainBean pomainbean = pO_MainService.select(po_id);
+		model.addAttribute("pomainDone",pomainbean);//採購單主檔
+		
+		
+		List<PO_DetailBean> podetailbean = pO_DetailService.selectpo_id(po_id);
+		model.addAttribute("podetailDone",podetailbean);//採購單細項
+		
+		App_MainBean appMainDone = app_MainService.select(Applyid);
+		model.addAttribute("appMainDone",appMainDone);//請購單主檔
 			
-		}
-		else{
-			model.addAttribute("nomainbean","無請購資訊");
-		}
+		List<AppDetailBean> appDetailDone = appDetailService.selectapp_id(Applyid);
+		model.addAttribute("appDetailDone",appDetailDone);//請購單細項
 		
 		
 		return "POFinalStatementDetail.do";

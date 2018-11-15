@@ -111,19 +111,29 @@ span {
 				<li class="nav-item"><a class="nav-link"
 					href="selectInvchk.controller"> <img class=" imgp"
 						src="../sysimg/s1.png"> <span data-feather="home"></span>
-						待驗收清單<span class="sr-only">(current)</span>
+
+						待驗收清單<font color=red>${waitendsign}</font>
+
 				</a></li>
 				<li class="nav-item"><a class="nav-link" href="CheckBean">
+
 						<img class=" imgp" src="../sysimg/s20.png"> <span
+
 						data-feather="users"></span> 驗收成功清單
 				</a></li>
 				<li class="nav-item"><a class="nav-link"
 					href="chkprofail.controller"> <img class="imgp"
+
 						src="../sysimg/s15.png"> <span data-feather="file"></span>
-						驗收失敗清單
+						驗收失敗清單<font color=red>${waitendsign1}</font>
+
 				</a></li>
 				<li class="nav-item"><a class="nav-link" href="item?pageNo=1">
+
+						
+
 						<img class="imgp" src="../sysimg/s19.png"> <span
+
 						data-feather="file"></span> 查詢庫存
 				</a></li>
 			</ul>
