@@ -307,7 +307,7 @@ public class POSigningController {
 			String posta1, String poid1, String send) {
 
 		List<PO_DetailBean> Podetailbeans = new LinkedList<PO_DetailBean>();
-		Map<String, String> errors = new HashMap<String, String>();
+ 		Map<String, String> errors = new HashMap<String, String>();
 		Integer allListprice = 0;
 		PO_SigningProcessBean bean = pO_SigningProcessService.select(posta1, poid1);
 //		List<PO_Vendor_InfoBean> AllPO_Vendor = pO_Vendor_InfoService.select();
@@ -383,21 +383,30 @@ public class POSigningController {
 				PO_MainBean pomain = pO_MainService.select(poid1);
 				pomain.setVendor_ID(AllPO_Vendors);
 				pomain.setTotal_price(Integer.valueOf(allListprice));
-				Set<PO_DetailBean> PODetail = pomain.getpO_DetailBean();
-				for (int i = 0; i < po_id.length; i++) {
-					Integer thisquotation = Integer.valueOf(quotation[i]);
-					Integer thistotal_Price = Integer.valueOf(total_Price[i]);
-					for (PO_DetailBean x : PODetail) {
-						if (x.getPart_No().equals(part_No[i]))
-							;
-						x.setQuotation(thisquotation);
-						x.setTotal_Price(thistotal_Price);
-					}
+	//			PODetail 
+				
+//				Set<PO_DetailBean> PODetail = pomain.getpO_DetailBean();
+//					for (PO_DetailBean x : PODetail) {
+						for (int i = 0; i < po_id.length; i++) {
+							PO_DetailBean PODetail	=pO_DetailService.select(po_id[i],part_No[i]);
+							Integer thisquotation = Integer.valueOf(quotation[i]);
+							Integer thistotal_Price = Integer.valueOf(total_Price[i]);
+							PODetail.setTotal_Price(thistotal_Price);
+							PODetail.setQuotation(thisquotation);
+						}
+//						
+//						
+//						if (x.getPart_No().equals(part_No[i]))
+//							;
+//						x.setQuotation(thisquotation);
+//						x.setTotal_Price(thistotal_Price);
+					
+//					}
 //					PO_DetailBean thispodetail = pO_DetailService.select(po_id[i], part_No[i]);
 //					thispodetail.setQuotation(thisquotation);
 //					thispodetail.setTotal_Price(thistotal_Price);
 //					pO_DetailService.update(thispodetail);
-				}
+				
 				Set<PO_SigningProcessBean> posignprocess = pomain.getpO_SigningProcessBean();
 				for (PO_SigningProcessBean x : posignprocess) {
 					if (x.getSig_rank() == 3) {
@@ -426,21 +435,29 @@ public class POSigningController {
 				PO_MainBean pomain = pO_MainService.select(poid1);
 				pomain.setVendor_ID(AllPO_Vendors);
 				pomain.setTotal_price(Integer.valueOf(allListprice));
-				Set<PO_DetailBean> PODetail = pomain.getpO_DetailBean();
+		//		Set<PO_DetailBean> PODetail = pomain.getpO_DetailBean();
 				for (int i = 0; i < po_id.length; i++) {
+					PO_DetailBean PODetail	=pO_DetailService.select(po_id[i],part_No[i]);
 					Integer thisquotation = Integer.valueOf(quotation[i]);
 					Integer thistotal_Price = Integer.valueOf(total_Price[i]);
-					for (PO_DetailBean x : PODetail) {
-						if (x.getPart_No().equals(part_No[i]))
-							;
-						x.setQuotation(thisquotation);
-						x.setTotal_Price(thistotal_Price);
-					}
+					PODetail.setTotal_Price(thistotal_Price);
+					PODetail.setQuotation(thisquotation);
+				}
+//				for (int i = 0; i < po_id.length; i++) {
+//					Integer thisquotation = Integer.valueOf(quotation[i]);
+//					Integer thistotal_Price = Integer.valueOf(total_Price[i]);
+//					for (PO_DetailBean x : PODetail) {
+//						if (x.getPart_No().equals(part_No[i]))
+//							;
+//						x.setQuotation(thisquotation);
+//						x.setTotal_Price(thistotal_Price);
+//					}
+//				}
 //					PO_DetailBean thispodetail = pO_DetailService.select(po_id[i], part_No[i]);
 //					thispodetail.setQuotation(thisquotation);
 //					thispodetail.setTotal_Price(thistotal_Price);
 //					pO_DetailService.update(thispodetail);
-				}
+			
 				Set<PO_SigningProcessBean> posignprocess = pomain.getpO_SigningProcessBean();
 				for (PO_SigningProcessBean x : posignprocess) {
 					if (x.getSig_rank() == 3) {
