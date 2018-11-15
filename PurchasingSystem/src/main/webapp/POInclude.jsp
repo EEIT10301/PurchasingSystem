@@ -155,6 +155,15 @@ span {
                   	查詢已結案採購單
                 </a>
               </li>
+               <li class="nav-item">
+                <a class="nav-link" href="POVendor.jsp">
+                <img class="card-img-top imgp" src="../sysimg/s2.png">
+                  <span data-feather="layers"></span>
+                  	廠商更新
+                </a>
+              </li>
+              
+              
             </ul>
 		</c:if>
 		<c:if test="${user.emp_level==2}">
