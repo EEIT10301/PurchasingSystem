@@ -62,7 +62,7 @@
 					<thead>
 						<tr>
 							<th>料號</th>
-							<th>品名</th>
+<!-- 							<th>品名</th> -->
 							<th>請購數量</th>
 							<th>預估價格</th>
 							<th>實際採購數量</th>
@@ -75,7 +75,7 @@
 							<tr>
 <!-- 							.pO_MainBean.pO_DetailBean. -->
 								<td>${Podetailbeans1.part_No}</td>
-								<td>${Podetailbeans1.productListBean.pro_name}</td>
+<%-- 								<td>${Podetailbeans1.productListBean.pro_name}</td> --%>
 								<td>${Podetailbeans1.total_Qty}</td>
 								<td>${Podetailbeans1.market_Price}元</td>
 								<td>${Podetailbeans1.quotation}</td>

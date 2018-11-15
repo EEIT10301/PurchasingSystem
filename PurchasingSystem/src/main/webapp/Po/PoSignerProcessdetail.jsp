@@ -98,13 +98,13 @@
 					<th>簽核時間</th>
 					<th>簽核建議</th>
 				</tr>
-				<tr>
+				
 				<c:forEach var='posignpro' varStatus='vs' items='${posignprocess}'>
-					<c:if test="${posignpro.sig_rank>=3 and posignpro.sig_rank<=4}">
-
+					<c:if test="${posignpro.sig_rank==3}">
+						<tr>
 						<%-- <h4>第1步:${posignpro.employeeBean.emp_name} ${posignpro.sig_sta}</h4> --%>
 <!-- 						<tr> -->
-							<td>${posignpro.sig_rank-2}</td>
+							<td>1</td>
 							<td>${posignpro.employeeBean.emp_name}</td>
 							<td>${posignpro.employeeBean.emp_dep}
 								${posignpro.employeeBean.emp_job}</td>
@@ -113,15 +113,57 @@
 							<td>${posignpro.sig_sug}</td>
 <!-- 						</tr> -->
 
-					</c:if>
+					
 					</tr>
+					</c:if>
+					</c:forEach>
+					
+					
+
+			<c:forEach var='posignpro' varStatus='vs' items='${posignprocess}'>
+					<c:if test="${posignpro.sig_rank==4}">
+						<tr>
+						<%-- <h4>第1步:${posignpro.employeeBean.emp_name} ${posignpro.sig_sta}</h4> --%>
+<!-- 						<tr> -->
+							<td>2</td>
+							<td>${posignpro.employeeBean.emp_name}</td>
+							<td>${posignpro.employeeBean.emp_dep}
+								${posignpro.employeeBean.emp_job}</td>
+							<td>${posignpro.sig_sta}</td>
+							<td><fmt:formatDate pattern="yyyy/MM/dd HH:mm" value="${posignpro.sig_date}"/></td>
+							<td>${posignpro.sig_sug}</td>
+<!-- 						</tr> -->
+
+					
+					</tr>
+					</c:if>
+					</c:forEach>
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			<c:forEach var='posignpro' varStatus='vs' items='${posignprocess}'>
 					<c:if test="${posignpro.sig_rank==5}">
 						<c:if
 							test="${posignpro.sig_sta=='未簽核' or posignpro.sig_sta=='簽核中'}">
 							<tr>
-								<td>${posignpro.sig_rank-2}</td>
+								<td>5</td>
 								<td>${posignpro.employeeBean.emp_name}</td>
 								<td>${posignpro.employeeBean.emp_dep}
 									${posignpro.employeeBean.emp_job}</td>
@@ -131,7 +173,7 @@
 							</tr>
 						</c:if>
 					</c:if>
-				</c:forEach>
+			</c:forEach>	
 
 
 

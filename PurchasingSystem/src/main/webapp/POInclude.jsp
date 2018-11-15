@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
 	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
@@ -53,6 +54,33 @@ ul {
 span {
 	margin-left:1px;
 }
+
+.btn:link,
+.btn:visited {
+  	text-transform: uppercase;
+  	text-decoration: none;
+  	padding: 10px 20px;
+  	display: inline-block;
+  	border-radius: 100px;
+  	transition: all .2s;
+  	position: relative;
+}
+
+.btn:hover {
+  	transform: translateY(-3px);
+  	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+  	transform: translateY(-1px);
+  	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-white {
+	font-size: 14px;
+	margin-left:30px;
+	margin-right:30px;
+}
 </style>
 </head>
 <body class="bg">
@@ -73,28 +101,29 @@ span {
                 <a class="nav-link active" href="selectprice.controller">
                 <img class="card-img-top imgp" src="../sysimg/s16.png">
                   <span data-feather="home"></span>
-                  	待詢價採購單 <span class="sr-only">(current)</span>
+                  	待詢價採購單<font color=red>${queryUndoneNo}</font>
+                  	<span class="sr-only">(current)</span>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="POManagerSigner.controller">
                 <img class="card-img-top imgp" src="../sysimg/s15.png">
                   <span data-feather="users"></span>
-                  	待處理採購單
+                  	待處理採購單<font color=red>${pOUndoListsNo}</font>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="signedorder.controller">
                 <img class="card-img-top imgp" src="../sysimg/s17.png">
                   <span data-feather="file"></span>
-                  	待下單採購單
+                  	待下單採購單<font color=red>${unPlacedOrderNo}</font>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="placedOrder.controller">
                 <img class="card-img-top imgp" src="../sysimg/s18.png">
                   <span data-feather="shopping-cart"></span>
-                  	待收貨採購單
+                  	待收貨採購單<font color=red>${unReceivedGoodsNo}</font>
                 </a>
               </li>
               <li class="nav-item">
@@ -134,14 +163,15 @@ span {
                 <a class="nav-link active" href="sendEmployee.controller">
                 <img class="card-img-top imgp" src="../sysimg/s2.png">
                   <span data-feather="home"></span>
-                  	待分派採購單 <span class="sr-only">(current)</span>
+                  	待分派採購單 <font color=red>${unAssignedEmpNo}</font>
+                  	<span class="sr-only">(current)</span>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="POManagerSigner.controller">
                 <img class="card-img-top imgp" src="../sysimg/s2.png">
                   <span data-feather="users"></span>
-                  	待處理採購單
+                  	待處理採購單<font color=red>${pOUndoListsNo}</font>
                 </a>
               </li>
               <li class="nav-item">
