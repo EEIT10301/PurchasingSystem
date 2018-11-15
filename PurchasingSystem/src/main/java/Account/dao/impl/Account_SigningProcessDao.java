@@ -172,7 +172,7 @@ public class Account_SigningProcessDao implements Account_SigningProcessIDao {
 	}
 
 	public List<Account_SigningProcessBean> selectPOprocess(String inv_id) {
-		String hql = "FROM Account_SigningProcessBean WHERE inv_id=:id1 ";
+		String hql = "FROM Account_SigningProcessBean WHERE inv_id=:id1 order by sig_rank";
 		return this.getSession().createQuery(hql).setParameter("id1", inv_id).setMaxResults(50).list();
 
 	}

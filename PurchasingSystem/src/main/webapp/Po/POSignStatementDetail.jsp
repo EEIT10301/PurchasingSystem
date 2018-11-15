@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
        <%@ include file="../POInclude.jsp"%>
+       <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,14 +24,43 @@
 <c:if test="${not empty po_id }">
 
 
+<h2>採購單編號 :${po_id}</h2>
+<table class="table table-striped table-hover" id="myTable">
+
+<tr>
+<th width="200px">採購單編號</th>
+<th width="200px">採購人員</th>
+<th width="200px">採購廠商</th>
+<th>採購總價</th>
+</tr>
+
+<tr>
+<td>${pomain.po_id}</td>
+<td>${poEmployee.emp_name}</td>
+<td>${vendor.vendor_name}</td>
+<td>${pomain.total_price}元</td>
+
+</tr>
+
+
+</table>
+
+
+
+
+
 <c:if test="${not empty podetail}">
+
 
 <h2>採購清單</h2>
 <table class="table table-striped table-hover" id="myTable">
 
 
 <tr>
-<th>料號</th>
+<th width="200px">料號</th>
+<th width="200px">材料項目</th>
+<th>材料名稱</th>
+<th>材料規格</th>
 <th>請購數量</th>
 <th>預估價格</th>
 <th>實際採購數量</th>
@@ -38,36 +68,39 @@
 <th>該物料總價格</th>
 </tr>
 
-<c:forEach var="podetail"  items="${podetail}">
+<c:forEach var="podetail"  items="${podetail}" varStatus="status">
 <tr>
 <td>${podetail.part_No}</td>
+<td>${podetail.productListBean.pro_cate}</td>
+<td>${podetail.productListBean.pro_name}</td>
+<td>${podetail.productListBean.pro_spe}</td>
 <td>${podetail.total_Qty}</td>
 <td>${podetail.market_Price}元</td>
 <td>${podetail.quotation}</td>
 <td>${podetail.total_Price}元</td>
 <td>${podetail.total_Price*podetail.quotation}元</td>
+
+<%--   <td><c:out value="${status.count.last}"/> </td> --%>
+
 </tr>
+
+
+<!-- <tr> -->
+<!-- <td></td> -->
+<!-- <td></td> -->
+<!-- <td></td> -->
+<!-- <td></td> -->
+<!-- <td></td> -->
+<!-- <td></td> -->
+<!-- </tr> -->
 </c:forEach>
 
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>${pomain}元</td>
-</tr>
- 
-<c:forEach var="podetail"  items="${podetail}">
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>${podetail.total_Price*podetail.quotation}元</td>
-</tr>
-</c:forEach>
+
+
+
+
+
+
 
 </table>
 
@@ -76,16 +109,28 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 <c:if test="${not empty POprocess}">
-<h2>採購單號 :${po_id}</h2>
+<h2>採購簽核流程</h2>
 <table class="table table-striped table-hover" id="myTable">
 <thead>
 <tr>
 <th width="200px">簽核順序</th>
 <th width="200px">流程進度</th>
-<th width="200px">簽核人</th>
-<th width="200px">簽核時間</th>
-<th width="200px">簽核情形</th>
+<th>簽核人</th>
+<th>簽核時間</th>
+<th>簽核情形</th>
 <th>簽核建議</th>
 </tr>
 </thead>
@@ -98,8 +143,12 @@
 <td><font color="red">${POprocess.po_sta}</font></td>
 <td><font color="red">${POprocess.employeeBean.emp_name}</font></td>
 <td>
-<font color="red">${POprocess.sig_date}</font>
+<font color="red">
 
+<fmt:formatDate  pattern="yyyy/MM/dd HH:mm"  value="${POprocess.sig_date}"/>
+ </font>
+
+<%-- </fmt:formatDate> --%>
 </td>
 <td><font color="red">${POprocess.sig_sta}</font></td>
 <td>
@@ -117,7 +166,7 @@
 <td>${POprocess.po_sta}</td>
 <td>${POprocess.employeeBean.emp_name}</td>
 <td>
-${POprocess.sig_date}
+<fmt:formatDate pattern="yyyy/MM/dd HH:mm"  value="${POprocess.sig_date}"/>
 
 </td>
 <td>${POprocess.sig_sta}</td>
@@ -146,17 +195,18 @@ ${POprocess.sig_sug}
 
 
 <c:if test="${not empty ck_id}">
-<h2>驗收單號 :${ck_id}</h2>
+<h2>驗收簽核流程</h2>
 <c:if test="${not empty Invprocess}">
 
-<input class="form-control" id="myInput" type="text" placeholder="Search"><br/>
+
 <table class="table table-striped table-hover" id="myTable">
 <thead>
 <tr>
+<th width="200px">簽核順序</th>
 <th width="200px">流程進度</th>
 <th width="200px">簽核人</th>
 <th width="200px">簽核時間</th>
-<th width="200px">簽核情形</th>
+<th >簽核情形</th>
 <th>簽核建議</th>
 </tr>
 </thead>
@@ -164,10 +214,12 @@ ${POprocess.sig_sug}
 <c:if test="${Invprocess.sig_Sta != '待分派' and Invprocess.sig_Sta != '驗收中' }">
 
 <tr>
-
+<td>${Invprocess.sig_Rank}</td>
 <td>${Invprocess.inv_Sta}</td>
 <td>${Invprocess.employeeBean.emp_name}</td>
-<td>${Invprocess.sig_Date}</td>
+<td>
+<fmt:formatDate  pattern="yyyy/MM/dd HH:mm"  value="${Invprocess.sig_Date}"/>
+</td>
 <td>${Invprocess.sig_Sta}</td>
 <td>${Invprocess.sig_Sug}</td>
 </tr>
@@ -179,9 +231,12 @@ ${POprocess.sig_sug}
 <c:if test="${Invprocess.sig_Sta == '待分派' or Invprocess.sig_Sta == '驗收中' }">
 
 <tr>
+<td><font color="red">${Invprocess.sig_Rank}</font></td>
 <td><font color="red">${Invprocess.inv_Sta}</font></td>
 <td><font color="red">${Invprocess.employeeBean.emp_name}</font></td>
-<td><font color="red">${Invprocess.sig_Date}</font></td>
+<td><font color="red">
+<fmt:formatDate  pattern="yyyy/MM/dd HH:mm"  value="${Invprocess.sig_Date}"/>
+</font></td>
 <td><font color="red">${Invprocess.sig_Sta}</font></td>
 <td><font color="red">${Invprocess.sig_Sug}</font></td>
 </tr>

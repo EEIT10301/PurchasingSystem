@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+   <%@ include file="../POInclude.jsp"%>     
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +14,8 @@
 	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
 	crossorigin="anonymous">
 </head>
-<body>
+<body class="bg">
+<div class="right">
 <div class='container'>
 	<h3 align="center">物料更新</h3><br/>
 <input class="form-control" id="myInput" type="text" placeholder="Search"><br/>
@@ -173,6 +175,6 @@ $("#myInput").on("keyup", function() {
 	});
 
 </script>
-
+</div>
 </body>
 </html>

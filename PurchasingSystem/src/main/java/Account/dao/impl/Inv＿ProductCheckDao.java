@@ -54,7 +54,7 @@ public class Inv＿ProductCheckDao implements Inv＿ProductCheckIDao{
 	@Override
 	public List<Inv＿ProductCheckBean> select() {
 		return this.getSession().createQuery(
-				"from Inv＿ProductCheckBean", Inv＿ProductCheckBean.class).setMaxResults(50).list();
+				"from Inv＿ProductCheckBean order by chk_Id desc", Inv＿ProductCheckBean.class).setMaxResults(50).list();
 	}
 
 	@Override

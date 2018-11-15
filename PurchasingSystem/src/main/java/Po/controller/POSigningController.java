@@ -23,6 +23,7 @@ import Account.model.PO_Vendor_InfoBean;
 import Account.service.PO_Vendor_InfoService;
 import Apply.model.App_MainBean;
 import Apply.model.EmployeeBean;
+import Apply.model.ProductListBean;
 import Apply.service.App_MainService;
 import Apply.service.EmployeeService;
 import Po.model.PO_DetailBean;
@@ -304,7 +305,7 @@ public class POSigningController {
 	@RequestMapping("/Po/checkvendorandpodetail.controller") // 採購人員於待詢價採購單頁面選擇送出審核
 	public String checkvendorandpodetail(String[] po_id, String[] part_No, String[] market_Price, String[] quotation,
 			String[] total_Price, String[] total_Qty, Model model, HttpSession session, String AllPO_Vendors,
-			String posta1, String poid1, String send) {
+			String posta1, String poid1, String send,ProductListBean productListBean) {
 
 		List<PO_DetailBean> Podetailbeans = new LinkedList<PO_DetailBean>();
  		Map<String, String> errors = new HashMap<String, String>();
@@ -341,6 +342,11 @@ public class POSigningController {
 			Podetailbean.setTotal_Qty(totalQty);
 			Integer thislistprice = quot * totalPrice;
 			allListprice += thislistprice;
+			
+			
+			Podetailbean.setProductListBean(productListBean);
+			
+			
 			Podetailbeans.add(Podetailbean);
 			model.addAttribute("Podetailbean1", Podetailbean);
 		}
@@ -379,7 +385,7 @@ public class POSigningController {
 			model.addAttribute("AllPO_Vendor", POQuery);
 			return "Posend.sign";
 		} else {// 按下送出時
-			if (boss == null) {// 如果部會到總經理的話
+			if (boss == null) {// 如果不會到總經理的話
 				PO_MainBean pomain = pO_MainService.select(poid1);
 				pomain.setVendor_ID(AllPO_Vendors);
 				pomain.setTotal_price(Integer.valueOf(allListprice));
