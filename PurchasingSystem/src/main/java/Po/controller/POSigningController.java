@@ -320,7 +320,7 @@ public class POSigningController {
 		for (int i = 0; i < po_id.length; i++) {
 			if (quotation[i].equals("") || quotation[i].trim().isEmpty() || total_Price[i].equals("")
 					|| total_Price[i].trim().isEmpty()) {
-				errors.put("number", "請輸入採購金額和數量");
+				errors.put("number", "採購金額/數量必填");
 				model.addAttribute("poprocess1", bean);
 				model.addAttribute("errors", errors);
 				model.addAttribute("AllPO_Vendor", AllPO_Vendor);
