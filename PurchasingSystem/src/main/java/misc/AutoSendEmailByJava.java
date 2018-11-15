@@ -1,5 +1,6 @@
 package misc;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 
 import javax.mail.Authenticator;
@@ -10,6 +11,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeUtility;
 
 public class AutoSendEmailByJava {
 	/*maven專案 下載這個jar 檔
@@ -66,7 +68,7 @@ public class AutoSendEmailByJava {
 	}
 	
 	
-	public static void processMemberWishNotice(String memberEmail, String subject, String text) {//設計成靜態方法 
+	public static void processMemberWishNotice(String memberEmail, String subject, String text) throws UnsupportedEncodingException {//設計成靜態方法 
 		String host = "smtp.gmail.com";
 		  int port = 587;
 		  final String username = "tim810320@gmail.com";//你的email帳號
@@ -85,13 +87,14 @@ public class AutoSendEmailByJava {
 
 		  try {
 
-		   Message message = new MimeMessage(session);
+			  MimeMessage message = new MimeMessage(session);
+			    message.setSubject(subject, "UTF-8");
+			    message.setText(text, "UTF-8");
 		   message.setFrom(new InternetAddress("tim810320@gmail.com"));//你的email帳號
 		   message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(memberEmail));//你要寄給誰
-		   message.setSubject(subject);//主旨
-		   message.setText(text);//內文
-		   message.setContent(text,"text/html;charset=UTF-8");
-		   message.setContent(subject,"text/html;charset=UTF-8");
+		//   message.setContent(text,"text/html;charset=UTF-8");
+		  // message.setSubject(MimeUtility.encodeText(subject,"UTF-8","B"));//主旨
+		//  message.setText(MimeUtility.encodeText(text,"UTF-8","B"));//內文
 		   Transport transport = session.getTransport("smtp");
 		   transport.connect(host, port, username, password);
 

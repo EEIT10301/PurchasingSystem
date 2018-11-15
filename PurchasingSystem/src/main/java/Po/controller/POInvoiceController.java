@@ -3,6 +3,7 @@ package Po.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -520,7 +521,7 @@ public class POInvoiceController {
 	// 採購主管/財務/財務主管 分派/審核/退回請款單
 	@RequestMapping("/Account/ReviewInvoice.controller")
 	public String sendReviewInvoice(Model model, HttpSession session, String action, String invid, String SignSug,
-			String status, String selectPOManager) throws ParseException {
+			String status, String selectPOManager) throws ParseException, UnsupportedEncodingException {
 		String poId = "po" + invid.substring(2);
 		EmployeeBean empbean = (EmployeeBean) session.getAttribute("user");
 		String dep = empbean.getEmp_dep();
