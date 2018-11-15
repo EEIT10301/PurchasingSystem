@@ -84,36 +84,36 @@ public class Account_payableController {
 				// 財務承辦未審核請款單數量
 				List<Account_InvoiceBean> noToSignInv = pO_InvoiceService.findTodoBackInvn(emp_id, "簽核中", 4);
 				if (noToSignInv != null&&noToSignInv.size()>0) {
-					int noToSignInvQuy = noToSignInv.size();
+					Integer noToSignInvQuy = noToSignInv.size();
 					session.setAttribute("noToSignInv", noToSignInvQuy);
 				} else {
-					session.setAttribute("noToSignInv",0);
+					session.removeAttribute("noToSignInv");
 				}
 				// 財務承辦未審核退回請款單數量
 				List<Account_InvoiceBean> noToSignInvReturn = pO_InvoiceService.findTodoBackInvn(emp_id, "退回中", 4);
 				if (noToSignInvReturn != null&&noToSignInvReturn.size()>0) {
-					int noToSignInvReturnQry = noToSignInvReturn.size();
+					Integer noToSignInvReturnQry = noToSignInvReturn.size();
 					session.setAttribute("noToSignInvReturn", noToSignInvReturnQry);
 				} else {
-					session.setAttribute("noToSignInvReturn",0);
+					session.removeAttribute("noToSignInvReturn");
 				}
 			} 
 			if (ben.getEmp_level() == 2) {
 				// 財務主管未分派請款單數量
 				List<Account_InvoiceBean> noDispatchInv = pO_InvoiceService.findTodoBackInvn(emp_id, "分派中", 5);
 				if (noDispatchInv != null&&noDispatchInv.size()>0) {
-					int noDispatchInvQry = noDispatchInv.size();
+					Integer noDispatchInvQry = noDispatchInv.size();
 					session.setAttribute("noDispatchInv", noDispatchInvQry);
 				} else {
-					session.setAttribute("noDispatchInv",0);
+					session.removeAttribute("noDispatchInv");
 				}
 				// 財務主管未審核請款單數量
 				List<Account_InvoiceBean> noToSignInvforBoss = pO_InvoiceService.findTodoBackInvn(emp_id, "簽核中", 5);
 				if (noToSignInvforBoss != null && noToSignInvforBoss.size()>0) {
-					int noToSignInvforBossQry = noToSignInvforBoss.size();
+					Integer noToSignInvforBossQry = noToSignInvforBoss.size();
 					session.setAttribute("noToSignInvforBoss", noToSignInvforBossQry);
 				} else {
-					session.setAttribute("noToSignInvforBoss",0);
+					session.removeAttribute("noToSignInvforBoss");
 				}
 			}
 			return null;

@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ include file="../POInclude.jsp"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +17,7 @@
 <body class="bg">
 <div class="right">
 
-<h2>請購主檔</h2>
+<h2>請購單編號:${appMainDone.app_id}</h2>
 <table class="table table-striped table-hover" id="myTable">
 <tr>
 <th width="200px">請購單編號</th>
@@ -37,7 +39,7 @@
 
 
 
-<h2>請購細項</h2>
+<h2>請購清單</h2>
 <table class="table table-striped table-hover" id="myTable">
 <tr>
 <th width="200px">料號</th>
@@ -74,8 +76,59 @@
 
 
 
+<h2>請購簽核流程</h2>
+<table class="table table-striped table-hover" id="myTable">
+<thead>
+<tr>
+<th width="200px">簽核順序</th>
+<th width="200px">流程進度</th>
+<th width="200px">簽核人</th>
+<th width="200px">簽核時間</th>
+<th width="200px">簽核情形</th>
+<th width="200px">簽核建議</th>
+</tr>
+</thead>
 
-<h2>採購主檔</h2>
+<c:forEach var="applyDone" items="${applyDone}">
+
+<tr>
+<td>${applyDone.sig_rank}</td>
+<td>${applyDone.app_sta}</td>
+<td>${applyDone.employeeBean.emp_name}</td>
+<td>
+<fmt:formatDate pattern="yyyy/MM/dd HH:mm" value="${applyDone.sig_date}"/>
+</td>
+<td>${applyDone.sig_sta}</td>
+<td>${applyDone.sig_sug}</td>
+
+</tr>
+
+
+</c:forEach>
+
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2>採購單編號:${pomainDone.po_id}</h2>
 <table class="table table-striped table-hover" id="myTable">
 <tr>
 <th width="200px">採購單編號</th>
@@ -97,7 +150,8 @@
 
 
 
-<h2>採購細項</h2>
+
+<h2>採購清單</h2>
 <table class="table table-striped table-hover" id="myTable">
 
 <tr>
@@ -133,44 +187,6 @@
 
 
 
-<h2>請購簽核流程</h2>
-<table class="table table-striped table-hover" id="myTable">
-<thead>
-<tr>
-<th width="200px">簽核順序</th>
-<th width="200px">流程進度</th>
-<th width="200px">簽核人</th>
-<th width="200px">簽核時間</th>
-<th width="200px">簽核情形</th>
-<th width="200px">簽核建議</th>
-</tr>
-</thead>
-
-<c:forEach var="applyDone" items="${applyDone}">
-
-<tr>
-<td>${applyDone.sig_rank}</td>
-<td>${applyDone.app_sta}</td>
-<td>${applyDone.employeeBean.emp_name}</td>
-<td>${applyDone.sig_date}</td>
-<td>${applyDone.sig_sta}</td>
-<td>${applyDone.sig_sug}</td>
-
-</tr>
-
-
-</c:forEach>
-
-</table>
-
-
-
-
-
-
-
-
-
 
 <h2>採購簽核流程</h2>
 <table class="table table-striped table-hover" id="myTable">
@@ -191,7 +207,10 @@
 <td>${poDone.sig_rank}</td>
 <td>${poDone.po_sta}</td>
 <td>${poDone.employeeBean.emp_name}</td>
-<td>${poDone.sig_date}</td>
+<td>
+
+<fmt:formatDate pattern="yyyy/MM/dd HH:mm" value="${poDone.sig_date}"/>
+</td>
 <td>${poDone.sig_sta}</td>
 <td>${poDone.sig_sug}</td>
 
@@ -201,10 +220,6 @@
 </c:forEach>
 
 </table>
-
-
-
-
 
 
 
@@ -231,7 +246,9 @@
 <td>${InvDone.sig_Rank}</td>
 <td>${InvDone.inv_Sta}</td>
 <td>${InvDone.employeeBean.emp_name}</td>
-<td>${InvDone.sig_Date}</td>
+<td>
+<fmt:formatDate pattern="yyyy/MM/dd HH:mm" value="${InvDone.sig_Date}"/>
+</td>
 <td>${InvDone.sig_Sta}</td>
 <td>${InvDone.sig_Sug}</td>
 
@@ -266,7 +283,9 @@
 <td>${ACCDone.sig_Rank}</td>
 <td>${ACCDone.account_Sta}</td>
 <td>${ACCDone.employeeBean.emp_name}</td>
-<td>${ACCDone.sig_Date}</td>
+<td>
+<fmt:formatDate pattern="yyyy/MM/dd HH:mm" value="${ACCDone.sig_Date}"/>
+</td>
 <td>${ACCDone.sig_Sta}</td>
 <td>${ACCDone.sig_Sug}</td>
 

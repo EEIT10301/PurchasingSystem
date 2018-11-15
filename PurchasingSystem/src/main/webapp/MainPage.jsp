@@ -86,7 +86,7 @@ body {
 }
 
 .btn:hover {
-  	transform: translateY(-3px);d
+  	transform: translateY(-3px);
   	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 

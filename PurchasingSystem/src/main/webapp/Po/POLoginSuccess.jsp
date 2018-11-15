@@ -23,6 +23,8 @@
 						}
 					}
 				});
+				
+				
 				$("#myInput").on("keyup",function() {
 							var value = $(this).val().toLowerCase();
 							$("#selectAll tr").filter(function() {
@@ -67,16 +69,20 @@
   	border-radius: 100px;
   	transition: all .2s;
   	position: relative;
+/* :visited 被訪問過的樣式 */
+/* :link 還沒被訪問的樣式 */
 }
 
 .btn:hover {
   	transform: translateY(-3px);
   	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+/*   	:hover 滑鼠滑過的樣式 */
 }
 
 .btn:active {
   	transform: translateY(-1px);
   	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+/*   	:active 滑鼠按下的樣式 */
 }
 
 nav{
