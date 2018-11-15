@@ -89,7 +89,8 @@ font-size: 36px;
 </tr>
 </c:forEach>
 <tr>
-<th class='text-center' colspan='7'>詢價紀錄</th>
+<th class='text-center' colspan='7'><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    詢價紀錄</button></th>
 </tr>
 <tr>
 <th></th>
@@ -100,6 +101,8 @@ font-size: 36px;
 <th></th>
 <th></th>
 </tr>
+<div class="collapse" id="collapseExample">
+ <div class="card card-body">
 <c:forEach var='poquerys' varStatus='vs' items='${poquery}'>
 <tr>
 <td></td>
@@ -111,6 +114,8 @@ font-size: 36px;
 <td></td>
 </tr>
 </c:forEach>
+ </div>
+</div>
 <tr>
 <th class='text-center' colspan='7'>選擇廠商</th>
 </tr>
