@@ -308,13 +308,10 @@ public class POSigningController {
 
 		List<PO_DetailBean> Podetailbeans = new LinkedList<PO_DetailBean>();
 		Map<String, String> errors = new HashMap<String, String>();
-		PO_DetailBean Podetailbean = new PO_DetailBean();
 		Integer allListprice = 0;
 		PO_SigningProcessBean bean = pO_SigningProcessService.select(posta1, poid1);
-		List<PO_Vendor_InfoBean> AllPO_Vendor = pO_Vendor_InfoService.select();
-		for(PO_Vendor_InfoBean x:AllPO_Vendor){
-			System.out.println(x.toString());
-		}
+//		List<PO_Vendor_InfoBean> AllPO_Vendor = pO_Vendor_InfoService.select();
+		List<PO_QueryBean> AllPO_Vendor = pO_QueryService.selectQueryBean(poid1);
 //		 if(send.equals("重新輸入")) {
 //	    	   model.addAttribute("poprocess1",bean);
 //	    	   model.addAttribute("AllPO_Vendor",AllPO_Vendor);
@@ -323,12 +320,13 @@ public class POSigningController {
 		for (int i = 0; i < po_id.length; i++) {
 			if (quotation[i].equals("") || quotation[i].trim().isEmpty() || total_Price[i].equals("")
 					|| total_Price[i].trim().isEmpty()) {
-				errors.put("number", "請輸入整數");
+				errors.put("number", "請輸入採購金額和數量");
 				model.addAttribute("poprocess1", bean);
 				model.addAttribute("errors", errors);
 				model.addAttribute("AllPO_Vendor", AllPO_Vendor);
 				return "Posend.sign";
 			}
+			PO_DetailBean Podetailbean = new PO_DetailBean();
 			String poid = po_id[i];
 			Podetailbean.setPo_id(poid);
 			String partno = part_No[i];
@@ -344,7 +342,7 @@ public class POSigningController {
 			Integer thislistprice = quot * totalPrice;
 			allListprice += thislistprice;
 			Podetailbeans.add(Podetailbean);
-
+			model.addAttribute("Podetailbean1", Podetailbean);
 		}
 		PO_Vendor_InfoBean VendorBean = pO_Vendor_InfoService.select(AllPO_Vendors);
 		List<EmployeeBean> pomangers = employeeService.selectPoEmployee("採購部", 2);
@@ -355,6 +353,7 @@ public class POSigningController {
 			model.addAttribute("boss", boss);
 		}
 		model.addAttribute("Podetailbeans", Podetailbeans);
+//		model.addAttribute("Podetailbeans", Podetailbean);
 		model.addAttribute("AllPO_Vendors", VendorBean);
 		model.addAttribute("posta1", posta1);
 		model.addAttribute("poid1", poid1);
