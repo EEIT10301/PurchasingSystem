@@ -74,14 +74,14 @@ $("#myInput").on("keyup", function() {
 				</div>
 			</div>
 			 	<div class="card bg-light f">
-				<a href='http://localhost:8080/PurchasingSystem/Apply/ApplyWaitEndList.html' class="btn"><img
+				<a href='http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Apply/ApplyWaitEndList.html' class="btn"><img
 					class="card-img-top imgp" src="../sysimg/s1.png"></a>
 				<div class="card-body">
 					<h5 class="card-title">驗收完成待結案   <font color=red>${waitendsign}</font></h5>
 				</div>
 			</div>
 	 	<div class="card bg-light f">
-				<a href='http://localhost:8080/PurchasingSystem/Apply/selectAll.html' class="btn"><img
+				<a href='http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Apply/selectAll.html' class="btn"><img
 					class="card-img-top imgp" src="../sysimg/s1.png"></a>
 				<div class="card-body">
 					<h5 class="card-title">物料更新</h5>
@@ -89,7 +89,7 @@ $("#myInput").on("keyup", function() {
 			</div>
 				<br>
 		 	<div class="card bg-light f">
-				<a href='http://localhost:8080/PurchasingSystem/Apply/ApplySearchEndList.html' class="btn"><img
+				<a href='http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Apply/ApplySearchEndList.html' class="btn"><img
 					class="card-img-top imgp" src="../sysimg/s6.png"></a>
 				<div class="card-body">
 					<h5 class="card-title">已結案單子查詢 </h5>
@@ -112,14 +112,14 @@ $("#myInput").on("keyup", function() {
 			</c:if >
 			<c:if test="${user.emp_level==2}">
 	 	<div class="card bg-light f">
-				<a href='http://localhost:8080/PurchasingSystem/Apply/selectAll.html' class="btn"><img
+				<a href='http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Apply/selectAll.html' class="btn"><img
 					class="card-img-top imgp" src="../sysimg/s1.png"></a>
 				<div class="card-body">
 					<h5 class="card-title">物料更新</h5>
 				</div>
 			</div>
 		 	<div class="card bg-light f">
-				<a href='http://localhost:8080/PurchasingSystem/Apply/ApplySearchEndList.html' class="btn"><img
+				<a href='http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Apply/ApplySearchEndList.html' class="btn"><img
 					class="card-img-top imgp" src="../sysimg/s6.png"></a>
 				<div class="card-body">
 					<h5 class="card-title">已結案單子查詢 </h5>
