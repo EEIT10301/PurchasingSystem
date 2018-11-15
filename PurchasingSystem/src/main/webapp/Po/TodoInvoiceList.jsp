@@ -30,7 +30,7 @@ text-size:10px;
 .bg {
 	background-color: #FDF5E6;
 	/* 畫面間距 */
-	margin: 30px;
+/* 	margin: 30px; */
 }
 
 
@@ -43,12 +43,6 @@ text-size:10px;
 
 .nav nav-tabs {
 	width: 75%;
-}
-
-.bg {
-	background-color: #FDF5E6;
-	/* 畫面間距 */
-	margin: 30px;
 }
 
 
@@ -95,7 +89,7 @@ span {
 	<div class="right">
 	<c:if test="${empty list and empty listback}">
 		<h2>待請款採購單</h2>
-			<hr>
+<!-- 			<hr> -->
 			<table class="table table-striped table-hover">
 				<thead class="thead-light">
 					<tr>
@@ -126,7 +120,7 @@ span {
 		</c:if>
 		<c:if test="${not empty list}">
 			<h2>待請款採購單</h2>
-			<hr>
+<!-- 			<hr> -->
 			<table class="table table-striped table-hover">
 				<thead class="thead-light">
 					<tr>
