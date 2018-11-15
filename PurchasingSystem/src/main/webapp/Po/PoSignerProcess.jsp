@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ include file="../POInclude.jsp"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,7 +43,7 @@
 							<c:forEach var='polistone' varStatus='vs'
 								items='${PO_SignSendRank}'>
 								<c:if test='${polists.po_id == polistone.po_id}'>
-									<td>${polistone.sig_date}</td>
+									<td><fmt:formatDate pattern="yyyy/MM/dd HH:mm" value="${polistone.sig_date}"/></td>
 									<br>
 								</c:if>
 							</c:forEach>
@@ -77,7 +78,7 @@
 							<c:forEach var='polistone' varStatus='vs'
 								items='${PO_SignBackRank}'>
 								<c:if test='${polists.po_id == polistone.po_id}'>
-									<td>前一位退回時間: ${polistone.sig_date}</td>
+									<td>主管退回時間:<fmt:formatDate pattern="yyyy/MM/dd HH:mm" value="${polistone.sig_date}"/></td>
 									<br>
 								</c:if>
 							</c:forEach>

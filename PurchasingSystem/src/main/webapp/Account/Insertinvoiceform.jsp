@@ -6,15 +6,19 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<link rel="stylesheet" type="text/css" href="../css/POcss.css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-	crossorigin="anonymous">
-	</script>
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/css/fileinput.min.css" media="all" rel="stylesheet"
+        type="text/css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/js/plugins/piexif.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/js/plugins/sortable.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/js/plugins/purify.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/js/fileinput.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/js/locales/LANG.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>
 	<script
@@ -25,11 +29,6 @@
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
 		integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
 		crossorigin="anonymous"></script>
-	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <style type="text/css">
 /* input, select { */
 /* 	display: block; */
@@ -149,10 +148,11 @@ span {
 					id="" value="" required>
 			</div>
 			<div class="form-group  mb-2">
-				<label class="col-md-2" for="Receiptpic">憑證圖檔</label><input
-					class="mb-2" type="file" name="Receiptpic"
-					id="" value="">
+					 <label class="control-label" for="Receiptpic">憑證圖檔</label>
+    				<input id="input-b5" name="Receiptpic" type="file">
 			</div>
+    				 
+    	<input id="input-b5" name="input-b5[]" type="file">
 			<div class="form-group  mb-2">
 				<label class="col-md-2">審核人員</label> <select class="mb-2"
 					name="selectPOManager">
@@ -186,7 +186,7 @@ span {
 <!-- 	</div>	 -->
 <%-- 	</c:if> --%>
      
-			<input type="hidden" value="${inv_id}" name="invid">
+	<input type="hidden" value="${inv_id}" name="invid">
 	<script>
 	$(document).ready(function(){
 		var invid="${inv_id}";
@@ -203,6 +203,15 @@ span {
 			});
 		}
 	});
+	
+    $(document).ready(function () {
+        $("#input-b5").fileinput({
+            showCaption: false,
+            dropZoneEnabled: false,
+            showUpload: false,
+        });
+    });
+
  
 </script>
 </body>

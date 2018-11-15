@@ -117,6 +117,7 @@ font-size: 36px;
              </select>
              <p>
              <c:if test="${not empty sign3}">
+             <p><font color="red">請購總金額大於100萬需加會總經理簽核</font></p>
              <p>
                     簽核順序   3. ${sign3.emp_name} 總經理
              <p> 
