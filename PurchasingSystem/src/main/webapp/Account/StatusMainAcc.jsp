@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +22,7 @@
 <%@ include file="../includeA.jsp" %>
 
 <div class="right">
-	<h3>查詢請款單狀態</h3>
+<!-- 	<h3>查詢請款單狀態</h3> -->
 	<a href="../Po/queryStatus.controller" class="btn btn-info">查詢所有請款單</a>
 	<a href="../Po/queryStatusUndone.controller" class="btn btn-info">查詢未完成請款單</a>
 	<a href="../Po/queryStatusDone.controller" class="btn btn-info">查詢已完成請款單</a>

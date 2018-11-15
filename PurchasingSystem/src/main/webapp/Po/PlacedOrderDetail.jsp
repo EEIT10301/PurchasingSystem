@@ -13,6 +13,24 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <meta charset="UTF-8">
+
+<script type="text/javascript">
+
+		function tosend() {
+			if(confirm("確定送出審核")){
+				window.event.returnValue=true;
+				alert("資料已送出");
+			}
+			else{
+				window.event.returnValue=false;
+				
+			}
+		}
+		
+
+
+</script>
+
 <title>待收貨單明細</title>
 </head>
 <body class="bg">
@@ -52,8 +70,13 @@
 		
 <%-- 	</c:forEach> --%>
 收貨意見:<p><textarea rows="5" cols="50" name="signSug"></textarea></p>
-實際收貨時間:<input type="datetime" name="shippingDate">
-<p><input type="submit" name="send"  class='btn btn-default' value="確認收貨">
+
+實際收貨時間:<input type="date" name="shippingDate">
+
+
+<p><input type="submit" name="send" class='btn btn-default' value="確認收貨" onclick="tosend()">
+
+
 
 </form>
 </div>
