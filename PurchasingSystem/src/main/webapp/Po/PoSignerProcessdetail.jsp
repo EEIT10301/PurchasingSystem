@@ -163,7 +163,7 @@
 						<c:if
 							test="${posignpro.sig_sta=='未簽核' or posignpro.sig_sta=='簽核中'}">
 							<tr>
-								<td>5</td>
+								<td>3</td>
 								<td>${posignpro.employeeBean.emp_name}</td>
 								<td>${posignpro.employeeBean.emp_dep}
 									${posignpro.employeeBean.emp_job}</td>

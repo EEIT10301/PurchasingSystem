@@ -14,13 +14,16 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body class="bg">
-		<c:if test="${empty accountDone}">		
+		<c:if test="${empty accountDone}">
+			
 		<input class="form-control" id="myInput" type="text" placeholder="Search"><br/>
 		<p>${noaccountDone}</p>
 		</c:if>
 	<c:if test="${not empty accountDone}">
+	
 	<div class="right">		
 	<input class="form-control" id="myInput" type="text" placeholder="Search"><br/>
+	<h2>查詢結案請款單</h2>	
 	<table class="table table-striped table-hover">				
 				<thead>
 				<tr>

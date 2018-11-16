@@ -151,7 +151,6 @@ font-size: 36px;
 
 <c:if test="${not empty nothispro}">
 <div class='container'>
-
 <h4 align="center">退回中請購單 </h4><br/>
 <h4 align="center">請購單編號:${appmain.app_id} </h4><br/>
 <table class="table table-striped table-hover">
@@ -197,11 +196,15 @@ font-size: 36px;
 </c:if>
 </c:forEach>
 </tr>
-
-<tr>
-<th class='text-center' colspan='5'>請購商品明細</th>
-<th></th>
-</tr>
+</table>
+<!-- xxx -->
+<div class="card">
+<div data-toggle="collapse" data-target="#demo4"
+						class="accordion-toggle">
+<h5 class="text-center font-weight-bold">請購商品明細 ↓</h5>
+</div>
+<div class="accordian-body collapse" id="demo4">
+<table  class="table table-striped table-hover">
 <tr>
 <th >料號</th>
 <th >物料名稱</th>
@@ -220,6 +223,9 @@ font-size: 36px;
 <td></td>
 </tr>
 </c:forEach>
+</table></div></div><br>
+<!-- xxx -->
+<table   class="table table-striped table-hover">
 <tr>
 <th class='text-center' colspan='5'>簽核流程</th>
 <th></th>

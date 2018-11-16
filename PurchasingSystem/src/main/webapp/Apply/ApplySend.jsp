@@ -27,7 +27,7 @@ font-size: 36px;
 .bg {
 	background-color: #FDF5E6;
 	/* 畫面間距 */
-	margin: 30px;
+/* 	margin: 30px; */
 }
 .right{
 	width:82%;
@@ -71,7 +71,7 @@ font-size: 36px;
 <c:if test="${empty Categlory}">
 <div class="right">
 <div class="text-center">
-<h3 align="center">選擇物料項目</h3>
+<h2 align="center">選擇物料項目</h2>
 <br>
 <br>
 <div class="card bg-light f">

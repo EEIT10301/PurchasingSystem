@@ -3,7 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-
 <html>
 
 <head>
@@ -24,27 +23,21 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/js/locales/LANG.js"></script>
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <style type="text/css">
-
 .bg {
 	background-color: #FDF5E6;
 	/* 畫面間距 */
 }
-
 .lr {
 	width: 38%;
 	float: left;
 }
-
 .dlr {
 	width: 60%;
 	float: right;
 }
-
-
 table {
 	font-size: 13px;
 }
-
 </style>
 </head>
 
@@ -353,11 +346,9 @@ table {
 	<input type="hidden" value="${inv_id}" name="invidback">
 
 	<script>
-
 	$(document).ready(function(){
 	     $("#input-b5").fileinput({ showCaption: false, dropZoneEnabled: false ,showUpload: false});
 	});
-
 	$(document).ready(function(){
 		var invid="${inv_id}";
 		var sendsuccessmeg="${sendsuccessmeg}";

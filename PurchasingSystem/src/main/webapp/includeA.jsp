@@ -149,7 +149,7 @@ th {
 	<div class="text-right">
 		${user.emp_dep}/${user.emp_name} ${user.emp_job},你好 <a
 			href='../Account/AccountLogout.controller'><button type="button" class="btn btn-white btn-sm">登出</button></a>
-	<a href="../Account/AccountLoginSuccess.jsp" style="font-family:微軟正黑體;">回首頁</a>
+<!-- 	<a href="../Account/AccountLoginSuccess.jsp" style="font-family:微軟正黑體;">回首頁</a> -->
 	</div>
 	<hr>
 	</nav>

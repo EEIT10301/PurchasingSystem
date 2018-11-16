@@ -23,8 +23,16 @@
 
 <c:if test="${not empty po_id }">
 
+<div class="card">
+<div data-toggle="collapse" data-target="#demo3"
+	 class="accordion-toggle">
+	<h5 class="text-center font-weight-bold">採購單編號 :${po_id}↓</h5>		
+</div>
+<div class="accordian-body collapse" id="demo3">
 
-<h2>採購單編號 :${po_id}</h2>
+
+
+
 <table class="table table-striped table-hover" id="myTable">
 
 <tr>
@@ -45,14 +53,19 @@
 
 </table>
 
-
+</div></div><br><br><br>
 
 
 
 <c:if test="${not empty podetail}">
 
+<div class="card">
+<div data-toggle="collapse" data-target="#demo4"
+	 class="accordion-toggle">
+	<h5 class="text-center font-weight-bold">採購清單↓</h5>		
+</div>
+<div class="accordian-body collapse" id="demo4">
 
-<h2>採購清單</h2>
 <table class="table table-striped table-hover" id="myTable">
 
 
@@ -80,31 +93,15 @@
 <td>${podetail.total_Price}元</td>
 <td>${podetail.total_Price*podetail.quotation}元</td>
 
-<%--   <td><c:out value="${status.count.last}"/> </td> --%>
-
 </tr>
 
-
-<!-- <tr> -->
-<!-- <td></td> -->
-<!-- <td></td> -->
-<!-- <td></td> -->
-<!-- <td></td> -->
-<!-- <td></td> -->
-<!-- <td></td> -->
-<!-- </tr> -->
 </c:forEach>
-
-
-
-
-
-
 
 
 </table>
 
 
+</div></div><br><br><br>
 </c:if>
 
 
@@ -122,7 +119,15 @@
 
 
 <c:if test="${not empty POprocess}">
-<h2>採購簽核流程</h2>
+
+<div class="card">
+<div data-toggle="collapse" data-target="#demo6"
+	 class="accordion-toggle">
+	<h5 class="text-center font-weight-bold">採購簽核流程↓</h5>		
+</div>
+<div class="accordian-body collapse" id="demo6">
+
+
 <table class="table table-striped table-hover" id="myTable">
 <thead>
 <tr>
@@ -181,7 +186,9 @@ ${POprocess.sig_sug}
 </c:forEach>
 
 </table>
+</div></div><br><br><br>
 </c:if>
+
 </c:if>
 
 
@@ -195,7 +202,16 @@ ${POprocess.sig_sug}
 
 
 <c:if test="${not empty ck_id}">
-<h2>驗收簽核流程</h2>
+
+
+<div class="card">
+<div data-toggle="collapse" data-target="#demo5"
+	 class="accordion-toggle">
+	<h5 class="text-center font-weight-bold">驗收簽核流程↓</h5>		
+</div>
+<div class="accordian-body collapse" id="demo5">
+
+
 <c:if test="${not empty Invprocess}">
 
 
@@ -247,6 +263,7 @@ ${POprocess.sig_sug}
 
 </table>
 </c:if>
+</div></div><br><br><br>
 </c:if>
 
 

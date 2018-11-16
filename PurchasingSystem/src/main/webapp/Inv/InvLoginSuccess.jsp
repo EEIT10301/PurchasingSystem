@@ -79,7 +79,7 @@ padding-right:30px;
 <nav>
 	<h3><font face="微軟正黑體">驗收系統</font></h3>
     <div class="text-right"><font face="微軟正黑體">
-		 ${user.emp_id},${user.emp_name},${user.emp_job} </font><a
+		 ${user.emp_dep},${user.emp_name},${user.emp_job} </font><a
 		  href='InvLogout.controller'><button type="button" class="btn btn-sm">登出</button></a>
 		<hr>
     </div>
