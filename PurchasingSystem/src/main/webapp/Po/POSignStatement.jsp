@@ -22,11 +22,11 @@
 <div class="right">
 <input class="form-control" id="myInput" type="text" placeholder="Search"><br/>
 
-
-
+<c:if test="${not empty POList}">
+<h2>採購單狀態</h2>
 <table class="table table-striped table-hover" id="myTable">
 
-<c:if test="${not empty POList}">
+
 <tr>
 <th>採購單號</th>
 <th>開始時間</th>
@@ -48,9 +48,10 @@
 </tr>
 </c:forEach>
 
-</c:if>
+
 
 </table>
+</c:if>
 </div>
 
 
