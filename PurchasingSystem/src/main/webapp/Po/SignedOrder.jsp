@@ -31,7 +31,7 @@
 	<%-- </c:if> --%>
 
 	<div class="right">
-	<c:if test='${not empty noSignedOrderList}'>
+	<c:if test='${empty signedOrderList}'>
 		<h2>${noSignedOrderList}</h2>
 	</c:if>
 

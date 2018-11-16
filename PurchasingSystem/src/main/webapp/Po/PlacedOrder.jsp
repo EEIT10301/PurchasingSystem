@@ -19,7 +19,7 @@
 </head>
 <body class="bg">
 <div class="right">
-	<c:if test='${not empty noPlacedOrderList}'>
+	<c:if test='${empty placedOrderList}'>
 		<h2>${noPlacedOrderList}</h2>
 	</c:if>
 

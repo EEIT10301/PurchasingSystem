@@ -12,22 +12,43 @@
 	src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <meta charset="UTF-8">
 
 <script type="text/javascript">
-
-		function tosend() {
-			if(confirm("確定送出審核")){
-				window.event.returnValue=true;
-				alert("資料已送出");
-			}
-			else{
-				window.event.returnValue=false;
+// 		function tosend() {
+// 			if(confirm("確認收貨")){
+// 				window.event.returnValue=true;
+// 				swal("收貨已完成");
+// 			}
+// 			else{
+// 				window.event.returnValue=false;
 				
-			}
-		}
+// 			}
+// 		}
 		
-
+function tosend() {
+	if(confirm("確認收貨")){
+		window.event.returnValue=true;
+	
+swal({
+  title: "Are you sure?",
+  text: "Once deleted, you will not be able to recover this imaginary file!",
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+})
+	
+.then((willDelete)) {
+  if (willDelete) {
+    swal("Poof! Your imaginary file has been deleted!", {
+      icon: "success",
+    });
+  } else {
+    swal("Your imaginary file is safe!");
+  }
+}
+};
 
 </script>
 
