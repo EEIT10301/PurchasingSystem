@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ include file="../Invchkclude.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -64,7 +65,7 @@
 			</tbody>
 		</table>
 		
-						<table id="myTable" class="table table-striped table-hover" >
+						<table  class="table table-striped table-hover" >
 			<thead>
 			<tr>
 			<th>簽核同仁</th>
