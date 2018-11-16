@@ -92,7 +92,7 @@ swal({
   dangerMode: true,
 })
 	
-.then((willDelete)) {
+.then((willDelete) {
   if (willDelete) {
 	  window.location.href='http://localhost:8080/PurchasingSystem/Po/POLoginSuccess.jsp'
     swal("Poof! Your imaginary file has been deleted!",	{ icon:"success"});
@@ -100,7 +100,7 @@ swal({
 //     swal("Your imaginary file is safe!");
 	  window.location.href='http://localhost:8080/PurchasingSystem/Po/PlacedOrderDetail.jsp'
   }
-};
+})
 });
 </script>
 </body>

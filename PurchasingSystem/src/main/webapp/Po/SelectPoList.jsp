@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ include file="../POInclude.jsp"%>
+<%-- <%@ include file="../POInclude.jsp"%> --%>
+<%@ include file="../POIncludeforAcc.jsp" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
@@ -22,6 +23,7 @@
 <!-- 	crossorigin="anonymous"> -->
 </head>
 <body class="bg">
+
 	<div class="right">
 	<c:if test="${empty selectlists}">
 		<h2>${noselectlists}</h2>
