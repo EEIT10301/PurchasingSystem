@@ -12,21 +12,6 @@
 	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
 	crossorigin="anonymous">
 <title>財務系統</title>
-<style>
-.bg {
-	background-color: #FDF5E6;
-}
-.right{
-	width:78%;
-    float:left;
-    margin-right:30px;
-}
-
-#message{
-color:red;
-text-size:10px;
-}
-</style>
 </head>
 
 <body class="bg">
@@ -39,6 +24,7 @@ text-size:10px;
 	</c:if>
 	<div class="right">
 	<c:if test="${empty list}">
+	<br>
 	<h3>待分派請款單</h3>
 			<table class="table table-striped table-hover">
 				<thead class="thead-light">
@@ -56,6 +42,7 @@ text-size:10px;
 	</c:if>
 	
 	<c:if test="${not empty list}">
+		<br>
 		<h3>待分派請款單</h3>
 	<br>
 		<table class="table table-striped table-hover">

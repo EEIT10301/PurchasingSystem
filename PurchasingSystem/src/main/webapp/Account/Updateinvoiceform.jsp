@@ -4,7 +4,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <html>
-
 <head>
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,34 +21,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/js/fileinput.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/js/locales/LANG.js"></script>
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<style type="text/css">
-.bg {
-	background-color: #FDF5E6;
-	/* 畫面間距 */
-}
-.lr {
-	width: 38%;
-	float: left;
-}
-.dlr {
-	width: 60%;
-	float: right;
-}
-table {
-	font-size: 13px;
-}
-</style>
 </head>
-
-
-
-<c:if test="${user.emp_dep=='財務部'}">
-	<%@ include file="../includeA.jsp"%>
-	</c:if>
-<c:if test="${user.emp_dep=='採購部'}">
-	<%@ include file="../POIncludeforAcc.jsp"%>
-	</c:if>
-<body class="bg">
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -57,7 +29,15 @@ table {
 			+ path;
 	pageContext.setAttribute("basePath",basePath);  
 %>
-	<c:if test="${not empty invoice}">
+
+<body class="bg">
+<c:if test="${user.emp_dep=='財務部'}">
+	<%@ include file="../includeA.jsp"%>
+	</c:if>
+<c:if test="${user.emp_dep=='採購部'}">
+	<%@ include file="../POIncludeforAcc.jsp"%>
+	</c:if>
+<c:if test="${not empty invoice}">
 <div class="right">
 	<h3>修改請款單</h3>
 		<form class="form-inline" method="post"
@@ -169,7 +149,6 @@ table {
 				</c:if>
 				<div class="form-group mb-2">
 					<label class="col-md-3">簽核意見:</label>
-
 					<textarea rows="2" cols="58" name="SignSug" class="col-md-6 mb-2"></textarea>
 				</div>
 				<div class="text-right">
@@ -182,8 +161,9 @@ table {
 </div>
 	</c:if>
 	<!-- --------------------------------審核/分派/退回  ----------------------------------------- -->
+<c:if test="${not empty invid}">
 <div class="right">
-	<c:if test="${not empty invid}">
+<h3>請款單內容</h3>
 <%-- 				<c:set var="dep" value="${user.emp_dep}" /> --%>
 <%-- 				<c:set var="dep1" value="採購部" /> --%>
 <%-- 				<c:set var="dep2" value="財務部" /> --%>
@@ -332,8 +312,7 @@ table {
 				</c:if>
 				<div class="form-group  mb-2">
 					<label class="col-md-4">簽核意見:</label>
-					<textarea rows="2" cols="58" name="SignSug" class="col-md-6 mb-2" required>
-    </textarea>
+					<textarea rows="2" cols="58" name="SignSug" class="col-md-6 mb-2" required></textarea>
 				</div>
 				<div class=" text-right">
 					<input class="btn" type="submit" name="action" value="送出">
@@ -341,8 +320,8 @@ table {
 				</div>
 			</div>
 		</form>
-	</c:if>
 	</div>
+	</c:if>
 	<input type="hidden" value="${inv_id}" name="invidback">
 
 	<script>

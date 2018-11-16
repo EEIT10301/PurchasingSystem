@@ -460,11 +460,21 @@ public class POInvoiceController {
 		String recript_pic = bean.getRecript_pic();
 		String picName = recript_pic.substring(8);
 
-		Account_SigningProcessBean sug = pO_InvoiceService.selectForOneProcessbyAccountSign(invid, 5);
-		String sigSug = sug.getSig_Sug();
-		model.addAttribute("sigSug", sigSug);
+		Set<Account_SigningProcessBean> selects = bean.getAccount_SigningProcessBean();
+		for (Account_SigningProcessBean x : selects) {
+			if (x.getSig_Rank() == 5) { // 要看財務主管的退回原因(第四關)
+				String sigman=x.getEmployeeBean().getEmp_name();
+				String sigSug = x.getSig_Sug();
+				Date sigtime=x.getSig_Date();
+				model.addAttribute("sigman", sigman);
+				model.addAttribute("sigSug", sigSug);
+				model.addAttribute("sigtime", sigtime);
+			}
+		}
+		
 		List<EmployeeBean> employee = employeeService.selectPoEmployee("財務部", 2);
 
+		
 		model.addAttribute("bean", bean);
 		model.addAttribute("empid", empid);
 		model.addAttribute("empdep", empdep);

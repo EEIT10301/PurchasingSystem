@@ -15,8 +15,7 @@
 <style>
 .bg {
 	background-color: #FDF5E6;
-	/* 畫面間距 */
-/* 	margin: 30px; */
+	font-family:"Microsoft JhengHei";
 }
 
 .left {
@@ -39,8 +38,8 @@
 /* 	font-size: 11px; */
 /* 	margin-right:10px; */
 	float:left;
-	height:35px;
-	width:30px;
+	height:50px;
+	width:50px;
 }
 
 .card-text {
@@ -87,6 +86,17 @@ nav{
 	padding-left: 30px;
 	padding-right: 30px;
 }
+
+#submit {
+	position: absolute;
+	right: 500px;
+}
+
+.right{
+	width:80%;
+    float:right;
+}
+
 </style>
 </head>
 <body class="bg">
