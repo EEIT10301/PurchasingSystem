@@ -39,7 +39,8 @@ $("#myInput").on("keyup", function() {
 .bg {
 	background-color: #FDF5E6;
 	/* 畫面間距 */
-	margin: 30px;
+		font-family: "微軟正黑體";
+
 }
 
 .f {
@@ -52,18 +53,24 @@ $("#myInput").on("keyup", function() {
 .imgp {
 	padding: 10px;
 }
+nav{
+background-color: rgb(248, 219, 166);
+padding-top:30px;
+padding-left:30px;
+padding-right:30px;
+}
 </style>
 </head>
-<body>
-<h3>總經理</h3>
-
+<body class="bg">
+<nav><h3>總經理</h3>
+     
 	<div class="text-right">
 		${user.emp_id}/${user.emp_name} ${user.emp_job},你好 <a
 			href='ApplyLogout.controller'><button type="button" class="btn">登出</button></a>
-	</div>
+		<hr>
+	</div></nav>
 		<div class="text-center">
 		<br> 
-		<hr>
 		 	<div class="card bg-light f">
 				<a href='toApplySignnerdetail.controller' class="btn"><img
 					class="card-img-top imgp" src="../sysimg/s2.png"></a>
