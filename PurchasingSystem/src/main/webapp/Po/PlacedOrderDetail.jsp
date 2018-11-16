@@ -9,12 +9,53 @@
 <link rel="stylesheet" type="text/css" href="../css/POcss.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<!-- <script type="text/javascript" -->
-<!-- 	src="http://code.jquery.com/jquery-1.10.1.min.js"></script> -->
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script> -->
 <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+// function send() {
+	
+// 	 if(confirm("確定送出此單據? "))
+// 	{
+// 		window.event.returnValue=true;
+// 		alert("hahahaha")
+// 		}
+// 		else
+// 		{
+// 		alert("單據送出取消");
+// 		window.event.returnValue=false;
+// 		}
+	 
+// 	swal("","請款單:"+invid+"新增成功","success").then(function(){
+// 		window.location.href='http://localhost:8080/PurchasingSystem/Po/POLoginSuccess.jsp'
+// 	});
+	
+// 	}
 
+
+swal({ 
+  title: "确定删除吗？", 
+  text: "你将无法恢复该虚拟文件！", 
+  type: "warning",
+  showCancelButton: true, 
+  confirmButtonColor: "#DD6B55",
+  confirmButtonText: "确定删除！", 
+  cancelButtonText: "取消删除！",
+  closeOnConfirm: false, 
+  closeOnCancel: false	
+},
+function(isConfirm){ 
+  if (isConfirm) { 
+    swal("删除！", "你的虚拟文件已经被删除。",
+"success"); 
+  } else { 
+    swal("取消！", "你的虚拟文件是安全的:)",
+"error"); 
+  } 
+});
+</script>
 
 
 <title>待收貨單明細</title>
@@ -60,48 +101,55 @@
 實際收貨時間:<input type="date" name="shippingDate" required>
 
 
-<p><input type="submit" name="send" class='btn btn-default' value="確認收貨">
-
+<input type="submit" name="send" id="send1" class='btn btn-default' value="確認收貨" >
+<!-- <button id='' class='btn btn-default' value=''>確認收貨</button> -->
+<!-- onclick="send()" -->
 
 
 </form>
 </div>
-<script src="../js/app.js"></script>	
-
-
-<script type="text/javascript">
-// 		function tosend() {
-// 			if(confirm("確認收貨")){
-// 				window.event.returnValue=true;
-// 				swal("收貨已完成");
-// 			}
-// 			else{
-// 				window.event.returnValue=false;
-				
-// 			}
-// 		}
-
-$(document).ready(function(){
-// swal("Hello world!");	
-
-swal({
-  title: "Are you sure?",
-  text: "Once deleted, you will not be able to recover this imaginary file!",
-  icon: "warning",
-  buttons: true,
-  dangerMode: true,
-})
 	
-.then((willDelete) {
-  if (willDelete) {
-	  window.location.href='http://localhost:8080/PurchasingSystem/Po/POLoginSuccess.jsp'
-    swal("Poof! Your imaginary file has been deleted!",	{ icon:"success"});
-  } else {
-//     swal("Your imaginary file is safe!");
-	  window.location.href='http://localhost:8080/PurchasingSystem/Po/PlacedOrderDetail.jsp'
-  }
-})
-});
-</script>
+
+
+<!-- <!-- <script> --> 
+<!-- // function send() { -->
+	
+<!-- // 	 if(confirm("確定送出此單據? ")) -->
+<!-- // 	{ -->
+<!-- // 		window.event.returnValue=true; -->
+<!-- // 		alert("hahahaha") -->
+<!-- // 		} -->
+<!-- // 		else -->
+<!-- // 		{ -->
+<!-- // 		alert("單據送出取消"); -->
+<!-- // 		window.event.returnValue=false; -->
+<!-- // 		} -->
+	
+<!-- // 	} -->
+		
+
+<!-- // $(document).ready(function(){ -->
+<!-- // swal("Hello world!");	 -->
+
+<!-- // swal({ -->
+<!-- //   title: "Are you sure?", -->
+<!-- //   text: "Once deleted, you will not be able to recover this imaginary file!", -->
+<!-- //   icon: "warning", -->
+<!-- //   buttons: true, -->
+<!-- //   dangerMode: true, -->
+<!-- // }) -->
+	
+<!-- // .then((willDelete) { -->
+<!-- //   if (willDelete) { -->
+<!-- // 	  window.location.href='http://localhost:8080/PurchasingSystem/Po/POLoginSuccess.jsp' -->
+<!-- //     swal("Poof! Your imaginary file has been deleted!",	{ icon:"success"}); -->
+<!-- //   } else { -->
+<!-- //     swal("Your imaginary file is safe!"); -->
+<!-- // 	  window.location.href='http://localhost:8080/PurchasingSystem/Po/PlacedOrderDetail.jsp' -->
+<!-- //   } -->
+<!-- // }) -->
+<!-- // }); -->
+<!-- <!-- </script> --> -->
+<script src="../js/app.js"></script>
 </body>
 </html>

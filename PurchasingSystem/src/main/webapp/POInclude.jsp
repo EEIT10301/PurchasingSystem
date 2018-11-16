@@ -6,6 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
@@ -20,10 +22,10 @@
 }
 
 .left {
-	width: 15%;
+	width: 20%;
 	float: left;
 	text-align: center;
-	height: 1500px;
+/* 	height: 1500px; */
 }
 
 .f {
@@ -86,6 +88,10 @@ nav{
 	padding-top: 30px;
 	padding-left: 30px;
 	padding-right: 30px;
+}
+.right{
+	width:80%;
+    float:right;
 }
 </style>
 </head>

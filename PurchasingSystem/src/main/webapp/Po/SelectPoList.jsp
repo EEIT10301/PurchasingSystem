@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%-- <%@ include file="../POInclude.jsp"%> --%>
-<%@ include file="../POIncludeforAcc.jsp" %>
+<%-- <%@ include file="../POIncludeforAcc.jsp" %> --%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
@@ -21,7 +20,28 @@
 <!-- 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" -->
 <!-- 	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" -->
 <!-- 	crossorigin="anonymous"> -->
+
+<script>
+// alert("單據送出取消");
+		function send() {
+			
+		 if(confirm("確定送出此單據? "))
+		{
+			window.event.returnValue=true;
+			alert("hahahaha")
+			}
+			else
+			{
+			alert("單據送出取消");
+			window.event.returnValue=false;
+			}
+		
+		}
+
+</script>
+
 </head>
+<%@ include file="../POInclude.jsp"%>
 <body class="bg">
 
 	<div class="right">
@@ -58,7 +78,7 @@
 
 <!-- 												<td><input id="submit" type="submit" name="send" class='btn btn-default' -->
 <!-- 																						value="開始詢價"></td> -->
-											<td><button id='' class='btn btn-default' value=''>開始詢價</button></td>
+											<td><button id='' class='btn btn-default' value='' onclick="send()">開始詢價</button></td>
 
 										</c:if>
 									</form>
