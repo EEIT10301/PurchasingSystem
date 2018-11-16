@@ -25,7 +25,8 @@
 .bg {
 	background-color: #FDF5E6;
 	/* 畫面間距 */
-/*  	margin: 30px;  */
+/* 	margin: 30px; */
+font-family: "微軟正黑體";
 }
 
 .left {
@@ -42,6 +43,11 @@ width: 75%;
 }
 
 
+.nav nav-tabs {
+	width: 75%;
+}
+
+
 .f {
 	/* 方格排列 */
  	display: inline-block;
@@ -54,7 +60,7 @@ width: 75%;
 /* 	padding: 0px; */
 /* 	font-size: 11px; */
 /* 	margin-right:10px; */
-	float:left;
+/* 	float:left; */
 	height:50px;
 	width:50px;
 }
@@ -107,6 +113,30 @@ nav{
 	padding-top: 30px;
 	padding-left: 30px;
 	padding-right: 30px;
+}
+.n {
+	background-color: rgb(248, 219, 166);
+	padding-top: 30px;
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
+.lr {
+	width: 40%;
+	float: left;
+}
+
+.dlr {
+	width: 55%;
+	float: right;
+}
+
+table {
+	font-size: 13px;
+}
+
+th {
+    text-align: center; 
 }
 </style>
 </head>
