@@ -15,8 +15,6 @@
 <style>
 .bg {
 	background-color: #FDF5E6;
-	/* 畫面間距 */
-/* 	margin: 30px; */
 }
 .right{
 	width:78%;
@@ -39,8 +37,8 @@ text-size:10px;
 	<c:if test="${not empty dispatcherrormeg}">
 		<h2 id="message">${dispatcherrormeg}</h2>
 	</c:if>
-	<c:if test="${empty list}">
 	<div class="right">
+	<c:if test="${empty list}">
 	<h3>待分派請款單</h3>
 			<table class="table table-striped table-hover">
 				<thead class="thead-light">
@@ -54,11 +52,10 @@ text-size:10px;
 				</thead>
 			</table>	
 		<h4>目前無請款單需要分派</h4>
-	</div>
+	
 	</c:if>
 	
 	<c:if test="${not empty list}">
-		<div class="right">
 		<h3>待分派請款單</h3>
 	<br>
 		<table class="table table-striped table-hover">
@@ -84,8 +81,8 @@ text-size:10px;
 				</c:forEach>
 			</tbody>
 		</table>
-		</div>
 	</c:if>
+	</div>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>

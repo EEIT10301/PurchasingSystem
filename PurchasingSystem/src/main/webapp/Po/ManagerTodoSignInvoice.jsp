@@ -27,7 +27,7 @@ text-size:10px;
 .bg {
 	background-color: #FDF5E6;
 	/* 畫面間距 */
-	margin: 30px;
+/* 	margin: 30px; */
 }
 
 
@@ -82,7 +82,7 @@ span {
 <div class="right">
 <c:if test="${empty listtodosign and empty backInvoiceSign}">
 <h2>待簽核請款單</h2>
-			<hr>
+<!-- 			<hr> -->
 			<table class="table table-striped table-hover">
 				<thead class="thead-light">
 					<tr>
@@ -97,7 +97,7 @@ span {
 			<p>目前無請款單需要簽核</p>
 			<hr>
 		<h2>退回請款單</h2>
-		<hr>
+<!-- 		<hr> -->
 			<table class="table table-striped table-hover">
 				<thead class="thead-light">
 					<tr>
@@ -113,7 +113,7 @@ span {
 		</c:if>
 	<c:if test="${not empty listtodosign}">
 		<h2>待簽核請款單</h2>
-		<hr>
+<!-- 		<hr> -->
 			<table class="table table-striped table-hover">
 				<thead class="thead-light">
 					<tr>

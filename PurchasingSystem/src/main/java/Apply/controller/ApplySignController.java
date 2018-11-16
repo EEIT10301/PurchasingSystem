@@ -1,5 +1,6 @@
 package Apply.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -443,7 +444,7 @@ if(x.getApp_manger().equals(empid)&&x.getSig_sta().equals("退回中")&&x.getApp
 			}	
 	@RequestMapping("/Apply/applysignss.controller")
 	public String applySigner(App_SigningProcessBean bean,BindingResult bindingResult,
-			Model model ,HttpSession session,String send,String SignSug) throws ParseException {
+			Model model ,HttpSession session,String send,String SignSug) throws ParseException, UnsupportedEncodingException {
 		EmployeeBean ben=(EmployeeBean) session.getAttribute("user");
 		String empid=ben.getEmp_id();
 //		Map<String, String> errors = new HashMap<String, String>();//請輸入簽核意見

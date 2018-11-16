@@ -17,16 +17,18 @@ Page Not Found
    <div class="userPrompt">
       <img src="https://lc-www-live-s.legocdn.com/r/www/-/media/portal%20v2010/errors/404%20mainstage%20image.jpg?l.r2=1953967734" alt="" />
       <div>
+      
+      
          <p>Sorry, we can't find that page! It might be an old link or maybe it moved.</p>
 <!--          <a class="btn cancel large blue" href="errerPage"><span class="label">BACK TO LEGO.COM HOME </span><span class="decor"></span></a> -->
       </div>
+     <p style="font-size: 50px"> 404</p>
    </div>
       </div>
         <script src="https://lc-www-live-s.legocdn.com/r/www/scripts/dist/release.js?l.r2=1.0.0.1587" type="text/javascript"></script>
-    
-    <%
-     response.setHeader("Refresh","3; URL=errerPage");
-    %>
+     <% 
+        response.setHeader("Refresh","3; URL=../Inv/errerPage.contorller");
+     %> 
     
     </body>
 </html>
