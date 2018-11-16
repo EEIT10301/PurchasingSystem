@@ -9,12 +9,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import Apply.model.EmployeeBean;
 
 @Controller
-public class ErrorContorller {
+public class InvErrorContorller {
 
-	@RequestMapping("/Inv/errerPage")
+	@RequestMapping("/Inv/errerPage.contorller")
 	public  String Error(HttpSession session) {
-		EmployeeBean bean = (EmployeeBean) session.getAttribute("user");
+		EmployeeBean bean = (EmployeeBean) session.getAttribute("user");	
+		System.out.println("這是error controller");
 		if(bean.getEmp_dep().equals("採購部")) {
+			System.out.println("這是Po部門");
 			return "POlogin.success";			
 		}
 		else if(bean.getEmp_dep().equals("財務部")) {
