@@ -15,18 +15,18 @@
 <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-// function send() {
+function send() {
 	
-// 	 if(confirm("確定送出此單據? "))
-// 	{
-// 		window.event.returnValue=true;
-// 		alert("hahahaha")
-// 		}
-// 		else
-// 		{
-// 		alert("單據送出取消");
-// 		window.event.returnValue=false;
-// 		}
+	 if(confirm("確定送出此單據? "))
+	{
+		window.event.returnValue=true;
+		alert("hahahaha")
+		}
+		else
+		{
+		alert("單據送出取消");
+		window.event.returnValue=false;
+		}
 	 
 // 	swal("","請款單:"+invid+"新增成功","success").then(function(){
 // 		window.location.href='http://localhost:8080/PurchasingSystem/Po/POLoginSuccess.jsp'
@@ -35,26 +35,27 @@
 // 	}
 
 
-swal({ 
-  title: "确定删除吗？", 
-  text: "你将无法恢复该虚拟文件！", 
-  type: "warning",
-  showCancelButton: true, 
-  confirmButtonColor: "#DD6B55",
-  confirmButtonText: "确定删除！", 
-  cancelButtonText: "取消删除！",
-  closeOnConfirm: false, 
-  closeOnCancel: false	
-},
-function(isConfirm){ 
-  if (isConfirm) { 
-    swal("删除！", "你的虚拟文件已经被删除。",
-"success"); 
-  } else { 
-    swal("取消！", "你的虚拟文件是安全的:)",
-"error"); 
-  } 
-});
+// swal({ 
+//   title: "确定删除吗？", 
+//   text: "你将无法恢复该虚拟文件！", 
+//   type: "warning",
+//   showCancelButton: true, 
+//   confirmButtonColor: "#DD6B55",
+//   confirmButtonText: "确定删除！", 
+//   cancelButtonText: "取消删除！",
+//   closeOnConfirm: false, 
+//   closeOnCancel: false	
+// },
+// function(isConfirm){ 
+//   if (isConfirm) { 
+//     swal("删除！", "你的虚拟文件已经被删除。",
+// "success"); 
+//   } else { 
+//     swal("取消！", "你的虚拟文件是安全的:)",
+// "error"); 
+//   } 
+// });
+}
 </script>
 
 
@@ -101,8 +102,8 @@ function(isConfirm){
 實際收貨時間:<input type="date" name="shippingDate" required>
 
 
-<input type="submit" name="send" id="send1" class='btn btn-default' value="確認收貨" >
-<!-- <button id='' class='btn btn-default' value=''>確認收貨</button> -->
+<!-- <input type="submit" name="send" id="send1" class='btn btn-default' value="確認收貨" > -->
+<button id='' class='btn btn-default' value='' onclick="send()">確認收貨</button>
 <!-- onclick="send()" -->
 
 
@@ -149,7 +150,7 @@ function(isConfirm){
 <!-- //   } -->
 <!-- // }) -->
 <!-- // }); -->
-<!-- <!-- </script> --> -->
+<!-- <!-- </script> --> 
 <script src="../js/app.js"></script>
 </body>
 </html>
