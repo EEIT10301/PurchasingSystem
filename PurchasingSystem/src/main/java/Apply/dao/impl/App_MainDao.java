@@ -75,7 +75,7 @@ public class App_MainDao implements App_MainIDao{
 	@Override
 	public List<App_MainBean> select() {
 		return this.getSession().createQuery(
-				"from App_MainBean", App_MainBean.class).setMaxResults(50).list();
+				"from App_MainBean", App_MainBean.class).setMaxResults(500).list();
 	}
 	@Override
 	public App_MainBean insert(App_MainBean bean) {
@@ -124,7 +124,7 @@ public class App_MainDao implements App_MainIDao{
 		List<App_MainBean> list = null;
 		String hgl="FROM App_MainBean WHERE emp_id=:id1 ";
 		list =this.getSession().createQuery(hgl).setParameter("id1", emp_id)
-				.setMaxResults(50).list();
+				.setMaxResults(5000).list();
 		if(list.size()>0) {
 			
 			return list;

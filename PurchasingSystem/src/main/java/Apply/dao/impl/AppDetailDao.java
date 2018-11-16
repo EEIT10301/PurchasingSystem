@@ -36,7 +36,7 @@ public class AppDetailDao implements AppDetailIDao{
 		AppDetailBean select=productDAO.select("ap20181013001", "part001");
 		System.out.println("upadte數量:"+select.getApp_amount());
 		System.out.println("upadte價格:"+select.getPro_price());
-//		select.setPro_price(50);
+//		select.setPro_price(500);
 		List<AppDetailBean> selects = productDAO.select();
 		System.out.println("selects="+selects);
          for(AppDetailBean x:selects) {
@@ -64,7 +64,7 @@ public class AppDetailDao implements AppDetailIDao{
 		AppDetailBean getone =new AppDetailBean();
 		String hgl="FROM AppDetailBean WHERE app_id=:id1 AND part_no=:id2";
 		list =this.getSession().createQuery(hgl).setParameter("id1", app_id)
-				.setParameter("id2", part_no).setMaxResults(50).list();
+				.setParameter("id2", part_no).setMaxResults(500).list();
 		 if(list.size()>0) {
 			  for(AppDetailBean getones :list) {
 				  getone=getones;
@@ -78,7 +78,7 @@ public class AppDetailDao implements AppDetailIDao{
 	@Override
 	public List<AppDetailBean> select() {
 		return this.getSession().createQuery(
-				"from AppDetailBean", AppDetailBean.class).setMaxResults(50).list();
+				"from AppDetailBean", AppDetailBean.class).setMaxResults(500).list();
 	}
 	@SuppressWarnings("unchecked")
 	@Override
@@ -88,7 +88,7 @@ public class AppDetailDao implements AppDetailIDao{
 		String part_no = bean.getPart_no();
 		String hgl="FROM AppDetailBean WHERE app_id=:id1 AND part_no=:id2";
 		list =this.getSession().createQuery(hgl).setParameter("id1", app_id)
-				.setParameter("id2", part_no).setMaxResults(50).list();
+				.setParameter("id2", part_no).setMaxResults(500).list();
 		 if(list.size()>0) {
 			  return null;
 		 }else {
@@ -105,7 +105,7 @@ public class AppDetailDao implements AppDetailIDao{
 		String part_no = bean.getPart_no();
 		String hgl="FROM AppDetailBean WHERE app_id=:id1 AND part_no=:id2";
 		list =this.getSession().createQuery(hgl).setParameter("id1", app_id)
-				.setParameter("id2", part_no).setMaxResults(50).list();
+				.setParameter("id2", part_no).setMaxResults(500).list();
 		 if(list.size()>0) {
 			for(AppDetailBean getones:list) {
 				getones.setPro_price(bean.getPro_price());
@@ -123,7 +123,7 @@ public class AppDetailDao implements AppDetailIDao{
 		AppDetailBean getone =new AppDetailBean();
 		String hgl="FROM AppDetailBean WHERE app_id=:id1 AND part_no=:id2";
 		list =this.getSession().createQuery(hgl).setParameter("id1", app_id)
-				.setParameter("id2", part_no).setMaxResults(50).list();
+				.setParameter("id2", part_no).setMaxResults(500).list();
 		 if(list.size()>0) {
 			  for(AppDetailBean getones :list) {
 				  getone=getones;
@@ -140,7 +140,7 @@ public class AppDetailDao implements AppDetailIDao{
 		List<AppDetailBean> list = null;
 		String hgl="FROM AppDetailBean WHERE  part_no=:id1";
 		list =this.getSession().createQuery(hgl).setParameter("id1", part_no)
-				.setMaxResults(50).list();
+				.setMaxResults(500).list();
 		if(list.size()>0) {
 			 return list;
 		}else {
@@ -154,7 +154,7 @@ public class AppDetailDao implements AppDetailIDao{
 		List<AppDetailBean> list = null;
 		String hgl="FROM AppDetailBean WHERE  app_id=:id1 ";
 		list =this.getSession().createQuery(hgl).setParameter("id1", app_id)
-				.setMaxResults(50).list();
+				.setMaxResults(500).list();
 		if(list.size()>0) {
 			 return list;
 		}else {

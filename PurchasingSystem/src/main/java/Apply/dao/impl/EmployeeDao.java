@@ -93,7 +93,7 @@ public class EmployeeDao implements EmployeeIDao{
 	@Override
 	public List<EmployeeBean> select() {
 		return this.getSession().createQuery(
-				"from EmployeeBean", EmployeeBean.class).setMaxResults(50).list();
+				"from EmployeeBean", EmployeeBean.class).setMaxResults(500).list();
 	}
 
 	@Override
@@ -135,7 +135,7 @@ public class EmployeeDao implements EmployeeIDao{
 		EmployeeBean getone =new EmployeeBean();
 		String hgl="FROM EmployeeBean WHERE emp_email=:id1 AND emp_pwd=:id2 AND EMP_Dep='研發部'";
 		list =this.getSession().createQuery(hgl).setParameter("id1", emp_email)
-				.setParameter("id2", emp_pwd).setMaxResults(50).list();
+				.setParameter("id2", emp_pwd).setMaxResults(500).list();
 		 if(list.size()>0) {
 			  for(EmployeeBean getones :list) {
 				  getone=getones;
@@ -167,7 +167,7 @@ public class EmployeeDao implements EmployeeIDao{
 		EmployeeBean getone =new EmployeeBean();
 		String hgl="FROM EmployeeBean WHERE emp_email=:id1 AND emp_pwd=:id2 AND EMP_Dep='財務部'";
 		list =this.getSession().createQuery(hgl).setParameter("id1", emp_email)
-				.setParameter("id2", emp_pwd).setMaxResults(50).list();
+				.setParameter("id2", emp_pwd).setMaxResults(500).list();
 		 if(list.size()>0) {
 			  for(EmployeeBean getones :list) {
 				  getone=getones;
@@ -199,7 +199,7 @@ public class EmployeeDao implements EmployeeIDao{
 		EmployeeBean getone =new EmployeeBean();
 		String hgl="FROM EmployeeBean WHERE emp_email=:id1 AND emp_pwd=:id2 AND EMP_Dep='採購部'";
 		list =this.getSession().createQuery(hgl).setParameter("id1", emp_email)
-				.setParameter("id2", emp_pwd).setMaxResults(50).list();
+				.setParameter("id2", emp_pwd).setMaxResults(500).list();
 		 if(list.size()>0) {
 			  for(EmployeeBean getones :list) {
 				  getone=getones;
@@ -230,7 +230,7 @@ public class EmployeeDao implements EmployeeIDao{
 		List<EmployeeBean> list = null;
 		String hgl="FROM EmployeeBean WHERE emp_dep=:id1 AND emp_level=:id2 ";
 		list =this.getSession().createQuery(hgl).setParameter("id1", emp_dep)
-				.setParameter("id2", emp_level).setMaxResults(50).list();
+				.setParameter("id2", emp_level).setMaxResults(500).list();
 		if(list.size()>0) {
 			return list;
 		}
@@ -243,7 +243,7 @@ public class EmployeeDao implements EmployeeIDao{
 		EmployeeBean getone =new EmployeeBean();
 		String hgl="FROM EmployeeBean WHERE emp_email=:id1 AND emp_pwd=:id2 AND EMP_Dep='品管部'";
 		list =this.getSession().createQuery(hgl).setParameter("id1", emp_email)
-				.setParameter("id2", emp_pwd).setMaxResults(50).list();
+				.setParameter("id2", emp_pwd).setMaxResults(500).list();
 		 if(list.size()>0) {
 			  for(EmployeeBean getones :list) {
 				  getone=getones;
@@ -275,7 +275,7 @@ public class EmployeeDao implements EmployeeIDao{
 		EmployeeBean getone =new EmployeeBean();
 		String hgl="FROM EmployeeBean WHERE emp_email=:id1 AND emp_pwd=:id2 ";
 		list =this.getSession().createQuery(hgl).setParameter("id1", emp_email)
-				.setParameter("id2", emp_pwd).setMaxResults(50).list();
+				.setParameter("id2", emp_pwd).setMaxResults(500).list();
 		 if(list.size()>0) {
 			  for(EmployeeBean getones :list) {
 				  getone=getones;
