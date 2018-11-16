@@ -220,18 +220,14 @@ th {
                   	廠商更新
                 </a>
               </li>
-              
-              
-              
-              
-              
             </ul>
 		</c:if>
 		<c:if test="${user.emp_level==2}">
+		<br>
 		<ul class="nav flex-column">
               <li class="nav-item">
                 <a class="nav-link active" href="sendEmployee.controller">
-                <img class="card-img-top imgp" src="../sysimg/s2.png">
+                <img class="card-img-top imgp" src="../sysimg/s21.png">
                   <span data-feather="home"></span>
                   	待分派採購單 <span class="badge badge-danger">${unAssignedEmpNo}</span>
                   	<span class="sr-only">(current)</span>
@@ -239,14 +235,14 @@ th {
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="POManagerSigner.controller">
-                <img class="card-img-top imgp" src="../sysimg/s2.png">
+                <img class="card-img-top imgp" src="../sysimg/s15.png">
                   <span data-feather="users"></span>
                   	待處理採購單<span class="badge badge-danger">${pOUndoListsNo}</span>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="todoSignInvoice.controller">
-                <img class="card-img-top imgp" src="../sysimg/s2.png">
+                <img class="card-img-top imgp" src="../sysimg/s14.png">
                   <span data-feather="file"></span>
                   	待審核請款單<span class="badge badge-danger">${noSignInvforBoss}</span>
                 </a>

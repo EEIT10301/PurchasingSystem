@@ -1,31 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ include file="../POInclude.jsp"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="../css/POcss.css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script type="text/javascript"
-	src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <meta charset="UTF-8">
 <title>待審核採購單</title>
 </head>
 <body class="bg">
-
+<%@ include file="../POIncludeforAcc.jsp"%>
 	<c:if test='${not empty nopolist}'>
 		<h2>${nopolist}</h2>
 	</c:if>
-
 	<c:if test='${not empty PO_SignSend}'>
 	<div class="right">
+	<br>
 		<h3>待簽核表單</h3>
-		
 			<table id="myTable" class="table table-striped table-hover">
 				
 					<tr>
@@ -33,6 +24,7 @@
 						<th>廠商名稱</th>
 						<th>採購金額</th>
 						<th>主管簽核時間</th>
+						<th></th>
 					</tr>
 				
 					<c:forEach var='polists' varStatus='vs' items='${PO_SignSend}'>
@@ -49,7 +41,7 @@
 							<td>
 								<form action="<c:url value="POManagerSignertosign.controller?po_manger=${polists.po_manger}&po_sta=${polists.po_sta}&po_id=${polists.po_id}&send=sendok" />" 
 								method="post">
-								<input type="submit" value="開始審核">
+								<input type="submit" class="btn btn-white btn-sm" value="開始審核">
 							</form>
 							</td>
 						</tr>
@@ -59,10 +51,9 @@
 			</div>
 	</c:if>
 
-
-
 	<c:if test='${not empty PO_SignBack}'>
 		<div class="right">
+		<br>
 		<h3>退回表單</h3>
 			<table id="myTable" class="table table-striped table-hover">
 				<thead>
