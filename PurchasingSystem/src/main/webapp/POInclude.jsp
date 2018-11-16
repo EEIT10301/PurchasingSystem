@@ -143,7 +143,7 @@ span {
 
               <li class="nav-item">
                 <a class="nav-link" href="StatusMain.jsp">
-                <img class="card-img-top imgp" src="../sysimg/s6.png">
+                <img class="card-img-top imgp" src="../sysimg/s22.png">
                   <span data-feather="layers"></span>
                   	查詢請款單狀態
                 </a>
@@ -170,7 +170,7 @@ span {
 		<ul class="nav flex-column">
               <li class="nav-item">
                 <a class="nav-link active" href="sendEmployee.controller">
-                <img class="card-img-top imgp" src="../sysimg/s2.png">
+                <img class="card-img-top imgp" src="../sysimg/s21.png">
                   <span data-feather="home"></span>
                   	待分派採購單 <font color=red>${unAssignedEmpNo}</font>
                   	<span class="sr-only">(current)</span>
@@ -178,14 +178,14 @@ span {
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="POManagerSigner.controller">
-                <img class="card-img-top imgp" src="../sysimg/s2.png">
+                <img class="card-img-top imgp" src="../sysimg/s15.png">
                   <span data-feather="users"></span>
                   	待處理採購單<font color=red>${pOUndoListsNo}</font>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="todoSignInvoice.controller">
-                <img class="card-img-top imgp" src="../sysimg/s2.png">
+                <img class="card-img-top imgp" src="../sysimg/s14.png">
                   <span data-feather="file"></span>
                   	待審核請款單
                 </a>
