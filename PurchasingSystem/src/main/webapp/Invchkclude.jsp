@@ -94,9 +94,9 @@ nav {
 	<h1>
 		<font face="微軟正黑體">驗收系統</font>
 	</h1>
-	<a href="InvLoginSuccess.jsp" style="font-family: 微軟正黑體;">回首頁</a>
+<!-- 	<a href="InvLoginSuccess.jsp" style="font-family: 微軟正黑體;">回首頁</a> -->
 	<div class="text-right" style="font-family: 微軟正黑體;">
-		${user.emp_name} ${user.emp_job},你好<a href='InvLogout.controller'><button
+		${user.emp_dep}/${user.emp_name} ${user.emp_job},你好<a href='InvLogout.controller'><button
 				type="button" class="btn btn-sm">登出</button></a>
 	<hr>
 	</div>
