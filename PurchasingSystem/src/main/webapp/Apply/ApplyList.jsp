@@ -44,7 +44,7 @@ font-size: 36px;
 }
 </style>
 </head>
-<body class="bg">
+<body>
 <h4 align="center">請購清單</h4>
 	<h4 align="center">${cate}</h4>
 	<h4 align="center">${errors.cate}</h4>

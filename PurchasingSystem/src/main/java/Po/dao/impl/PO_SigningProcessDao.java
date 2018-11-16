@@ -76,7 +76,7 @@ public class PO_SigningProcessDao implements PO_SigningProcessIDao {
 	public PO_SigningProcessBean select(String po_sta, String po_id) {
 		List<PO_SigningProcessBean> list = null;
 		PO_SigningProcessBean getone = new PO_SigningProcessBean();
-		String hgl = "FROM PO_SigningProcessBean WHERE po_sta=:id1 AND po_id=:id2";
+		String hgl = "FROM PO_SigningProcessBean WHERE po_sta=:id1 AND po_id=:id2 order by po_id desc";
 		list = this.getSession().createQuery(hgl).setParameter("id1", po_sta).setParameter("id2", po_id)
 				.setMaxResults(100).list();
 		if (list.size() > 0) {

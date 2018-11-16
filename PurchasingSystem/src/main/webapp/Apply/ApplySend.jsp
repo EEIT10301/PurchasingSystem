@@ -65,7 +65,7 @@ font-size: 36px;
 }
 </style>
 </head>
-<body class="bg">
+<body >
 
 	
 <c:if test="${empty Categlory}">
