@@ -61,7 +61,7 @@ $(document).ready(function(){
 					txt += "</tr>"
 				$.each(data.myArrayList,function(index,json){
 					txt += "<tr >";
-					txt += "<td id='id'><a href='http://localhost:8080/PurchasingSystem/updateanddelete.html?id="+json.map.vendor_id+"&account="+json.map.vendor_name+"&password="+json.map.vendor_contact_person+"'>"+json.map.vendor_id+"</a></td>"
+					txt += "<td id='id'><a href='http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/updateanddelete.html?id="+json.map.vendor_id+"&account="+json.map.vendor_name+"&password="+json.map.vendor_contact_person+"'>"+json.map.vendor_id+"</a></td>"
 					txt += "<td id='name'>"+json.map.vendor_name+"</td>"
 					txt += "<td id='person'>"+json.map.vendor_contact_person+"</td>"
 					txt += "<td id='acc'>"+json.map.vendor_acc+"</td>"
@@ -92,7 +92,7 @@ $("tbody").on("click","#insert",function(){
 			//alert(dataJSON);
 			
 			$.ajax({
-				url : "http://localhost:8080/PurchasingSystem/PO/POAddVendorinsertproduct.do",
+				url : "http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/PO/POAddVendorinsertproduct.do",
 				type : 'POST',
 				data : "{"+dataJSON+"}",
 				contentType:"application/json",
@@ -112,7 +112,7 @@ $("tbody").on("click","#delete",function(){
 	//alert(dataJSON);
 	
 	$.ajax({
-		url : "http://localhost:8080/PurchasingSystem/Apply/deletehproduct.do",
+		url : "http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Apply/deletehproduct.do",
 		type : 'POST',
 		data : "{"+dataJSON+"}",
 		contentType:"application/json",
@@ -155,7 +155,7 @@ $("tbody").on("click","#update",function(){
 	//alert(dataJSON);
 
 	$.ajax({
-		url : "http://localhost:8080/PurchasingSystem/PO/POAddVendorupdate.do",
+		url : "http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/PO/POAddVendorupdate.do",
 		type : 'POST',
 		data : "{"+dataJSON+"}",
 		contentType:"application/json",

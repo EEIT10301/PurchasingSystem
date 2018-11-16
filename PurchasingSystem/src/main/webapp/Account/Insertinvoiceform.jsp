@@ -192,12 +192,12 @@ span {
 		var errormeg="${errormeg}";
 		if(successmeg==="3"){
 			swal("","請款單:"+invid+"新增成功","success").then(function(){
-				window.location.href='http://localhost:8080/PurchasingSystem/Po/POLoginSuccess.jsp'
+				window.location.href='http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Po/POLoginSuccess.jsp'
 			});
 		}
 		if(errormeg=="4"){
 			swal("","請款單:"+invid+"新增失敗","success").then(function(){
-				window.location.href='http://localhost:8080/PurchasingSystem/Po/POLoginSuccess.jsp'
+				window.location.href='http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Po/POLoginSuccess.jsp'
 			});
 		}
 	});

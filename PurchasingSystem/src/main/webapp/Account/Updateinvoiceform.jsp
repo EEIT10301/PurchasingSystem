@@ -489,33 +489,33 @@ span {
 		var dispatcherrormeg="${dispatcherrormeg}";
 		if(successmeg==="1"){
 			swal("","請款單:"+invid+"修改送出成功","success").then(function(){
-				window.location.href='http://localhost:8080/PurchasingSystem/Po/POLoginSuccess.jsp'
+				window.location.href='http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Po/POLoginSuccess.jsp'
 			});
 		}
 		if(sendsuccessmeg=="1"){
 			swal("","請款單"+invid+"審核送出成功","success").then(function(){
-				window.location.href='http://localhost:8080/PurchasingSystem/Po/POLoginSuccess.jsp'
+				window.location.href='http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Po/POLoginSuccess.jsp'
 			});
 		}
 		if(sendsuccessmeg=="3"){
 			swal("","請款單"+invid+"審核送出成功","success").then(function(){
-				window.location.href='http://localhost:8080/PurchasingSystem/Account/AccountLoginSuccess.jsp'
+				window.location.href='http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Account/AccountLoginSuccess.jsp'
 			});
 		}
 		if(returnsuccessmeg=="1"){
 			swal("","請款單"+invid+"退回成功","success").then(function(){
-				window.location.href='http://localhost:8080/PurchasingSystem/Po/POLoginSuccess.jsp'
+				window.location.href='http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Po/POLoginSuccess.jsp'
 			});
 		}
 		
 		if(returnsuccessmeg=="3"){
 			swal("","請款單"+invid+"退回成功","success").then(function(){
-				window.location.href='http://localhost:8080/PurchasingSystem/Account/AccountLoginSuccess.jsp'
+				window.location.href='http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Account/AccountLoginSuccess.jsp'
 			});
 		}
 		if(dispatchsuccessmeg=="1"){
 			swal("","請款單"+invid+"分派成功","success").then(function(){
-				window.location.href='http://localhost:8080/PurchasingSystem/Account/AccountLoginSuccess.jsp'
+				window.location.href='http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Account/AccountLoginSuccess.jsp'
 			});
 		}
 	});
