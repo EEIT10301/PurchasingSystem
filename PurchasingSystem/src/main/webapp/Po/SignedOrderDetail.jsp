@@ -93,7 +93,7 @@
 			<p>
 				<textarea rows="5" cols="50" name="signSug"></textarea>
 			</p>
-			預計出貨時間:<input type="date" name="shippingDate">
+			預計出貨時間:<input type="date" name="shippingDate" required>
 			<p>
 				<input type="submit" name="send" class='btn btn-default' value="送出">
 
