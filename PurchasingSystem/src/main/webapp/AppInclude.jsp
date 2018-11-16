@@ -16,7 +16,9 @@
 .bg {
 	background-color: #FDF5E6;
 	/* 畫面間距 */
-	margin: 30px;
+/* 	margin: 30px; */
+	font-family: "微軟正黑體";
+
 }
 
 .left {
@@ -54,9 +56,16 @@ ul {
 span {
 	margin-left:1px;
 }
+nav{
+background-color: rgb(248, 219, 166);
+padding-top:30px;
+padding-left:30px;
+padding-right:30px;
+}
 </style>
 </head>
 <body class="bg">
+	<nav>
 	<c:if test="${user.emp_level<=2}">
 	<h1><font face="微軟正黑體">請購系統</font></h1>
 	<a href="ApplyLoginSuccess.jsp" style="font-family:微軟正黑體;font-size: 15px;">回首頁</a>
@@ -77,6 +86,7 @@ span {
 	</div>
 	<hr>
 	</c:if>
+	</nav>
 	<div class="left">
 <%-- 		<br> <span>${sendok}</span> --%>
 
@@ -84,21 +94,21 @@ span {
 		<ul class="nav flex-column">
               <li class="nav-item">
                 <a class="nav-link active" href="ApplySend.jsp">
-                <img class="card-img-top imgp" src="../sysimg/s2.png">
+                <img class="card-img-top imgp" src="../sysimg/a1.png">
                   <span data-feather="home"></span>
                   	請購申請 <span class="sr-only"></span>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Apply/ApplyWaitEndList.html">
-                <img class="card-img-top imgp" src="../sysimg/s2.png">
+                <img class="card-img-top imgp" src="../sysimg/s1.png">
                   <span data-feather="users"></span>
                   	驗收完成待結案<font color=red>${waitendsign}</font>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Apply/selectAll.html">
-                <img class="card-img-top imgp" src="../sysimg/s2.png">
+                <img class="card-img-top imgp" src="../sysimg/a3.png">
                   <span data-feather="file"></span>
                   	物料更新
                 </a>
@@ -113,7 +123,7 @@ span {
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="toApplySignnerdetail.controller">
-                <img class="card-img-top imgp" src="../sysimg/s2.png">
+                <img class="card-img-top imgp" src="../sysimg/a2.png">
                   <span data-feather="layers"></span>
                   	待簽核請購單 <font color=red>${SignAppList}</font>
                 </a>

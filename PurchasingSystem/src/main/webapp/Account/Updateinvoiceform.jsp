@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:if test="${user.emp_dep=='財務部'}">
-	<%@ include file="../include.jsp"%></c:if>
+	<%@ include file="../includeA.jsp"%></c:if>
 
 <html>
 
@@ -31,7 +31,7 @@
 .bg {
 	background-color: #FDF5E6;
 	/* 畫面間距 */
-	margin: 30px;
+
 }
 
 .lr {
@@ -188,6 +188,7 @@ span {
 			</c:if>
 		</div>
 	</c:if>
+	<div class="right"></div>
 	<h3>請款單細項</h3>
 
 	<br>
