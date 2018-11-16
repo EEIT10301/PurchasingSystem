@@ -142,7 +142,7 @@ span {
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="StatusMain.jsp">
+                <a class="nav-link" href="queryStatus.controller">
                 <img class="card-img-top imgp" src="../sysimg/s22.png">
                   <span data-feather="layers"></span>
                   	查詢請款單狀態

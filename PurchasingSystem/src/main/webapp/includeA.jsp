@@ -145,11 +145,11 @@ th {
 </head>
 <body class="bg">
 <nav class="n">
-<h3>財務系統</h3>
+<h1>財務系統</h1>
 	<div class="text-right">
 		${user.emp_dep}/${user.emp_name} ${user.emp_job},你好 <a
-			href='../Account/AccountLogout.controller'><button type="button" class="btn btn-sm">登出</button></a>
-	<a href="AccountLoginSuccess.jsp" style="font-family:微軟正黑體;">回首頁</a>
+			href='../Account/AccountLogout.controller'><button type="button" class="btn btn-white btn-sm">登出</button></a>
+	<a href="../Account/AccountLoginSuccess.jsp" style="font-family:微軟正黑體;">回首頁</a>
 	</div>
 	<hr>
 	</nav>
@@ -176,7 +176,7 @@ th {
 				</a></li>
 		</c:if>
 		<li class="nav-item"><a class="nav-link active"
-					href="../Account/StatusMainAcc.jsp"> <img
+					href="../Po/queryStatus.controller"> <img
 					class="card-img-top imgp" src="../sysimg/s4.png"> <span data-feather="home"></span>
 						查詢請款單狀態 <span class="sr-only"></span>
 				</a></li>

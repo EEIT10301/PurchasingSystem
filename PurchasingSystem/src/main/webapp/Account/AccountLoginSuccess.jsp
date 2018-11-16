@@ -120,7 +120,7 @@ padding-right:30px;
 			</div>
 		</c:if>
 		<div class="card bg-light f">
-			<a href="StatusMainAcc.jsp" class="btn"><img class="card-img-top"
+			<a href="../Po/queryStatus.controller" class="btn"><img class="card-img-top"
 				src="../sysimg/s4.png" style="padding: 10px;"></a>
 			<div class="card-body">
 				<h5 class="card-title"><font face="微軟正黑體">查詢請款單狀態</font></h5>

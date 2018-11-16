@@ -167,7 +167,7 @@ padding-right:30px;
 				</div>
 			</div>
 			<div class="card bg-light f">
-				<a href='StatusMain.jsp' class="btn"><img
+				<a href='queryStatus.controller' class="btn"><img
 					class="card-img-top imgp" src="../sysimg/s22.png"></a>
 				<div class="card-body">
 					<h5 class="card-title">

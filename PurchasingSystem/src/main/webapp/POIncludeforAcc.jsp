@@ -113,12 +113,12 @@ nav{
 <body class="bg">
 <nav>
 	<h1><font face="微軟正黑體">採購系統</font></h1>
-	<a href="POLoginSuccess.jsp" style="font-family:微軟正黑體;">回首頁</a>
 	<div class="text-right" style="font-family:微軟正黑體;">
 		${user.emp_dep}/${user.emp_name} ${user.emp_job},你好<a
 			href='POLogout.controller'><button type="button" class="btn btn-white btn-sm">登出</button></a>
+	<a href="POLoginSuccess.jsp" style="font-family:微軟正黑體;">回首頁</a>
 	</div>
-	<hr></nav><br>
+	<hr></nav>
 	<div class="left">
 <%-- 		<br> <span>${sendok}</span> --%>
 
@@ -170,7 +170,7 @@ nav{
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="StatusMain.jsp">
+                <a class="nav-link" href="queryStatus.controller">
                 <img class="card-img-top imgp" src="../sysimg/s6.png">
                   <span data-feather="layers"></span>
                   	查詢請款單狀態
