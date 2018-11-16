@@ -192,12 +192,12 @@ public class POInvoiceController {
 		String invId = "In" + poid.substring(2);
 //		 String destination
 //		 ="C:\\Users\\User\\Downloads\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
-		String destination = "D:\\Maven-project\\repository\\PurchasingSystem\\src\\main\\webapp\\images"
-				+ "\\" + invId + ".jpg";
+//		String destination = "D:\\Maven-project\\repository\\PurchasingSystem\\src\\main\\webapp\\images"
+//				+ "\\" + invId + ".jpg";
 //		String destination = "C:\\Users\\jonat\\Downloads\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"
 //				+ "\\" + invId + ".jpg";
 //		String destination ="C:\\Users\\timmy\\git\\repository\\PurchasingSystem\\src\\main\\webapp\\images"+ "\\" + invId + ".jpg";
-
+		String destination =request.getSession().getServletContext().getRealPath("images")+"\\"+invId+".jpg";
 		// String destination = "images/"+invId+".jpg";
 		System.out.println("uploadRootPath=" + destination);
 		if (file != null || file.getSize() > 0) {
@@ -283,7 +283,7 @@ public class POInvoiceController {
 
 		Account_InvoiceBean bean = account_InvoiceService.select(invid);
 		PO_SigningProcessBean poSignBean = pO_InvoiceService.selectForOneProcessbyPoSign("驗收作業", bean.getPo_id());
-		String empid = bean.getEmp_id();
+		String empid = bean.getEmployeeBean().getEmp_name();
 		String empdep = bean.getEmployeeBean().getEmp_dep();
 		String ven_name = bean.getpO_MainBean().getpO_Vendor_InfoBean().getVendor_name();
 		String ven_id = bean.getpO_MainBean().getVendor_ID();
@@ -613,7 +613,7 @@ public class POInvoiceController {
 		if (action.equals("退回") && status.equals("review")) {
 			if (dep.equals("採購部") && level == 2) {
 				result2 = pO_InvoiceService.updateAccountSigningProcessForReturn(invid, 2, "未簽核", "退回中", SignSug);
-				String email =  employeeService.select(selectPOManager).getEmp_email();
+				String email =  pO_InvoiceService.selectForOneProcessbyAccountSign(invid, 1).getEmployeeBean().getEmp_email();
 				String subject = "請款單簽核通知";
 				String text = "您有一張待簽核的請款單"+"(單號為:"+invid+")請點下列連結登入：http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/MainPage.jsp";
 				misc.AutoSendEmailByJava.processMemberWishNotice(email, subject, text);
@@ -626,7 +626,7 @@ public class POInvoiceController {
 				return "updateForm";
 			} else if (dep.equals("財務部") && level == 1) {
 				result2 = pO_InvoiceService.updateAccountSigningProcessForReturn(invid, 4, "未簽核", "退回中", SignSug);
-				String email =  employeeService.select(selectPOManager).getEmp_email();
+				String email =  pO_InvoiceService.selectForOneProcessbyAccountSign(invid, 3).getEmployeeBean().getEmp_email();
 				String subject = "請款單簽核通知";
 				String text = "您有一張待簽核的請款單"+"(單號為:"+invid+")請點下列連結登入：http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/MainPage.jsp";
 				misc.AutoSendEmailByJava.processMemberWishNotice(email, subject, text);
@@ -639,10 +639,12 @@ public class POInvoiceController {
 				return "updateForm";
 			} else {
 				result2 = pO_InvoiceService.updateAccountSigningProcessForReturn(invid, 5, "未核准", "退回中", SignSug);
-				String email =  employeeService.select(selectPOManager).getEmp_email();
+				String email = pO_InvoiceService.selectForOneProcessbyAccountSign(invid, 4).getEmployeeBean().getEmp_email();
 				String subject = "請款單簽核通知";
+
 				String text = "您有一張待簽核的請款單"+"(單號為:"+invid+")請點下列連結登入：http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/MainPage.jsp";
 				misc.AutoSendEmailByJava.processMemberWishNotice(email, subject, text);
+
 				if (result2) {
 					model.addAttribute("returnsuccessmeg", "3");
 					model.addAttribute("inv_id", invid);
@@ -886,5 +888,6 @@ public class POInvoiceController {
 		}
 		
 	}
+	
 
 }

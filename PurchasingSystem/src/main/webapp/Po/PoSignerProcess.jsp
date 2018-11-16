@@ -17,24 +17,24 @@
 <title>待審核採購單</title>
 </head>
 <body class="bg">
-<div class="right">
+
 	<c:if test='${not empty nopolist}'>
 		<h2>${nopolist}</h2>
 	</c:if>
 
 	<c:if test='${not empty PO_SignSend}'>
+	<div class="right">
 		<h3>待簽核表單</h3>
 		
 			<table id="myTable" class="table table-striped table-hover">
-				<thead>
+				
 					<tr>
 						<th>採購單號</th>
 						<th>廠商名稱</th>
 						<th>採購金額</th>
 						<th>主管簽核時間</th>
 					</tr>
-				</thead>
-				<tbody>
+				
 					<c:forEach var='polists' varStatus='vs' items='${PO_SignSend}'>
 						<tr>
 							<td>${polists.po_id}</td>
@@ -44,19 +44,23 @@
 								items='${PO_SignSendRank}'>
 								<c:if test='${polists.po_id == polistone.po_id}'>
 									<td><fmt:formatDate pattern="yyyy/MM/dd HH:mm" value="${polistone.sig_date}"/></td>
-									<br>
 								</c:if>
 							</c:forEach>
-							<td><a
-								href='<c:url value="POManagerSignertosign.controller?po_manger=${polists.po_manger}&po_sta=${polists.po_sta}&po_id=${polists.po_id}&send=sendok" />'>
-									開始簽核</a></td>
+							<td>
+								<form action="<c:url value="POManagerSignertosign.controller?po_manger=${polists.po_manger}&po_sta=${polists.po_sta}&po_id=${polists.po_id}&send=sendok" />" 
+								method="post">
+								<input type="submit" value="開始審核">
+							</form>
+							</td>
 						</tr>
 					</c:forEach>
-				</tbody>
+				
 			</table>
-		
+			</div>
 	</c:if>
-	</div>
+
+
+
 	<c:if test='${not empty PO_SignBack}'>
 		<div class="right">
 		<h3>退回表單</h3>

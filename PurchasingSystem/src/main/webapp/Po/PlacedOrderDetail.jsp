@@ -5,52 +5,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="../css/POcss.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script type="text/javascript"
-	src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<meta charset="UTF-8">
+<!-- <script type="text/javascript" -->
+<!-- 	src="http://code.jquery.com/jquery-1.10.1.min.js"></script> -->
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
 
-<script type="text/javascript">
-// 		function tosend() {
-// 			if(confirm("確認收貨")){
-// 				window.event.returnValue=true;
-// 				swal("收貨已完成");
-// 			}
-// 			else{
-// 				window.event.returnValue=false;
-				
-// 			}
-// 		}
-		
-function tosend() {
-	if(confirm("確認收貨")){
-		window.event.returnValue=true;
-	
-swal({
-  title: "Are you sure?",
-  text: "Once deleted, you will not be able to recover this imaginary file!",
-  icon: "warning",
-  buttons: true,
-  dangerMode: true,
-})
-	
-.then((willDelete)) {
-  if (willDelete) {
-    swal("Poof! Your imaginary file has been deleted!", {
-      icon: "success",
-    });
-  } else {
-    swal("Your imaginary file is safe!");
-  }
-}
-};
 
-</script>
 
 <title>待收貨單明細</title>
 </head>
@@ -92,15 +57,51 @@ swal({
 <%-- 	</c:forEach> --%>
 收貨意見:<p><textarea rows="5" cols="50" name="signSug"></textarea></p>
 
-實際收貨時間:<input type="date" name="shippingDate">
+實際收貨時間:<input type="date" name="shippingDate" required>
 
 
-<p><input type="submit" name="send" class='btn btn-default' value="確認收貨" onclick="tosend()">
+<p><input type="submit" name="send" class='btn btn-default' value="確認收貨">
 
 
 
 </form>
 </div>
 <script src="../js/app.js"></script>	
+
+
+<script type="text/javascript">
+// 		function tosend() {
+// 			if(confirm("確認收貨")){
+// 				window.event.returnValue=true;
+// 				swal("收貨已完成");
+// 			}
+// 			else{
+// 				window.event.returnValue=false;
+				
+// 			}
+// 		}
+
+$(document).ready(function(){
+// swal("Hello world!");	
+
+swal({
+  title: "Are you sure?",
+  text: "Once deleted, you will not be able to recover this imaginary file!",
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+})
+	
+.then((willDelete)) {
+  if (willDelete) {
+	  window.location.href='http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Po/POLoginSuccess.jsp'
+    swal("Poof! Your imaginary file has been deleted!",	{ icon:"success"});
+  } else {
+//     swal("Your imaginary file is safe!");
+	  window.location.href='http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Po/PlacedOrderDetail.jsp'
+  }
+};
+});
+</script>
 </body>
 </html>
