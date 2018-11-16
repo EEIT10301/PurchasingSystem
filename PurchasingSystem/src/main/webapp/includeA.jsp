@@ -6,10 +6,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
-	crossorigin="anonymous">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/css/fileinput.min.css" media="all" rel="stylesheet"
+        type="text/css" />
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/js/plugins/piexif.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/js/plugins/sortable.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/js/plugins/purify.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/js/fileinput.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <title>Insert title here</title>
 <style>
 .bg {
@@ -23,9 +33,7 @@
 	width: 75%;
 	float: right;
 	text-align: center;
-	height: 1500px;
-	    margin-right:30px;
-	
+	margin-right:30px;
 }
 
 .nav nav-tabs {
@@ -36,9 +44,8 @@
 	width: 20%;
 	float: left;
 	text-align: center;
-	height: 1500px;
-	position: absolute;
-	top: 150px;
+	 position: absolute;
+  	top: 150px;
 	margin-top: 30px;
 	margin-left: 30px;
 }
@@ -110,15 +117,39 @@ span {
 	padding-left: 30px;
 	padding-right: 30px;
 }
+.bg {
+	background-color: #FDF5E6;
+	/* 畫面間距 */
+}
+
+.lr {
+	width: 38%;
+	float: left;
+}
+
+.dlr {
+	width: 60%;
+	float: right;
+}
+
+
+table {
+	font-size: 13px;
+}
+
+th {
+    text-align: center; 
+}
+
 </style>
 </head>
 <body class="bg">
 <nav class="n">
-<h3>財務系統</h3>
+<h1>財務系統</h1>
 	<div class="text-right">
 		${user.emp_dep}/${user.emp_name} ${user.emp_job},你好 <a
-			href='../Account/AccountLogout.controller'><button type="button" class="btn btn-sm">登出</button></a>
-	<a href="AccountLoginSuccess.jsp" style="font-family:微軟正黑體;">回首頁</a>
+			href='../Account/AccountLogout.controller'><button type="button" class="btn btn-white btn-sm">登出</button></a>
+	<a href="../Account/AccountLoginSuccess.jsp" style="font-family:微軟正黑體;">回首頁</a>
 	</div>
 	<hr>
 	</nav>
@@ -128,24 +159,24 @@ span {
 			<li class="nav-item"><a class="nav-link active"
 					href="../Account/ToDoAssignInvoice.controller"> <img
 					class="card-img-top imgp" src="../sysimg/s1.png"> <span data-feather="home"></span>
-						待分派請款單 <span class="sr-only"></span>
+						待分派請款單 <span class="sr-only"></span><span class="badge badge-danger">${noDispatchInv}</span>
 				</a></li>
 				
 			<li class="nav-item"><a class="nav-link active"
 					href="../Account/ToDoSignInvoice.controller"> <img
 					class="card-img-top imgp" src="../sysimg/s2.png"> <span data-feather="home"></span>
-						待審核請款單 <span class="sr-only"></span>
+						待審核請款單 <span class="sr-only"></span><span class="badge badge-danger">${noToSignInvforBoss}</span>
 				</a></li>
 		</c:if>
 		<c:if test="${user.emp_level==1}">
 		<li class="nav-item"><a class="nav-link active"
 					href="../Account/ToDoSignlevel1.controller"> <img
 					class="card-img-top imgp" src="../sysimg/s2.png"> <span data-feather="home"></span>
-						待審核請款單 <span class="sr-only"></span>
+						待審核請款單 <span class="sr-only"></span><span class="badge badge-danger">${noToSignInvtotal}</span>
 				</a></li>
 		</c:if>
 		<li class="nav-item"><a class="nav-link active"
-					href="../Account/StatusMainAcc.jsp"> <img
+					href="../Po/queryStatus.controller"> <img
 					class="card-img-top imgp" src="../sysimg/s4.png"> <span data-feather="home"></span>
 						查詢請款單狀態 <span class="sr-only"></span>
 				</a></li>
@@ -157,16 +188,6 @@ span {
 				</a></li>
 		</ul>
 </div>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
-		integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
-		crossorigin="anonymous"></script>
+
 </body>
 </html>

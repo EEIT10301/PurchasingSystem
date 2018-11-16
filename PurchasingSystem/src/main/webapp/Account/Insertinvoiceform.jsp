@@ -40,7 +40,6 @@
 	width: 15%;
 	float: left;
 	text-align: center;
-	height: 1500px;
 }
 
 .f {

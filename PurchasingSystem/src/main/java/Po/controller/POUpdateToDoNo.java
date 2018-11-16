@@ -10,11 +10,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import Account.model.Account_InvoiceBean;
 import Account.service.PO_Vendor_InfoService;
 import Apply.model.App_SigningProcessBean;
 import Apply.model.EmployeeBean;
 import Apply.service.App_MainService;
 import Apply.service.EmployeeService;
+import Po.model.PO_MainBean;
 import Po.model.PO_SigningProcessBean;
 import Po.service.PO_DetailService;
 import Po.service.PO_InvoiceService;
@@ -112,7 +114,51 @@ public class POUpdateToDoNo {
 //	}else {
 //		session.removeAttribute("SignPoList");
 //	}//待簽核請購單數量
-
+		if (bean.getEmp_level() == 1) {
+			String poSignProcess_sig_sta = "驗收完成未請款";
+			String accountSignProcess_sig_sta = "退回中";
+			Integer rank = 1;
+			List<PO_MainBean> noInvoiceList = pO_InvoiceService.findNeedApplicationInvoice(empid, poSignProcess_sig_sta);
+			List<Account_InvoiceBean> invoiceBack = pO_InvoiceService.findProcessCorrect(empid, accountSignProcess_sig_sta,
+					rank);
+			int noInvoiceListQuy=0;
+			int invoiceBackQry=0;
+			int noSignInv=0;
+			
+			// 採購承辦未申請請款單數量
+			if (noInvoiceList != null&&noInvoiceList.size()>0) {
+				noInvoiceListQuy = noInvoiceList.size();
+				noSignInv+=noInvoiceListQuy;
+			} 
+			// 採購承辦未審核退回請款單數量
+			if (invoiceBack != null&&invoiceBack.size()>0) {
+				invoiceBackQry = invoiceBack.size();
+				noSignInv+=invoiceBackQry;
+			} 
+			if(noSignInv>0) {
+			session.setAttribute("noSignInv", noSignInv);}
+			
+		} 
+		if (bean.getEmp_level() == 2) {
+			List<Account_InvoiceBean> invoiceSign = pO_InvoiceService.findProcessCorrect(empid, "簽核中", 2);
+			List<Account_InvoiceBean> backInvoiceSign = pO_InvoiceService.findProcessCorrect(empid, "退回中", 2);
+			int invoiceSignQry=0;
+			int backInvoiceSignQry=0;
+			int noSignInvforBoss=0;
+			// 採購主管未審核請款單數量
+			if (invoiceSign != null&&invoiceSign.size()>0) {
+				invoiceSignQry = invoiceSign.size();
+				noSignInvforBoss+=invoiceSignQry;
+			}
+			// 採購主管未審核退回請款單數量
+			if (backInvoiceSign != null && backInvoiceSign.size()>0) {
+				backInvoiceSignQry = backInvoiceSign.size();
+				noSignInvforBoss+=backInvoiceSignQry;
+			} 
+			if(noSignInvforBoss>0) {
+				session.setAttribute("noSignInvforBoss", noSignInvforBoss);}
+			
+		}
 		return null;
 	}
 

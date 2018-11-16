@@ -81,28 +81,31 @@ public class Account_payableController {
 			EmployeeBean ben = (EmployeeBean) session.getAttribute("user");
 			String emp_id = ben.getEmp_id();
 			if (ben.getEmp_level() == 1) {
-				// 財務承辦未審核請款單數量
 				List<Account_InvoiceBean> noToSignInv = pO_InvoiceService.findTodoBackInvn(emp_id, "簽核中", 4);
+				List<Account_InvoiceBean> noToSignInvReturn = pO_InvoiceService.findTodoBackInvn(emp_id, "退回中", 4);
+				int noToSignInvQuy=0;
+				int noToSignInvReturnQry=0;
+				int noToSignInvtotal=0;
+				// 財務承辦未審核請款單數量
 				if (noToSignInv != null&&noToSignInv.size()>0) {
-					Integer noToSignInvQuy = noToSignInv.size();
-					session.setAttribute("noToSignInv", noToSignInvQuy);
-				} else {
-					session.removeAttribute("noToSignInv");
+					noToSignInvQuy = noToSignInv.size();
+					noToSignInvtotal+=noToSignInvQuy;
 				}
 				// 財務承辦未審核退回請款單數量
-				List<Account_InvoiceBean> noToSignInvReturn = pO_InvoiceService.findTodoBackInvn(emp_id, "退回中", 4);
 				if (noToSignInvReturn != null&&noToSignInvReturn.size()>0) {
-					Integer noToSignInvReturnQry = noToSignInvReturn.size();
-					session.setAttribute("noToSignInvReturn", noToSignInvReturnQry);
-				} else {
-					session.removeAttribute("noToSignInvReturn");
-				}
+					noToSignInvReturnQry = noToSignInvReturn.size();
+					noToSignInvtotal+=noToSignInvReturnQry;
+				} 
+				if(noToSignInvtotal>0) {
+				session.setAttribute("noToSignInvtotal", noToSignInvtotal);}
+				
 			} 
 			if (ben.getEmp_level() == 2) {
 				// 財務主管未分派請款單數量
-				List<Account_InvoiceBean> noDispatchInv = pO_InvoiceService.findTodoBackInvn(emp_id, "分派中", 5);
+				List<Account_InvoiceBean> noDispatchInv = pO_InvoiceService.findTodoBackInvn(emp_id, "分派中", 3);
 				if (noDispatchInv != null&&noDispatchInv.size()>0) {
 					Integer noDispatchInvQry = noDispatchInv.size();
+					System.out.println(noDispatchInvQry);
 					session.setAttribute("noDispatchInv", noDispatchInvQry);
 				} else {
 					session.removeAttribute("noDispatchInv");

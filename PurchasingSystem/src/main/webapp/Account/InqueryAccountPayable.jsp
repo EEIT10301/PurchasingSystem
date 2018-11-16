@@ -47,16 +47,16 @@
 
 #xls{
 float: right;
+margin-right:30px;
 }
 
 #pdf{
 float: right;
+margin-right:30px;
 }
 
 
-form{
-margin-right: 10px;
-}
+
 
 </style>
 </head>
@@ -69,6 +69,16 @@ margin-right: 10px;
 			<h3>廠商帳款清單</h3>
 			<input class="form-control" id="myInput" type="text"
 				placeholder="Search"><br />
+				<div class="text-right">
+				<form action="ShowInvoice.xls" enctype="multipart/form-data"
+					method="post" id="xls">
+					<input class="btn btn-white btn-sm" type="submit" value="下載Excel檔"></input>
+				</form>
+				<form action="ShowInvoice.pdf" enctype="multipart/form-data"
+					method="post" id="pdf">
+				   <input class="btn btn-white btn-sm" type="submit" value="下載Pdf檔"></input>
+				</form>
+			</div>
 			<table class="table table-striped table-hover">
 				<thead>
 					<tr>
@@ -77,7 +87,7 @@ margin-right: 10px;
 						<th width="150px">廠商名稱</th>
 						<th width="50px">廠商結帳週期</th>
 						<th>應付款項金額</th>
-						<th>產生日期</th>
+						<th>帳款日期</th>
 						<th width="50px">支票號碼</th>
 						<th>匯款帳號</th>
 						<th>預計付款日</th>
@@ -110,16 +120,7 @@ margin-right: 10px;
 					</c:forEach>
 				</tbody>
 			</table>
-			<div class="text-right">
-				<form action="ShowInvoice.xls" enctype="multipart/form-data"
-					method="post" id="xls">
-					<input class="btn btn-white btn-sm" type="submit" value="下載Excel檔"></input>
-				</form>
-				<form action="ShowInvoice.pdf" enctype="multipart/form-data"
-					method="post" id="pdf">
-				   <input class="btn btn-white btn-sm" type="submit" value="下載Pdf檔"></input>
-				</form>
-			</div>
+			
 		</div>
 	</c:if>
 
