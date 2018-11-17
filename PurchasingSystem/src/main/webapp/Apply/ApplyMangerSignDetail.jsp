@@ -42,18 +42,17 @@ font-size: 36px;
 <tr>
 <!-- <th class='text-center' colspan='6'></th> -->
 <th>簽核人</th>
-<th>職稱</th>
 <th>申請人</th>
 <th>請購預估總金額</th>
+<th>追交期</th>
 <th>提案意見</th>
 </tr>
 </thead>
 <tr>
-<td><font color='red'>${user.emp_name}簽核中</font></td>
-<td> ${user.emp_dep} ${user.emp_job}</td>
-<td>${appmain.employeeBean.emp_name}</td>
+<td><font color='red'>${user.emp_dep} ${user.emp_name} ${user.emp_job}簽核中</font></td>
+<td>${appmain.employeeBean.emp_dep} ${appmain.employeeBean.emp_name} ${appmain.employeeBean.emp_job}</td>
 <td> ${appmain.app_price}</td>
-
+<td> ${appmain.app_GetDate}</td>
 <c:forEach var='appsign' varStatus='vs' items='${app_Sign}'>
 <c:if test="${appsign.sig_rank==1}">
 <td>${appsign.sig_sug} </td>
