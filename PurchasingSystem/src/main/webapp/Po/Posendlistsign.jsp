@@ -1,32 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ include file="../POInclude.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="../css/POcss.css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script type="text/javascript"
-	src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- <link rel="stylesheet" type="text/css" href="../css/POcss.css"> -->
+<!-- <link rel="stylesheet" -->
+<!-- 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+<!-- <script type="text/javascript" -->
+<!-- 	src="http://code.jquery.com/jquery-1.10.1.min.js"></script> -->
+<!-- <script -->
+<!-- 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
-<style type="text/css">
-#thead {
-	font-size: 36px;
-}
-
-#submit {
-	position: absolute;
-	right: 700px;
-}
-</style>
 </head>
 <body class="bg">
+<%@ include file="../POIncludeforAcc.jsp"%>
 	<div class="right">
 		<%-- 	<c:if test="${empty AllPO_Vendor or empty poprocess1}"> --%>
 		<%-- 		${errors.errors} --%>
