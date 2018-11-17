@@ -15,17 +15,35 @@
 <!-- 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
 <!-- <script type="text/javascript" -->
 <!-- 	src="http://code.jquery.com/jquery-1.10.1.min.js"></script> -->
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <!-- <script -->
 <!-- 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 <!-- <link rel="stylesheet" -->
 <!-- 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" -->
 <!-- 	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" -->
 <!-- 	crossorigin="anonymous"> -->
+<!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+<script type="text/javascript">
+// document.addEventListener("DOMContentLoaded",function(){
+//     document.getElementById("send").addEventListener("click", forward);
+    function forward(){
+    	if(confirm("確定送出此單據? "))
+    	{
+    		window.event.returnValue=true;
+    		}
+    		else
+    		{
+    		alert("單據送出取消");
+    		window.event.returnValue=false;
+    		}
+    		swal("Hello world!");
+    }
+    
 
-
-
+</script>
 </head>
-<%@ include file="../POInclude.jsp"%>
+<%-- <%@ include file="../POInclude.jsp"%> --%>
 <body class="bg">
 
 <%@ include file="../POIncludeforAcc.jsp"%>
@@ -62,9 +80,9 @@
 											test="${poprocess1.sig_rank==3 and poprocess1.po_id == poprocess.po_id}">
 
 
-<!-- 												<td><input id="submit" type="submit" name="send" class='btn btn-default' -->
-<!-- 																						value="開始詢價"></td> -->
-											<td><button id='' class="btn btn-white btn-sm" value=''>開始詢價</button></td>
+												<td><input id="send1" type="submit" name="send" class='btn btn-default'
+																						value="開始詢價" onclick="forward()"></td>
+<!-- 											<td><button id='send' class="btn btn-white btn-sm" value='' onclick="forward()">開始詢價</button></td> -->
 
 
 										</c:if>

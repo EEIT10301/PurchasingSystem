@@ -10,11 +10,12 @@
 </head>
 <body class="bg">
 <%@ include file="../POIncludeforAcc.jsp"%>
+<div class="right">
 	<c:if test='${not empty nopolist}'>
 		<h2>${nopolist}</h2>
 	</c:if>
 	<c:if test='${not empty PO_SignSend}'>
-	<div class="right">
+	
 	<br>
 		<h3>待簽核表單</h3>
 			<table id="myTable" class="table table-striped table-hover">
@@ -48,9 +49,9 @@
 					</c:forEach>
 				
 			</table>
-			</div>
+			
 	</c:if>
-
+</div>
 	<c:if test='${not empty PO_SignBack}'>
 		<div class="right">
 		<br>

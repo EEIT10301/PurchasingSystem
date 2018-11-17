@@ -96,6 +96,7 @@
 					<p>
 						簽核順序 step2: ${boss.emp_job}: ${boss.emp_name} <Input type='hidden'
 							name='boss' value='${boss.emp_id}'>
+						<h5><font color="red">採購金額高於請購金額20%需總經理核決</font></h5>
 				</c:if>
 				簽核意見:
 				<p>
