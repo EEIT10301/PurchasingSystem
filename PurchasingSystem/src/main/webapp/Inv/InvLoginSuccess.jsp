@@ -115,7 +115,7 @@ padding-right:30px;
 				<a href='sendEmployee.controller' class="btn"><img
 					class="card-img-top imgp" src="../sysimg/s1.png"></a>
 				<div class="card-body">
-					<h5 class="card-title"><font face="微軟正黑體">待分派清單</font></h5>
+					<h5 class="card-title">待分派清單<font color=red>${waitendsign3}</font></h5>
 				</div>
 		</div>
 								<div class="card bg-light f">

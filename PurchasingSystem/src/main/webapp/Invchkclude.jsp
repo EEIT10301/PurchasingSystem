@@ -152,7 +152,7 @@ nav {
 				<li class="nav-item"><a class="nav-link"
 					href="sendEmployee.controller"> <img class=" imgp"
 						src="../sysimg/s1.png"> <span data-feather="home"></span>
-						待分派清單<span class="sr-only">(current)</span>
+						待分派清單<font color=red>${waitendsign3}</font>
 				</a></li>
 								<li class="nav-item"><a class="nav-link"
 					href="singcheck"> <img class=" imgp"

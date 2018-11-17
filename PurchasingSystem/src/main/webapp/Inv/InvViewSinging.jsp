@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ include file="../Invchkclude.jsp"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -59,7 +60,7 @@ button { @extend input;
 					<tr>
 						<td>${check.inv_Manger}</td>
 						<td>${check.chk_Id}</td>
-						<td>${check.sig_Date}</td>
+						<td><fmt:formatDate pattern="yyyy/MM/dd hh:mm"  value="${check.sig_Date}"/></td>
 						<td>${check.sig_Sta}</td>
 					</tr>
 				</c:if>
@@ -69,7 +70,7 @@ button { @extend input;
 					<tr>
 						<td>${check.inv_Manger}</td>
 						<td>${check.chk_Id}</td>
-						<td>${check.sig_Date}</td>
+						<td><fmt:formatDate pattern="yyyy/MM/dd hh:mm"  value="${check.sig_Date}"/></td>
 						<td>${check.sig_Sta}</td>
 					</tr>
 				</c:if>
@@ -79,7 +80,7 @@ button { @extend input;
 					<tr>
 						<td>${check.inv_Manger}</td>
 						<td>${check.chk_Id}</td>
-						<td>${check.sig_Date}</td>
+						<td><fmt:formatDate pattern="yyyy/MM/dd hh:mm"  value="${check.sig_Date}"/></td>
 						<td>${check.sig_Sta}</td>
 					</tr>
 				</c:if>

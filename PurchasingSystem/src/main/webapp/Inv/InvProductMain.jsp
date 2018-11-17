@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ include file="../Invchkclude.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -84,7 +85,9 @@
 					<td>${posigningprocess.employeeBean.emp_name}</td>
 					<td>${posigningprocess.employeeBean.emp_job}</td>
 					<td>${posigningprocess.po_sta}</td>
-					<td>${posigningprocess.sig_date}</td>
+					<td>
+					<fmt:formatDate pattern="yyyy/MM/dd hh:mm"  value="${posigningprocess.sig_date}"/>
+					</td>
 					<td>${posigningprocess.sig_sta}</td>
 					<td>${posigningprocess.sig_sug}</td>
 				</tr>
