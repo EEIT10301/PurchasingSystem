@@ -154,7 +154,7 @@ public class POManagerSignController {
 		}
 		if(PO_SignSend!=null||PO_SignBack!=null){
 			model.addAttribute("pages", pages);
-			model.addAttribute("PO_SignSend", PO_SignSend1);
+			model.addAttribute("PO_SignSend", PO_SignSend);
 			model.addAttribute("PO_SignSendRank", PO_SignSendRank);
 			model.addAttribute("PO_SignBack", PO_SignBack1);
 			model.addAttribute("PO_SignBackRank", PO_SignBackRank);			
