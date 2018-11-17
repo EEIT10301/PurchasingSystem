@@ -82,7 +82,10 @@
 </tr>
 
 <c:forEach var="podetail"  items="${podetail}" varStatus="status">
+
+
 <tr>
+
 <td>${podetail.part_No}</td>
 <td>${podetail.productListBean.pro_cate}</td>
 <td>${podetail.productListBean.pro_name}</td>
@@ -92,6 +95,7 @@
 <td>${podetail.quotation}</td>
 <td>${podetail.total_Price}元</td>
 <td>${podetail.total_Price*podetail.quotation}元</td>
+
 
 </tr>
 
