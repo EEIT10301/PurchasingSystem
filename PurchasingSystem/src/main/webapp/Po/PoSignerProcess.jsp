@@ -79,7 +79,7 @@
 							</c:forEach>
 							<td><a
 								href='<c:url value="POManagerSignertosign.controller?po_manger=${polists.po_manger}&po_sta=${polists.po_sta}&po_id=${polists.po_id}&send=nosend" />'>
-									開始簽核</a></td>
+									<button type="button" class="btn btn-white btn-sm">開始簽核</button></a></td>
 						</tr>
 					</c:forEach>
 				</tbody>

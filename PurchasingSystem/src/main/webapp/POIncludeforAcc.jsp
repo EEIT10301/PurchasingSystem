@@ -138,6 +138,55 @@ table {
 th {
     text-align: center; 
 }
+
+#query {
+	color: red;
+}
+
+#thead {
+	font-size: 36px;
+}
+
+#nolist {
+	font-size: 24px;
+	color: red;
+}
+
+#submitbutton {
+	display: inline;
+}
+
+#doublesubmitbutton {
+	position: absolute;
+	right: 100px;
+}
+
+#thead{
+font-size: 36px;
+}
+
+#submit {
+	position: absolute;
+	right: 100px;
+}
+
+#thead2 {
+	font-size: 30px;
+}
+
+#submitbutton {
+	display: inline;
+}
+
+#datetime{
+	float:left;
+}
+
+#reason{
+	float:left;
+	margin-right:50px;
+}
+
 </style>
 </head>
 <body class="bg">
@@ -148,7 +197,8 @@ th {
 			href='POLogout.controller'><button type="button" class="btn btn-white btn-sm">登出</button></a>
 <!-- 	<a href="POLoginSuccess.jsp" style="font-family:微軟正黑體;">回首頁</a> -->
 	</div>
-	<hr></nav>
+	<hr>
+</nav>
 	<div class="left">
 <%-- 		<br> <span>${sendok}</span> --%>
 
