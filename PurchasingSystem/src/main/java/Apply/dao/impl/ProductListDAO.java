@@ -138,7 +138,7 @@ public class ProductListDAO implements ProductListIDAO {
 		List<ProductListBean> list = null;
 		String hgl="FROM ProductListBean WHERE pro_cate=:id1 ";
 		list =this.getSession().createQuery(hgl).setParameter("id1", pro_cate)
-				.setMaxResults(50).list();
+				.setMaxResults(500).list();
 		 if(list.size()>0) {
 		
 			  return list;
@@ -151,7 +151,7 @@ public class ProductListDAO implements ProductListIDAO {
 	@Override
 	public List<ProductListBean> selectAll() {
 		List<ProductListBean>ProductList= this.getSession().createQuery(
-				"from ProductListBean", ProductListBean.class).setMaxResults(50).list();
+				"from ProductListBean", ProductListBean.class).setMaxResults(500).list();
 //		this.getSession().getTransaction().commit();
 //		sessionFactory.getCurrentSession().beginTransaction();
 		return ProductList;

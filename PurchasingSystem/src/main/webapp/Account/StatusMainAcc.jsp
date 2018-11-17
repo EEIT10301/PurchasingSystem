@@ -11,12 +11,6 @@
 	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
 	crossorigin="anonymous">
 <title>Insert title here</title>
-<style>
-.right {
-	width: 78%;
-	float: left;
-}
-</style>
 </head>
 <body>
 <%@ include file="../includeA.jsp" %>

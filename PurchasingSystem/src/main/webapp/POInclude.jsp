@@ -15,8 +15,7 @@
 <style>
 .bg {
 	background-color: #FDF5E6;
-	/* 畫面間距 */
-/* 	margin: 30px; */
+	font-family:"Microsoft JhengHei";
 }
 
 .left {
@@ -39,8 +38,8 @@
 /* 	font-size: 11px; */
 /* 	margin-right:10px; */
 	float:left;
-	height:35px;
-	width:30px;
+	height:50px;
+	width:50px;
 }
 
 .card-text {
@@ -87,6 +86,133 @@ nav{
 	padding-left: 30px;
 	padding-right: 30px;
 }
+
+#submit {
+	position: absolute;
+	right: 500px;
+}
+
+.right{
+	width:80%;
+    float:right;
+}
+.bg {
+	background-color: #FDF5E6;
+	/* 畫面間距 */
+/* 	margin: 30px; */
+font-family: "微軟正黑體";
+}
+
+.left {
+	width: 20%;
+	float: left;
+	text-align: center;
+}
+
+.right{
+margin-left:50px;
+width: 75%;
+	float: left;
+	text-align: center;
+}
+
+
+.nav nav-tabs {
+	width: 75%;
+}
+
+
+.f {
+	/* 方格排列 */
+ 	display: inline-block;
+	width: 200px;
+	height:50px;
+	margin-bottom:5px;
+}
+
+.imgp {
+/* 	padding: 0px; */
+/* 	font-size: 11px; */
+/* 	margin-right:10px; */
+/* 	float:left; */
+	height:50px;
+	width:50px;
+}
+
+.card-text {
+	font-size: 11px;
+}
+
+ul {
+	font-family:微軟正黑體;
+	font-size: 19px;
+}
+span {
+	margin-left:1px;
+}
+
+.btn:link,
+.btn:visited {
+  	text-transform: uppercase;
+  	text-decoration: none;
+  	padding: 10px 20px;
+  	display: inline-block;
+  	border-radius: 100px;
+  	transition: all .2s;
+  	position: relative;
+}
+
+.btn:hover {
+  	transform: translateY(-3px);
+  	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+  	transform: translateY(-1px);
+  	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-white {
+	font-size: 14px;
+	margin-left:30px;
+	margin-right:30px;
+}
+
+th {
+    text-align: center; 
+    }
+
+nav{
+	background-color: rgb(248, 219, 166);
+	padding-top: 30px;
+	padding-left: 30px;
+	padding-right: 30px;
+}
+.n {
+	background-color: rgb(248, 219, 166);
+	padding-top: 30px;
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
+.lr {
+	width: 40%;
+	float: left;
+}
+
+.dlr {
+	width: 55%;
+	float: right;
+}
+
+table {
+	font-size: 13px;
+}
+
+th {
+    text-align: center; 
+}
+
 </style>
 </head>
 <body class="bg">
@@ -175,6 +301,7 @@ nav{
             </ul>
 		</c:if>
 		<c:if test="${user.emp_level==2}">
+		<br>
 		<ul class="nav flex-column">
               <li class="nav-item">
                 <a class="nav-link active" href="sendEmployee.controller">

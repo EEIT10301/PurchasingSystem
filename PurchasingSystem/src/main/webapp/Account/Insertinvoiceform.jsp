@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
-
 <html>
 <head>
 <meta charset="UTF-8">
@@ -21,70 +19,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/js/fileinput.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/js/locales/LANG.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<style type="text/css">
-/* input, select { */
-/* 	display: block; */
-/* } */
-/* .bg { */
-/* 	background-color: #FDF5E6; */
-/* 	/* 畫面間距 */ */
-/* 	margin: 30px; */
-/* } */
-.bg {
-	background-color: #FDF5E6;
-	/* 畫面間距 */
-	margin: 30px;
-}
 
-.left {
-	width: 15%;
-	float: left;
-	text-align: center;
-}
-
-.f {
-	/* 方格排列 */
- 	display: inline-block;
-	width: 200px;
-	height:50px;
-	margin-bottom:5px;
-}
-
-.imgp {
-/* 	padding: 0px; */
-/* 	font-size: 11px; */
-/* 	margin-right:10px; */
-	float:left;
-	height:35px;
-	width:30px;
-}
-
-.card-text {
-	font-size: 11px;
-}
-
-ul {
-	font-family:微軟正黑體;
-	font-size: 19px;
-}
-span {
-	margin-left:1px;
-}
-.lr {
-	width: 40%;
-	float: left;
-}
-
-.dlr {
-	width: 55%;
-	float: left;
-}
-</style>
 </head>
 <body>
 <%@ include file="../POIncludeforAcc.jsp" %>
 <div class="right">
-	<h1>新增請款單</h1>
+	<h3>新增請款單</h3>
 	<br>
 	<!-- 	<a href='Polist.controller'>回上一頁</a> -->
 	<form class="form-inline" method="post"
@@ -159,10 +99,10 @@ span {
 				<input class="btn" type="reset" value="重新輸入">
 				 <input	class="btn" type="submit" id="agree" value="送出">
 			</div>
-
+</div>
 	</form>
-	
 	</div>
+	
 	
 <%-- <c:if test="${not empty successmeg}"> --%>
 <!-- 	<div id="dialog" title="Basic dialog"> -->

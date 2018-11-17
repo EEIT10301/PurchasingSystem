@@ -18,64 +18,6 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
 	 crossorigin="anonymous"></script>
 <title>Insert title here</title>
-<style type="text/css">
-#message{
-color:red;
-text-size:10px;
-}
-.right {
-	width: 75%;
-	float: left;
-}
-.bg {
-	background-color: #FDF5E6;
-	/* 畫面間距 */
-/* 	margin: 30px; */
-}
-
-
-.right {
-	width: 75%;
-	float: right;
-	text-align: center;
-	height: 1500px;
-}
-
-.nav nav-tabs {
-	width: 75%;
-}
-
-
-.f {
-	/* 方格排列 */
-	display: inline-block;
-	width: 200px;
-	height: 50px;
-	margin-bottom: 5px;
-}
-
-.imgp {
-	/* 	padding: 0px; */
-	/* 	font-size: 11px; */
-	/* 	margin-right:10px; */
-	float: left;
-	height: 35px;
-	width: 30px;
-}
-
-.card-text {
-	font-size: 11px;
-}
-
-ul {
-	font-family: 微軟正黑體;
-	font-size: 19px;
-}
-
-span {
-	margin-left: 1px;
-}
-</style>
 </head>
 <%@ include file="../POIncludeforAcc.jsp"%>
 <body class="bg">

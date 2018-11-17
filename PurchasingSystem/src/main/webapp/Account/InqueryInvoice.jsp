@@ -13,38 +13,6 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <title>查詢請款單</title>
-<style>
-.bg {
-	background-color: #FDF5E6;
-	/* 畫面間距 */
-	margin: 30px;
-}
-.left{
-	width:12%;
-float:left;
-
-}
-.f {
-	/* 方格排列 */
-	display: inline-block;
-	width: 6rem;
-	height: 6.5rem;
-	text-align: center;
-
-}
-
-.imgp {
-	padding: 10px;
-}
-.card-text{
-	font-size:11px;
-}
-.right {
-	width: 87%;
-	float: left;
-	font-size: 15px;
-}
-</style>
 </head>
 <body class="bg">
 <%@ include file="../includeA.jsp" %>

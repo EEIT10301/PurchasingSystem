@@ -26,6 +26,7 @@
 	background-color: #FDF5E6;
 	/* 畫面間距 */
 /* 	margin: 30px; */
+font-family: "微軟正黑體";
 }
 
 .left {
@@ -42,6 +43,11 @@ width: 75%;
 }
 
 
+.nav nav-tabs {
+	width: 75%;
+}
+
+
 .f {
 	/* 方格排列 */
  	display: inline-block;
@@ -54,7 +60,7 @@ width: 75%;
 /* 	padding: 0px; */
 /* 	font-size: 11px; */
 /* 	margin-right:10px; */
-	float:left;
+/* 	float:left; */
 	height:50px;
 	width:50px;
 }
@@ -107,6 +113,30 @@ nav{
 	padding-top: 30px;
 	padding-left: 30px;
 	padding-right: 30px;
+}
+.n {
+	background-color: rgb(248, 219, 166);
+	padding-top: 30px;
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
+.lr {
+	width: 40%;
+	float: left;
+}
+
+.dlr {
+	width: 55%;
+	float: right;
+}
+
+table {
+	font-size: 13px;
+}
+
+th {
+    text-align: center; 
 }
 </style>
 </head>
@@ -190,18 +220,14 @@ nav{
                   	廠商更新
                 </a>
               </li>
-              
-              
-              
-              
-              
             </ul>
 		</c:if>
 		<c:if test="${user.emp_level==2}">
+		<br>
 		<ul class="nav flex-column">
               <li class="nav-item">
                 <a class="nav-link active" href="sendEmployee.controller">
-                <img class="card-img-top imgp" src="../sysimg/s2.png">
+                <img class="card-img-top imgp" src="../sysimg/s21.png">
                   <span data-feather="home"></span>
                   	待分派採購單 <span class="badge badge-danger">${unAssignedEmpNo}</span>
                   	<span class="sr-only">(current)</span>
@@ -209,14 +235,14 @@ nav{
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="POManagerSigner.controller">
-                <img class="card-img-top imgp" src="../sysimg/s2.png">
+                <img class="card-img-top imgp" src="../sysimg/s15.png">
                   <span data-feather="users"></span>
                   	待處理採購單<span class="badge badge-danger">${pOUndoListsNo}</span>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="todoSignInvoice.controller">
-                <img class="card-img-top imgp" src="../sysimg/s2.png">
+                <img class="card-img-top imgp" src="../sysimg/s14.png">
                   <span data-feather="file"></span>
                   	待審核請款單<span class="badge badge-danger">${noSignInvforBoss}</span>
                 </a>
