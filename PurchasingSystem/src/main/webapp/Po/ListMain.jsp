@@ -15,8 +15,8 @@
 <!-- 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 <title>採購分派作業</title>
 </head>
-<body class="bg">
 <%@ include file="../POIncludeforAcc.jsp"%>
+<body class="bg">
 	<c:if test="${not empty appmain}">
 		<div class="right">
 			<h2>

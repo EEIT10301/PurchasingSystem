@@ -32,8 +32,8 @@
 
 </script>
 </head>
-<body class="bg">
 <%@ include file="../POIncludeforAcc.jsp"%>
+<body class="bg">
 	<div class="right">
 		<c:if
 			test="${not empty poid1 and not empty AllPO_Vendors and not empty Podetailbeans and  not empty allListprice}">

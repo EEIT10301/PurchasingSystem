@@ -37,16 +37,15 @@
     		alert("單據送出取消");
     		window.event.returnValue=false;
     		}
-    		swal("Hello world!");
     }
     
 
 </script>
 </head>
 <%-- <%@ include file="../POInclude.jsp"%> --%>
+<%@ include file="../POIncludeforAcc.jsp"%>
 <body class="bg">
 
-<%@ include file="../POIncludeforAcc.jsp"%>
 
 	<div class="right">
 	<c:if test="${empty selectlists}">

@@ -23,8 +23,8 @@
 <!-- <script -->
 <!-- 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 <!-- </head> -->
-<body class="bg">
    <%@ include file="../POIncludeforAcc.jsp"%>     
+<body class="bg">
 <div class="right">
 <!-- <div class='container'> -->
 	<h3 align="center">廠商更新</h3><br/>

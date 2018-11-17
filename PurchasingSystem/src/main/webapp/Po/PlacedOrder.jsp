@@ -16,8 +16,8 @@
 
 <title>待收貨採購單</title>
 </head>
-<body class="bg">
 <%@ include file="../POIncludeforAcc.jsp"%>
+<body class="bg">
 <div class="right">
 	<c:if test='${empty placedOrderList}'>
 		<h2>${noPlacedOrderList}</h2>

@@ -45,8 +45,8 @@
 
 <title>待收貨單明細</title>
 </head>
-<body class="bg">
 <%@ include file="../POIncludeforAcc.jsp"%>
+<body class="bg">
 
 <div class="right">	
 <h2>採購單編號:${pm.po_id}</h2>

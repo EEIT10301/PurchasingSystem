@@ -13,8 +13,8 @@
 <meta charset="UTF-8">
 <title>待審核採購單</title>
 </head>
-<body class="bg">
 <%@ include file="../POIncludeforAcc.jsp"%>
+<body class="bg">
 <div class="right">
 	<c:if test='${not empty nopolist}'>
 		<h2>${nopolist}</h2>

@@ -33,8 +33,8 @@
 <meta charset="UTF-8">
 <title>待下單明細</title>
 </head>
-<body class="bg">
 <%@ include file="../POIncludeforAcc.jsp"%>
+<body class="bg">
 	<%-- <h2>請購單編號:${signedOrderDetail.po_id}</h2> --%>
 	<div class="right">
 		<h2>採購單編號:${pm.po_id}</h2>
