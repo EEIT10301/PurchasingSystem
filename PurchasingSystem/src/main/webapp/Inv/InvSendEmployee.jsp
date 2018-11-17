@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ include file="../Invchkclude.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -53,7 +54,7 @@
 			<c:if test="${sendl.sig_Rank==1}">
 		<tr>
 				<td>${sendl.chk_Id }</td>				
-				<td> ${sendl.sig_Date}</td>
+				<td><fmt:formatDate pattern="yyyy/MM/dd hh:mm"  value="${sendl.sig_Date}"/></td>
 		
 					<c:forEach var="sendl1" items="${sendlist}">
 						<form action="<c:url value="/Inv/InvsendEmployee.controller" />"

@@ -82,11 +82,11 @@
 </style>
 </head>
 <body>
-<h1>採購單號:${pomain.po_id }</h1>
 <c:if test="${Inv_SigningProcessBean.sig_Sta!='再次驗收' }">
 	<div class="right">
 	 <input class="form-control" type="text" placeholder="search" id="search">
      <style id="search_style"></style>
+
 <script type="text/javascript">
 var searchStyle = document.getElementById('search_style');
 document.getElementById('search').addEventListener('input', function() {
