@@ -7,60 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-#message{
-color:red;
-text-size:10px;
-}
-
-.right {
-	width: 75%;
-	float: right;
-	text-align: center;
-	height: 1500px;
-}
-
-.nav nav-tabs {
-	width: 75%;
-}
-
-.bg {
-	background-color: #FDF5E6;
-	/* 畫面間距 */
-/* 	margin: 30px; */
-}
-
-
-.f {
-	/* 方格排列 */
-	display: inline-block;
-	width: 200px;
-	height: 50px;
-	margin-bottom: 5px;
-}
-
-.imgp {
-	/* 	padding: 0px; */
-	/* 	font-size: 11px; */
-	/* 	margin-right:10px; */
-	float: left;
-	height: 35px;
-	width: 30px;
-}
-
-.card-text {
-	font-size: 11px;
-}
-
-ul {
-	font-family: 微軟正黑體;
-	font-size: 19px;
-}
-
-span {
-	margin-left: 1px;
-}
-</style>
 </head>
 <%@ include file="../POIncludeforAcc.jsp"%>
 <body class="bg">
@@ -81,7 +27,8 @@ span {
 
 <div class="right">
 <c:if test="${empty listtodosign and empty backInvoiceSign}">
-<h2>待簽核請款單</h2>
+<br>
+<h3>待簽核請款單</h3>
 <!-- 			<hr> -->
 			<table class="table table-striped table-hover">
 				<thead class="thead-light">
@@ -96,7 +43,7 @@ span {
 			</table>	
 			<p>目前無請款單需要簽核</p>
 			<hr>
-		<h2>退回請款單</h2>
+		<h3>退回請款單</h3>
 <!-- 		<hr> -->
 			<table class="table table-striped table-hover">
 				<thead class="thead-light">
@@ -112,7 +59,8 @@ span {
 			<p>無退回請款單需要處理</p>
 		</c:if>
 	<c:if test="${not empty listtodosign}">
-		<h2>待簽核請款單</h2>
+	<br>
+		<h3>待簽核請款單</h3>
 <!-- 		<hr> -->
 			<table class="table table-striped table-hover">
 				<thead class="thead-light">
@@ -138,7 +86,8 @@ span {
 		</c:if>
 		<hr>
 		<c:if test="${not empty backInvoiceSign}">
-			<h2>退回請款單</h2>
+		<br>
+			<h3>退回請款單</h3>
 			<table class="table table-striped table-hover">
 		<thead class="thead-light">
 					<tr>

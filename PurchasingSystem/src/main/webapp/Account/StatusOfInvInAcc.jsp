@@ -9,11 +9,9 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 <title>Insert title here</title>
-
-
 </head>
-	<%@ include file="../includeA.jsp" %>
 <body class="bg">
+	<%@ include file="../includeA.jsp" %>
 <div class="right">
 	<h3>查詢請款單狀態</h3>
 	<a href="../Po/queryStatus.controller" class="btn btn-info">查詢所有請款單</a>
