@@ -40,8 +40,9 @@ public class WareHouseController {
 	public String Allitem(Model model , Integer pageSize, Integer pageNo) {
 		HashMap<String, String> err = new HashMap<String, String>();
 		System.out.println("這是庫存顯示controller");
-		pageSize=10; //一頁顯示10筆資料
-		List<Inv_MainBean> Mainbean = inv_MainSerivce.selectPage(pageSize, pageNo);
+		pageSize=15; //一頁顯示15筆資料
+		List<ProductListBean> Mainbean = productListService.selectPage( pageSize, pageNo);
+//		List<Inv_MainBean> Mainbean = inv_MainSerivce.selectPage(pageSize, pageNo);
 		if(Mainbean!=null&&Mainbean.size()>0) {
 		model.addAttribute("Mainbean", Mainbean);
 		}else {
@@ -94,14 +95,16 @@ public class WareHouseController {
 				for (Inv_ProductListBean getones : Count) {
 //					if (getones.getChk_status().equals("驗收完畢")) {
 						// 新增至庫存MAIN
-						bean =new Inv_MainBean();
-						bean = inv_MainSerivce.select(getones.getPart_No());
+//						bean =new Inv_MainBean();
+						ProductListBean productlist = productListService.select(getones.getPart_No());
+//						bean = inv_MainSerivce.select(getones.getPart_No());
 					// 取得驗收單數量+取得目前庫存總數量=>存入庫存MainBean內
-					bean.setInv_Amount(
-							getones.getChk_Count() + inv_MainSerivce.select(getones.getPart_No()).getInv_Amount());
+						productlist.setPro_amount(
+//					bean.setInv_Amount(
+								getones.getChk_Count() + productListService.select(getones.getPart_No()).getPro_amount());
+//							getones.getChk_Count() + inv_MainSerivce.select(getones.getPart_No()).getInv_Amount());
 					// 新增至細項含數量以及時間
 					Detailbean = new Inv_DetailBean();
-					ProductListBean productlist = productListService.select(getones.getPart_No());
 					Detailbean.setInv_Part_no(getones.getPart_No());
 					Detailbean.setInv_Part(getones.getPart_No());
 					Detailbean.setInv_Amount(getones.getChk_Count());
