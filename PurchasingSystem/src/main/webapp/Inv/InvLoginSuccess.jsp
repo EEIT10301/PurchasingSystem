@@ -79,7 +79,7 @@ padding-right:30px;
 <nav>
 	<h3><font face="微軟正黑體">驗收系統</font></h3>
     <div class="text-right"><font face="微軟正黑體">
-		 ${user.emp_id},${user.emp_name},${user.emp_job} </font><a
+		 ${user.emp_dep},${user.emp_name},${user.emp_job} </font><a
 		  href='InvLogout.controller'><button type="button" class="btn btn-sm">登出</button></a>
 		<hr>
     </div>
@@ -115,7 +115,7 @@ padding-right:30px;
 				<a href='sendEmployee.controller' class="btn"><img
 					class="card-img-top imgp" src="../sysimg/s1.png"></a>
 				<div class="card-body">
-					<h5 class="card-title"><font face="微軟正黑體">待分派清單</font></h5>
+					<h5 class="card-title">待分派清單<font color=red>${waitendsign3}</font></h5>
 				</div>
 		</div>
 								<div class="card bg-light f">

@@ -58,7 +58,7 @@ span {
 </head>
 <body class="bg">
 	<h1><font face="微軟正黑體">總經理</font></h1>
-	<a href="CeoPage.jsp" style="font-family:微軟正黑體;font-size: 15px;">回首頁</a>
+<!-- 	<a href="CeoPage.jsp" style="font-family:微軟正黑體;font-size: 15px;">回首頁</a> -->
 	<div class="text-right" style="font-family:微軟正黑體;font-size: 15px;">
 		${user.emp_dep}${user.emp_name} ${user.emp_job},你好<a
 			href='ApplyLogout.controller'><button type="button" class="btn" style="font-family:微軟正黑體;font-size: 15px;">

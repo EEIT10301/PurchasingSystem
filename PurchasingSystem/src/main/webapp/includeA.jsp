@@ -47,7 +47,7 @@
 	 position: absolute;
   	top: 150px;
 	margin-top: 30px;
-	margin-left: 30px;
+	
 }
 
 .f {
@@ -62,10 +62,9 @@
 	/* 	padding: 0px; */
 	/* 	font-size: 11px; */
 	/* 	margin-right:10px; */
-	float: left;
+/* 	float: left; */
 	height: 50px;
 	width: 50px;
-	padding: 10px;
 }
 
 .card-text {
@@ -106,29 +105,20 @@ span {
 	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* .btn-white { */
-/* 	font-size: 14px; */
-/* 	margin-left:30px; */
-/* 	margin-right:30px; */
-/* } */
 .n {
 	background-color: rgb(248, 219, 166);
 	padding-top: 30px;
 	padding-left: 30px;
 	padding-right: 30px;
 }
-.bg {
-	background-color: #FDF5E6;
-	/* 畫面間距 */
-}
 
 .lr {
-	width: 38%;
+	width: 40%;
 	float: left;
 }
 
 .dlr {
-	width: 60%;
+	width: 55%;
 	float: right;
 }
 
@@ -149,7 +139,7 @@ th {
 	<div class="text-right">
 		${user.emp_dep}/${user.emp_name} ${user.emp_job},你好 <a
 			href='../Account/AccountLogout.controller'><button type="button" class="btn btn-white btn-sm">登出</button></a>
-	<a href="../Account/AccountLoginSuccess.jsp" style="font-family:微軟正黑體;">回首頁</a>
+<!-- 	<a href="../Account/AccountLoginSuccess.jsp" style="font-family:微軟正黑體;">回首頁</a> -->
 	</div>
 	<hr>
 	</nav>

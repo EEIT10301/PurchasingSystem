@@ -229,6 +229,10 @@
 		class="org.springframework.web.servlet.view.InternalResourceView">
 		<property name="url"  value="/Inv/InvViewSinging.jsp"></property>
 	</bean>
+			<bean id="InvCheckDeatil.show"
+		class="org.springframework.web.servlet.view.InternalResourceView">
+		<property name="url"  value="/Inv/InvCheckDeatil.jsp"></property>
+	</bean>
 
 	<!-- 驗收使用連結 -->
 

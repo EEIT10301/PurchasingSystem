@@ -18,32 +18,6 @@
 
 <title>查詢廠商款項</title>
 <style>
-.bg {
-	background-color: #FDF5E6;
-	/* 畫面間距 */
-
-}
-
-.f {
-	/* 方格排列 */
-	display: inline-block;
-	width: 6rem;
-	height: 6.5rem;
-	text-align: center;
-
-}
-
-.imgp {
-	padding: 10px;
-}
-/* .card-text{ */
-/* 	font-size:11px; */
-/* } */
-.right {
-	width: 87%;
-	float: left;
-	font-size: 11.5px;
-}
 
 #xls{
 float: right;
@@ -55,9 +29,6 @@ float: right;
 margin-right:30px;
 }
 
-
-
-
 </style>
 </head>
 <%@ include file="../includeA.jsp" %>
@@ -65,7 +36,7 @@ margin-right:30px;
 
 	<c:if test="${not empty allPayableList}">
 		<div class="right">
-
+	<br>
 			<h3>廠商帳款清單</h3>
 			<input class="form-control" id="myInput" type="text"
 				placeholder="Search"><br />
@@ -84,15 +55,15 @@ margin-right:30px;
 					<tr>
 						<th>帳款對帳單號</th>
 						<th>請款單單號</th>
-						<th width="150px">廠商名稱</th>
+						<th width="130px">廠商名稱</th>
 						<th width="50px">廠商結帳週期</th>
-						<th>應付款項金額</th>
+						<th>應付金額</th>
 						<th>帳款日期</th>
 						<th width="50px">支票號碼</th>
 						<th>匯款帳號</th>
 						<th>預計付款日</th>
 						<th width="50px">付款狀況</th>
-						<th>實付金額</th>
+						<th width="50px">實付金額</th>
 					</tr>
 				</thead>
 				<tbody id='myTable'>

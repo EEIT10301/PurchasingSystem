@@ -169,8 +169,7 @@ table {
 				</c:if>
 				<div class="form-group mb-2">
 					<label class="col-md-3">簽核意見:</label>
-
-					<textarea rows="2" cols="58" name="SignSug" class="col-md-6 mb-2"></textarea>
+					<textarea rows="2" cols="58" name="SignSug" class="col-md-6 mb-2" required></textarea>
 				</div>
 				<div class="text-right">
 					<input class="btn btn-primary" type="reset" value="重新輸入"> <input
@@ -300,7 +299,7 @@ table {
 				<c:if test="${not empty sigSug}">
 					<div class="form-group  mb-2">
 						<label class="col-md-4">退回原因:</label>
-						<table class="table table-hover col-md-6 mb-2">
+						<table class="text-center table table-hover col-md-6 mb-2">
 						<thead>
 								<tr>
 									<th>簽核人</th>
@@ -361,33 +360,33 @@ table {
 		var dispatcherrormeg="${dispatcherrormeg}";
 		if(successmeg==="1"){
 			swal("","請款單:"+invid+"修改送出成功","success").then(function(){
-				window.location.href='http://localhost:8080/PurchasingSystem/Po/POLoginSuccess.jsp'
+				window.location.href='http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Po/POLoginSuccess.jsp'
 			});
 		}
 		if(sendsuccessmeg=="1"){
 			swal("","請款單"+invid+"審核送出成功","success").then(function(){
-				window.location.href='http://localhost:8080/PurchasingSystem/Po/POLoginSuccess.jsp'
+				window.location.href='http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Po/POLoginSuccess.jsp'
 			});
 		}
 		if(sendsuccessmeg=="3"){
 			swal("","請款單"+invid+"審核送出成功","success").then(function(){
-				window.location.href='http://localhost:8080/PurchasingSystem/Account/AccountLoginSuccess.jsp'
+				window.location.href='http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Account/AccountLoginSuccess.jsp'
 			});
 		}
 		if(returnsuccessmeg=="1"){
 			swal("","請款單"+invid+"退回成功","success").then(function(){
-				window.location.href='http://localhost:8080/PurchasingSystem/Po/POLoginSuccess.jsp'
+				window.location.href='http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Po/POLoginSuccess.jsp'
 			});
 		}
 		
 		if(returnsuccessmeg=="3"){
 			swal("","請款單"+invid+"退回成功","success").then(function(){
-				window.location.href='http://localhost:8080/PurchasingSystem/Account/AccountLoginSuccess.jsp'
+				window.location.href='http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Account/AccountLoginSuccess.jsp'
 			});
 		}
 		if(dispatchsuccessmeg=="1"){
 			swal("","請款單"+invid+"分派成功","success").then(function(){
-				window.location.href='http://localhost:8080/PurchasingSystem/Account/AccountLoginSuccess.jsp'
+				window.location.href='http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Account/AccountLoginSuccess.jsp'
 			});
 		}
 	});

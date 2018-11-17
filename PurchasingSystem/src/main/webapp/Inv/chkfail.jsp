@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ include file="../Invchkclude.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -78,7 +79,7 @@ document.getElementById('search').addEventListener('input', function() {
 	<tr class="searchable" data-index=" ${poprocess.chk_Id} ${poprocess.employeeBean.emp_name} ${poprocess.sig_Date}">
 	<td> ${poprocess.chk_Id}</td>
 	<td> ${poprocess.employeeBean.emp_name}</td>
-	<td> ${poprocess.sig_Date}</td>
+	<td> <fmt:formatDate pattern="yyyy/MM/dd hh:mm"  value="${poprocess.sig_Date}"/></td>
     <c:forEach var="poprocess1" items="${selsctlists}">
     <c:if test="${poprocess1.sig_Rank==2 and poprocess1.chk_Id == poprocess.chk_Id}">
     <td><a href='<c:url value="/Inv/sendthisselectinvprolist.controller?inv_manger=${poprocess1.inv_Manger}&inv_sta=${poprocess1.inv_Sta}&chk_id=${poprocess1.chk_Id}&inv_Sta=${poprocess1.inv_Sta }" />'>
