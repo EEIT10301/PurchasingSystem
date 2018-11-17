@@ -21,24 +21,7 @@
 <!-- 	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" -->
 <!-- 	crossorigin="anonymous"> -->
 
-<script>
-// alert("單據送出取消");
-		function send() {
-			
-		 if(confirm("確定送出此單據? "))
-		{
-			window.event.returnValue=true;
-			alert("hahahaha")
-			}
-			else
-			{
-			alert("單據送出取消");
-			window.event.returnValue=false;
-			}
-		
-		}
 
-</script>
 
 </head>
 <%@ include file="../POInclude.jsp"%>
@@ -70,15 +53,14 @@
 								<td><fmt:formatDate pattern="yyyy/MM/dd HH:mm" value="${poprocess.sig_date}"/></td>
 								<td>${appmain.app_GetDate}</td>
 								<c:forEach var="poprocess1" items="${selectlists}">
-									<form
-										action="<c:url value="sendthisselectlist.controller?po_manger=${poprocess1.po_manger}&po_sta=${poprocess1.po_sta}&po_id=${poprocess1.po_id}" />"
+								<form action="<c:url value="sendthisselectlist.controller?po_manger=${poprocess1.po_manger}&po_sta=${poprocess1.po_sta}&po_id=${poprocess1.po_id}"/>"
 										method="post">
 										<c:if
 											test="${poprocess1.sig_rank==3 and poprocess1.po_id == poprocess.po_id}">
 
-<!-- 												<td><input id="submit" type="submit" name="send" class='btn btn-default' -->
-<!-- 																						value="開始詢價"></td> -->
-											<td><button id='' class='btn btn-default' value='' onclick="send()">開始詢價</button></td>
+												<td><input type="submit" onclick="send()" name="send" class='btn btn-default'
+																						value="開始詢價"></td>
+<!-- 											<td><button id='' class='btn btn-default' value='' onclick="send()">開始詢價</button></td> -->
 
 										</c:if>
 									</form>
@@ -103,6 +85,23 @@
 	<!-- 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" -->
 	<!-- 		integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" -->
 	<!-- 		crossorigin="anonymous"></script> -->
+<script>
+// alert("單據送出取消");
 
+		function send() {
+		 if(confirm("確定送出此單據? "))
+		{
+			window.event.returnValue=true;
+			alert("hahahaha")
+			}
+			else
+			{
+			alert("單據送出取消");
+			window.event.returnValue=false;
+			}
+		
+		}
+
+</script>
 </body>
 </html>

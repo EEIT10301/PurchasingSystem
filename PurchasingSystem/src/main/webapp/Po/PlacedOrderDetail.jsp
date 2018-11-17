@@ -102,8 +102,8 @@ function send() {
 實際收貨時間:<input type="date" name="shippingDate" required>
 
 
-<!-- <input type="submit" name="send" id="send1" class='btn btn-default' value="確認收貨" > -->
-<button id='' class='btn btn-default' value='' onclick="send()">確認收貨</button>
+<input type="submit" name="send" id="send1" class='btn btn-default' value="確認收貨" onclick="send()">
+<!-- <button id='' class='btn btn-default' value='' onclick="send()">確認收貨</button> -->
 <!-- onclick="send()" -->
 
 
