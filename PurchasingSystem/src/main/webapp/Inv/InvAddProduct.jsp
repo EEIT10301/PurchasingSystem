@@ -43,6 +43,7 @@ button { @extend input;
 }
 
 </style>
+
 </head>
 <body class="bg">
 	<div class="right">
@@ -64,7 +65,7 @@ button { @extend input;
 				</thead>
 				<c:forEach var="check" items="${check}">
 					<tr>
-						<td>${check.chk_Id}</td>
+						<td><a href="CheckDetail?CHPK=${check.chk_Id}">${check.chk_Id}</a></td>
 						<td>${check.po_ID}</td>
 						<td>${check.emp_ID}</td>
 						<td>${check.chk_Money}</td>

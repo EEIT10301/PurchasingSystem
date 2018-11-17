@@ -103,8 +103,7 @@
 					</c:forEach>
 				</select>
 				<br>
-				分派意見:<p><textarea rows="5" cols="50"  name="SignSug">
-             </textarea><font color="red"></font><p>
+				分派意見:<p><textarea rows="5" cols="50"  name="SignSug"></textarea><font color="red"></font><p>
 	       	<Input type='hidden' name='inv_manger' value='${SigningProcess.inv_Manger}'>
 			<Input type='hidden' name='inv_Sta' value='${SigningProcess.inv_Sta}'>
 		    <Input type='hidden' name='chk_Id' value='${SigningProcess.chk_Id}'>

@@ -50,6 +50,15 @@ public class WareHouseController {
 		return "invend.item";
 	}
 	
+	//驗收單查詢細項
+	@RequestMapping("/Inv/CheckDetail")
+	private String CheckDetail(String CHPK ,Model model) {	
+		System.out.println(CHPK);
+	 List<Inv_ProductListBean> Count = additemServie.selectCount(CHPK);
+	 model.addAttribute("CheckDetail", Count);
+	return "InvCheckDeatil.show";
+	}	
+	
 	@RequestMapping("/Inv/CheckBean")
 	private String meth(Model model) {	
 	List<Inv＿ProductCheckBean> checkAll = additemServie.select();
