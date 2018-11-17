@@ -459,6 +459,10 @@ public class POInvoiceController {
 		String keyday = new SimpleDateFormat("yyyy/MM/dd").format(bean.getRecript_date());
 		String recript_pic = bean.getRecript_pic();
 		String picName = recript_pic.substring(8);
+		String sigman = pO_InvoiceService.selectForOneProcessbyAccountSign(invid, 5).getEmployeeBean().getEmp_name();
+		model.addAttribute("sigman", sigman);
+		Date sigtime = pO_InvoiceService.selectForOneProcessbyAccountSign(invid, 5).getSig_Date();
+		model.addAttribute("sigtime", sigtime);
 
 		Account_SigningProcessBean sug = pO_InvoiceService.selectForOneProcessbyAccountSign(invid, 5);
 		String sigSug = sug.getSig_Sug();

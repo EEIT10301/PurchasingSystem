@@ -300,7 +300,7 @@ table {
 				<c:if test="${not empty sigSug}">
 					<div class="form-group  mb-2">
 						<label class="col-md-4">退回原因:</label>
-						<table class="table table-hover col-md-6 mb-2">
+						<table class="text-center table table-hover col-md-6 mb-2">
 						<thead>
 								<tr>
 									<th>簽核人</th>
