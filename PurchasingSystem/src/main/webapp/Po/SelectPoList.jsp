@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%-- <%@ include file="../POIncludeforAcc.jsp" %> --%>
+
+
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
@@ -9,13 +10,13 @@
 <meta charset="UTF-8">
 <title>待詢價表單頁面</title>
 
-<link rel="stylesheet" type="text/css" href="../css/POcss.css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script type="text/javascript"
-	src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- <link rel="stylesheet" type="text/css" href="../css/POcss.css"> -->
+<!-- <link rel="stylesheet" -->
+<!-- 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+<!-- <script type="text/javascript" -->
+<!-- 	src="http://code.jquery.com/jquery-1.10.1.min.js"></script> -->
+<!-- <script -->
+<!-- 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 <!-- <link rel="stylesheet" -->
 <!-- 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" -->
 <!-- 	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" -->
@@ -26,6 +27,8 @@
 </head>
 <%@ include file="../POInclude.jsp"%>
 <body class="bg">
+
+<%@ include file="../POIncludeforAcc.jsp"%>
 
 	<div class="right">
 	<c:if test="${empty selectlists}">
@@ -58,9 +61,11 @@
 										<c:if
 											test="${poprocess1.sig_rank==3 and poprocess1.po_id == poprocess.po_id}">
 
-												<td><input type="submit" onclick="send()" name="send" class='btn btn-default'
-																						value="開始詢價"></td>
-<!-- 											<td><button id='' class='btn btn-default' value='' onclick="send()">開始詢價</button></td> -->
+
+<!-- 												<td><input id="submit" type="submit" name="send" class='btn btn-default' -->
+<!-- 																						value="開始詢價"></td> -->
+											<td><button id='' class="btn btn-white btn-sm" value=''>開始詢價</button></td>
+
 
 										</c:if>
 									</form>
@@ -74,34 +79,5 @@
 	</c:if>
 	</div>
 	<script src="../js/app.js"></script>
-	<!-- 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" -->
-	<!-- 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" -->
-	<!-- 		crossorigin="anonymous"></script> -->
-	<!-- 	<script -->
-	<!-- 		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" -->
-	<!-- 		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" -->
-	<!-- 		crossorigin="anonymous"></script> -->
-	<!-- 	<script -->
-	<!-- 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" -->
-	<!-- 		integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" -->
-	<!-- 		crossorigin="anonymous"></script> -->
-<script>
-// alert("單據送出取消");
-
-		function send() {
-		 if(confirm("確定送出此單據? "))
-		{
-			window.event.returnValue=true;
-			alert("hahahaha")
-			}
-			else
-			{
-			alert("單據送出取消");
-			window.event.returnValue=false;
-			}
-		
-		}
-
-</script>
 </body>
 </html>

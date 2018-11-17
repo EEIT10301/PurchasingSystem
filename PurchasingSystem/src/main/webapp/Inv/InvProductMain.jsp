@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ include file="../Invchkclude.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -64,7 +66,7 @@
 			</tbody>
 		</table>
 		
-						<table id="myTable" class="table table-striped table-hover" >
+						<table  class="table table-striped table-hover" >
 			<thead>
 			<tr>
 			<th>簽核同仁</th>
@@ -83,7 +85,9 @@
 					<td>${posigningprocess.employeeBean.emp_name}</td>
 					<td>${posigningprocess.employeeBean.emp_job}</td>
 					<td>${posigningprocess.po_sta}</td>
-					<td>${posigningprocess.sig_date}</td>
+					<td>
+					<fmt:formatDate pattern="yyyy/MM/dd hh:mm"  value="${posigningprocess.sig_date}"/>
+					</td>
 					<td>${posigningprocess.sig_sta}</td>
 					<td>${posigningprocess.sig_sug}</td>
 				</tr>
@@ -102,8 +106,7 @@
 					</c:forEach>
 				</select>
 				<br>
-				分派意見:<p><textarea rows="5" cols="50"  name="SignSug">
-             </textarea><font color="red"></font><p>
+				分派意見:<p><textarea rows="5" cols="50"  name="SignSug"></textarea><font color="red"></font><p>
 	       	<Input type='hidden' name='inv_manger' value='${SigningProcess.inv_Manger}'>
 			<Input type='hidden' name='inv_Sta' value='${SigningProcess.inv_Sta}'>
 		    <Input type='hidden' name='chk_Id' value='${SigningProcess.chk_Id}'>

@@ -17,15 +17,29 @@
 <style>
 .bg {
 	background-color: #FDF5E6;
-	font-family:"Microsoft JhengHei";
+	/* 畫面間距 */
+/* 	margin: 30px; */
+font-family: "微軟正黑體";
 }
 
 .left {
 	width: 20%;
 	float: left;
 	text-align: center;
-/* 	height: 1500px; */
 }
+
+.right{
+margin-left:50px;
+width: 75%;
+	float: left;
+	text-align: center;
+}
+
+
+.nav nav-tabs {
+	width: 75%;
+}
+
 
 .f {
 	/* 方格排列 */
@@ -39,7 +53,7 @@
 /* 	padding: 0px; */
 /* 	font-size: 11px; */
 /* 	margin-right:10px; */
-	float:left;
+/* 	float:left; */
 	height:50px;
 	width:50px;
 }
@@ -82,20 +96,40 @@ span {
 	margin-left:30px;
 	margin-right:30px;
 }
+
+th {
+    text-align: center; 
+    }
+
 nav{
 	background-color: rgb(248, 219, 166);
 	padding-top: 30px;
 	padding-left: 30px;
 	padding-right: 30px;
 }
-#submit {
-	position: absolute;
-	right: 500px;
+.n {
+	background-color: rgb(248, 219, 166);
+	padding-top: 30px;
+	padding-left: 30px;
+	padding-right: 30px;
 }
 
-.right{
-	width:80%;
-    float:right;
+.lr {
+	width: 40%;
+	float: left;
+}
+
+.dlr {
+	width: 55%;
+	float: right;
+}
+
+table {
+	font-size: 13px;
+}
+
+th {
+    text-align: center; 
 }
 
 </style>
@@ -186,6 +220,7 @@ nav{
             </ul>
 		</c:if>
 		<c:if test="${user.emp_level==2}">
+		<br>
 		<ul class="nav flex-column">
               <li class="nav-item">
                 <a class="nav-link active" href="sendEmployee.controller">

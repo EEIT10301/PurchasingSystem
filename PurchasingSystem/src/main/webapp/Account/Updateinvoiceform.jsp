@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <html>
+
 <head>
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,7 +22,34 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/js/fileinput.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/js/locales/LANG.js"></script>
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<style type="text/css">
+.bg {
+	background-color: #FDF5E6;
+	/* 畫面間距 */
+}
+.lr {
+	width: 38%;
+	float: left;
+}
+.dlr {
+	width: 60%;
+	float: right;
+}
+table {
+	font-size: 13px;
+}
+</style>
 </head>
+
+
+
+<c:if test="${user.emp_dep=='財務部'}">
+	<%@ include file="../includeA.jsp"%>
+	</c:if>
+<c:if test="${user.emp_dep=='採購部'}">
+	<%@ include file="../POIncludeforAcc.jsp"%>
+	</c:if>
+<body class="bg">
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -29,15 +57,7 @@
 			+ path;
 	pageContext.setAttribute("basePath",basePath);  
 %>
-
-<body class="bg">
-<c:if test="${user.emp_dep=='財務部'}">
-	<%@ include file="../includeA.jsp"%>
-	</c:if>
-<c:if test="${user.emp_dep=='採購部'}">
-	<%@ include file="../POIncludeforAcc.jsp"%>
-	</c:if>
-<c:if test="${not empty invoice}">
+	<c:if test="${not empty invoice}">
 <div class="right">
 	<h3>修改請款單</h3>
 		<form class="form-inline" method="post"
@@ -149,7 +169,7 @@
 				</c:if>
 				<div class="form-group mb-2">
 					<label class="col-md-3">簽核意見:</label>
-					<textarea rows="2" cols="58" name="SignSug" class="col-md-6 mb-2"></textarea>
+					<textarea rows="2" cols="58" name="SignSug" class="col-md-6 mb-2" required></textarea>
 				</div>
 				<div class="text-right">
 					<input class="btn btn-primary" type="reset" value="重新輸入"> <input
@@ -161,9 +181,8 @@
 </div>
 	</c:if>
 	<!-- --------------------------------審核/分派/退回  ----------------------------------------- -->
-<c:if test="${not empty invid}">
 <div class="right">
-<h3>請款單內容</h3>
+	<c:if test="${not empty invid}">
 <%-- 				<c:set var="dep" value="${user.emp_dep}" /> --%>
 <%-- 				<c:set var="dep1" value="採購部" /> --%>
 <%-- 				<c:set var="dep2" value="財務部" /> --%>
@@ -280,7 +299,7 @@
 				<c:if test="${not empty sigSug}">
 					<div class="form-group  mb-2">
 						<label class="col-md-4">退回原因:</label>
-						<table class="table table-hover col-md-6 mb-2">
+						<table class="text-center table table-hover col-md-6 mb-2">
 						<thead>
 								<tr>
 									<th>簽核人</th>
@@ -312,7 +331,8 @@
 				</c:if>
 				<div class="form-group  mb-2">
 					<label class="col-md-4">簽核意見:</label>
-					<textarea rows="2" cols="58" name="SignSug" class="col-md-6 mb-2" required></textarea>
+					<textarea rows="2" cols="58" name="SignSug" class="col-md-6 mb-2" required>
+    </textarea>
 				</div>
 				<div class=" text-right">
 					<input class="btn" type="submit" name="action" value="送出">
@@ -320,8 +340,8 @@
 				</div>
 			</div>
 		</form>
-	</div>
 	</c:if>
+	</div>
 	<input type="hidden" value="${inv_id}" name="invidback">
 
 	<script>
@@ -340,33 +360,33 @@
 		var dispatcherrormeg="${dispatcherrormeg}";
 		if(successmeg==="1"){
 			swal("","請款單:"+invid+"修改送出成功","success").then(function(){
-				window.location.href='http://localhost:8080/PurchasingSystem/Po/POLoginSuccess.jsp'
+				window.location.href='http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Po/POLoginSuccess.jsp'
 			});
 		}
 		if(sendsuccessmeg=="1"){
 			swal("","請款單"+invid+"審核送出成功","success").then(function(){
-				window.location.href='http://localhost:8080/PurchasingSystem/Po/POLoginSuccess.jsp'
+				window.location.href='http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Po/POLoginSuccess.jsp'
 			});
 		}
 		if(sendsuccessmeg=="3"){
 			swal("","請款單"+invid+"審核送出成功","success").then(function(){
-				window.location.href='http://localhost:8080/PurchasingSystem/Account/AccountLoginSuccess.jsp'
+				window.location.href='http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Account/AccountLoginSuccess.jsp'
 			});
 		}
 		if(returnsuccessmeg=="1"){
 			swal("","請款單"+invid+"退回成功","success").then(function(){
-				window.location.href='http://localhost:8080/PurchasingSystem/Po/POLoginSuccess.jsp'
+				window.location.href='http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Po/POLoginSuccess.jsp'
 			});
 		}
 		
 		if(returnsuccessmeg=="3"){
 			swal("","請款單"+invid+"退回成功","success").then(function(){
-				window.location.href='http://localhost:8080/PurchasingSystem/Account/AccountLoginSuccess.jsp'
+				window.location.href='http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Account/AccountLoginSuccess.jsp'
 			});
 		}
 		if(dispatchsuccessmeg=="1"){
 			swal("","請款單"+invid+"分派成功","success").then(function(){
-				window.location.href='http://localhost:8080/PurchasingSystem/Account/AccountLoginSuccess.jsp'
+				window.location.href='http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Account/AccountLoginSuccess.jsp'
 			});
 		}
 	});

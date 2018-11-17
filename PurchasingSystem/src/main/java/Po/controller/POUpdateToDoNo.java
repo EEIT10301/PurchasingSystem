@@ -136,7 +136,10 @@ public class POUpdateToDoNo {
 				noSignInv+=invoiceBackQry;
 			} 
 			if(noSignInv>0) {
-			session.setAttribute("noSignInv", noSignInv);}
+			session.setAttribute("noSignInv", noSignInv);
+			}else {
+				session.removeAttribute("noSignInv");
+			}
 			
 		} 
 		if (bean.getEmp_level() == 2) {
@@ -156,7 +159,10 @@ public class POUpdateToDoNo {
 				noSignInvforBoss+=backInvoiceSignQry;
 			} 
 			if(noSignInvforBoss>0) {
-				session.setAttribute("noSignInvforBoss", noSignInvforBoss);}
+				session.setAttribute("noSignInvforBoss", noSignInvforBoss);
+				}else {
+					session.removeAttribute("noSignInvforBoss");
+				}
 			
 		}
 		return null;

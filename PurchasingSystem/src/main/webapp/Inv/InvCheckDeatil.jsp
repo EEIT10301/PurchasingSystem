@@ -6,8 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>倉庫庫存</title>
-
+<title>產品入庫</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script type="text/javascript"
@@ -43,64 +42,37 @@ button { @extend input;
 }
 }
 
-ul li {
-　 width: 200px;
-    float:left;
-    list-style-type:none;
-}
 </style>
+
 </head>
 <body class="bg">
 	<div class="right">
 		<input class="form-control" id="myInput" type="text"
 			placeholder="Search"><br />
-		<!-- <a href="http://localhost:8080/PurchasingSystem/Inv/InvLoginSuccess.jsp">返回首頁</a> -->
-		<c:if test="${Mainbean==null}">
-${Mainbean.noFile}
-</c:if>
-		<!-- align="center" -->
-		<c:if test="${Mainbean !=null}">
+		<!-- <a href="http://localhost:8080/PurchasingSystem/Inv/InvLoginSuccess.jsp" text-align="left">返回首頁</a> -->
+		<form action="<c:url value="/Inv/itemin" />" method="get">
 			<table id="myTable" class="table table-striped table-hover">
 				<thead>
 					<tr>
-						<td>料號</td>
-						<td>項目</td>
-						<td>產品</td>
-						<td>規格</td>
-						<td>資訊</td>
-						<td>庫存數</td>
+					<td>產品料號</td>
+					<td>驗收數量</td>
+					<td>產品良率</td>
+					<td>驗收狀況</td>
 					</tr>
-				<thead>
-					<c:forEach var='Mainbean' items='${Mainbean}'>
-						<tr>
-							<td><a href="DetailView?MainbeanPK=${Mainbean.part_no}">${Mainbean.part_no}</a></td>
-							<td>${Mainbean.pro_cate}</td>
-							<td>${Mainbean.pro_name}</td>
-							<td>${Mainbean.pro_spe}</td>
-							<td>${Mainbean.pro_intro}</td>
-							<td>${Mainbean.pro_amount}</td>
-						</tr>
-					</c:forEach>
+				</thead>
+				<c:forEach var="CheckDetail" items="${CheckDetail}">
+					<tr>
+						<td>${CheckDetail.part_No}</td>
+						<td>${CheckDetail.chk_Count}</td>
+						<td>${CheckDetail.chk_quality}</td>
+						<td>${CheckDetail.chk_status}</td>
+					</tr>
+				</c:forEach>
 				<tbody id="selectAll">
 				</tbody>
 			</table>
 
-
-			<div id="B">
-				<b>頁數</b>
-				<ul>
-					<li><a href="item?pageNo=1">1</a></li>
-					<li><a href="item?pageNo=2">2</a></li>
-					<li><a href="item?pageNo=3">3</a></li>
-					<li><a href="item?pageNo=4">4</a></li>
-					<li><a href="item?pageNo=5">5</a></li>
-					<li><a href="item?pageNo=5">6</a></li>
-					<li><a href="item?pageNo=5">7</a></li>
-				</ul>
-			</div>
-
-		</c:if>
-
+		</form>
 		<script src="../js/app.js"></script>
 	</div>
 </body>

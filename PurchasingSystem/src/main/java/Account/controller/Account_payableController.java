@@ -97,7 +97,10 @@ public class Account_payableController {
 					noToSignInvtotal+=noToSignInvReturnQry;
 				} 
 				if(noToSignInvtotal>0) {
-				session.setAttribute("noToSignInvtotal", noToSignInvtotal);}
+				session.setAttribute("noToSignInvtotal", noToSignInvtotal);
+				}else {
+				session.removeAttribute("noToSignInvtotal");
+				};
 				
 			} 
 			if (ben.getEmp_level() == 2) {

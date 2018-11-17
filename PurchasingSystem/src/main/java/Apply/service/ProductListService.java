@@ -9,12 +9,22 @@ import org.springframework.transaction.annotation.Transactional;
 import Apply.dao.ProductListIDAO;
 
 import Apply.model.ProductListBean;
+import Inv.model.Inv_MainBean;
 
 @Service
 //@Transactional
 public class ProductListService {
 	@Autowired	
 	private ProductListIDAO productListIDAO;
+	
+	public List<ProductListBean> selectPage(Integer pageSize, Integer pageNo) {
+		List<ProductListBean> bean=productListIDAO.selectPage(pageSize, pageNo);
+		if(bean.size()!=0) {
+			return bean;
+		}
+		return null;
+	}
+	
 	public  ProductListBean select(String id) {
 		ProductListBean bean = productListIDAO.select(id);
 		if(bean!=null) {
