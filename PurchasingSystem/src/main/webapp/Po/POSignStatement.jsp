@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib  uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ include file="../POInclude.jsp"%> 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
@@ -9,13 +8,14 @@
 <meta charset="UTF-8">
 <title>採購單狀態</title>
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+<!-- <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script> -->
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 
-<link rel="stylesheet" type="text/css" href="../css/POcss.css">
+<!-- <link rel="stylesheet" type="text/css" href="../css/POcss.css"> -->
 </head>
 <body class="bg">
+<%@ include file="../POIncludeforAcc.jsp"%> 
 
 
 
@@ -29,23 +29,24 @@
 
 <tr>
 <th>採購單號</th>
+<th>廠商名稱</th>
 <th>開始時間</th>
+
 </tr>
 <c:forEach  var="POLists" items="${POList}">
 
 <tr>
 <td><a href="<c:url value="/Po/POSignStatementDetail.controller?po_id=${POLists.po_id}"/>">${POLists.po_id}</a></td>
+<td>${POLists.pO_MainBean.pO_Vendor_InfoBean.vendor_name}</td>
 <td><fmt:formatDate pattern="yyyy/MM/dd HH:mm" value="${POLists.sig_date}"/></td>
-
-
-<td><Input type='hidden' name=po_manger value='${POLists.po_manger}'></td>
-<td><Input type='hidden' name='po_sta' value='${POLists.po_sta}'></td>
-<td><Input type='hidden' name='po_id' value='${POLists.po_id}'></td>
-<td><Input type='hidden' name='sig_date' value='${POLists.sig_date}'></td>
-<td><Input type='hidden' name='sig_sta' value='${POLists.sig_sta}'></td>
-<td><Input type='hidden' name='sig_sug' value='${POLists.sig_sug}'></td>
-<td><Input type='hidden' name='sig_rank' value='${POLists.sig_rank}'></td>
 </tr>
+<Input type='hidden' name=po_manger value='${POLists.po_manger}'>
+<Input type='hidden' name='po_sta' value='${POLists.po_sta}'>
+<Input type='hidden' name='po_id' value='${POLists.po_id}'>
+<Input type='hidden' name='sig_date' value='${POLists.sig_date}'>
+<Input type='hidden' name='sig_sta' value='${POLists.sig_sta}'>
+<Input type='hidden' name='sig_sug' value='${POLists.sig_sug}'>
+<Input type='hidden' name='sig_rank' value='${POLists.sig_rank}'>
 </c:forEach>
 
 
