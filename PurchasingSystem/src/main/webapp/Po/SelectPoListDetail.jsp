@@ -48,8 +48,8 @@
 // });
 </script>
 </head>
-<body class="bg">
 <%@ include file="../POIncludeforAcc.jsp"%>
+<body class="bg">
 	<div class="right">
 		<c:if test="${empty queryss and empty query1  and empty queryVendor}">
 			<h2>${noselist}</h2>

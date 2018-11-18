@@ -8,10 +8,14 @@
 <meta charset="UTF-8">
 <title>待分派採購單</title>
 </head>
-<body class="bg">
 <%@ include file="../POIncludeforAcc.jsp"%>
-	<c:if test="${not empty sendlist}">
+<body class="bg">
 	<div class="right">
+	<c:if test="${not empty nosendlist}">
+		<h2>${nosendlist}</h2>
+	</c:if>
+	
+	<c:if test="${not empty sendlist}">
 	<br>
 		<h3>分派員工</h3>
 			<table class="table table-striped table-hover">
@@ -49,12 +53,10 @@
 			</c:forEach>
 	</tbody>
 	</table>
+	</c:if>
 	</div>
-	</c:if>
 		
-	<c:if test="${not empty nosendlist}">
-		<h2>${nosendlist}</h2>
-	</c:if>
+
 	<script src="../js/app.js"></script>
 </body>
 </html>

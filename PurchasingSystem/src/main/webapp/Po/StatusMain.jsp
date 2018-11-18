@@ -22,8 +22,8 @@
 	crossorigin="anonymous"></script>
 <title>Insert title here</title>
 </head>
-<body class="bg">
 	<%@ include file="../POIncludeforAcc.jsp"%>
+<body class="bg">
 	<div class="right">
 		<a href="queryStatus.controller" class="btn btn-info">查詢所有請款單</a>
 		<a href="queryStatusUndone.controller" class="btn btn-info">查詢未完成請款單</a>

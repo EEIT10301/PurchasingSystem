@@ -73,12 +73,12 @@ ${Mainbean.noFile}
 				<thead>
 					<c:forEach var='Mainbean' items='${Mainbean}'>
 						<tr>
-							<td><a href="DetailView?MainbeanPK=${Mainbean.inv_Part_no}">${Mainbean.inv_Part_no}</a></td>
-							<td>${Mainbean.inv_Cate}</td>
-							<td>${Mainbean.productListBean.pro_name}</td>
-							<td>${Mainbean.productListBean.pro_spe}</td>
-							<td>${Mainbean.productListBean.pro_intro}</td>
-							<td>${Mainbean.inv_Amount}</td>
+							<td><a href="DetailView?MainbeanPK=${Mainbean.part_no}">${Mainbean.part_no}</a></td>
+							<td>${Mainbean.pro_cate}</td>
+							<td>${Mainbean.pro_name}</td>
+							<td>${Mainbean.pro_spe}</td>
+							<td>${Mainbean.pro_intro}</td>
+							<td>${Mainbean.pro_amount}</td>
 						</tr>
 					</c:forEach>
 				<tbody id="selectAll">
@@ -93,6 +93,9 @@ ${Mainbean.noFile}
 					<li><a href="item?pageNo=2">2</a></li>
 					<li><a href="item?pageNo=3">3</a></li>
 					<li><a href="item?pageNo=4">4</a></li>
+					<li><a href="item?pageNo=5">5</a></li>
+					<li><a href="item?pageNo=5">6</a></li>
+					<li><a href="item?pageNo=5">7</a></li>
 				</ul>
 			</div>
 

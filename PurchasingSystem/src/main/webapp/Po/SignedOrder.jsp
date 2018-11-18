@@ -16,8 +16,8 @@
 
 <title>待下單採購單</title>
 </head>
-<body class="bg">
 <%@ include file="../POIncludeforAcc.jsp"%>
+<body class="bg">
 	<%-- <c:if test="${not empty selectlists}"> --%>
 	<%-- <c:forEach var="signedorder" items="${selectlists}"> --%>
 	<%-- <c:if test="${signedorder.sig_rank==4}"> --%>

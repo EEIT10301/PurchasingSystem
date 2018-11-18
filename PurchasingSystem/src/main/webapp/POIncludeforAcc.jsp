@@ -60,7 +60,7 @@ width: 75%;
 /* 	padding: 0px; */
 /* 	font-size: 11px; */
 /* 	margin-right:10px; */
-/* 	float:left; */
+ 	float:left; 
 	height:50px;
 	width:50px;
 }
@@ -251,7 +251,7 @@ font-size: 36px;
 
               <li class="nav-item">
                 <a class="nav-link" href="queryStatus.controller">
-                <img class="card-img-top imgp" src="../sysimg/s6.png">
+                <img class="card-img-top imgp" src="../sysimg/s24.png">
                   <span data-feather="layers"></span>
                   	查詢請款單狀態
                 </a>
@@ -265,7 +265,7 @@ font-size: 36px;
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="POVendor.jsp">
-                <img class="card-img-top imgp" src="../sysimg/s6.png">
+                <img class="card-img-top imgp" src="../sysimg/s23.png">
                   <span data-feather="layers"></span>
                   	廠商更新
                 </a>
@@ -295,6 +295,28 @@ font-size: 36px;
                 <img class="card-img-top imgp" src="../sysimg/s14.png">
                   <span data-feather="file"></span>
                   	待審核請款單<span class="badge badge-danger">${noSignInvforBoss}</span>
+                </a>
+              </li>
+                            <li class="nav-item">
+                <a class="nav-link" href="POSignStatement.controller">
+                <img class="card-img-top imgp" src="../sysimg/s19.png">
+                  <span data-feather="bar-chart-2"></span>
+                 	 查詢採購單狀態
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="queryStatus.controller">
+                <img class="card-img-top imgp" src="../sysimg/s24.png">
+                  <span data-feather="layers"></span>
+                  	查詢請款單狀態
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="POFinalStatement.controller">
+                <img class="card-img-top imgp" src="../sysimg/s2.png">
+                  <span data-feather="layers"></span>
+                  	查詢已結案採購單
                 </a>
               </li>
              </ul>

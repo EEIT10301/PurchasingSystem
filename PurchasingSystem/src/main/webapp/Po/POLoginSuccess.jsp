@@ -168,7 +168,7 @@ padding-right:30px;
 			</div>
 			<div class="card bg-light f">
 				<a href='queryStatus.controller' class="btn"><img
-					class="card-img-top imgp" src="../sysimg/s22.png"></a>
+					class="card-img-top imgp" src="../sysimg/s24.png"></a>
 				<div class="card-body">
 					<h5 class="card-title">
 						<font face="微軟正黑體">查詢請款單狀態</font>
@@ -188,7 +188,7 @@ padding-right:30px;
 <!-- 			------- -->
 				<div class="card bg-light f">
 				<a href='POVendor.jsp' class="btn"><img
-					class="card-img-top imgp" src="../sysimg/s2.png"></a>
+					class="card-img-top imgp" src="../sysimg/s23.png"></a>
 				<div class="card-body">
 					<h5 class="card-title">
 					<font face="微軟正黑體">廠商更新</font>
@@ -226,6 +226,35 @@ padding-right:30px;
 					</h5>
 				</div>
 			</div>
+			<br>
+			<br>
+			<br>
+			<div class="card bg-light f">
+				<a href='POSignStatement.controller' class="btn"><img
+					class="card-img-top imgp" src="../sysimg/s19.png"></a>
+				<div class="card-body">
+					<h5 class="card-title">
+						<font face="微軟正黑體">查詢採購單狀態</font>
+					</h5>
+				</div>
+			</div>
+			<div class="card bg-light f">
+				<a href='queryStatus.controller' class="btn"><img
+					class="card-img-top imgp" src="../sysimg/s24.png"></a>
+				<div class="card-body">
+					<h5 class="card-title">
+						<font face="微軟正黑體">查詢請款單狀態</font>
+					</h5>
+				</div>
+			</div>
+			<div class="card bg-light f">
+				<a href='POFinalStatement.controller' class="btn"><img
+					class="card-img-top imgp" src="../sysimg/s2.png"></a>
+				<div class="card-body">
+					<h5 class="card-title">
+					<font face="微軟正黑體">查詢已結案採購單</font>
+					</h5>
+				</div>
 		</c:if>
 	</div>
 <!-- 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" -->

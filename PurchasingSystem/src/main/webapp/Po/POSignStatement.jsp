@@ -14,8 +14,8 @@
 
 <!-- <link rel="stylesheet" type="text/css" href="../css/POcss.css"> -->
 </head>
-<body class="bg">
 <%@ include file="../POIncludeforAcc.jsp"%> 
+<body class="bg">
 
 
 
