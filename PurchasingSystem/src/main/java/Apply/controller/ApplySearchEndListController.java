@@ -262,6 +262,7 @@ public class ApplySearchEndListController {
 	@RequestMapping(path="/Apply/AppSignListInclude.do",produces ="text/html; charset=utf-8")
 	@ResponseBody
 	public String AppSignListInclude(HttpSession session) {
+		LoginSucessSelectAppSignList(session);
 		EmployeeBean ben=(EmployeeBean) session.getAttribute("user");
 		String empid=ben.getEmp_id();
 		Integer waitendsign=0;
