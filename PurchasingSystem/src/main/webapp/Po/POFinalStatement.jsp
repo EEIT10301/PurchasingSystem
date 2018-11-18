@@ -12,8 +12,8 @@
 <!-- <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script> -->
 <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 </head>
-<body class="bg">
 <%@ include file="../POIncludeforAcc.jsp"%>
+<body class="bg">
 		<c:if test="${empty accountDone}">
 			<div class="right">	
 		<input class="form-control" id="myInput" type="text" placeholder="Search"><br/>

@@ -13,8 +13,8 @@
 <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 <!-- <link rel="stylesheet" type="text/css" href="../css/POcss.css"> -->
 </head>
-<body class="bg">
 <%@ include file="../POIncludeforAcc.jsp"%>
+<body class="bg">
 <div class="right">
 
 

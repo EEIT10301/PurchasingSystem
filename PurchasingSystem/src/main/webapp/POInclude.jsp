@@ -6,6 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
@@ -13,89 +15,6 @@
 	crossorigin="anonymous">
 <title>採購系統</title>
 <style>
-.bg {
-	background-color: #FDF5E6;
-	font-family:"Microsoft JhengHei";
-}
-
-.left {
-	width: 15%;
-	float: left;
-	text-align: center;
-	height: 1500px;
-}
-
-.f {
-	/* 方格排列 */
- 	display: inline-block;
-	width: 200px;
-	height:50px;
-	margin-bottom:5px;
-}
-
-.imgp {
-/* 	padding: 0px; */
-/* 	font-size: 11px; */
-/* 	margin-right:10px; */
-	float:left;
-	height:50px;
-	width:50px;
-}
-
-.card-text {
-	font-size: 11px;
-}
-
-ul {
-	font-family:微軟正黑體;
-	font-size: 19px;
-}
-span {
-	margin-left:1px;
-}
-
-.btn:link,
-.btn:visited {
-  	text-transform: uppercase;
-  	text-decoration: none;
-  	padding: 10px 20px;
-  	display: inline-block;
-  	border-radius: 100px;
-  	transition: all .2s;
-  	position: relative;
-}
-
-.btn:hover {
-  	transform: translateY(-3px);
-  	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-.btn:active {
-  	transform: translateY(-1px);
-  	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-}
-
-.btn-white {
-	font-size: 14px;
-	margin-left:30px;
-	margin-right:30px;
-}
-nav{
-	background-color: rgb(248, 219, 166);
-	padding-top: 30px;
-	padding-left: 30px;
-	padding-right: 30px;
-}
-
-#submit {
-	position: absolute;
-	right: 500px;
-}
-
-.right{
-	width:80%;
-    float:right;
-}
 .bg {
 	background-color: #FDF5E6;
 	/* 畫面間距 */

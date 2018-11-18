@@ -17,8 +17,8 @@
 <!-- <script -->
 <!-- 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 </head>
-<body class="bg">
 <%@ include file="../POIncludeforAcc.jsp"%>
+<body class="bg">
 	<div class="right">
 		<c:if test="${not empty thispro}">
 			<h2>採購單編號:${pomainlist.po_id}</h2>

@@ -14,8 +14,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body class="bg">
 <%@ include file="../POIncludeforAcc.jsp"%>
+<body class="bg">
 	<div class="right">
 		<%-- 	<c:if test="${empty AllPO_Vendor or empty poprocess1}"> --%>
 		<%-- 		${errors.errors} --%>

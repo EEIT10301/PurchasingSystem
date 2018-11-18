@@ -16,8 +16,8 @@
 
 
 </head>
-<body class="bg">	
 <%@ include file="../POIncludeforAcc.jsp"%>
+<body class="bg">	
 <div class="right">
 	<h3>待詢價採購單</h3><span style="color:red; font-size:20px;">${errors.error}</span>
 	<form action="<c:url value="/Po/queryinsert.controller"/>" method="post">

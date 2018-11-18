@@ -27,8 +27,10 @@ Page Not Found
       </div>
         <script src="https://lc-www-live-s.legocdn.com/r/www/scripts/dist/release.js?l.r2=1.0.0.1587" type="text/javascript"></script>
      <% 
+
      	session.removeAttribute("user");
-        response.setHeader("Refresh","3; URL=//localhost:8080/PurchasingSystem/MainPage.jsp");
+        response.setHeader("Refresh","3; URL=//eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/MainPage.jsp");
+
      %> 
     
     </body>
