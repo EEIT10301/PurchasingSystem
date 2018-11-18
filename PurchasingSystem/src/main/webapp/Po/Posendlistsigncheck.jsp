@@ -16,19 +16,17 @@
 <!-- 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 
 <script type="text/javascript">
-
-		function tosend() {
-			if(confirm("確定送出審核")){
-				window.event.returnValue=true;
-				alert("資料已送出");
-			}
-			else{
-				window.event.returnValue=false;
-				
-			}
+function forward(){
+	if(confirm("確定送出此單據? "))
+	{
+		window.event.returnValue=true;
 		}
-		
-
+		else
+		{
+		alert("單據送出取消");
+		window.event.returnValue=false;
+		}
+}
 
 </script>
 </head>
@@ -107,7 +105,7 @@
 				<div id="doublesubmitbutton">
 
 					<Input id="submitbutton"  class='btn btn-default' type='submit' name='send' value='重新輸入'>
-					<Input id="submitbutton" class='btn btn-default' type='submit' name='send' value='送出'>
+					<Input id="submitbutton" class='btn btn-default' type='submit' name='send' value='送出' onclick="forward()">
 <!-- 					<button id='submitbutton' class='btn btn-default' value=''>重新輸入</button> -->
 <!-- 					<button id='submitbutton' class='btn btn-default' value=''>送出</button> -->
 				</div>

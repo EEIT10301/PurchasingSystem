@@ -79,8 +79,8 @@
 						</c:forEach>
 					</tbody>
 				</table>
-				<!-- 				<Input type='submit' name='send' value='產生詢價單' id="submit"> -->
-				<button id='submit' class='btn btn-default' value=''>產生詢價單</button>
+					<Input type='submit' name='send' class='btn btn-white btn-sm' value='送出審核' id="submit">
+<!-- 				<button id='submit' class='btn btn-default' value=''>送出審核</button> -->
 			</form>
 		</c:if>
 	</div>
