@@ -93,7 +93,12 @@ font-size: 36px;
 <td>${nosends.app_id}</td>
  <td>${nosends.app_MainBean.pro_cate}</td>
  <td>${nosends.app_MainBean.app_price}</td>
-<td>${nosends.sig_date}</td>
+  <c:forEach var='nosendones' varStatus='vs' items='${nosendone}'>
+ <c:if test='${nosends.app_id == nosendones.app_id}'>
+  <td> ${nosendones.sig_date}</td>
+<%-- <td>${nosends.sig_date}</td> --%>
+ </c:if>
+ </c:forEach>
 <td><a href='ApplySignnerdetail.controller?app_manger=${nosends.app_manger}&app_sta=${nosends.app_sta}&app_id=${nosends.app_id}&send=nosend'>
 <button id='' class='btn btn-default' value=''>開始簽核</button></a></td>
  </tr>
