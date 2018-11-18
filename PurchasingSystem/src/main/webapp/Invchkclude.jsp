@@ -126,9 +126,8 @@ nav {
 				</a></li>
 				<li class="nav-item"><a class="nav-link" href="CheckBean">
 
-						<img class=" imgp" src="../sysimg/s20.png"> <span
-
-						data-feather="users"></span> 驗收成功清單
+						<img class=" imgp" src="../sysimg/s20.png"> <span data-feather="users"></span> 
+						驗收成功清單<font color=red>${waitendsign4}</font>
 				</a></li>
 				<li class="nav-item"><a class="nav-link"
 					href="chkprofail.controller"> <img class="imgp"
