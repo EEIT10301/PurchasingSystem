@@ -17,30 +17,19 @@
 <!-- <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
 
-
-
-<!-- // swal({  -->
-<!-- //   title: "确定删除吗？",  -->
-<!-- //   text: "你将无法恢复该虚拟文件！",  -->
-<!-- //   type: "warning", -->
-<!-- //   showCancelButton: true,  -->
-<!-- //   confirmButtonColor: "#DD6B55", -->
-<!-- //   confirmButtonText: "确定删除！",  -->
-<!-- //   cancelButtonText: "取消删除！", -->
-<!-- //   closeOnConfirm: false,  -->
-<!-- //   closeOnCancel: false	 -->
-<!-- // }, -->
-<!-- // function(isConfirm){  -->
-<!-- //   if (isConfirm) {  -->
-<!-- //     swal("删除！", "你的虚拟文件已经被删除。", -->
-<!-- // "success");  -->
-<!-- //   } else {  -->
-<!-- //     swal("取消！", "你的虚拟文件是安全的:)", -->
-<!-- // "error");  -->
-<!-- //   }  -->
-<!-- // }); -->
-<!-- } -->
-
+<script type="text/javascript">
+function forward(){
+	if(confirm("確定送出此單據? "))
+	{
+		window.event.returnValue=true;
+		}
+		else
+		{
+		alert("單據送出取消");
+		window.event.returnValue=false;
+		}
+}
+</script>
 
 
 <title>待收貨單明細</title>
@@ -83,7 +72,7 @@
 <br>
 <br>
 <br>
-<input type="submit" name="send" class='btn btn-white btn-sm' value="確認收貨"></div>
+<input type="submit" name="send" class='btn btn-white btn-sm' value="確認收貨" onclick="forward()"></div>
 
 			<input type='hidden' name='po_manger' value='${po_Sign.po_manger}'>
 			<input type='hidden' name='po_sta' value='${po_Sign.po_sta}'>

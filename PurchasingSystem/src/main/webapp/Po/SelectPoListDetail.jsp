@@ -248,7 +248,7 @@
 					action="<c:url value="posendlistsign.controller?po_manger=${poprocess1.po_manger}&po_sta=${poprocess1.po_sta}&po_id=${poprocess1.po_id}" />"
 					method="post">
 
-					<input type="submit" name="sendFirstposendlistsign" class='btn btn-white btn-sm' value="送出審核">
+					<input type="submit" name="sendFirstposendlistsign" class='btn btn-white btn-sm' value="產生詢價單">
 <!-- 					<button id='' class='btn btn-default' value=''>送出審核</button> -->
 
 				</form>
@@ -267,7 +267,7 @@
 				<form id="submitbutton"
 					action="<c:url value="posendlistsign.controller?po_manger=${poprocess2.po_manger}&po_sta=${poprocess2.po_sta}&po_id=${poprocess2.po_id}" />"
 					method="post">
-					<input type="submit" name="sendSecondposendlistsign" class='btn btn-white btn-sm' value="送出審核">
+					<input type="submit" name="sendSecondposendlistsign" class='btn btn-white btn-sm' value="產生詢價單">
 <!-- 				<button id='' class='btn btn-default' value=''>送出審核</button> -->
 				</form>
 			</div>
