@@ -27,17 +27,17 @@
 <script type="text/javascript">
 // document.addEventListener("DOMContentLoaded",function(){
 //     document.getElementById("send").addEventListener("click", forward);
-    function forward(){
-    	if(confirm("確定送出此單據? "))
-    	{
-    		window.event.returnValue=true;
-    		}
-    		else
-    		{
-    		alert("單據送出取消");
-    		window.event.returnValue=false;
-    		}
-    }
+//     function forward(){
+//     	if(confirm("確定送出此單據? "))
+//     	{
+//     		window.event.returnValue=true;
+//     		}
+//     		else
+//     		{
+//     		alert("單據送出取消");
+//     		window.event.returnValue=false;
+//     		}
+//     }
     
 
 </script>

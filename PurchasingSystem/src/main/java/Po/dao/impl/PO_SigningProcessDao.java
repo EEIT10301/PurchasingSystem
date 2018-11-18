@@ -108,7 +108,7 @@ public class PO_SigningProcessDao implements PO_SigningProcessIDao {
 
 	@Override
 	public List<PO_SigningProcessBean> select() {
-		return this.getSession().createQuery("from PO_SigningProcessBean", PO_SigningProcessBean.class)
+		return this.getSession().createQuery("from PO_SigningProcessBean order by sig_date", PO_SigningProcessBean.class)
 				.setMaxResults(50).list();
 	}
 
@@ -189,7 +189,7 @@ public class PO_SigningProcessDao implements PO_SigningProcessIDao {
 	@Override
 	public List<PO_SigningProcessBean> selectpo_sta(String po_sta) {
 		List<PO_SigningProcessBean> list = null;
-		String hgl = "FROM PO_SigningProcessBean WHERE po_sta=:id1 order by sig_rank";
+		String hgl = "FROM PO_SigningProcessBean WHERE po_sta=:id1 order by sig_date desc";
 		list = this.getSession().createQuery(hgl).setParameter("id1", po_sta).setMaxResults(50).list();
 		if (list.size() > 0) {
 			return list;
@@ -204,7 +204,7 @@ public class PO_SigningProcessDao implements PO_SigningProcessIDao {
 	public List<PO_SigningProcessBean> selectempidsend(String po_manger, String sig_sta) {
 		List<PO_SigningProcessBean> list = null;
 		// from PO_SigningProcess where PO_Manger='emp005' and Sig_Sta='分派中'
-		String hgl = "FROM PO_SigningProcessBean where PO_Manger=:id1 and sig_sta=:id2 order by po_id desc";
+		String hgl = "FROM PO_SigningProcessBean where PO_Manger=:id1 and sig_sta=:id2 order by po_id ";
 		list = this.getSession().createQuery(hgl).setParameter("id1", po_manger).setParameter("id2", sig_sta)
 				.setMaxResults(50).list();
 
@@ -238,7 +238,7 @@ public class PO_SigningProcessDao implements PO_SigningProcessIDao {
 	@Override
 	public List<PO_SigningProcessBean> selectmangers(String po_manger, String sig_Sta) {
 		List<PO_SigningProcessBean> list = null;
-		String hgl = "FROM PO_SigningProcessBean WHERE po_manger=:id1 and sig_Sta= :id2 order by Sig_Date desc";
+		String hgl = "FROM PO_SigningProcessBean WHERE po_manger=:id1 and sig_Sta= :id2 order by sig_date desc";
 		list = this.getSession().createQuery(hgl).setParameter("id1", po_manger).setParameter("id2", sig_Sta)
 				.setMaxResults(50).list();
 		if (list.size() > 0) {
@@ -266,7 +266,7 @@ public class PO_SigningProcessDao implements PO_SigningProcessIDao {
 	public PO_SigningProcessBean selectrank(String po_id, Integer sig_rank) {
 		List<PO_SigningProcessBean> list = null;
 		PO_SigningProcessBean getRank = new PO_SigningProcessBean();
-		String hgl = "FROM PO_SigningProcessBean WHERE po_id=:id1 AND sig_Rank=:id2";
+		String hgl = "FROM PO_SigningProcessBean WHERE po_id=:id1 AND sig_Rank=:id2 order by sig_date";
 
 		list = this.getSession().createQuery(hgl).setParameter("id1", po_id).setParameter("id2", sig_rank)
 
@@ -333,4 +333,9 @@ public class PO_SigningProcessDao implements PO_SigningProcessIDao {
 			return null;
 		}
 }
+	
+	
+
+	
+	
 }
