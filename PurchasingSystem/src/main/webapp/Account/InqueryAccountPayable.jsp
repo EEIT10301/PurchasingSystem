@@ -1,4 +1,4 @@
-	<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -139,7 +139,7 @@ $(document).ready(function () {
           "iDisplayLength": 10,
           "pagingType":"simple_numbers",
           "order": [[1, 'asc']],
-          "language": {
+          "Language": {
               "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Chinese-traditional.json"
           }
       });
@@ -162,11 +162,6 @@ $(document).ready(function () {
       }
   });
 });
-
-
-
-
-
 
 </script>
 </body>
