@@ -85,7 +85,7 @@ public class WareHouseController {
 		Inv_SigningProcessBean signing = inv_SigningProcessService.select("驗收", CheckPK);//.getSig_sta取得流程"驗收成功"
 		List<Inv_ProductListBean> Count =null ;
 		// 加入倒清單內部
-		Inv_MainBean bean = null;
+//		Inv_MainBean bean = null;
 		Inv_DetailBean Detailbean = null;
 		Count = additemServie.selectCount(CheckPK);
 		// 加入倒清單內部
