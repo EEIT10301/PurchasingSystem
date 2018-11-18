@@ -14,55 +14,73 @@
 <!-- <script -->
 <!-- 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 
-<title>待收貨採購單</title>
-</head>
-<%@ include file="../POIncludeforAcc.jsp"%>
-<body class="bg">
-<div class="right">
-	<c:if test='${empty placedOrderList}'>
-		<h2>${noPlacedOrderList}</h2>
-	</c:if>
+<script type="text/javascript">
+ function forward(){
+	if(confirm("確定送出此單據? "))
+	{
+		window.event.returnValue=true;
+		}
+		else
+		{
+ 		alert("單據送出取消");
+ 		window.event.returnValue=false;
+ 		}
+ }
+ </script>
 
-	<c:if test='${not empty placedOrderList}'>
-		
-		<h3>待收貨表單</h3>
-		<table  class="table table-striped table-hover">
-		<thead>
-			<tr>
-				<th width="200px">採購單號</th>
-				<th width="200px">出貨時間</th>
-				<th></th>
-			</tr>		
-		</thead>
-		<tbody id="myTable">
-		<c:forEach var='placedOrderList' items='${placedOrderList}'>
-		<form action="<c:url value="/Po/placedOrderDetail.controller"/>"method="post">
-		<tr>
-			<td>${placedOrderList.po_id}</td>
-			<td><fmt:formatDate pattern="yyyy/MM/dd" value="${placedOrderList.pO_MainBean.shipping_Date}"/></td>
-<%-- 			<c:forEach var='placedOrderListInfo' items='${placedOrderListInfo}'> --%>
-<%-- 			<c:if test='${placedOrderListInfo.po_id == placedOrderListInfo.po_id}'> --%>
-<%-- 			<p>出貨時間:${placedOrderListInfo.sig_date}</p> --%>
-<%-- 			</c:if> --%>
-<%-- 			</c:forEach> --%>
-			
-			
-			<td><input type="submit" value="收貨" id="submit" class='btn btn-default btn-sm'></td>
-<!-- 			<td><button id='submit' class='btn btn-default btn-sm' value=''>收貨</button></td> -->
-	</tr>
-			<input type='hidden' name='po_manger' value='${placedOrderList.po_manger}'>
-			<input type='hidden' name='po_sta' value='${placedOrderList.po_sta}'>
-			<input type='hidden' name='po_id' value='${placedOrderList.po_id}'>
-			<input type='hidden' name='sig_date' value='${placedOrderList.sig_date}'>
-			<input type='hidden' name='sig_sta' value='${placedOrderList.sig_sta}'>
-			<input type='hidden' name='sig_sug' value='${placedOrderList.sig_sug}'>
-			<input type='hidden' name='sig_rank' value='${placedOrderList.sig_rank}'>
-	</form>
-	</c:forEach>
-	</tbody>
-	</table>	
-	</c:if>
-	</div>
+ <title>待收貨單明細</title>
+ </head>
+ <%@ include file="../POIncludeforAcc.jsp"%>
+ <body class="bg">
+ 
+ <div class="right">	
+ <h2>採購單編號:${pm.po_id}</h2>
+ <h2>收貨明細</h2>
+ <form action="<c:url value="/Po/receivedGoods.controller" />" method="post">
+ 	<table id="myTable" class="table table-striped table-hover">
+ 	<thead>
+ 			<tr>
+ 				<th width="800px">料號</th>
+ 				<th width="800px">產品名稱</th>
+ 				<th width="1200px">總數量</th>
+ 			</tr>
+ 	</thead>
+ 	<tbody>
+ 	<c:forEach var='poDetail' items='${poDetail}'>	
+ 	<tr>
+ 		<td>${poDetail.part_No}</td>
+ 		<td>${poDetail.productListBean.pro_name}</td>
+ 		<td>${poDetail.total_Qty}</td>
+ 	</tr>
+ 	</c:forEach>
+ <%-- 	<c:forEach var='po_Sign' items='${po_Sign}'> --%>
+ 		</tbody>
+ 		</table>
+ 		
+ <%-- 	</c:forEach> --%>
+ <br>
+ <div id="reason" class="col-md-6">
+ <label for="reason" >收貨意見:</label>
+ <textarea rows="5" cols="50" name="signSug"></textarea> </div>
+ <div id="datetime" class="col-md-4" >
+ <label for="datetime" >實際收貨時間:</label><br> 
+ <input type="date" name="shippingDate" required>
+ <br>
+ <br>
+ <br>
+ <input type="submit" name="send" class='btn btn-white btn-sm' value="確認收貨" onclick="forward()"></div>
+ 
+ 			<input type='hidden' name='po_manger' value='${po_Sign.po_manger}'>
+ 			<input type='hidden' name='po_sta' value='${po_Sign.po_sta}'>
+ 			<input type='hidden' name='po_id' value='${po_Sign.po_id}'>
+ 			<input type='hidden' name='sig_date' value='${po_Sign.sig_date}'>
+ 			<input type='hidden' name='sig_sta' value='${po_Sign.sig_sta}'>
+ 			<input type='hidden' name='sig_sug' value='${po_Sign.sig_sug}'>
+ 			<input type='hidden' name='sig_rank' value='${po_Sign.sig_rank}'>		
+ 
+ 
+ </form>
+ </div>
 	
 	<script src="../js/app.js"></script>
 </body>

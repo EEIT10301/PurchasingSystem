@@ -54,7 +54,7 @@
 			<c:if test="${sendl.sig_Rank==1}">
 		<tr>
 				<td>${sendl.chk_Id }</td>				
-				<td><fmt:formatDate pattern="yyyy/MM/dd hh:mm"  value="${sendl.sig_Date}"/></td>
+				<td><fmt:formatDate pattern="yyyy/MM/dd"  value="${sendl.sig_Date}"/></td>
 		
 					<c:forEach var="sendl1" items="${sendlist}">
 						<form action="<c:url value="/Inv/InvsendEmployee.controller" />"
