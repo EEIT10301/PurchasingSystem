@@ -55,9 +55,9 @@ function forward(){
 							<td>${poDetail.pO_MainBean.pO_Vendor_InfoBean.vendor_name}</td>
 							<td>${poDetail.part_No}</td>
 							<td>${poDetail.productListBean.pro_name}</td>
-							<td>${poDetail.total_Qty}</td>
 							<td>${poDetail.quotation}</td>
 							<td>${poDetail.total_Price}</td>
+							<td>${poDetail.total_Price*poDetail.quotation}</td>
 						</tr>
 					</c:forEach>
 					
