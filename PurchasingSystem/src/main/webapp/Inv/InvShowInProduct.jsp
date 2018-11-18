@@ -49,11 +49,10 @@ button { @extend input;
 	<div class="right">
 		<input class="form-control" id="myInput" type="text"
 			placeholder="Search"><br />
-			<div style="float: left;">
-			<form action="CheckBean">
-			<input type="submit" value="未入庫清單" >
+			<div style="float: left;"><form action="CheckBean">
+			<input type="submit" value="未入庫清單">
 			</form></div>
-			<form action="CheckBean">
+			<form action="CheckBean?">
 			<input type="hidden" name="flag" value="in">
 			<input type="submit" value="已入庫清單">
 			</form>
@@ -72,7 +71,7 @@ button { @extend input;
 					</tr>
 				</thead>
 				<c:forEach var="check" items="${check}">
-				<c:set var="in" value="尚未入庫" /> <c:if
+				<c:set var="in" value="已加入庫存" /> <c:if
 								test="${check.chk_Comment==in}">
 					<tr>
 						<td><a href="CheckDetail?CHPK=${check.chk_Id}">${check.chk_Id}</a></td>

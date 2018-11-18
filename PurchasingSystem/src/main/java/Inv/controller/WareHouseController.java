@@ -61,7 +61,16 @@ public class WareHouseController {
 	}	
 	
 	@RequestMapping("/Inv/CheckBean")
-	private String meth(Model model) {	
+	private String meth(Model model , String flag) {	
+//		System.out.println("這是controller"+flag);
+//		System.out.println((""+flag).equals("in"));
+		if((""+flag).equals("in")) {
+			List<Inv＿ProductCheckBean> checkAll = additemServie.select();
+			model.addAttribute("check", checkAll);	
+			flag=null;
+			return "InvInProduct.show";
+		}
+//		System.out.println(flag.toString().equals("true"));
 	List<Inv＿ProductCheckBean> checkAll = additemServie.select();
 	model.addAttribute("check", checkAll);	
 	return "invend.itemins";
