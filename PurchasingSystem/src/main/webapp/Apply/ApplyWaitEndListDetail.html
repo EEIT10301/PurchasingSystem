@@ -232,7 +232,7 @@ $.ajax({
 			txt += "<th>驗收良率</th>"
 			txt += "<th>驗收日期</th>"	
 			txt += "<th>驗收人員</th>"
-			txt += "<th>驗收情形</th>"
+			txt += "<th>目前庫存</th>"
 			txt += "</tr>"
 			$.each(data.myArrayList,function(index,json){
 				//alert(json.map.productListBean.pro_name);
@@ -244,7 +244,7 @@ $.ajax({
 				txt += "<td>"+json.map.chk_quality+"</td>"
 				txt += "<td>"+json.map.chk_Date+"</td>"
 				txt += "<td>"+json.map.inv＿ProductCheckBean.map.employeeBean.map.emp_name+"</td>"
-				txt += "<td>"+json.map.chk_status+"</td>"	
+				txt += "<td>"+json.map.productListBean.map.pro_amount+"</td>"	
 				txt += "</tr>"
 
 			})		
