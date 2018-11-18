@@ -27,7 +27,10 @@ Page Not Found
       </div>
         <script src="https://lc-www-live-s.legocdn.com/r/www/scripts/dist/release.js?l.r2=1.0.0.1587" type="text/javascript"></script>
      <% 
-        response.setHeader("Refresh","3; URL=../Inv/errerPage.contorller");
+
+     	session.removeAttribute("user");
+        response.setHeader("Refresh","3; URL=//localhost:8080/PurchasingSystem/MainPage.jsp");
+
      %> 
     
     </body>

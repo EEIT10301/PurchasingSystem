@@ -1,53 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ include file="../POInclude.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>產生詢價單</title>
-<link rel="stylesheet" type="text/css" href="../css/POcss.css">
+<!-- <link rel="stylesheet" type="text/css" href="../css/POcss.css"> -->
 
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" -->
+<!-- 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- <script -->
+<!-- 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 
 <script type="text/javascript">
-
-		function tosend() {
-			if(confirm("確定送出審核")){
-				window.event.returnValue=true;
-				alert("資料已送出");
-			}
-			else{
-				window.event.returnValue=false;
-				
-			}
+function forward(){
+	if(confirm("確定送出此單據? "))
+	{
+		window.event.returnValue=true;
 		}
-		
-
+		else
+		{
+		alert("單據送出取消");
+		window.event.returnValue=false;
+		}
+}
 
 </script>
-
-<style type="text/css">
-#thead2 {
-	font-size: 30px;
-}
-
-#submitbutton {
-	display: inline;
-}
-
-#doublesubmitbutton {
-	position: absolute;
-	right: 700px;
-}
-</style>
 </head>
+<%@ include file="../POIncludeforAcc.jsp"%>
 <body class="bg">
 	<div class="right">
 		<c:if
@@ -111,6 +94,7 @@
 					<p>
 						簽核順序 step2: ${boss.emp_job}: ${boss.emp_name} <Input type='hidden'
 							name='boss' value='${boss.emp_id}'>
+						<h5><font color="red">採購金額高於請購金額20%需總經理核決</font></h5>
 				</c:if>
 				簽核意見:
 				<p>
@@ -121,7 +105,7 @@
 				<div id="doublesubmitbutton">
 
 					<Input id="submitbutton"  class='btn btn-default' type='submit' name='send' value='重新輸入'>
-					<Input id="submitbutton" class='btn btn-default' type='submit' name='send' value='送出'>
+					<Input id="submitbutton" class='btn btn-default' type='submit' name='send' value='送出' onclick="forward()">
 <!-- 					<button id='submitbutton' class='btn btn-default' value=''>重新輸入</button> -->
 <!-- 					<button id='submitbutton' class='btn btn-default' value=''>送出</button> -->
 				</div>

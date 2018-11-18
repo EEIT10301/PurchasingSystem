@@ -127,7 +127,7 @@ public class POPlacementController {
 		Date dateTime = sdf.parse(currentDate);
 		Date dateTime1 = sdf.parse(shippingDate);
 		
-		if (send.equals("送出")) {
+		if (send.equals("確認下單")) {
 			PO_SigningProcessBean placeOrder = pO_SigningProcessService.select(bean.getPo_sta(), bean.getPo_id());
 			placeOrder.setSig_date(dateTime);
 			placeOrder.setSig_sta("已下單");

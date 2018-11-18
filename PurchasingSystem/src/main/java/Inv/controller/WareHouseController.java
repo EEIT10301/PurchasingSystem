@@ -40,8 +40,9 @@ public class WareHouseController {
 	public String Allitem(Model model , Integer pageSize, Integer pageNo) {
 		HashMap<String, String> err = new HashMap<String, String>();
 		System.out.println("這是庫存顯示controller");
-		pageSize=10; //一頁顯示10筆資料
-		List<Inv_MainBean> Mainbean = inv_MainSerivce.selectPage(pageSize, pageNo);
+		pageSize=15; //一頁顯示15筆資料
+		List<ProductListBean> Mainbean = productListService.selectPage( pageSize, pageNo);
+//		List<Inv_MainBean> Mainbean = inv_MainSerivce.selectPage(pageSize, pageNo);
 		if(Mainbean!=null&&Mainbean.size()>0) {
 		model.addAttribute("Mainbean", Mainbean);
 		}else {
@@ -50,8 +51,26 @@ public class WareHouseController {
 		return "invend.item";
 	}
 	
+	//驗收單查詢細項
+	@RequestMapping("/Inv/CheckDetail")
+	private String CheckDetail(String CHPK ,Model model) {	
+		System.out.println(CHPK);
+	 List<Inv_ProductListBean> Count = additemServie.selectCount(CHPK);
+	 model.addAttribute("CheckDetail", Count);
+	return "InvCheckDeatil.show";
+	}	
+	
 	@RequestMapping("/Inv/CheckBean")
-	private String meth(Model model) {	
+	private String meth(Model model , String flag) {	
+//		System.out.println("這是controller"+flag);
+//		System.out.println((""+flag).equals("in"));
+		if((""+flag).equals("in")) {
+			List<Inv＿ProductCheckBean> checkAll = additemServie.select();
+			model.addAttribute("check", checkAll);	
+			flag=null;
+			return "InvInProduct.show";
+		}
+//		System.out.println(flag.toString().equals("true"));
 	List<Inv＿ProductCheckBean> checkAll = additemServie.select();
 	model.addAttribute("check", checkAll);	
 	return "invend.itemins";
@@ -75,7 +94,7 @@ public class WareHouseController {
 		Inv_SigningProcessBean signing = inv_SigningProcessService.select("驗收", CheckPK);//.getSig_sta取得流程"驗收成功"
 		List<Inv_ProductListBean> Count =null ;
 		// 加入倒清單內部
-		Inv_MainBean bean = null;
+//		Inv_MainBean bean = null;
 		Inv_DetailBean Detailbean = null;
 		Count = additemServie.selectCount(CheckPK);
 		// 加入倒清單內部
@@ -85,14 +104,16 @@ public class WareHouseController {
 				for (Inv_ProductListBean getones : Count) {
 //					if (getones.getChk_status().equals("驗收完畢")) {
 						// 新增至庫存MAIN
-						bean =new Inv_MainBean();
-						bean = inv_MainSerivce.select(getones.getPart_No());
+//						bean =new Inv_MainBean();
+						ProductListBean productlist = productListService.select(getones.getPart_No());
+//						bean = inv_MainSerivce.select(getones.getPart_No());
 					// 取得驗收單數量+取得目前庫存總數量=>存入庫存MainBean內
-					bean.setInv_Amount(
-							getones.getChk_Count() + inv_MainSerivce.select(getones.getPart_No()).getInv_Amount());
+						productlist.setPro_amount(
+//					bean.setInv_Amount(
+								getones.getChk_Count() + productListService.select(getones.getPart_No()).getPro_amount());
+//							getones.getChk_Count() + inv_MainSerivce.select(getones.getPart_No()).getInv_Amount());
 					// 新增至細項含數量以及時間
 					Detailbean = new Inv_DetailBean();
-					ProductListBean productlist = productListService.select(getones.getPart_No());
 					Detailbean.setInv_Part_no(getones.getPart_No());
 					Detailbean.setInv_Part(getones.getPart_No());
 					Detailbean.setInv_Amount(getones.getChk_Count());

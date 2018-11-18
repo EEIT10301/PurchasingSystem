@@ -3,7 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-
 <html>
 
 <head>
@@ -24,27 +23,21 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.9/js/locales/LANG.js"></script>
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <style type="text/css">
-
 .bg {
 	background-color: #FDF5E6;
 	/* 畫面間距 */
 }
-
 .lr {
 	width: 38%;
 	float: left;
 }
-
 .dlr {
 	width: 60%;
 	float: right;
 }
-
-
 table {
 	font-size: 13px;
 }
-
 </style>
 </head>
 
@@ -176,8 +169,7 @@ table {
 				</c:if>
 				<div class="form-group mb-2">
 					<label class="col-md-3">簽核意見:</label>
-
-					<textarea rows="2" cols="58" name="SignSug" class="col-md-6 mb-2"></textarea>
+					<textarea rows="2" cols="58" name="SignSug" class="col-md-6 mb-2" required></textarea>
 				</div>
 				<div class="text-right">
 					<input class="btn btn-primary" type="reset" value="重新輸入"> <input
@@ -307,7 +299,7 @@ table {
 				<c:if test="${not empty sigSug}">
 					<div class="form-group  mb-2">
 						<label class="col-md-4">退回原因:</label>
-						<table class="table table-hover col-md-6 mb-2">
+						<table class="text-center table table-hover col-md-6 mb-2">
 						<thead>
 								<tr>
 									<th>簽核人</th>
@@ -353,11 +345,9 @@ table {
 	<input type="hidden" value="${inv_id}" name="invidback">
 
 	<script>
-
 	$(document).ready(function(){
 	     $("#input-b5").fileinput({ showCaption: false, dropZoneEnabled: false ,showUpload: false});
 	});
-
 	$(document).ready(function(){
 		var invid="${inv_id}";
 		var sendsuccessmeg="${sendsuccessmeg}";

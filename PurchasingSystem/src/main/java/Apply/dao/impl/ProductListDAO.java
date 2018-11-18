@@ -14,6 +14,7 @@ import Account.model.Inv_ProductListBean;
 import Apply.dao.ProductListIDAO;
 import Apply.model.AppDetailBean;
 import Apply.model.ProductListBean;
+import Inv.model.Inv_MainBean;
 import Po.model.PO_DetailBean;
 import misc.SpringJavaConfiguration;
 
@@ -75,6 +76,13 @@ public class ProductListDAO implements ProductListIDAO {
 			sessionFactory.getCurrentSession().getTransaction().commit();
 	
 		 
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<ProductListBean> selectPage(Integer pageSize, Integer pageNo) {
+		return this.getSession().createQuery(
+	"from ProductListBean ").setFirstResult((pageNo - 1)* pageSize).setMaxResults(pageSize).list();
 	}
 	
 	@Override

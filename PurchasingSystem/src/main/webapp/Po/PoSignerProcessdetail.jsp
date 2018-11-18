@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ include file="../POInclude.jsp"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
@@ -10,18 +9,16 @@
 <title>採購單細項</title>
 
 
-<link rel="stylesheet" type="text/css" href="../css/POcss.css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script type="text/javascript"
-	src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- <link rel="stylesheet" type="text/css" href="../css/POcss.css"> -->
+<!-- <link rel="stylesheet" -->
+<!-- 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+<!-- <script type="text/javascript" -->
+<!-- 	src="http://code.jquery.com/jquery-1.10.1.min.js"></script> -->
+<!-- <script -->
+<!-- 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 </head>
+<%@ include file="../POIncludeforAcc.jsp"%>
 <body class="bg">
-
-
-
 	<div class="right">
 		<c:if test="${not empty thispro}">
 			<h2>採購單編號:${pomainlist.po_id}</h2>
@@ -163,7 +160,7 @@
 						<c:if
 							test="${posignpro.sig_sta=='未簽核' or posignpro.sig_sta=='簽核中'}">
 							<tr>
-								<td>5</td>
+								<td>3</td>
 								<td>${posignpro.employeeBean.emp_name}</td>
 								<td>${posignpro.employeeBean.emp_dep}
 									${posignpro.employeeBean.emp_job}</td>

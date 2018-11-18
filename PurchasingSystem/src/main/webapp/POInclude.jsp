@@ -6,6 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
@@ -16,15 +18,28 @@
 .bg {
 	background-color: #FDF5E6;
 	/* 畫面間距 */
-	margin: 30px;
+/* 	margin: 30px; */
+font-family: "微軟正黑體";
 }
 
 .left {
-	width: 15%;
+	width: 20%;
 	float: left;
 	text-align: center;
-	height: 1500px;
 }
+
+.right{
+margin-left:50px;
+width: 75%;
+	float: left;
+	text-align: center;
+}
+
+
+.nav nav-tabs {
+	width: 75%;
+}
+
 
 .f {
 	/* 方格排列 */
@@ -38,9 +53,9 @@
 /* 	padding: 0px; */
 /* 	font-size: 11px; */
 /* 	margin-right:10px; */
-	float:left;
-	height:35px;
-	width:30px;
+/* 	float:left; */
+	height:50px;
+	width:50px;
 }
 
 .card-text {
@@ -81,16 +96,54 @@ span {
 	margin-left:30px;
 	margin-right:30px;
 }
+
+th {
+    text-align: center; 
+    }
+
+nav{
+	background-color: rgb(248, 219, 166);
+	padding-top: 30px;
+	padding-left: 30px;
+	padding-right: 30px;
+}
+.n {
+	background-color: rgb(248, 219, 166);
+	padding-top: 30px;
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
+.lr {
+	width: 40%;
+	float: left;
+}
+
+.dlr {
+	width: 55%;
+	float: right;
+}
+
+table {
+	font-size: 13px;
+}
+
+th {
+    text-align: center; 
+}
+
 </style>
 </head>
 <body class="bg">
+<nav>
 	<h1><font face="微軟正黑體">採購系統</font></h1>
-	<a href="POLoginSuccess.jsp" style="font-family:微軟正黑體;">回首頁</a>
+<!-- 	<a href="POLoginSuccess.jsp" style="font-family:微軟正黑體;">回首頁</a> -->
 	<div class="text-right" style="font-family:微軟正黑體;">
 		${user.emp_dep}/${user.emp_name} ${user.emp_job},你好<a
 			href='POLogout.controller'><button type="button" class="btn btn-white btn-sm">登出</button></a>
 	</div>
 	<hr>
+	</nav>
 	<div class="left">
 <%-- 		<br> <span>${sendok}</span> --%>
 
@@ -167,6 +220,7 @@ span {
             </ul>
 		</c:if>
 		<c:if test="${user.emp_level==2}">
+		<br>
 		<ul class="nav flex-column">
               <li class="nav-item">
                 <a class="nav-link active" href="sendEmployee.controller">

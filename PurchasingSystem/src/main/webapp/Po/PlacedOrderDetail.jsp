@@ -1,113 +1,69 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
-<%@ include file="../POInclude.jsp"%>
+	pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
- <link  rel = " stylesheet"
-  href = " https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.css ">
-<script  src = " https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.js "> </script >
-<link rel="stylesheet" type="text/css" href="../css/POcss.css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" type="text/css" href="../css/POcss.css"> -->
+<!-- <link rel="stylesheet" -->
+<!-- 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
 <!-- <script type="text/javascript" -->
 <!-- 	src="http://code.jquery.com/jquery-1.10.1.min.js"></script> -->
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+<!-- <script -->
+<!-- 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 
-
-
-<title>待收貨單明細</title>
+<title>待收貨採購單</title>
 </head>
+<%@ include file="../POIncludeforAcc.jsp"%>
 <body class="bg">
+<div class="right">
+	<c:if test='${empty placedOrderList}'>
+		<h2>${noPlacedOrderList}</h2>
+	</c:if>
 
-<div class="right">	
-<h2>採購單編號:${pm.po_id}</h2>
-<h2>收貨明細</h2>
-<form action="<c:url value="/Po/receivedGoods.controller" />" method="post">
-	<table id="myTable" class="table table-striped table-hover">
-	<thead>
-			<tr>
-				<th width="800px">料號</th>
-				<th width="800px">產品名稱</th>
-				<th width="1200px">總數量</th>
-			</tr>
-	</thead>
-	<tbody>
-	<c:forEach var='poDetail' items='${poDetail}'>	
-	<tr>
-		<td>${poDetail.part_No}</td>
-		<td>${poDetail.productListBean.pro_name}</td>
-		<td>${poDetail.total_Qty}</td>
-	</tr>
-	</c:forEach>
-<%-- 	<c:forEach var='po_Sign' items='${po_Sign}'> --%>
-		<tr>
-			<td><input type='hidden' name='po_manger' value='${po_Sign.po_manger}'></td>
-			<td><input type='hidden' name='po_sta' value='${po_Sign.po_sta}'></td>
-			<td><input type='hidden' name='po_id' value='${po_Sign.po_id}'></td>
-			<td><input type='hidden' name='sig_date' value='${po_Sign.sig_date}'></td>
-			<td><input type='hidden' name='sig_sta' value='${po_Sign.sig_sta}'></td>
-			<td><input type='hidden' name='sig_sug' value='${po_Sign.sig_sug}'></td>
-			<td><input type='hidden' name='sig_rank' value='${po_Sign.sig_rank}'></td>
-		</tr>
-		</tbody>
-		</table>
+	<c:if test='${not empty placedOrderList}'>
 		
-<%-- 	</c:forEach> --%>
-收貨意見:<p><textarea rows="5" cols="50" name="signSug"></textarea></p>
-
-實際收貨時間:<input type="date" name="shippingDate" required>
-
-
-<p><input type="submit" name="send" class='btn btn-default' value="確認收貨">
-
-
-
-</form>
-</div>
-<script src="../js/app.js"></script>	
-
-
-<script type="text/javascript">
-// 		function tosend() {
-// 			if(confirm("確認收貨")){
-// 				window.event.returnValue=true;
-// 				swal("收貨已完成");
-// 			}
-// 			else{
-// 				window.event.returnValue=false;
-				
-// 			}
-// 		}
-
-$(document).ready(function(){
-// swal("Hello world!");	
-
-swal({
-  title: "Are you sure?",
-  text: "Once deleted, you will not be able to recover this imaginary file!",
-  icon: "warning",
-  buttons: true,
-  dangerMode: true,
-})
-// 	s
-});
-});
-// .then((willDelete) => {
-//   if (willDelete) {
-// 	  window.location.href='http://localhost:8080/PurchasingSystem/Po/POLoginSuccess.jsp';
-//     swal("Poof! Your imaginary file has been deleted!",	{ icon:"success",
-//     	});
-//   } else {
-//     swal("Your imaginary file is safe!");
-// 	  window.location.href='http://localhost:8080/PurchasingSystem/Po/PlacedOrderDetail.jsp';
-//   }
-// }
-// });
-</script>
+		<h3>待收貨表單</h3>
+		<table  class="table table-striped table-hover">
+		<thead>
+			<tr>
+				<th width="200px">採購單號</th>
+				<th width="200px">出貨時間</th>
+				<th></th>
+			</tr>		
+		</thead>
+		<tbody id="myTable">
+		<c:forEach var='placedOrderList' items='${placedOrderList}'>
+		<form action="<c:url value="/Po/placedOrderDetail.controller"/>"method="post">
+		<tr>
+			<td>${placedOrderList.po_id}</td>
+			<td><fmt:formatDate pattern="yyyy/MM/dd" value="${placedOrderList.pO_MainBean.shipping_Date}"/></td>
+<%-- 			<c:forEach var='placedOrderListInfo' items='${placedOrderListInfo}'> --%>
+<%-- 			<c:if test='${placedOrderListInfo.po_id == placedOrderListInfo.po_id}'> --%>
+<%-- 			<p>出貨時間:${placedOrderListInfo.sig_date}</p> --%>
+<%-- 			</c:if> --%>
+<%-- 			</c:forEach> --%>
+			
+			
+			<td><input type="submit" value="收貨" id="submit" class='btn btn-default btn-sm'></td>
+<!-- 			<td><button id='submit' class='btn btn-default btn-sm' value=''>收貨</button></td> -->
+	</tr>
+			<input type='hidden' name='po_manger' value='${placedOrderList.po_manger}'>
+			<input type='hidden' name='po_sta' value='${placedOrderList.po_sta}'>
+			<input type='hidden' name='po_id' value='${placedOrderList.po_id}'>
+			<input type='hidden' name='sig_date' value='${placedOrderList.sig_date}'>
+			<input type='hidden' name='sig_sta' value='${placedOrderList.sig_sta}'>
+			<input type='hidden' name='sig_sug' value='${placedOrderList.sig_sug}'>
+			<input type='hidden' name='sig_rank' value='${placedOrderList.sig_rank}'>
+	</form>
+	</c:forEach>
+	</tbody>
+	</table>	
+	</c:if>
+	</div>
+	
+	<script src="../js/app.js"></script>
 </body>
 </html>

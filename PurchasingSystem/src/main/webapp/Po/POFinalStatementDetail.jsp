@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ include file="../POInclude.jsp"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
@@ -9,15 +8,27 @@
 <head>
 <meta charset="UTF-8">
 <title>查詢結案請款單細項</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link rel="stylesheet" type="text/css" href="../css/POcss.css">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+<!-- <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script> -->
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+<!-- <link rel="stylesheet" type="text/css" href="../css/POcss.css"> -->
 </head>
+<%@ include file="../POIncludeforAcc.jsp"%>
 <body class="bg">
 <div class="right">
 
-<h2>請購單編號:${appMainDone.app_id}</h2>
+
+
+
+
+<div class="card">
+<div data-toggle="collapse" data-target="#demo3"
+	 class="accordion-toggle">
+	<h5 class="text-center font-weight-bold">請購單編號:${appMainDone.app_id} ↓</h5>		
+</div>
+<div class="accordian-body collapse" id="demo3">
+
+
 <table class="table table-striped table-hover" id="myTable">
 <tr>
 <th width="200px">請購單編號</th>
@@ -33,7 +44,7 @@
 
 
 </table>
-
+	
 
 
 
@@ -107,6 +118,11 @@
 </c:forEach>
 
 </table>
+</div>
+
+</div>
+
+<br><br><br>
 
 
 
@@ -120,15 +136,14 @@
 
 
 
+<div class="card">
+<div data-toggle="collapse" data-target="#demo4"
+	 class="accordion-toggle">
+	<h5 class="text-center font-weight-bold">採購單編號:${pomainDone.po_id}↓</h5>		
+</div>
+<div class="accordian-body collapse" id="demo4">
 
 
-
-
-
-
-
-
-<h2>採購單編號:${pomainDone.po_id}</h2>
 <table class="table table-striped table-hover" id="myTable">
 <tr>
 <th width="200px">採購單編號</th>
@@ -146,6 +161,11 @@
 
 
 </table>
+
+
+
+
+
 
 
 
@@ -221,13 +241,23 @@
 
 </table>
 
+</div></div><br><br><br>
 
 
 
 
 
 
-<h2>驗收簽核流程</h2>
+
+
+<div class="card">
+<div data-toggle="collapse" data-target="#demo5"
+	 class="accordion-toggle">
+	<h5 class="text-center font-weight-bold">驗收簽核流程↓</h5>		
+</div>
+<div class="accordian-body collapse" id="demo5">
+
+
 <table class="table table-striped table-hover" id="myTable">
 <thead>
 <tr>
@@ -259,14 +289,25 @@
 
 </table>
 
+</div></div><br><br><br>
 
 
 
 
 
-<h2>請款簽核流程</h2>
+
+
+<div class="card">
+<div data-toggle="collapse" data-target="#demo6"
+	 class="accordion-toggle">
+	<h5 class="text-center font-weight-bold">請款簽核流程↓</h5>		
+</div>
+<div class="accordian-body collapse" id="demo6">
+
+
+
 <table class="table table-striped table-hover" id="myTable">
-<thead>
+
 <tr>
 <th width="200px">簽核順序</th>
 <th width="200px">流程進度</th>
@@ -275,7 +316,7 @@
 <th width="200px">簽核情形</th>
 <th width="200px">簽核建議</th>
 </tr>
-</thead>
+
 
 <c:forEach var="ACCDone" items="${ACCDone}">
 
@@ -296,7 +337,7 @@
 
 </table>
 
-
+</div></div>
 
 
 
