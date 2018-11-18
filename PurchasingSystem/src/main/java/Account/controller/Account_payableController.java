@@ -51,8 +51,7 @@ public class Account_payableController {
 		String picName = result.getRecript_pic().substring(8);
 		model.addAttribute("invoiceData", result);
 		model.addAttribute("picName", picName);
-		System.out.println("hahaha");
-		return "queryAccountPayable";
+		return "queryInvoice";
 	}
 
 	// 請款單資料產生excel檔
