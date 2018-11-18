@@ -20,7 +20,6 @@ function forward(){
 	if(confirm("確定送出此單據? "))
 	{
 		window.event.returnValue=true;
-		alert("單據送出成功");
 		}
 		else
 		{
