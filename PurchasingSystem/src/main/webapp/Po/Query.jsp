@@ -41,8 +41,8 @@
 					<th>採購數量</th>
 					
 <!-- 					<th>廠商</th> -->
-					<th>請購單價</th>
-					<th>請購數量</th>
+<!-- 					<th>請購單價</th> -->
+<!-- 					<th>請購數量</th> -->
 					<th>詢價單價</th>
 				</tr>
 				</thead>
@@ -54,8 +54,8 @@
 					<td><input type="hidden" name="pro_name" value="${pODetailBean.productListBean.pro_name}">${pODetailBean.productListBean.pro_name}</td>
 					<td><input type="hidden" name="total_Qty" value="${pODetailBean.total_Qty}">${pODetailBean.total_Qty}</td>	
 									
-					<td><input type="hidden" name="pro_price" value="${appDetailQuery.pro_price}">${appDetailQuery.pro_price}</td>					
-					<td><input type="hidden" name="app_amount" value="${appDetailQuery.app_amount}">${appDetailQuery.app_amount}</td>
+<%-- 					<td><input type="hidden" name="pro_price" value="${appDetailQuery.pro_price}">${appDetailQuery.pro_price}</td>					 --%>
+<%-- 					<td><input type="hidden" name="app_amount" value="${appDetailQuery.app_amount}">${appDetailQuery.app_amount}</td> --%>
 <!-- 					<td><select name="vendor_ID"> -->
 <%-- 							<c:forEach var="queryVendor" items="${AllPO_Vendor1}"> --%>
 <%-- 								<option value="${queryVendor.vendor_id}">${queryVendor.vendor_name}</option> --%>

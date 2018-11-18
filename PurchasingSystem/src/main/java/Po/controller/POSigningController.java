@@ -228,6 +228,9 @@ public class POSigningController {
 			ProductListBean pro = podetailQuery.getProductListBean();
 			String part_no = pro.getPart_no();
 			AppDetailBean appDetailQuery = appDetailService.select(app_id, part_no);
+			
+			
+			
 			model.addAttribute("appDetailQuery", appDetailQuery);
 		}
 		
