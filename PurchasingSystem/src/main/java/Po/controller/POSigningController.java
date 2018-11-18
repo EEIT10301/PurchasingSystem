@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -21,9 +22,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import Account.model.Account_InvoiceBean;
 import Account.model.PO_Vendor_InfoBean;
 import Account.service.PO_Vendor_InfoService;
+import Apply.model.AppDetailBean;
 import Apply.model.App_MainBean;
 import Apply.model.EmployeeBean;
 import Apply.model.ProductListBean;
+import Apply.service.AppDetailService;
 import Apply.service.App_MainService;
 import Apply.service.EmployeeService;
 import Po.model.PO_DetailBean;
@@ -42,6 +45,8 @@ public class POSigningController {
 	PO_SigningProcessService pO_SigningProcessService;
 	@Autowired
 	App_MainService app_MainService;
+	@Autowired
+	AppDetailService appDetailService;
 	@Autowired
 	PO_MainService pO_MainService;
 	@Autowired
@@ -174,8 +179,20 @@ public class POSigningController {
 	public String sendlistss(String po_manger, String po_sta, String po_id, Model model, HttpSession session) {
 		PO_SigningProcessBean bean = pO_SigningProcessService.select(po_sta, po_id);
 		List<PO_QueryBean> POQuery = pO_QueryService.selectQueryBean(po_id);
+		
+		
+		String appId = "Ap"+po_id.substring(2);
+		App_MainBean appMainQuery = app_MainService.select(appId);
+		List<AppDetailBean> appDetailQuery = appDetailService.selectapp_id(appId);
+		
+		
+		
+		
+		
 		model.addAttribute("poprocess1", bean);
 		model.addAttribute("queryss", POQuery);
+		model.addAttribute("appMainQuery", appMainQuery);
+		model.addAttribute("appDetailQuery", appDetailQuery);
 		return "select.listDetail";
 	}
 
@@ -202,12 +219,38 @@ public class POSigningController {
 		List<PO_Vendor_InfoBean> AllPO_Vendor1 = pO_Vendor_InfoService.select();
 		Set<PO_DetailBean> pODetailBean = bean1.getpO_MainBean().getpO_DetailBean();
 		
+		String app_id = "Ap"+po_id.substring(2);
+		
+		Iterator<PO_DetailBean> iterratorPodetail = pODetailBean.iterator();
+		
+		if(iterratorPodetail.hasNext()) {
+			PO_DetailBean podetailQuery = iterratorPodetail.next();
+			ProductListBean pro = podetailQuery.getProductListBean();
+			String part_no = pro.getPart_no();
+			AppDetailBean appDetailQuery = appDetailService.select(app_id, part_no);
+			
+			
+			
+			model.addAttribute("appDetailQuery", appDetailQuery);
+		}
+		
+		
+		
+		
+
+		
+		
+		
+		
 		model.addAttribute("query", bean1);
 		model.addAttribute("po_manger", po_manger);
 		model.addAttribute("po_sta", po_sta);
 		model.addAttribute("po_id", po_id);
 		model.addAttribute("AllPO_Vendor1", AllPO_Vendor1);
 		model.addAttribute("allPO_Deatil", pODetailBean);
+		
+		
+		
 		return "QueryMemo.show";
 	}
 

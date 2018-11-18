@@ -145,8 +145,9 @@ public class POInvoiceController {
 //		String destination ="C:\\Users\\timmy\\git\\repository\\PurchasingSystem\\src\\main\\webapp\\images"+ "\\" + invId + ".jpg";
 		String destination =request.getSession().getServletContext().getRealPath("images")+"\\"+invId+".jpg";
 //		String destination ="C:\\Users\\Tony\\Downloads\\PurchasingSystem\\PurchasingSystem\\src\\main\\webapp\\images"+"\\"+invId+".jpg";
+
 		System.out.println(destination);
-		if (file != null || file.getSize() > 0) {
+		if (file != null && file.getSize() > 0) {
 			File files = new File(destination);
 			file.transferTo(files);
 		}
@@ -199,7 +200,7 @@ public class POInvoiceController {
 		String destination =request.getSession().getServletContext().getRealPath("images")+"\\"+invId+".jpg";
 		// String destination = "images/"+invId+".jpg";
 		System.out.println("uploadRootPath=" + destination);
-		if (file != null || file.getSize() > 0) {
+		if (file != null && file.getSize() > 0) {
 			File files = new File(destination);
 			file.transferTo(files);
 		}
