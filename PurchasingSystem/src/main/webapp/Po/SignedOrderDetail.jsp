@@ -14,20 +14,18 @@
 
 
 <script type="text/javascript">
-
-		function tosend() {
-			if(confirm("確定送出審核")){
-				window.event.returnValue=true;
-				alert("資料已送出");
-			}
-			else{
-				window.event.returnValue=false;
-				
-			}
+function forward(){
+	if(confirm("確定送出此單據? "))
+	{
+		window.event.returnValue=true;
+		alert("單據送出成功");
 		}
-		
-
-
+		else
+		{
+		alert("單據送出取消");
+		window.event.returnValue=false;
+		}
+}
 </script>
 
 <meta charset="UTF-8">
@@ -95,7 +93,7 @@
 <br>
 <br>
 <br>
-<input type="submit" name="send" class='btn btn-white btn-sm' value="確認下單"></div>
+<input type="submit" name="send" class='btn btn-white btn-sm' value="確認下單" onclick="forward()"></div>
 		</form>
 	</div>
 
