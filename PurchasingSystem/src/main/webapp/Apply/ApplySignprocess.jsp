@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="java.util.*"%>
 <%@ page import="Apply.service.*"%>
 <%@ page import="Apply.model.*"%>
@@ -71,7 +72,8 @@ font-size: 36px;
 <form action="<c:url value="/Apply/ApplySignpro.controller" />" method="post">
   <tr>
  <td>${applylist.app_id}</td>
- <td>${applylist.sig_date}</td>
+<%--  <fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${applylist.sig_date}"/> --%>
+ <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${applylist.sig_date}"/></td>
  <td>${applylist.app_MainBean.employeeBean.emp_dep}</td>
  <td>${applylist.app_MainBean.employeeBean.emp_name} ${applylist.app_MainBean.employeeBean.emp_job}</td>
  <td> <Input type='submit' name='send' value='查詢請購進度'></td>

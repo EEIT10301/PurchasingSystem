@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="../AppInclude.jsp"%>     
 <!DOCTYPE html>
 <html>
@@ -61,7 +62,8 @@ font-size: 36px;
 
  <c:forEach var='applylistone' varStatus='vs' items='${Applylistsone}'>
  <c:if test='${applylist.app_id == applylistone.app_id}'>
-  <td> ${applylistone.sig_date}</td>
+ <td> <fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${applylistone.sig_date}"/></td>
+<%--   <td> ${applylistone.sig_date}</td> --%>
  </c:if>
  </c:forEach>
 <td><a href='ApplySignnerdetail.controller?app_manger=${applylist.app_manger}&app_sta=${applylist.app_sta}&app_id=${applylist.app_id}&send=sendok'>
@@ -95,7 +97,8 @@ font-size: 36px;
  <td>${nosends.app_MainBean.app_price}</td>
   <c:forEach var='nosendones' varStatus='vs' items='${nosendone}'>
  <c:if test='${nosends.app_id == nosendones.app_id}'>
-  <td> ${nosendones.sig_date}</td>
+  <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${nosendones.sig_date}"/></td>
+<%--   <td> ${nosendones.sig_date}</td> --%>
 <%-- <td>${nosends.sig_date}</td> --%>
  </c:if>
  </c:forEach>
