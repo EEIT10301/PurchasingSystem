@@ -124,8 +124,8 @@ document.getElementById('search').addEventListener('input', function() {
            </c:if>
            <td>${invpromain.chk_quality}</td>
           <c:if test="${ empty invpromain.chk_status}">
-		  <td><input type="text" name='chk_quality' placeholder="驗收品質"></td>
-		  <td> <input type="text" name='chk_Count' placeholder="實際數量"></td>		
+		  <td><input type="text" name='chk_quality' placeholder="驗收品質" required="required"></td>
+		  <td> <input type="text" name='chk_Count' placeholder="實際數量" required="required"></td>		
 		    <td><select name="chkstatus">
 		     <option selected="selected">請選擇</option>   
 		     <option  value="驗收成功">驗收成功</option>   
