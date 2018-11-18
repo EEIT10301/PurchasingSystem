@@ -67,23 +67,8 @@ td.details-control {
 						<tr>
 							<td>${row.accoutpayable_no}</td>
 							<c:if test="${not empty row.inv_id}">
-								<td class="details-control"><a href="ShowInvoice.controller?invid=${row.inv_id}">${row.inv_id}</a></td>
-<%-- 								<td class="details-control">${row.inv_id}</td> --%>
-<input type="hidden" value="${row.account_InvoiceBean}" name="poid">
-<c:set var="empName" value="${row.account_InvoiceBean.employeeBean.emp_name}"/>
-<input type="hidden" value="${empName}" name="poid">
-<c:set var="empDep" value="${row.account_InvoiceBean.employeeBean.emp_dep}"/>
-<input type="hidden" value="${empDep}" name="poid">
-<c:set var="totalprice" value="${row.account_InvoiceBean.total_price}"/>
-<input type="hidden" value="${totalprice}" name="poid">
-<c:set var="paymentMethod" value="${row.account_InvoiceBean.pO_MainBean.pO_Vendor_InfoBean.payment_method}"/>
-<input type="hidden" value="${paymentMethod}" name="poid">
-<fmt:formatDate value="${row.account_InvoiceBean.recript_date}" pattern="yyyy/MM/dd" var="date"/>
-<input type="hidden" value="${date}" name="poid">
-<c:set var="recriptpic" value="${row.account_InvoiceBean.recript_pic}"/>
-<input type="hidden" value="${recriptpic}" name="poid">
-<c:set var="picName" value="${fn:substring(recriptpic,8,30)}" />
-<input type="hidden" value="${picName}" name="poid">
+<%-- 								<td class="details-control"><a href="ShowInvoice.controller?invid=${row.inv_id}">${row.inv_id}</a></td> --%>
+								<td class="details-control">${row.inv_id}</td>
 							</c:if>
 							
 							<c:if test="${empty row.inv_id}">
@@ -113,35 +98,42 @@ td.details-control {
 <script>
 $(document).ready(function () {
     
-//   function format(d) {
-//       // `d` is the original data object for the row
-//       var bean="${invoiceData}";
-//       var empName = "${empName}";
-//       var empDep = "${empDep}";
-//       var totalPrice = "$${totalprice}";
-//       var paymentMethod = "${paymentMethod}";
-//       var invoiceDate = "${date}";
-//       var picPlace = "${recriptpic}"
-//       var picName = "${picName}"
-//       return '<table class="table table-striped table-hover dataTable">' +
-//           '<tr>' +
-//           '<td>申請人:</td>' +
-//           '<td>所屬部門:</td>' +
-//           '<td>請款金額:</td>' +
-//           '<td>付款方式:</td>' +
-//           '<td>憑證日期:</td>' +
-//           '<td>憑證圖檔:</td>' +
-//           '</tr>' +
-//           '<tr>' +
-//           '<td>' + empName + '</td>' +
-//           '<td>' + empDep + '</td>' +
-//           '<td>' + totalPrice + '</td>' +
-//           '<td>' + paymentMethod + '</td>' +
-//           '<td>' + invoiceDate + '</td>' +
-//           '<td>' + '<a href="..' + picPlace + '"target=" _blank">' + picName + '</a>' + '</td>' +
-//           '</tr>' +
-//           '</table>';
-//   }
+  function format(count) {
+      // `d` is the original data object for the row 
+      var arr=new Array();
+      <c:forEach var="row" items="${allPayableList}" varStatus="yourStatus">
+      arr[${yourStatus.index}] = new Array();  
+      arr[${yourStatus.index}][1] = "${row.account_InvoiceBean.employeeBean.emp_name}";  
+      arr[${yourStatus.index}][2] = "${row.account_InvoiceBean.employeeBean.emp_dep}";  
+      arr[${yourStatus.index}][3] = "${row.account_InvoiceBean.total_price}";    
+      arr[${yourStatus.index}][4] = "${row.account_InvoiceBean.pO_MainBean.pO_Vendor_InfoBean.payment_method}"; 
+      <fmt:formatDate value="${row.account_InvoiceBean.recript_date}" pattern="yyyy/MM/dd" var="date" />
+      arr[${yourStatus.index}][5] = "${date}";    
+      arr[${yourStatus.index}][6] = "${row.account_InvoiceBean.recript_pic}"; 
+      <c:set var="recriptpic" value="${row.account_InvoiceBean.recript_pic}" />
+      <c:set var="picName" value="${fn:substring(recriptpic,8,30)}" />
+      arr[${yourStatus.index}][7] = "${picName}";     
+      </c:forEach>
+      
+      return '<table class="table table-striped table-hover dataTable">' +
+          '<tr>' +
+          '<td>申請人:</td>' +
+          '<td>所屬部門:</td>' +
+          '<td>請款金額:</td>' +
+          '<td>付款方式:</td>' +
+          '<td>憑證日期:</td>' +
+          '<td>憑證圖檔:</td>' +
+          '</tr>' +
+          '<tr>' +
+          '<td>' + arr[count][1] + '</td>' +
+          '<td>' + arr[count][2] + '</td>' +
+          '<td>' + arr[count][3] + '</td>' +
+          '<td>' + arr[count][4] + '</td>' +
+          '<td>' + arr[count][5] + '</td>' +
+          '<td>' + '<a href="..' + arr[count][6] + '"target=" _blank">' + arr[count][7] + '</a>' + '</td>' +
+          '</tr>' +
+          '</table>';
+  }
   /* Formatting function for row details - modify as you need */
   var table = $('#example').DataTable({
           "iDisplayLength": 10,
@@ -153,21 +145,22 @@ $(document).ready(function () {
       });
  
   // Add event listener for opening and closing details
-//   $('#example tbody').on('click', 'td.details-control', function () {
-//       var tr = $(this).closest('tr');
-//       var row = table.row(tr);
+  $('#example tbody').on('click', 'td.details-control', function () {
+      var tr = $(this).closest('tr');
+      var row = table.row(tr);
+      var count=row.index();
 
-//       if (row.child.isShown()) {
-//           // This row is already open - close it
-//           row.child.hide();
-//           tr.removeClass('shown');
-//       }
-//       else {
-//           // Open this row
-//           row.child(format(row.data())).show();
-//           tr.addClass('shown');
-//       }
-//   });
+      if (row.child.isShown()) {
+          // This row is already open - close it
+          row.child.hide();
+          tr.removeClass('shown');
+      }
+      else {
+          // Open this row
+          row.child(format(count)).show();
+          tr.addClass('shown');
+      }
+  });
 });
 
 
