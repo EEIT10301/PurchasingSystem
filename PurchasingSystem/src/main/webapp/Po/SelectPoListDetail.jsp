@@ -131,7 +131,7 @@
 				<td>${appDetailQuery.productListBean.pro_spe}</td>
 				<td>${appDetailQuery.app_amount}</td>
 				<td>${appDetailQuery.pro_price}</td>
-				<td></td>
+<!-- 				<td></td> -->
 			</tr>
 
 		</c:forEach>
@@ -171,6 +171,9 @@
 			
 					<tr>
 						<th id="thead">最新詢價紀錄</th>
+						<th id="thead"></th>
+						<th id="thead"></th>
+						<th id="thead"></th>
 					</tr>
 					<tr>
 						<th width="250px">採購單編號</th>
