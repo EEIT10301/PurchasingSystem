@@ -156,8 +156,6 @@ document.getElementById('search').addEventListener('input', function() {
 </div>
 <div>
 <form  action="invfinish.conll" method="post" >
-		驗收單號:${Inv_SigningProcessBean.chk_Id }
-		驗收簽核狀態:${Inv_SigningProcessBean.sig_Sta }
 		驗收意見:<p><textarea rows="5" cols="50"  name="SignSug">${Inv_SigningProcessBean.sig_Sug }</textarea><font color="red"></font><p>
 		<Input type='hidden' name="sigSta" value='${Inv_SigningProcessBean.sig_Sta}'>
 		<Input type='hidden' name="chkId" value='${Inv_SigningProcessBean.chk_Id}'>
