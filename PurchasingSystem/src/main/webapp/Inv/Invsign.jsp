@@ -99,6 +99,7 @@ document.getElementById('search').addEventListener('input', function() {
   // beware of css injections!
 });
 </script>
+<h1>驗收單號:${pomain.po_id }</h1>
 	<table class="table table-striped table-hover" id="table">
            <thead>
            <tr>
