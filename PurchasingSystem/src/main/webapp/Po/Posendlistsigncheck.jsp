@@ -98,7 +98,7 @@ function forward(){
 				</c:if>
 				簽核意見:
 				<p>
-					<textarea rows="5" cols="50" name="SignSug" value="呈請核准詢價"></textarea>
+					<textarea rows="5" cols="50" name="SignSug">呈請核准詢價</textarea>
 				</p>
 				<Input type='hidden' name='posta1' value='${posta1}'> <Input
 					type='hidden' name='poid1' value='${poid1}'>

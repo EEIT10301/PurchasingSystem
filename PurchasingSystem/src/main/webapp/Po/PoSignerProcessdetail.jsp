@@ -190,8 +190,7 @@
 				<Input type='hidden' name='sig_rank' value='${thispro.sig_rank}'>
 				簽核意見:
 				<p>
-					<textarea rows="5" cols="50" name="SignSug" value="同意下單">
-</textarea>
+					<textarea rows="5" cols="50" name="SignSug">同意下單</textarea>
 					<font color="red">${error.plz}</font>
 				<p>
 					<Input type='submit' name='send' class='btn btn-default' value='${sendsubmit1}'> <Input
