@@ -83,7 +83,7 @@ function forward(){
 				<p>總採購價格:${allListprice}元</p>
 				<Input type='hidden' name='allListprice' value='${allListprice}'>
 				<p>
-					簽和順序 step1: <select name="pomanger">
+					簽核順序 step1: <select name="pomanger">
 						<c:forEach var="pomangers1" items="${pomangers}">
 							<option value='${pomangers1.emp_id}'>採購部主管:
 								${pomangers1.emp_name} ${pomangers1.emp_job}</option>
@@ -98,7 +98,7 @@ function forward(){
 				</c:if>
 				簽核意見:
 				<p>
-					<textarea rows="5" cols="50" name="SignSug"></textarea>
+					<textarea rows="5" cols="50" name="SignSug" value="呈請核准詢價"></textarea>
 				</p>
 				<Input type='hidden' name='posta1' value='${posta1}'> <Input
 					type='hidden' name='poid1' value='${poid1}'>
