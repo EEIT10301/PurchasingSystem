@@ -182,6 +182,7 @@ public JSONArray LoginSucessSelectInvSignList(HttpSession session) {
 		System.out.println("dddd"+chk_id);
 		Inv＿ProductCheckBean invmain = inv＿ProductCheckService.select(chk_id);
 		Inv_SigningProcessBean bean2 = inv_SigningProcessService.select("驗收", chk_id);
+		Inv_SigningProcessBean bean3 = inv_SigningProcessService.select("驗收分派", chk_id);
 		List<Inv_ProductListBean> reschksta = inv_ProductListService.selectIdandSigsta(chk_id, "驗收失敗");
 		if ("驗收失敗".equals(bean2.getSig_Sta()) || "再次驗收".equals(bean2.getSig_Sta())) {
 			bean2.setSig_Sta("再次驗收");
@@ -192,6 +193,7 @@ public JSONArray LoginSucessSelectInvSignList(HttpSession session) {
 			}
 			}
 			model.addAttribute("invmain", invmain);
+			model.addAttribute("bean3", bean3);
 			model.addAttribute("Inv_SigningProcessBean", bean2);
 			return "Inv.restchk";
 		}
@@ -200,6 +202,7 @@ public JSONArray LoginSucessSelectInvSignList(HttpSession session) {
 		PO_MainBean pomain = po_MainService.select(invidonlynumber);
 		model.addAttribute("invmain", invmain);
 		model.addAttribute("pomain", pomain);
+		model.addAttribute("bean3", bean3);
 		model.addAttribute("Inv_SigningProcessBean", bean2);
 		return "Inv.sign";
 	}
