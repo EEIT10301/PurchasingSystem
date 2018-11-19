@@ -108,7 +108,7 @@ public class PO_SigningProcessDao implements PO_SigningProcessIDao {
 
 	@Override
 	public List<PO_SigningProcessBean> select() {
-		return this.getSession().createQuery("from PO_SigningProcessBean order by sig_date", PO_SigningProcessBean.class)
+		return this.getSession().createQuery("from PO_SigningProcessBean order by sig_date desc", PO_SigningProcessBean.class)
 				.setMaxResults(50).list();
 	}
 
@@ -204,7 +204,7 @@ public class PO_SigningProcessDao implements PO_SigningProcessIDao {
 	public List<PO_SigningProcessBean> selectempidsend(String po_manger, String sig_sta) {
 		List<PO_SigningProcessBean> list = null;
 		// from PO_SigningProcess where PO_Manger='emp005' and Sig_Sta='分派中'
-		String hgl = "FROM PO_SigningProcessBean where PO_Manger=:id1 and sig_sta=:id2 order by po_id desc";
+		String hgl = "FROM PO_SigningProcessBean where PO_Manger=:id1 and sig_sta=:id2 order by sig_date desc";
 		list = this.getSession().createQuery(hgl).setParameter("id1", po_manger).setParameter("id2", sig_sta)
 				.setMaxResults(50).list();
 
@@ -266,7 +266,7 @@ public class PO_SigningProcessDao implements PO_SigningProcessIDao {
 	public PO_SigningProcessBean selectrank(String po_id, Integer sig_rank) {
 		List<PO_SigningProcessBean> list = null;
 		PO_SigningProcessBean getRank = new PO_SigningProcessBean();
-		String hgl = "FROM PO_SigningProcessBean WHERE po_id=:id1 AND sig_Rank=:id2 order by sig_date";
+		String hgl = "FROM PO_SigningProcessBean WHERE po_id=:id1 AND sig_Rank=:id2 order by sig_date desc";
 
 		list = this.getSession().createQuery(hgl).setParameter("id1", po_id).setParameter("id2", sig_rank)
 
@@ -286,7 +286,7 @@ public class PO_SigningProcessDao implements PO_SigningProcessIDao {
 	public List<PO_SigningProcessBean> selectempidsendpages(String po_manger, String sig_sta ,Integer beginindex,Integer pagesize) {
 		List<PO_SigningProcessBean> list1 = null;
 		// from PO_SigningProcess where PO_Manger='emp005' and Sig_Sta='分派中'
-		String hgl = "FROM PO_SigningProcessBean where PO_Manger=:id1 and sig_sta=:id2 order by po_id desc";
+		String hgl = "FROM PO_SigningProcessBean where PO_Manger=:id1 and sig_sta=:id2 order by sig_date desc";
 		@SuppressWarnings("rawtypes")
 		Query query = this.getSession().createQuery(hgl).setParameter("id1", po_manger).setParameter("id2", sig_sta);
 		query.setFirstResult(beginindex);
