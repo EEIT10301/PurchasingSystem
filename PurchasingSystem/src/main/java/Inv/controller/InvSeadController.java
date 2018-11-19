@@ -175,12 +175,12 @@ public String reschangeinvprosta(String sigSta,String send, Integer chk_Count, S
 			posecondsigningrocess.setSig_sta("驗收完成未請款");
 			posecondsigningrocess.setSig_date(date);
 			accout_PayableService.createAccountPayable(chkId);
-			return "Invlogin.success";
+			return "redirect:/Inv/selectInvchk.controller";
 		} else if ("驗收失敗".equals(sigSta)) {
 			secondsigningrocess1.setSig_Date(dates);
-			return "Invlogin.success";
+			return "redirect:/Inv/selectInvchk.controller";
 		}
-		return "Invlogin.success";
+		return "redirect:/Inv/selectInvchk.controller";
 	}
 
 
