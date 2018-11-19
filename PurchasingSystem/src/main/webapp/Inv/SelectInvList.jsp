@@ -93,7 +93,7 @@ document.getElementById('search').addEventListener('input', function() {
 				
 <!-- 				<tr> -->
 <!-- 					<th><input  class="form-control" id="myInput" type="text" -->
-<!-- 						placeholder="Search"><br /></th> -->
+<!-- 						placeholder="Search">s<br /></th> -->
 <!-- 				<style id="m-search"></style> -->
 <!-- 				</tr> -->
 				<tr>
