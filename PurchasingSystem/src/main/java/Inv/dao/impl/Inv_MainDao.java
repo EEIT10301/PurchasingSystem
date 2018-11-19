@@ -58,9 +58,9 @@ public class Inv_MainDao implements Inv_MainIDao{
          for(Inv_MainBean x:selects) {
         	System.out.println("1.驗收單主檔:"+x.getInv_Cate());
         	System.out.println("2.產品主檔:"+x.getProductListBean().getPro_name());
-            for(Inv_DetailBean ss:x.getInv_DetailBean()) {
-            	System.out.println("3.驗收細項:"+ss.getInv_Name());
-            }
+//            for(Inv_DetailBean ss:x.getInv_DetailBean()) {
+//            	System.out.println("3.驗收細項:"+ss.getInv_Name());
+//            }
          }
 		sessionFactory.getCurrentSession().getTransaction().commit();
 	}

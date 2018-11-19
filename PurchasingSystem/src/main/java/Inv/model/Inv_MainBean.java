@@ -23,7 +23,7 @@ private String inv_Cate;
 private String inv_Emp_Dep;
 private Integer inv_Amount;
 private ProductListBean productListBean;
-private Set<Inv_DetailBean> inv_DetailBean = new LinkedHashSet<>();
+//private Set<Inv_DetailBean> inv_DetailBean = new LinkedHashSet<>();
 
 
 public Inv_MainBean(String inv_Part_no, String inv_Cate, String inv_Emp_Dep, Integer inv_Amount) {
@@ -69,13 +69,13 @@ public ProductListBean getProductListBean() {
 public void setProductListBean(ProductListBean productListBean) {
 	this.productListBean = productListBean;
 }
-@OneToMany(mappedBy="inv_MainBean", cascade={CascadeType.MERGE})
-public Set<Inv_DetailBean> getInv_DetailBean() {
-	return inv_DetailBean;
-}
-public void setInv_DetailBean(Set<Inv_DetailBean> inv_DetailBean) {
-	this.inv_DetailBean = inv_DetailBean;
-}
+//@OneToMany(mappedBy="inv_MainBean", cascade={CascadeType.MERGE})
+//public Set<Inv_DetailBean> getInv_DetailBean() {
+//	return inv_DetailBean;
+//}
+//public void setInv_DetailBean(Set<Inv_DetailBean> inv_DetailBean) {
+//	this.inv_DetailBean = inv_DetailBean;
+//}
 
 
 

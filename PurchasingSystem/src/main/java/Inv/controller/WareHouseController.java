@@ -89,9 +89,21 @@ public class WareHouseController {
 	
 	@RequestMapping("/Inv/DetailView")
 	private String DetailView(Model model , String MainbeanPK) {
+		List<Inv_DetailBean> bean=null;
 		System.out.println("這是顯示產品細項的controller");
-		List<Inv_DetailBean> bean = inv_Detailservice.select(MainbeanPK);
-		System.out.println(bean);
+	 bean = inv_Detailservice.selectnv_Part_notest(MainbeanPK);
+		int x=0;
+		x=1;
+		x=1;
+		x=1;
+		x=1;
+		x=1;
+		x=1;
+		x=1;
+		x=1;
+		x=1;
+		x=1;
+		x=1;
 		model.addAttribute("detailbean", bean);
 		return "DetailView.Show";
 	}
@@ -132,7 +144,7 @@ public class WareHouseController {
 					Detailbean.setInv_Intr(productlist.getPro_intro());
 					Detailbean.setInv_Spe(productlist.getPro_spe());
 					Detailbean.setInv_Name(productlist.getPro_name());
-					Detailbean.setInv_Amounts(null);
+					//Detailbean.setInv_Amounts(null);
 					inv_Detailservice.insert(Detailbean);
 //					inv_MainSerivce.update(bean);	
 				//	getones.setChk_status("驗收完畢產品已入庫");

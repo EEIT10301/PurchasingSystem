@@ -15,8 +15,8 @@ public class Inv_DetailService {
 @Autowired
 private Inv_DetailIDao inv_DetailIDao;
 
-public List<Inv_DetailBean> select(String Inv_Part_no) {
-	List<Inv_DetailBean> bean=inv_DetailIDao.select(Inv_Part_no);
+public List<Inv_DetailBean> selectnv_Part_no(String Inv_Part_no) {
+	List<Inv_DetailBean> bean=inv_DetailIDao.selectnv_Part_no(Inv_Part_no);
 	if(bean.size()!=0) {
 		return bean;
 	}
@@ -31,8 +31,8 @@ public Inv_DetailBean select(String Inv_Part_no, String Inv__Date) {
 	return null;
 }
 
-public List<Inv_DetailBean> select() {
-	List<Inv_DetailBean> bean=inv_DetailIDao.select();
+public List<Inv_DetailBean> selectall() {
+	List<Inv_DetailBean> bean=inv_DetailIDao.selectall();
 	if(bean.size()!=0) {
 		return bean;
 	}
@@ -59,5 +59,11 @@ public boolean delete(String Inv_Part_no, String Inv__Date) {
 	boolean beans = inv_DetailIDao.delete(Inv_Part_no,Inv__Date);
 	return beans;
 }
-
+public List<Inv_DetailBean> selectnv_Part_notest(String Inv_Part_no) {
+	List<Inv_DetailBean> bean=inv_DetailIDao.selectnv_Part_notest(Inv_Part_no);
+	if(bean.size()!=0) {
+		return bean;
+	}
+	return null;
+}
 }
