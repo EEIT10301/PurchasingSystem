@@ -119,17 +119,16 @@ table {
 						readonly="readonly">
 				</div>
 				<div class="form-group mb-2">
+					<label class="col-md-3">原憑證圖檔</label> <a class="mb-2"
+						href="${basePath}${recript_pic}" target="_blank">${picName}</a>
+				</div>
+				<div class="form-group mb-2">
 					<label for="Recript_date" class="col-md-3">修改憑證日期</label> <input
 						type="date" class="form-control col-md-4 mb-2" name="Recript_date"
 						id="ttt" value="">
 						<input name="xxzs" type="hidden"  value="${oldRecript_date}">
 <!-- 						<button class="btn" id="bbb">修改日期</button> -->
 				</div>
-				<div class="form-group mb-2">
-					<label class="col-md-3">原憑證圖檔</label> <a class="mb-2"
-						href="${basePath}${recript_pic}" target="_blank">${picName}</a>
-				</div>
-
 				<div class="form-group  mb-2">
 					<label class="col-md-3" for="Receiptpic" >修改憑證圖檔</label>
     				<input id="input-b5" name="Receiptpic" type="file">

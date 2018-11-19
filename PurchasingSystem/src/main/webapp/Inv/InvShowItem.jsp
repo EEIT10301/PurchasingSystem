@@ -95,7 +95,6 @@ ${Mainbean.noFile}
 					<li><a href="item?pageNo=4">4</a></li>
 					<li><a href="item?pageNo=5">5</a></li>
 					<li><a href="item?pageNo=5">6</a></li>
-					<li><a href="item?pageNo=5">7</a></li>
 				</ul>
 			</div>
 

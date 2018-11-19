@@ -99,6 +99,7 @@ document.getElementById('search').addEventListener('input', function() {
   // beware of css injections!
 });
 </script>
+<h1>驗收單號:${pomain.po_id }</h1>
 	<table class="table table-striped table-hover" id="table">
            <thead>
            <tr>
@@ -155,8 +156,8 @@ document.getElementById('search').addEventListener('input', function() {
 	       <td> ${invpromain.productListBean.part_no}</td>
 	       <td>${invpromain.productListBean.pro_spe}</td>
 		 <c:if test="${ empty invpromain.chk_status}">
-		  <td><input type="text" name='chk_quality' placeholder="驗收品質"></td>
-		   <td> <input type="text" name='chk_Count' placeholder="實際數量"></td>
+		  <td><input type="text" name='chk_quality' placeholder="驗收品質" required="required"></td>
+		   <td> <input type="text" name='chk_Count' placeholder="實際數量" required="required"></td>
 		
 		    <td><select name="chkstatus">
 		     <option selected="selected">請選擇</option>   

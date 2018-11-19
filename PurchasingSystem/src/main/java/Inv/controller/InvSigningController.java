@@ -49,6 +49,13 @@ public JSONArray LoginSucessSelectInvSignList(HttpSession session) {
 		List<Inv_SigningProcessBean> lists1=null;
 		List<Inv_SigningProcessBean> lists2=null;
 		List<Inv_SigningProcessBean> lists3=null;
+		lists2=inv_SigningProcessService.selectempidsend(empid, "驗收成功");
+		if(lists2 !=null) {		
+			Integer x =lists2.size();
+			session.setAttribute("waitendsign4",x);
+		}else {
+			session.removeAttribute("waitendsign4");
+			}
 		lists3=inv_SigningProcessService.selectempidsend(empid, "待分派");
 		if(lists3 !=null) {		
 			Integer x =lists3.size();
