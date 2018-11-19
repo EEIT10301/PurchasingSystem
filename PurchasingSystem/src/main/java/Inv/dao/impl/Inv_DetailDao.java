@@ -26,22 +26,23 @@ public class Inv_DetailDao implements Inv_DetailIDao{
 		SessionFactory sessionFactory = (SessionFactory) context.getBean("sessionFactory");
 		sessionFactory.getCurrentSession().beginTransaction();
 		Inv_DetailIDao productDAO = (Inv_DetailIDao) context.getBean("inv_DetailDao");
-		List<Inv_DetailBean> selects = productDAO.select();
-		System.out.println("selects="+selects);
-         for(Inv_DetailBean x:selects) {
-        	System.out.println("1.驗收單主表: "+x.getInv_MainBean().getInv_Part_no());
-        	System.out.println("2.驗收單細項: "+x.getInv_Part());
-         }
+		//List<Inv_DetailBean> selects = productDAO.select();
+	//	System.out.println("selects="+selects);
+    //     for(Inv_DetailBean x:selects) {
+       // 	System.out.println("1.驗收單主表: "+x.getInv_MainBean().getInv_Part_no());
+     //   	System.out.println("2.驗收單細項: "+x.getInv_Part());
+   //      }
 		sessionFactory.getCurrentSession().getTransaction().commit();
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Inv_DetailBean> select(String Inv_Part_no) {
+	public List<Inv_DetailBean> selectnv_Part_no(String Inv_Part_no) {
 		List<Inv_DetailBean> list = null;
-		Inv_DetailBean getone =new Inv_DetailBean();
+
 		String hgl="FROM Inv_DetailBean WHERE Inv_Part_no=:id1 ";
-		list =this.getSession().createQuery(hgl).setParameter("id1",Inv_Part_no).setMaxResults(500).list();
+		//WHERE Inv_Part_no=:id1  .setParameter("id1",Inv_Part_no).
+		list =this.getSession().createQuery(hgl).setParameter("id1",Inv_Part_no).list();
 		return list;
 	}
 	
@@ -63,7 +64,7 @@ public class Inv_DetailDao implements Inv_DetailIDao{
 		 }
 	}
 	@Override
-	public List<Inv_DetailBean> select() {
+	public List<Inv_DetailBean> selectall() {
 		return this.getSession().createQuery(
 				"from Inv_DetailBean", Inv_DetailBean.class).setMaxResults(50).list();
 	}
@@ -124,6 +125,13 @@ public class Inv_DetailDao implements Inv_DetailIDao{
 		 }else {
 			 return false;
 		 }
+	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Inv_DetailBean> selectnv_Part_notest(String Inv_Part_no) {
+		List<Inv_DetailBean> list = null;
+		String hgl=" FROM Inv_DetailBean WHERE Inv_Part_no=:id1 ";
+		return list =this.getSession().createQuery(hgl).setParameter("id1", Inv_Part_no).setMaxResults(50).list();
 	}
 	
 

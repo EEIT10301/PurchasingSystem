@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context>
-<!--    <Resource name="jdbc/xxx" auth="Container" -->
-<!--     type="javax.sql.DataSource" -->
-<!--     driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver" -->
-<!--     url="jdbc:sqlserver://dbserver10332.database.windows.net:1433;database=PurchasingSystem" -->
-<!--     username="memberuser@dbserver10332" -->
-<!--     password= "Do!ng123"  /> -->
+   <Resource name="jdbc/xxx" auth="Container"
+    type="javax.sql.DataSource"
+    driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+    url="jdbc:sqlserver://dbserver10332.database.windows.net:1433;database=PurchasingSystem"
+    username="memberuser@dbserver10332"
+    password= "Do!ng123"  />
 
 <!-- 	<Resource name="jdbc/xxx" auth="Container" type="javax.sql.DataSource" -->
 <!--                maxTotal="100" maxIdle="30" maxWaitMillis="10000" -->
