@@ -246,7 +246,7 @@ $("tbody").on("click","#update",function(){
 							+($(this).parent().siblings("td:eq("+i+")").children().val())+'\",';	
 		}
 	}
-	alert(dataJSON);
+	//alert(dataJSON);
 
 	$.ajax({
 		url : "http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Apply/RemoveCus.do",
