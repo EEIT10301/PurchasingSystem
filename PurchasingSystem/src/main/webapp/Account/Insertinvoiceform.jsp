@@ -84,8 +84,8 @@
 						required >請審核</textarea>
 				</div>
 			<div class=" text-right">
-				<input class="btn" type="reset" value="重新輸入">
-				 <input	class="btn" type="submit" id="agree" value="送出">
+				<input class="btn btn-white" type="reset" value="重新輸入">
+				 <input	class="btn btn-white" type="submit" id="agree" value="送出">
 			</div>
 </div>
 	</form>
