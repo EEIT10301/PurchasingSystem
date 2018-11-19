@@ -50,7 +50,17 @@ public class Inv＿ProductCheckDao implements Inv＿ProductCheckIDao{
 	public Inv＿ProductCheckBean select(String id) {
 		return this.getSession().get(Inv＿ProductCheckBean.class, id);
 	}
-
+	
+	@Override
+	public List<Inv＿ProductCheckBean> selectSize() {
+		List<Inv＿ProductCheckBean> bean = this.getSession().createQuery("from Inv＿ProductCheckBean where chk_Comment = '尚未入庫' ", Inv＿ProductCheckBean.class).setMaxResults(50).list();
+		if(bean!=null && bean.size()>0) {
+		return bean;
+		}else {
+			return null;
+		}
+	}
+	
 	@Override
 	public List<Inv＿ProductCheckBean> select() {
 		return this.getSession().createQuery(

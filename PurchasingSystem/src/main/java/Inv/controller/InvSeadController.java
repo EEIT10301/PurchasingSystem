@@ -147,41 +147,41 @@ public String reschangeinvprosta(String sigSta,String send, Integer chk_Count, S
 			return "Inv.sign";
 		}
 	}
-@RequestMapping("/Inv/invfinish.conll")
-public String invfinisg(String SignSug,String chkId, String sigSta, Model model, HttpSession session) throws ParseException {
-	Date date = new Date();
-	java.sql.Date date1 = new java.sql.Date(date.getTime());
-	SimpleDateFormat dateFormate = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");		
-	String now = dateFormate.format(date1);
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-	Date dates = sdf.parse(now);
-	String ap_id = "Ap" + chkId.substring(2);
+	@RequestMapping("/Inv/invfinish.conll")
+	public String invfinisg(String SignSug,String chkId, String sigSta, Model model, HttpSession session) throws ParseException {
+		Date date = new Date();
+		java.sql.Date date1 = new java.sql.Date(date.getTime());
+		SimpleDateFormat dateFormate = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");		
+		String now = dateFormate.format(date1);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date dates = sdf.parse(now);
+		String ap_id = "Ap" + chkId.substring(2);
+		
+		Inv_SigningProcessBean secondsigningrocess1 = inv_SigningProcessService.select("驗收", chkId);
+		String po_id = "Po" + chkId.substring(2);
+		
+		secondsigningrocess1.setSig_Sug(SignSug);
+		System.out.println("驗收單:" + chkId);
+		System.out.println("驗收狀態:" + sigSta);
 	
-	Inv_SigningProcessBean secondsigningrocess1 = inv_SigningProcessService.select("驗收", chkId);
-	String po_id = "Po" + chkId.substring(2);
-	
-	secondsigningrocess1.setSig_Sug(SignSug);
-	System.out.println("驗收單:" + chkId);
-	System.out.println("驗收狀態:" + sigSta);
-
-	
-	if ("驗收中".equals(sigSta)||"再次驗收".equals(sigSta)) {
-		PO_SigningProcessBean posecondsigningrocess = po_SigningProcessService.select("驗收作業", po_id);
-		App_SigningProcessBean secondsigningrocess2 = app_SigningProcessService.select("申請中", ap_id);
-		secondsigningrocess1.setSig_Date(dates);
-		secondsigningrocess1.setSig_Sta("驗收成功");
-		secondsigningrocess2.setSig_sta("待結案");
-		secondsigningrocess2.setSig_date(dates);
-		posecondsigningrocess.setSig_sta("驗收完成未請款");
-		posecondsigningrocess.setSig_date(date);
-		accout_PayableService.createAccountPayable(chkId);
-		return "Invlogin.success";
-	} else if ("驗收失敗".equals(sigSta)) {
-		secondsigningrocess1.setSig_Date(dates);
-		return "Invlogin.success";
+		
+		if ("驗收中".equals(sigSta)||"再次驗收".equals(sigSta)) {
+			PO_SigningProcessBean posecondsigningrocess = po_SigningProcessService.select("驗收作業", po_id);
+			App_SigningProcessBean secondsigningrocess2 = app_SigningProcessService.select("申請中", ap_id);
+			secondsigningrocess1.setSig_Date(dates);
+			secondsigningrocess1.setSig_Sta("驗收成功");
+			secondsigningrocess2.setSig_sta("待結案");
+			secondsigningrocess2.setSig_date(dates);
+			posecondsigningrocess.setSig_sta("驗收完成未請款");
+			posecondsigningrocess.setSig_date(date);
+			accout_PayableService.createAccountPayable(chkId);
+			return "redirect:/Inv/selectInvchk.controller";
+		} else if ("驗收失敗".equals(sigSta)) {
+			secondsigningrocess1.setSig_Date(dates);
+			return "redirect:/Inv/selectInvchk.controller";
+		}
+		return "redirect:/Inv/selectInvchk.controller";
 	}
-	return "Invlogin.success";
-}
 
 
 	

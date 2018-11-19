@@ -71,6 +71,7 @@ button { @extend input;
 						<th>產品廠商</th>
 					</tr>
 				</thead>
+
 				<c:forEach var="check" items="${check}">
 				<c:set var="in" value="尚未入庫" /> <c:if
 								test="${check.chk_Comment==in}">
@@ -96,7 +97,9 @@ button { @extend input;
 				<tbody id="selectAll">
 				</tbody>
 			</table>
-
+			<c:if test="${!empty DisItem}">
+			<span>${DisItem.NoData}</span>
+			</c:if>
 		</form>
 		<div align="center">
 			<span> <b>${error.notFind}</b></span>

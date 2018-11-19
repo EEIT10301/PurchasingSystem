@@ -14,4 +14,6 @@ public interface Inv＿ProductCheckIDao {
 	public abstract Inv＿ProductCheckBean update(Inv＿ProductCheckBean bean);
 
 	public abstract boolean delete(String id);
+
+	public abstract List<Inv＿ProductCheckBean> selectSize();
 }

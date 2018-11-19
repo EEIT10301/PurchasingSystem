@@ -23,6 +23,7 @@ import Account.service.Inv＿ProductCheckService;
 import Apply.model.EmployeeBean;
 import Apply.service.EmployeeService;
 import Inv.model.Inv_SigningProcessBean;
+import Inv.service.AdditemServie;
 import Inv.service.Inv_SigningProcessService;
 import Po.model.PO_MainBean;
 import Po.service.PO_MainService;
@@ -39,7 +40,8 @@ public class InvSigningController {
 	EmployeeService employeeService;
 	@Autowired
 	Inv＿ProductCheckService inv＿ProductCheckService;
-
+	@Autowired
+	AdditemServie additemServie;
 	@RequestMapping(path="/Inv/LoginSucessSelectInvcSignList.do")
 	@ResponseBody
 public JSONArray LoginSucessSelectInvSignList(HttpSession session) {
@@ -49,13 +51,20 @@ public JSONArray LoginSucessSelectInvSignList(HttpSession session) {
 		List<Inv_SigningProcessBean> lists1=null;
 		List<Inv_SigningProcessBean> lists2=null;
 		List<Inv_SigningProcessBean> lists3=null;
-		lists2=inv_SigningProcessService.selectempidsend(empid, "驗收成功");
-		if(lists2 !=null) {		
-			Integer x =lists2.size();
+		List<Inv＿ProductCheckBean> ShowCount = additemServie.selectSize();
+		if(ShowCount !=null) {		
+			Integer x =ShowCount.size();
 			session.setAttribute("waitendsign4",x);
 		}else {
 			session.removeAttribute("waitendsign4");
-			}
+		}
+//		lists2=inv_SigningProcessService.selectempidsend(empid, "驗收成功");
+//		if(lists2 !=null) {		
+//			Integer x =lists2.size();
+//			session.setAttribute("waitendsign4",x);
+//		}else {
+//			session.removeAttribute("waitendsign4");
+//			}
 		lists3=inv_SigningProcessService.selectempidsend(empid, "待分派");
 		if(lists3 !=null) {		
 			Integer x =lists3.size();

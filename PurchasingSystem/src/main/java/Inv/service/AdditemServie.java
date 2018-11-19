@@ -29,6 +29,15 @@ public class AdditemServie {
 	@Autowired
 	ProductListIDAO productListIDAO;
 
+	public  List<Inv＿ProductCheckBean> selectSize() {
+		 List<Inv＿ProductCheckBean> bean = inv＿ProductCheckDao.selectSize();
+		
+		if(bean!=null) {
+			return bean;
+		}
+		return null;
+	}
+	
 	public ProductListBean ItemAdd(String id) {
 		inv_ProductListService.select();
 		ProductListBean bean = productListIDAO.select(id);
