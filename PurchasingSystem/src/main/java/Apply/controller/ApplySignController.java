@@ -292,15 +292,17 @@ if(x.getApp_manger().equals(empid)&&x.getSig_sta().equals("退回中")&&x.getApp
 				pages++;
 			}
 			Sproductlistsxs1=app_SigningProcessService.selectemppoidsendpages(empid, "簽核中", beginindex, pagesize);
-			for(int i=0;i<Sproductlistsx1.size();i++) {
-				App_SigningProcessBean xsz=new App_SigningProcessBean();
-				xsz=Sproductlistsx1.get(i);			
+			if(Sproductlistsxs1!=null) {		
+				for(int i=0;i<Sproductlistsx1.size();i++) {
+					App_SigningProcessBean xsz=new App_SigningProcessBean();
+					xsz=Sproductlistsx1.get(i);			
 					Applylistsranks=xsz.getSig_rank();
 					String apid = xsz.getApp_id();
 					App_SigningProcessBean xsz1 =app_SigningProcessService.selectrank(apid, Applylistsranks-1);
 					if(xsz1!=null) {
 						Sproductlistsx3.add(xsz1);
 					}
+				}
 			}
 		}
 		if(Sproductlistsx2!=null) {
@@ -311,15 +313,18 @@ if(x.getApp_manger().equals(empid)&&x.getSig_sta().equals("退回中")&&x.getApp
 				}
 			}
 			Sproductlistsxs2=app_SigningProcessService.selectemppoidsendpages(empid, "退回中", beginindex, pagesize);
-			for(int i=0;i<Sproductlistsxs2.size();i++) {
-				App_SigningProcessBean xsz=new App_SigningProcessBean();
-				xsz=Sproductlistsxs2.get(i);			
+			if(Sproductlistsxs2!=null) {
+				
+				for(int i=0;i<Sproductlistsxs2.size();i++) {
+					App_SigningProcessBean xsz=new App_SigningProcessBean();
+					xsz=Sproductlistsxs2.get(i);			
 					Applylistsranks=xsz.getSig_rank();
 					String apid = xsz.getApp_id();
 					App_SigningProcessBean xsz1 =app_SigningProcessService.selectrank(apid, Applylistsranks+1);
 					if(xsz1!=null) {
 						Sproductlistsx4.add(xsz1);
 					}
+				}
 			}
 		}
 		if(Sproductlistsx1!=null||Sproductlistsx2!=null){
