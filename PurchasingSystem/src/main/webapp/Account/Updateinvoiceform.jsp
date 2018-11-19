@@ -168,7 +168,7 @@ table {
 				</c:if>
 				<div class="form-group mb-2">
 					<label class="col-md-3">簽核意見:</label>
-					<textarea rows="2" cols="58" name="SignSug" class="col-md-6 mb-2" required></textarea>
+					<textarea rows="2" cols="58" name="SignSug" class="col-md-6 mb-2" required>請審核</textarea>
 				</div>
 				<div class="text-right">
 					<input class="btn btn-primary" type="reset" value="重新輸入"> <input
@@ -330,7 +330,7 @@ table {
 				</c:if>
 				<div class="form-group  mb-2">
 					<label class="col-md-4">簽核意見:</label>
-					<textarea rows="2" cols="58" name="SignSug" class="col-md-6 mb-2" required>
+					<textarea rows="2" cols="58" name="SignSug" class="col-md-6 mb-2" required>請審核
     </textarea>
 				</div>
 				<div class=" text-right">

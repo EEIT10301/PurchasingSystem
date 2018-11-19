@@ -40,9 +40,8 @@ public class Inv_DetailDao implements Inv_DetailIDao{
 	public List<Inv_DetailBean> select(String Inv_Part_no) {
 		List<Inv_DetailBean> list = null;
 		Inv_DetailBean getone =new Inv_DetailBean();
-		String hgl="FROM Inv_DetailBean WHERE Inv_Part_no=:id1";
-		list =this.getSession().createQuery(hgl).setParameter("id1",Inv_Part_no).list();
-		
+		String hgl="FROM Inv_DetailBean WHERE Inv_Part_no=:id1 ";
+		list =this.getSession().createQuery(hgl).setParameter("id1",Inv_Part_no).setMaxResults(500).list();
 		return list;
 	}
 	
@@ -53,7 +52,7 @@ public class Inv_DetailDao implements Inv_DetailIDao{
 		Inv_DetailBean getone =new Inv_DetailBean();
 		String hgl="FROM Inv_DetailBean WHERE Inv_Part_no=:id1 AND Inv__Date=:id2";
 		list =this.getSession().createQuery(hgl).setParameter("id1", Inv_Part_no)
-				.setParameter("id2", Inv__Date).setMaxResults(50).list();
+				.setParameter("id2", Inv__Date).setMaxResults(50).setMaxResults(500).list();
 		 if(list.size()>0) {
 			  for(Inv_DetailBean getones :list) {
 				  getone=getones;

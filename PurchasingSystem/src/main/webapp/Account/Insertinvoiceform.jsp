@@ -93,8 +93,9 @@
 			</div>
 			<div class="form-group  mb-2">
 				<label class="col-md-3">簽核意見</label>
-				<textarea rows="2" cols="58" name="SignSug" class="col-md-6 mb-2" required></textarea>
-			</div>
+					<textarea rows="2" cols="58" name="SignSug" class="col-md-6 mb-2"
+						required >請審核</textarea>
+				</div>
 			<div class=" text-right">
 				<input class="btn" type="reset" value="重新輸入">
 				 <input	class="btn" type="submit" id="agree" value="送出">
