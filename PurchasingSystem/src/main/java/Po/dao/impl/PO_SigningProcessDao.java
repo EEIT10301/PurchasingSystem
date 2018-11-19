@@ -240,7 +240,7 @@ public class PO_SigningProcessDao implements PO_SigningProcessIDao {
 		List<PO_SigningProcessBean> list = null;
 		String hgl = "FROM PO_SigningProcessBean WHERE po_manger=:id1 and sig_Sta= :id2 order by sig_date desc";
 		list = this.getSession().createQuery(hgl).setParameter("id1", po_manger).setParameter("id2", sig_Sta)
-				.setMaxResults(50).list();
+				.setMaxResults(500).list();
 		if (list.size() > 0) {
 			return list;
 		} else {
@@ -333,6 +333,20 @@ public class PO_SigningProcessDao implements PO_SigningProcessIDao {
 			return null;
 		}
 }
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<PO_SigningProcessBean> selectonlySigSta(String sig_Sta) {
+		List<PO_SigningProcessBean> list = null;
+		String hgl = "FROM PO_SigningProcessBean WHERE sig_Sta=:id1 order by sig_date desc";
+		list = this.getSession().createQuery(hgl).setParameter("id1", sig_Sta)
+				.setMaxResults(500).list();
+		if (list.size() > 0) {
+			return list;
+		} else {
+			return null;
+		}
+	}
 	
 	
 

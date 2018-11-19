@@ -137,12 +137,24 @@ public class POStatementController {
 		
 		EmployeeBean EmployeeBeanbean = (EmployeeBean)session.getAttribute("user");
 		String empid = EmployeeBeanbean.getEmp_id();
-		List<PO_SigningProcessBean> accountDone = pO_SigningProcessService.selectempidsend(empid, "已結案");
-		if(accountDone!=null) {
-			model.addAttribute("accountDone",accountDone);
-		}
-		else {
-			model.addAttribute("noaccountDone","採購無結案請款單");
+		Integer emplevel=EmployeeBeanbean.getEmp_level();
+		if(emplevel==1) {
+			
+			List<PO_SigningProcessBean> accountDone = pO_SigningProcessService.selectempidsend(empid, "已結案");
+			if(accountDone!=null) {
+				model.addAttribute("accountDone",accountDone);
+			}
+			else {
+				model.addAttribute("noaccountDone","採購無結案請款單");
+			}
+		}else {
+			List<PO_SigningProcessBean> accountDone = pO_SigningProcessService.selectonlySigSta("已結案");
+			if(accountDone!=null) {
+				model.addAttribute("accountDone",accountDone);
+			}
+			else {
+				model.addAttribute("noaccountDone","採購無結案請款單");
+			}
 		}
 		
 		return "POFinalStatement.do";
