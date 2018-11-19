@@ -9,44 +9,42 @@
 <meta charset="UTF-8">
 <title>查詢廠商款項</title>
 <style>
-
-#xls{
-float: right;
-margin-right:30px;
+#xls {
+	float: right;
+	margin-right: 30px;
 }
 
-#pdf{
-float: right;
-margin-right:30px;
+#pdf {
+	float: right;
+	margin-right: 30px;
 }
 
 td.details-control {
-    cursor: pointer;
+	cursor: pointer;
 }
-
 </style>
 </head>
-<%@ include file="../includeA.jsp" %>
+<%@ include file="../includeA.jsp"%>
 <body class="bg">
 
 	<c:if test="${not empty allPayableList}">
 		<div class="right">
-	<br>
+			<br>
 			<h3>廠商帳款清單</h3>
-<!-- 			<input class="form-control" id="myInput" type="text" -->
-<!-- 				placeholder="Search"><br /> -->
-				<div class="text-right">
+			<!-- 			<input class="form-control" id="myInput" type="text" -->
+			<!-- 				placeholder="Search"><br /> -->
+			<div class="text-right">
 				<form action="ShowInvoice.xls" enctype="multipart/form-data"
 					method="post" id="xls">
 					<input class="btn btn-white btn-sm" type="submit" value="下載Excel檔"></input>
 				</form>
 				<form action="ShowInvoice.pdf" enctype="multipart/form-data"
 					method="post" id="pdf">
-				   <input class="btn btn-white btn-sm" type="submit" value="下載Pdf檔"></input>
+					<input class="btn btn-white btn-sm" type="submit" value="下載Pdf檔"></input>
 				</form>
 			</div>
 			<table id="example" class="table table-striped table-hover">
-<!-- 	<table id="example" class="table table-striped table-bordered dataTable no-footer"> -->
+				<!-- 	<table id="example" class="table table-striped table-bordered dataTable no-footer"> -->
 				<thead>
 					<tr>
 						<th>對帳單號</th>
@@ -67,23 +65,23 @@ td.details-control {
 						<tr>
 							<td>${row.accoutpayable_no}</td>
 							<c:if test="${not empty row.inv_id}">
-<%-- 								<td class="details-control"><a href="ShowInvoice.controller?invid=${row.inv_id}">${row.inv_id}</a></td> --%>
+								<%-- 								<td class="details-control"><a href="ShowInvoice.controller?invid=${row.inv_id}">${row.inv_id}</a></td> --%>
 								<td class="details-control">${row.inv_id}</td>
 							</c:if>
-							
+
 							<c:if test="${empty row.inv_id}">
 								<td>尚未請款</td>
 							</c:if>
 							<td>${row.pO_Vendor_InfoBean.vendor_name}</td>
 							<td>${row.pO_Vendor_InfoBean.payment_term}</td>
 							<td>$${row.amount_Payable}</td>
-							<fmt:formatDate pattern="yyyy/MM/dd"
-									value="${row.booking_Date}" var="bookingDate"/>
+							<fmt:formatDate pattern="yyyy/MM/dd" value="${row.booking_Date}"
+								var="bookingDate" />
 							<td>${bookingDate}</td>
 							<td>${row.cheque_no}</td>
 							<td>${row.pO_Vendor_InfoBean.vendor_acc}</td>
 							<fmt:formatDate pattern="yyyy/MM/dd"
-									value="${row.except_Payment_Date}" var="exceptPaymentDate"/>
+								value="${row.except_Payment_Date}" var="exceptPaymentDate" />
 							<td>${exceptPaymentDate}</td>
 							<td>${row.payable_Status}</td>
 							<td>$${row.amount_Paid}</td>
@@ -91,28 +89,28 @@ td.details-control {
 					</c:forEach>
 				</tbody>
 			</table>
-			
+
 		</div>
 	</c:if>
-<!-- 	<script src="../js/app.js"></script> -->
-<script>
+	<!-- 	<script src="../js/app.js"></script> -->
+	<script>
 $(document).ready(function () {
     
   function format(count) {
       // `d` is the original data object for the row 
       var arr=new Array();
       <c:forEach var="row" items="${allPayableList}" varStatus="yourStatus">
-      arr[${yourStatus.index}] = new Array();  
-      arr[${yourStatus.index}][1] = "${row.account_InvoiceBean.employeeBean.emp_name}";  
-      arr[${yourStatus.index}][2] = "${row.account_InvoiceBean.employeeBean.emp_dep}";  
-      arr[${yourStatus.index}][3] = "${row.account_InvoiceBean.total_price}";    
-      arr[${yourStatus.index}][4] = "${row.account_InvoiceBean.pO_MainBean.pO_Vendor_InfoBean.payment_method}"; 
+      arr["${yourStatus.index}"] = new Array();  
+      arr["${yourStatus.index}"][1] = "${row.account_InvoiceBean.employeeBean.emp_name}";  
+      arr["${yourStatus.index}"][2] = "${row.account_InvoiceBean.employeeBean.emp_dep}";  
+      arr["${yourStatus.index}"][3] = "${row.account_InvoiceBean.total_price}";    
+      arr["${yourStatus.index}"][4] = "${row.account_InvoiceBean.pO_MainBean.pO_Vendor_InfoBean.payment_method}"; 
       <fmt:formatDate value="${row.account_InvoiceBean.recript_date}" pattern="yyyy/MM/dd" var="date" />
-      arr[${yourStatus.index}][5] = "${date}";    
-      arr[${yourStatus.index}][6] = "${row.account_InvoiceBean.recript_pic}"; 
+      arr["${yourStatus.index}"][5] = "${date}";    
+      arr["${yourStatus.index}"][6] = "${row.account_InvoiceBean.recript_pic}"; 
       <c:set var="recriptpic" value="${row.account_InvoiceBean.recript_pic}" />
       <c:set var="picName" value="${fn:substring(recriptpic,8,30)}" />
-      arr[${yourStatus.index}][7] = "${picName}";     
+      arr["${yourStatus.index}"][7] = "${picName}";     
       </c:forEach>
       
       return '<table class="table table-striped table-hover dataTable">' +
@@ -139,9 +137,18 @@ $(document).ready(function () {
           "iDisplayLength": 10,
           "pagingType":"simple_numbers",
           "order": [[1, 'asc']],
-          "Language": {
-              "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Chinese-traditional.json"
-          }
+          "oLanguage":{"sProcessing":"處理中...",
+              "sLengthMenu":"顯示 _MENU_ 項結果",
+              "sZeroRecords":"沒有匹配結果",
+              "sInfo":"顯示第 _START_ 至 _END_ 項結果，共 _TOTAL_ 項",
+              "sInfoEmpty":"顯示第 0 至 0 項結果，共 0 項",
+              "sInfoFiltered":"(從 _MAX_ 項結果過濾)",
+              "sSearch":"搜索:",
+              "oPaginate":{"sFirst":"首頁",
+                                   "sPrevious":"上頁",
+                                   "sNext":"下頁",
+                                   "sLast":"尾頁"}
+              }
       });
  
   // Add event listener for opening and closing details
