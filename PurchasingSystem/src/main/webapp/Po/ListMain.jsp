@@ -131,7 +131,7 @@
 						</p>
 						<br> 分派意見:
 						<p>
-							<textarea rows="5" cols="50" name="SignSug"></textarea>
+							<textarea rows="5" cols="50" name="SignSug">請開始詢價</textarea>
 						</p>
 						<Input type='hidden' name='po_manger'
 							value='${SigningProcess.po_manger}'> <Input type='hidden'

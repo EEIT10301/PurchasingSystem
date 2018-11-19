@@ -156,11 +156,11 @@ table {
 				</c:if>
 				<div class="form-group mb-2">
 					<label class="col-md-3">簽核意見:</label>
-					<textarea rows="2" cols="58" name="SignSug" class="col-md-6 mb-2" required>請審核</textarea>
+					<textarea rows="2" cols="58" name="SignSug" class="col-md-6 mb-2" required></textarea>
 				</div>
 				<div class="text-right">
-					<input class="btn btn-white" type="reset" value="重新輸入"> <input
-						class="btn btn-white" type="submit" value="送出"
+					<input class="btn btn-white btn-sm"type="reset" value="重新輸入"> <input
+						class="btn btn-white btn-sm" type="submit" value="送出"
 						data-toggle="modal" data-target="#exampleModalCenter">
 				</div>
 			</div>
@@ -318,12 +318,12 @@ table {
 				</c:if>
 				<div class="form-group  mb-2">
 					<label class="col-md-4">簽核意見:</label>
-					<textarea rows="2" cols="58" name="SignSug" class="col-md-6 mb-2" required>請審核
+					<textarea rows="2" cols="58" name="SignSug" class="col-md-6 mb-2" required>
     </textarea>
 				</div>
 				<div class=" text-right">
-					<input class="btn btn-white" type="submit" name="action" value="送出">
-					<input class="btn btn-white" type="submit" name="action" value="退回">
+					<input class="btn btn-white btn-sm" type="submit" name="action" value="送出">
+					<input class="btn btn-white btn-sm" type="submit" name="action" value="退回">
 				</div>
 			</div>
 		</form>
