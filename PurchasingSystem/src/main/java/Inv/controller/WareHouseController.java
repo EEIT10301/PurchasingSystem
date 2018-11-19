@@ -64,14 +64,25 @@ public class WareHouseController {
 	private String meth(Model model , String flag) {	
 //		System.out.println("這是controller"+flag);
 //		System.out.println((""+flag).equals("in"));
+		HashMap<String, String> error = new HashMap<String, String>();
+		List<Inv＿ProductCheckBean> ShowCount = additemServie.selectSize();
+		if(ShowCount==null) {
+			error.put("NoData", "目前無待入庫驗收單");
+		}else {
+		Integer Count =ShowCount.size();
+		model.addAttribute("Count", Count);	
+		}
 		if((""+flag).equals("in")) {
-			List<Inv＿ProductCheckBean> checkAll = additemServie.select();
-			model.addAttribute("check", checkAll);	
+			ShowCount=null;
+			 ShowCount = additemServie.select();
+//			List<Inv＿ProductCheckBean> checkAll = additemServie.select();
+			model.addAttribute("check", ShowCount);	
 			flag=null;
 			return "InvInProduct.show";
 		}
 //		System.out.println(flag.toString().equals("true"));
 	List<Inv＿ProductCheckBean> checkAll = additemServie.select();
+	model.addAttribute("DisItem", error);	
 	model.addAttribute("check", checkAll);	
 	return "invend.itemins";
 	}

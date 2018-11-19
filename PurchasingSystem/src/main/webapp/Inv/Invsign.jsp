@@ -99,7 +99,7 @@ document.getElementById('search').addEventListener('input', function() {
   // beware of css injections!
 });
 </script>
-<h1>驗收單號:${pomain.po_id }</h1>
+<h1>採購單號:${pomain.po_id }</h1>
 	<table class="table table-striped table-hover" id="table">
            <thead>
            <tr>
@@ -120,10 +120,9 @@ document.getElementById('search').addEventListener('input', function() {
 	<td>${podetail.total_Qty  }</td>	
 	</tr>
 	</c:forEach>
-
-
 </tbody>
 </table>	
+ 驗收注意:<p><textarea rows="5" cols="50" disabled="disabled">${bean3.sig_Sug }</textarea><p>
 <hr />
 <h1>驗收單號:${Inv_SigningProcessBean.chk_Id }</h1>
 	<table class="table table-striped table-hover" id="table">
@@ -190,8 +189,6 @@ document.getElementById('search').addEventListener('input', function() {
 
 	
 		<form id="finish" action="invfinish.conll" method="post" hidden="hidden">
-		驗收單號:${Inv_SigningProcessBean.chk_Id }
-		驗收簽核狀態:${Inv_SigningProcessBean.sig_Sta }
 		驗收意見:<p><textarea rows="5" cols="50"  name="SignSug"></textarea><font color="red"></font><p>
 		<Input type='hidden' name="sigSta" value='${Inv_SigningProcessBean.sig_Sta}'>
 		<Input type='hidden' name="chkId" value='${Inv_SigningProcessBean.chk_Id}'>

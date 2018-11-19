@@ -23,6 +23,7 @@ import Account.service.Inv＿ProductCheckService;
 import Apply.model.EmployeeBean;
 import Apply.service.EmployeeService;
 import Inv.model.Inv_SigningProcessBean;
+import Inv.service.AdditemServie;
 import Inv.service.Inv_SigningProcessService;
 import Po.model.PO_MainBean;
 import Po.service.PO_MainService;
@@ -39,7 +40,8 @@ public class InvSigningController {
 	EmployeeService employeeService;
 	@Autowired
 	Inv＿ProductCheckService inv＿ProductCheckService;
-
+	@Autowired
+	AdditemServie additemServie;
 	@RequestMapping(path="/Inv/LoginSucessSelectInvcSignList.do")
 	@ResponseBody
 public JSONArray LoginSucessSelectInvSignList(HttpSession session) {
@@ -49,13 +51,20 @@ public JSONArray LoginSucessSelectInvSignList(HttpSession session) {
 		List<Inv_SigningProcessBean> lists1=null;
 		List<Inv_SigningProcessBean> lists2=null;
 		List<Inv_SigningProcessBean> lists3=null;
-		lists2=inv_SigningProcessService.selectempidsend(empid, "驗收成功");
-		if(lists2 !=null) {		
-			Integer x =lists2.size();
+		List<Inv＿ProductCheckBean> ShowCount = additemServie.selectSize();
+		if(ShowCount !=null) {		
+			Integer x =ShowCount.size();
 			session.setAttribute("waitendsign4",x);
 		}else {
 			session.removeAttribute("waitendsign4");
-			}
+		}
+//		lists2=inv_SigningProcessService.selectempidsend(empid, "驗收成功");
+//		if(lists2 !=null) {		
+//			Integer x =lists2.size();
+//			session.setAttribute("waitendsign4",x);
+//		}else {
+//			session.removeAttribute("waitendsign4");
+//			}
 		lists3=inv_SigningProcessService.selectempidsend(empid, "待分派");
 		if(lists3 !=null) {		
 			Integer x =lists3.size();
@@ -182,6 +191,7 @@ public JSONArray LoginSucessSelectInvSignList(HttpSession session) {
 		System.out.println("dddd"+chk_id);
 		Inv＿ProductCheckBean invmain = inv＿ProductCheckService.select(chk_id);
 		Inv_SigningProcessBean bean2 = inv_SigningProcessService.select("驗收", chk_id);
+		Inv_SigningProcessBean bean3 = inv_SigningProcessService.select("驗收分派", chk_id);
 		List<Inv_ProductListBean> reschksta = inv_ProductListService.selectIdandSigsta(chk_id, "驗收失敗");
 		if ("驗收失敗".equals(bean2.getSig_Sta()) || "再次驗收".equals(bean2.getSig_Sta())) {
 			bean2.setSig_Sta("再次驗收");
@@ -192,6 +202,7 @@ public JSONArray LoginSucessSelectInvSignList(HttpSession session) {
 			}
 			}
 			model.addAttribute("invmain", invmain);
+			model.addAttribute("bean3", bean3);
 			model.addAttribute("Inv_SigningProcessBean", bean2);
 			return "Inv.restchk";
 		}
@@ -200,6 +211,7 @@ public JSONArray LoginSucessSelectInvSignList(HttpSession session) {
 		PO_MainBean pomain = po_MainService.select(invidonlynumber);
 		model.addAttribute("invmain", invmain);
 		model.addAttribute("pomain", pomain);
+		model.addAttribute("bean3", bean3);
 		model.addAttribute("Inv_SigningProcessBean", bean2);
 		return "Inv.sign";
 	}
