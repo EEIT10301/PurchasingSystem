@@ -58,88 +58,88 @@
 			<h2>${noselist}</h2>
 		</c:if>
 	
-		<c:if test="${not empty appMainQuery and not empty appDetailQuery}">
+<%-- 		<c:if test="${not empty appMainQuery and not empty appDetailQuery}"> --%>
 		
 		
-<div class="card">
-<div data-toggle="collapse" data-target="#demo3"
-	 class="accordion-toggle">
-	<h5 class="text-center font-weight-bold">請購單編號:${appMainQuery.app_id} ↓</h5>		
-</div>
-<div class="accordian-body collapse" id="demo3">
+<!-- <div class="card"> -->
+<!-- <div data-toggle="collapse" data-target="#demo3" -->
+<!-- 	 class="accordion-toggle"> -->
+<%-- 	<h5 class="text-center font-weight-bold">請購單編號:${appMainQuery.app_id} ↓</h5>		 --%>
+<!-- </div> -->
+<!-- <div class="accordian-body collapse" id="demo3"> -->
 		
 		
-		<table class="table table-striped table-hover" id="myTable">
-		<tr>
-			<th id="thead">請購單資訊</th>
-			<th id="thead"></th>
-			<th id="thead"></th>
-			<th id="thead"></th>
-			<th id="thead"></th>
-			<th id="thead"></th>
-			<th id="thead"></th>
-		</tr>
+<!-- 		<table class="table table-striped table-hover" id="myTable"> -->
+<!-- 		<tr> -->
+<!-- 			<th id="thead">請購單資訊</th> -->
+<!-- 			<th id="thead"></th> -->
+<!-- 			<th id="thead"></th> -->
+<!-- 			<th id="thead"></th> -->
+<!-- 			<th id="thead"></th> -->
+<!-- 			<th id="thead"></th> -->
+<!-- 			<th id="thead"></th> -->
+<!-- 		</tr> -->
 		
-		<tr>
-			<th width="250px">請購單編號</th>
-			<th width="250px">請購人員</th>
-			<th width="250px">請購總價</th>
-			<th></th>
-			<th></th>
-			<th></th>
-			<th></th>
-		</tr>
+<!-- 		<tr> -->
+<!-- 			<th width="250px">請購單編號</th> -->
+<!-- 			<th width="250px">請購人員</th> -->
+<!-- 			<th width="250px">請購總價</th> -->
+<!-- 			<th></th> -->
+<!-- 			<th></th> -->
+<!-- 			<th></th> -->
+<!-- 			<th></th> -->
+<!-- 		</tr> -->
 
-		<tr>
-			<td>${appMainQuery.app_id}</td>
-			<td>${appMainQuery.employeeBean.emp_name}</td>
-			<td>${appMainQuery.app_price}元</td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
+<!-- 		<tr> -->
+<%-- 			<td>${appMainQuery.app_id}</td> --%>
+<%-- 			<td>${appMainQuery.employeeBean.emp_name}</td> --%>
+<%-- 			<td>${appMainQuery.app_price}元</td> --%>
+<!-- 			<td></td> -->
+<!-- 			<td></td> -->
+<!-- 			<td></td> -->
+<!-- 			<td></td> -->
+<!-- 		</tr> -->
 		
 		
 		
-		<tr>
-			<th id="thead">請購清單</th>
-			<th></th>
-			<th></th>
-			<th></th>
-			<th></th>
-			<th></th>
-			<th></th>
-		</tr>
+<!-- 		<tr> -->
+<!-- 			<th id="thead">請購清單</th> -->
+<!-- 			<th></th> -->
+<!-- 			<th></th> -->
+<!-- 			<th></th> -->
+<!-- 			<th></th> -->
+<!-- 			<th></th> -->
+<!-- 			<th></th> -->
+<!-- 		</tr> -->
 		
-		<tr>
-			<th width="200px">料號</th>
-			<th width="200px">材料項目</th>
-			<th>材料名稱</th>
-			<th>材料規格</th>
-			<th>數量</th>
-			<th>預估單價</th>
-			<th></th>
-		</tr>
+<!-- 		<tr> -->
+<!-- 			<th width="200px">料號</th> -->
+<!-- 			<th width="200px">材料項目</th> -->
+<!-- 			<th>材料名稱</th> -->
+<!-- 			<th>材料規格</th> -->
+<!-- 			<th>數量</th> -->
+<!-- 			<th>預估單價</th> -->
+<!-- 			<th></th> -->
+<!-- 		</tr> -->
 		
 
-		<c:forEach var="appDetailQuery" items="${appDetailQuery}" varStatus="status">
-			<tr>
-				<td width="200px">${appDetailQuery.part_no}</td>
-				<td width="200px">${appDetailQuery.productListBean.pro_cate}</td>
-				<td width="300px">${appDetailQuery.productListBean.pro_name}</td>
-				<td>${appDetailQuery.productListBean.pro_spe}</td>
-				<td>${appDetailQuery.app_amount}</td>
-				<td>${appDetailQuery.pro_price}</td>
-<!-- 				<td></td> -->
-			</tr>
+<%-- 		<c:forEach var="appDetailQuery" items="${appDetailQuery}" varStatus="status"> --%>
+<!-- 			<tr> -->
+<%-- 				<td width="200px">${appDetailQuery.part_no}</td> --%>
+<%-- 				<td width="200px">${appDetailQuery.productListBean.pro_cate}</td> --%>
+<%-- 				<td width="300px">${appDetailQuery.productListBean.pro_name}</td> --%>
+<%-- 				<td>${appDetailQuery.productListBean.pro_spe}</td> --%>
+<%-- 				<td>${appDetailQuery.app_amount}</td> --%>
+<%-- 				<td>${appDetailQuery.pro_price}</td> --%>
+ <!-- 				<td></td> --> 
+<!-- 			</tr> -->
 
-		</c:forEach>
+<%-- 		</c:forEach> --%>
 		
 		
-		</table></div></div><br><br><br>
+<!-- 		</table></div></div><br><br><br> -->
 		
-		</c:if>
+<%-- 		</c:if> --%>
 		
 		
 		
