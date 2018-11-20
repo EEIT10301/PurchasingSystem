@@ -7,9 +7,10 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;  
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.CreationHelper;
 import org.apache.poi.ss.usermodel.Row;  
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -28,6 +29,11 @@ public class ExcelViewForInvoice extends AbstractXlsxView{
 	        if (list != null && list.size() != 0) {  
 	            int len = list.size();  
 	            Sheet sheet = workbook.createSheet();  
+	            //設定日期格式
+	            CellStyle cellStyle = workbook.createCellStyle();
+	    	    CreationHelper createHelper = workbook.getCreationHelper();
+	    	    short dateFormat = createHelper.createDataFormat().getFormat("yyyy/MM/dd");
+	    	    cellStyle.setDataFormat(dateFormat);
 	            // 第一行文字说明  
 	            Row row = sheet.createRow(0);  
 	            Cell cell=row.createCell(0,CellType.STRING);
@@ -71,8 +77,9 @@ public class ExcelViewForInvoice extends AbstractXlsxView{
 	                cell = row.createCell(4, CellType.STRING); 
 	                cell.setCellValue(list.get(i).getAmount_Payable());  
 	                sheet.autoSizeColumn(4);
-	                cell = row.createCell(5, CellType.STRING);  
+	                cell = row.createCell(5);  
 	                cell.setCellValue(list.get(i).getBooking_Date());  
+	                cell.setCellStyle(cellStyle);
 	                sheet.autoSizeColumn(5);
 	                cell = row.createCell(6, CellType.STRING);  
 	                cell.setCellValue(list.get(i).getCheque_no());
@@ -80,8 +87,9 @@ public class ExcelViewForInvoice extends AbstractXlsxView{
 	                cell = row.createCell(7, CellType.STRING); 
 	                cell.setCellValue(list.get(i).getpO_Vendor_InfoBean().getVendor_acc());  
 	                sheet.autoSizeColumn(7);
-	                cell = row.createCell(8, CellType.STRING); 
+	                cell = row.createCell(8); 
 	                cell.setCellValue(list.get(i).getExcept_Payment_Date());  
+	                cell.setCellStyle(cellStyle);
 	                sheet.autoSizeColumn(8);
 	                cell = row.createCell(9, CellType.STRING);  
 	                cell.setCellValue(list.get(i).getPayable_Status()); 
