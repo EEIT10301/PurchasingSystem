@@ -46,7 +46,7 @@ public class Accout_PayableService {
 	}
 	
 	public Accout_PayableBean createAccountPayable(String chk_id) {
-		String ap_id = "Ap"+chk_id.substring(2);
+		String ap_id = "Ac"+chk_id.substring(2);
 		Inv＿ProductCheckBean chkbean = inv_ProductCheckIDao.select(chk_id);
 		Accout_PayableBean bean=new Accout_PayableBean();
 		bean.setAccoutpayable_no(ap_id);
@@ -63,7 +63,7 @@ public class Accout_PayableService {
 	}
 	
 	public Accout_PayableBean updateAccountPayable(String inv_id) throws ParseException {
-		String ap_id="Ap"+inv_id.substring(2);
+		String ap_id="Ac"+inv_id.substring(2);
 		Accout_PayableBean accBean = accout_PayableIDao.select(ap_id);
 		Account_InvoiceBean invBean = account_InvoiceIDao.select(inv_id);
 		String payment_term=accBean.getpO_Vendor_InfoBean().getPayment_term();
