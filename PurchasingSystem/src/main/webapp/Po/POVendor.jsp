@@ -107,7 +107,7 @@ $("tbody").on("click","#insert",function(){
 				success : function(response) {
 					//alert(response);
 					var items = JSON.parse(response);
-					alert(items.insert);
+					alert("新增成功");
 					window.location.reload();
 				}
 			});
