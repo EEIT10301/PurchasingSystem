@@ -159,8 +159,8 @@ table {
 					<textarea rows="2" cols="58" name="SignSug" class="col-md-6 mb-2" required></textarea>
 				</div>
 				<div class="text-right">
-					<input class="btn btn-primary" type="reset" value="重新輸入"> <input
-						class="btn btn-primary" type="submit" value="送出"
+					<input class="btn btn-white btn-sm"type="reset" value="重新輸入"> <input
+						class="btn btn-white btn-sm" type="submit" value="送出"
 						data-toggle="modal" data-target="#exampleModalCenter">
 				</div>
 			</div>
@@ -322,8 +322,8 @@ table {
     </textarea>
 				</div>
 				<div class=" text-right">
-					<input class="btn" type="submit" name="action" value="送出">
-					<input class="btn" type="submit" name="action" value="退回">
+					<input class="btn btn-white btn-sm" type="submit" name="action" value="送出">
+					<input class="btn btn-white btn-sm" type="submit" name="action" value="退回">
 				</div>
 			</div>
 		</form>
