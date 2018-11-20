@@ -87,7 +87,7 @@ function forward(){
 <label for="reason" >下單意見:</label>
 <textarea rows="5" cols="50" name="signSug"></textarea> </div>
 <div id="datetime" class="col-md-4" >
-<label for="datetime" >實際收貨時間:</label><br> 
+<label for="datetime" >廠商出貨時間:</label><br> 
 <input type="date" name="shippingDate" required>
 <br>
 <br>
