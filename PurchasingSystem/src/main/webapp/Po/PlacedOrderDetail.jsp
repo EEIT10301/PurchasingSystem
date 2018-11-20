@@ -61,7 +61,7 @@
  <br>
  <div id="reason" class="col-md-6">
  <label for="reason" >收貨意見:</label>
- <textarea rows="5" cols="50" name="signSug"></textarea> </div>
+ <textarea rows="5" cols="50" name="signSug">產生驗收單</textarea> </div>
  <div id="datetime" class="col-md-4" >
  <label for="datetime" >實際收貨時間:</label><br> 
  <input type="date" name="shippingDate" required>

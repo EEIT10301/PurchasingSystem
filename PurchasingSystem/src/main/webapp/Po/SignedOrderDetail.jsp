@@ -85,9 +85,9 @@ function forward(){
 			<h3>請購需求交期:${appmain.app_GetDate}</h3>
 			<div id="reason" class="col-md-6">
 <label for="reason" >下單意見:</label>
-<textarea rows="5" cols="50" name="signSug"></textarea> </div>
+<textarea rows="5" cols="50" name="signSug">盡快出貨</textarea> </div>
 <div id="datetime" class="col-md-4" >
-<label for="datetime" >實際收貨時間:</label><br> 
+<label for="datetime" >廠商出貨時間:</label><br> 
 <input type="date" name="shippingDate" required>
 <br>
 <br>
