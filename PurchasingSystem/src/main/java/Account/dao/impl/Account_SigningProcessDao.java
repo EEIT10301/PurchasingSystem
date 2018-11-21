@@ -121,7 +121,7 @@ public class Account_SigningProcessDao implements Account_SigningProcessIDao {
 	@Override
 	public List<Account_SigningProcessBean> select() {
 		return this.getSession().createQuery("from Account_SigningProcessBean", Account_SigningProcessBean.class)
-				.setMaxResults(50).list();
+				.list();
 	}
 
 	@Override
@@ -149,7 +149,7 @@ public class Account_SigningProcessDao implements Account_SigningProcessIDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Account_SigningProcessBean> selectStatus(String emp_id) {
-		String hql = "FROM Account_SigningProcessBean WHERE account_manger=:id1 order by inv_id";
+		String hql = "FROM Account_SigningProcessBean WHERE account_manger=:id1 order by inv_id desc";
 		return this.getSession().createQuery(hql).setParameter("id1", emp_id).list();
 //查看請款單狀態********
 	}
@@ -158,7 +158,7 @@ public class Account_SigningProcessDao implements Account_SigningProcessIDao {
 	@Override
 
 	public List<Account_SigningProcessBean> selectStatusMan(String emp_id,String account_sta) {
-		String hql = "FROM Account_SigningProcessBean WHERE account_manger=:id1 and account_sta=:id2 order by inv_id";
+		String hql = "FROM Account_SigningProcessBean WHERE account_manger=:id1 and account_sta=:id2 order by inv_id desc";
 		return this.getSession().createQuery(hql).setParameter("id1", emp_id).setParameter("id2", account_sta).list();
 //經理查看請款單狀態********
 	}
@@ -166,7 +166,7 @@ public class Account_SigningProcessDao implements Account_SigningProcessIDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Account_SigningProcessBean> selectStatusDone(String inv_id,Integer sig_rank) {
-		String hql = "FROM Account_SigningProcessBean WHERE inv_id=:id1 and sig_rank=:id2";
+		String hql = "FROM Account_SigningProcessBean WHERE inv_id=:id1 and sig_rank=:id2 order by inv_id desc";
 		return this.getSession().createQuery(hql).setParameter("id1", inv_id).setParameter("id2", sig_rank).list();
 //查看已完成請款單狀態********
 	}
