@@ -66,7 +66,7 @@ public class PO_MainDao implements PO_MainIDao{
 	@Override
 	public List<PO_MainBean> select() {
 		return this.getSession().createQuery(
-				"from PO_MainBean", PO_MainBean.class).setMaxResults(50).list();
+				"from PO_MainBean", PO_MainBean.class).setMaxResults(500).list();
 	}
 
 	@Override

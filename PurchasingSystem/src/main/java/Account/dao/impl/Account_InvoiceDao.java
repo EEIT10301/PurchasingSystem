@@ -100,7 +100,7 @@ public class Account_InvoiceDao implements Account_InvoiceIDao {
 
 	@Override
 	public List<Account_InvoiceBean> select() {
-		return this.getSession().createQuery("from Account_InvoiceBean", Account_InvoiceBean.class).setMaxResults(50)
+		return this.getSession().createQuery("from Account_InvoiceBean", Account_InvoiceBean.class)
 				.list();
 	}
 

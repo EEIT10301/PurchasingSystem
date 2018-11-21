@@ -108,7 +108,7 @@ public class Accout_PayableDao implements Accout_PayableIDao {
 
 	@Override
 	public List<Accout_PayableBean> select() {
-		return this.getSession().createQuery("from Accout_PayableBean", Accout_PayableBean.class).setMaxResults(50)
+		return this.getSession().createQuery("from Accout_PayableBean", Accout_PayableBean.class)
 				.list();
 	}
 
