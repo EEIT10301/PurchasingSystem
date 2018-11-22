@@ -38,7 +38,7 @@
 					value="${bean.pO_Vendor_InfoBean.vendor_name}">
 			</div>
 			<div class="form-group mb-2">
-				<label for="Vendor_id" class="col-md-4">廠商統編</label> <input
+				<label for="Vendor_id" class="col-md-4">廠商編號</label> <input
 					type="text" class="form-control col-md-5 mb-2" name="Vendor_id"
 					readonly="readonly" id="" value="${bean.vendor_ID}">
 			</div>
@@ -81,7 +81,7 @@
 			</div>
 			<div class="form-group  mb-2">
 				<label class="col-md-3">簽核意見</label>
-				<textarea rows="2" cols="58" name="SignSug" class="col-md-6 mb-2" required></textarea>
+				<textarea rows="2" cols="58" name="SignSug" class="col-md-6 mb-2" required>請審核</textarea>
 			</div>
 			<div class=" text-right">
 				<input class="btn btn-white btn-sm" type="reset" value="重新輸入">
@@ -129,7 +129,6 @@
 		}
 	});
 	
-
  
 </script>
 </body>

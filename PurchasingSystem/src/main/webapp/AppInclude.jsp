@@ -68,7 +68,7 @@ padding-right:30px;
 	<nav>
 	<c:if test="${user.emp_level<=2}">
 	<h1><font face="微軟正黑體">請購系統</font></h1>
-<!-- 	<a href="ApplyLoginSuccess.jsp" style="font-family:微軟正黑體;font-size: 15px;">回首頁</a> -->
+
 	<div class="text-right" style="font-family:微軟正黑體;font-size: 15px;">
 		${user.emp_dep}${user.emp_name} ${user.emp_job},你好<a
 			href='ApplyLogout.controller'><button type="button" class="btn" style="font-family:微軟正黑體;font-size: 15px;">
@@ -143,6 +143,7 @@ padding-right:30px;
               <li class="nav-item">
                 <a class="nav-link" href="http://localhost:8080/PurchasingSystem/Apply/selectAll.html">
                 <img class="card-img-top imgp" src="../sysimg/s2.png">
+
                   <span data-feather="file"></span>
                   	物料更新
                 </a>
@@ -156,7 +157,7 @@ padding-right:30px;
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="toApplySignnerdetail.controller">
-                <img class="card-img-top imgp" src="../sysimg/s2.png">
+                <img class="card-img-top imgp" src="../sysimg/a2.png">
                   <span data-feather="layers"></span>
                   	待簽核請購單 <font color=red>${SignAppList}</font>
                 </a>

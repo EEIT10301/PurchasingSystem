@@ -55,7 +55,7 @@ public class Inv_SigningProcessDao implements Inv_SigningProcessIDao{
 		Inv_SigningProcessBean getone =new Inv_SigningProcessBean();
 		String hgl="FROM Inv_SigningProcessBean WHERE inv_Sta=:id1 AND chk_Id=:id2";
 		list =this.getSession().createQuery(hgl).setParameter("id1", inv_Sta)
-				.setParameter("id2", chk_Id).setMaxResults(50).list();
+				.setParameter("id2", chk_Id).setMaxResults(500).list();
 		 if(list.size()>0) {
 			  for(Inv_SigningProcessBean getones :list) {
 				  getone=getones;
@@ -69,7 +69,7 @@ public class Inv_SigningProcessDao implements Inv_SigningProcessIDao{
 	@Override
 	public List<Inv_SigningProcessBean> select() {
 		return this.getSession().createQuery(
-				"from Inv_SigningProcessBean", Inv_SigningProcessBean.class).setMaxResults(50).list();
+				"from Inv_SigningProcessBean", Inv_SigningProcessBean.class).setMaxResults(500).list();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -80,7 +80,7 @@ public class Inv_SigningProcessDao implements Inv_SigningProcessIDao{
 		String  chk_Id = bean.getChk_Id();
 		String hgl="FROM Inv_SigningProcessBean WHERE inv_Sta=:id1 AND chk_Id=:id2";
 		list =this.getSession().createQuery(hgl).setParameter("id1", inv_Sta)
-				.setParameter("id2", chk_Id).setMaxResults(50).list();
+				.setParameter("id2", chk_Id).setMaxResults(500).list();
 		 if(list.size()>0) {
 			  return null;
 		 }else {
@@ -98,7 +98,7 @@ public class Inv_SigningProcessDao implements Inv_SigningProcessIDao{
 		String  chk_Id = bean.getChk_Id();
 		String hgl="FROM Inv_SigningProcessBean WHERE inv_Sta=:id1 AND chk_Id=:id2";
 		list =this.getSession().createQuery(hgl).setParameter("id1", inv_Sta)
-				.setParameter("id2", chk_Id).setMaxResults(50).list();
+				.setParameter("id2", chk_Id).setMaxResults(500).list();
 		 if(list.size()>0) {
 			for(Inv_SigningProcessBean getones:list) {
 				getones.setInv_Manger(bean.getInv_Manger());
@@ -120,7 +120,7 @@ public class Inv_SigningProcessDao implements Inv_SigningProcessIDao{
 		Inv_SigningProcessBean getone =new Inv_SigningProcessBean();
 		String hgl="FROM Inv_SigningProcessBean WHERE inv_Sta=:id1 AND chk_Id=:id2";
 		list =this.getSession().createQuery(hgl).setParameter("id1", inv_Sta)
-				.setParameter("id2", chk_Id).setMaxResults(50).list();
+				.setParameter("id2", chk_Id).setMaxResults(500).list();
 		 if(list.size()>0) {
 			  for(Inv_SigningProcessBean getones :list) {
 				  getone=getones;
@@ -137,7 +137,7 @@ public class Inv_SigningProcessDao implements Inv_SigningProcessIDao{
 		List<Inv_SigningProcessBean> list = null;
 		//from Inv_SigningProcess where Inv_Manger='emp005' and Sig_Sta='分派中'
 		String hgl="FROM Inv_SigningProcessBean where inv_manger=:id1 and sig_sta=:id2 order by Sig_Date asc";
-		list =this.getSession().createQuery(hgl).setParameter("id1",inv_manger).setParameter("id2", sig_sta).setMaxResults(50).list();	
+		list =this.getSession().createQuery(hgl).setParameter("id1",inv_manger).setParameter("id2", sig_sta).setMaxResults(500).list();	
 		if(list.size()>0) {
 			  return list;
 		 }else {
@@ -151,7 +151,7 @@ public class Inv_SigningProcessDao implements Inv_SigningProcessIDao{
 		List<Inv_SigningProcessBean> list = null;
 		//from Inv_SigningProcess where Inv_Manger='emp005' and Sig_Sta='分派中'
 		String hgl="FROM Inv_SigningProcessBean where chk_Id=:id1 order by sig_Rank";
-		list =this.getSession().createQuery(hgl).setParameter("id1",chk_Id).setMaxResults(50).list();	
+		list =this.getSession().createQuery(hgl).setParameter("id1",chk_Id).setMaxResults(500).list();	
 		if(list.size()>0) {
 			  return list;
 		 }else {

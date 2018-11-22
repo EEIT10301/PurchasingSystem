@@ -211,6 +211,7 @@ if(x.getApp_manger().equals(empid)&&x.getSig_sta().equals("退回中")&&x.getApp
 		List<App_SigningProcessBean> Sproductlistsx2 =app_SigningProcessService.selectmangers(empid, "退回中");
 		List<App_SigningProcessBean> Sproductlistsxs2=new LinkedList<App_SigningProcessBean>();
 		List<App_SigningProcessBean> Sproductlistsx3 =new LinkedList<App_SigningProcessBean>();
+		List<App_SigningProcessBean> Sproductlistsx4 =new LinkedList<App_SigningProcessBean>();
 		Integer Applylistsranks =0;
 		Integer nosendranks=0;
 		Integer pages=0;
@@ -241,6 +242,16 @@ if(x.getApp_manger().equals(empid)&&x.getSig_sta().equals("退回中")&&x.getApp
 				}
 			}
 			Sproductlistsxs2=app_SigningProcessService.selectemppoidsendpages(empid, "退回中", 0, pagesize);
+			for(int i=0;i<Sproductlistsxs2.size();i++) {
+				App_SigningProcessBean xsz=new App_SigningProcessBean();
+				xsz=Sproductlistsxs2.get(i);			
+					Applylistsranks=xsz.getSig_rank();
+					String apid = xsz.getApp_id();
+					App_SigningProcessBean xsz1 =app_SigningProcessService.selectrank(apid, Applylistsranks+1);
+					if(xsz1!=null) {
+						Sproductlistsx4.add(xsz1);
+					}
+			}
 		}
 		if(Sproductlistsx1!=null||Sproductlistsx2!=null){
 			model.addAttribute("pages", pages);
@@ -249,7 +260,7 @@ if(x.getApp_manger().equals(empid)&&x.getSig_sta().equals("退回中")&&x.getApp
 			model.addAttribute("Applylists", Sproductlistsxs1);
 			model.addAttribute("nosend", Sproductlistsxs2);
 			model.addAttribute("Applylistsone", Sproductlistsx3);
-			
+			model.addAttribute("nosendone", Sproductlistsx4);
 			return "apply.mangersign";
 		}else{
 			model.addAttribute("noApplylist", "無待簽核表單");
@@ -266,6 +277,7 @@ if(x.getApp_manger().equals(empid)&&x.getSig_sta().equals("退回中")&&x.getApp
 		List<App_SigningProcessBean> Sproductlistsx2 =app_SigningProcessService.selectmangers(empid, "退回中");
 		List<App_SigningProcessBean> Sproductlistsxs2=new LinkedList<App_SigningProcessBean>();
 		List<App_SigningProcessBean> Sproductlistsx3 =new LinkedList<App_SigningProcessBean>();
+		List<App_SigningProcessBean> Sproductlistsx4 =new LinkedList<App_SigningProcessBean>();
 		Integer Applylistsranks =0;
 		Integer nosendranks=0;
 		Integer pages=0;
@@ -280,15 +292,17 @@ if(x.getApp_manger().equals(empid)&&x.getSig_sta().equals("退回中")&&x.getApp
 				pages++;
 			}
 			Sproductlistsxs1=app_SigningProcessService.selectemppoidsendpages(empid, "簽核中", beginindex, pagesize);
-			for(int i=0;i<Sproductlistsx1.size();i++) {
-				App_SigningProcessBean xsz=new App_SigningProcessBean();
-				xsz=Sproductlistsx1.get(i);			
+			if(Sproductlistsxs1!=null) {		
+				for(int i=0;i<Sproductlistsx1.size();i++) {
+					App_SigningProcessBean xsz=new App_SigningProcessBean();
+					xsz=Sproductlistsx1.get(i);			
 					Applylistsranks=xsz.getSig_rank();
 					String apid = xsz.getApp_id();
 					App_SigningProcessBean xsz1 =app_SigningProcessService.selectrank(apid, Applylistsranks-1);
 					if(xsz1!=null) {
 						Sproductlistsx3.add(xsz1);
 					}
+				}
 			}
 		}
 		if(Sproductlistsx2!=null) {
@@ -299,6 +313,19 @@ if(x.getApp_manger().equals(empid)&&x.getSig_sta().equals("退回中")&&x.getApp
 				}
 			}
 			Sproductlistsxs2=app_SigningProcessService.selectemppoidsendpages(empid, "退回中", beginindex, pagesize);
+			if(Sproductlistsxs2!=null) {
+				
+				for(int i=0;i<Sproductlistsxs2.size();i++) {
+					App_SigningProcessBean xsz=new App_SigningProcessBean();
+					xsz=Sproductlistsxs2.get(i);			
+					Applylistsranks=xsz.getSig_rank();
+					String apid = xsz.getApp_id();
+					App_SigningProcessBean xsz1 =app_SigningProcessService.selectrank(apid, Applylistsranks+1);
+					if(xsz1!=null) {
+						Sproductlistsx4.add(xsz1);
+					}
+				}
+			}
 		}
 		if(Sproductlistsx1!=null||Sproductlistsx2!=null){
 			model.addAttribute("pages", pages);
@@ -308,7 +335,7 @@ if(x.getApp_manger().equals(empid)&&x.getSig_sta().equals("退回中")&&x.getApp
 			model.addAttribute("Applylists", Sproductlistsxs1);
 			model.addAttribute("nosend", Sproductlistsxs2);
 			model.addAttribute("Applylistsone", Sproductlistsx3);
-			
+			model.addAttribute("nosendone", Sproductlistsx4);
 			return "apply.mangersign";
 		}else{
 			model.addAttribute("noApplylist", "無待簽核表單");

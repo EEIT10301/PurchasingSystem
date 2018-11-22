@@ -125,5 +125,12 @@ public class PO_SigningProcessService {
 		}
 		return null;
 	}	
+	public List<PO_SigningProcessBean> selectonlySigSta(String sig_Sta) {
+		List<PO_SigningProcessBean> beans =pO_SigningProcessIDao.selectonlySigSta(sig_Sta);
+		if(beans!=null) {
+			return beans;
+		}
+		return null;
+	}	
 
 }

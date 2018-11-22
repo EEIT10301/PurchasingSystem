@@ -106,7 +106,7 @@ public class Account_SigningProcessDao implements Account_SigningProcessIDao {
 		Account_SigningProcessBean getone = new Account_SigningProcessBean();
 		String hgl = "FROM Account_SigningProcessBean WHERE account_Sta=:id1 AND inv_id=:id2";
 		list = this.getSession().createQuery(hgl).setParameter("id1", account_Sta).setParameter("id2", inv_id)
-				.setMaxResults(50).list();
+				.list();
 		if (list.size() > 0) {
 			for (Account_SigningProcessBean getones : list) {
 				getone = getones;
@@ -121,20 +121,20 @@ public class Account_SigningProcessDao implements Account_SigningProcessIDao {
 	@Override
 	public List<Account_SigningProcessBean> select() {
 		return this.getSession().createQuery("from Account_SigningProcessBean", Account_SigningProcessBean.class)
-				.setMaxResults(50).list();
+				.list();
 	}
 
 	@Override
 	public List<Account_SigningProcessBean> selectForStatus(String account_Sta) {
 		String hgl = "FROM Account_SigningProcessBean WHERE account_Sta=:id1";
-		return this.getSession().createQuery(hgl).setParameter("id1", account_Sta).setMaxResults(50).list();
+		return this.getSession().createQuery(hgl).setParameter("id1", account_Sta).list();
 
 	}
 
 	@Override
 	public List<Account_SigningProcessBean> selectForInvid(String inv_id) {
 		String hql = "FROM Account_SigningProcessBean WHERE inv_id=:id2 order by sig_rank";
-		return this.getSession().createQuery(hql).setParameter("id2", inv_id).setMaxResults(50).list();
+		return this.getSession().createQuery(hql).setParameter("id2", inv_id).list();
 
 	}
 	
@@ -142,15 +142,15 @@ public class Account_SigningProcessDao implements Account_SigningProcessIDao {
 	@Override
 	public List<Account_SigningProcessBean> selectInvidAndRank(String inv_id,Integer sig_rank) {
 		String hql = "FROM Account_SigningProcessBean WHERE inv_id=:id1 and sig_rank<:id2 Order by sig_rank asc" ;
-		return this.getSession().createQuery(hql).setParameter("id1", inv_id).setParameter("id2", sig_rank).setMaxResults(50).list();
+		return this.getSession().createQuery(hql).setParameter("id1", inv_id).setParameter("id2", sig_rank).list();
 //查看前面的簽核意見
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Account_SigningProcessBean> selectStatus(String emp_id) {
-		String hql = "FROM Account_SigningProcessBean WHERE account_manger=:id1 order by inv_id";
-		return this.getSession().createQuery(hql).setParameter("id1", emp_id).setMaxResults(50).list();
+		String hql = "FROM Account_SigningProcessBean WHERE account_manger=:id1 order by inv_id desc";
+		return this.getSession().createQuery(hql).setParameter("id1", emp_id).list();
 //查看請款單狀態********
 	}
 
@@ -158,22 +158,22 @@ public class Account_SigningProcessDao implements Account_SigningProcessIDao {
 	@Override
 
 	public List<Account_SigningProcessBean> selectStatusMan(String emp_id,String account_sta) {
-		String hql = "FROM Account_SigningProcessBean WHERE account_manger=:id1 and account_sta=:id2 order by inv_id";
-		return this.getSession().createQuery(hql).setParameter("id1", emp_id).setParameter("id2", account_sta).setMaxResults(50).list();
+		String hql = "FROM Account_SigningProcessBean WHERE account_manger=:id1 and account_sta=:id2 order by inv_id desc";
+		return this.getSession().createQuery(hql).setParameter("id1", emp_id).setParameter("id2", account_sta).list();
 //經理查看請款單狀態********
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Account_SigningProcessBean> selectStatusDone(String inv_id,Integer sig_rank) {
-		String hql = "FROM Account_SigningProcessBean WHERE inv_id=:id1 and sig_rank=:id2";
-		return this.getSession().createQuery(hql).setParameter("id1", inv_id).setParameter("id2", sig_rank).setMaxResults(50).list();
+		String hql = "FROM Account_SigningProcessBean WHERE inv_id=:id1 and sig_rank=:id2 order by inv_id desc";
+		return this.getSession().createQuery(hql).setParameter("id1", inv_id).setParameter("id2", sig_rank).list();
 //查看已完成請款單狀態********
 	}
 
 	public List<Account_SigningProcessBean> selectPOprocess(String inv_id) {
 		String hql = "FROM Account_SigningProcessBean WHERE inv_id=:id1 order by sig_rank";
-		return this.getSession().createQuery(hql).setParameter("id1", inv_id).setMaxResults(50).list();
+		return this.getSession().createQuery(hql).setParameter("id1", inv_id).list();
 
 	}
 	
@@ -186,7 +186,7 @@ public class Account_SigningProcessDao implements Account_SigningProcessIDao {
 		String inv_id = bean.getInv_id();
 		String hgl = "FROM Account_SigningProcessBean WHERE account_Sta=:id1 AND inv_id=:id2";
 		list = this.getSession().createQuery(hgl).setParameter("id1", account_Sta).setParameter("id2", inv_id)
-				.setMaxResults(50).list();
+				.list();
 		if (list.size() > 0) {
 			return null;
 		} else {
@@ -228,7 +228,7 @@ public class Account_SigningProcessDao implements Account_SigningProcessIDao {
 		Account_SigningProcessBean getone = new Account_SigningProcessBean();
 		String hgl = "FROM Account_SigningProcessBean WHERE account_Sta=:id1 AND inv_id=:id2";
 		list = this.getSession().createQuery(hgl).setParameter("id1", account_Sta).setParameter("id2", inv_id)
-				.setMaxResults(50).list();
+				.list();
 		if (list.size() > 0) {
 			for (Account_SigningProcessBean getones : list) {
 				getone = getones;
@@ -245,7 +245,7 @@ public class Account_SigningProcessDao implements Account_SigningProcessIDao {
 	public List<Account_SigningProcessBean> selectProcess(String emp_id, String sig_sta, Integer sig_rank) {
 		String hgl="FROM Account_SigningProcessBean where account_Manger=:id1 and sig_sta=:id2 and sig_rank=:id3";
 		List<Account_SigningProcessBean> list =this.getSession().createQuery(hgl).setParameter("id1", emp_id).setParameter("id2", sig_sta).
-				setParameter("id3", sig_rank).setMaxResults(50).list();
+				setParameter("id3", sig_rank).list();
 		
 		if(list.size()>0) {
 			return list;
@@ -263,7 +263,7 @@ public class Account_SigningProcessDao implements Account_SigningProcessIDao {
 //				"'  and sig_rank=:id3";
 		String hgl="FROM Account_SigningProcessBean where account_Manger=:id1 and sig_sta='退回中'  and sig_rank=:id3";
 		list =this.getSession().createQuery(hgl).setParameter("id1", emp_id).
-				setParameter("id3", sig_rank).setMaxResults(50).list();
+				setParameter("id3", sig_rank).list();
 		
 		if(list.size()>0) {
 			  return list;
@@ -279,7 +279,7 @@ public class Account_SigningProcessDao implements Account_SigningProcessIDao {
 		//from Account_SigningProcess where emp_id='' and Sig_Sta='簽核中'  sig_rank=2
 		String hgl="FROM Account_SigningProcessBean where account_Manger=:id1 and sig_sta='簽核中'  and sig_rank=:id3";
 		list =this.getSession().createQuery(hgl).setParameter("id1", emp_id).
-				setParameter("id3", sig_rank).setMaxResults(50).list();
+				setParameter("id3", sig_rank).list();
 		
 		if(list.size()>0) {
 			  return list;

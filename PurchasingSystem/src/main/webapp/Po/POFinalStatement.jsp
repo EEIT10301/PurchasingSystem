@@ -35,8 +35,8 @@
 				</tr>
 				</thead>
 				<tbody id='myTable'>
-				<tr>
 				<c:forEach var="accountDone" items="${accountDone}">
+				<tr>
 				<td><a href='<c:url value="POFinalStatementDetail.controller?po_id=${accountDone.po_id}"/>'>${accountDone.po_id}</a></td>
 				
 				
@@ -45,8 +45,8 @@
 				<fmt:formatDate pattern="yyyy/MM/dd HH:mm" value="${accountDone.sig_date}"/>
 				</td>
 				<td width="700px">${accountDone.sig_sug}</td>
-				</c:forEach>
 				</tr>
+				</c:forEach>
 			</tbody>
 			</table>			
 		

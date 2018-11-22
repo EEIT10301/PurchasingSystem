@@ -50,7 +50,7 @@ public class PO_DetailDao implements PO_DetailIDao{
 		PO_DetailBean getone =new PO_DetailBean();
 		String hgl="FROM PO_DetailBean WHERE po_id=:id1 AND part_No=:id2";
 		list =this.getSession().createQuery(hgl).setParameter("id1", po_id)
-				.setParameter("id2", part_No).setMaxResults(50).list();
+				.setParameter("id2", part_No).setMaxResults(500).list();
 		 if(list.size()>0) {
 			  for(PO_DetailBean getones :list) {
 				  getone=getones;
@@ -64,7 +64,7 @@ public class PO_DetailDao implements PO_DetailIDao{
 	@Override
 	public List<PO_DetailBean> select() {
 		return this.getSession().createQuery(
-				"from PO_DetailBean", PO_DetailBean.class).setMaxResults(50).list();
+				"from PO_DetailBean", PO_DetailBean.class).setMaxResults(500).list();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -75,7 +75,7 @@ public class PO_DetailDao implements PO_DetailIDao{
 		String part_No = bean.getPart_No();
 		String hgl="FROM PO_DetailBean WHERE po_id=:id1 AND part_No=:id2";
 		list =this.getSession().createQuery(hgl).setParameter("id1", po_id)
-				.setParameter("id2", part_No).setMaxResults(50).list();
+				.setParameter("id2", part_No).setMaxResults(500).list();
 		 if(list.size()>0) {
 			  return null;
 		 }else {
@@ -92,7 +92,7 @@ public class PO_DetailDao implements PO_DetailIDao{
 		String part_No = bean.getPart_No();
 		String hgl="FROM PO_DetailBean WHERE po_id=:id1 AND part_No=:id2";
 		list =this.getSession().createQuery(hgl).setParameter("id1", po_id)
-				.setParameter("id2", part_No).setMaxResults(50).list();
+				.setParameter("id2", part_No).setMaxResults(500).list();
 		 if(list.size()>0) {
 			 for(PO_DetailBean getones :list) {
 					getones.setMarket_Price(bean.getMarket_Price());				
@@ -113,7 +113,7 @@ public class PO_DetailDao implements PO_DetailIDao{
 		PO_DetailBean getone =new PO_DetailBean();
 		String hgl="FROM PO_DetailBean WHERE po_id=:id1 AND part_No=:id2";
 		list =this.getSession().createQuery(hgl).setParameter("id1", po_id)
-				.setParameter("id2", part_No).setMaxResults(50).list();
+				.setParameter("id2", part_No).setMaxResults(500).list();
 		 if(list.size()>0) {
 			  for(PO_DetailBean getones :list) {
 				  getone=getones;
@@ -130,7 +130,7 @@ public class PO_DetailDao implements PO_DetailIDao{
 		List<PO_DetailBean> list = null;
 		String hgl="FROM PO_DetailBean WHERE po_id=:id1 ";
 		list =this.getSession().createQuery(hgl).setParameter("id1", po_id)
-				.setMaxResults(50).list();
+				.setMaxResults(500).list();
 		 if(list.size()>0) {
 			 return list;
 		 }

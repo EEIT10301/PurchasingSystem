@@ -69,7 +69,7 @@ $(document).ready(function(){
 					txt += "</tr>"
 				$.each(data.myArrayList,function(index,json){
 					txt += "<tr >";
-					txt += "<td id='id'><a href='http://localhost:8080/PurchasingSystem/updateanddelete.html?id="+json.map.vendor_id+"&account="+json.map.vendor_name+"&password="+json.map.vendor_contact_person+"'>"+json.map.vendor_id+"</a></td>"
+					txt += "<td id='id'>"+json.map.vendor_id+"</td>"
 					txt += "<td id='name'>"+json.map.vendor_name+"</td>"
 					txt += "<td id='person'>"+json.map.vendor_contact_person+"</td>"
 					txt += "<td id='acc'>"+json.map.vendor_acc+"</td>"
@@ -107,7 +107,7 @@ $("tbody").on("click","#insert",function(){
 				success : function(response) {
 					//alert(response);
 					var items = JSON.parse(response);
-					alert(items.insert);
+					alert("新增成功");
 					window.location.reload();
 				}
 			});

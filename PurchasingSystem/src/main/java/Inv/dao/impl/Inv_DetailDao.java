@@ -39,10 +39,10 @@ public class Inv_DetailDao implements Inv_DetailIDao{
 	@Override
 	public List<Inv_DetailBean> selectnv_Part_no(String Inv_Part_no) {
 		List<Inv_DetailBean> list = null;
+
 		String hgl="FROM Inv_DetailBean WHERE Inv_Part_no=:id1 ";
 		//WHERE Inv_Part_no=:id1  .setParameter("id1",Inv_Part_no).
 		list =this.getSession().createQuery(hgl).setParameter("id1",Inv_Part_no).list();
-		
 		return list;
 	}
 	
@@ -53,7 +53,7 @@ public class Inv_DetailDao implements Inv_DetailIDao{
 		Inv_DetailBean getone =new Inv_DetailBean();
 		String hgl="FROM Inv_DetailBean WHERE Inv_Part_no=:id1 AND Inv__Date=:id2";
 		list =this.getSession().createQuery(hgl).setParameter("id1", Inv_Part_no)
-				.setParameter("id2", Inv__Date).setMaxResults(50).list();
+				.setParameter("id2", Inv__Date).setMaxResults(500).setMaxResults(500).list();
 		 if(list.size()>0) {
 			  for(Inv_DetailBean getones :list) {
 				  getone=getones;
@@ -66,7 +66,7 @@ public class Inv_DetailDao implements Inv_DetailIDao{
 	@Override
 	public List<Inv_DetailBean> selectall() {
 		return this.getSession().createQuery(
-				"from Inv_DetailBean", Inv_DetailBean.class).setMaxResults(50).list();
+				"from Inv_DetailBean", Inv_DetailBean.class).setMaxResults(500).list();
 	}
 	@SuppressWarnings("unchecked")
 	@Override
@@ -76,7 +76,7 @@ public class Inv_DetailDao implements Inv_DetailIDao{
 		java.util.Date Inv__Date = bean.getInv__Date();
 		String hgl="FROM Inv_DetailBean WHERE Inv_Part_no=:id1 AND Inv__Date=:id2";
 		list =this.getSession().createQuery(hgl).setParameter("id1", Inv_Part_no)
-				.setParameter("id2", Inv__Date).setMaxResults(50).list();
+				.setParameter("id2", Inv__Date).setMaxResults(500).list();
 		 if(list.size()>0) {
 			  return null;
 		 }else {
@@ -93,7 +93,7 @@ public class Inv_DetailDao implements Inv_DetailIDao{
 		java.util.Date Inv__Date = bean.getInv__Date();
 		String hgl="FROM Inv_DetailBean WHERE Inv_Part_no=:id1 AND Inv__Date=:id2";
 		list =this.getSession().createQuery(hgl).setParameter("id1", Inv_Part_no)
-				.setParameter("id2", Inv__Date).setMaxResults(50).list();
+				.setParameter("id2", Inv__Date).setMaxResults(500).list();
 		 if(list.size()>0) {
 			for(Inv_DetailBean getones:list) {
 				getones.setInv_Amount(bean.getInv_Amount());
@@ -115,7 +115,7 @@ public class Inv_DetailDao implements Inv_DetailIDao{
 		Inv_DetailBean getone =new Inv_DetailBean();
 		String hgl="FROM Inv_DetailBean WHERE Inv_Part_no=:id1 AND Inv__Date=:id2";
 		list =this.getSession().createQuery(hgl).setParameter("id1", Inv_Part_no)
-				.setParameter("id2", Inv__Date).setMaxResults(50).list();
+				.setParameter("id2", Inv__Date).setMaxResults(500).list();
 		 if(list.size()>0) {
 			  for(Inv_DetailBean getones :list) {
 				  getone=getones;
@@ -131,7 +131,7 @@ public class Inv_DetailDao implements Inv_DetailIDao{
 	public List<Inv_DetailBean> selectnv_Part_notest(String Inv_Part_no) {
 		List<Inv_DetailBean> list = null;
 		String hgl=" FROM Inv_DetailBean WHERE Inv_Part_no=:id1 ";
-		return list =this.getSession().createQuery(hgl).setParameter("id1", Inv_Part_no).setMaxResults(50).list();
+		return list =this.getSession().createQuery(hgl).setParameter("id1", Inv_Part_no).setMaxResults(500).list();
 	}
 	
 

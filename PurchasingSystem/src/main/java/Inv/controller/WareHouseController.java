@@ -92,18 +92,6 @@ public class WareHouseController {
 		List<Inv_DetailBean> bean=null;
 		System.out.println("這是顯示產品細項的controller");
 	 bean = inv_Detailservice.selectnv_Part_notest(MainbeanPK);
-		int x=0;
-		x=1;
-		x=1;
-		x=1;
-		x=1;
-		x=1;
-		x=1;
-		x=1;
-		x=1;
-		x=1;
-		x=1;
-		x=1;
 		model.addAttribute("detailbean", bean);
 		return "DetailView.Show";
 	}

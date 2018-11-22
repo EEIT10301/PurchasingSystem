@@ -23,7 +23,6 @@ font-size: 36px;
 .bg {
 	background-color: #FDF5E6;
 	/* 畫面間距 */
-	margin: 30px;
 }
 .right{
 	width:78%;
@@ -65,6 +64,12 @@ ul {
 span {
 	margin-left:1px;
 }
+nav{
+background-color: rgb(248, 219, 166);
+padding-top:30px;
+padding-left:30px;
+padding-right:30px;
+}
 </style>	
 </head>
 <body class="bg" id=all>
@@ -98,11 +103,10 @@ $(document).ready(function(){
 			success:function(data){
 				var Applist = JSON.parse(data);
 					var txt = ""
-						txt += "<h1><font face='微軟正黑體'>請購系統</font></h1>"
-						txt += "<a href='ApplyLoginSuccess.jsp'  style='font-family:微軟正黑體;font-size: 15px;'>回首頁</a>"
+						txt += "<nav><h1><font face='微軟正黑體'>請購系統</font></h1>"
 						txt += "<div class='text-right' style='font-family:微軟正黑體;font-size: 15px;'>"
 						txt +=""+Applist.empdep+Applist.empname+Applist.empjob+",您好 <a href='ApplyLogout.controller'><button type='button' class='btn' style='font-family:微軟正黑體;font-size: 15px;'>登出</button></a> </div>"		
-					    txt += "<hr> <div class='left'>"
+					    txt += "<hr></nav> <div class='left'>"
 							var emplevel = Applist.emplevel;
 							if(emplevel=="1"){
 								txt +='<ul class="nav flex-column"> <li class="nav-item"> <a class="nav-link active" href="ApplySend.jsp"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> 請購申請 <span class="sr-only"></span></a></li>'
@@ -116,8 +120,7 @@ $(document).ready(function(){
 								txt +='<li class="nav-item"> <a class="nav-link active" href="http://localhost:8080/PurchasingSystem/Apply/ApplySearchEndList.html"><img class="card-img-top imgp" src="../sysimg/s6.png"><span data-feather="home"></span> 已結案單子查詢 <font color=red>'+'</font> </a></li>'
 								txt +='<li class="nav-item"> <a class="nav-link active" href="toApplySignnerdetail.controller"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> 待簽核請購單 <font color=red>'+Applist.SignAppList+'</font> </a></li>'
 								txt +='<li class="nav-item"> <a class="nav-link active" href="toApplySignpro.controller"><img class="card-img-top imgp" src="../sysimg/s6.png"><span data-feather="home"></span> 請購進度查詢 <font color=red>'+Applist.Appnow+'</font> </a></li> </ul></div>'
-							}
-						
+							}						
 					
 					$("#xxx").html(txt);	
 			}

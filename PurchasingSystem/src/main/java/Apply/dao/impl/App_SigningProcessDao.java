@@ -56,7 +56,7 @@ public class App_SigningProcessDao implements App_SigningProcessIDao {
 		App_SigningProcessBean getone =new App_SigningProcessBean();
 		String hgl="FROM App_SigningProcessBean WHERE app_sta=:id1 AND app_id=:id2";
 		list =this.getSession().createQuery(hgl).setParameter("id1", app_sta)
-				.setParameter("id2", app_id).setMaxResults(50).list();
+				.setParameter("id2", app_id).setMaxResults(500).list();
 		 if(list.size()>0) {
 			  for(App_SigningProcessBean getones :list) {
 				  getone=getones;
@@ -71,7 +71,7 @@ public class App_SigningProcessDao implements App_SigningProcessIDao {
 	@Override
 	public List<App_SigningProcessBean> select() {
 		return this.getSession().createQuery(
-				"from App_SigningProcessBean", App_SigningProcessBean.class).setMaxResults(50).list();
+				"from App_SigningProcessBean", App_SigningProcessBean.class).setMaxResults(500).list();
 	
 	}
 
@@ -83,7 +83,7 @@ public class App_SigningProcessDao implements App_SigningProcessIDao {
 		String app_id = bean.getApp_id();
 		String hgl="FROM App_SigningProcessBean WHERE app_sta=:id1 AND app_id=:id2";
 		list =this.getSession().createQuery(hgl).setParameter("id1", app_sta)
-				.setParameter("id2", app_id).setMaxResults(50).list();
+				.setParameter("id2", app_id).setMaxResults(500).list();
 		 if(list.size()>0) {
 			 
 			  return null;
@@ -101,7 +101,7 @@ public class App_SigningProcessDao implements App_SigningProcessIDao {
 		String app_id = bean.getApp_id();
 		String hgl="FROM App_SigningProcessBean WHERE app_sta=:id1 AND app_id=:id2";
 		list =this.getSession().createQuery(hgl).setParameter("id1", app_sta)
-				.setParameter("id2", app_id).setMaxResults(50).list();
+				.setParameter("id2", app_id).setMaxResults(500).list();
 		 if(list.size()>0) {
 			 for(App_SigningProcessBean getones :list) {
 				  getones.setApp_manger(bean.getApp_manger());
@@ -124,7 +124,7 @@ public class App_SigningProcessDao implements App_SigningProcessIDao {
 		App_SigningProcessBean getone =new App_SigningProcessBean();
 		String hgl="FROM App_SigningProcessBean WHERE app_sta=:id1 AND app_id=:id2";
 		list =this.getSession().createQuery(hgl).setParameter("id1", app_sta)
-				.setParameter("id2", app_id).setMaxResults(50).list();
+				.setParameter("id2", app_id).setMaxResults(500).list();
 		 if(list.size()>0) {
 			  for(App_SigningProcessBean getones :list) {
 				  getone=getones;
@@ -144,7 +144,7 @@ public class App_SigningProcessDao implements App_SigningProcessIDao {
 		App_SigningProcessBean getone =new App_SigningProcessBean();
 		String hgl="FROM App_SigningProcessBean WHERE app_Manger=:id1 AND sig_Sta=:id2";
 		list =this.getSession().createQuery(hgl).setParameter("id1", app_Manger)
-				.setParameter("id2", sig_Sta).setMaxResults(50).list();
+				.setParameter("id2", sig_Sta).setMaxResults(500).list();
 		 if(list.size()>0) {
 			 
 			 for(App_SigningProcessBean getones :list) {
@@ -163,7 +163,7 @@ public class App_SigningProcessDao implements App_SigningProcessIDao {
 		App_SigningProcessBean getone =new App_SigningProcessBean();
 		String hgl="FROM App_SigningProcessBean WHERE app_id=:id1 AND sig_Rank=:id2 and not Sig_sta ='已註銷' and app_id=:id1 AND sig_Rank=:id2 and not Sig_sta ='已結案' order by App_ID  desc ";
 		list =this.getSession().createQuery(hgl).setParameter("id1", app_id)
-				.setParameter("id2", sig_Rank).setMaxResults(50).list();
+				.setParameter("id2", sig_Rank).setMaxResults(500).list();
 		 if(list.size()>0) {
 			 
 			 for(App_SigningProcessBean getones :list) {
@@ -182,7 +182,7 @@ public class App_SigningProcessDao implements App_SigningProcessIDao {
 		App_SigningProcessBean getone =new App_SigningProcessBean();
 		String hgl="FROM App_SigningProcessBean WHERE app_id=:id1 ";
 		list =this.getSession().createQuery(hgl).setParameter("id1", app_id)
-				.setMaxResults(50).list();
+				.setMaxResults(500).list();
 		 if(list.size()>0) {
 			 
 			 for(App_SigningProcessBean getones :list) {
@@ -201,7 +201,7 @@ public class App_SigningProcessDao implements App_SigningProcessIDao {
 		App_SigningProcessBean getone =new App_SigningProcessBean();
 		String hgl="FROM App_SigningProcessBean  WHERE app_Manger=:id1 and not Sig_sta ='已註銷' and app_Manger=:id1 and not Sig_sta ='已結案' order by App_ID  desc";
 		list =this.getSession().createQuery(hgl).setParameter("id1", app_Manger)
-				.setMaxResults(50).list();
+				.setMaxResults(500).list();
 		 if(list.size()>0) {
 			 return list;
 			 }
@@ -217,7 +217,7 @@ public class App_SigningProcessDao implements App_SigningProcessIDao {
 		
 		String hgl="FROM App_SigningProcessBean WHERE app_id=:id1 order by sig_rank";
 		list =this.getSession().createQuery(hgl).setParameter("id1", app_id)
-				.setMaxResults(50).list();
+				.setMaxResults(500).list();
 		 if(list.size()>0) {
 			 return list;
 			 }
@@ -233,7 +233,7 @@ public class App_SigningProcessDao implements App_SigningProcessIDao {
 		
 		String hgl="FROM App_SigningProcessBean WHERE app_Manger=:id1 and sig_Sta=:id2 order by App_ID desc";
 		list =this.getSession().createQuery(hgl).setParameter("id1", app_Manger)
-				.setParameter("id2", sig_Sta).setMaxResults(50).list();
+				.setParameter("id2", sig_Sta).setMaxResults(500).list();
 		 if(list.size()>0) {
 			 return list;
 			 }
@@ -268,7 +268,7 @@ public class App_SigningProcessDao implements App_SigningProcessIDao {
 		List<App_SigningProcessBean> list = null;
 		// from PO_SigningProcess where PO_Manger='emp005' and Sig_Sta='分派中'
 		String hgl = "FROM App_SigningProcessBean where Sig_Rank=:id1 and not Sig_sta ='已註銷' and Sig_Rank=:id1 and not Sig_sta ='已結案' order by App_ID desc";
-		list =this.getSession().createQuery(hgl).setParameter("id1", Sig_Rank).setMaxResults(50).list();
+		list =this.getSession().createQuery(hgl).setParameter("id1", Sig_Rank).setMaxResults(500).list();
 		 if(list.size()>0) {
 			 return list;
 			 }
@@ -282,7 +282,7 @@ public class App_SigningProcessDao implements App_SigningProcessIDao {
 	public List<App_SigningProcessBean> selectApp_staandSig_sta(String app_sta, String sig_sta) {
 		List<App_SigningProcessBean> list = null;
 		String hgl = "FROM App_SigningProcessBean where app_sta=:id1 and  sig_sta=:id2  order by Sig_Date desc";
-		list =this.getSession().createQuery(hgl).setParameter("id1", app_sta).setParameter("id2", sig_sta).setMaxResults(50).list();
+		list =this.getSession().createQuery(hgl).setParameter("id1", app_sta).setParameter("id2", sig_sta).setMaxResults(500).list();
 		 if(list.size()>0) {
 			 return list;
 			 }
@@ -297,7 +297,7 @@ public class App_SigningProcessDao implements App_SigningProcessIDao {
 		List<App_SigningProcessBean> list = null;
 		String hgl = "FROM App_SigningProcessBean where app_sta=:id1 and sig_sta=:id2 and app_Manger=:id3  order by Sig_Date desc";
 		list =this.getSession().createQuery(hgl).setParameter("id1", app_sta).setParameter("id2", sig_sta)
-				.setParameter("id3", app_Manger).setMaxResults(50).list();
+				.setParameter("id3", app_Manger).setMaxResults(500).list();
 		 if(list.size()>0) {
 			 return list;
 			 }
@@ -314,7 +314,7 @@ public class App_SigningProcessDao implements App_SigningProcessIDao {
 		App_SigningProcessBean thisbean=new App_SigningProcessBean();
 		String hgl = "FROM App_SigningProcessBean where app_id=:id1 and sig_sta=:id2 and app_sta=:id3  order by Sig_Date desc";
 		list =this.getSession().createQuery(hgl).setParameter("id1", app_id).setParameter("id2", sig_sta)
-				.setParameter("id3", app_sta).setMaxResults(50).list();
+				.setParameter("id3", app_sta).setMaxResults(500).list();
 		 if(list.size()>0) {
 			 for(App_SigningProcessBean x:list) {
 				 thisbean=x;
@@ -332,7 +332,7 @@ public class App_SigningProcessDao implements App_SigningProcessIDao {
 			String app_Manger) {
 		List<App_SigningProcessBean> list = null;
 		String hgl = "FROM App_SigningProcessBean where app_sta=:id1 and sig_sta=:id2 and app_Manger=:id3 order by Sig_Date desc";
-		list =this.getSession().createQuery(hgl).setParameter("id1", app_sta).setParameter("id2", sig_sta).setParameter("id3", app_Manger).setMaxResults(50).list();
+		list =this.getSession().createQuery(hgl).setParameter("id1", app_sta).setParameter("id2", sig_sta).setParameter("id3", app_Manger).setMaxResults(500).list();
 		 if(list.size()>0) {
 			 return list;
 			 }

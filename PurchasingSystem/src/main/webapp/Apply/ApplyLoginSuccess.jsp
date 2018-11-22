@@ -142,6 +142,7 @@ padding-right:30px;
 	 	<div class="card bg-light f">
 				<a href='http://localhost:8080/PurchasingSystem/Apply/selectAll.html' class="btn"><img
 					class="card-img-top imgp" src="../sysimg/s1.png"></a>
+
 				<div class="card-body">
 					<h5 class="card-title"><font face="微軟正黑體">物料更新</font></h5>
 				</div>
@@ -149,13 +150,14 @@ padding-right:30px;
 		 	<div class="card bg-light f">
 				<a href='http://localhost:8080/PurchasingSystem/Apply/ApplySearchEndList.html' class="btn"><img
 					class="card-img-top imgp" src="../sysimg/s6.png"></a>
+
 				<div class="card-body">
 					<h5 class="card-title"><font face="微軟正黑體">已結案單子查詢</font> </h5>
 				</div>
 			</div>
 			<div class="card bg-light f">
 			<a href='toApplySignnerdetail.controller' class="btn"><img
-					class="card-img-top imgp" src="../sysimg/s1.png"></a>
+					class="card-img-top imgp" src="../sysimg/a2.png"></a>
 				<div class="card-body">
 					<h5 class="card-title"><font face="微軟正黑體">待簽核請購單</font> <font color=red>${SignAppList}</font> </h5>
 				</div>

@@ -72,7 +72,7 @@ public class Inv_MainDao implements Inv_MainIDao{
 	@Override
 	public List<Inv_MainBean> select() {
 		return this.getSession().createQuery(
-				"from Inv_MainBean", Inv_MainBean.class).setMaxResults(50).list();
+				"from Inv_MainBean", Inv_MainBean.class).setMaxResults(500).list();
 	}
 
 	@Override
