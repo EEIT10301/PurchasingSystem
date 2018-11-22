@@ -100,14 +100,14 @@ padding-right:30px;
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Apply/ApplyWaitEndList.html">
+                <a class="nav-link" href="http://localhost:8080/PurchasingSystem/Apply/ApplyWaitEndList.html">
                 <img class="card-img-top imgp" src="../sysimg/s1.png">
                   <span data-feather="users"></span>
                   	驗收完成待結案<font color=red>${waitendsign}</font>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Apply/selectAll.html">
+                <a class="nav-link" href="http://localhost:8080/PurchasingSystem/Apply/selectAll.html">
                 <img class="card-img-top imgp" src="../sysimg/a3.png">
                   <span data-feather="file"></span>
                   	物料更新
@@ -115,7 +115,7 @@ padding-right:30px;
               </li>
               
               <li class="nav-item">
-                <a class="nav-link" href="http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Apply/ApplySearchEndList.html">
+                <a class="nav-link" href="http://localhost:8080/PurchasingSystem/Apply/ApplySearchEndList.html">
                 <img class="card-img-top imgp" src="../sysimg/s6.png">
                   <span data-feather="shopping-cart"></span>
                   	已結案單子查詢
@@ -141,14 +141,14 @@ padding-right:30px;
 		<c:if test="${user.emp_level==2}">
 			<ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link" href="http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Apply/selectAll.html">
+                <a class="nav-link" href="http://localhost:8080/PurchasingSystem/Apply/selectAll.html">
                 <img class="card-img-top imgp" src="../sysimg/s2.png">
                   <span data-feather="file"></span>
                   	物料更新
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Apply/ApplySearchEndList.html">
+                <a class="nav-link" href="http://localhost:8080/PurchasingSystem/Apply/ApplySearchEndList.html">
                 <img class="card-img-top imgp" src="../sysimg/s2.png">
                   <span data-feather="shopping-cart"></span>
                   	已結案單子查詢

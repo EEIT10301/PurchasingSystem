@@ -107,14 +107,14 @@ $(document).ready(function(){
 						var emplevel = Applist.emplevel;
 						if(emplevel=="1"){
 							txt +='<ul class="nav flex-column"> <li class="nav-item"> <a class="nav-link active" href="ApplySend.jsp"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> 請購申請 <span class="sr-only"></span></a></li>'
-							txt +='<li class="nav-item"> <a class="nav-link active" href="http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Apply/ApplyWaitEndList.html"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> 驗收完成待結案 <font color=red>'+Applist.waitendsign+'</font> </a></li>'
-							txt +='<li class="nav-item"> <a class="nav-link active" href="http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Apply/selectAll.html"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> 物料更新 <font color=red>'+'</font> </a></li>'
-							txt +='<li class="nav-item"> <a class="nav-link active" href="http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Apply/ApplySearchEndList.html"><img class="card-img-top imgp" src="../sysimg/s6.png"><span data-feather="home"></span> 已結案單子查詢 <font color=red>'+'</font> </a></li>'
+							txt +='<li class="nav-item"> <a class="nav-link active" href="http://localhost:8080/PurchasingSystem/Apply/ApplyWaitEndList.html"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> 驗收完成待結案 <font color=red>'+Applist.waitendsign+'</font> </a></li>'
+							txt +='<li class="nav-item"> <a class="nav-link active" href="http://localhost:8080/PurchasingSystem/Apply/selectAll.html"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> 物料更新 <font color=red>'+'</font> </a></li>'
+							txt +='<li class="nav-item"> <a class="nav-link active" href="http://localhost:8080/PurchasingSystem/Apply/ApplySearchEndList.html"><img class="card-img-top imgp" src="../sysimg/s6.png"><span data-feather="home"></span> 已結案單子查詢 <font color=red>'+'</font> </a></li>'
 							txt +='<li class="nav-item"> <a class="nav-link active" href="toApplySignnerdetail.controller"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> 待簽核請購單 <font color=red>'+Applist.SignAppList+'</font> </a></li>'
 							txt +='<li class="nav-item"> <a class="nav-link active" href="toApplySignpro.controller"><img class="card-img-top imgp" src="../sysimg/s6.png"><span data-feather="home"></span> 請購進度查詢 <font color=red>'+Applist.Appnow+'</font> </a></li> </ul></div>'
 						}else{
-							txt +='<ul class="nav flex-column"> <li class="nav-item"> <a class="nav-link active" href="http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Apply/selectAll.html"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> 物料更新 <font color=red>'+'</font> </a></li> '
-							txt +='<li class="nav-item"> <a class="nav-link active" href="http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Apply/ApplySearchEndList.html"><img class="card-img-top imgp" src="../sysimg/s6.png"><span data-feather="home"></span> 已結案單子查詢 <font color=red>'+'</font> </a></li>'
+							txt +='<ul class="nav flex-column"> <li class="nav-item"> <a class="nav-link active" href="http://localhost:8080/PurchasingSystem/Apply/selectAll.html"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> 物料更新 <font color=red>'+'</font> </a></li> '
+							txt +='<li class="nav-item"> <a class="nav-link active" href="http://localhost:8080/PurchasingSystem/Apply/ApplySearchEndList.html"><img class="card-img-top imgp" src="../sysimg/s6.png"><span data-feather="home"></span> 已結案單子查詢 <font color=red>'+'</font> </a></li>'
 							txt +='<li class="nav-item"> <a class="nav-link active" href="toApplySignnerdetail.controller"><img class="card-img-top imgp" src="../sysimg/s2.png"><span data-feather="home"></span> 待簽核請購單 <font color=red>'+Applist.SignAppList+'</font> </a></li>'
 							txt +='<li class="nav-item"> <a class="nav-link active" href="toApplySignpro.controller"><img class="card-img-top imgp" src="../sysimg/s6.png"><span data-feather="home"></span> 請購進度查詢 <font color=red>'+Applist.Appnow+'</font> </a></li> </ul></div>'
 						}
@@ -131,11 +131,11 @@ $(document).ready(function(){
 					var txt = ""
 							if(data.myArrayList==null){
 								alert("無結案請購單");
-							  window.location.href='http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Apply/ApplyLoginSuccess.jsp';
+							  window.location.href='http://localhost:8080/PurchasingSystem/Apply/ApplyLoginSuccess.jsp';
 							}
 					$.each(data.myArrayList,function(index,json){
 						txt += "<tr >";
-						txt += "<td id='appid'><a href='http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Apply/ApplySearchEndListDetail.html?appid="+json.map.app_id+"&appsta="+json.map.app_sta+"'>"+json.map.app_id+"</a></td>"
+						txt += "<td id='appid'><a href='http://localhost:8080/PurchasingSystem/Apply/ApplySearchEndListDetail.html?appid="+json.map.app_id+"&appsta="+json.map.app_sta+"'>"+json.map.app_id+"</a></td>"
 						txt += "<td id='sigdate'>"+json.map.sig_date+"</td>"
 						txt += "<td id='procate'>"+json.map.app_MainBean.map.pro_cate+"</td>"
 						txt += "<td id='empdep'>"+json.map.app_MainBean.map.employeeBean.map.emp_dep+"</td>"
@@ -166,7 +166,7 @@ $("tbody").on("click","#insert",function(){
 			//alert(dataJSON);
 			
 			$.ajax({
-				url : "http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Apply/insertproduct.do",
+				url : "http://localhost:8080/PurchasingSystem/Apply/insertproduct.do",
 				type : 'POST',
 				data : "{"+dataJSON+"}",
 				contentType:"application/json",
@@ -213,7 +213,7 @@ $("tbody").on("click","#update",function(){
 	alert(dataJSON);
 
 	$.ajax({
-		url : "http://eeitdemo10332.southeastasia.cloudapp.azure.com:8080/PurchasingSystem/Apply/RemoveCus.do",
+		url : "http://localhost:8080/PurchasingSystem/Apply/RemoveCus.do",
 		type : 'POST',
 		data : "{"+dataJSON+"}",
 		contentType:"application/json",
