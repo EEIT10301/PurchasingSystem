@@ -34,7 +34,7 @@ public class AutoSendEmailByJava {
 		String host = "smtp.gmail.com";
 		  int port = 587;
 		  final String username = "tim810320@gmail.com";//你的email帳號
-		  final String password = "hwkvghriduixegcb";//你的email密碼
+		  final String password = "";//你的email密碼 hwkvghriduixegcb
 
 		  Properties props = new Properties();
 		  props.put("mail.smtp.host", host);
