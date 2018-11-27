@@ -442,7 +442,7 @@ public class ApplySendController {
 	    		AutoSendEmailByJava sendemail =new AutoSendEmailByJava();
 	    		if(usersendemail!=null) {	 
 
-	    			sendemail.processMemberWishNotice(usersendemail.getEmp_email(), "待簽核請購單", "您有一張待簽核的請購單 請點下列連結登入"+"http://localhost:8080/PurchasingSystem/MainPage.jsp");
+	    			//sendemail.processMemberWishNotice(usersendemail.getEmp_email(), "待簽核請購單", "您有一張待簽核的請購單 請點下列連結登入"+"http://localhost:8080/PurchasingSystem/MainPage.jsp");
 
 	    		}
 	    		java.util.Date date = new java.util.Date();
@@ -460,7 +460,7 @@ public class ApplySendController {
 	    		AutoSendEmailByJava sendemail =new AutoSendEmailByJava();
 	    		if(usersendemail!=null) {	 
 
-	    			sendemail.processMemberWishNotice(usersendemail.getEmp_email(), "待簽核請購單", "您有一張待簽核的請購單 請點下列連結登入"+"http://localhost:8080/PurchasingSystem/MainPage.jsp");
+	    			//sendemail.processMemberWishNotice(usersendemail.getEmp_email(), "待簽核請購單", "您有一張待簽核的請購單 請點下列連結登入"+"http://localhost:8080/PurchasingSystem/MainPage.jsp");
 	    		}
 	    		java.util.Date date = new java.util.Date();
 	    		java.sql.Date data1 = new java.sql.Date(date.getTime());
