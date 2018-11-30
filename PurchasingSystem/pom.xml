@@ -175,16 +175,32 @@
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
 		</plugin>
-   <plugin>
-     <groupId>com.google.cloud.tools</groupId>
-     <artifactId>appengine-maven-plugin</artifactId>
-     <version>1.3.2</version>
-   </plugin>
-   <plugin>
-     <groupId>org.eclipse.jetty</groupId>
-     <artifactId>jetty-maven-plugin</artifactId>
-     <version>9.3.7.v20160115</version>
-		</plugin>
+		
+		<plugin>
+ <groupId>com.microsoft.azure</groupId>
+ <artifactId>azure-webapp-maven-plugin</artifactId>
+ <version>1.4.0</version>
+ <configuration>
+   <deploymentType>jar</deploymentType>
+
+   <!-- configure app to run on port 80, required by App Service -->
+   <appSettings>
+     <property> 
+       <name>JAVA_OPTS</name> 
+       <value>-Dserver.port=80</value> 
+     </property> 
+   </appSettings>
+
+   <!-- Web App information -->
+   <resourceGroup>eeit103</resourceGroup>
+   <appName>eeit10301</appName>
+   <region>SoutheastAsia</region>  
+
+   <!-- Java Runtime Stack for Web App on Linux-->
+   <linuxRuntime>jre8</linuxRuntime>
+ </configuration>
+</plugin>
+
         </plugins>
     </build>
 </project>
