@@ -17,3 +17,4 @@ public interface AppDetailIDao {
 	public abstract List<AppDetailBean> selectpart_no(String part_no);
 	public abstract List<AppDetailBean> selectapp_id(String app_id);
 }
+//xxxx
